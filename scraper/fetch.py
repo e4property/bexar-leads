@@ -1,5 +1,7 @@
 """
 Bexar County Motivated Seller Lead Scraper
+Targets the publicsearch.us JSON API directly (no Playwright needed).
+Falls back to Playwright if API returns nothing.
 """
 
 from __future__ import annotations
@@ -19,7 +21,12 @@ from pathlib import Path
 
 import requests
 from bs4 import BeautifulSoup
-from dbfread import DBF
+
+try:
+    from dbfread import DBF
+    DBFREAD_OK = True
+except ImportError:
+    DBFREAD_OK = False
 
 try:
     from playwright.async_api import async_playwright
@@ -35,8 +42,14 @@ logging.basicConfig(
 log = logging.getLogger(__name__)
 
 LOOKBACK_DAYS = int(os.getenv("LOOKBACK_DAYS", "7"))
+
+# Portal constants
+COUNTY_ID     = "48029"
 CLERK_BASE    = "https://bexar.tx.publicsearch.us"
-CLERK_SEARCH  = CLERK_BASE + "/results"
+# The SPA calls this API endpoint
+API_SEARCH    = CLERK_BASE + "/api/publicly/search/results"
+API_DOC       = CLERK_BASE + "/api/publicly/instrument"
+
 BCAD_BASE     = "https://esearch.bcad.org"
 
 DOC_TYPE_MAP = {
@@ -63,18 +76,19 @@ MAX_RETRIES = 3
 RETRY_DELAY = 5
 
 
-def retry(func):
-    def wrapper(*args, **kwargs):
-        for attempt in range(1, MAX_RETRIES + 1):
-            try:
-                return func(*args, **kwargs)
-            except Exception as exc:
-                log.warning("Attempt %d/%d failed for %s: %s", attempt, MAX_RETRIES, func.__name__, exc)
-                if attempt < MAX_RETRIES:
-                    time.sleep(RETRY_DELAY)
-        log.error("All %d attempts failed for %s", MAX_RETRIES, func.__name__)
-        return None
-    return wrapper
+# ---------------------------------------------------------------------------
+# Helpers
+# ---------------------------------------------------------------------------
+
+def retry_fn(func, *args, **kwargs):
+    for attempt in range(1, MAX_RETRIES + 1):
+        try:
+            return func(*args, **kwargs)
+        except Exception as exc:
+            log.warning("Attempt %d/%d failed: %s", attempt, MAX_RETRIES, exc)
+            if attempt < MAX_RETRIES:
+                time.sleep(RETRY_DELAY)
+    return None
 
 
 def clean(val):
@@ -130,6 +144,27 @@ def is_new_this_week(filed_str):
     return False
 
 
+def make_session():
+    s = requests.Session()
+    s.headers.update({
+        "User-Agent":      "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+        "Accept":          "application/json, text/plain, */*",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Referer":         CLERK_BASE + "/",
+        "Origin":          CLERK_BASE,
+    })
+    # Prime session cookie by visiting homepage
+    try:
+        s.get(CLERK_BASE + "/", timeout=20)
+    except Exception:
+        pass
+    return s
+
+
+# ---------------------------------------------------------------------------
+# Scoring
+# ---------------------------------------------------------------------------
+
 def compute_flags(record):
     flags    = []
     cat      = record.get("cat", "")
@@ -173,327 +208,84 @@ def compute_score(record, flags):
     return min(score, 100)
 
 
-class BCAdParcelLoader:
-    PARCEL_URL = BCAD_BASE + "/downloads"
-    CANDIDATE_PATHS = [
-        "/downloads/parcel_data.zip",
-        "/downloads/Parcels.zip",
-        "/downloads/BCAD_Parcels.zip",
-        "/downloads/parcel.zip",
-    ]
-
-    def __init__(self):
-        self.session = requests.Session()
-        self.session.headers["User-Agent"] = "Mozilla/5.0 (compatible; BexarLeadBot/1.0)"
-        self.lookup = {}
-
-    @retry
-    def _get_download_url(self):
-        try:
-            resp = self.session.get(self.PARCEL_URL, timeout=30)
-            resp.raise_for_status()
-            soup = BeautifulSoup(resp.text, "lxml")
-            for a in soup.find_all("a", href=True):
-                href = a["href"]
-                if re.search(r"parcel.*\.(zip|dbf)", href, re.I):
-                    if href.startswith("http"):
-                        return href
-                    return BCAD_BASE + href
-        except Exception as exc:
-            log.warning("Could not scrape BCAD downloads page: %s", exc)
-        for path in self.CANDIDATE_PATHS:
-            url = BCAD_BASE + path
-            try:
-                r = self.session.head(url, timeout=15, allow_redirects=True)
-                if r.status_code == 200:
-                    return url
-            except Exception:
-                continue
-        return None
-
-    @retry
-    def _download_zip(self, url):
-        log.info("Downloading parcel data from %s", url)
-        resp = self.session.get(url, timeout=120, stream=True)
-        resp.raise_for_status()
-        return resp.content
-
-    def _parse_dbf(self, data):
-        import struct
-
-        tmp_path = Path("/tmp/parcels.dbf")
-        tmp_path.write_bytes(data)
-        try:
-            # Patch dbfread to ignore unknown field types instead of crashing
-            try:
-                import dbfread.dbf as _dbf_mod
-                _orig_check = _dbf_mod.DBF._check_headers if hasattr(_dbf_mod.DBF, "_check_headers") else None
-            except Exception:
-                pass
-
-            # Use ignore_missing_memofile + chardet encoding fallback
-            for encoding in ("utf-8", "latin-1", "cp1252"):
-                try:
-                    table = DBF(
-                        str(tmp_path),
-                        lowernames=True,
-                        ignore_missing_memofile=True,
-                        encoding=encoding,
-                    )
-                    # Force field list load to trigger any header errors early
-                    _ = table.fields
-                    break
-                except ValueError as e:
-                    if "Unknown field type" in str(e):
-                        # Patch: strip bad field bytes from header and retry with raw parser
-                        log.warning("DBF has unknown field types (%s), using raw row parser.", e)
-                        table = None
-                        break
-                    raise
-                except Exception:
-                    continue
-            else:
-                table = None
-
-            if table is None:
-                # Fallback: parse DBF rows manually skipping bad fields
-                self._parse_dbf_raw(data)
-                return
-
-            count = 0
-            for row in table:
-                try:
-                    r = {}
-                    for k, v in row.items():
-                        try:
-                            r[str(k).lower()] = clean(v)
-                        except Exception:
-                            pass
-                    owner = r.get("owner") or r.get("own1") or r.get("ownername") or ""
-                    if not owner:
-                        continue
-                    entry = {
-                        "prop_address": r.get("site_addr") or r.get("siteaddr") or r.get("situs") or "",
-                        "prop_city":    r.get("site_city") or r.get("sitecity") or "",
-                        "prop_state":   "TX",
-                        "prop_zip":     r.get("site_zip")  or r.get("sitezip")  or "",
-                        "mail_address": r.get("addr_1") or r.get("mailadr1") or r.get("mail_addr") or "",
-                        "mail_city":    r.get("city")   or r.get("mailcity") or "",
-                        "mail_state":   r.get("state")  or r.get("mailstate") or "TX",
-                        "mail_zip":     r.get("zip")    or r.get("mailzip") or "",
-                    }
-                    for variant in normalize_name(owner):
-                        self.lookup[variant] = entry
-                    count += 1
-                except Exception:
-                    continue
-            log.info("Parsed %d rows from DBF.", count)
-        finally:
-            tmp_path.unlink(missing_ok=True)
-
-    def _parse_dbf_raw(self, data):
-        """
-        Manual DBF parser that skips unknown field types.
-        Handles corrupted BCAD DBF files with non-standard field type bytes.
-        DBF spec: 32-byte header, then 32-byte field descriptors until 0x0D terminator.
-        """
-        import struct
-        try:
-            if len(data) < 32:
-                return
-
-            num_records  = struct.unpack_from("<I", data, 4)[0]
-            header_size  = struct.unpack_from("<H", data, 8)[0]
-            record_size  = struct.unpack_from("<H", data, 10)[0]
-
-            # Parse field descriptors (each 32 bytes, starts at offset 32)
-            fields = []
-            offset = 32
-            while offset + 32 <= header_size:
-                if data[offset] == 0x0D:  # terminator
-                    break
-                raw_name  = data[offset:offset+11]
-                field_name = raw_name.split(b"\x00")[0].decode("latin-1", errors="replace").strip().lower()
-                field_type = chr(data[offset+11])
-                field_len  = data[offset+16]
-                fields.append((field_name, field_type, field_len))
-                offset += 32
-
-            if not fields:
-                log.warning("DBF raw parser: no fields found.")
-                return
-
-            # Parse records
-            rec_offset = header_size
-            count = 0
-            for _ in range(num_records):
-                if rec_offset + record_size > len(data):
-                    break
-                # First byte is deletion flag
-                if data[rec_offset] == 0x2A:  # '*' = deleted
-                    rec_offset += record_size
-                    continue
-
-                r = {}
-                field_offset = rec_offset + 1
-                for fname, ftype, flen in fields:
-                    raw_val = data[field_offset:field_offset+flen]
-                    try:
-                        val = raw_val.decode("latin-1", errors="replace").strip()
-                    except Exception:
-                        val = ""
-                    r[fname] = val
-                    field_offset += flen
-
-                owner = r.get("owner") or r.get("own1") or r.get("ownername") or ""
-                if owner:
-                    entry = {
-                        "prop_address": r.get("site_addr") or r.get("siteaddr") or r.get("situs") or "",
-                        "prop_city":    r.get("site_city") or r.get("sitecity") or "",
-                        "prop_state":   "TX",
-                        "prop_zip":     r.get("site_zip")  or r.get("sitezip")  or "",
-                        "mail_address": r.get("addr_1") or r.get("mailadr1") or r.get("mail_addr") or "",
-                        "mail_city":    r.get("city")   or r.get("mailcity") or "",
-                        "mail_state":   r.get("state")  or r.get("mailstate") or "TX",
-                        "mail_zip":     r.get("zip")    or r.get("mailzip") or "",
-                    }
-                    for variant in normalize_name(owner):
-                        self.lookup[variant] = entry
-                    count += 1
-
-                rec_offset += record_size
-
-            log.info("Raw DBF parser loaded %d owner records.", count)
-        except Exception as exc:
-            log.warning("Raw DBF parser failed: %s. Address enrichment disabled.", exc)
-
-    def load(self):
-        url = self._get_download_url()
-        if not url:
-            log.warning("Could not find BCAD parcel download URL. Address enrichment disabled.")
-            return
-        raw = self._download_zip(url)
-        if not raw:
-            log.warning("Could not download parcel data.")
-            return
-        try:
-            with zipfile.ZipFile(BytesIO(raw)) as zf:
-                dbf_names = [n for n in zf.namelist() if n.lower().endswith(".dbf")]
-                if not dbf_names:
-                    log.warning("No .dbf file found inside ZIP.")
-                    return
-                dbf_data = zf.read(dbf_names[0])
-        except zipfile.BadZipFile:
-            dbf_data = raw
-        self._parse_dbf(dbf_data)
-        log.info("Loaded %d parcel owner records.", len(self.lookup))
-
-    def get_address(self, owner):
-        for variant in normalize_name(owner):
-            if variant in self.lookup:
-                return self.lookup[variant]
-        return {}
-
+# ---------------------------------------------------------------------------
+# Clerk Portal Scraper - Direct API
+# ---------------------------------------------------------------------------
 
 class ClerkScraper:
+    """
+    Hits the publicsearch.us internal JSON API directly.
+    The SPA at bexar.tx.publicsearch.us calls these endpoints in the browser.
+    We replicate those calls with requests.
+    """
+
     def __init__(self, start_date, end_date):
         self.start_date = start_date
         self.end_date   = end_date
-        self.records    = []
+        self.session    = make_session()
 
-    async def _search_doc_type(self, page, doc_type):
-        results = []
-        try:
-            await page.goto(CLERK_SEARCH, wait_until="networkidle", timeout=60000)
-            await page.wait_for_selector(
-                "input[name*='beginDate'], #beginDate, input[name*='startDate']",
-                timeout=15000,
-            )
-            try:
-                await page.locator("select[name*='docType'], #docType").select_option(value=doc_type)
-            except Exception:
-                pass
-            for sel in ["input[name*='beginDate']", "#beginDate", "input[name*='startDate']"]:
-                try:
-                    await page.fill(sel, self.start_date)
-                    break
-                except Exception:
-                    pass
-            for sel in ["input[name*='endDate']", "#endDate"]:
-                try:
-                    await page.fill(sel, self.end_date)
-                    break
-                except Exception:
-                    pass
-            for sel in ["button[type='submit']", "input[type='submit']", "#searchBtn"]:
-                try:
-                    await page.click(sel)
-                    await page.wait_for_load_state("networkidle", timeout=30000)
-                    break
-                except Exception:
-                    pass
-            while True:
-                recs = await self._parse_results_page(page, doc_type)
-                results.extend(recs)
-                if not recs:
-                    break
-                try:
-                    nxt = page.locator("a:has-text('Next'), button:has-text('Next')")
-                    if await nxt.count() == 0:
-                        break
-                    await nxt.first.click()
-                    await page.wait_for_load_state("networkidle", timeout=20000)
-                except Exception:
-                    break
-        except Exception as exc:
-            log.warning("Error searching doc type %s: %s", doc_type, exc)
-        return results
+    def _api_search(self, doc_type, start=0, rows=100):
+        """Call the search API and return raw JSON response."""
+        params = {
+            "type":              "PT",
+            "searchType":        "quickSearch",
+            "countyId":          COUNTY_ID,
+            "dateRange":         "custom",
+            "recordedDateRange": "custom",
+            "beginDate":         self.start_date,
+            "endDate":           self.end_date,
+            "docType":           doc_type,
+            "start":             start,
+            "rows":              rows,
+        }
+        resp = self.session.get(API_SEARCH, params=params, timeout=30)
+        resp.raise_for_status()
+        return resp.json()
 
-    async def _parse_results_page(self, page, doc_type):
+    def _parse_api_response(self, data, doc_type):
+        """Parse the JSON API response into our record format."""
         records = []
-        try:
-            content = await page.content()
-            soup    = BeautifulSoup(content, "lxml")
-            table   = soup.find("table", {"id": re.compile(r"result|grid|search", re.I)})
-            if not table:
-                table = soup.find("table")
-            if not table:
-                return records
-            rows    = table.find_all("tr")
-            if not rows:
-                return records
-            headers = [th.get_text(strip=True).lower() for th in rows[0].find_all(["th", "td"])]
+        cat, cat_label = DOC_TYPE_MAP.get(doc_type, (doc_type, doc_type))
 
-            def col(cells, *names):
-                for name in names:
-                    for i, h in enumerate(headers):
-                        if name in h and i < len(cells):
-                            return clean(cells[i].get_text(strip=True))
-                return ""
+        # The API returns hits in data['hits']['hits'] or data['results'] etc.
+        # Try multiple known response shapes
+        hits = []
+        if isinstance(data, dict):
+            hits = (
+                data.get("hits", {}).get("hits", [])
+                or data.get("results", [])
+                or data.get("documents", [])
+                or data.get("data", [])
+                or []
+            )
+        elif isinstance(data, list):
+            hits = data
 
-            for row in rows[1:]:
-                cells = row.find_all("td")
-                if not cells:
-                    continue
-                link_tag  = row.find("a", href=True)
-                clerk_url = ""
-                doc_num   = ""
-                if link_tag:
-                    href = link_tag["href"]
-                    if not href.startswith("http"):
-                        href = CLERK_BASE + href
-                    clerk_url = href
-                    doc_num   = clean(link_tag.get_text(strip=True))
-                if not doc_num:
-                    doc_num = col(cells, "doc", "instrument", "number")
-                filed      = col(cells, "date", "filed", "record date")
-                grantor    = col(cells, "grantor", "owner", "from")
-                grantee    = col(cells, "grantee", "to", "beneficiary")
-                legal      = col(cells, "legal", "description", "property")
-                amount_str = col(cells, "amount", "consideration", "value")
+        for hit in hits:
+            try:
+                src = hit.get("_source", hit)
+
+                doc_num  = clean(src.get("docNum") or src.get("instrumentNumber") or src.get("docNumber") or "")
+                filed    = clean(src.get("recordedDate") or src.get("filedDate") or src.get("dateRecorded") or "")
+                grantor  = clean(src.get("grantor") or src.get("grantorNames") or src.get("owner") or "")
+                grantee  = clean(src.get("grantee") or src.get("granteeNames") or "")
+                legal    = clean(src.get("legalDescription") or src.get("legal") or "")
+                amount   = parse_amount(str(src.get("considerationAmount") or src.get("amount") or "0"))
+
+                # Build clerk URL
+                inst_id  = src.get("id") or src.get("instrumentId") or doc_num
+                clerk_url = CLERK_BASE + "/instruments/" + str(inst_id) if inst_id else ""
+
                 if not doc_num and not filed:
                     continue
-                cat, cat_label = DOC_TYPE_MAP.get(doc_type, (doc_type, doc_type))
+
+                # Format filed date nicely if it's ISO format
+                if filed and "T" in filed:
+                    try:
+                        filed = datetime.fromisoformat(filed.split("T")[0]).strftime("%m/%d/%Y")
+                    except Exception:
+                        pass
+
                 records.append({
                     "doc_num":   doc_num,
                     "doc_type":  doc_type,
@@ -502,111 +294,447 @@ class ClerkScraper:
                     "cat_label": cat_label,
                     "owner":     grantor,
                     "grantee":   grantee,
-                    "amount":    parse_amount(amount_str),
+                    "amount":    amount,
                     "legal":     legal,
                     "clerk_url": clerk_url,
                 })
-        except Exception as exc:
-            log.warning("Error parsing results page: %s", exc)
+            except Exception as exc:
+                log.warning("Error parsing hit: %s", exc)
+
         return records
 
-    async def run(self):
-        if not PLAYWRIGHT_AVAILABLE:
-            log.warning("Playwright not available. Using HTTP fallback.")
-            return await self._http_fallback()
+    def search_doc_type(self, doc_type):
+        """Search one doc type, paginating through all results."""
+        all_records = []
+        start = 0
+        rows  = 100
+
+        while True:
+            try:
+                data = retry_fn(self._api_search, doc_type, start, rows)
+                if data is None:
+                    break
+
+                page_records = self._parse_api_response(data, doc_type)
+                all_records.extend(page_records)
+
+                # Check if there are more pages
+                total = 0
+                if isinstance(data, dict):
+                    total = (
+                        data.get("hits", {}).get("total", {}).get("value", 0)
+                        or data.get("total", 0)
+                        or data.get("totalResults", 0)
+                        or 0
+                    )
+                    # Also handle total as plain int
+                    if isinstance(total, int) and total == 0:
+                        total = len(all_records)
+
+                if not page_records or (start + rows) >= total:
+                    break
+                start += rows
+
+            except Exception as exc:
+                log.warning("Error searching %s at start=%d: %s", doc_type, start, exc)
+                break
+
+        return all_records
+
+    def run(self):
+        all_records = []
+        for doc_type in TARGET_DOC_TYPES:
+            log.info("Searching clerk portal for doc type: %s", doc_type)
+            try:
+                recs = self.search_doc_type(doc_type)
+                log.info("  Found %d records for %s", len(recs), doc_type)
+                all_records.extend(recs)
+            except Exception as exc:
+                log.warning("  Failed for %s: %s", doc_type, exc)
+
+        # If API returned nothing, try Playwright as last resort
+        if not all_records and PLAYWRIGHT_AVAILABLE:
+            log.info("API returned 0 results. Trying Playwright fallback...")
+            all_records = asyncio.run(self._playwright_fallback())
+
+        return all_records
+
+    async def _playwright_fallback(self):
+        """
+        Playwright fallback: navigates the actual SPA, clicks 'Last 1 Week'
+        preset, then searches each doc type using the search bar.
+        """
+        records = []
         async with async_playwright() as pw:
             browser = await pw.chromium.launch(
                 headless=True,
                 args=["--no-sandbox", "--disable-setuid-sandbox"],
             )
             context = await browser.new_context(
-                user_agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36"
+                user_agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/122.0.0.0 Safari/537.36"
             )
             page = await context.new_page()
-            for doc_type in TARGET_DOC_TYPES:
-                log.info("Searching clerk portal for doc type: %s", doc_type)
-                for attempt in range(1, MAX_RETRIES + 1):
+
+            # Intercept API calls to capture responses
+            api_responses = []
+            async def handle_response(response):
+                if "api/publicly/search" in response.url:
                     try:
-                        recs = await self._search_doc_type(page, doc_type)
-                        log.info("  Found %d records for %s", len(recs), doc_type)
-                        self.records.extend(recs)
-                        break
-                    except Exception as exc:
-                        log.warning("  Attempt %d failed for %s: %s", attempt, doc_type, exc)
-                        if attempt < MAX_RETRIES:
-                            await asyncio.sleep(RETRY_DELAY)
+                        body = await response.json()
+                        api_responses.append(body)
+                    except Exception:
+                        pass
+            page.on("response", handle_response)
+
+            for doc_type in TARGET_DOC_TYPES:
+                log.info("[Playwright] Searching for %s", doc_type)
+                try:
+                    api_responses.clear()
+                    await page.goto(CLERK_BASE + "/", wait_until="networkidle", timeout=45000)
+
+                    # Click Advanced Search
+                    try:
+                        await page.click("a[href*='advanced']", timeout=5000)
+                        await page.wait_for_load_state("networkidle", timeout=15000)
+                    except Exception:
+                        pass
+
+                    # Try to find and fill search box with doc type
+                    search_selectors = [
+                        "input[placeholder*='Search']",
+                        "input[placeholder*='search']",
+                        "input[type='text']",
+                        "input[type='search']",
+                        ".search-input",
+                        "#searchTerm",
+                    ]
+                    for sel in search_selectors:
+                        try:
+                            await page.fill(sel, doc_type)
+                            break
+                        except Exception:
+                            continue
+
+                    # Click "Last 1 Week" date preset
+                    try:
+                        await page.click("text=Last 1 Week", timeout=5000)
+                    except Exception:
+                        pass
+
+                    # Submit search
+                    try:
+                        await page.keyboard.press("Enter")
+                        await page.wait_for_load_state("networkidle", timeout=20000)
+                    except Exception:
+                        pass
+
+                    # Parse intercepted API responses
+                    for resp_data in api_responses:
+                        recs = self._parse_api_response(resp_data, doc_type)
+                        if recs:
+                            log.info("  [Playwright] Found %d records for %s", len(recs), doc_type)
+                            records.extend(recs)
+
+                except Exception as exc:
+                    log.warning("[Playwright] Error for %s: %s", doc_type, exc)
+
             await browser.close()
-        return self.records
-
-    async def _http_fallback(self):
-        records = []
-        session = requests.Session()
-        session.headers["User-Agent"] = "Mozilla/5.0 (compatible; BexarLeadBot/1.0)"
-        for doc_type in TARGET_DOC_TYPES:
-            log.info("[HTTP] Searching for doc type: %s", doc_type)
-            try:
-                params = {
-                    "type":      "PT",
-                    "docType":   doc_type,
-                    "beginDate": self.start_date,
-                    "endDate":   self.end_date,
-                    "county":    "Bexar",
-                }
-                resp = session.get(CLERK_SEARCH, params=params, timeout=30)
-                resp.raise_for_status()
-                soup    = BeautifulSoup(resp.text, "lxml")
-                table   = soup.find("table")
-                if not table:
-                    continue
-                rows    = table.find_all("tr")
-                headers = [th.get_text(strip=True).lower() for th in rows[0].find_all(["th", "td"])] if rows else []
-
-                def col(cells, *names):
-                    for name in names:
-                        for i, h in enumerate(headers):
-                            if name in h and i < len(cells):
-                                return clean(cells[i].get_text(strip=True))
-                    return ""
-
-                for row in rows[1:]:
-                    cells = row.find_all("td")
-                    if not cells:
-                        continue
-                    link_tag  = row.find("a", href=True)
-                    clerk_url = ""
-                    doc_num   = ""
-                    if link_tag:
-                        href = link_tag["href"]
-                        if not href.startswith("http"):
-                            href = CLERK_BASE + href
-                        clerk_url = href
-                        doc_num   = clean(link_tag.get_text(strip=True))
-                    if not doc_num:
-                        doc_num = col(cells, "doc", "instrument", "number")
-                    filed      = col(cells, "date", "filed")
-                    grantor    = col(cells, "grantor", "owner", "from")
-                    grantee    = col(cells, "grantee", "to")
-                    legal      = col(cells, "legal", "description")
-                    amount_str = col(cells, "amount", "consideration")
-                    if not doc_num and not filed:
-                        continue
-                    cat, cat_label = DOC_TYPE_MAP.get(doc_type, (doc_type, doc_type))
-                    records.append({
-                        "doc_num":   doc_num,
-                        "doc_type":  doc_type,
-                        "filed":     filed,
-                        "cat":       cat,
-                        "cat_label": cat_label,
-                        "owner":     grantor,
-                        "grantee":   grantee,
-                        "amount":    parse_amount(amount_str),
-                        "legal":     legal,
-                        "clerk_url": clerk_url,
-                    })
-            except Exception as exc:
-                log.warning("[HTTP] Error for %s: %s", doc_type, exc)
         return records
 
+
+# ---------------------------------------------------------------------------
+# BCAD Parcel Loader - raw binary DBF parser
+# ---------------------------------------------------------------------------
+
+class BCAdParcelLoader:
+    PARCEL_URL = BCAD_BASE + "/downloads"
+    CANDIDATE_URLS = [
+        "https://esearch.bcad.org/downloads/parcel_data.zip",
+        "https://esearch.bcad.org/downloads/Parcels.zip",
+        "https://esearch.bcad.org/downloads/BCAD_Parcels.zip",
+        "https://esearch.bcad.org/DownloadFiles/ParcelData.zip",
+        "https://esearch.bcad.org/DownloadFiles/Parcels.zip",
+    ]
+
+    def __init__(self):
+        self.session = requests.Session()
+        self.session.headers["User-Agent"] = "Mozilla/5.0 (compatible; BexarLeadBot/1.0)"
+        self.lookup = {}
+
+    def _get_download_url(self):
+        # First try scraping the downloads page
+        for attempt in range(MAX_RETRIES):
+            try:
+                resp = self.session.get(self.PARCEL_URL, timeout=30)
+                resp.raise_for_status()
+                soup = BeautifulSoup(resp.text, "lxml")
+                for a in soup.find_all("a", href=True):
+                    href = a["href"]
+                    low  = href.lower()
+                    if any(x in low for x in ["parcel", "bcad"]) and any(x in low for x in [".zip", ".dbf"]):
+                        if href.startswith("http"):
+                            return href
+                        return BCAD_BASE + href
+                break
+            except Exception as exc:
+                log.warning("BCAD downloads page attempt %d: %s", attempt + 1, exc)
+                time.sleep(RETRY_DELAY)
+
+        # Try candidate URLs
+        for url in self.CANDIDATE_URLS:
+            try:
+                r = self.session.head(url, timeout=15, allow_redirects=True)
+                if r.status_code == 200:
+                    log.info("Found parcel data at %s", url)
+                    return url
+            except Exception:
+                continue
+        return None
+
+    def _download(self, url):
+        log.info("Downloading parcel data from %s", url)
+        for attempt in range(MAX_RETRIES):
+            try:
+                resp = self.session.get(url, timeout=180, stream=True)
+                resp.raise_for_status()
+                return resp.content
+            except Exception as exc:
+                log.warning("Download attempt %d: %s", attempt + 1, exc)
+                time.sleep(RETRY_DELAY)
+        return None
+
+    def _parse_dbf_raw(self, data):
+        """
+        Pure-Python DBF binary parser.
+        Reads field descriptors directly from the header bytes,
+        then walks each record without relying on dbfread field type validation.
+        """
+        import struct
+        try:
+            if len(data) < 32:
+                log.warning("DBF data too short (%d bytes)", len(data))
+                return 0
+
+            # Header: bytes 0-31
+            num_records = struct.unpack_from("<I", data, 4)[0]
+            header_size = struct.unpack_from("<H", data, 8)[0]
+            record_size = struct.unpack_from("<H", data, 10)[0]
+
+            log.info("DBF header: %d records, header=%d, record_size=%d", num_records, header_size, record_size)
+
+            if num_records == 0 or record_size == 0:
+                return 0
+
+            # Field descriptors start at byte 32, each 32 bytes, end at 0x0D
+            fields = []
+            offset = 32
+            while offset + 32 <= header_size:
+                if data[offset] == 0x0D:
+                    break
+                if data[offset] == 0x00:
+                    offset += 32
+                    continue
+                raw_name   = data[offset:offset + 11]
+                field_name = raw_name.split(b"\x00")[0].decode("latin-1", errors="replace").strip().lower()
+                field_len  = data[offset + 16]
+                fields.append((field_name, field_len))
+                offset += 32
+
+            if not fields:
+                log.warning("DBF: no fields parsed from header")
+                return 0
+
+            log.info("DBF fields (%d): %s", len(fields), [f[0] for f in fields[:15]])
+
+            # Verify field lengths sum to record_size - 1 (deletion flag)
+            total_field_len = sum(f[1] for f in fields)
+            if total_field_len != record_size - 1:
+                log.warning("DBF field length mismatch: sum=%d, record_size-1=%d. Adjusting.", total_field_len, record_size - 1)
+
+            # Parse records
+            rec_offset = header_size
+            count      = 0
+            skipped    = 0
+
+            for _ in range(num_records):
+                if rec_offset + record_size > len(data):
+                    break
+
+                # Deletion flag: 0x20 = active, 0x2A = deleted
+                flag = data[rec_offset]
+                if flag == 0x2A:
+                    rec_offset += record_size
+                    skipped += 1
+                    continue
+
+                r = {}
+                field_offset = rec_offset + 1  # skip deletion flag
+                for fname, flen in fields:
+                    raw_val = data[field_offset:field_offset + flen]
+                    try:
+                        val = raw_val.decode("latin-1", errors="replace").strip()
+                    except Exception:
+                        val = ""
+                    r[fname] = val
+                    field_offset += flen
+
+                owner = r.get("owner") or r.get("own1") or r.get("ownername") or r.get("name") or ""
+                if owner and owner.strip():
+                    entry = {
+                        "prop_address": r.get("site_addr") or r.get("siteaddr") or r.get("situs") or r.get("address") or "",
+                        "prop_city":    r.get("site_city") or r.get("sitecity") or r.get("city") or "",
+                        "prop_state":   "TX",
+                        "prop_zip":     r.get("site_zip")  or r.get("sitezip")  or r.get("zip5") or "",
+                        "mail_address": r.get("addr_1") or r.get("mailadr1") or r.get("mail_addr") or r.get("mail1") or "",
+                        "mail_city":    r.get("mailcity") or r.get("mail_city") or r.get("mcity") or "",
+                        "mail_state":   r.get("mailstate") or r.get("mail_state") or r.get("mstate") or "TX",
+                        "mail_zip":     r.get("mailzip") or r.get("mail_zip") or r.get("mzip") or "",
+                    }
+                    for variant in normalize_name(owner):
+                        self.lookup[variant] = entry
+                    count += 1
+
+                rec_offset += record_size
+
+            log.info("DBF raw parser: loaded %d owner records (%d deleted/skipped)", count, skipped)
+            return count
+
+        except Exception as exc:
+            log.warning("DBF raw parser error: %s", exc)
+            import traceback
+            traceback.print_exc()
+            return 0
+
+    def _parse_dbf_with_library(self, path):
+        """Try dbfread library first (faster), fall back to raw parser."""
+        if not DBFREAD_OK:
+            return 0
+        for encoding in ("utf-8", "latin-1", "cp1252"):
+            try:
+                table = DBF(path, lowernames=True, ignore_missing_memofile=True, encoding=encoding)
+                _ = table.fields  # trigger header parse
+                count = 0
+                for row in table:
+                    try:
+                        r = {k.lower(): clean(v) for k, v in row.items()}
+                        owner = r.get("owner") or r.get("own1") or r.get("ownername") or ""
+                        if not owner:
+                            continue
+                        entry = {
+                            "prop_address": r.get("site_addr") or r.get("siteaddr") or r.get("situs") or "",
+                            "prop_city":    r.get("site_city") or r.get("sitecity") or "",
+                            "prop_state":   "TX",
+                            "prop_zip":     r.get("site_zip")  or r.get("sitezip")  or "",
+                            "mail_address": r.get("addr_1") or r.get("mailadr1") or "",
+                            "mail_city":    r.get("city") or r.get("mailcity") or "",
+                            "mail_state":   r.get("state") or r.get("mailstate") or "TX",
+                            "mail_zip":     r.get("zip") or r.get("mailzip") or "",
+                        }
+                        for variant in normalize_name(owner):
+                            self.lookup[variant] = entry
+                        count += 1
+                    except Exception:
+                        continue
+                log.info("dbfread library loaded %d records (encoding=%s)", count, encoding)
+                return count
+            except ValueError as e:
+                if "Unknown field type" in str(e):
+                    log.warning("dbfread: %s. Switching to raw parser.", e)
+                    return 0
+                raise
+            except Exception as exc:
+                log.warning("dbfread attempt with %s: %s", encoding, exc)
+                continue
+        return 0
+
+    def load(self):
+        url = self._get_download_url()
+        if not url:
+            log.warning("Could not find BCAD parcel download URL. Address enrichment disabled.")
+            return
+
+        raw = self._download(url)
+        if not raw:
+            log.warning("Could not download parcel data.")
+            return
+
+        # Extract DBF from ZIP
+        dbf_data = None
+        try:
+            with zipfile.ZipFile(BytesIO(raw)) as zf:
+                names = zf.namelist()
+                log.info("ZIP contents: %s", names[:10])
+                dbf_names = [n for n in names if n.lower().endswith(".dbf")]
+                if dbf_names:
+                    dbf_data = zf.read(dbf_names[0])
+                    log.info("Extracted DBF: %s (%d bytes)", dbf_names[0], len(dbf_data))
+                else:
+                    log.warning("No .dbf in ZIP. Files: %s", names)
+                    # Maybe it's a CSV or other format
+                    csv_names = [n for n in names if n.lower().endswith(".csv")]
+                    if csv_names:
+                        self._parse_csv(zf.read(csv_names[0]))
+                        return
+        except zipfile.BadZipFile:
+            log.info("Not a ZIP file, treating as raw DBF (%d bytes)", len(raw))
+            dbf_data = raw
+
+        if not dbf_data:
+            return
+
+        # Try library first, then raw parser
+        tmp_path = Path("/tmp/parcels.dbf")
+        tmp_path.write_bytes(dbf_data)
+        try:
+            count = self._parse_dbf_with_library(str(tmp_path))
+            if count == 0:
+                log.info("Library parse returned 0, trying raw binary parser...")
+                count = self._parse_dbf_raw(dbf_data)
+        finally:
+            tmp_path.unlink(missing_ok=True)
+
+        log.info("Total owner lookup entries: %d", len(self.lookup))
+
+    def _parse_csv(self, data):
+        """Fallback: parse CSV parcel data."""
+        import csv as csvmod
+        import io
+        try:
+            text = data.decode("latin-1", errors="replace")
+            reader = csvmod.DictReader(io.StringIO(text))
+            count = 0
+            for row in reader:
+                r = {k.lower().strip(): clean(v) for k, v in row.items()}
+                owner = r.get("owner") or r.get("own1") or r.get("ownername") or ""
+                if not owner:
+                    continue
+                entry = {
+                    "prop_address": r.get("site_addr") or r.get("siteaddr") or "",
+                    "prop_city":    r.get("site_city") or r.get("sitecity") or "",
+                    "prop_state":   "TX",
+                    "prop_zip":     r.get("site_zip") or r.get("sitezip") or "",
+                    "mail_address": r.get("addr_1") or r.get("mailadr1") or "",
+                    "mail_city":    r.get("city") or r.get("mailcity") or "",
+                    "mail_state":   r.get("state") or r.get("mailstate") or "TX",
+                    "mail_zip":     r.get("zip") or r.get("mailzip") or "",
+                }
+                for variant in normalize_name(owner):
+                    self.lookup[variant] = entry
+                count += 1
+            log.info("CSV parser loaded %d records.", count)
+        except Exception as exc:
+            log.warning("CSV parser error: %s", exc)
+
+    def get_address(self, owner):
+        for variant in normalize_name(owner):
+            if variant in self.lookup:
+                return self.lookup[variant]
+        return {}
+
+
+# ---------------------------------------------------------------------------
+# Enrichment
+# ---------------------------------------------------------------------------
 
 def enrich_records(records, parcel):
     owner_cats = {}
@@ -614,11 +742,13 @@ def enrich_records(records, parcel):
         owner = r.get("owner", "").upper()
         if owner:
             owner_cats.setdefault(owner, []).append(r.get("cat", ""))
+
     enriched = []
     for r in records:
         try:
             owner     = r.get("owner", "")
             addr_info = parcel.get_address(owner)
+
             r["prop_address"] = addr_info.get("prop_address", "")
             r["prop_city"]    = addr_info.get("prop_city", "San Antonio")
             r["prop_state"]   = addr_info.get("prop_state", "TX")
@@ -628,6 +758,7 @@ def enrich_records(records, parcel):
             r["mail_state"]   = addr_info.get("mail_state", "TX")
             r["mail_zip"]     = addr_info.get("mail_zip", "")
             r["_owner_cats"]  = owner_cats.get(owner.upper(), [])
+
             flags  = compute_flags(r)
             score  = compute_score(r, flags)
             r["flags"] = flags
@@ -637,8 +768,13 @@ def enrich_records(records, parcel):
         except Exception as exc:
             log.warning("Error enriching record %s: %s", r.get("doc_num", "?"), exc)
             enriched.append(r)
+
     return enriched
 
+
+# ---------------------------------------------------------------------------
+# Output writers
+# ---------------------------------------------------------------------------
 
 def build_output(records, start_date, end_date):
     with_address = sum(1 for r in records if r.get("prop_address"))
@@ -676,10 +812,10 @@ def save_ghl_csv(records, path_str):
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
         for r in records:
-            owner  = r.get("owner", "")
-            parts  = owner.split(",", 1) if "," in owner else owner.split(" ", 1)
-            first  = parts[1].strip() if len(parts) > 1 else ""
-            last   = parts[0].strip()
+            owner = r.get("owner", "")
+            parts = owner.split(",", 1) if "," in owner else owner.split(" ", 1)
+            first = parts[1].strip() if len(parts) > 1 else ""
+            last  = parts[0].strip()
             writer.writerow({
                 "First Name":             first,
                 "Last Name":              last,
@@ -704,31 +840,41 @@ def save_ghl_csv(records, path_str):
     log.info("Saved GHL CSV to %s", path)
 
 
-async def main():
+# ---------------------------------------------------------------------------
+# Main
+# ---------------------------------------------------------------------------
+
+def main():
     log.info("=" * 60)
     log.info("Bexar County Motivated Seller Lead Scraper")
     log.info("Lookback: %d days", LOOKBACK_DAYS)
     log.info("=" * 60)
+
     start_date, end_date = date_range_str(LOOKBACK_DAYS)
     log.info("Date range: %s to %s", start_date, end_date)
+
     log.info("Loading BCAD parcel data...")
     parcel = BCAdParcelLoader()
     parcel.load()
-    log.info("Scraping Bexar County Clerk portal...")
+
+    log.info("Scraping Bexar County Clerk portal (direct API)...")
     scraper     = ClerkScraper(start_date, end_date)
-    raw_records = await scraper.run()
+    raw_records = scraper.run()
     log.info("Total raw records scraped: %d", len(raw_records))
-    log.info("Enriching records with parcel data and scoring...")
+
+    log.info("Enriching records...")
     records = enrich_records(raw_records, parcel)
     records.sort(key=lambda r: r.get("score", 0), reverse=True)
+
     output = build_output(records, start_date, end_date)
     save_json(output, "dashboard/records.json", "data/records.json")
     save_ghl_csv(records, "data/leads_export.csv")
+
     log.info("Done. %d leads saved (%d with address).", output["total"], output["with_address"])
     if records:
         log.info("Top score: %d", records[0]["score"])
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()
 
