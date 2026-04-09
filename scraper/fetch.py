@@ -219,29 +219,153 @@ class BCAdParcelLoader:
         return resp.content
 
     def _parse_dbf(self, data):
+        import struct
+
         tmp_path = Path("/tmp/parcels.dbf")
         tmp_path.write_bytes(data)
         try:
-            table = DBF(str(tmp_path), lowernames=True, ignore_missing_memofile=True)
-            for row in table:
-                r = {k.lower(): clean(v) for k, v in row.items()}
-                owner = r.get("owner") or r.get("own1") or r.get("ownername") or ""
-                if not owner:
+            # Patch dbfread to ignore unknown field types instead of crashing
+            try:
+                import dbfread.dbf as _dbf_mod
+                _orig_check = _dbf_mod.DBF._check_headers if hasattr(_dbf_mod.DBF, "_check_headers") else None
+            except Exception:
+                pass
+
+            # Use ignore_missing_memofile + chardet encoding fallback
+            for encoding in ("utf-8", "latin-1", "cp1252"):
+                try:
+                    table = DBF(
+                        str(tmp_path),
+                        lowernames=True,
+                        ignore_missing_memofile=True,
+                        encoding=encoding,
+                    )
+                    # Force field list load to trigger any header errors early
+                    _ = table.fields
+                    break
+                except ValueError as e:
+                    if "Unknown field type" in str(e):
+                        # Patch: strip bad field bytes from header and retry with raw parser
+                        log.warning("DBF has unknown field types (%s), using raw row parser.", e)
+                        table = None
+                        break
+                    raise
+                except Exception:
                     continue
-                entry = {
-                    "prop_address": r.get("site_addr") or r.get("siteaddr") or r.get("situs") or "",
-                    "prop_city":    r.get("site_city") or r.get("sitecity") or "",
-                    "prop_state":   "TX",
-                    "prop_zip":     r.get("site_zip")  or r.get("sitezip")  or "",
-                    "mail_address": r.get("addr_1") or r.get("mailadr1") or r.get("mail_addr") or "",
-                    "mail_city":    r.get("city")   or r.get("mailcity") or "",
-                    "mail_state":   r.get("state")  or r.get("mailstate") or "TX",
-                    "mail_zip":     r.get("zip")    or r.get("mailzip") or "",
-                }
-                for variant in normalize_name(owner):
-                    self.lookup[variant] = entry
+            else:
+                table = None
+
+            if table is None:
+                # Fallback: parse DBF rows manually skipping bad fields
+                self._parse_dbf_raw(data)
+                return
+
+            count = 0
+            for row in table:
+                try:
+                    r = {}
+                    for k, v in row.items():
+                        try:
+                            r[str(k).lower()] = clean(v)
+                        except Exception:
+                            pass
+                    owner = r.get("owner") or r.get("own1") or r.get("ownername") or ""
+                    if not owner:
+                        continue
+                    entry = {
+                        "prop_address": r.get("site_addr") or r.get("siteaddr") or r.get("situs") or "",
+                        "prop_city":    r.get("site_city") or r.get("sitecity") or "",
+                        "prop_state":   "TX",
+                        "prop_zip":     r.get("site_zip")  or r.get("sitezip")  or "",
+                        "mail_address": r.get("addr_1") or r.get("mailadr1") or r.get("mail_addr") or "",
+                        "mail_city":    r.get("city")   or r.get("mailcity") or "",
+                        "mail_state":   r.get("state")  or r.get("mailstate") or "TX",
+                        "mail_zip":     r.get("zip")    or r.get("mailzip") or "",
+                    }
+                    for variant in normalize_name(owner):
+                        self.lookup[variant] = entry
+                    count += 1
+                except Exception:
+                    continue
+            log.info("Parsed %d rows from DBF.", count)
         finally:
             tmp_path.unlink(missing_ok=True)
+
+    def _parse_dbf_raw(self, data):
+        """
+        Manual DBF parser that skips unknown field types.
+        Handles corrupted BCAD DBF files with non-standard field type bytes.
+        DBF spec: 32-byte header, then 32-byte field descriptors until 0x0D terminator.
+        """
+        import struct
+        try:
+            if len(data) < 32:
+                return
+
+            num_records  = struct.unpack_from("<I", data, 4)[0]
+            header_size  = struct.unpack_from("<H", data, 8)[0]
+            record_size  = struct.unpack_from("<H", data, 10)[0]
+
+            # Parse field descriptors (each 32 bytes, starts at offset 32)
+            fields = []
+            offset = 32
+            while offset + 32 <= header_size:
+                if data[offset] == 0x0D:  # terminator
+                    break
+                raw_name  = data[offset:offset+11]
+                field_name = raw_name.split(b"\x00")[0].decode("latin-1", errors="replace").strip().lower()
+                field_type = chr(data[offset+11])
+                field_len  = data[offset+16]
+                fields.append((field_name, field_type, field_len))
+                offset += 32
+
+            if not fields:
+                log.warning("DBF raw parser: no fields found.")
+                return
+
+            # Parse records
+            rec_offset = header_size
+            count = 0
+            for _ in range(num_records):
+                if rec_offset + record_size > len(data):
+                    break
+                # First byte is deletion flag
+                if data[rec_offset] == 0x2A:  # '*' = deleted
+                    rec_offset += record_size
+                    continue
+
+                r = {}
+                field_offset = rec_offset + 1
+                for fname, ftype, flen in fields:
+                    raw_val = data[field_offset:field_offset+flen]
+                    try:
+                        val = raw_val.decode("latin-1", errors="replace").strip()
+                    except Exception:
+                        val = ""
+                    r[fname] = val
+                    field_offset += flen
+
+                owner = r.get("owner") or r.get("own1") or r.get("ownername") or ""
+                if owner:
+                    entry = {
+                        "prop_address": r.get("site_addr") or r.get("siteaddr") or r.get("situs") or "",
+                        "prop_city":    r.get("site_city") or r.get("sitecity") or "",
+                        "prop_state":   "TX",
+                        "prop_zip":     r.get("site_zip")  or r.get("sitezip")  or "",
+                        "mail_address": r.get("addr_1") or r.get("mailadr1") or r.get("mail_addr") or "",
+                        "mail_city":    r.get("city")   or r.get("mailcity") or "",
+                        "mail_state":   r.get("state")  or r.get("mailstate") or "TX",
+                        "mail_zip":     r.get("zip")    or r.get("mailzip") or "",
+                    }
+                    for variant in normalize_name(owner):
+                        self.lookup[variant] = entry
+                    count += 1
+
+                rec_offset += record_size
+
+            log.info("Raw DBF parser loaded %d owner records.", count)
+        except Exception as exc:
+            log.warning("Raw DBF parser failed: %s. Address enrichment disabled.", exc)
 
     def load(self):
         url = self._get_download_url()
