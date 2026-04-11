@@ -1,8 +1,7 @@
 """
 Bexar County Motivated Seller Lead Scraper
-The portal SPA loads data via XHR. We intercept those calls.
-Key insight from debug: page captures skeleton HTML before results load.
-Fix: wait for actual result elements, not just networkidle.
+Uses Playwright request INTERCEPTION (not response listener) to capture
+the exact API calls the SPA makes and replay them directly.
 """
 
 from __future__ import annotations
@@ -57,10 +56,8 @@ DOC_TYPE_MAP = {
     "RELLP":    ("RELLP",  "Release Lis Pendens"),
 }
 TARGET_DOC_TYPES = list(DOC_TYPE_MAP.keys())
-MAX_RETRIES  = 3
-RETRY_DELAY  = 5
-# How long to wait for results to appear after page load
-RESULT_WAIT  = 20000  # ms
+MAX_RETRIES = 3
+RETRY_DELAY = 5
 
 
 # ---------------------------------------------------------------------------
@@ -158,7 +155,7 @@ def compute_score(record, flags):
 
 
 # ---------------------------------------------------------------------------
-# Parse XHR JSON response
+# Parse JSON
 # ---------------------------------------------------------------------------
 
 def extract_from_json(data, doc_type):
@@ -214,284 +211,233 @@ def extract_from_json(data, doc_type):
 
 
 # ---------------------------------------------------------------------------
-# Parse rendered HTML after React loads results
+# PHASE 1: Spy run - load ONE page, log ALL network requests made
 # ---------------------------------------------------------------------------
 
-def extract_from_html(html, doc_type):
-    """Parse the fully-rendered results table from the SPA."""
-    cat, cat_label = DOC_TYPE_MAP.get(doc_type, (doc_type, doc_type))
-    records = []
-    try:
-        soup = BeautifulSoup(html, "lxml")
+async def spy_network(start_ymd, end_ymd):
+    """
+    Load the LP search page and log every single network request the browser makes.
+    This reveals the exact API endpoint without guessing.
+    """
+    if not PLAYWRIGHT_AVAILABLE:
+        return None, {}
 
-        # The results render inside a table with class "results-table" or similar
-        # Based on the portal's CSS classes observed, look for the main results list
-        # Try data-testid attributes first (most reliable)
-        rows = (
-            soup.find_all(attrs={"data-testid": re.compile(r"result|row|instrument|record", re.I)}) or
-            soup.find_all("tr", attrs={"data-testid": True}) or
-            soup.find_all("li", class_=re.compile(r"result|instrument|record", re.I)) or
-            []
+    api_endpoint = None
+    api_headers  = {}
+
+    async with async_playwright() as pw:
+        browser = await pw.chromium.launch(
+            headless=True,
+            args=["--no-sandbox","--disable-setuid-sandbox","--disable-dev-shm-usage"],
+        )
+        context = await browser.new_context(
+            user_agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+            ignore_https_errors=True,
+            viewport={"width": 1280, "height": 900},
         )
 
-        if rows:
-            for row in rows:
-                text = row.get_text(" ", strip=True)
-                # Skip placeholder/skeleton rows
-                if not text or len(text) < 10:
-                    continue
-                link    = row.find("a", href=True)
-                doc_num, clerk_url = "", ""
-                if link:
-                    href = link["href"]
-                    if not href.startswith("http"):
-                        href = CLERK_BASE + href
-                    clerk_url = href
-                    # Extract instrument number from URL or text
-                    m = re.search(r"/instruments?/(\d+)", href)
-                    doc_num = m.group(1) if m else clean(link.get_text(strip=True))
+        page = await context.new_page()
 
-                # Date pattern
-                date_m = re.search(r"(\d{1,2}/\d{1,2}/\d{4})", text)
-                filed  = date_m.group(1) if date_m else ""
+        # Intercept ALL requests to find the API call
+        all_requests = []
 
-                # Amount pattern
-                amount_m = re.search(r"\$[\d,]+\.?\d*", text)
-                amount   = parse_amount(amount_m.group(0)) if amount_m else 0.0
+        async def on_request(request):
+            url  = request.url
+            meth = request.method
+            hdrs = dict(request.headers)
+            all_requests.append((meth, url, hdrs))
 
-                if doc_num or filed:
-                    records.append({
-                        "doc_num": doc_num, "doc_type": doc_type,
-                        "filed": filed, "cat": cat, "cat_label": cat_label,
-                        "owner": "", "grantee": "",
-                        "amount": amount, "legal": "", "clerk_url": clerk_url,
-                    })
+        async def on_response(response):
+            url  = response.url
+            status = response.status
+            ct   = response.headers.get("content-type","")
+            if "json" in ct and "publicsearch" in url and status == 200:
+                try:
+                    body = await response.json()
+                    log.info("[SPY] JSON response from: %s", url)
+                    log.info("[SPY] Keys: %s", list(body.keys())[:8] if isinstance(body, dict) else f"list[{len(body)}]")
+                    nonlocal api_endpoint, api_headers
+                    api_endpoint = url.split("?")[0]
+                    # Capture request headers for this URL
+                    for meth, req_url, hdrs in all_requests:
+                        if req_url.split("?")[0] == api_endpoint:
+                            api_headers = hdrs
+                            break
+                except Exception as e:
+                    log.info("[SPY] Could not parse JSON from %s: %s", url[:80], e)
 
-        # Fall back to table
-        if not records:
-            table = soup.find("table")
-            if table:
-                rows    = table.find_all("tr")
-                headers = [th.get_text(strip=True).lower()
-                           for th in rows[0].find_all(["th","td"])] if rows else []
+        page.on("request",  on_request)
+        page.on("response", on_response)
 
-                def col(cells, *names):
-                    for name in names:
-                        for i, h in enumerate(headers):
-                            if name in h and i < len(cells):
-                                return clean(cells[i].get_text(strip=True))
-                    return ""
+        url = (CLERK_BASE + "/results"
+               + "?department=RP&limit=10&offset=0"
+               + "&recordedDateRange=" + start_ymd + "," + end_ymd
+               + "&searchOcrText=false&searchType=docType&searchValue=LP")
 
-                for row in rows[1:]:
-                    cells = row.find_all("td")
-                    if not cells or len(cells) < 2:
-                        continue
-                    link      = row.find("a", href=True)
-                    clerk_url = ""
-                    doc_num   = ""
-                    if link:
-                        href = link["href"]
-                        if not href.startswith("http"):
-                            href = CLERK_BASE + href
-                        clerk_url = href
-                        m = re.search(r"/instruments?/(\d+)", href)
-                        doc_num = m.group(1) if m else clean(link.get_text(strip=True))
-                    if not doc_num:
-                        doc_num = col(cells, "doc", "instrument", "number")
-                    filed   = col(cells, "date", "filed", "recorded")
-                    grantor = col(cells, "grantor", "owner", "from", "party1")
-                    grantee = col(cells, "grantee", "to", "party2")
-                    legal   = col(cells, "legal", "description")
-                    amount  = parse_amount(col(cells, "amount", "consideration"))
-                    if doc_num or filed:
-                        records.append({
-                            "doc_num": doc_num, "doc_type": doc_type,
-                            "filed": filed, "cat": cat, "cat_label": cat_label,
-                            "owner": grantor, "grantee": grantee,
-                            "amount": amount, "legal": legal, "clerk_url": clerk_url,
-                        })
+        log.info("[SPY] Loading page to capture API endpoint...")
+        try:
+            await page.goto(url, wait_until="domcontentloaded", timeout=45000)
+            # Wait for network to fully settle
+            await asyncio.sleep(10)
+        except Exception as exc:
+            log.warning("[SPY] Page load error: %s", exc)
 
-    except Exception as exc:
-        log.warning("HTML extract error for %s: %s", doc_type, exc)
+        # Log ALL requests for debugging
+        log.info("[SPY] Total network requests captured: %d", len(all_requests))
+        for meth, req_url, hdrs in all_requests:
+            if "publicsearch" in req_url:
+                log.info("[SPY] %s %s", meth, req_url[:120])
+
+        if not api_endpoint:
+            log.info("[SPY] No JSON API found. Requests to publicsearch.us:")
+            for meth, req_url, hdrs in all_requests:
+                if "publicsearch" in req_url:
+                    log.info("[SPY]   %s %s", meth, req_url[:120])
+
+        await browser.close()
+
+    return api_endpoint, api_headers
+
+
+# ---------------------------------------------------------------------------
+# PHASE 2: Direct HTTP scrape using discovered endpoint + headers
+# ---------------------------------------------------------------------------
+
+def direct_http_scrape(api_endpoint, api_headers, doc_type,
+                        start_ymd, end_ymd):
+    """
+    Call the API directly via requests using the exact headers the browser used.
+    """
+    cat, cat_label = DOC_TYPE_MAP.get(doc_type, (doc_type, doc_type))
+    records = []
+    if not api_endpoint:
+        return records
+
+    session = requests.Session()
+    # Use browser headers to avoid detection
+    safe_headers = {k: v for k, v in api_headers.items()
+                    if k.lower() not in ("host", "content-length")}
+    if safe_headers:
+        session.headers.update(safe_headers)
+    else:
+        session.headers.update({
+            "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/122.0.0.0 Safari/537.36",
+            "Accept": "application/json, text/plain, */*",
+            "Referer": CLERK_BASE + "/",
+        })
+
+    offset = 0
+    while True:
+        # Try to reconstruct the query params
+        params = {
+            "department":        "RP",
+            "limit":             "200",
+            "offset":            str(offset),
+            "recordedDateRange": start_ymd + "," + end_ymd,
+            "searchOcrText":     "false",
+            "searchType":        "docType",
+            "searchValue":       doc_type,
+        }
+        try:
+            resp = session.get(api_endpoint, params=params, timeout=30)
+            resp.raise_for_status()
+            data = resp.json()
+            page_recs = extract_from_json(data, doc_type)
+            if not page_recs:
+                break
+            records.extend(page_recs)
+            if len(page_recs) < 200:
+                break
+            offset += 200
+        except Exception as exc:
+            log.warning("[HTTP] Error fetching %s offset %d: %s", doc_type, offset, exc)
+            break
 
     return records
 
 
 # ---------------------------------------------------------------------------
-# Clerk Scraper
+# Playwright fallback: intercept at request level using page.route
 # ---------------------------------------------------------------------------
 
-class ClerkScraper:
-    def __init__(self, start_ymd, end_ymd):
-        self.start_ymd = start_ymd
-        self.end_ymd   = end_ymd
+async def playwright_scrape_with_route(start_ymd, end_ymd):
+    """
+    Use page.route to intercept and fulfill requests, capturing the API calls.
+    """
+    if not PLAYWRIGHT_AVAILABLE:
+        return []
 
-    def _url(self, doc_type, offset=0, limit=200):
-        return (
-            CLERK_BASE + "/results"
-            + "?department=RP"
-            + "&limit=" + str(limit)
-            + "&offset=" + str(offset)
-            + "&recordedDateRange=" + self.start_ymd + "," + self.end_ymd
-            + "&searchOcrText=false"
-            + "&searchType=docType"
-            + "&searchValue=" + doc_type
+    all_records = []
+    captured_api_data = {}  # doc_type -> list of json bodies
+
+    async with async_playwright() as pw:
+        browser = await pw.chromium.launch(
+            headless=True,
+            args=["--no-sandbox","--disable-setuid-sandbox","--disable-dev-shm-usage"],
         )
+        context = await browser.new_context(
+            user_agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/122.0.0.0 Safari/537.36",
+            ignore_https_errors=True,
+            viewport={"width": 1280, "height": 900},
+        )
+        page = await context.new_page()
 
-    async def run(self):
-        if not PLAYWRIGHT_AVAILABLE:
-            return []
-        return await self._scrape()
+        # Use page.route to intercept API calls and capture their responses
+        intercepted = []
 
-    async def _scrape(self):
-        all_records = []
-        async with async_playwright() as pw:
-            browser = await pw.chromium.launch(
-                headless=True,
-                args=["--no-sandbox","--disable-setuid-sandbox",
-                      "--disable-dev-shm-usage",
-                      "--disable-blink-features=AutomationControlled"],
-            )
-            context = await browser.new_context(
-                user_agent=(
-                    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
-                    "(KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
-                ),
-                ignore_https_errors=True,
-                viewport={"width": 1280, "height": 900},
-            )
-            # Block images/fonts to speed up
-            await context.route(
-                re.compile(r"\.(png|jpg|jpeg|gif|woff|woff2|ttf|eot|svg)(\?.*)?$"),
-                lambda route: route.abort()
-            )
-            page = await context.new_page()
-
-            for doc_type in TARGET_DOC_TYPES:
-                log.info("Searching for doc type: %s", doc_type)
-                recs = await self._search_type(page, doc_type)
-                log.info("  Found %d records for %s", len(recs), doc_type)
-                all_records.extend(recs)
-
-            await browser.close()
-        return all_records
-
-    async def _search_type(self, page, doc_type):
-        collected = []  # (url, json_body)
-
-        async def on_response(response):
-            url = response.url
-            if "publicsearch.us" not in url:
-                return
-            if response.status != 200:
-                return
+        async def handle_route(route):
+            req = route.request
+            url = req.url
+            # Let all requests through but log JSON ones
+            response = await route.fetch()
             ct = response.headers.get("content-type", "")
-            if "json" not in ct:
-                return
-            try:
-                body = await response.json()
-                if body:
-                    collected.append((url, body))
-                    log.info("  [XHR] Captured JSON from: %s", url[:100])
-            except Exception:
-                pass
-
-        page.on("response", on_response)
-        all_records = []
-
-        for attempt in range(1, MAX_RETRIES + 1):
-            collected.clear()
-            url = self._url(doc_type, offset=0, limit=200)
-            try:
-                # Go to page
-                await page.goto(url, wait_until="domcontentloaded", timeout=45000)
-
-                # Wait for EITHER results OR a "no results" indicator
-                # These selectors are based on the Neumo SPA pattern
+            if "json" in ct and "publicsearch" in url:
                 try:
-                    await page.wait_for_selector(
-                        # Result rows, or empty state, or error - whichever comes first
-                        "[data-testid='resultRow'], "
-                        "[data-testid='searchResultRow'], "
-                        ".result-row, "
-                        ".results-list__item, "
-                        ".search-results__no-results, "
-                        ".no-results, "
-                        "table tbody tr, "
-                        "[class*='result'][class*='row'], "
-                        "[class*='resultRow']",
-                        timeout=RESULT_WAIT,
-                    )
-                    log.info("  [WAIT] Result element found for %s", doc_type)
+                    body = json.loads(await response.body())
+                    intercepted.append((url, body))
+                    log.info("[ROUTE] Intercepted JSON: %s", url[:100])
                 except Exception:
-                    log.info("  [WAIT] No result selector matched for %s, checking XHR...", doc_type)
-                    # Give a bit more time for XHR even if no DOM element found
-                    await asyncio.sleep(3)
+                    pass
+            await route.fulfill(response=response)
 
-                # --- Primary: extract from intercepted XHR JSON ---
-                for resp_url, body in collected:
-                    recs = extract_from_json(body, doc_type)
-                    if recs:
-                        log.info("  [XHR] Parsed %d records", len(recs))
-                        all_records.extend(recs)
+        await page.route("**/*", handle_route)
 
-                # --- Secondary: parse the rendered HTML ---
-                if not all_records:
-                    html = await page.content()
-                    recs = extract_from_html(html, doc_type)
-                    if recs:
-                        log.info("  [HTML] Parsed %d records", len(recs))
-                        all_records.extend(recs)
+        for doc_type in TARGET_DOC_TYPES:
+            log.info("Searching for doc type: %s", doc_type)
+            intercepted.clear()
 
-                # Debug: log XHR summary if nothing found
-                if not all_records:
-                    log.info("  [DEBUG] %d XHR responses captured:", len(collected))
-                    for rurl, rbody in collected:
-                        btype = type(rbody).__name__
-                        bkeys = list(rbody.keys())[:6] if isinstance(rbody, dict) else "list"
-                        log.info("    %s | %s | keys=%s", rurl[-60:], btype, bkeys)
+            url = (CLERK_BASE + "/results"
+                   + "?department=RP&limit=200&offset=0"
+                   + "&recordedDateRange=" + start_ymd + "," + end_ymd
+                   + "&searchOcrText=false&searchType=docType&searchValue=" + doc_type)
 
-                # Paginate
-                if all_records:
-                    offset = len(all_records)
-                    while True:
-                        collected.clear()
-                        await page.goto(
-                            self._url(doc_type, offset=offset, limit=200),
-                            wait_until="domcontentloaded", timeout=30000
-                        )
-                        try:
-                            await page.wait_for_selector(
-                                "[data-testid='resultRow'], table tbody tr, .result-row",
-                                timeout=RESULT_WAIT
-                            )
-                        except Exception:
-                            await asyncio.sleep(3)
+            try:
+                await page.goto(url, wait_until="domcontentloaded", timeout=45000)
+                await asyncio.sleep(8)  # wait for all async loads
 
-                        page_recs = []
-                        for _, body in collected:
-                            page_recs.extend(extract_from_json(body, doc_type))
-                        if not page_recs:
-                            html = await page.content()
-                            page_recs = extract_from_html(html, doc_type)
-                        if not page_recs or len(page_recs) < 5:
-                            break
-                        all_records.extend(page_recs)
-                        offset += len(page_recs)
+                recs = []
+                for resp_url, body in intercepted:
+                    recs.extend(extract_from_json(body, doc_type))
 
-                break
+                if recs:
+                    log.info("  [ROUTE] %d records for %s", len(recs), doc_type)
+                    all_records.extend(recs)
+                else:
+                    log.info("  [ROUTE] 0 records. Intercepted %d JSON calls:", len(intercepted))
+                    for resp_url, body in intercepted:
+                        log.info("    %s | keys=%s", resp_url[-60:],
+                                 list(body.keys())[:5] if isinstance(body, dict) else "list")
 
             except Exception as exc:
-                log.warning("  Attempt %d/%d for %s: %s", attempt, MAX_RETRIES, doc_type, exc)
-                if attempt < MAX_RETRIES:
-                    await asyncio.sleep(RETRY_DELAY)
+                log.warning("  Error for %s: %s", doc_type, exc)
 
-        page.remove_listener("response", on_response)
-        return all_records
+        await browser.close()
+
+    return all_records
 
 
 # ---------------------------------------------------------------------------
-# ArcGIS parcel lookup (on-demand, by owner name)
+# ArcGIS parcel lookup
 # ---------------------------------------------------------------------------
 
 class ParcelLookup:
@@ -681,9 +627,27 @@ async def main():
     start_mdy, end_mdy = date_range_mmddyyyy(LOOKBACK_DAYS)
     log.info("Date range: %s to %s", start_mdy, end_mdy)
 
-    log.info("Scraping Bexar County Clerk portal...")
-    scraper     = ClerkScraper(start_ymd, end_ymd)
-    raw_records = await scraper.run()
+    # Phase 1: spy to find the real API endpoint
+    log.info("Phase 1: Discovering API endpoint...")
+    api_endpoint, api_headers = await spy_network(start_ymd, end_ymd)
+    log.info("Discovered API endpoint: %s", api_endpoint or "NONE")
+
+    raw_records = []
+
+    # Phase 2: if we found an endpoint, use direct HTTP for all doc types
+    if api_endpoint:
+        log.info("Phase 2: Direct HTTP scrape via discovered endpoint...")
+        for doc_type in TARGET_DOC_TYPES:
+            log.info("  Scraping %s...", doc_type)
+            recs = direct_http_scrape(api_endpoint, api_headers,
+                                      doc_type, start_ymd, end_ymd)
+            log.info("  Found %d records for %s", len(recs), doc_type)
+            raw_records.extend(recs)
+    else:
+        # Phase 2b: use route interception
+        log.info("Phase 2b: Using Playwright route interception...")
+        raw_records = await playwright_scrape_with_route(start_ymd, end_ymd)
+
     log.info("Total raw records: %d", len(raw_records))
 
     parcel = ParcelLookup()
