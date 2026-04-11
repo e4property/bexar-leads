@@ -1,12 +1,13 @@
 """
 Bexar County Motivated Seller Lead Scraper
-Dumps page screenshots + HTML for debugging, then parses real data.
+The portal SPA loads data via XHR. We intercept those calls.
+Key insight from debug: page captures skeleton HTML before results load.
+Fix: wait for actual result elements, not just networkidle.
 """
 
 from __future__ import annotations
 
 import asyncio
-import base64
 import csv
 import json
 import logging
@@ -36,7 +37,6 @@ log = logging.getLogger(__name__)
 LOOKBACK_DAYS = int(os.getenv("LOOKBACK_DAYS", "7"))
 CLERK_BASE    = "https://bexar.tx.publicsearch.us"
 ARCGIS_URL    = "https://maps.bexar.org/arcgis/rest/services/Parcels/MapServer/0/query"
-DEBUG_HTML    = os.getenv("DEBUG_HTML", "1") == "1"  # save first page HTML
 
 DOC_TYPE_MAP = {
     "LP":       ("LP",      "Lis Pendens"),
@@ -57,8 +57,10 @@ DOC_TYPE_MAP = {
     "RELLP":    ("RELLP",  "Release Lis Pendens"),
 }
 TARGET_DOC_TYPES = list(DOC_TYPE_MAP.keys())
-MAX_RETRIES = 3
-RETRY_DELAY = 5
+MAX_RETRIES  = 3
+RETRY_DELAY  = 5
+# How long to wait for results to appear after page load
+RESULT_WAIT  = 20000  # ms
 
 
 # ---------------------------------------------------------------------------
@@ -129,23 +131,23 @@ def compute_flags(record):
     cat      = record.get("cat", "")
     owner    = record.get("owner", "").upper()
     doc_type = record.get("doc_type", "")
-    if cat == "LP":        flags.append("Lis pendens")
-    if cat == "NOFC":      flags.append("Pre-foreclosure")
-    if cat == "JUD":       flags.append("Judgment lien")
-    if doc_type in ("LNCORPTX", "LNIRS", "LNFED", "TAXDEED"):
-                           flags.append("Tax lien")
-    if doc_type == "LNMECH": flags.append("Mechanic lien")
-    if cat == "PRO":       flags.append("Probate / estate")
+    if cat == "LP":           flags.append("Lis pendens")
+    if cat == "NOFC":         flags.append("Pre-foreclosure")
+    if cat == "JUD":          flags.append("Judgment lien")
+    if doc_type in ("LNCORPTX","LNIRS","LNFED","TAXDEED"):
+                              flags.append("Tax lien")
+    if doc_type == "LNMECH":  flags.append("Mechanic lien")
+    if cat == "PRO":          flags.append("Probate / estate")
     if re.search(r"\b(LLC|INC|CORP|LTD|LP|LLP|TRUST|HOLDINGS)\b", owner):
-                           flags.append("LLC / corp owner")
+                              flags.append("LLC / corp owner")
     if is_new_this_week(record.get("filed", "")):
-                           flags.append("New this week")
+                              flags.append("New this week")
     return flags
 
 def compute_score(record, flags):
     score = 30
     score += len(flags) * 10
-    if "LP" in record.get("_owner_cats", []) and "NOFC" in record.get("_owner_cats", []):
+    if "LP" in record.get("_owner_cats",[]) and "NOFC" in record.get("_owner_cats",[]):
         score += 20
     amount = record.get("amount", 0.0) or 0.0
     if amount > 100000: score += 15
@@ -156,7 +158,7 @@ def compute_score(record, flags):
 
 
 # ---------------------------------------------------------------------------
-# Parse JSON from XHR interception
+# Parse XHR JSON response
 # ---------------------------------------------------------------------------
 
 def extract_from_json(data, doc_type):
@@ -176,14 +178,13 @@ def extract_from_json(data, doc_type):
             data.get("items", []) or
             data.get("records", []) or []
         )
-        if not hits and ("docNum" in data or "instrumentNumber" in data or "recordingNumber" in data):
+        if not hits and ("docNum" in data or "instrumentNumber" in data):
             hits = [data]
     for hit in hits:
         try:
             src = hit.get("_source", hit)
             doc_num = clean(src.get("docNum") or src.get("instrumentNumber") or
-                            src.get("docNumber") or src.get("recordingNumber") or
-                            src.get("instrument") or "")
+                            src.get("docNumber") or src.get("recordingNumber") or "")
             filed   = clean(src.get("recordedDate") or src.get("filedDate") or
                             src.get("dateRecorded") or src.get("recordingDate") or "")
             grantor = clean(src.get("grantor") or src.get("grantorName") or
@@ -213,14 +214,117 @@ def extract_from_json(data, doc_type):
 
 
 # ---------------------------------------------------------------------------
-# Clerk Scraper - with full debug dump on first doc type
+# Parse rendered HTML after React loads results
+# ---------------------------------------------------------------------------
+
+def extract_from_html(html, doc_type):
+    """Parse the fully-rendered results table from the SPA."""
+    cat, cat_label = DOC_TYPE_MAP.get(doc_type, (doc_type, doc_type))
+    records = []
+    try:
+        soup = BeautifulSoup(html, "lxml")
+
+        # The results render inside a table with class "results-table" or similar
+        # Based on the portal's CSS classes observed, look for the main results list
+        # Try data-testid attributes first (most reliable)
+        rows = (
+            soup.find_all(attrs={"data-testid": re.compile(r"result|row|instrument|record", re.I)}) or
+            soup.find_all("tr", attrs={"data-testid": True}) or
+            soup.find_all("li", class_=re.compile(r"result|instrument|record", re.I)) or
+            []
+        )
+
+        if rows:
+            for row in rows:
+                text = row.get_text(" ", strip=True)
+                # Skip placeholder/skeleton rows
+                if not text or len(text) < 10:
+                    continue
+                link    = row.find("a", href=True)
+                doc_num, clerk_url = "", ""
+                if link:
+                    href = link["href"]
+                    if not href.startswith("http"):
+                        href = CLERK_BASE + href
+                    clerk_url = href
+                    # Extract instrument number from URL or text
+                    m = re.search(r"/instruments?/(\d+)", href)
+                    doc_num = m.group(1) if m else clean(link.get_text(strip=True))
+
+                # Date pattern
+                date_m = re.search(r"(\d{1,2}/\d{1,2}/\d{4})", text)
+                filed  = date_m.group(1) if date_m else ""
+
+                # Amount pattern
+                amount_m = re.search(r"\$[\d,]+\.?\d*", text)
+                amount   = parse_amount(amount_m.group(0)) if amount_m else 0.0
+
+                if doc_num or filed:
+                    records.append({
+                        "doc_num": doc_num, "doc_type": doc_type,
+                        "filed": filed, "cat": cat, "cat_label": cat_label,
+                        "owner": "", "grantee": "",
+                        "amount": amount, "legal": "", "clerk_url": clerk_url,
+                    })
+
+        # Fall back to table
+        if not records:
+            table = soup.find("table")
+            if table:
+                rows    = table.find_all("tr")
+                headers = [th.get_text(strip=True).lower()
+                           for th in rows[0].find_all(["th","td"])] if rows else []
+
+                def col(cells, *names):
+                    for name in names:
+                        for i, h in enumerate(headers):
+                            if name in h and i < len(cells):
+                                return clean(cells[i].get_text(strip=True))
+                    return ""
+
+                for row in rows[1:]:
+                    cells = row.find_all("td")
+                    if not cells or len(cells) < 2:
+                        continue
+                    link      = row.find("a", href=True)
+                    clerk_url = ""
+                    doc_num   = ""
+                    if link:
+                        href = link["href"]
+                        if not href.startswith("http"):
+                            href = CLERK_BASE + href
+                        clerk_url = href
+                        m = re.search(r"/instruments?/(\d+)", href)
+                        doc_num = m.group(1) if m else clean(link.get_text(strip=True))
+                    if not doc_num:
+                        doc_num = col(cells, "doc", "instrument", "number")
+                    filed   = col(cells, "date", "filed", "recorded")
+                    grantor = col(cells, "grantor", "owner", "from", "party1")
+                    grantee = col(cells, "grantee", "to", "party2")
+                    legal   = col(cells, "legal", "description")
+                    amount  = parse_amount(col(cells, "amount", "consideration"))
+                    if doc_num or filed:
+                        records.append({
+                            "doc_num": doc_num, "doc_type": doc_type,
+                            "filed": filed, "cat": cat, "cat_label": cat_label,
+                            "owner": grantor, "grantee": grantee,
+                            "amount": amount, "legal": legal, "clerk_url": clerk_url,
+                        })
+
+    except Exception as exc:
+        log.warning("HTML extract error for %s: %s", doc_type, exc)
+
+    return records
+
+
+# ---------------------------------------------------------------------------
+# Clerk Scraper
 # ---------------------------------------------------------------------------
 
 class ClerkScraper:
     def __init__(self, start_ymd, end_ymd):
-        self.start_ymd   = start_ymd
-        self.end_ymd     = end_ymd
-        self.debug_saved = False  # only dump HTML once
+        self.start_ymd = start_ymd
+        self.end_ymd   = end_ymd
 
     def _url(self, doc_type, offset=0, limit=200):
         return (
@@ -244,7 +348,7 @@ class ClerkScraper:
         async with async_playwright() as pw:
             browser = await pw.chromium.launch(
                 headless=True,
-                args=["--no-sandbox", "--disable-setuid-sandbox",
+                args=["--no-sandbox","--disable-setuid-sandbox",
                       "--disable-dev-shm-usage",
                       "--disable-blink-features=AutomationControlled"],
             )
@@ -256,8 +360,9 @@ class ClerkScraper:
                 ignore_https_errors=True,
                 viewport={"width": 1280, "height": 900},
             )
+            # Block images/fonts to speed up
             await context.route(
-                re.compile(r"\.(png|jpg|jpeg|gif|woff|woff2|ttf|eot)$"),
+                re.compile(r"\.(png|jpg|jpeg|gif|woff|woff2|ttf|eot|svg)(\?.*)?$"),
                 lambda route: route.abort()
             )
             page = await context.new_page()
@@ -272,10 +377,11 @@ class ClerkScraper:
         return all_records
 
     async def _search_type(self, page, doc_type):
-        collected = []
+        collected = []  # (url, json_body)
 
         async def on_response(response):
-            if "publicsearch.us" not in response.url:
+            url = response.url
+            if "publicsearch.us" not in url:
                 return
             if response.status != 200:
                 return
@@ -285,7 +391,8 @@ class ClerkScraper:
             try:
                 body = await response.json()
                 if body:
-                    collected.append((response.url, body))
+                    collected.append((url, body))
+                    log.info("  [XHR] Captured JSON from: %s", url[:100])
             except Exception:
                 pass
 
@@ -296,62 +403,78 @@ class ClerkScraper:
             collected.clear()
             url = self._url(doc_type, offset=0, limit=200)
             try:
-                await page.goto(url, wait_until="networkidle", timeout=45000)
-                await asyncio.sleep(4)  # wait for React
+                # Go to page
+                await page.goto(url, wait_until="domcontentloaded", timeout=45000)
 
-                # --- Dump debug info on first doc type ---
-                if not self.debug_saved and DEBUG_HTML:
-                    self.debug_saved = True
-                    html = await page.content()
+                # Wait for EITHER results OR a "no results" indicator
+                # These selectors are based on the Neumo SPA pattern
+                try:
+                    await page.wait_for_selector(
+                        # Result rows, or empty state, or error - whichever comes first
+                        "[data-testid='resultRow'], "
+                        "[data-testid='searchResultRow'], "
+                        ".result-row, "
+                        ".results-list__item, "
+                        ".search-results__no-results, "
+                        ".no-results, "
+                        "table tbody tr, "
+                        "[class*='result'][class*='row'], "
+                        "[class*='resultRow']",
+                        timeout=RESULT_WAIT,
+                    )
+                    log.info("  [WAIT] Result element found for %s", doc_type)
+                except Exception:
+                    log.info("  [WAIT] No result selector matched for %s, checking XHR...", doc_type)
+                    # Give a bit more time for XHR even if no DOM element found
+                    await asyncio.sleep(3)
 
-                    # Save full HTML (first 50KB)
-                    debug_path = Path("data/debug_page.html")
-                    debug_path.parent.mkdir(parents=True, exist_ok=True)
-                    debug_path.write_text(html[:50000], encoding="utf-8")
-                    log.info("[DEBUG] Saved first 50KB of page HTML to data/debug_page.html")
-
-                    # Log all XHR calls made
-                    log.info("[DEBUG] XHR calls captured: %d", len(collected))
-                    for resp_url, body in collected:
-                        log.info("[DEBUG] XHR: %s", resp_url[:120])
-                        if isinstance(body, dict):
-                            log.info("[DEBUG]   keys=%s", list(body.keys())[:8])
-                            # Log a sample of the data
-                            for k, v in body.items():
-                                if isinstance(v, list) and v:
-                                    log.info("[DEBUG]   %s[0]=%s", k, str(v[0])[:200])
-                                    break
-                                elif isinstance(v, dict):
-                                    log.info("[DEBUG]   %s=%s", k, str(v)[:200])
-                        elif isinstance(body, list) and body:
-                            log.info("[DEBUG]   list[0]=%s", str(body[0])[:200])
-
-                    # Log a snippet of the visible page text
-                    soup = BeautifulSoup(html, "lxml")
-                    for tag in soup(["script", "style"]):
-                        tag.decompose()
-                    text = " ".join(soup.get_text(" ").split())
-                    log.info("[DEBUG] Page text (first 500 chars): %s", text[:500])
-
-                # --- Try JSON from XHR ---
+                # --- Primary: extract from intercepted XHR JSON ---
                 for resp_url, body in collected:
                     recs = extract_from_json(body, doc_type)
                     if recs:
-                        log.info("  [XHR] %d records from %s", len(recs), resp_url[:80])
+                        log.info("  [XHR] Parsed %d records", len(recs))
                         all_records.extend(recs)
 
+                # --- Secondary: parse the rendered HTML ---
+                if not all_records:
+                    html = await page.content()
+                    recs = extract_from_html(html, doc_type)
+                    if recs:
+                        log.info("  [HTML] Parsed %d records", len(recs))
+                        all_records.extend(recs)
+
+                # Debug: log XHR summary if nothing found
+                if not all_records:
+                    log.info("  [DEBUG] %d XHR responses captured:", len(collected))
+                    for rurl, rbody in collected:
+                        btype = type(rbody).__name__
+                        bkeys = list(rbody.keys())[:6] if isinstance(rbody, dict) else "list"
+                        log.info("    %s | %s | keys=%s", rurl[-60:], btype, bkeys)
+
+                # Paginate
                 if all_records:
-                    # Paginate
                     offset = len(all_records)
                     while True:
                         collected.clear()
-                        next_url = self._url(doc_type, offset=offset, limit=200)
-                        await page.goto(next_url, wait_until="networkidle", timeout=30000)
-                        await asyncio.sleep(2)
+                        await page.goto(
+                            self._url(doc_type, offset=offset, limit=200),
+                            wait_until="domcontentloaded", timeout=30000
+                        )
+                        try:
+                            await page.wait_for_selector(
+                                "[data-testid='resultRow'], table tbody tr, .result-row",
+                                timeout=RESULT_WAIT
+                            )
+                        except Exception:
+                            await asyncio.sleep(3)
+
                         page_recs = []
                         for _, body in collected:
                             page_recs.extend(extract_from_json(body, doc_type))
-                        if not page_recs or len(page_recs) < 10:
+                        if not page_recs:
+                            html = await page.content()
+                            page_recs = extract_from_html(html, doc_type)
+                        if not page_recs or len(page_recs) < 5:
                             break
                         all_records.extend(page_recs)
                         offset += len(page_recs)
@@ -368,7 +491,7 @@ class ClerkScraper:
 
 
 # ---------------------------------------------------------------------------
-# ArcGIS parcel lookup
+# ArcGIS parcel lookup (on-demand, by owner name)
 # ---------------------------------------------------------------------------
 
 class ParcelLookup:
@@ -427,14 +550,14 @@ class ParcelLookup:
                 time.sleep(RETRY_DELAY)
 
     def enrich_all(self, records):
-        owners = list({r.get("owner", "").upper()
-                       for r in records if r.get("owner", "").strip()})
+        owners = list({r.get("owner","").upper()
+                       for r in records if r.get("owner","").strip()})
         if not owners:
             log.info("No owner names to look up.")
             return
-        log.info("Looking up %d owner names in ArcGIS...", len(owners))
+        log.info("Looking up %d owners in ArcGIS...", len(owners))
         for i in range(0, len(owners), 50):
-            self.lookup_batch(owners[i:i + 50])
+            self.lookup_batch(owners[i:i+50])
             time.sleep(0.3)
         found = sum(1 for o in owners if o in self.cache)
         log.info("ArcGIS matched %d / %d owners", found, len(owners))
@@ -456,23 +579,23 @@ class ParcelLookup:
 def enrich_records(records, parcel):
     owner_cats = {}
     for r in records:
-        o = r.get("owner", "").upper()
+        o = r.get("owner","").upper()
         if o:
-            owner_cats.setdefault(o, []).append(r.get("cat", ""))
+            owner_cats.setdefault(o,[]).append(r.get("cat",""))
     enriched = []
     for r in records:
         try:
-            owner     = r.get("owner", "")
+            owner     = r.get("owner","")
             addr_info = parcel.get_address(owner)
-            r["prop_address"] = addr_info.get("prop_address", "")
-            r["prop_city"]    = addr_info.get("prop_city", "San Antonio")
-            r["prop_state"]   = addr_info.get("prop_state", "TX")
-            r["prop_zip"]     = addr_info.get("prop_zip", "")
-            r["mail_address"] = addr_info.get("mail_address", "")
-            r["mail_city"]    = addr_info.get("mail_city", "")
-            r["mail_state"]   = addr_info.get("mail_state", "TX")
-            r["mail_zip"]     = addr_info.get("mail_zip", "")
-            r["_owner_cats"]  = owner_cats.get(owner.upper(), [])
+            r["prop_address"] = addr_info.get("prop_address","")
+            r["prop_city"]    = addr_info.get("prop_city","San Antonio")
+            r["prop_state"]   = addr_info.get("prop_state","TX")
+            r["prop_zip"]     = addr_info.get("prop_zip","")
+            r["mail_address"] = addr_info.get("mail_address","")
+            r["mail_city"]    = addr_info.get("mail_city","")
+            r["mail_state"]   = addr_info.get("mail_state","TX")
+            r["mail_zip"]     = addr_info.get("mail_zip","")
+            r["_owner_cats"]  = owner_cats.get(owner.upper(),[])
             flags  = compute_flags(r)
             score  = compute_score(r, flags)
             r["flags"] = flags
@@ -505,41 +628,41 @@ def save_ghl_csv(records, path_str):
     path = Path(path_str)
     path.parent.mkdir(parents=True, exist_ok=True)
     fields = [
-        "First Name", "Last Name",
-        "Mailing Address", "Mailing City", "Mailing State", "Mailing Zip",
-        "Property Address", "Property City", "Property State", "Property Zip",
-        "Lead Type", "Document Type", "Date Filed", "Document Number",
-        "Amount/Debt Owed", "Seller Score", "Motivated Seller Flags",
-        "Source", "Public Records URL",
+        "First Name","Last Name",
+        "Mailing Address","Mailing City","Mailing State","Mailing Zip",
+        "Property Address","Property City","Property State","Property Zip",
+        "Lead Type","Document Type","Date Filed","Document Number",
+        "Amount/Debt Owed","Seller Score","Motivated Seller Flags",
+        "Source","Public Records URL",
     ]
     with path.open("w", newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, fieldnames=fields)
         w.writeheader()
         for r in records:
-            owner  = r.get("owner", "")
-            parts  = owner.split(",", 1) if "," in owner else owner.split(" ", 1)
+            owner  = r.get("owner","")
+            parts  = owner.split(",",1) if "," in owner else owner.split(" ",1)
             first  = parts[1].strip() if len(parts) > 1 else ""
             last   = parts[0].strip()
             w.writerow({
                 "First Name":             first,
                 "Last Name":              last,
-                "Mailing Address":        r.get("mail_address", ""),
-                "Mailing City":           r.get("mail_city", ""),
-                "Mailing State":          r.get("mail_state", "TX"),
-                "Mailing Zip":            r.get("mail_zip", ""),
-                "Property Address":       r.get("prop_address", ""),
-                "Property City":          r.get("prop_city", ""),
-                "Property State":         r.get("prop_state", "TX"),
-                "Property Zip":           r.get("prop_zip", ""),
-                "Lead Type":              r.get("cat_label", r.get("cat", "")),
-                "Document Type":          r.get("doc_type", ""),
-                "Date Filed":             r.get("filed", ""),
-                "Document Number":        r.get("doc_num", ""),
-                "Amount/Debt Owed":       r.get("amount", ""),
-                "Seller Score":           r.get("score", 0),
-                "Motivated Seller Flags": "|".join(r.get("flags", [])),
+                "Mailing Address":        r.get("mail_address",""),
+                "Mailing City":           r.get("mail_city",""),
+                "Mailing State":          r.get("mail_state","TX"),
+                "Mailing Zip":            r.get("mail_zip",""),
+                "Property Address":       r.get("prop_address",""),
+                "Property City":          r.get("prop_city",""),
+                "Property State":         r.get("prop_state","TX"),
+                "Property Zip":           r.get("prop_zip",""),
+                "Lead Type":              r.get("cat_label",r.get("cat","")),
+                "Document Type":          r.get("doc_type",""),
+                "Date Filed":             r.get("filed",""),
+                "Document Number":        r.get("doc_num",""),
+                "Amount/Debt Owed":       r.get("amount",""),
+                "Seller Score":           r.get("score",0),
+                "Motivated Seller Flags": "|".join(r.get("flags",[])),
                 "Source":                 "Bexar County Clerk",
-                "Public Records URL":     r.get("clerk_url", ""),
+                "Public Records URL":     r.get("clerk_url",""),
             })
     log.info("Saved GHL CSV: %s", path)
 
@@ -561,13 +684,13 @@ async def main():
     log.info("Scraping Bexar County Clerk portal...")
     scraper     = ClerkScraper(start_ymd, end_ymd)
     raw_records = await scraper.run()
-    log.info("Total raw records scraped: %d", len(raw_records))
+    log.info("Total raw records: %d", len(raw_records))
 
     parcel = ParcelLookup()
     parcel.enrich_all(raw_records)
 
     records = enrich_records(raw_records, parcel)
-    records.sort(key=lambda r: r.get("score", 0), reverse=True)
+    records.sort(key=lambda r: r.get("score",0), reverse=True)
 
     output = build_output(records, start_mdy, end_mdy)
     save_json(output, "dashboard/records.json", "data/records.json")
