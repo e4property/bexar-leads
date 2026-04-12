@@ -1,0 +1,3853 @@
+{
+  "router": {
+    "location": {
+      "pathname": "/results",
+      "search": "?department=RP&limit=200&offset=0&recordedDateRange=20260405,20260412&searchOcrText=false&searchType=docType&searchValue=LP",
+      "state": {
+        "workspaceID": null
+      },
+      "query": {
+        "department": "RP",
+        "limit": "200",
+        "offset": "0",
+        "recordedDateRange": "20260405,20260412",
+        "searchOcrText": "false",
+        "searchType": "docType",
+        "searchValue": "LP"
+      }
+    },
+    "action": "REPLACE"
+  },
+  "announcements": [],
+  "assets": {
+    "img": {
+      "sprites.svg": "/img/sprites.5977a3888f639f6b73221fe216d1db15.svg",
+      "404_icon.svg": "/img/404_icon.3ff6ec0e75133dfd654cde340e82896b.svg",
+      "browserconfig.xml": "/img/browserconfig.a493ba0aa0b8ec8068d786d7248bb92c.xml",
+      "check_circle.svg": "/img/check_circle.c3576b233ae75e268db7a512aabbdf34.svg",
+      "check_mark.svg": "/img/check_mark.48f74f3c925fd479f4c28eb8d7b002a6.svg",
+      "checkmark-icon.svg": "/img/checkmark-icon.5fd342b10c498392977f76bf6df6709e.svg",
+      "county_fusion.svg": "/img/county_fusion.77e74521acd91183442a2c64629f81ae.svg",
+      "favicon.ico": "/img/favicon.6053bf7fc4df76c18ca432e9eed9c1e5.ico",
+      "graphic_empty_notepad.svg": "/img/graphic_empty_notepad.6cfbec019d93ff00005fc3098e76e088.svg",
+      "graphic_secured_doc.svg": "/img/graphic_secured_doc.ceb97e039cc9a75178c2df5ef4ade715.svg",
+      "icon-XCircle.svg": "/img/icon-XCircle.eac843eab502dcbb3de1b2ee13204118.svg",
+      "icon-thumbs-up.svg": "/img/icon-thumbs-up.b5bf2f0340bb14b6f55e6dea3f953f39.svg",
+      "icon_alert_by_doc.svg": "/img/icon_alert_by_doc.bf2f548c9483ea1aa3c6d1fc8c8c0ce9.svg",
+      "icon_alert_by_keyword.svg": "/img/icon_alert_by_keyword.95b769bfbf697cad4f8dc29ab6102428.svg",
+      "icon_alert_email.svg": "/img/icon_alert_email.aed93994e5b5935651e4e5245eb96047.svg",
+      "icon_alert_main_nav.svg": "/img/icon_alert_main_nav.8ced64752ab4d982a67fac2412c1d304.svg",
+      "icon_announcement.svg": "/img/icon_announcement.1a4f14c6fcb9d07f96be840d85643e4a.svg",
+      "icon_arrow-new.svg": "/img/icon_arrow-new.a5a4a15e393a141c484901892f8704e8.svg",
+      "icon_arrow_left.svg": "/img/icon_arrow_left.213a8ca31a52198536a0d3483a0380ca.svg",
+      "icon_bubble_close.svg": "/img/icon_bubble_close.527db1dc5ba0bbfe0bc2e574971668d4.svg",
+      "icon_calendar.svg": "/img/icon_calendar.c2e57bc3547be2d849c1250c8d39e2d8.svg",
+      "icon_cart.svg": "/img/icon_cart.2d3493a33bdc7d157bbac1c387317290.svg",
+      "icon_check.svg": "/img/icon_check.88c1a50d36daeadaf732c8fe55645649.svg",
+      "icon_close_announcement.svg": "/img/icon_close_announcement.0612ae47df79d65129b7facfd5c42ff7.svg",
+      "icon_close_viewer.svg": "/img/icon_close_viewer.31959ecad7644317c754571ada7f9374.svg",
+      "icon_credit_card.svg": "/img/icon_credit_card.fe8c329c34e1a04da00cfe31c909d992.svg",
+      "icon_doc_group.svg": "/img/icon_doc_group.837409864ecfd776f80e6ddff49b2d39.svg",
+      "icon_double_arrow_down.svg": "/img/icon_double_arrow_down.f6052a7caff62677fb210472c65096be.svg",
+      "icon_download.svg": "/img/icon_download.e19b0cc633e0cc6ff527b2b54dacb799.svg",
+      "icon_dropdown_arrow.svg": "/img/icon_dropdown_arrow.8489d62377d3bdbd88185f284377a7e1.svg",
+      "icon_dropdown_arrow_white.svg": "/img/icon_dropdown_arrow_white.f58e608128a5a57f17f895c64d7136ac.svg",
+      "icon_ellipsis.svg": "/img/icon_ellipsis.e67a79498828795a65b35eb8f9ac067e.svg",
+      "icon_express-checkout.svg": "/img/icon_express-checkout.c272b1abb9ae4fc303c9cb2869f8f08b.svg",
+      "icon_external_link.svg": "/img/icon_external_link.e96f2bcf0af8b888409447a36e735ca2.svg",
+      "icon_eye_black.svg": "/img/icon_eye_black.37df16ebbcf00c1eac310a21c1f2e7cd.svg",
+      "icon_fit_best.svg": "/img/icon_fit_best.6674a5128440c9819ba46e1ece144c46.svg",
+      "icon_fit_height.svg": "/img/icon_fit_height.c2daac3edaf84e0a5f6e03702b618b8f.svg",
+      "icon_fit_width.svg": "/img/icon_fit_width.88693c5d9ce178619d8df9af2098a7ee.svg",
+      "icon_help.svg": "/img/icon_help.606d14e10991d036f2192efc2e759609.svg",
+      "icon_info.svg": "/img/icon_info.6b805e4cfd8f0b98024e2a36fff052b6.svg",
+      "icon_jump_to_end_triangle.svg": "/img/icon_jump_to_end_triangle.b3fc5ca88acee8ee79b0083b9d8f7944.svg",
+      "icon_jump_triangle.svg": "/img/icon_jump_triangle.dc6613b6e24e4eb7f1489c8741b31af8.svg",
+      "icon_listview_secure_doc.svg": "/img/icon_listview_secure_doc.8cd27992defd0a5257ac5b563c8fc300.svg",
+      "icon_live_chat.svg": "/img/icon_live_chat.bb7bb9396b79dc70a96aa7fd1a5b4ecc.svg",
+      "icon_magnifying_glass.svg": "/img/icon_magnifying_glass.eb03eec3b8fd49a32f9026a8756bc3a5.svg",
+      "icon_magnifying_glass_in.svg": "/img/icon_magnifying_glass_in.4710bc3d70385676f2ffe3f68590d861.svg",
+      "icon_magnifying_glass_out.svg": "/img/icon_magnifying_glass_out.259c7f9157408d5a983c906b3e70b6a6.svg",
+      "icon_mail.svg": "/img/icon_mail.442fef71cb1bc2bd57ccccb915d020e2.svg",
+      "icon_ocr_nav.svg": "/img/icon_ocr_nav.bc8dc928bd1cda4a6b24c6e2fa4c529d.svg",
+      "icon_open-link-in-new-tab.svg": "/img/icon_open-link-in-new-tab.40fd19143731a423fe987c67c0935838.svg",
+      "icon_order_history_large.svg": "/img/icon_order_history_large.a99e2e21f239f92b0dd5b2f425d7a670.svg",
+      "icon_organization.svg": "/img/icon_organization.9b801d8625dcb95dc811bc05d233ee39.svg",
+      "icon_page_multi.svg": "/img/icon_page_multi.f64654745da91a5cbd9d3b425557c645.svg",
+      "icon_page_single.svg": "/img/icon_page_single.27f0ab5e33043445b4e1c35a30341aab.svg",
+      "icon_pencil.svg": "/img/icon_pencil.92794da0f6460a4787e8a8a0d1ee2da0.svg",
+      "icon_phone.svg": "/img/icon_phone.c915490bedd9ea77dafff68494f93ac1.svg",
+      "icon_pill_remove.svg": "/img/icon_pill_remove.baba596bcab70525194b92ca3c077575.svg",
+      "icon_popout.svg": "/img/icon_popout.b981f31fd5d341687e15d74b5691c642.svg",
+      "icon_popout_blue.svg": "/img/icon_popout_blue.7c72827c2f49130f20a7737eabe7c005.svg",
+      "icon_printer.svg": "/img/icon_printer.4fd233f453d54649beb065da92ca2234.svg",
+      "icon_quicklink.svg": "/img/icon_quicklink.bd0bc4622bc46ade844d4ba4137fe331.svg",
+      "icon_remove.svg": "/img/icon_remove.fdb98f9d01e2dd524eaddb5920528a88.svg",
+      "icon_rotate.svg": "/img/icon_rotate.18ae309b2a98449640376b8af276d278.svg",
+      "icon_row_cart.svg": "/img/icon_row_cart.7f14209691d4c814f702b9c678a72172.svg",
+      "icon_row_cart_uncert.svg": "/img/icon_row_cart_uncert.8f222bbb22d0f54a5bddfd8bbb508ccb.svg",
+      "icon_row_uncert.svg": "/img/icon_row_uncert.7ebc9c7d9c1bf9db6fda105fed1c51b0.svg",
+      "icon_search.svg": "/img/icon_search.bee83ac8201b38aac6003d2c6d42879b.svg",
+      "icon_search_clear.svg": "/img/icon_search_clear.9704655c826e211732aa7a34acf2f2c0.svg",
+      "icon_spinner.svg": "/img/icon_spinner.95607c28d8ca5ccef4ea3a3caba751b9.svg",
+      "icon_subscription.svg": "/img/icon_subscription.09d543aed7195421fc6ad2b2ddc35f78.svg",
+      "icon_tab_help.svg": "/img/icon_tab_help.4ddeaa8ab95111a9d4e8e653bd024d85.svg",
+      "icon_trash.svg": "/img/icon_trash.ffa0a48b24352b8875678049990077bf.svg",
+      "icon_warning_circle.svg": "/img/icon_warning_circle.28d913f5706c444206b5167b81e621f3.svg",
+      "icon_warning_triangle.svg": "/img/icon_warning_triangle.cd57e01a2cc5bad34510d2f79e5227cb.svg",
+      "icon_warning_triangle_yellow.svg": "/img/icon_warning_triangle_yellow.dab0e44304aced443bad0c3d111ceb67.svg",
+      "neumo_logo.svg": "/img/neumo_logo.9b6421548ba19ac23c722f020eba649a.svg",
+      "neumo_logo_powered_by.svg": "/img/neumo_logo_powered_by.680a36af5b15ff94337307910ef7c546.svg",
+      "neumo_logo_search_product.svg": "/img/neumo_logo_search_product.cabc8b9ae553e5a1c5c1d97dfe136fdf.svg",
+      "neumo_logo_single_letter.svg": "/img/neumo_logo_single_letter.124179dfa15331f490ed2a6fc4e7ee7d.svg",
+      "no_image.svg": "/img/no_image.f95e9d874d3a6901162490205402928d.svg",
+      "safari-pinned-tab.svg": "/img/safari-pinned-tab.8370893c36696675d5bc89ee7eeea2e6.svg",
+      "secured.svg": "/img/secured.2150f900c5b83ad6b893ae03714fbc9e.svg",
+      "starburst.svg": "/img/starburst.a11c84a74cba7e25cde77c979537922a.svg",
+      "android-chrome-192x192.png": "/img/android-chrome-192x192.69fee2bd7048c087f5abc058a5b85c72.png",
+      "android-chrome-256x256.png": "/img/android-chrome-256x256.9a377b2546c71eb0d59684b4e8625472.png",
+      "apple-touch-icon.png": "/img/apple-touch-icon.102ee91d3ae6dc088d72435b16f25515.png",
+      "favicon-16x16.png": "/img/favicon-16x16.f8341ba5a321cb3f59fd5d573e499af0.png",
+      "favicon-32x32.png": "/img/favicon-32x32.e72050f581223cd2b825d3f26361d0e4.png",
+      "filters.png": "/img/filters.6c3b9a15afd5bfa5b82a552470f73b98.png",
+      "mstile-150x150.png": "/img/mstile-150x150.bec09ceb69989b1a49cc8dfca7133dcb.png",
+      "seal.png": "/img/seal.0e326729f26a21c4413e34e136a3ffef.png"
+    }
+  },
+  "cart": {
+    "cartID": "",
+    "userCart": {
+      "byOrder": [],
+      "byHash": {}
+    },
+    "totalPrice": null,
+    "convenienceFee": null,
+    "express": {},
+    "isFresh": true
+  },
+  "checkout": {
+    "inProgress": false,
+    "result": null,
+    "order": {},
+    "error": "",
+    "success": false,
+    "isFresh": true
+  },
+  "configuration": {
+    "datePresets": [
+      {
+        "label": "Last 24 Hours",
+        "value": "L24H"
+      },
+      {
+        "label": "Last 3 Days",
+        "value": "L3D"
+      },
+      {
+        "label": "Last 1 Week",
+        "value": "L1W"
+      },
+      {
+        "label": "Last 2 Weeks",
+        "value": "L2W"
+      },
+      {
+        "label": "Last 1 Month",
+        "value": "L1M"
+      },
+      {
+        "label": "Last 3 Months",
+        "value": "L3M"
+      },
+      {
+        "label": "Last 6 Months",
+        "value": "L6M"
+      },
+      {
+        "label": "Last 1 Year",
+        "value": "L1Y"
+      }
+    ],
+    "quickSearch": {
+      "tooltipText": {
+        "ocr": "Search the contents of every document and not just the information that is indexed. If you enter two or more words, we\u2019ll search for them as a phrase.",
+        "indexOnly": "Search only the information that is indexed. If you enter two or more words, we\u2019ll search for each word individually."
+      }
+    },
+    "advancedSearch": {
+      "fields": {
+        "ocrText": {
+          "placeholder": "Enter a search phrase",
+          "id": "ocrText",
+          "type": "StringInput",
+          "label": "Document Image",
+          "validations": [
+            "simpleChars"
+          ]
+        },
+        "lot": {
+          "id": "lot",
+          "type": "StringInput",
+          "label": "Lot",
+          "validations": [
+            "simpleChars"
+          ]
+        },
+        "book": {
+          "id": "book",
+          "type": "StringInput",
+          "label": "Book",
+          "validations": [
+            "lengthMax5"
+          ]
+        },
+        "page": {
+          "id": "page",
+          "type": "StringInput",
+          "label": "Page",
+          "validations": [
+            "lengthMax20"
+          ]
+        },
+        "block": {
+          "id": "block",
+          "type": "StringInput",
+          "label": "Block",
+          "validations": [
+            "simpleChars"
+          ]
+        },
+        "owner": {
+          "id": "owner",
+          "type": "TokenizedSelect",
+          "label": "Owner",
+          "placeholder": "Enter an owner name by pressing enter",
+          "validations": [
+            "commaSeparated"
+          ]
+        },
+        "block2": {
+          "id": "block2",
+          "type": "StringInput",
+          "label": "NCB",
+          "validations": [
+            "simpleChars"
+          ]
+        },
+        "block3": {
+          "id": "block3",
+          "type": "StringInput",
+          "label": "County Block",
+          "validations": [
+            "simpleChars"
+          ]
+        },
+        "debtor": {
+          "id": "debtor",
+          "type": "TokenizedSelect",
+          "label": "Debtor",
+          "placeholder": "Enter a debtor name by pressing enter",
+          "validations": [
+            "commaSeparated"
+          ]
+        },
+        "direct": {
+          "id": "direct",
+          "type": "TokenizedSelect",
+          "label": "Plaintiff",
+          "placeholder": "LASTNAME FIRSTNAME (Insert plaintiff name by pressing enter)",
+          "validations": [
+            "commaSeparated"
+          ]
+        },
+        "volume": {
+          "id": "volume",
+          "type": "StringInput",
+          "label": "Volume",
+          "validations": [
+            "lengthMax8"
+          ]
+        },
+        "grantee": {
+          "id": "grantee",
+          "type": "TokenizedSelect",
+          "label": "Grantee",
+          "placeholder": "LASTNAME FIRSTNAME (Insert grantee name by pressing enter)",
+          "validations": [
+            "commaSeparated"
+          ]
+        },
+        "grantor": {
+          "id": "grantor",
+          "type": "TokenizedSelect",
+          "label": "Grantor",
+          "placeholder": "LASTNAME FIRSTNAME (Insert grantor name by pressing enter)",
+          "validations": [
+            "commaSeparated"
+          ]
+        },
+        "remarks": {
+          "id": "remarks",
+          "type": "StringInput",
+          "label": "Remarks",
+          "validations": [
+            "simpleChars"
+          ]
+        },
+        "docTypes": {
+          "id": "docTypes",
+          "type": "TokenizedNestedSelect",
+          "label": "Document Types"
+        },
+        "indirect": {
+          "id": "indirect",
+          "type": "TokenizedSelect",
+          "label": "Defendant",
+          "placeholder": "LASTNAME FIRSTNAME (Insert defendant name by pressing enter)",
+          "validations": [
+            "commaSeparated"
+          ]
+        },
+        "saleDate": {
+          "id": "saleDate",
+          "type": "MonthPicker",
+          "label": "Sale Date",
+          "placeholder": {
+            "year": "Enter a year (YYYY)",
+            "month": "Select a Month"
+          },
+          "validations": [
+            "month"
+          ]
+        },
+        "defendant": {
+          "id": "defendant",
+          "type": "TokenizedSelect",
+          "label": "Defendant",
+          "placeholder": "LASTNAME FIRSTNAME (Insert defendant party name by pressing enter)",
+          "validations": [
+            "commaSeparated"
+          ]
+        },
+        "plaintiff": {
+          "id": "plaintiff",
+          "type": "TokenizedSelect",
+          "label": "Plaintiff",
+          "placeholder": "LASTNAME FIRSTNAME (Insert plaintiff party name by pressing enter)",
+          "validations": [
+            "commaSeparated"
+          ]
+        },
+        "ranchName": {
+          "id": "ranchName",
+          "type": "TokenizedSelect",
+          "label": "Ranch Name",
+          "placeholder": "Enter a ranch name by pressing enter",
+          "validations": [
+            "commaSeparated"
+          ]
+        },
+        "applicant1": {
+          "id": "applicant1",
+          "type": "TokenizedSelect",
+          "label": "Applicant 1",
+          "placeholder": "Enter an applicant name by pressing enter",
+          "validations": [
+            "commaSeparated"
+          ]
+        },
+        "applicant2": {
+          "id": "applicant2",
+          "type": "TokenizedSelect",
+          "label": "Applicant 2",
+          "placeholder": "Enter an applicant name by pressing enter",
+          "validations": [
+            "commaSeparated"
+          ]
+        },
+        "partyNames": {
+          "id": "partyNames",
+          "type": "TokenizedSelect",
+          "label": "Party Names",
+          "placeholder": "LASTNAME FIRSTNAME (Insert party name by pressing enter)",
+          "validations": [
+            "commaSeparated"
+          ]
+        },
+        "businessName": {
+          "id": "businessName",
+          "type": "TokenizedSelect",
+          "label": "Business Name",
+          "placeholder": "Enter a business name by pressing enter",
+          "validations": [
+            "commaSeparated"
+          ]
+        },
+        "securedParty": {
+          "id": "securedParty",
+          "type": "TokenizedSelect",
+          "label": "Secured Party",
+          "placeholder": "Enter a secured party name by pressing enter",
+          "validations": [
+            "commaSeparated"
+          ]
+        },
+        "ccmMeetingType": {
+          "id": "ccmMeetingType",
+          "type": "StringInput",
+          "label": "Meeting Type",
+          "validations": [
+            "simpleChars"
+          ]
+        },
+        "propertyAddress": {
+          "id": "propertyAddress",
+          "type": "StringInput",
+          "label": "Property Address",
+          "validations": [
+            "simpleChars"
+          ]
+        },
+        "legalDescription": {
+          "id": "legalDescription",
+          "type": "StringInput",
+          "label": "Legal Description",
+          "validations": [
+            "simpleChars"
+          ]
+        },
+        "meetingDateRange": {
+          "id": "instrumentDateRange",
+          "type": "InlineDatePicker",
+          "label": "Meeting Date Range",
+          "validations": [
+            "dateRange"
+          ]
+        },
+        "marriageDateRange": {
+          "id": "instrumentDateRange",
+          "type": "InlineDatePicker",
+          "label": "Marriage Date Range",
+          "validations": [
+            "dateRange"
+          ]
+        },
+        "recordedDateRange": {
+          "id": "recordedDateRange",
+          "type": "InlineDatePicker",
+          "label": "Recorded Date Range",
+          "validations": [
+            "dateRange"
+          ]
+        },
+        "documentNumberRange": {
+          "id": "documentNumberRange",
+          "type": "InputRange",
+          "validations": [
+            "documentNumberRange"
+          ]
+        },
+        "instrumentDateRange": {
+          "id": "instrumentDateRange",
+          "type": "InlineDatePicker",
+          "label": "Instrument Date Range",
+          "validations": [
+            "dateRange"
+          ]
+        },
+        "applicationDateRange": {
+          "id": "applicationDateRange",
+          "type": "InlineDatePicker",
+          "label": "Application Date Range",
+          "validations": [
+            "dateRange"
+          ]
+        }
+      }
+    },
+    "childItemLimit": 10,
+    "sealUrl": "https://s3-us-west-2.amazonaws.com/search-public-assets/48029/BexarCountySeal.svg",
+    "quicklink": {
+      "url": "https://kofilequicklinks.com/BexarCCM/",
+      "label": "QuickLink Index Books",
+      "enabled": true
+    },
+    "tenantUrl": "/",
+    "countyName": "Bexar County, Texas",
+    "tenantName": "Bexar",
+    "departments": [
+      {
+        "code": "RP",
+        "name": "Land Records",
+        "actions": [
+          "addToCart",
+          "expressCheckout"
+        ],
+        "cardConfig": {
+          "body": [
+            [
+              {
+                "key": "docNumber",
+                "label": "Document Number"
+              },
+              {
+                "key": "pageCount",
+                "label": "Number of Pages"
+              },
+              {
+                "key": "recordedDate",
+                "label": "Recorded Date"
+              },
+              {
+                "key": "consideration",
+                "label": "Consideration"
+              }
+            ],
+            [
+              {
+                "key": "docStatus",
+                "label": "Document Status",
+                "default": "Incomplete"
+              },
+              {
+                "key": [
+                  "book",
+                  "volume",
+                  "page"
+                ],
+                "label": "Book/Volume/Page",
+                "default": "--",
+                "separator": "/"
+              },
+              {
+                "key": "instrumentDate",
+                "type": "date",
+                "label": "Instrument Date"
+              }
+            ]
+          ],
+          "footer": [
+            {
+              "key": "grantor",
+              "label": "Grantor"
+            },
+            {
+              "key": "grantee",
+              "label": "Grantee"
+            },
+            {
+              "key": "legalDescription",
+              "label": "Legal Description"
+            },
+            {
+              "key": "propertyAddress",
+              "label": "Property Address"
+            },
+            {
+              "key": "marginalReferences",
+              "label": "Marginal References"
+            }
+          ]
+        },
+        "viewConfig": [
+          {
+            "key": "grantor",
+            "name": "Grantor"
+          },
+          {
+            "key": "grantee",
+            "name": "Grantee"
+          },
+          {
+            "key": "docType",
+            "name": "Doc Type"
+          },
+          {
+            "key": "recordedDate",
+            "name": "Recorded Date"
+          },
+          {
+            "key": "docNumber",
+            "name": "Doc Number"
+          },
+          {
+            "key": "bookVolumePage",
+            "name": "Book/Volume/Page"
+          },
+          {
+            "key": "legalDescription",
+            "name": "Legal Description"
+          },
+          {
+            "key": "lot",
+            "name": "Lot"
+          },
+          {
+            "key": "block",
+            "name": "Block"
+          },
+          {
+            "key": "block2",
+            "name": "NCB"
+          },
+          {
+            "key": "block3",
+            "name": "County Block"
+          },
+          {
+            "key": "propertyAddress",
+            "name": "Property Address"
+          }
+        ],
+        "isCertified": true,
+        "partyFields": [
+          "grantor",
+          "grantee"
+        ],
+        "searchResult": {
+          "availablePageActions": [
+            "addToCart",
+            "exportResults"
+          ]
+        },
+        "searchFilters": [
+          {
+            "key": "docTypes",
+            "label": "Document Types"
+          },
+          {
+            "key": "recordedYears",
+            "label": "Recorded Years"
+          }
+        ],
+        "showCoverPage": true,
+        "advancedSearch": {
+          "layout": [
+            [
+              "partyNames"
+            ],
+            [
+              "grantor"
+            ],
+            [
+              "grantee"
+            ],
+            [
+              "recordedDateRange"
+            ],
+            [
+              "instrumentDateRange"
+            ],
+            [
+              "docTypes"
+            ],
+            [
+              "documentNumberRange"
+            ],
+            [
+              "book",
+              "volume",
+              "page"
+            ],
+            [
+              "lot",
+              "block",
+              "block2",
+              "block3"
+            ],
+            [
+              "legalDescription"
+            ],
+            [
+              "propertyAddress"
+            ],
+            [
+              "ocrText"
+            ]
+          ]
+        },
+        "docPreviewConfig": {
+          "summary": {
+            "groups": [
+              {
+                "key": "parties",
+                "label": "Parties"
+              },
+              {
+                "key": "legalDescriptions",
+                "label": "Legal Description",
+                "dataPath": [
+                  "legals"
+                ]
+              },
+              {
+                "key": "marginalReferences",
+                "label": "Marginal References"
+              },
+              {
+                "key": "remarks",
+                "label": "Document Remarks"
+              },
+              {
+                "key": "propAddress",
+                "label": "Property Address"
+              },
+              {
+                "key": "returnAddress",
+                "label": "Return Address"
+              }
+            ],
+            "details": [
+              {
+                "key": "docNumber",
+                "label": "Document Number:"
+              },
+              {
+                "key": "pageCount",
+                "label": "Number of Pages:"
+              },
+              {
+                "key": "recordedDate",
+                "label": "Recorded Date:"
+              },
+              {
+                "key": "bookVolumePage",
+                "label": "Book/Volume/Page:"
+              },
+              {
+                "key": "instrumentDate",
+                "label": "Instrument Date:"
+              },
+              {
+                "key": "consideration",
+                "label": "Consideration:"
+              }
+            ]
+          },
+          "showImages": true,
+          "showAttachments": false,
+          "showOnlyFirstPage": false
+        },
+        "instNumberFormat": "AlphaNumeric",
+        "enableFeedbackForm": "true",
+        "bookVolumePageNavigation": {
+          "label": {
+            "book": "Book",
+            "volume": "Volume"
+          },
+          "enabled": true
+        },
+        "fullTextSearchDateRangeProp": "recordedDateRange",
+        "denySearchAfterCertifiedDate": true
+      },
+      {
+        "code": "PL",
+        "name": "Plats",
+        "actions": [
+          "addToCart",
+          "expressCheckout"
+        ],
+        "cardConfig": {
+          "body": [
+            [
+              {
+                "key": "docNumber",
+                "label": "Document Number"
+              },
+              {
+                "key": "pageCount",
+                "label": "Number of Pages"
+              },
+              {
+                "key": "recordedDate",
+                "label": "Recorded Date"
+              },
+              {
+                "key": "consideration",
+                "label": "Consideration"
+              }
+            ],
+            [
+              {
+                "key": "docStatus",
+                "label": "Document Status",
+                "default": "Incomplete"
+              },
+              {
+                "key": [
+                  "book",
+                  "volume",
+                  "page"
+                ],
+                "label": "Book/Volume/Page",
+                "default": "--",
+                "separator": "/"
+              },
+              {
+                "key": "instrumentDate",
+                "type": "date",
+                "label": "Instrument Date"
+              }
+            ]
+          ],
+          "footer": [
+            {
+              "key": "grantor",
+              "label": "Grantor"
+            },
+            {
+              "key": "grantee",
+              "label": "Grantee"
+            },
+            {
+              "key": "legalDescription",
+              "label": "Legal Description"
+            },
+            {
+              "key": "propertyAddress",
+              "label": "Property Address"
+            }
+          ]
+        },
+        "viewConfig": [
+          {
+            "key": "grantor",
+            "name": "Grantor"
+          },
+          {
+            "key": "grantee",
+            "name": "Grantee"
+          },
+          {
+            "key": "docType",
+            "name": "Doc Type"
+          },
+          {
+            "key": "recordedDate",
+            "name": "Recorded Date"
+          },
+          {
+            "key": "docNumber",
+            "name": "Doc Number"
+          },
+          {
+            "key": "bookVolumePage",
+            "name": "Book/Volume/Page"
+          },
+          {
+            "key": "legalDescription",
+            "name": "Legal Description"
+          },
+          {
+            "key": "lot",
+            "name": "Lot"
+          },
+          {
+            "key": "block",
+            "name": "Block"
+          },
+          {
+            "key": "block2",
+            "name": "NCB"
+          },
+          {
+            "key": "block3",
+            "name": "County Block"
+          },
+          {
+            "key": "propertyAddress",
+            "name": "Property Address"
+          }
+        ],
+        "isCertified": true,
+        "partyFields": [
+          "grantor",
+          "grantee"
+        ],
+        "searchResult": {
+          "availablePageActions": [
+            "addToCart",
+            "exportResults"
+          ]
+        },
+        "searchFilters": [
+          {
+            "key": "docTypes",
+            "label": "Document Types"
+          },
+          {
+            "key": "recordedYears",
+            "label": "Recorded Years"
+          }
+        ],
+        "showCoverPage": true,
+        "advancedSearch": {
+          "layout": [
+            [
+              "partyNames"
+            ],
+            [
+              "grantor"
+            ],
+            [
+              "grantee"
+            ],
+            [
+              "recordedDateRange"
+            ],
+            [
+              "instrumentDateRange"
+            ],
+            [
+              "docTypes"
+            ],
+            [
+              "documentNumberRange"
+            ],
+            [
+              "book",
+              "volume",
+              "page"
+            ],
+            [
+              "lot",
+              "block",
+              "block2",
+              "block3"
+            ],
+            [
+              "legalDescription"
+            ],
+            [
+              "propertyAddress"
+            ],
+            [
+              "ocrText"
+            ]
+          ]
+        },
+        "docPreviewConfig": {
+          "summary": {
+            "groups": [
+              {
+                "key": "parties",
+                "label": "Parties"
+              },
+              {
+                "key": "legalDescriptions",
+                "label": "Legal Description",
+                "dataPath": [
+                  "legals"
+                ]
+              },
+              {
+                "key": "marginalReferences",
+                "label": "Marginal References"
+              },
+              {
+                "key": "remarks",
+                "label": "Document Remarks"
+              },
+              {
+                "key": "propAddress",
+                "label": "Property Address"
+              },
+              {
+                "key": "returnAddress",
+                "label": "Return Address"
+              }
+            ],
+            "details": [
+              {
+                "key": "docNumber",
+                "label": "Document Number:"
+              },
+              {
+                "key": "pageCount",
+                "label": "Number of Pages:"
+              },
+              {
+                "key": "recordedDate",
+                "label": "Recorded Date:"
+              },
+              {
+                "key": "bookVolumePage",
+                "label": "Book/Volume/Page:"
+              },
+              {
+                "key": "instrumentDate",
+                "label": "Instrument Date:"
+              },
+              {
+                "key": "consideration",
+                "label": "Consideration"
+              }
+            ]
+          },
+          "showImages": true,
+          "showAttachments": true,
+          "showOnlyFirstPage": false
+        },
+        "instNumberFormat": "AlphaNumeric",
+        "enableFeedbackForm": "true",
+        "bookVolumePageNavigation": {
+          "label": {
+            "book": "Book",
+            "volume": "Volume"
+          },
+          "enabled": true
+        },
+        "fullTextSearchDateRangeProp": "recordedDateRange",
+        "denySearchAfterCertifiedDate": true
+      },
+      {
+        "code": "ASN",
+        "name": "Assumed Names",
+        "actions": [
+          "addToCart",
+          "expressCheckout"
+        ],
+        "cardConfig": {
+          "body": [
+            [
+              {
+                "key": "docNumber",
+                "label": "Document Number"
+              },
+              {
+                "key": "pageCount",
+                "label": "Number of Pages"
+              },
+              {
+                "key": "recordedDate",
+                "label": "Recorded Date"
+              }
+            ],
+            [
+              {
+                "key": "docStatus",
+                "label": "Document Status",
+                "default": "Incomplete"
+              },
+              {
+                "key": [
+                  "book",
+                  "volume",
+                  "page"
+                ],
+                "label": "Book/Volume/Page",
+                "default": "--",
+                "separator": "/"
+              }
+            ]
+          ],
+          "footer": [
+            {
+              "key": "businessName",
+              "label": "Business Name"
+            },
+            {
+              "key": "owner",
+              "label": "Owner Name"
+            },
+            {
+              "key": "legalDescription",
+              "label": "Legal Description"
+            }
+          ]
+        },
+        "viewConfig": [
+          {
+            "key": "businessName",
+            "name": "Business Name"
+          },
+          {
+            "key": "owner",
+            "name": "Owner Name"
+          },
+          {
+            "key": "docType",
+            "name": "Doc Type"
+          },
+          {
+            "key": "recordedDate",
+            "name": "Recorded Date"
+          },
+          {
+            "key": "docNumber",
+            "name": "Doc Number"
+          },
+          {
+            "key": "bookVolumePage",
+            "name": "Book/Volume/Page"
+          }
+        ],
+        "isCertified": true,
+        "partyFields": [
+          "businessName",
+          "owner"
+        ],
+        "searchResult": {
+          "availablePageActions": [
+            "addToCart",
+            "exportResults"
+          ]
+        },
+        "searchFilters": [
+          {
+            "key": "docTypes",
+            "label": "Document Types"
+          },
+          {
+            "key": "recordedYears",
+            "label": "Recorded Years"
+          }
+        ],
+        "showCoverPage": true,
+        "advancedSearch": {
+          "layout": [
+            [
+              "partyNames"
+            ],
+            [
+              "owner"
+            ],
+            [
+              "businessName"
+            ],
+            [
+              "recordedDateRange"
+            ],
+            [
+              "instrumentDateRange"
+            ],
+            [
+              "docTypes"
+            ],
+            [
+              "documentNumberRange"
+            ],
+            [
+              "book",
+              "volume",
+              "page"
+            ],
+            [
+              "legalDescription"
+            ],
+            [
+              "ocrText"
+            ]
+          ]
+        },
+        "docPreviewConfig": {
+          "summary": {
+            "groups": [
+              {
+                "key": "parties",
+                "label": "Parties"
+              },
+              {
+                "key": "remarks",
+                "label": "Document Remarks"
+              },
+              {
+                "key": "propAddress",
+                "label": "Business Address"
+              }
+            ],
+            "details": [
+              {
+                "key": "docNumber",
+                "label": "Document Number:"
+              },
+              {
+                "key": "pageCount",
+                "label": "Number of Pages:"
+              },
+              {
+                "key": "recordedDate",
+                "label": "Recorded Date:"
+              },
+              {
+                "key": "bookVolumePage",
+                "label": "Book/Volume/Page:"
+              }
+            ]
+          },
+          "showImages": true,
+          "showAttachments": false,
+          "showOnlyFirstPage": false
+        },
+        "instNumberFormat": "AlphaNumeric",
+        "enableFeedbackForm": "true",
+        "bookVolumePageNavigation": {
+          "label": {
+            "book": "Book",
+            "volume": "Volume"
+          },
+          "enabled": true
+        },
+        "fullTextSearchDateRangeProp": "recordedDateRange",
+        "denySearchAfterCertifiedDate": true
+      },
+      {
+        "code": "MC",
+        "name": "Marriage",
+        "actions": [
+          "addToCart",
+          "expressCheckout"
+        ],
+        "cardConfig": {
+          "body": [
+            [
+              {
+                "key": "docNumber",
+                "label": "Document Number"
+              },
+              {
+                "key": "pageCount",
+                "label": "Number of Pages"
+              },
+              {
+                "key": "recordedDate",
+                "label": "Recorded Date"
+              },
+              {
+                "key": "instrumentDate",
+                "label": "Marriage Date"
+              },
+              {
+                "key": "applicationDate",
+                "label": "Application Date",
+                "dataPath": [
+                  "docDetails",
+                  "marriages",
+                  "applicationDate"
+                ]
+              }
+            ],
+            [
+              {
+                "key": "docStatus",
+                "label": "Document Status",
+                "default": "Incomplete"
+              },
+              {
+                "key": [
+                  "book",
+                  "volume",
+                  "page"
+                ],
+                "label": "Book/Volume/Page",
+                "default": "--",
+                "separator": "/"
+              }
+            ]
+          ],
+          "footer": [
+            {
+              "key": "applicant1",
+              "label": "Applicant 1"
+            },
+            {
+              "key": "applicant2",
+              "label": "Applicant 2"
+            }
+          ]
+        },
+        "viewConfig": [
+          {
+            "key": "applicant1",
+            "name": "Applicant 1"
+          },
+          {
+            "key": "applicant2",
+            "name": "Applicant 2"
+          },
+          {
+            "key": "docType",
+            "name": "Doc Type"
+          },
+          {
+            "key": "recordedDate",
+            "name": "Recorded Date"
+          },
+          {
+            "key": "instrumentDate",
+            "name": "Marriage Date"
+          },
+          {
+            "key": "applicationDate",
+            "name": "Application Date",
+            "dataPath": [
+              "docDetails",
+              "marriages",
+              "applicationDate"
+            ]
+          },
+          {
+            "key": "docNumber",
+            "name": "Doc Number"
+          },
+          {
+            "key": "bookVolumePage",
+            "name": "Book/Volume/Page"
+          }
+        ],
+        "isCertified": true,
+        "partyFields": [
+          "applicant1",
+          "applicant2"
+        ],
+        "searchResult": {
+          "availablePageActions": [
+            "addToCart",
+            "exportResults"
+          ]
+        },
+        "searchFilters": [
+          {
+            "key": "docTypes",
+            "label": "Document Types"
+          },
+          {
+            "key": "recordedYears",
+            "label": "Recorded Years"
+          },
+          {
+            "key": "instrumentYears",
+            "label": "Marriage Years"
+          }
+        ],
+        "showCoverPage": true,
+        "advancedSearch": {
+          "layout": [
+            [
+              "partyNames"
+            ],
+            [
+              "applicant1"
+            ],
+            [
+              "applicant2"
+            ],
+            [
+              "applicationDateRange"
+            ],
+            [
+              "marriageDateRange"
+            ],
+            [
+              "recordedDateRange"
+            ],
+            [
+              "docTypes"
+            ],
+            [
+              "documentNumberRange"
+            ],
+            [
+              "book",
+              "volume",
+              "page"
+            ]
+          ]
+        },
+        "docPreviewConfig": {
+          "summary": {
+            "groups": [
+              {
+                "key": "parties",
+                "label": "Parties"
+              },
+              {
+                "key": "remarks",
+                "label": "Document Remarks"
+              }
+            ],
+            "details": [
+              {
+                "key": "docNumber",
+                "label": "Document Number:"
+              },
+              {
+                "key": "pageCount",
+                "label": "Number of Pages:"
+              },
+              {
+                "key": "recordedDate",
+                "label": "Recorded Date:"
+              },
+              {
+                "key": "instrumentDate",
+                "label": "Marriage Date:"
+              },
+              {
+                "key": "applicationDate",
+                "label": "Application Date:",
+                "dataPath": [
+                  "docDetails",
+                  "marriages",
+                  "applicationDate"
+                ]
+              },
+              {
+                "key": "county",
+                "label": "Marriage County:"
+              },
+              {
+                "key": "bookVolumePage",
+                "label": "Book/Volume/Page:"
+              }
+            ]
+          },
+          "showImages": true,
+          "showAttachments": false,
+          "showOnlyFirstPage": false
+        },
+        "instNumberFormat": "AlphaNumeric",
+        "verifiedStartDate": "Applications Granted",
+        "enableFeedbackForm": "true",
+        "bookVolumePageNavigation": {
+          "label": {
+            "book": "Book",
+            "volume": "Volume"
+          },
+          "enabled": true
+        },
+        "fullTextSearchDateRangeProp": "applicationDateRange",
+        "denySearchAfterCertifiedDate": true
+      },
+      {
+        "code": "CCM",
+        "name": "Commissioners Court Minutes",
+        "actions": [
+          "addToCart",
+          "expressCheckout"
+        ],
+        "cardConfig": {
+          "body": [
+            [
+              {
+                "key": "pageCount",
+                "label": "Number of Pages"
+              },
+              {
+                "key": "instrumentDate",
+                "label": "Meeting Date"
+              },
+              {
+                "key": "ccmMeetingType",
+                "label": "Meeting Type"
+              },
+              {
+                "key": "ccmAgendaItem",
+                "label": "Agenda Item"
+              }
+            ],
+            [
+              {
+                "key": "docStatus",
+                "label": "Document Status",
+                "default": "Incomplete"
+              },
+              {
+                "key": [
+                  "book",
+                  "volume",
+                  "page"
+                ],
+                "label": "Book/Volume/Page",
+                "default": "--",
+                "separator": "/"
+              }
+            ]
+          ],
+          "footer": []
+        },
+        "viewConfig": [
+          {
+            "key": "instrumentDate",
+            "name": "Meeting Date"
+          },
+          {
+            "key": "ccmMeetingType",
+            "name": "Meeting Type"
+          },
+          {
+            "key": "ccmAgendaItem",
+            "name": "Agenda Item"
+          },
+          {
+            "key": "docType",
+            "name": "Doc Type"
+          },
+          {
+            "key": "bookVolumePage",
+            "name": "Book/Volume/Page"
+          },
+          {
+            "key": "remarks",
+            "name": "Remarks"
+          }
+        ],
+        "isCertified": false,
+        "partyFields": [],
+        "searchResult": {
+          "availablePageActions": [
+            "addToCart",
+            "exportResults"
+          ]
+        },
+        "searchScopes": {
+          "default": "indexAndOcr",
+          "available": [
+            "index",
+            "indexAndOcr"
+          ]
+        },
+        "searchFilters": [
+          {
+            "key": "instrumentYears",
+            "label": "Meeting Years"
+          },
+          {
+            "key": "docTypes",
+            "label": "Document Types"
+          },
+          {
+            "key": "ccmMeetingType",
+            "label": "Meeting Types"
+          }
+        ],
+        "showCoverPage": true,
+        "advancedSearch": {
+          "layout": [
+            [
+              "meetingDateRange"
+            ],
+            [
+              "docTypes"
+            ],
+            [
+              "ccmMeetingType"
+            ],
+            [
+              "book",
+              "volume",
+              "page"
+            ],
+            [
+              "remarks"
+            ],
+            [
+              "ocrText"
+            ]
+          ]
+        },
+        "docPreviewConfig": {
+          "summary": {
+            "groups": [
+              {
+                "key": "remarks",
+                "label": "Document Remarks"
+              }
+            ],
+            "details": [
+              {
+                "key": "instrumentDate",
+                "label": "Meeting Date"
+              },
+              {
+                "key": "ccmMeetingType",
+                "label": "Meeting Type",
+                "dataPath": [
+                  "docDetails",
+                  "ccm",
+                  "meetingType"
+                ]
+              },
+              {
+                "key": "ccmAgendaItem",
+                "label": "Agenda Item",
+                "dataPath": [
+                  "docDetails",
+                  "ccm",
+                  "agendaItem"
+                ]
+              },
+              {
+                "key": "pageCount",
+                "label": "Number of Pages:"
+              },
+              {
+                "key": "recordedDate",
+                "label": "Recorded Date:"
+              },
+              {
+                "key": "bookVolumePage",
+                "label": "Book/Volume/Page:"
+              }
+            ]
+          },
+          "showImages": true,
+          "showAttachments": true,
+          "showOnlyFirstPage": false
+        },
+        "instNumberFormat": "Numeric",
+        "enableFeedbackForm": "true",
+        "bookVolumePageNavigation": {
+          "label": {
+            "book": "Book",
+            "volume": "Volume"
+          },
+          "enabled": true
+        },
+        "fullTextSearchDateRangeProp": "instrumentDateRange",
+        "denySearchAfterCertifiedDate": true,
+        "fullTextSearchDateRangeLabel": "Meeting Date"
+      },
+      {
+        "code": "FC",
+        "name": "Foreclosures",
+        "actions": [
+          "addToCart",
+          "expressCheckout"
+        ],
+        "cardConfig": {
+          "body": [
+            [
+              {
+                "key": "docNumber",
+                "label": "Document Number"
+              },
+              {
+                "key": "pageCount",
+                "label": "Number of Pages"
+              },
+              {
+                "key": "recordedDate",
+                "label": "Recorded Date"
+              }
+            ],
+            [
+              {
+                "key": "docStatus",
+                "label": "Document Status",
+                "default": "Incomplete"
+              },
+              {
+                "key": [
+                  "book",
+                  "volume",
+                  "page"
+                ],
+                "label": "Book/Volume/Page",
+                "default": "--",
+                "separator": "/"
+              },
+              {
+                "key": "legalDescription",
+                "label": "Remarks"
+              },
+              {
+                "key": "instrumentDate",
+                "type": "date",
+                "label": "Sale Date"
+              }
+            ]
+          ],
+          "footer": [
+            {
+              "key": "propertyAddress",
+              "label": "Property Address"
+            }
+          ]
+        },
+        "viewConfig": [
+          {
+            "key": "docType",
+            "name": "Doc Type"
+          },
+          {
+            "key": "recordedDate",
+            "name": "Recorded Date"
+          },
+          {
+            "key": "instrumentDate",
+            "name": "Sale Date"
+          },
+          {
+            "key": "docNumber",
+            "name": "Doc Number"
+          },
+          {
+            "key": "legalDescription",
+            "name": "Remarks"
+          },
+          {
+            "key": "propertyAddress",
+            "name": "Property Address"
+          }
+        ],
+        "isCertified": false,
+        "partyFields": [],
+        "searchResult": {
+          "availablePageActions": [
+            "addToCart",
+            "exportResults"
+          ]
+        },
+        "searchFilters": [
+          {
+            "key": "docTypes",
+            "label": "Document Types"
+          },
+          {
+            "key": "recordedYears",
+            "label": "Recorded Years"
+          }
+        ],
+        "showCoverPage": true,
+        "advancedSearch": {
+          "layout": [
+            [
+              "recordedDateRange"
+            ],
+            [
+              "instrumentDateRange"
+            ],
+            [
+              "docTypes"
+            ],
+            [
+              "documentNumberRange"
+            ],
+            [
+              "book",
+              "volume",
+              "page"
+            ],
+            [
+              "propertyAddress"
+            ],
+            [
+              "ocrText"
+            ]
+          ]
+        },
+        "docPreviewConfig": {
+          "summary": {
+            "groups": [
+              {
+                "key": "parties",
+                "label": "Parties"
+              },
+              {
+                "key": "legalDescriptions",
+                "label": "Remarks",
+                "dataPath": [
+                  "legals"
+                ]
+              },
+              {
+                "key": "propAddress",
+                "label": "Property Address"
+              }
+            ],
+            "details": [
+              {
+                "key": "docNumber",
+                "label": "Document Number:"
+              },
+              {
+                "key": "pageCount",
+                "label": "Number of Pages:"
+              },
+              {
+                "key": "recordedDate",
+                "label": "Recorded Date:"
+              },
+              {
+                "key": "bookVolumePage",
+                "label": "Book/Volume/Page:"
+              },
+              {
+                "key": "instrumentDate",
+                "label": "Sale Date:"
+              }
+            ]
+          },
+          "showImages": true,
+          "showAttachments": false,
+          "showOnlyFirstPage": false
+        },
+        "instNumberFormat": "Numeric",
+        "enableFeedbackForm": "true",
+        "bookVolumePageNavigation": {
+          "label": {
+            "book": "Book",
+            "volume": "Volume"
+          },
+          "enabled": true
+        },
+        "fullTextSearchDateRangeProp": "instrumentDateRange",
+        "denySearchAfterCertifiedDate": false,
+        "fullTextSearchDateRangeLabel": "Sale Date"
+      },
+      {
+        "code": "PN",
+        "name": "Public Notice",
+        "actions": [
+          "addToCart",
+          "expressCheckout"
+        ],
+        "cardConfig": {
+          "body": [
+            [
+              {
+                "key": "docNumber",
+                "label": "Document Number"
+              },
+              {
+                "key": "pageCount",
+                "label": "Number of Pages"
+              },
+              {
+                "key": "recordedDate",
+                "label": "Recorded Date"
+              }
+            ],
+            [
+              {
+                "key": "docStatus",
+                "label": "Document Status",
+                "default": "Incomplete"
+              }
+            ]
+          ],
+          "footer": [
+            {
+              "key": "grantor",
+              "label": "Grantor"
+            },
+            {
+              "key": "grantee",
+              "label": "Grantee"
+            }
+          ]
+        },
+        "viewConfig": [
+          {
+            "key": "grantor",
+            "name": "Grantor"
+          },
+          {
+            "key": "grantee",
+            "name": "Grantee"
+          },
+          {
+            "key": "docType",
+            "name": "Doc Type"
+          },
+          {
+            "key": "recordedDate",
+            "name": "Recorded Date"
+          },
+          {
+            "key": "docNumber",
+            "name": "Doc Number"
+          }
+        ],
+        "isCertified": false,
+        "partyFields": [
+          "grantor",
+          "grantee"
+        ],
+        "searchResult": {
+          "availablePageActions": [
+            "addToCart",
+            "exportResults"
+          ]
+        },
+        "searchFilters": [
+          {
+            "key": "docTypes",
+            "label": "Document Types"
+          },
+          {
+            "key": "recordedYears",
+            "label": "Recorded Years"
+          }
+        ],
+        "showCoverPage": true,
+        "advancedSearch": {
+          "layout": [
+            [
+              "partyNames"
+            ],
+            [
+              "grantor"
+            ],
+            [
+              "grantee"
+            ],
+            [
+              "recordedDateRange"
+            ],
+            [
+              "docTypes"
+            ],
+            [
+              "documentNumberRange"
+            ],
+            [
+              "ocrText"
+            ]
+          ]
+        },
+        "docPreviewConfig": {
+          "summary": {
+            "groups": [
+              {
+                "key": "parties",
+                "label": "Parties"
+              }
+            ],
+            "details": [
+              {
+                "key": "docNumber",
+                "label": "Document Number:"
+              },
+              {
+                "key": "pageCount",
+                "label": "Number of Pages:"
+              },
+              {
+                "key": "recordedDate",
+                "label": "Recorded Date:"
+              }
+            ]
+          },
+          "showImages": true,
+          "showAttachments": false,
+          "showOnlyFirstPage": false
+        },
+        "instNumberFormat": "AlphaNumeric",
+        "enableFeedbackForm": "true",
+        "bookVolumePageNavigation": {
+          "label": {
+            "book": "Book",
+            "volume": "Volume"
+          },
+          "enabled": true
+        },
+        "fullTextSearchDateRangeProp": "recordedDateRange",
+        "denySearchAfterCertifiedDate": true
+      },
+      {
+        "code": "PP",
+        "name": "Personal Property",
+        "fields": [
+          {
+            "id": "department",
+            "label": "Department",
+            "options": [
+              "options",
+              "onChange"
+            ]
+          },
+          {
+            "id": "partyNames",
+            "label": "Party Names",
+            "options": [],
+            "placeholder": "Enter a party name by pressing enter",
+            "validations": [
+              "commaSeparated"
+            ]
+          },
+          {
+            "id": "debtor",
+            "label": "Debtor",
+            "placeholder": "Enter a debtor name by pressing enter",
+            "validations": [
+              "commaSeparated"
+            ]
+          },
+          {
+            "id": "securedParty",
+            "label": "Secured Party",
+            "placeholder": "Enter a secured party name by pressing enter",
+            "validations": [
+              "commaSeparated"
+            ]
+          },
+          {
+            "id": "recordedDateRange",
+            "label": "Recorded Date Range",
+            "options": [
+              "maxDate",
+              "defaultValue"
+            ],
+            "validations": [
+              "dateRange"
+            ]
+          },
+          {
+            "id": "instrumentDateRange",
+            "label": "Instrument Date Range",
+            "validations": [
+              "dateRange"
+            ]
+          },
+          {
+            "id": "docTypes",
+            "label": "Document Types",
+            "options": [
+              "nestedOptions"
+            ]
+          },
+          {
+            "id": "documentNumberRange",
+            "validations": [
+              "documentNumberRange"
+            ]
+          },
+          {
+            "id": "book",
+            "label": "Book",
+            "validations": [
+              "isAlpha"
+            ]
+          },
+          {
+            "id": "volume",
+            "label": "Volume",
+            "validations": [
+              "isInt"
+            ]
+          },
+          {
+            "id": "page",
+            "label": "Page",
+            "validations": [
+              "isInt"
+            ]
+          },
+          {
+            "id": "legalDescription",
+            "label": "Legal Description",
+            "validations": [
+              "simpleChars"
+            ]
+          }
+        ],
+        "actions": [
+          "addToCart",
+          "expressCheckout"
+        ],
+        "cardConfig": {
+          "body": [
+            [
+              {
+                "key": "docNumber",
+                "label": "Document Number"
+              },
+              {
+                "key": "pageCount",
+                "label": "Number of Pages"
+              },
+              {
+                "key": "recordedDate",
+                "label": "Recorded Date"
+              }
+            ],
+            [
+              {
+                "key": "docStatus",
+                "label": "Document Status",
+                "default": "Incomplete"
+              },
+              {
+                "key": [
+                  "book",
+                  "volume",
+                  "page"
+                ],
+                "label": "Book/Volume/Page",
+                "default": "--",
+                "separator": "/"
+              },
+              {
+                "key": "instrumentDate",
+                "type": "date",
+                "label": "Sale Date"
+              }
+            ]
+          ],
+          "footer": [
+            {
+              "key": "debtor",
+              "label": "Debtor"
+            },
+            {
+              "key": "securedParty",
+              "label": "Secured Party"
+            }
+          ]
+        },
+        "viewConfig": [
+          {
+            "key": "debtor",
+            "name": "Debtor"
+          },
+          {
+            "key": "securedParty",
+            "name": "Secured Party"
+          },
+          {
+            "key": "docType",
+            "name": "Doc Type"
+          },
+          {
+            "key": "recordedDate",
+            "name": "Recorded Date"
+          },
+          {
+            "key": "docNumber",
+            "name": "Doc Number"
+          }
+        ],
+        "isCertified": true,
+        "partyFields": [
+          "debtor",
+          "securedParty"
+        ],
+        "searchResult": {
+          "availablePageActions": [
+            "addToCart",
+            "exportResults"
+          ]
+        },
+        "searchFilters": [
+          {
+            "key": "docTypes",
+            "label": "Document Types"
+          },
+          {
+            "key": "recordedYears",
+            "label": "Recorded Years"
+          }
+        ],
+        "showCoverPage": true,
+        "advancedSearch": {
+          "layout": [
+            [
+              "partyNames"
+            ],
+            [
+              "debtor"
+            ],
+            [
+              "securedParty"
+            ],
+            [
+              "recordedDateRange"
+            ],
+            [
+              "instrumentDateRange"
+            ],
+            [
+              "docTypes"
+            ],
+            [
+              "documentNumberRange"
+            ],
+            [
+              "book",
+              "volume",
+              "page"
+            ],
+            [
+              "legalDescription"
+            ],
+            [
+              "ocrText"
+            ]
+          ]
+        },
+        "docPreviewConfig": {
+          "summary": {
+            "groups": [
+              {
+                "key": "parties",
+                "label": "Parties"
+              }
+            ],
+            "details": [
+              {
+                "key": "docNumber",
+                "label": "Document Number:"
+              },
+              {
+                "key": "pageCount",
+                "label": "Number of Pages:"
+              },
+              {
+                "key": "recordedDate",
+                "label": "Recorded Date:"
+              },
+              {
+                "key": "instrumentDate",
+                "label": "Instrument Date:"
+              }
+            ]
+          },
+          "showImages": true,
+          "showAttachments": false,
+          "showOnlyFirstPage": false
+        },
+        "instNumberFormat": "AlphaNumeric",
+        "enableFeedbackForm": "true",
+        "bookVolumePageNavigation": {
+          "label": {
+            "book": "Book",
+            "volume": "Volume"
+          },
+          "enabled": true
+        },
+        "fullTextSearchDateRangeProp": "recordedDateRange",
+        "denySearchAfterCertifiedDate": true
+      },
+      {
+        "code": "MB",
+        "name": "Marks and Brands",
+        "fields": [
+          {
+            "id": "department",
+            "label": "Department",
+            "options": [
+              "options",
+              "onChange"
+            ]
+          },
+          {
+            "id": "partyNames",
+            "label": "Party Names",
+            "options": [],
+            "placeholder": "Enter a party name by pressing enter",
+            "validations": [
+              "commaSeparated"
+            ]
+          },
+          {
+            "id": "grantor",
+            "label": "Grantor",
+            "placeholder": "Enter a grantor name by pressing enter",
+            "validations": [
+              "commaSeparated"
+            ]
+          },
+          {
+            "id": "grantee",
+            "label": "Grantee",
+            "placeholder": "Enter a grantee name by pressing enter",
+            "validations": [
+              "commaSeparated"
+            ]
+          },
+          {
+            "id": "recordedDateRange",
+            "label": "Recorded Date Range",
+            "options": [
+              "maxDate",
+              "defaultValue"
+            ],
+            "validations": [
+              "dateRange"
+            ]
+          },
+          {
+            "id": "docTypes",
+            "label": "Document Types",
+            "options": [
+              "nestedOptions"
+            ]
+          },
+          {
+            "id": "documentNumberRange",
+            "validations": [
+              "documentNumberRange"
+            ]
+          },
+          {
+            "id": "legalDescription",
+            "label": "Legal Description",
+            "validations": [
+              "simpleChars"
+            ]
+          }
+        ],
+        "actions": [
+          "addToCart",
+          "expressCheckout"
+        ],
+        "cardConfig": {
+          "body": [
+            [
+              {
+                "key": "docNumber",
+                "label": "Document Number"
+              },
+              {
+                "key": "pageCount",
+                "label": "Number of Pages"
+              },
+              {
+                "key": "recordedDate",
+                "label": "Recorded Date"
+              }
+            ],
+            [
+              {
+                "key": "docStatus",
+                "label": "Document Status",
+                "default": "Incomplete"
+              },
+              {
+                "key": [
+                  "book",
+                  "volume",
+                  "page"
+                ],
+                "label": "Book/Volume/Page",
+                "default": "--",
+                "separator": "/"
+              },
+              {
+                "key": "instrumentDate",
+                "type": "date",
+                "label": "Sale Date"
+              }
+            ]
+          ],
+          "footer": [
+            {
+              "key": "owner",
+              "label": "Owner"
+            },
+            {
+              "key": "ranchName",
+              "label": "Ranch Name"
+            },
+            {
+              "key": "legalDescription",
+              "label": "Document Description"
+            }
+          ]
+        },
+        "viewConfig": [
+          {
+            "key": "owner",
+            "name": "Owner"
+          },
+          {
+            "key": "ranchName",
+            "name": "Ranch Name"
+          },
+          {
+            "key": "docType",
+            "name": "Doc Type"
+          },
+          {
+            "key": "recordedDate",
+            "name": "Recorded Date"
+          },
+          {
+            "key": "docNumber",
+            "name": "Doc Number"
+          },
+          {
+            "key": "legalDescription",
+            "name": "Legal Description"
+          }
+        ],
+        "isCertified": true,
+        "partyFields": [
+          "owner",
+          "ranchName"
+        ],
+        "searchResult": {
+          "availablePageActions": [
+            "addToCart",
+            "exportResults"
+          ]
+        },
+        "searchFilters": [
+          {
+            "key": "docTypes",
+            "label": "Document Types"
+          },
+          {
+            "key": "recordedYears",
+            "label": "Recorded Years"
+          }
+        ],
+        "showCoverPage": true,
+        "advancedSearch": {
+          "layout": [
+            [
+              "partyNames"
+            ],
+            [
+              "owner"
+            ],
+            [
+              "ranchName"
+            ],
+            [
+              "recordedDateRange"
+            ],
+            [
+              "instrumentDateRange"
+            ],
+            [
+              "docTypes"
+            ],
+            [
+              "documentNumberRange"
+            ],
+            [
+              "book",
+              "volume",
+              "page"
+            ],
+            [
+              "legalDescription"
+            ],
+            [
+              "ocrText"
+            ]
+          ]
+        },
+        "docPreviewConfig": {
+          "summary": {
+            "groups": [
+              {
+                "key": "parties",
+                "label": "Parties"
+              },
+              {
+                "key": "legalDescriptions",
+                "label": "Legal Description",
+                "dataPath": [
+                  "legals"
+                ]
+              },
+              {
+                "key": "remarks",
+                "label": "Document Remarks"
+              }
+            ],
+            "details": [
+              {
+                "key": "docNumber",
+                "label": "Document Number:"
+              },
+              {
+                "key": "pageCount",
+                "label": "Number of Pages:"
+              },
+              {
+                "key": "recordedDate",
+                "label": "Recorded Date:"
+              },
+              {
+                "key": "bookVolumePage",
+                "label": "Book/Volume/Page:"
+              },
+              {
+                "key": "instrumentDate",
+                "label": "Instrument Date:"
+              }
+            ]
+          },
+          "showImages": true,
+          "showAttachments": false,
+          "showOnlyFirstPage": false
+        },
+        "instNumberFormat": "AlphaNumeric",
+        "enableFeedbackForm": "true",
+        "bookVolumePageNavigation": {
+          "label": {
+            "book": "Book",
+            "volume": "Volume"
+          },
+          "enabled": true
+        },
+        "fullTextSearchDateRangeProp": "recordedDateRange",
+        "denySearchAfterCertifiedDate": true
+      },
+      {
+        "code": "SA",
+        "name": "Spanish Archives",
+        "fields": [
+          {
+            "id": "department",
+            "label": "Department",
+            "options": [
+              "options",
+              "onChange"
+            ]
+          },
+          {
+            "id": "partyNames",
+            "label": "Party Names",
+            "options": [],
+            "placeholder": "Enter a party name by pressing enter",
+            "validations": [
+              "commaSeparated"
+            ]
+          },
+          {
+            "id": "grantor",
+            "label": "Grantor",
+            "placeholder": "Enter a grantor name by pressing enter",
+            "validations": [
+              "commaSeparated"
+            ]
+          },
+          {
+            "id": "grantee",
+            "label": "Grantee",
+            "placeholder": "Enter a grantee name by pressing enter",
+            "validations": [
+              "commaSeparated"
+            ]
+          },
+          {
+            "id": "recordedDateRange",
+            "label": "Recorded Date Range",
+            "options": [
+              "maxDate",
+              "defaultValue"
+            ],
+            "validations": [
+              "dateRange"
+            ]
+          },
+          {
+            "id": "instrumentDateRange",
+            "label": "Instrument Date Range",
+            "validations": [
+              "dateRange"
+            ]
+          },
+          {
+            "id": "docTypes",
+            "label": "Document Types",
+            "options": [
+              "nestedOptions"
+            ]
+          },
+          {
+            "id": "documentNumberRange",
+            "validations": [
+              "documentNumberRange"
+            ]
+          },
+          {
+            "id": "book",
+            "label": "Book",
+            "validations": [
+              "isAlpha"
+            ]
+          },
+          {
+            "id": "volume",
+            "label": "Volume",
+            "validations": [
+              "isAlpha"
+            ]
+          },
+          {
+            "id": "page",
+            "label": "Page",
+            "validations": [
+              "isInt"
+            ]
+          }
+        ],
+        "actions": [
+          "addToCart",
+          "download"
+        ],
+        "cardConfig": {
+          "body": [
+            [
+              {
+                "key": "docNumber",
+                "label": "Document Number"
+              },
+              {
+                "key": "pageCount",
+                "label": "Number of Pages"
+              },
+              {
+                "key": "recordedDate",
+                "label": "Recorded Date"
+              }
+            ],
+            [
+              {
+                "key": "docStatus",
+                "label": "Document Status",
+                "default": "Incomplete"
+              },
+              {
+                "key": [
+                  "book",
+                  "volume",
+                  "page"
+                ],
+                "label": "Book/Volume/Page",
+                "default": "--",
+                "separator": "/"
+              },
+              {
+                "key": "instrumentDate",
+                "type": "date",
+                "label": "Instrument Date"
+              }
+            ]
+          ],
+          "footer": [
+            {
+              "key": "grantor",
+              "label": "Grantor"
+            },
+            {
+              "key": "grantee",
+              "label": "Grantee"
+            },
+            {
+              "key": "legalDescription",
+              "label": "Legal Description"
+            }
+          ]
+        },
+        "viewConfig": [
+          {
+            "key": "remarks",
+            "name": "Remarks"
+          },
+          {
+            "key": "grantor",
+            "name": "Grantor"
+          },
+          {
+            "key": "grantee",
+            "name": "Grantee"
+          },
+          {
+            "key": "docType",
+            "name": "Doc Type"
+          },
+          {
+            "key": "recordedDate",
+            "name": "Recorded Date"
+          },
+          {
+            "key": "instrumentDate",
+            "name": "Instrument Date"
+          },
+          {
+            "key": "docNumber",
+            "name": "Doc Number"
+          },
+          {
+            "key": "bookVolumePage",
+            "name": "Book/Volume/Page"
+          },
+          {
+            "key": "legalDescription",
+            "name": "Legal Description"
+          }
+        ],
+        "isCertified": false,
+        "partyFields": [
+          "grantor",
+          "grantee"
+        ],
+        "searchResult": {
+          "availablePageActions": [
+            "addToCart",
+            "exportResults"
+          ]
+        },
+        "searchFilters": [
+          {
+            "key": "docTypes",
+            "label": "Document Types"
+          },
+          {
+            "key": "recordedYears",
+            "label": "Recorded Years"
+          }
+        ],
+        "showCoverPage": true,
+        "advancedSearch": {
+          "layout": [
+            [
+              "partyNames"
+            ],
+            [
+              "grantor"
+            ],
+            [
+              "grantee"
+            ],
+            [
+              "recordedDateRange"
+            ],
+            [
+              "instrumentDateRange"
+            ],
+            [
+              "docTypes"
+            ],
+            [
+              "documentNumberRange"
+            ],
+            [
+              "book",
+              "volume",
+              "page"
+            ],
+            [
+              "legalDescription"
+            ],
+            [
+              "ocrText"
+            ]
+          ]
+        },
+        "docPreviewConfig": {
+          "summary": {
+            "groups": [
+              {
+                "key": "parties",
+                "label": "Parties"
+              },
+              {
+                "key": "legalDescriptions",
+                "label": "Legal Description",
+                "dataPath": [
+                  "legals"
+                ]
+              },
+              {
+                "key": "remarks",
+                "label": "Document Remarks"
+              }
+            ],
+            "details": [
+              {
+                "key": "docNumber",
+                "label": "Document Number:"
+              },
+              {
+                "key": "pageCount",
+                "label": "Number of Pages:"
+              },
+              {
+                "key": "recordedDate",
+                "label": "Recorded Date:"
+              },
+              {
+                "key": "bookVolumePage",
+                "label": "Book/Volume/Page:"
+              },
+              {
+                "key": "instrumentDate",
+                "label": "Instrument Date:"
+              }
+            ]
+          },
+          "showImages": true,
+          "showAttachments": false,
+          "showOnlyFirstPage": false
+        },
+        "instNumberFormat": "AlphaNumeric",
+        "enableFeedbackForm": "true",
+        "bookVolumePageNavigation": {
+          "label": {
+            "book": "Book",
+            "volume": "Volume"
+          },
+          "enabled": true
+        },
+        "fullTextSearchDateRangeProp": "recordedDateRange",
+        "denySearchAfterCertifiedDate": true
+      },
+      {
+        "code": "UCC",
+        "name": "Eminent Domains",
+        "actions": [
+          "addToCart",
+          "download"
+        ],
+        "cardConfig": {
+          "body": [
+            [
+              {
+                "key": "docNumber",
+                "label": "Case Number"
+              },
+              {
+                "key": "pageCount",
+                "label": "Number of Pages"
+              },
+              {
+                "key": "recordedDate",
+                "label": "Recorded Date"
+              }
+            ],
+            [
+              {
+                "key": "docStatus",
+                "label": "Document Status",
+                "default": "Incomplete"
+              },
+              {
+                "key": [
+                  "book",
+                  "volume",
+                  "page"
+                ],
+                "label": "Book/Volume/Page",
+                "default": "--",
+                "separator": "/"
+              }
+            ]
+          ],
+          "footer": [
+            {
+              "key": "direct",
+              "label": "Plaintiff"
+            },
+            {
+              "key": "indirect",
+              "label": "Defendant"
+            },
+            {
+              "key": "remarks",
+              "label": "Remarks"
+            }
+          ]
+        },
+        "viewConfig": [
+          {
+            "key": "direct",
+            "name": "Plaintiff"
+          },
+          {
+            "key": "indirect",
+            "name": "Defendant"
+          },
+          {
+            "key": "docType",
+            "name": "Case Type"
+          },
+          {
+            "key": "recordedDate",
+            "name": "Recorded Date"
+          },
+          {
+            "key": "docNumber",
+            "name": "Case Number"
+          },
+          {
+            "key": "bookVolumePage",
+            "name": "Book/Volume/Page"
+          },
+          {
+            "key": "remarks",
+            "name": "Remarks"
+          }
+        ],
+        "isCertified": false,
+        "partyFields": [
+          "direct",
+          "indirect"
+        ],
+        "searchResult": {
+          "availablePageActions": [
+            "addToCart",
+            "exportResults"
+          ]
+        },
+        "searchFilters": [
+          {
+            "key": "docTypes",
+            "label": "Case Types"
+          },
+          {
+            "key": "recordedYears",
+            "label": "Instrument Years"
+          }
+        ],
+        "showCoverPage": true,
+        "advancedSearch": {
+          "layout": [
+            [
+              "partyNames"
+            ],
+            [
+              "direct"
+            ],
+            [
+              "indirect"
+            ],
+            [
+              "recordedDateRange"
+            ],
+            [
+              "docTypes"
+            ],
+            [
+              "documentNumberRange"
+            ],
+            [
+              "book",
+              "volume",
+              "page"
+            ],
+            [
+              "remarks"
+            ],
+            [
+              "ocrText"
+            ]
+          ]
+        },
+        "hideThumbnails": true,
+        "docPreviewConfig": {
+          "summary": {
+            "groups": [
+              {
+                "key": "parties",
+                "label": "Parties"
+              },
+              {
+                "key": "remarks",
+                "label": "Document Remarks"
+              }
+            ],
+            "details": [
+              {
+                "key": "docNumber",
+                "label": "Case Number"
+              },
+              {
+                "key": "pageCount",
+                "label": "Number of Pages"
+              },
+              {
+                "key": "instrumentDate",
+                "label": "Instrument Date"
+              },
+              {
+                "key": "recordedDate",
+                "label": "Recorded Date"
+              },
+              {
+                "key": "docNumber",
+                "label": "Document Status"
+              },
+              {
+                "key": "book",
+                "label": "Book:"
+              },
+              {
+                "key": "volume",
+                "label": "Volume:"
+              },
+              {
+                "key": "page",
+                "label": "Page:"
+              }
+            ]
+          },
+          "showImages": true,
+          "showAttachments": true,
+          "showOnlyFirstPage": false
+        },
+        "instNumberFormat": "Numeric",
+        "verifiedStartDate": "Verified",
+        "enableFeedbackForm": "true",
+        "fullTextSearchDateRangeProp": "recordedDateRange",
+        "denySearchAfterCertifiedDate": false
+      },
+      {
+        "code": "DC",
+        "name": "Historical Judicial",
+        "actions": [
+          "addToCart",
+          "download"
+        ],
+        "cardConfig": {
+          "body": [
+            [
+              {
+                "key": "docNumber",
+                "label": "Case Number"
+              },
+              {
+                "key": "pageCount",
+                "label": "Number of Pages"
+              },
+              {
+                "key": "recordedDate",
+                "label": "File Date"
+              }
+            ],
+            [
+              {
+                "key": "docStatus",
+                "label": "Document Status",
+                "default": "Incomplete"
+              },
+              {
+                "key": "remarks",
+                "label": "Remarks"
+              }
+            ]
+          ],
+          "footer": [
+            {
+              "key": "plaintiff",
+              "label": "Plaintiff"
+            },
+            {
+              "key": "defendant",
+              "label": "Defendant"
+            }
+          ]
+        },
+        "viewConfig": [
+          {
+            "key": "plaintiff",
+            "name": "Plaintiff"
+          },
+          {
+            "key": "defendant",
+            "name": "Defendant"
+          },
+          {
+            "key": "docType",
+            "name": "Case Type"
+          },
+          {
+            "key": "recordedDate",
+            "name": "File Date"
+          },
+          {
+            "key": "docNumber",
+            "name": "Case Number"
+          },
+          {
+            "key": "bookVolumePage",
+            "name": "Book/Volume/Page"
+          },
+          {
+            "key": "remarks",
+            "name": "Remarks"
+          }
+        ],
+        "isCertified": false,
+        "partyFields": [
+          "plaintiff",
+          "defendant"
+        ],
+        "searchResult": {
+          "availablePageActions": [
+            "addToCart",
+            "exportResults"
+          ]
+        },
+        "searchFilters": [
+          {
+            "key": "docTypes",
+            "label": "Case Types"
+          },
+          {
+            "key": "recordedYears",
+            "label": "File Years"
+          }
+        ],
+        "showCoverPage": true,
+        "advancedSearch": {
+          "layout": [
+            [
+              "partyNames"
+            ],
+            [
+              "plaintiff"
+            ],
+            [
+              "defendant"
+            ],
+            [
+              "recordedDateRange"
+            ],
+            [
+              "docTypes"
+            ],
+            [
+              "documentNumberRange"
+            ],
+            [
+              "book",
+              "volume",
+              "page"
+            ],
+            [
+              "remarks"
+            ],
+            [
+              "ocrText"
+            ]
+          ]
+        },
+        "docPreviewConfig": {
+          "summary": {
+            "groups": [
+              {
+                "key": "parties",
+                "label": "Parties"
+              },
+              {
+                "key": "remarks",
+                "label": "Remarks"
+              }
+            ],
+            "details": [
+              {
+                "key": "docNumber",
+                "label": "Case Number:"
+              },
+              {
+                "key": "pageCount",
+                "label": "Number of Pages:"
+              },
+              {
+                "key": "recordedDate",
+                "label": "File Date:"
+              },
+              {
+                "key": "bookVolumePage",
+                "label": "Book/Volume/Page:"
+              }
+            ]
+          },
+          "showImages": true,
+          "showAttachments": false,
+          "showOnlyFirstPage": false
+        },
+        "instNumberFormat": "AlphaNumeric",
+        "enableFeedbackForm": "true",
+        "bookVolumePageNavigation": {
+          "label": {
+            "book": "Book",
+            "volume": "Volume"
+          },
+          "enabled": true
+        },
+        "fullTextSearchDateRangeProp": "recordedDateRange",
+        "denySearchAfterCertifiedDate": true
+      },
+      {
+        "code": "MISC",
+        "name": "Historical Miscellaneous",
+        "fields": [
+          {
+            "id": "department",
+            "label": "Department",
+            "options": [
+              "options",
+              "onChange"
+            ]
+          },
+          {
+            "id": "recordedDateRange",
+            "label": "Recorded Date Range",
+            "options": [
+              "maxDate",
+              "defaultValue"
+            ],
+            "validations": [
+              "dateRange"
+            ]
+          },
+          {
+            "id": "docTypes",
+            "label": "Document Types",
+            "options": [
+              "nestedOptions"
+            ]
+          },
+          {
+            "id": "documentNumberRange",
+            "validations": [
+              "documentNumberRange"
+            ]
+          }
+        ],
+        "actions": [
+          "addToCart",
+          "download"
+        ],
+        "cardConfig": {
+          "body": [
+            [
+              {
+                "key": "docNumber",
+                "label": "Document Number"
+              }
+            ],
+            [
+              {
+                "key": "recordedDate",
+                "label": "Recorded Date"
+              }
+            ]
+          ],
+          "footer": [
+            {
+              "key": "grantor",
+              "label": "Grantor"
+            },
+            {
+              "key": "grantee",
+              "label": "Grantee"
+            },
+            {
+              "key": "remarks",
+              "label": "Remarks"
+            },
+            {
+              "key": "legalDescription",
+              "label": "Document Description"
+            }
+          ]
+        },
+        "viewConfig": [
+          {
+            "key": "docNumber",
+            "name": "Doc Number"
+          },
+          {
+            "key": "docType",
+            "name": "Doc Type"
+          },
+          {
+            "key": "recordedDate",
+            "name": "Recorded Date"
+          },
+          {
+            "key": "grantor",
+            "name": "Grantor"
+          },
+          {
+            "key": "grantee",
+            "name": "Grantee"
+          },
+          {
+            "key": "remarks",
+            "name": "Remarks"
+          },
+          {
+            "key": "legalDescription",
+            "name": "Legal Description",
+            "label": "Document Description"
+          }
+        ],
+        "isCertified": true,
+        "partyFields": [
+          "grantor",
+          "grantee"
+        ],
+        "searchResult": {
+          "availablePageActions": [
+            "exportResults"
+          ]
+        },
+        "searchFilters": [
+          {
+            "key": "docTypes",
+            "label": "Document Types"
+          },
+          {
+            "key": "recordedYears",
+            "label": "Recorded Years"
+          }
+        ],
+        "showCoverPage": true,
+        "advancedSearch": {
+          "layout": [
+            [
+              "documentNumberRange"
+            ],
+            [
+              "docTypes"
+            ],
+            [
+              "recordedDateRange"
+            ],
+            [
+              "partyNames"
+            ],
+            [
+              "grantor"
+            ],
+            [
+              "grantee"
+            ],
+            [
+              "remarks"
+            ],
+            [
+              "legalDescription"
+            ],
+            [
+              "ocrText"
+            ]
+          ]
+        },
+        "docPreviewConfig": {
+          "summary": {
+            "groups": [
+              {
+                "key": "parties",
+                "label": "Parties"
+              },
+              {
+                "key": "legalDescriptions",
+                "label": "Document Description",
+                "dataPath": [
+                  "legals"
+                ]
+              },
+              {
+                "key": "remarks",
+                "label": "Remarks"
+              }
+            ],
+            "details": [
+              {
+                "key": "docNumber",
+                "label": "Document Number"
+              },
+              {
+                "key": "recordedDate",
+                "label": "Recorded Date"
+              }
+            ]
+          },
+          "showImages": true,
+          "showAttachments": false,
+          "showOnlyFirstPage": false
+        },
+        "instNumberFormat": "AlphaNumeric",
+        "enableFeedbackForm": "true",
+        "bookVolumePageNavigation": {
+          "label": {
+            "book": "Book",
+            "volume": "Volume"
+          },
+          "enabled": true
+        },
+        "fullTextSearchDateRangeProp": "recordedDateRange",
+        "denySearchAfterCertifiedDate": true
+      },
+      {
+        "code": "IO",
+        "name": "Historical Series of Land Records",
+        "fields": [
+          {
+            "id": "department",
+            "label": "Department",
+            "options": [
+              "options",
+              "onChange"
+            ]
+          },
+          {
+            "id": "partyNames",
+            "label": "Party Names",
+            "options": [],
+            "placeholder": "Enter a party name by pressing enter",
+            "validations": [
+              "commaSeparated"
+            ]
+          },
+          {
+            "id": "grantor",
+            "label": "Grantor",
+            "placeholder": "Enter a grantor name by pressing enter",
+            "validations": [
+              "commaSeparated"
+            ]
+          },
+          {
+            "id": "grantee",
+            "label": "Grantee",
+            "placeholder": "Enter a grantee name by pressing enter",
+            "validations": [
+              "commaSeparated"
+            ]
+          },
+          {
+            "id": "recordedDateRange",
+            "label": "Recorded Date Range",
+            "options": [
+              "maxDate",
+              "defaultValue"
+            ],
+            "validations": [
+              "dateRange"
+            ]
+          },
+          {
+            "id": "instrumentDateRange",
+            "label": "Instrument Date Range",
+            "validations": [
+              "dateRange"
+            ]
+          },
+          {
+            "id": "docTypes",
+            "label": "Document Types",
+            "options": [
+              "nestedOptions"
+            ]
+          },
+          {
+            "id": "documentNumberRange",
+            "validations": [
+              "documentNumberRange"
+            ]
+          },
+          {
+            "id": "book",
+            "label": "Book",
+            "validations": [
+              "isAlpha"
+            ]
+          },
+          {
+            "id": "volume",
+            "label": "Volume",
+            "validations": [
+              "isAlpha"
+            ]
+          },
+          {
+            "id": "page",
+            "label": "Page",
+            "validations": [
+              "isInt"
+            ]
+          }
+        ],
+        "actions": [
+          "addToCart",
+          "download"
+        ],
+        "cardConfig": {
+          "body": [
+            [
+              {
+                "key": "docNumber",
+                "label": "Document Number"
+              },
+              {
+                "key": "pageCount",
+                "label": "Number of Pages"
+              },
+              {
+                "key": "recordedDate",
+                "label": "Recorded Date"
+              }
+            ],
+            [
+              {
+                "key": "docStatus",
+                "label": "Document Status",
+                "default": "Incomplete"
+              },
+              {
+                "key": [
+                  "book",
+                  "volume",
+                  "page"
+                ],
+                "label": "Book/Volume/Page",
+                "default": "--",
+                "separator": "/"
+              },
+              {
+                "key": "instrumentDate",
+                "type": "date",
+                "label": "Instrument Date"
+              },
+              {
+                "key": "saleDate",
+                "type": "date",
+                "label": "Sale Date"
+              }
+            ]
+          ],
+          "footer": [
+            {
+              "key": "grantor",
+              "label": "Grantor"
+            },
+            {
+              "key": "grantee",
+              "label": "Grantee"
+            },
+            {
+              "key": "legalDescription",
+              "label": "Legal Description"
+            },
+            {
+              "key": "remarks",
+              "label": "Remarks"
+            }
+          ]
+        },
+        "viewConfig": [
+          {
+            "key": "grantor",
+            "name": "Grantor"
+          },
+          {
+            "key": "grantee",
+            "name": "Grantee"
+          },
+          {
+            "key": "docType",
+            "name": "Doc Type"
+          },
+          {
+            "key": "recordedDate",
+            "name": "Recorded Date"
+          },
+          {
+            "key": "saleDate",
+            "name": "Sale Date"
+          },
+          {
+            "key": "instrumentDate",
+            "name": "Instrument Date"
+          },
+          {
+            "key": "docNumber",
+            "name": "Doc Number"
+          },
+          {
+            "key": "bookVolumePage",
+            "name": "Book/Volume/Page"
+          },
+          {
+            "key": "block2",
+            "name": "NCB"
+          },
+          {
+            "key": "block3",
+            "name": "County Block"
+          },
+          {
+            "key": "legalDescription",
+            "name": "Legal Description"
+          },
+          {
+            "key": "remarks",
+            "name": "Remarks"
+          }
+        ],
+        "isCertified": false,
+        "partyFields": [
+          "grantor",
+          "grantee"
+        ],
+        "searchResult": {
+          "availablePageActions": [
+            "addToCart",
+            "exportResults"
+          ]
+        },
+        "searchFilters": [
+          {
+            "key": "docTypes",
+            "label": "Document Types"
+          },
+          {
+            "key": "recordedYears",
+            "label": "Recorded Years"
+          }
+        ],
+        "showCoverPage": true,
+        "advancedSearch": {
+          "layout": [
+            [
+              "partyNames"
+            ],
+            [
+              "grantor"
+            ],
+            [
+              "grantee"
+            ],
+            [
+              "recordedDateRange"
+            ],
+            [
+              "instrumentDateRange"
+            ],
+            [
+              "saleDate"
+            ],
+            [
+              "docTypes"
+            ],
+            [
+              "documentNumberRange"
+            ],
+            [
+              "book",
+              "volume",
+              "page"
+            ],
+            [
+              "block2",
+              "block3"
+            ],
+            [
+              "legalDescription"
+            ],
+            [
+              "remarks"
+            ],
+            [
+              "ocrText"
+            ]
+          ]
+        },
+        "docPreviewConfig": {
+          "summary": {
+            "groups": [
+              {
+                "key": "parties",
+                "label": "Parties"
+              },
+              {
+                "key": "legalDescriptions",
+                "label": "Legal Description",
+                "dataPath": [
+                  "legals"
+                ]
+              },
+              {
+                "key": "remarks",
+                "label": "Document Remarks"
+              }
+            ],
+            "details": [
+              {
+                "key": "docNumber",
+                "label": "Document Number:"
+              },
+              {
+                "key": "pageCount",
+                "label": "Number of Pages:"
+              },
+              {
+                "key": "recordedDate",
+                "label": "Recorded Date:"
+              },
+              {
+                "key": "bookVolumePage",
+                "label": "Book/Volume/Page:"
+              },
+              {
+                "key": "instrumentDate",
+                "label": "Instrument Date:"
+              },
+              {
+                "key": "saleDate",
+                "label": "Sale Date:"
+              }
+            ]
+          },
+          "showImages": true,
+          "showAttachments": false,
+          "showOnlyFirstPage": false
+        },
+        "instNumberFormat": "AlphaNumeric",
+        "enableFeedbackForm": "true",
+        "bookVolumePageNavigation": {
+          "label": {
+            "book": "Book",
+            "volume": "Volume"
+          },
+          "enabled": true
+        },
+        "fullTextSearchDateRangeProp": "recordedDateRange",
+        "denySearchAfterCertifiedDate": true
+      },
+      {
+        "code": "WIL",
+        "name": "Road Minutes",
+        "fields": [
+          {
+            "id": "department",
+            "label": "Department",
+            "options": [
+              "options",
+              "onChange"
+            ]
+          },
+          {
+            "id": "partyNames",
+            "label": "Party Names",
+            "options": [],
+            "placeholder": "Enter a party name by pressing enter",
+            "validations": [
+              "commaSeparated"
+            ]
+          },
+          {
+            "id": "grantor",
+            "label": "Grantor",
+            "placeholder": "Enter a grantor name by pressing enter",
+            "validations": [
+              "commaSeparated"
+            ]
+          },
+          {
+            "id": "grantee",
+            "label": "Grantee",
+            "placeholder": "Enter a grantee name by pressing enter",
+            "validations": [
+              "commaSeparated"
+            ]
+          },
+          {
+            "id": "recordedDateRange",
+            "label": "Recorded Date Range",
+            "options": [
+              "maxDate",
+              "defaultValue"
+            ],
+            "validations": [
+              "dateRange"
+            ]
+          },
+          {
+            "id": "instrumentDateRange",
+            "label": "Instrument Date Range",
+            "validations": [
+              "dateRange"
+            ]
+          },
+          {
+            "id": "docTypes",
+            "label": "Document Types",
+            "options": [
+              "nestedOptions"
+            ]
+          },
+          {
+            "id": "documentNumberRange",
+            "validations": [
+              "documentNumberRange"
+            ]
+          },
+          {
+            "id": "book",
+            "label": "Book",
+            "validations": [
+              "isAlpha"
+            ]
+          },
+          {
+            "id": "volume",
+            "label": "Volume",
+            "validations": [
+              "isAlpha"
+            ]
+          },
+          {
+            "id": "page",
+            "label": "Page",
+            "validations": [
+              "isInt"
+            ]
+          }
+        ],
+        "actions": [
+          "addToCart",
+          "download"
+        ],
+        "cardConfig": {
+          "body": [
+            [
+              {
+                "key": "recordedDate",
+                "type": "date",
+                "label": "File Date"
+              },
+              {
+                "key": "docType",
+                "label": "Document Type"
+              },
+              {
+                "key": [
+                  "book",
+                  "volume",
+                  "page"
+                ],
+                "label": "Book/Volume/Page",
+                "default": "--",
+                "separator": "/"
+              }
+            ],
+            [
+              {
+                "key": "docNumber",
+                "label": "Doc Number"
+              },
+              {
+                "key": "propertyAddress",
+                "label": "Street Name"
+              }
+            ]
+          ],
+          "footer": [
+            {
+              "key": "legalDescription",
+              "label": "Description"
+            },
+            {
+              "key": "remarks",
+              "label": "Remarks"
+            }
+          ]
+        },
+        "viewConfig": [
+          {
+    
