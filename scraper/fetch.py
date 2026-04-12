@@ -1,11 +1,7 @@
 """
 Bexar County Motivated Seller Lead Scraper
-Strategy: The publicsearch.us portal blocks all headless access.
-Instead we use:
-1. BCAD property search API (esearch.bcad.org) - finds owners by name/address
-2. Bexar County's open data foreclosure/lien feeds
-3. Direct HTTP to publicsearch.us with full browser cookie simulation
-4. As fallback: generate sample structure so dashboard works
+Logs in to publicsearch.us with credentials from environment variables,
+then scrapes the clerk portal for motivated seller leads.
 """
 
 from __future__ import annotations
@@ -37,9 +33,11 @@ logging.basicConfig(
 )
 log = logging.getLogger(__name__)
 
-LOOKBACK_DAYS = int(os.getenv("LOOKBACK_DAYS", "7"))
-CLERK_BASE    = "https://bexar.tx.publicsearch.us"
-ARCGIS_URL    = "https://maps.bexar.org/arcgis/rest/services/Parcels/MapServer/0/query"
+LOOKBACK_DAYS    = int(os.getenv("LOOKBACK_DAYS", "7"))
+CLERK_EMAIL      = os.getenv("CLERK_EMAIL", "")
+CLERK_PASSWORD   = os.getenv("CLERK_PASSWORD", "")
+CLERK_BASE       = "https://bexar.tx.publicsearch.us"
+ARCGIS_URL       = "https://maps.bexar.org/arcgis/rest/services/Parcels/MapServer/0/query"
 
 DOC_TYPE_MAP = {
     "LP":       ("LP",      "Lis Pendens"),
@@ -159,292 +157,308 @@ def compute_score(record, flags):
 
 
 # ---------------------------------------------------------------------------
-# Method 1: Direct HTTP with full session simulation
-# The portal IS accessible via plain HTTP if we set cookies correctly
+# Parse JSON from XHR
 # ---------------------------------------------------------------------------
 
-class DirectHTTPScraper:
-    """
-    Simulate a real browser session by:
-    1. First visiting the homepage to get session cookies
-    2. Then hitting the results page as if we're a real user
-    3. The page HTML contains window.__data with search state
-    4. We extract instrument numbers from that data
-    """
-
-    BASE_HEADERS = {
-        "User-Agent":                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
-        "Accept":                    "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
-        "Accept-Language":           "en-US,en;q=0.5",
-        "Accept-Encoding":           "gzip, deflate, br",
-        "Connection":                "keep-alive",
-        "Upgrade-Insecure-Requests": "1",
-        "Sec-Fetch-Dest":            "document",
-        "Sec-Fetch-Mode":            "navigate",
-        "Sec-Fetch-Site":            "none",
-    }
-
-    def __init__(self, start_ymd, end_ymd):
-        self.start_ymd = start_ymd
-        self.end_ymd   = end_ymd
-        self.session   = requests.Session()
-        self.session.headers.update(self.BASE_HEADERS)
-
-    def _prime_session(self):
-        """Visit homepage to get cookies."""
+def extract_from_json(data, doc_type):
+    if not data:
+        return []
+    cat, cat_label = DOC_TYPE_MAP.get(doc_type, (doc_type, doc_type))
+    records = []
+    hits = []
+    if isinstance(data, list):
+        hits = data
+    elif isinstance(data, dict):
+        hits = (
+            data.get("hits", {}).get("hits", []) or
+            data.get("results", []) or
+            data.get("documents", []) or
+            data.get("data", []) or
+            data.get("items", []) or
+            data.get("records", []) or []
+        )
+        if not hits and ("docNum" in data or "instrumentNumber" in data):
+            hits = [data]
+    for hit in hits:
         try:
-            resp = self.session.get(CLERK_BASE + "/", timeout=20)
-            log.info("[HTTP] Homepage status: %d, cookies: %s",
-                     resp.status_code, list(self.session.cookies.keys()))
-        except Exception as exc:
-            log.warning("[HTTP] Homepage prime failed: %s", exc)
-
-    def _search_doc_type(self, doc_type):
-        """Fetch results page and extract data from window.__data or HTML."""
-        cat, cat_label = DOC_TYPE_MAP.get(doc_type, (doc_type, doc_type))
-        records = []
-
-        url = (CLERK_BASE + "/results"
-               + "?department=RP"
-               + "&limit=200&offset=0"
-               + "&recordedDateRange=" + self.start_ymd + "," + self.end_ymd
-               + "&searchOcrText=false"
-               + "&searchType=docType"
-               + "&searchValue=" + doc_type)
-
-        for attempt in range(MAX_RETRIES):
-            try:
-                self.session.headers["Referer"] = CLERK_BASE + "/"
-                resp = self.session.get(url, timeout=30)
-                log.info("[HTTP] %s status=%d size=%d",
-                         doc_type, resp.status_code, len(resp.content))
-
-                if resp.status_code != 200:
-                    break
-
-                html = resp.text
-
-                # Try to extract window.__data which contains search state
-                m = re.search(r"window\.__data\s*=\s*(\{.+?\});\s*</script>",
-                              html, re.DOTALL)
-                if m:
-                    try:
-                        data = json.loads(m.group(1))
-                        # Look for results in the state tree
-                        results = self._extract_from_state(data, doc_type)
-                        if results:
-                            log.info("[HTTP] Found %d records in window.__data", len(results))
-                            return results
-                    except Exception as exc:
-                        log.warning("[HTTP] window.__data parse error: %s", exc)
-
-                # Try parsing HTML table directly
-                soup = BeautifulSoup(html, "lxml")
-
-                # Check for sign-in redirect
-                if "signin" in resp.url or "Sign In" in html[:2000]:
-                    log.info("[HTTP] Portal requires sign-in for %s", doc_type)
-                    break
-
-                # Look for result data in script tags
-                for script in soup.find_all("script"):
-                    src = script.string or ""
-                    if "grantor" in src.lower() or "instrument" in src.lower():
-                        log.info("[HTTP] Found instrument data in script tag")
-                        # Try to extract JSON arrays from script
-                        json_matches = re.findall(r'\[(\{[^\[\]]{50,}\})\]', src)
-                        for jm in json_matches[:3]:
-                            try:
-                                items = json.loads("[" + jm + "]")
-                                recs = self._parse_items(items, doc_type)
-                                if recs:
-                                    records.extend(recs)
-                            except Exception:
-                                pass
-
-                # Table fallback
-                table = soup.find("table")
-                if table:
-                    rows = table.find_all("tr")[1:]
-                    headers = [th.get_text(strip=True).lower()
-                               for th in table.find_all("tr")[0].find_all(["th","td"])]
-                    for row in rows:
-                        cells = row.find_all("td")
-                        if not cells:
-                            continue
-                        link = row.find("a", href=True)
-                        doc_num, clerk_url = "", ""
-                        if link:
-                            href = link["href"]
-                            if not href.startswith("http"):
-                                href = CLERK_BASE + href
-                            clerk_url = href
-                            m2 = re.search(r"/instruments?/(\d+)", href)
-                            doc_num = m2.group(1) if m2 else clean(link.get_text(strip=True))
-                        if doc_num:
-                            records.append({
-                                "doc_num": doc_num, "doc_type": doc_type,
-                                "filed": "", "cat": cat, "cat_label": cat_label,
-                                "owner": "", "grantee": "", "amount": 0.0,
-                                "legal": "", "clerk_url": clerk_url,
-                            })
-
-                break
-            except Exception as exc:
-                log.warning("[HTTP] Attempt %d for %s: %s", attempt+1, doc_type, exc)
-                time.sleep(RETRY_DELAY)
-
-        return records
-
-    def _extract_from_state(self, data, doc_type):
-        """Recursively search window.__data for result arrays."""
-        cat, cat_label = DOC_TYPE_MAP.get(doc_type, (doc_type, doc_type))
-        records = []
-        if isinstance(data, dict):
-            for k, v in data.items():
-                if k in ("results","hits","documents","items","records","data"):
-                    items = v if isinstance(v, list) else (v.get("hits",[]) if isinstance(v,dict) else [])
-                    recs = self._parse_items(items, doc_type)
-                    if recs:
-                        records.extend(recs)
-                elif isinstance(v, (dict, list)):
-                    records.extend(self._extract_from_state(v, doc_type))
-        elif isinstance(data, list):
-            for item in data:
-                records.extend(self._extract_from_state(item, doc_type))
-        return records
-
-    def _parse_items(self, items, doc_type):
-        cat, cat_label = DOC_TYPE_MAP.get(doc_type, (doc_type, doc_type))
-        records = []
-        for src in items:
-            if not isinstance(src, dict):
-                continue
-            src2 = src.get("_source", src)
-            doc_num = clean(src2.get("docNum") or src2.get("instrumentNumber") or
-                            src2.get("docNumber") or "")
-            filed   = clean(src2.get("recordedDate") or src2.get("filedDate") or "")
-            grantor = clean(src2.get("grantor") or src2.get("grantorName") or "")
+            src = hit.get("_source", hit)
+            doc_num = clean(src.get("docNum") or src.get("instrumentNumber") or
+                            src.get("docNumber") or src.get("recordingNumber") or "")
+            filed   = clean(src.get("recordedDate") or src.get("filedDate") or
+                            src.get("dateRecorded") or src.get("recordingDate") or "")
+            grantor = clean(src.get("grantor") or src.get("grantorName") or
+                            src.get("grantors") or src.get("party1Name") or
+                            src.get("sellerName") or src.get("owner") or "")
+            grantee = clean(src.get("grantee") or src.get("granteeName") or "")
+            legal   = clean(src.get("legalDescription") or src.get("legal") or "")
+            amount  = parse_amount(str(src.get("considerationAmount") or
+                                       src.get("amount") or "0"))
+            inst_id   = src.get("id") or src.get("instrumentId") or doc_num
+            clerk_url = (CLERK_BASE + "/instruments/" + str(inst_id)) if inst_id else ""
             if filed and "T" in filed:
                 try:
                     filed = datetime.fromisoformat(filed.split("T")[0]).strftime("%m/%d/%Y")
                 except Exception:
                     pass
-            inst_id = src2.get("id") or src2.get("instrumentId") or doc_num
-            clerk_url = (CLERK_BASE + "/instruments/" + str(inst_id)) if inst_id else ""
             if doc_num or filed:
                 records.append({
                     "doc_num": doc_num, "doc_type": doc_type,
                     "filed": filed, "cat": cat, "cat_label": cat_label,
-                    "owner": grantor,
-                    "grantee": clean(src2.get("grantee") or src2.get("granteeName") or ""),
-                    "amount": parse_amount(str(src2.get("considerationAmount") or "0")),
-                    "legal":  clean(src2.get("legalDescription") or ""),
-                    "clerk_url": clerk_url,
+                    "owner": grantor, "grantee": grantee,
+                    "amount": amount, "legal": legal, "clerk_url": clerk_url,
                 })
-        return records
-
-    def run(self):
-        self._prime_session()
-        all_records = []
-        for doc_type in TARGET_DOC_TYPES:
-            log.info("Searching for doc type: %s", doc_type)
-            recs = self._search_doc_type(doc_type)
-            log.info("  Found %d records for %s", len(recs), doc_type)
-            all_records.extend(recs)
-            time.sleep(1)
-        return all_records
-
-
-# ---------------------------------------------------------------------------
-# Method 2: Playwright with extended wait + JavaScript execution
-# ---------------------------------------------------------------------------
-
-async def playwright_js_extract(start_ymd, end_ymd):
-    """
-    Use Playwright but execute JavaScript inside the page to read
-    the React component state directly.
-    """
-    if not PLAYWRIGHT_AVAILABLE:
-        return []
-
-    all_records = []
-
-    async with async_playwright() as pw:
-        browser = await pw.chromium.launch(
-            headless=True,
-            args=["--no-sandbox","--disable-setuid-sandbox","--disable-dev-shm-usage"],
-        )
-        context = await browser.new_context(
-            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
-            ignore_https_errors=True,
-            viewport={"width": 1280, "height": 900},
-            locale="en-US",
-        )
-
-        # First visit homepage to get cookies
-        page = await context.new_page()
-        try:
-            await page.goto(CLERK_BASE + "/", wait_until="networkidle", timeout=30000)
-            await asyncio.sleep(2)
-            log.info("[PW] Homepage loaded, cookies: %s",
-                     [c["name"] for c in await context.cookies()])
         except Exception as exc:
-            log.warning("[PW] Homepage error: %s", exc)
+            log.warning("JSON parse error: %s", exc)
+    return records
 
-        for doc_type in TARGET_DOC_TYPES[:3]:  # Try first 3 to save time
-            log.info("[PW] Trying doc type: %s", doc_type)
-            url = (CLERK_BASE + "/results"
-                   + "?department=RP&limit=200&offset=0"
-                   + "&recordedDateRange=" + start_ymd + "," + end_ymd
-                   + "&searchOcrText=false&searchType=docType&searchValue=" + doc_type)
+
+# ---------------------------------------------------------------------------
+# Authenticated Playwright scraper
+# ---------------------------------------------------------------------------
+
+class AuthenticatedScraper:
+    def __init__(self, start_ymd, end_ymd):
+        self.start_ymd = start_ymd
+        self.end_ymd   = end_ymd
+        self.email     = CLERK_EMAIL
+        self.password  = CLERK_PASSWORD
+
+    def _url(self, doc_type, offset=0, limit=200):
+        return (
+            CLERK_BASE + "/results"
+            + "?department=RP"
+            + "&limit=" + str(limit)
+            + "&offset=" + str(offset)
+            + "&recordedDateRange=" + self.start_ymd + "," + self.end_ymd
+            + "&searchOcrText=false"
+            + "&searchType=docType"
+            + "&searchValue=" + doc_type
+        )
+
+    async def _login(self, page):
+        """Log in to the portal and return True if successful."""
+        if not self.email or not self.password:
+            log.warning("No credentials provided. Set CLERK_EMAIL and CLERK_PASSWORD secrets.")
+            return False
+
+        try:
+            log.info("Logging in as %s...", self.email)
+            signin_url = CLERK_BASE + "/signin?returnPath=%2F"
+            await page.goto(signin_url, wait_until="networkidle", timeout=30000)
+            await asyncio.sleep(2)
+
+            # Fill email
+            for sel in ["input[type='email']", "input[name='email']",
+                        "input[placeholder*='email' i]", "#email", "#username"]:
+                try:
+                    await page.fill(sel, self.email, timeout=3000)
+                    log.info("Filled email with selector: %s", sel)
+                    break
+                except Exception:
+                    continue
+
+            # Fill password
+            for sel in ["input[type='password']", "input[name='password']",
+                        "#password", "input[placeholder*='password' i]"]:
+                try:
+                    await page.fill(sel, self.password, timeout=3000)
+                    log.info("Filled password with selector: %s", sel)
+                    break
+                except Exception:
+                    continue
+
+            # Submit
+            for sel in ["button[type='submit']", "input[type='submit']",
+                        "button:has-text('Sign In')", "button:has-text('Login')",
+                        "button:has-text('Sign in')"]:
+                try:
+                    await page.click(sel, timeout=3000)
+                    log.info("Clicked submit with selector: %s", sel)
+                    break
+                except Exception:
+                    continue
+
+            await page.wait_for_load_state("networkidle", timeout=20000)
+            await asyncio.sleep(2)
+
+            # Check if login succeeded
+            current_url = page.url
+            title       = await page.title()
+            cookies     = await page.context.cookies()
+            cookie_names = [c["name"] for c in cookies]
+            log.info("After login - URL: %s", current_url)
+            log.info("After login - Title: %s", title)
+            log.info("After login - Cookies: %s", cookie_names)
+
+            if "signin" in current_url.lower():
+                log.warning("Still on signin page - login may have failed")
+                # Try to get error message
+                try:
+                    err = await page.inner_text(".error, .alert, [class*='error'], [class*='alert']")
+                    log.warning("Login error message: %s", err[:200])
+                except Exception:
+                    pass
+                return False
+
+            log.info("Login successful!")
+            return True
+
+        except Exception as exc:
+            log.warning("Login error: %s", exc)
+            return False
+
+    async def _scrape_doc_type(self, page, doc_type, logged_in):
+        """Scrape one doc type, intercepting XHR responses."""
+        collected = []
+
+        async def on_response(response):
+            url = response.url
+            if "publicsearch.us" not in url:
+                return
+            if response.status != 200:
+                return
+            ct = response.headers.get("content-type", "")
+            if "json" in ct:
+                try:
+                    body = await response.json()
+                    if body:
+                        collected.append((url, body))
+                        log.info("  [XHR] %s", url[:100])
+                except Exception:
+                    pass
+
+        page.on("response", on_response)
+        all_records = []
+
+        for attempt in range(1, MAX_RETRIES + 1):
+            collected.clear()
+            url = self._url(doc_type, offset=0, limit=200)
             try:
-                await page.goto(url, wait_until="networkidle", timeout=45000)
-                # Wait longer for React to hydrate
-                await asyncio.sleep(15)
+                await page.goto(url, wait_until="domcontentloaded", timeout=45000)
 
-                # Try reading Redux/React state via JavaScript
-                state = await page.evaluate("""
-                    () => {
-                        // Try various ways to access app state
-                        try {
-                            // Redux store
-                            if (window.__redux_store__) return window.__redux_store__.getState();
-                            if (window.store) return window.store.getState();
-                            // React fiber
-                            const root = document.querySelector('[id="main-content"]');
-                            if (root && root._reactFiber) {
-                                return {fiber: 'found'};
+                # Wait for results to load - longer wait when authenticated
+                wait_time = 15 if logged_in else 8
+                await asyncio.sleep(wait_time)
+
+                # Try to wait for actual content
+                try:
+                    await page.wait_for_function(
+                        """() => {
+                            const title = document.title;
+                            return title && !title.includes('Loading');
+                        }""",
+                        timeout=15000
+                    )
+                    title = await page.title()
+                    log.info("  Page title: %s", title)
+                except Exception:
+                    pass
+
+                # Extract from XHR
+                for resp_url, body in collected:
+                    recs = extract_from_json(body, doc_type)
+                    if recs:
+                        log.info("  [XHR] Parsed %d records from %s", len(recs), resp_url[-50:])
+                        all_records.extend(recs)
+
+                # Extract from JS state
+                if not all_records:
+                    try:
+                        state = await page.evaluate("""
+                            () => {
+                                if (window.__data) return window.__data;
+                                if (window.__INITIAL_STATE__) return window.__INITIAL_STATE__;
+                                if (window.__redux_store__) return window.__redux_store__.getState();
+                                // Search for results in global scope
+                                for (const key of Object.keys(window)) {
+                                    const val = window[key];
+                                    if (val && typeof val === 'object') {
+                                        if (val.results || val.hits || val.documents || val.instruments) {
+                                            return {key, val};
+                                        }
+                                    }
+                                }
+                                return null;
                             }
-                            // Check window.__data
-                            if (window.__data) return window.__data;
-                            // Check for any global with results
-                            const keys = Object.keys(window).filter(k =>
-                                typeof window[k] === 'object' &&
-                                window[k] &&
-                                (window[k].results || window[k].hits || window[k].documents)
-                            );
-                            if (keys.length) return {found_keys: keys, data: window[keys[0]]};
-                            return {error: 'no state found', windowKeys: Object.keys(window).slice(0,30)};
-                        } catch(e) { return {error: e.toString()}; }
-                    }
-                """)
+                        """)
+                        if state:
+                            log.info("  [JS] Found state: %s", str(state)[:200])
+                            recs = extract_from_json(state, doc_type)
+                            if recs:
+                                all_records.extend(recs)
+                    except Exception as exc:
+                        log.warning("  [JS] State extraction error: %s", exc)
 
-                log.info("[PW-JS] State for %s: %s",
-                         doc_type, str(state)[:300] if state else "null")
+                # Log what we saw if nothing found
+                if not all_records and collected:
+                    for rurl, body in collected[:2]:
+                        log.info("  [DEBUG] %s => keys=%s",
+                                 rurl[-50:],
+                                 list(body.keys())[:6] if isinstance(body, dict) else "list")
 
-                # Also get page title and text snippet
-                title = await page.title()
-                text  = await page.inner_text("body")
-                log.info("[PW-JS] Page title: %s", title)
-                log.info("[PW-JS] Body text snippet: %s", text[:200].replace("\n"," "))
+                # Paginate
+                if all_records:
+                    offset = len(all_records)
+                    while True:
+                        collected.clear()
+                        await page.goto(
+                            self._url(doc_type, offset=offset, limit=200),
+                            wait_until="domcontentloaded", timeout=30000
+                        )
+                        await asyncio.sleep(8 if logged_in else 4)
+                        page_recs = []
+                        for _, body in collected:
+                            page_recs.extend(extract_from_json(body, doc_type))
+                        if not page_recs or len(page_recs) < 5:
+                            break
+                        all_records.extend(page_recs)
+                        offset += len(page_recs)
+
+                break
 
             except Exception as exc:
-                log.warning("[PW-JS] Error for %s: %s", doc_type, exc)
+                log.warning("  Attempt %d/%d for %s: %s", attempt, MAX_RETRIES, doc_type, exc)
+                if attempt < MAX_RETRIES:
+                    await asyncio.sleep(RETRY_DELAY)
 
-        await browser.close()
+        page.remove_listener("response", on_response)
+        return all_records
 
-    return all_records
+    async def run(self):
+        if not PLAYWRIGHT_AVAILABLE:
+            return []
+
+        all_records = []
+
+        async with async_playwright() as pw:
+            browser = await pw.chromium.launch(
+                headless=True,
+                args=["--no-sandbox", "--disable-setuid-sandbox",
+                      "--disable-dev-shm-usage",
+                      "--disable-blink-features=AutomationControlled"],
+            )
+            context = await browser.new_context(
+                user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+                ignore_https_errors=True,
+                viewport={"width": 1280, "height": 900},
+                locale="en-US",
+            )
+            page = await context.new_page()
+
+            # Login first
+            logged_in = await self._login(page)
+            log.info("Authenticated: %s", logged_in)
+
+            # Scrape all doc types
+            for doc_type in TARGET_DOC_TYPES:
+                log.info("Searching for doc type: %s", doc_type)
+                recs = await self._scrape_doc_type(page, doc_type, logged_in)
+                log.info("  Found %d records for %s", len(recs), doc_type)
+                all_records.extend(recs)
+
+            await browser.close()
+
+        return all_records
 
 
 # ---------------------------------------------------------------------------
@@ -632,22 +646,16 @@ async def main():
     log.info("=" * 60)
     log.info("Bexar County Motivated Seller Lead Scraper")
     log.info("Lookback: %d days", LOOKBACK_DAYS)
+    log.info("Credentials configured: %s", bool(CLERK_EMAIL and CLERK_PASSWORD))
     log.info("=" * 60)
 
     start_ymd, end_ymd = date_range_yyyymmdd(LOOKBACK_DAYS)
     start_mdy, end_mdy = date_range_mmddyyyy(LOOKBACK_DAYS)
     log.info("Date range: %s to %s", start_mdy, end_mdy)
 
-    # Method 1: Direct HTTP with session simulation
-    log.info("Trying Method 1: Direct HTTP session...")
-    scraper     = DirectHTTPScraper(start_ymd, end_ymd)
-    raw_records = scraper.run()
-    log.info("Method 1 result: %d records", len(raw_records))
-
-    # Method 2: Playwright with JS execution (diagnostic + fallback)
-    if not raw_records:
-        log.info("Trying Method 2: Playwright with JS state extraction...")
-        await playwright_js_extract(start_ymd, end_ymd)
+    scraper     = AuthenticatedScraper(start_ymd, end_ymd)
+    raw_records = await scraper.run()
+    log.info("Total raw records: %d", len(raw_records))
 
     parcel = ParcelLookup()
     parcel.enrich_all(raw_records)
