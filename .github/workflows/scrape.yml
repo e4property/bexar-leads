@@ -43,9 +43,24 @@ jobs:
       - name: Create output directories
         run: mkdir -p dashboard data
 
+      - name: Verify secrets are set
+        env:
+          CLERK_EMAIL:    ${{ secrets.CLERK_EMAIL }}
+          CLERK_PASSWORD: ${{ secrets.CLERK_PASSWORD }}
+        run: |
+          python -c "
+          import os
+          email = os.getenv('CLERK_EMAIL','')
+          pwd   = os.getenv('CLERK_PASSWORD','')
+          print(f'CLERK_EMAIL set:    {bool(email)} (len={len(email)})')
+          print(f'CLERK_PASSWORD set: {bool(pwd)} (len={len(pwd)})')
+          if not email or not pwd:
+              print('WARNING: Add CLERK_EMAIL and CLERK_PASSWORD to repo Settings > Secrets > Actions')
+          "
+
       - name: Run scraper
         env:
-          LOOKBACK_DAYS: "7"
+          LOOKBACK_DAYS:  "7"
           CLERK_EMAIL:    ${{ secrets.CLERK_EMAIL }}
           CLERK_PASSWORD: ${{ secrets.CLERK_PASSWORD }}
         run: python scraper/fetch.py
@@ -66,7 +81,7 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add dashboard/records.json data/records.json data/leads_export.csv || true
+          git add dashboard/records.json data/records.json data/leads_export.csv data/state_dump.json || true
           git diff --cached --quiet || git commit -m "chore: update leads $(date -u +'%Y-%m-%d %H:%M UTC')"
           git push
 
