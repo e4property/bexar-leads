@@ -3850,4 +3850,3572 @@
         },
         "viewConfig": [
           {
+            "key": "recordedDate",
+            "name": "File Date"
+          },
+          {
+            "key": "docType",
+            "name": "Doc Type"
+          },
+          {
+            "key": "bookVolumePage",
+            "name": "Book/Volume/Page"
+          },
+          {
+            "key": "docNumber",
+            "name": "Doc Number"
+          },
+          {
+            "key": "propertyAddress",
+            "name": "Street Name"
+          },
+          {
+            "key": "legalDescription",
+            "name": "Description"
+          },
+          {
+            "key": "remarks",
+            "name": "Remarks"
+          }
+        ],
+        "isCertified": false,
+        "partyFields": [
+          "grantor",
+          "grantee"
+        ],
+        "searchResult": {
+          "availablePageActions": [
+            "addToCart",
+            "exportResults"
+          ]
+        },
+        "searchFilters": [
+          {
+            "key": "docTypes",
+            "label": "Document Types"
+          },
+          {
+            "key": "instrumentYears",
+            "label": "Instrument Years"
+          }
+        ],
+        "showCoverPage": true,
+        "advancedSearch": {
+          "layout": [
+            [
+              "recordedDateRange"
+            ],
+            [
+              "docTypes"
+            ],
+            [
+              "book",
+              "volume",
+              "page"
+            ],
+            [
+              "documentNumberRange"
+            ],
+            [
+              "propertyAddress"
+            ],
+            [
+              "remarks"
+            ],
+            [
+              "legalDescription"
+            ],
+            [
+              "ocrText"
+            ]
+          ]
+        },
+        "docPreviewConfig": {
+          "summary": {
+            "groups": [
+              {
+                "key": "legalDescriptions",
+                "label": "Description",
+                "dataPath": [
+                  "legals"
+                ]
+              },
+              {
+                "key": "propAddress",
+                "label": "Street Name"
+              },
+              {
+                "key": "remarks",
+                "label": "Remarks"
+              }
+            ],
+            "details": [
+              {
+                "key": "recordedDate",
+                "label": "File Date"
+              },
+              {
+                "key": "docType",
+                "label": "Document Type"
+              },
+              {
+                "key": "bookVolumePage",
+                "label": "Book/Volume/Page"
+              },
+              {
+                "key": "docNumber",
+                "label": "Doc Number"
+              }
+            ]
+          },
+          "showImages": true,
+          "showAttachments": false,
+          "showOnlyFirstPage": false
+        },
+        "instNumberFormat": "AlphaNumeric",
+        "enableFeedbackForm": "true",
+        "bookVolumePageNavigation": {
+          "label": {
+            "book": "Book",
+            "volume": "Volume"
+          },
+          "enabled": true
+        },
+        "fullTextSearchDateRangeProp": "recordedDateRange",
+        "denySearchAfterCertifiedDate": true
+      },
+      {
+        "code": "CASE",
+        "name": "Cases",
+        "fields": [
+          {
+            "id": "department",
+            "label": "Department",
+            "options": [
+              "options",
+              "onChange"
+            ]
+          },
+          {
+            "id": "partyNames",
+            "label": "Party Names",
+            "options": [],
+            "placeholder": "Enter a party name by pressing enter",
+            "validations": [
+              "commaSeparated"
+            ]
+          },
+          {
+            "id": "grantor",
+            "label": "Grantor",
+            "placeholder": "Enter a grantor name by pressing enter",
+            "validations": [
+              "commaSeparated"
+            ]
+          },
+          {
+            "id": "grantee",
+            "label": "Grantee",
+            "placeholder": "Enter a grantee name by pressing enter",
+            "validations": [
+              "commaSeparated"
+            ]
+          },
+          {
+            "id": "direct",
+            "label": "Direct",
+            "placeholder": "Enter a direct name by pressing enter",
+            "validations": [
+              "commaSeparated"
+            ]
+          },
+          {
+            "id": "indirect",
+            "label": "Indirect",
+            "placeholder": "Enter a indirect name by pressing enter",
+            "validations": [
+              "commaSeparated"
+            ]
+          },
+          {
+            "id": "recordedDateRange",
+            "label": "Recorded Date Range",
+            "options": [
+              "maxDate",
+              "defaultValue"
+            ],
+            "validations": [
+              "dateRange"
+            ]
+          },
+          {
+            "id": "instrumentDateRange",
+            "label": "Instrument Date Range",
+            "validations": [
+              "dateRange"
+            ]
+          },
+          {
+            "id": "docTypes",
+            "label": "Document Types",
+            "options": [
+              "nestedOptions"
+            ]
+          },
+          {
+            "id": "documentNumberRange",
+            "validations": [
+              "documentNumberRange"
+            ]
+          },
+          {
+            "id": "book",
+            "label": "Book",
+            "validations": [
+              "isAlpha"
+            ]
+          },
+          {
+            "id": "volume",
+            "label": "Volume",
+            "validations": [
+              "isAlpha"
+            ]
+          },
+          {
+            "id": "page",
+            "label": "Page",
+            "validations": [
+              "isInt"
+            ]
+          }
+        ],
+        "actions": [
+          "addToCart",
+          "download"
+        ],
+        "cardConfig": {
+          "body": [
+            [
+              {
+                "key": "recordedDate",
+                "type": "date",
+                "label": "File Date"
+              },
+              {
+                "key": "docType",
+                "label": "Document Type"
+              },
+              {
+                "key": [
+                  "book",
+                  "volume",
+                  "page"
+                ],
+                "label": "Book/Volume/Page",
+                "default": "--",
+                "separator": "/"
+              }
+            ],
+            [
+              {
+                "key": "docNumber",
+                "label": "Doc Number"
+              }
+            ]
+          ],
+          "footer": [
+            {
+              "key": "remarks",
+              "label": "Remarks"
+            }
+          ]
+        },
+        "viewConfig": [
+          {
+            "key": "recordedDate",
+            "name": "File Date"
+          },
+          {
+            "key": "docType",
+            "name": "Doc Type"
+          },
+          {
+            "key": "bookVolumePage",
+            "name": "Book/Volume/Page"
+          },
+          {
+            "key": "docNumber",
+            "name": "Doc Number"
+          },
+          {
+            "key": "remarks",
+            "name": "Remarks"
+          }
+        ],
+        "isCertified": false,
+        "partyFields": [
+          "direct",
+          "indirect"
+        ],
+        "searchResult": {
+          "availablePageActions": [
+            "addToCart",
+            "exportResults"
+          ]
+        },
+        "searchFilters": [
+          {
+            "key": "docTypes",
+            "label": "Document Types"
+          },
+          {
+            "key": "instrumentYears",
+            "label": "Instrument Years"
+          }
+        ],
+        "showCoverPage": true,
+        "advancedSearch": {
+          "layout": [
+            [
+              "recordedDateRange"
+            ],
+            [
+              "docTypes"
+            ],
+            [
+              "book",
+              "volume",
+              "page"
+            ],
+            [
+              "documentNumberRange"
+            ],
+            [
+              "remarks"
+            ],
+            [
+              "ocrText"
+            ]
+          ]
+        },
+        "docPreviewConfig": {
+          "summary": {
+            "groups": [
+              {
+                "key": "remarks",
+                "label": "Remarks"
+              }
+            ],
+            "details": [
+              {
+                "key": "recordedDate",
+                "label": "File Date"
+              },
+              {
+                "key": "docType",
+                "label": "Document Type"
+              },
+              {
+                "key": "bookVolumePage",
+                "label": "Book/Volume/Page"
+              },
+              {
+                "key": "docNumber",
+                "label": "Doc Number"
+              }
+            ]
+          },
+          "showImages": true,
+          "showAttachments": false,
+          "showOnlyFirstPage": false
+        },
+        "instNumberFormat": "AlphaNumeric",
+        "enableFeedbackForm": "true",
+        "bookVolumePageNavigation": {
+          "label": {
+            "book": "Book",
+            "volume": "Volume"
+          },
+          "enabled": true
+        },
+        "fullTextSearchDateRangeProp": "recordedDateRange",
+        "denySearchAfterCertifiedDate": true
+      },
+      {
+        "code": "NT",
+        "name": "School Minutes",
+        "actions": [
+          "addToCart",
+          "download"
+        ],
+        "cardConfig": {
+          "body": [
+            [
+              {
+                "key": "pageCount",
+                "label": "Number of Pages"
+              },
+              {
+                "key": "instrumentDate",
+                "label": "Meeting Date"
+              },
+              {
+                "key": "ccmMeetingType",
+                "label": "Meeting Type"
+              }
+            ],
+            [
+              {
+                "key": "docStatus",
+                "label": "Document Status",
+                "default": "Incomplete"
+              },
+              {
+                "key": [
+                  "book",
+                  "volume",
+                  "page"
+                ],
+                "label": "Book/Volume/Page",
+                "default": "--",
+                "separator": "/"
+              },
+              {
+                "key": "remarks",
+                "label": "Remarks"
+              }
+            ]
+          ],
+          "footer": []
+        },
+        "viewConfig": [
+          {
+            "key": "instrumentDate",
+            "name": "Meeting Date"
+          },
+          {
+            "key": "ccmMeetingType",
+            "name": "Meeting Type"
+          },
+          {
+            "key": "docType",
+            "name": "Doc Type"
+          },
+          {
+            "key": "bookVolumePage",
+            "name": "Book/Volume/Page"
+          },
+          {
+            "key": "remarks",
+            "name": "Remarks"
+          }
+        ],
+        "isCertified": false,
+        "partyFields": [],
+        "searchResult": {
+          "availablePageActions": [
+            "addToCart",
+            "exportResults"
+          ]
+        },
+        "searchScopes": {
+          "default": "indexAndOcr",
+          "available": [
+            "index",
+            "indexAndOcr"
+          ]
+        },
+        "searchFilters": [
+          {
+            "key": "instrumentYears",
+            "label": "Meeting Years"
+          },
+          {
+            "key": "docTypes",
+            "label": "Document Types"
+          },
+          {
+            "key": "ccmMeetingType",
+            "label": "Meeting Types"
+          }
+        ],
+        "showCoverPage": true,
+        "advancedSearch": {
+          "layout": [
+            [
+              "meetingDateRange"
+            ],
+            [
+              "docTypes"
+            ],
+            [
+              "ccmMeetingType"
+            ],
+            [
+              "documentNumberRange"
+            ],
+            [
+              "book",
+              "volume",
+              "page"
+            ],
+            [
+              "remarks"
+            ],
+            [
+              "ocrText"
+            ]
+          ]
+        },
+        "docPreviewConfig": {
+          "summary": {
+            "groups": [
+              {
+                "key": "remarks",
+                "label": "Document Remarks"
+              }
+            ],
+            "details": [
+              {
+                "key": "instrumentDate",
+                "label": "Meeting Date"
+              },
+              {
+                "key": "ccmMeetingType",
+                "label": "Meeting Type",
+                "dataPath": [
+                  "docDetails",
+                  "ccm",
+                  "meetingType"
+                ]
+              },
+              {
+                "key": "pageCount",
+                "label": "Number of Pages:"
+              },
+              {
+                "key": "recordedDate",
+                "label": "Recorded Date:"
+              },
+              {
+                "key": "bookVolumePage",
+                "label": "Book/Volume/Page:"
+              }
+            ]
+          },
+          "showImages": true,
+          "showAttachments": true,
+          "showOnlyFirstPage": false
+        },
+        "instNumberFormat": "Numeric",
+        "enableFeedbackForm": "true",
+        "bookVolumePageNavigation": {
+          "label": {
+            "book": "Book",
+            "volume": "Volume"
+          },
+          "enabled": true
+        },
+        "fullTextSearchDateRangeProp": "instrumentDateRange",
+        "denySearchAfterCertifiedDate": true,
+        "fullTextSearchDateRangeLabel": "Meeting Date"
+      },
+      {
+        "code": "BR",
+        "name": "Special Collections",
+        "fields": [
+          {
+            "id": "department",
+            "label": "Department",
+            "options": [
+              "options",
+              "onChange"
+            ]
+          },
+          {
+            "id": "partyNames",
+            "label": "Party Names",
+            "options": [],
+            "placeholder": "Enter a party name by pressing enter",
+            "validations": [
+              "commaSeparated"
+            ]
+          },
+          {
+            "id": "grantor",
+            "label": "Grantor",
+            "placeholder": "Enter a grantor name by pressing enter",
+            "validations": [
+              "commaSeparated"
+            ]
+          },
+          {
+            "id": "grantee",
+            "label": "Grantee",
+            "placeholder": "Enter a grantee name by pressing enter",
+            "validations": [
+              "commaSeparated"
+            ]
+          },
+          {
+            "id": "recordedDateRange",
+            "label": "Recorded Date Range",
+            "options": [
+              "maxDate",
+              "defaultValue"
+            ],
+            "validations": [
+              "dateRange"
+            ]
+          },
+          {
+            "id": "instrumentDateRange",
+            "label": "Instrument Date Range",
+            "validations": [
+              "dateRange"
+            ]
+          },
+          {
+            "id": "docTypes",
+            "label": "Document Types",
+            "options": [
+              "nestedOptions"
+            ]
+          },
+          {
+            "id": "documentNumberRange",
+            "validations": [
+              "documentNumberRange"
+            ]
+          },
+          {
+            "id": "book",
+            "label": "Book",
+            "validations": [
+              "isAlpha"
+            ]
+          },
+          {
+            "id": "volume",
+            "label": "Volume",
+            "validations": [
+              "isAlpha"
+            ]
+          },
+          {
+            "id": "page",
+            "label": "Page",
+            "validations": [
+              "isInt"
+            ]
+          }
+        ],
+        "actions": [
+          "addToCart",
+          "download"
+        ],
+        "cardConfig": {
+          "body": [
+            [
+              {
+                "key": "recordedDate",
+                "label": "Recorded Date"
+              },
+              {
+                "key": "instrumentDate",
+                "type": "date",
+                "label": "Instrument Date"
+              },
+              {
+                "key": "pageCount",
+                "label": "Number of Pages"
+              }
+            ],
+            [
+              {
+                "key": "docStatus",
+                "label": "Document Status",
+                "default": "Incomplete"
+              },
+              {
+                "key": [
+                  "book",
+                  "volume",
+                  "page"
+                ],
+                "label": "Book/Volume/Page",
+                "default": "--",
+                "separator": "/"
+              }
+            ]
+          ],
+          "footer": [
+            {
+              "key": "grantor",
+              "label": "Grantor"
+            },
+            {
+              "key": "grantee",
+              "label": "Grantee"
+            },
+            {
+              "key": "legalDescription",
+              "label": "Legal Description"
+            },
+            {
+              "key": "remarks",
+              "label": "Document Remarks"
+            }
+          ]
+        },
+        "viewConfig": [
+          {
+            "key": "grantor",
+            "name": "Grantor"
+          },
+          {
+            "key": "grantee",
+            "name": "Grantee"
+          },
+          {
+            "key": "recordedDate",
+            "name": "Recorded Date"
+          },
+          {
+            "key": "instrumentDate",
+            "name": "Instrument Date"
+          },
+          {
+            "key": "docType",
+            "name": "Doc Type"
+          },
+          {
+            "key": "docNumber",
+            "name": "Doc Number"
+          },
+          {
+            "key": "bookVolumePage",
+            "name": "Book/Volume/Page"
+          },
+          {
+            "key": "legalDescription",
+            "name": "Legal Description"
+          },
+          {
+            "key": "remarks",
+            "name": "Remarks"
+          }
+        ],
+        "isCertified": false,
+        "partyFields": [
+          "grantor",
+          "grantee"
+        ],
+        "searchResult": {
+          "availablePageActions": [
+            "addToCart",
+            "exportResults"
+          ]
+        },
+        "searchFilters": [
+          {
+            "key": "docTypes",
+            "label": "Document Types"
+          },
+          {
+            "key": "instrumentYears",
+            "label": "Instrument Years"
+          }
+        ],
+        "showCoverPage": true,
+        "advancedSearch": {
+          "layout": [
+            [
+              "partyNames"
+            ],
+            [
+              "grantor"
+            ],
+            [
+              "grantee"
+            ],
+            [
+              "recordedDateRange"
+            ],
+            [
+              "instrumentDateRange"
+            ],
+            [
+              "docTypes"
+            ],
+            [
+              "documentNumberRange"
+            ],
+            [
+              "book",
+              "volume",
+              "page"
+            ],
+            [
+              "legalDescription"
+            ],
+            [
+              "ocrText"
+            ]
+          ]
+        },
+        "docPreviewConfig": {
+          "summary": {
+            "groups": [
+              {
+                "key": "parties",
+                "label": "Parties"
+              },
+              {
+                "key": "legalDescriptions",
+                "label": "Legal Description",
+                "dataPath": [
+                  "legals"
+                ]
+              },
+              {
+                "key": "remarks",
+                "label": "Document Remarks"
+              }
+            ],
+            "details": [
+              {
+                "key": "instrumentDate",
+                "label": "Instrument Date:"
+              },
+              {
+                "key": "recordedDate",
+                "label": "Recorded Date:"
+              },
+              {
+                "key": "pageCount",
+                "label": "Number of Pages:"
+              },
+              {
+                "key": "docStatus",
+                "label": "Document Status",
+                "default": "Incomplete"
+              },
+              {
+                "key": "bookVolumePage",
+                "label": "Book/Volume/Page:"
+              }
+            ]
+          },
+          "showImages": true,
+          "showAttachments": false,
+          "showOnlyFirstPage": false
+        },
+        "instNumberFormat": "AlphaNumeric",
+        "enableFeedbackForm": "true",
+        "bookVolumePageNavigation": {
+          "label": {
+            "book": "Book",
+            "volume": "Volume"
+          },
+          "enabled": true
+        },
+        "fullTextSearchDateRangeProp": "recordedDateRange",
+        "denySearchAfterCertifiedDate": true
+      },
+      {
+        "code": "DBR",
+        "name": "Trademarks",
+        "fields": [
+          {
+            "id": "department",
+            "label": "Department",
+            "options": [
+              "options",
+              "onChange"
+            ]
+          },
+          {
+            "id": "partyNames",
+            "label": "Party Names",
+            "options": [],
+            "placeholder": "Enter a party name by pressing enter",
+            "validations": [
+              "commaSeparated"
+            ]
+          },
+          {
+            "id": "grantor",
+            "label": "Grantor",
+            "placeholder": "Enter a grantor name by pressing enter",
+            "validations": [
+              "commaSeparated"
+            ]
+          },
+          {
+            "id": "grantee",
+            "label": "Grantee",
+            "placeholder": "Enter a grantee name by pressing enter",
+            "validations": [
+              "commaSeparated"
+            ]
+          },
+          {
+            "id": "recordedDateRange",
+            "label": "Recorded Date Range",
+            "options": [
+              "maxDate",
+              "defaultValue"
+            ],
+            "validations": [
+              "dateRange"
+            ]
+          },
+          {
+            "id": "instrumentDateRange",
+            "label": "Instrument Date Range",
+            "validations": [
+              "dateRange"
+            ]
+          },
+          {
+            "id": "docTypes",
+            "label": "Document Types",
+            "options": [
+              "nestedOptions"
+            ]
+          },
+          {
+            "id": "documentNumberRange",
+            "validations": [
+              "documentNumberRange"
+            ]
+          },
+          {
+            "id": "book",
+            "label": "Book",
+            "validations": [
+              "isAlpha"
+            ]
+          },
+          {
+            "id": "volume",
+            "label": "Volume",
+            "validations": [
+              "isAlpha"
+            ]
+          },
+          {
+            "id": "page",
+            "label": "Page",
+            "validations": [
+              "isInt"
+            ]
+          }
+        ],
+        "actions": [
+          "addToCart",
+          "download"
+        ],
+        "cardConfig": {
+          "body": [
+            [
+              {
+                "key": "instrumentDate",
+                "type": "date",
+                "label": "Instrument Date"
+              },
+              {
+                "key": "pageCount",
+                "label": "Number of Pages"
+              }
+            ],
+            [
+              {
+                "key": "docStatus",
+                "label": "Document Status",
+                "default": "Incomplete"
+              },
+              {
+                "key": [
+                  "book",
+                  "volume",
+                  "page"
+                ],
+                "label": "Book/Volume/Page",
+                "default": "--",
+                "separator": "/"
+              }
+            ]
+          ],
+          "footer": [
+            {
+              "key": "grantor",
+              "label": "Grantor"
+            },
+            {
+              "key": "grantee",
+              "label": "Grantee"
+            },
+            {
+              "key": "remarks",
+              "label": "Document Remarks"
+            }
+          ]
+        },
+        "viewConfig": [
+          {
+            "key": "grantor",
+            "name": "Grantor"
+          },
+          {
+            "key": "grantee",
+            "name": "Grantee"
+          },
+          {
+            "key": "instrumentDate",
+            "name": "Instrument Date"
+          },
+          {
+            "key": "docType",
+            "name": "Doc Type"
+          },
+          {
+            "key": "docNumber",
+            "name": "Doc Number"
+          },
+          {
+            "key": "bookVolumePage",
+            "name": "Book/Volume/Page"
+          },
+          {
+            "key": "remarks",
+            "name": "Remarks"
+          }
+        ],
+        "isCertified": false,
+        "partyFields": [
+          "grantor",
+          "grantee"
+        ],
+        "searchResult": {
+          "availablePageActions": [
+            "addToCart",
+            "exportResults"
+          ]
+        },
+        "searchFilters": [
+          {
+            "key": "docTypes",
+            "label": "Document Types"
+          },
+          {
+            "key": "instrumentYears",
+            "label": "Instrument Years"
+          }
+        ],
+        "showCoverPage": true,
+        "advancedSearch": {
+          "layout": [
+            [
+              "partyNames"
+            ],
+            [
+              "grantor"
+            ],
+            [
+              "grantee"
+            ],
+            [
+              "recordedDateRange"
+            ],
+            [
+              "instrumentDateRange"
+            ],
+            [
+              "docTypes"
+            ],
+            [
+              "documentNumberRange"
+            ],
+            [
+              "book",
+              "volume",
+              "page"
+            ],
+            [
+              "legalDescription"
+            ],
+            [
+              "ocrText"
+            ]
+          ]
+        },
+        "docPreviewConfig": {
+          "summary": {
+            "groups": [
+              {
+                "key": "parties",
+                "label": "Parties"
+              },
+              {
+                "key": "remarks",
+                "label": "Document Remarks"
+              }
+            ],
+            "details": [
+              {
+                "key": "instrumentDate",
+                "label": "Instrument Date:"
+              },
+              {
+                "key": "recordedDate",
+                "label": "Recorded Date:"
+              },
+              {
+                "key": "pageCount",
+                "label": "Number of Pages:"
+              },
+              {
+                "key": "docStatus",
+                "label": "Document Status",
+                "default": "Incomplete"
+              },
+              {
+                "key": "bookVolumePage",
+                "label": "Book/Volume/Page:"
+              }
+            ]
+          },
+          "showImages": true,
+          "showAttachments": false,
+          "showOnlyFirstPage": false
+        },
+        "instNumberFormat": "AlphaNumeric",
+        "enableFeedbackForm": "true",
+        "bookVolumePageNavigation": {
+          "label": {
+            "book": "Book",
+            "volume": "Volume"
+          },
+          "enabled": true
+        },
+        "fullTextSearchDateRangeProp": "recordedDateRange",
+        "denySearchAfterCertifiedDate": true
+      }
+    ],
+    "contentPanel": {
+      "markdown": "# Disclaimer\n\n In accordance with state law, information has been redacted from certain instruments in the database; and the online database does not constitute the official repository of real property records and may not reflect the complete or unaltered contents of those records as maintained in the official real property records. "
+    },
+    "externalLinks": {
+      "links": [
+        {
+          "url": "https://www.bexar.org/2946/County-Clerk",
+          "label": "Bexar County Clerk Web Site"
+        },
+        {
+          "url": "https://kofilequicklinks.com/BexarCCM/",
+          "label": "QuickLink Index Books"
+        }
+      ],
+      "enabled": true
+    },
+    "prefetchLimit": 5,
+    "docNumberFormat": "instNum",
+    "documentProperties": {
+      "legals": {
+        "label": "Legal Description",
+        "format": "{{description}}"
+      },
+      "parties": {
+        "label": "Parties",
+        "format": "{{name}}"
+      },
+      "propAddress": {
+        "label": "Property Address",
+        "format": "{{address1}} {{address2}} {{city}} {{state}} {{zip}}"
+      },
+      "returnAddress": {
+        "label": "Return Address",
+        "format": "{{address1}} {{address2}} {{city}} {{state}} {{zip}}"
+      },
+      "legalDescription": {
+        "label": "Legal Description"
+      }
+    },
+    "enableFeedbackForm": true,
+    "admin": {
+      "tenantBanner": {
+        "bannerContent": "Free Public Search Training Webinar, hosted by the Bexar County Clerk's Office, Wednesday, April 22, 2026 from 10am - 12pm. Visit <a href=\"https://events.teams.microsoft.com/event/0f33be44-17ad-4021-a388-20a9e584ee7b@a9e33a0c-eb1a-4d9e-b6e1-c6134543fc03\">Bexar County Public Search Webinar Registration</a>.",
+        "bannerIsPublished": true
+      }
+    },
+    "tenant": {
+      "code": "48029",
+      "name": "Bexar",
+      "address": "100 Dolorosa, Suite 104 San Antonio, Texas 78205",
+      "timezone": "America/Chicago",
+      "clerkTitle": "County Clerk",
+      "phoneNumber": "(210) 335-2216",
+      "addressLine1": "100 Dolorosa, Suite 104",
+      "addressLine2": "San Antonio, Texas 78205",
+      "searchDomain": "https://bexar.tx.publicsearch.us",
+      "clerkLastName": "Adame-Clark",
+      "tenantSealUrl": "https://s3-us-west-2.amazonaws.com/search-public-assets/48029/logo_bexar_county.png",
+      "clerkFirstName": "Lucy",
+      "clerkPictureUrl": "https://search-public-assets.s3-us-west-2.amazonaws.com/48029/BexarClerkPicture.jpg",
+      "clerkPortalDomain": "https://admin.bexar.tx.publicsearch.us/",
+      "enableFeedbackForm": "true"
+    },
+    "tenantId": "48029",
+    "docTypeMappings": [
+      {
+        "code": "ASN",
+        "docGroup": [
+          {
+            "code": "AN",
+            "docType": [
+              {
+                "code": "ABA",
+                "description": "ABANDONMENT"
+              },
+              {
+                "code": "ABA EX",
+                "description": "ABANDONMENT EXPIRED"
+              },
+              {
+                "code": "AN",
+                "description": "ASSUMED NAME"
+              },
+              {
+                "code": "ANE",
+                "description": "ASSUMED NAME EXPIRED"
+              },
+              {
+                "code": "INC",
+                "description": "INCORPORATED"
+              },
+              {
+                "code": "UNI",
+                "description": "UNINCORPORATED"
+              },
+              {
+                "code": "VOID AN",
+                "description": "VOID AN"
+              }
+            ],
+            "description": "ASSUMED NAME"
+          }
+        ],
+        "description": "Assumed Names"
+      },
+      {
+        "code": "BR",
+        "docGroup": [
+          {
+            "code": "YC",
+            "docType": [
+              {
+                "code": "YC",
+                "description": "Yturri Collection"
+              }
+            ],
+            "description": "Yturri Collection"
+          },
+          {
+            "code": "UC",
+            "docType": [
+              {
+                "code": "UC",
+                "description": "Uhlrich Collections"
+              }
+            ],
+            "description": "Uhlrich Collections"
+          },
+          {
+            "code": "PR",
+            "docType": [
+              {
+                "code": "PR",
+                "description": "Probate Records"
+              },
+              {
+                "code": "UNFRAG",
+                "description": "Undated Fragments"
+              },
+              {
+                "code": "EDC",
+                "description": "The Estate of David Crockett"
+              },
+              {
+                "code": "EEDS",
+                "description": "The Estate of Erastus \u201cDeaf\u201d Smith"
+              },
+              {
+                "code": "EJB",
+                "description": "The Estate of James Bowie"
+              },
+              {
+                "code": "EMJVG",
+                "description": "The Estate of Maria Josefa Veramendi de Garza"
+              },
+              {
+                "code": "ECM",
+                "description": "The Estate of Charles McKinley"
+              }
+            ],
+            "description": "PROBATE RECORDS"
+          },
+          {
+            "code": "NWC",
+            "docType": [
+              {
+                "code": "BBFMRMD",
+                "description": "BASEBALL FOR REAL MEN DRAFT"
+              },
+              {
+                "code": "CAMYR",
+                "description": "Cartoons Mayor"
+              },
+              {
+                "code": "BCJNWW 2005",
+                "description": "BEXAR COUNTY JUDGE NELSON W WOLFF 2005"
+              },
+              {
+                "code": "CAMCO 8687",
+                "description": "CAMPAIGN COUNCIL 1986-1987"
+              },
+              {
+                "code": "CICO87",
+                "description": "CITY COUNCIL 1987"
+              },
+              {
+                "code": "CICO8891",
+                "description": "CITY COUNCIL 1988-1991"
+              },
+              {
+                "code": "CICO90",
+                "description": "CITY COUNCIL 1990"
+              },
+              {
+                "code": "CICO9091",
+                "description": "CITY COUNCIL 1990-1991"
+              },
+              {
+                "code": "CONRA7374",
+                "description": "CONGRESSMAN RACE 1973-1974"
+              },
+              {
+                "code": "CONMA9091",
+                "description": "COUNCIL MAYOR 1990-1991"
+              },
+              {
+                "code": "CONMARA91",
+                "description": "COUNCIL MAYORAL Race 1991"
+              },
+              {
+                "code": "COJU03",
+                "description": "COUNTY JUDGE 2003"
+              },
+              {
+                "code": "COJU04",
+                "description": "COUNTY JUDGE 2004"
+              },
+              {
+                "code": "COJU02",
+                "description": "COUNTY JUDGE 2002"
+              },
+              {
+                "code": "COJU01",
+                "description": "COUNTY JUDGE 2001"
+              },
+              {
+                "code": "MA91",
+                "description": "MAYOR 1991"
+              },
+              {
+                "code": "MA9495",
+                "description": "MAYOR 1994-1995"
+              },
+              {
+                "code": "MA9394",
+                "description": "MAYOR 1993-1994"
+              },
+              {
+                "code": "MA92",
+                "description": "MAYOR 1992"
+              },
+              {
+                "code": "MA9293",
+                "description": "MAYOR 1992-1993"
+              },
+              {
+                "code": "MB8195",
+                "description": "MAYOR BOOK 1981-1995"
+              },
+              {
+                "code": "MANM1",
+                "description": "MAYOR NEWS/MISC 1"
+              },
+              {
+                "code": "MANM2",
+                "description": "MAYOR NEWS/MISC 2"
+              },
+              {
+                "code": "NWWBCJ0708",
+                "description": "NELSON W WOLFF BEXAR COUNTY JUDGE 2007-2008"
+              },
+              {
+                "code": "NWWBCJ09",
+                "description": "NELSON W WOLFF BEXAR COUNTY JUDGE 2009"
+              },
+              {
+                "code": "NWWBCJ10",
+                "description": "NELSON W WOLFF BEXAR COUNTY JUDGE 2010"
+              },
+              {
+                "code": "NWWBCJ11",
+                "description": "NELSON W WOLFF BEXAR COUNTY JUDGE 2011"
+              },
+              {
+                "code": "NWWBCJ12",
+                "description": "NELSON W WOLFF BEXAR COUNTY JUDGE 2012"
+              },
+              {
+                "code": "NWWBCJ13",
+                "description": "NELSON W WOLFF BEXAR COUNTY JUDGE 2013"
+              },
+              {
+                "code": "NWWBCJ14",
+                "description": "NELSON W WOLFF BEXAR COUNTY JUDGE 2014"
+              },
+              {
+                "code": "SLHS7172",
+                "description": "STATE LEGISLATURE HOUSE SENATE 1971-1972"
+              },
+              {
+                "code": "STS7273",
+                "description": "STATE SENATE 1972-1973"
+              }
+            ],
+            "description": "Nelson Wolff Collection"
+          },
+          {
+            "code": "AHC",
+            "docType": [
+              {
+                "code": "AHC",
+                "description": "Anton Hajek Collection"
+              },
+              {
+                "code": "MPLATS",
+                "description": "MAPS/PLATS"
+              }
+            ],
+            "description": "Anton Hajek Collection"
+          }
+        ],
+        "description": "Vitals"
+      },
+      {
+        "code": "CASE",
+        "docGroup": [
+          {
+            "code": "WRI",
+            "docType": [
+              {
+                "code": "WR",
+                "description": "Writs"
+              }
+            ],
+            "description": "Writs"
+          },
+          {
+            "code": "TA",
+            "docType": [
+              {
+                "code": "TRA",
+                "description": "Traffic Appeals"
+              }
+            ],
+            "description": "Traffic Appeals"
+          },
+          {
+            "code": "SPCO",
+            "docType": [
+              {
+                "code": "SO",
+                "description": "Special Orders"
+              }
+            ],
+            "description": "Special Orders"
+          },
+          {
+            "code": "PRB",
+            "docType": [
+              {
+                "code": "PRBK",
+                "description": "PRB Backfile"
+              },
+              {
+                "code": "PRBDF",
+                "description": "PRB DayForward"
+              },
+              {
+                "code": "PRBMIN",
+                "description": "PRB Minutes"
+              },
+              {
+                "code": "PRBMISC",
+                "description": "PRB MISC"
+              },
+              {
+                "code": "PRBT",
+                "description": "Probate"
+              }
+            ],
+            "description": "Probate"
+          },
+          {
+            "code": "HIST MISC",
+            "docType": [
+              {
+                "code": "BK",
+                "description": "Book keeping"
+              }
+            ],
+            "description": "HIST MISCELLANEOUS"
+          },
+          {
+            "code": "CRIM",
+            "docType": [
+              {
+                "code": "CRIMCC",
+                "description": "CC"
+              },
+              {
+                "code": "CBD",
+                "description": "Convict Bond"
+              },
+              {
+                "code": "CR",
+                "description": "CR"
+              },
+              {
+                "code": "CRIM",
+                "description": "CRIM MISC"
+              },
+              {
+                "code": "CRIMA",
+                "description": "Criminal Abandonment"
+              },
+              {
+                "code": "CRIMAP",
+                "description": "Criminal Appeals"
+              },
+              {
+                "code": "CRIMDO",
+                "description": "Criminal Dockets"
+              },
+              {
+                "code": "CRIMIX",
+                "description": "Criminal Index"
+              },
+              {
+                "code": "CRIMJO",
+                "description": "Criminal Journal"
+              },
+              {
+                "code": "CRIMMIN",
+                "description": "Criminal Minutes"
+              },
+              {
+                "code": "CRIMBA",
+                "description": "Criminal Backfile"
+              },
+              {
+                "code": "CRIMDAY",
+                "description": "Criminal Dayforward"
+              },
+              {
+                "code": "HISTCA",
+                "description": "Historical Cases"
+              },
+              {
+                "code": "ICW",
+                "description": "Index Capias Warrant"
+              }
+            ],
+            "description": "Criminal"
+          },
+          {
+            "code": "CIV",
+            "docType": [
+              {
+                "code": "CIV",
+                "description": "Civil"
+              }
+            ],
+            "description": "Civil"
+          },
+          {
+            "code": "BFC",
+            "docType": [
+              {
+                "code": "BFC",
+                "description": "Bond Forfeit Case"
+              }
+            ],
+            "description": "Bond Forfeit Case"
+          }
+        ],
+        "description": "Cases"
+      },
+      {
+        "code": "CCM",
+        "docGroup": [
+          {
+            "code": "CCM",
+            "docType": [
+              {
+                "code": "CCM",
+                "description": "COMMISSIONERS COURT MINUTES"
+              },
+              {
+                "code": "VOID CCM",
+                "description": "VOID CCM"
+              },
+              {
+                "code": "A",
+                "description": "ATTACHMENTS"
+              },
+              {
+                "code": "IB",
+                "description": "INDEX BOOK"
+              },
+              {
+                "code": "CCMI",
+                "description": "CCM INDEX BOOKS"
+              },
+              {
+                "code": "CERTA",
+                "description": "Certified Agenda"
+              }
+            ],
+            "description": "COMMISSIONERS COURTS MINUTES"
+          }
+        ],
+        "description": "Commissioners Court"
+      },
+      {
+        "code": "DC",
+        "docGroup": [
+          {
+            "code": "HPM",
+            "docType": [
+              {
+                "code": "H PME",
+                "description": "HISTORICAL PROBATE MINUTES-EPILEPTIC"
+              }
+            ],
+            "description": "HISTORICAL PROBATE MINUTES"
+          },
+          {
+            "code": "CCJ",
+            "docType": [
+              {
+                "code": "CCCJ8081",
+                "description": "CRIMINAL COUNTY COURT JOURNAL 1880-1881"
+              }
+            ],
+            "description": "CRIMINAL COURT JOURNALS"
+          }
+        ],
+        "description": "Death Certificates"
+      },
+      {
+        "code": "FC",
+        "docGroup": [
+          {
+            "code": "NFC",
+            "docType": [
+              {
+                "code": "NOF",
+                "description": "NOTICE OF FORECLOSE"
+              },
+              {
+                "code": "VOID FC",
+                "description": "VOID FC"
+              }
+            ],
+            "description": "NOTICE OF FORECLOSURE"
+          }
+        ],
+        "description": "Foreclosures"
+      },
+      {
+        "code": "IO",
+        "docGroup": [
+          {
+            "code": "UL",
+            "docType": [
+              {
+                "code": "UL",
+                "description": "UNSOLD LANDS 1882-1933"
+              }
+            ],
+            "description": "Unsold Lands"
+          },
+          {
+            "code": "SD",
+            "docType": [
+              {
+                "code": "SD",
+                "description": "Spanish Deeds"
+              },
+              {
+                "code": "ISDG",
+                "description": "Index to Spanish Deeds & Grants (CIRCA) 1703-1839"
+              },
+              {
+                "code": "ROSDVL2",
+                "description": "RECORDS OF SPANISH DEEDS VOLUME 2"
+              },
+              {
+                "code": "ROSDVL3",
+                "description": "RECORDS OF SPANISH DEEDS VOLUME 3"
+              }
+            ],
+            "description": "Spanish Deeds"
+          },
+          {
+            "code": "RSL",
+            "docType": [
+              {
+                "code": "GLOR",
+                "description": "General Land Office Records"
+              }
+            ],
+            "description": "Records of School Lands"
+          },
+          {
+            "code": "ROS",
+            "docType": [
+              {
+                "code": "ROS",
+                "description": "Record of Surveys"
+              }
+            ],
+            "description": "Record of Surveys"
+          },
+          {
+            "code": "ROADS",
+            "docType": [
+              {
+                "code": "ROADS",
+                "description": "Roads late 1800s"
+              }
+            ],
+            "description": "Roads late 1800s"
+          },
+          {
+            "code": "PWO",
+            "docType": [
+              {
+                "code": "PWOMAP",
+                "description": "PUBLIC WORKS MAPS"
+              }
+            ],
+            "description": "Public Works"
+          },
+          {
+            "code": "NS",
+            "docType": [
+              {
+                "code": "NS",
+                "description": "Notice of Sale"
+              }
+            ],
+            "description": "Notice of Sale"
+          },
+          {
+            "code": "MRBW",
+            "docType": [
+              {
+                "code": "MRBW",
+                "description": "Maps of Roads/Bodies of Water"
+              },
+              {
+                "code": "WRR",
+                "description": "WATER RIGHTS RECORDS 1894-1920"
+              }
+            ],
+            "description": "Maps of Roads/Bodies of Water"
+          },
+          {
+            "code": "LET",
+            "docType": [
+              {
+                "code": "LET",
+                "description": "Letter From C.F. Russi Road Superintendent 1894"
+              }
+            ],
+            "description": "Letters"
+          },
+          {
+            "code": "HP",
+            "docType": [
+              {
+                "code": "HP",
+                "description": "Historical Plat"
+              }
+            ],
+            "description": "Historical Plats"
+          },
+          {
+            "code": "HLR",
+            "docType": [
+              {
+                "code": "HLR",
+                "description": "Hospital Liens/Releases"
+              }
+            ],
+            "description": "Hospital Liens/Releases"
+          },
+          {
+            "code": "GISD",
+            "docType": [
+              {
+                "code": "GISD",
+                "description": "GENERAL INDEX TO SPANISH DEEDS"
+              }
+            ],
+            "description": "GENERAL INDEX TO SPANISH DEEDS"
+          },
+          {
+            "code": "FOWN",
+            "docType": [
+              {
+                "code": "FOWN",
+                "description": "FOREIGN OWNERSHIP"
+              }
+            ],
+            "description": "Foreign Ownership"
+          },
+          {
+            "code": "FN",
+            "docType": [
+              {
+                "code": "FN",
+                "description": "Field Notes"
+              },
+              {
+                "code": "INSFN",
+                "description": "INDEX SURVEYOR/FIELD NOTES"
+              }
+            ],
+            "description": "Field Notes"
+          },
+          {
+            "code": "AOS",
+            "docType": [
+              {
+                "code": "AOS",
+                "description": "Alien ownership (SIC)"
+              }
+            ],
+            "description": "Alien ownership (SIC)"
+          },
+          {
+            "code": "AFF",
+            "docType": [
+              {
+                "code": "AFF",
+                "description": "AFFIDAVIT"
+              },
+              {
+                "code": "SAFF",
+                "description": "SURVEY AFFIDAVIT"
+              }
+            ],
+            "description": "AFFIDAVIT"
+          },
+          {
+            "code": "AB",
+            "docType": [
+              {
+                "code": "LBS",
+                "description": "Lands Bought and Sold"
+              },
+              {
+                "code": "IALT",
+                "description": "Index - Abstract of Land Title 1891"
+              }
+            ],
+            "description": "Abstract"
+          }
+        ],
+        "description": "Interoffice"
+      },
+      {
+        "code": "MB",
+        "docGroup": [
+          {
+            "code": "CB",
+            "docType": [
+              {
+                "code": "VOID MB",
+                "description": "VOID MB"
+              },
+              {
+                "code": "NEW BRAND",
+                "description": "NEW BRAND"
+              },
+              {
+                "code": "RENEWAL BRAND",
+                "description": "RENEWAL BRAND"
+              },
+              {
+                "code": "RELEASE BRAND",
+                "description": "RELEASE BRAND"
+              },
+              {
+                "code": "TRANSFER BRAND",
+                "description": "TRANSFER BRAND"
+              },
+              {
+                "code": "NB",
+                "description": "NEW BRANDS"
+              },
+              {
+                "code": "ROA",
+                "description": "RECORD OF ANIMALS INSPECTION"
+              }
+            ],
+            "description": "CATTLE BRANDS"
+          }
+        ],
+        "description": "Marks and Brands"
+      },
+      {
+        "code": "MC",
+        "docGroup": [
+          {
+            "code": "MC",
+            "docType": [
+              {
+                "code": "MARRIAGE",
+                "description": "MARRIAGE LICENSE"
+              },
+              {
+                "code": "VOID MC",
+                "description": "VOID MC"
+              }
+            ],
+            "description": "MARRIAGE LICENSES"
+          },
+          {
+            "code": "INF",
+            "docType": [
+              {
+                "code": "INF MAR",
+                "description": "INFORMAL MARRIAGE"
+              },
+              {
+                "code": "VOID INF",
+                "description": "VOID INF"
+              }
+            ],
+            "description": "INFORMAL MARRIAGE"
+          }
+        ],
+        "description": "Marriage"
+      },
+      {
+        "code": "MISC",
+        "docGroup": [
+          {
+            "code": "TRDMRK",
+            "docType": [
+              {
+                "code": "TRDMRK",
+                "description": "Trademarks"
+              }
+            ],
+            "description": "Trademarks"
+          },
+          {
+            "code": "MISC",
+            "docType": [
+              {
+                "code": "ES",
+                "description": "ESTRAY"
+              },
+              {
+                "code": "MISC MS",
+                "description": "MISCELLANEOUS MS"
+              },
+              {
+                "code": "NT",
+                "description": "NOTARY JOURNALS"
+              },
+              {
+                "code": "VOID MS",
+                "description": "VOID MS"
+              }
+            ],
+            "description": "MISCELLANEOUS"
+          },
+          {
+            "code": "ITM",
+            "docType": [
+              {
+                "code": "ITM",
+                "description": "Record of Intent to Marry 1923-1933"
+              }
+            ],
+            "description": "Intent to Marry"
+          },
+          {
+            "code": "ER",
+            "docType": [
+              {
+                "code": "ER",
+                "description": "Election Records"
+              }
+            ],
+            "description": "Election Records"
+          },
+          {
+            "code": "CA",
+            "docType": [
+              {
+                "code": "RCCA",
+                "description": "Request to Clerk of Civil Appeals 1893-1904"
+              }
+            ],
+            "description": "Civil Appeals"
+          },
+          {
+            "code": "BPD",
+            "docType": [
+              {
+                "code": "BPD",
+                "description": "Booklets/Programs/Dissertations"
+              }
+            ],
+            "description": "Booklets/Programs/Dissertations"
+          },
+          {
+            "code": "BCC",
+            "docType": [
+              {
+                "code": "BCC",
+                "description": "Bexar County Court"
+              }
+            ],
+            "description": "Bexar County Court"
+          }
+        ],
+        "description": "Miscellaneous"
+      },
+      {
+        "code": "NT",
+        "docGroup": [
+          {
+            "code": "SM",
+            "docType": [
+              {
+                "code": "SM",
+                "description": "SCHOOL MINUTES"
+              }
+            ],
+            "description": "School Minutes"
+          }
+        ],
+        "description": "Notary"
+      },
+      {
+        "code": "PL",
+        "docGroup": [
+          {
+            "code": "PL",
+            "docType": [
+              {
+                "code": "AMPLAT",
+                "description": "AMENDED PLAT"
+              },
+              {
+                "code": "CONDO P",
+                "description": "CONDO PLAT"
+              },
+              {
+                "code": "PLAT",
+                "description": "PLAT"
+              },
+              {
+                "code": "REPLAT",
+                "description": "REPLAT"
+              },
+              {
+                "code": "VACATE P",
+                "description": "VACATE & RESUB PLAT"
+              },
+              {
+                "code": "VOID PL",
+                "description": "VOID PL"
+              },
+              {
+                "code": "TC",
+                "description": "TAX CERTIFICATE"
+              },
+              {
+                "code": "PI1",
+                "description": "Plat Index A-N 1891-1972"
+              },
+              {
+                "code": "PI2",
+                "description": "Plat Index O-Z 1891-1972"
+              },
+              {
+                "code": "CCB 1960",
+                "description": "COUNTY/CITY BLOCK 1960s"
+              }
+            ],
+            "description": "PLATS"
+          }
+        ],
+        "description": "Plats"
+      },
+      {
+        "code": "PN",
+        "docGroup": [
+          {
+            "code": "PUBLIC NOTICES",
+            "docType": [
+              {
+                "code": "PUB",
+                "description": "PUBLIC NOTICE"
+              },
+              {
+                "code": "VOID PUB",
+                "description": "VOID PUB"
+              }
+            ],
+            "description": "PUBLIC NOTICES"
+          }
+        ],
+        "description": "Public Notice"
+      },
+      {
+        "code": "PP",
+        "docGroup": [
+          {
+            "code": "UCC",
+            "docType": [
+              {
+                "code": "BKTR",
+                "description": "BK-TR"
+              },
+              {
+                "code": "RELS",
+                "description": "REL"
+              },
+              {
+                "code": "TERM",
+                "description": "TERM"
+              },
+              {
+                "code": "UC3 ASGN",
+                "description": "UCC3 ASSIGNMENT PP"
+              },
+              {
+                "code": "UC3AMND",
+                "description": "UCC3 AMENDMENT PP"
+              },
+              {
+                "code": "UC3CONT",
+                "description": "UCC3 CONTINUATION PP"
+              },
+              {
+                "code": "UC3PREL",
+                "description": "UCC3 PARTIAL RELEASE PP"
+              },
+              {
+                "code": "UC3TERM",
+                "description": "UCC3 TERMINATION PP"
+              },
+              {
+                "code": "UCC PP",
+                "description": "UCC/PERSONAL PROPERTY RECORDS"
+              },
+              {
+                "code": "UCC3 PP",
+                "description": "UCC3 PERSONAL PROPERTY"
+              },
+              {
+                "code": "VOID UCC",
+                "description": "VOID UCC"
+              },
+              {
+                "code": "UCC SE",
+                "description": "UCC SECURED"
+              }
+            ],
+            "description": "UCC"
+          },
+          {
+            "code": "FTL PP",
+            "docType": [
+              {
+                "code": "FTL PP",
+                "description": "FEDERAL TAX LIEN PP"
+              },
+              {
+                "code": "FTLCTPP",
+                "description": "FEDERAL TAX LIEN CERTIFICATE PP"
+              },
+              {
+                "code": "RLFTLPP",
+                "description": "RELEASE OF FEDERAL TAX LIEN PP"
+              },
+              {
+                "code": "VOID FTL PP",
+                "description": "VOID FTL PP"
+              }
+            ],
+            "description": "FEDERAL TAX LIENS PP"
+          }
+        ],
+        "description": "Personal Property"
+      },
+      {
+        "code": "RP",
+        "docGroup": [
+          {
+            "code": "WRM",
+            "docType": [
+              {
+                "code": "WRM",
+                "description": "Water Rights/Maps"
+              }
+            ],
+            "description": "Water Rights/Maps"
+          },
+          {
+            "code": "UCC RP",
+            "docType": [
+              {
+                "code": "UCC",
+                "description": "UCC"
+              },
+              {
+                "code": "UCC1 RP",
+                "description": "UCC 1 REAL PROPERTY"
+              },
+              {
+                "code": "UCC3RP",
+                "description": "UCC 3 REAL PROPERTY"
+              },
+              {
+                "code": "VOID UCCRP",
+                "description": "VOID UCC RP"
+              }
+            ],
+            "description": "UCC RP"
+          },
+          {
+            "code": "STATE LIEN",
+            "docType": [
+              {
+                "code": "PART RL STL",
+                "description": "PARTIAL RELEASE STL"
+              },
+              {
+                "code": "RL STL",
+                "description": "RELEASE OF STATE TAX LIEN"
+              },
+              {
+                "code": "STL",
+                "description": "STATE TAX LIEN"
+              },
+              {
+                "code": "VOID STL",
+                "description": "VOID STL"
+              }
+            ],
+            "description": "STATE TAX LIENS"
+          },
+          {
+            "code": "OPR",
+            "docType": [
+              {
+                "code": "ACKNOW",
+                "description": "ACKNOWLEDGEMENT"
+              },
+              {
+                "code": "ADDENDM",
+                "description": "ADDENDUM"
+              },
+              {
+                "code": "AFFIDAV",
+                "description": "AFFIDAVIT"
+              },
+              {
+                "code": "AGREEMT",
+                "description": "AGREEMENT"
+              },
+              {
+                "code": "AMEND",
+                "description": "AMENDMENT"
+              },
+              {
+                "code": "APPLICA",
+                "description": "APPLICATION"
+              },
+              {
+                "code": "APPT",
+                "description": "APPOINTMENT"
+              },
+              {
+                "code": "ART INC",
+                "description": "ARTICLES OF INC"
+              },
+              {
+                "code": "ASIGN J",
+                "description": "ASSIGNMENT OF JUDGMENT"
+              },
+              {
+                "code": "ASSN",
+                "description": "ASSIGNMENT"
+              },
+              {
+                "code": "ASUMPTN",
+                "description": "ASSUMPTION"
+              },
+              {
+                "code": "BFA",
+                "description": "BIRTH FROM ABROAD"
+              },
+              {
+                "code": "BILLOFS",
+                "description": "BILL OF SALE"
+              },
+              {
+                "code": "BOND",
+                "description": "BOND"
+              },
+              {
+                "code": "BTI",
+                "description": "BOND TO INDEMNIFY"
+              },
+              {
+                "code": "CANC J",
+                "description": "CANCELLATION OF JUDGMENT"
+              },
+              {
+                "code": "CANCEL",
+                "description": "CANCELLATION"
+              },
+              {
+                "code": "CEMTRY",
+                "description": "CEMETERY"
+              },
+              {
+                "code": "CERT",
+                "description": "CERTIFICATE"
+              },
+              {
+                "code": "CERT CP",
+                "description": "CERTIFIED COPY"
+              },
+              {
+                "code": "CIQ",
+                "description": "CONFLICT OF INTEREST QUESTIONNAIRE"
+              },
+              {
+                "code": "CONDAMC",
+                "description": "CONDOMINIUM ASSOCIATION MANAGEMENT CERTIFICATE"
+              },
+              {
+                "code": "CONTRAC",
+                "description": "CONTRACT"
+              },
+              {
+                "code": "CORP",
+                "description": "CORPORATE"
+              },
+              {
+                "code": "CORRECT",
+                "description": "CORRECTION"
+              },
+              {
+                "code": "CSUP LN",
+                "description": "CHILD SUPPORT LN"
+              },
+              {
+                "code": "DA",
+                "description": "DEED AFFIDAVIT"
+              },
+              {
+                "code": "DECLAR",
+                "description": "DECLARATION"
+              },
+              {
+                "code": "DECREE",
+                "description": "DECREE"
+              },
+              {
+                "code": "DEED",
+                "description": "DEED"
+              },
+              {
+                "code": "DESGN",
+                "description": "DESIGNATION"
+              },
+              {
+                "code": "DISMISS",
+                "description": "DISMISSAL"
+              },
+              {
+                "code": "DT",
+                "description": "DEED OF TRUST"
+              },
+              {
+                "code": "EASEMNT",
+                "description": "EASEMENT"
+              },
+              {
+                "code": "EXT",
+                "description": "EXTENSION"
+              },
+              {
+                "code": "HMST AF",
+                "description": "HOMESTEAD AFFIDAVIT"
+              },
+              {
+                "code": "HOSP LN",
+                "description": "HOSPITAL LIEN"
+              },
+              {
+                "code": "JUDG",
+                "description": "JUDGMENT"
+              },
+              {
+                "code": "LEASE",
+                "description": "LEASE"
+              },
+              {
+                "code": "LETTERS",
+                "description": "LETTERS"
+              },
+              {
+                "code": "LEVY",
+                "description": "LEVY"
+              },
+              {
+                "code": "LIEN",
+                "description": "LIEN"
+              },
+              {
+                "code": "LIS PEN",
+                "description": "LIS PENDENS"
+              },
+              {
+                "code": "LNLD LN",
+                "description": "LANDLORD LIEN"
+              },
+              {
+                "code": "LOAN",
+                "description": "LOAN"
+              },
+              {
+                "code": "M MORTG",
+                "description": "MASTER MORTGAGE"
+              },
+              {
+                "code": "MARRIAGE OPR",
+                "description": "MARRIAGE LICENSE OPR"
+              },
+              {
+                "code": "MECHLN",
+                "description": "MECHANICS LIEN"
+              },
+              {
+                "code": "MEMO",
+                "description": "MEMORANDUM"
+              },
+              {
+                "code": "MISC",
+                "description": "MISCELLANEOUS"
+              },
+              {
+                "code": "MOD",
+                "description": "MODIFICATION"
+              },
+              {
+                "code": "MORTG",
+                "description": "MORTGAGE"
+              },
+              {
+                "code": "NOTE",
+                "description": "NOTE"
+              },
+              {
+                "code": "NOTICE",
+                "description": "NOTICE"
+              },
+              {
+                "code": "ORDER",
+                "description": "ORDER"
+              },
+              {
+                "code": "ORDIN",
+                "description": "ORDINANCE"
+              },
+              {
+                "code": "OWNCERT",
+                "description": "PROPERTY OWNERS ASSOCIATION MANAGEMENT CERT"
+              },
+              {
+                "code": "P AS J",
+                "description": "PARTIAL ASSIGNMENT OF JUDGMENT"
+              },
+              {
+                "code": "P RL J",
+                "description": "PARTIAL RELEASE OF JUDGMENT"
+              },
+              {
+                "code": "P TR J",
+                "description": "PARTIAL TRANSFER OF JUDGMENT"
+              },
+              {
+                "code": "PA",
+                "description": "POWER OF ATTORNEY"
+              },
+              {
+                "code": "PART RL",
+                "description": "PARTIAL RELEASE"
+              },
+              {
+                "code": "PLY",
+                "description": "POLYGRAPH LICENSE"
+              },
+              {
+                "code": "PROBATE",
+                "description": "PROBATE"
+              },
+              {
+                "code": "PWB",
+                "description": "PUBLIC WEIGHER BOND"
+              },
+              {
+                "code": "RECONV",
+                "description": "RECONVEYANCE"
+              },
+              {
+                "code": "REINST",
+                "description": "REINSTATEMENT"
+              },
+              {
+                "code": "REL H LN",
+                "description": "RELEASE OF HL"
+              },
+              {
+                "code": "RELEASE",
+                "description": "RELEASE"
+              },
+              {
+                "code": "REMOVAL",
+                "description": "REMOVAL"
+              },
+              {
+                "code": "RENEW",
+                "description": "RENEWAL"
+              },
+              {
+                "code": "REPLACE",
+                "description": "REPLACEMENT"
+              },
+              {
+                "code": "RESCISS",
+                "description": "RESCISSION"
+              },
+              {
+                "code": "RESIGN",
+                "description": "RESIGNATION"
+              },
+              {
+                "code": "RESOLUT",
+                "description": "RESOLUTION"
+              },
+              {
+                "code": "REST LN",
+                "description": "AFFIDAVIT RESTITUTION LIEN"
+              },
+              {
+                "code": "RESTRICT",
+                "description": "RESTRICTIONS"
+              },
+              {
+                "code": "REVOCTN",
+                "description": "REVOCATION"
+              },
+              {
+                "code": "RFSHEET",
+                "description": "REFERENCE SHEET"
+              },
+              {
+                "code": "RIC",
+                "description": "RETAIL INST CONTRACT"
+              },
+              {
+                "code": "RL H LN",
+                "description": "RL OF HOSP LN"
+              },
+              {
+                "code": "RL J",
+                "description": "RELEASE OF JUDGMENT"
+              },
+              {
+                "code": "RT WAY",
+                "description": "RIGHT OF WAY AGREEMENT"
+              },
+              {
+                "code": "SAT",
+                "description": "SATISFACTION"
+              },
+              {
+                "code": "SAT J",
+                "description": "SATISFACTION OF JUDGMENT"
+              },
+              {
+                "code": "STATEMT",
+                "description": "STATEMENT"
+              },
+              {
+                "code": "SUB",
+                "description": "SUBSTITUTION"
+              },
+              {
+                "code": "SUBORD",
+                "description": "SUBORDINATION"
+              },
+              {
+                "code": "TERMIN",
+                "description": "TERMINATION"
+              },
+              {
+                "code": "TRANS",
+                "description": "TRANSFER"
+              },
+              {
+                "code": "TRANS J",
+                "description": "TRANSFER OF JUDGMENT"
+              },
+              {
+                "code": "TRSCR J",
+                "description": "TRANSCRIPT OF JUDGMENT"
+              },
+              {
+                "code": "TRUST",
+                "description": "TRUST"
+              },
+              {
+                "code": "TX HMST",
+                "description": "TX HOMESTEAD"
+              },
+              {
+                "code": "VARIANC",
+                "description": "VARIANCE"
+              },
+              {
+                "code": "VOID OPR",
+                "description": "VOID OPR"
+              },
+              {
+                "code": "WAIVER",
+                "description": "WAIVER"
+              },
+              {
+                "code": "WATER P",
+                "description": "WATER RIGHTS/PERMIT"
+              },
+              {
+                "code": "WILL",
+                "description": "WILL & TESTAMENT"
+              },
+              {
+                "code": "WP MAPS",
+                "description": "WATER PERMIT MAPS"
+              },
+              {
+                "code": "ASSN SEC",
+                "description": "ASSIGNMENT SECURED"
+              },
+              {
+                "code": "PA SEC",
+                "description": "POWER OF ATTORNEY SECURED"
+              },
+              {
+                "code": "DT SEC",
+                "description": "DEED OF TRUST SECURED"
+              },
+              {
+                "code": "FC",
+                "description": "FORECLOSURE"
+              },
+              {
+                "code": "WP",
+                "description": "WATER PERMIT"
+              },
+              {
+                "code": "CP",
+                "description": "CONDOMINIUM PLAN"
+              },
+              {
+                "code": "NC",
+                "description": "NURSING CERTIFICATE"
+              },
+              {
+                "code": "DR",
+                "description": "DENTAL RECORDS"
+              },
+              {
+                "code": "SR",
+                "description": "State-Release"
+              },
+              {
+                "code": "SJ",
+                "description": "State-Judgment"
+              }
+            ],
+            "description": "OPR"
+          },
+          {
+            "code": "FED LIEN",
+            "docType": [
+              {
+                "code": "FTL",
+                "description": "FEDERAL TAX LIEN"
+              },
+              {
+                "code": "FTLCERT",
+                "description": "FEDERAL TAX LIEN CERTIFICATE"
+              },
+              {
+                "code": "PART RL FTL",
+                "description": "PARTIAL RELEASE FTL"
+              },
+              {
+                "code": "RL FTL",
+                "description": "RELEASE OF FTL"
+              },
+              {
+                "code": "VOID FTL",
+                "description": "VOID FTL"
+              }
+            ],
+            "description": "FEDERAL TAX LIENS"
+          }
+        ],
+        "description": "Land Records"
+      },
+      {
+        "code": "SA",
+        "docGroup": [
+          {
+            "code": "WR",
+            "docType": [
+              {
+                "code": "WATER",
+                "description": "WATER RIGHTS"
+              }
+            ],
+            "description": "Water Rights"
+          },
+          {
+            "code": "W&E",
+            "docType": [
+              {
+                "code": "WE",
+                "description": "Wills & Estates"
+              }
+            ],
+            "description": "Wills & Estates"
+          },
+          {
+            "code": "UFOT",
+            "docType": [
+              {
+                "code": "UFOT",
+                "description": "Unidentified File Objects Translations"
+              }
+            ],
+            "description": "Unidentified File Objects Translations"
+          },
+          {
+            "code": "TRANS",
+            "docType": [
+              {
+                "code": "TRANSL",
+                "description": "TRANSLATION RECORDS 1731-1835"
+              }
+            ],
+            "description": "TRANSLATIONS"
+          },
+          {
+            "code": "SP",
+            "docType": [
+              {
+                "code": "SP",
+                "description": "SPANISH ARCHIVES"
+              },
+              {
+                "code": "VOID SP",
+                "description": "VOID SPANISH ARCHIVES"
+              },
+              {
+                "code": "PI",
+                "description": "PROVINCIAS INTERNA"
+              },
+              {
+                "code": "MEM",
+                "description": "MEMOIRS"
+              },
+              {
+                "code": "MF",
+                "description": "MISC FRAGMENTS"
+              },
+              {
+                "code": "MI",
+                "description": "MEMOIRS INTERNAL"
+              },
+              {
+                "code": "DAD",
+                "description": "DEPOSITARIA ANO DE 1833-1834"
+              },
+              {
+                "code": "CYLLSM",
+                "description": "Constitucion Y Leyes de la Sociedad Mutualista Mexicana"
+              }
+            ],
+            "description": "SPANISH ARCHIVES"
+          },
+          {
+            "code": "SC",
+            "docType": [
+              {
+                "code": "PEJB",
+                "description": "Papers in the Estate of James Bowie"
+              },
+              {
+                "code": "PEDC",
+                "description": "Papers in the Estate of David Crockett"
+              },
+              {
+                "code": "PEMJVG",
+                "description": "Papers in the Estate of Maria Josefa Veramendi de Garza"
+              },
+              {
+                "code": "PEEDS",
+                "description": "Papers in the Estate of Erastus \"Deaf\" Smith"
+              },
+              {
+                "code": "PECM",
+                "description": "Papers in the Estate of Charles Mckinley"
+              },
+              {
+                "code": "UF",
+                "description": "Undated Fragments"
+              }
+            ],
+            "description": "Special Collections"
+          },
+          {
+            "code": "RISD",
+            "docType": [
+              {
+                "code": "ROSDV2",
+                "description": "RECORDS OF SPANISH DEEDS VOLUME 2"
+              },
+              {
+                "code": "ROSDV3",
+                "description": "RECORDS OF SPANISH DEEDS VOLUME 3"
+              }
+            ],
+            "description": "RECORDS OF SPANISH DEEDS"
+          },
+          {
+            "code": "PA",
+            "docType": [
+              {
+                "code": "PA1",
+                "description": "Postal Administration"
+              }
+            ],
+            "description": "Postal Administration"
+          },
+          {
+            "code": "OFICIOS",
+            "docType": [
+              {
+                "code": "O",
+                "description": "Oficios"
+              }
+            ],
+            "description": "Oficios"
+          },
+          {
+            "code": "MR",
+            "docType": [
+              {
+                "code": "NSDR",
+                "description": "Nuestra Se\u00f1ora del Rosario"
+              },
+              {
+                "code": "SADV",
+                "description": "San Antonio de Valero"
+              },
+              {
+                "code": "SJC",
+                "description": "San Juan Capistrano"
+              },
+              {
+                "code": "PC",
+                "description": "Pur\u00edsima Concepci\u00f3n"
+              },
+              {
+                "code": "SFDLE",
+                "description": "San Francisco de la Espada"
+              },
+              {
+                "code": "SJSMDA",
+                "description": "San Jos\u00e9 y San Miguel de Aguayo"
+              },
+              {
+                "code": "SJR",
+                "description": "San Juan Road Chavez Road Mission"
+              },
+              {
+                "code": "MSR",
+                "description": "Mission Records"
+              }
+            ],
+            "description": "Mission Records"
+          },
+          {
+            "code": "MLR",
+            "docType": [
+              {
+                "code": "MR",
+                "description": "Military Reports"
+              }
+            ],
+            "description": "Military Reports"
+          },
+          {
+            "code": "MAR",
+            "docType": [
+              {
+                "code": "MAR",
+                "description": "Marriage"
+              }
+            ],
+            "description": "Marriage"
+          },
+          {
+            "code": "LP",
+            "docType": [
+              {
+                "code": "RBP",
+                "description": "Rebel Properties"
+              },
+              {
+                "code": "POA",
+                "description": "Powers of Attorney"
+              },
+              {
+                "code": "CAR",
+                "description": "Contracts, Agreements & Receipts"
+              },
+              {
+                "code": "P",
+                "description": "Protocols"
+              },
+              {
+                "code": "L",
+                "description": "Litigations"
+              },
+              {
+                "code": "DELP",
+                "description": "Decrees, Edicts, Laws & Proclamation"
+              }
+            ],
+            "description": "Legal Proceedings"
+          },
+          {
+            "code": "LOBC",
+            "docType": [
+              {
+                "code": "LBG",
+                "description": "La Bah\u00eda-Goliad"
+              },
+              {
+                "code": "N",
+                "description": "Nacogdoches"
+              },
+              {
+                "code": "SP1",
+                "description": "San Patricio"
+              }
+            ],
+            "description": "Land Outside Bexar County"
+          },
+          {
+            "code": "LGS",
+            "docType": [
+              {
+                "code": "LGS",
+                "description": "Land Grants & Sales"
+              },
+              {
+                "code": "LOBC",
+                "description": "Land Outside Bexar County"
+              }
+            ],
+            "description": "Land Grants & Sales"
+          },
+          {
+            "code": "ISD",
+            "docType": [
+              {
+                "code": "GISDD",
+                "description": "GENERAL INDEX TO SPANISH DEEDS"
+              }
+            ],
+            "description": "INDEX TO SPANISH DEEDS"
+          },
+          {
+            "code": "INR",
+            "docType": [
+              {
+                "code": "INR",
+                "description": "INDEX TO NATURALIZATION RECORDS"
+              }
+            ],
+            "description": "Index to Naturalization Records"
+          },
+          {
+            "code": "DOI",
+            "docType": [
+              {
+                "code": "DECL IN",
+                "description": "DECLARATION INTENT"
+              },
+              {
+                "code": "VOID DECL IN",
+                "description": "VOID DECL IN"
+              }
+            ],
+            "description": "DECLARATION OF INTENT"
+          },
+          {
+            "code": "CPA",
+            "docType": [
+              {
+                "code": "CPA",
+                "description": "Confederate Pension Applications"
+              }
+            ],
+            "description": "Confederate Pension Applications"
+          },
+          {
+            "code": "CHR",
+            "docType": [
+              {
+                "code": "CHR",
+                "description": "Custom House Reports"
+              }
+            ],
+            "description": "Custom House Reports"
+          },
+          {
+            "code": "BS",
+            "docType": [
+              {
+                "code": "B",
+                "description": "Broadsides"
+              }
+            ],
+            "description": "Broadsides"
+          },
+          {
+            "code": "BRANDS",
+            "docType": [
+              {
+                "code": "BRAND",
+                "description": "BRANDS"
+              },
+              {
+                "code": "VOID BRAND",
+                "description": "VOID BRAND"
+              }
+            ],
+            "description": "BRANDS"
+          },
+          {
+            "code": "AO",
+            "docType": [
+              {
+                "code": "AO",
+                "description": "Amnesty Oaths"
+              }
+            ],
+            "description": "Amnesty Oaths"
+          }
+        ],
+        "description": "Spanish Archives"
+      },
+      {
+        "code": "UCC",
+        "docGroup": [
+          {
+            "code": "ED",
+            "docType": [
+              {
+                "code": "E",
+                "description": "EMINENT DOMAIN"
+              }
+            ],
+            "description": "Eminent Domain"
+          }
+        ],
+        "description": "UCC"
+      },
+      {
+        "code": "WIL",
+        "docGroup": [
+          {
+            "code": "ROADS1800",
+            "docType": [
+              {
+                "code": "ROADS1800",
+                "description": "Roads 1800s"
+              }
+            ],
+            "description": "Roads 1800s"
+          },
+          {
+            "code": "RM",
+            "docType": [
+              {
+                "code": "RM",
+                "description": "ROAD MINUTES"
+              }
+            ],
+            "description": "Road Minutes"
+          }
+        ],
+        "description": "Wills"
+      }
+    ],
+    "pricing": {
+      "pricing": {
+        "perPage": 0,
+        "description": "No charge",
+        "perDocImage": 0,
+        "perIndexPage": 0,
+        "convenienceFee": {
+          "type": "no"
+        },
+        "creditCardModel": "KofileMerchantAccount",
+        "perCertification": 0
+      },
+      "thresholds": {
+        "freeMode": "page",
+        "isEnabled": false,
+        "freeNumber": 1,
+        "restartMode": "month"
+      },
+      "departments": {},
+      "subscriptions": {
+        "pricing": {
+          "GOVERNMENTAL": {
+            "title": "Governmental Subscription",
+            "perPage": 0,
+            "perMonth": 0,
+            "description": "Governmental Subscription",
+            "perDocImage": 0,
+            "perIndexPage": 0
+          }
+        },
+        "isEnabled": true
+      },
+      "enabledPaymentProviders": [
+        "platform"
+      ]
+    },
+    "docTypeLookupTable": {
+      "ABA": "ABANDONMENT",
+      "ABA EX": "ABANDONMENT EXPIRED",
+      "AN": "ASSUMED NAME",
+      "ANE": "ASSUMED NAME EXPIRED",
+      "INC": "INCORPORATED",
+      "UNI": "UNINCORPORATED",
+      "VOID AN": "VOID AN",
+      "YC": "Yturri Collection",
+      "UC": "Uhlrich Collections",
+      "PR": "Probate Records",
+      "UNFRAG": "Undated Fragments",
+      "EDC": "The Estate of David Crockett",
+      "EEDS": "The Estate of Erastus \u201cDeaf\u201d Smith",
+      "EJB": "The Estate of James Bowie",
+      "EMJVG": "The Estate of Maria Josefa Veramendi de Garza",
+      "ECM": "The Estate of Charles McKinley",
+      "BBFMRMD": "BASEBALL FOR REAL MEN DRAFT",
+      "CAMYR": "Cartoons Mayor",
+      "BCJNWW 2005": "BEXAR COUNTY JUDGE NELSON W WOLFF 2005",
+      "CAMCO 8687": "CAMPAIGN COUNCIL 1986-1987",
+      "CICO87": "CITY COUNCIL 1987",
+      "CICO8891": "CITY COUNCIL 1988-1991",
+      "CICO90": "CITY COUNCIL 1990",
+      "CICO9091": "CITY COUNCIL 1990-1991",
+      "CONRA7374": "CONGRESSMAN RACE 1973-1974",
+      "CONMA9091": "COUNCIL MAYOR 1990-1991",
+      "CONMARA91": "COUNCIL MAYORAL Race 1991",
+      "COJU03": "COUNTY JUDGE 2003",
+      "COJU04": "COUNTY JUDGE 2004",
+      "COJU02": "COUNTY JUDGE 2002",
+      "COJU01": "COUNTY JUDGE 2001",
+      "MA91": "MAYOR 1991",
+      "MA9495": "MAYOR 1994-1995",
+      "MA9394": "MAYOR 1993-1994",
+      "MA92": "MAYOR 1992",
+      "MA9293": "MAYOR 1992-1993",
+      "MB8195": "MAYOR BOOK 1981-1995",
+      "MANM1": "MAYOR NEWS/MISC 1",
+      "MANM2": "MAYOR NEWS/MISC 2",
+      "NWWBCJ0708": "NELSON W WOLFF BEXAR COUNTY JUDGE 2007-2008",
+      "NWWBCJ09": "NELSON W WOLFF BEXAR COUNTY JUDGE 2009",
+      "NWWBCJ10": "NELSON W WOLFF BEXAR COUNTY JUDGE 2010",
+      "NWWBCJ11": "NELSON W WOLFF BEXAR COUNTY JUDGE 2011",
+      "NWWBCJ12": "NELSON W WOLFF BEXAR COUNTY JUDGE 2012",
+      "NWWBCJ13": "NELSON W WOLFF BEXAR COUNTY JUDGE 2013",
+      "NWWBCJ14": "NELSON W WOLFF BEXAR COUNTY JUDGE 2014",
+      "SLHS7172": "STATE LEGISLATURE HOUSE SENATE 1971-1972",
+      "STS7273": "STATE SENATE 1972-1973",
+      "AHC": "Anton Hajek Collection",
+      "MPLATS": "MAPS/PLATS",
+      "WR": "Writs",
+      "TRA": "Traffic Appeals",
+      "SO": "Special Orders",
+      "PRBK": "PRB Backfile",
+      "PRBDF": "PRB DayForward",
+      "PRBMIN": "PRB Minutes",
+      "PRBMISC": "PRB MISC",
+      "PRBT": "Probate",
+      "BK": "Book keeping",
+      "CRIMCC": "CC",
+      "CBD": "Convict Bond",
+      "CR": "CR",
+      "CRIM": "CRIM MISC",
+      "CRIMA": "Criminal Abandonment",
+      "CRIMAP": "Criminal Appeals",
+      "CRIMDO": "Criminal Dockets",
+      "CRIMIX": "Criminal Index",
+      "CRIMJO": "Criminal Journal",
+      "CRIMMIN": "Criminal Minutes",
+      "CRIMBA": "Criminal Backfile",
+      "CRIMDAY": "Criminal Dayforward",
+      "HISTCA": "Historical Cases",
+      "ICW": "Index Capias Warrant",
+      "CIV": "Civil",
+      "BFC": "Bond Forfeit Case",
+      "CCM": "COMMISSIONERS COURT MINUTES",
+      "VOID CCM": "VOID CCM",
+      "A": "ATTACHMENTS",
+      "IB": "INDEX BOOK",
+      "CCMI": "CCM INDEX BOOKS",
+      "CERTA": "Certified Agenda",
+      "H PME": "HISTORICAL PROBATE MINUTES-EPILEPTIC",
+      "CCCJ8081": "CRIMINAL COUNTY COURT JOURNAL 1880-1881",
+      "NOF": "NOTICE OF FORECLOSE",
+      "VOID FC": "VOID FC",
+      "UL": "UNSOLD LANDS 1882-1933",
+      "SD": "Spanish Deeds",
+      "ISDG": "Index to Spanish Deeds & Grants (CIRCA) 1703-1839",
+      "ROSDVL2": "RECORDS OF SPANISH DEEDS VOLUME 2",
+      "ROSDVL3": "RECORDS OF SPANISH DEEDS VOLUME 3",
+      "GLOR": "General Land Office Records",
+      "ROS": "Record of Surveys",
+      "ROADS": "Roads late 1800s",
+      "PWOMAP": "PUBLIC WORKS MAPS",
+      "NS": "Notice of Sale",
+      "MRBW": "Maps of Roads/Bodies of Water",
+      "WRR": "WATER RIGHTS RECORDS 1894-1920",
+      "LET": "Letter From C.F. Russi Road Superintendent 1894",
+      "HP": "Historical Plat",
+      "HLR": "Hospital Liens/Releases",
+      "GISD": "GENERAL INDEX TO SPANISH DEEDS",
+      "FOWN": "FOREIGN OWNERSHIP",
+      "FN": "Field Notes",
+      "INSFN": "INDEX SURVEYOR/FIELD NOTES",
+      "AOS": "Alien ownership (SIC)",
+      "AFF": "AFFIDAVIT",
+      "SAFF": "SURVEY AFFIDAVIT",
+      "LBS": "Lands Bought and Sold",
+      "IALT": "Index - Abstract of Land Title 1891",
+      "VOID MB": "VOID MB",
+      "NEW BRAND": "NEW BRAND",
+      "RENEWAL BRAND": "RENEWAL BRAND",
+      "RELEASE BRAND": "RELEASE BRAND",
+      "TRANSFER BRAND": "TRANSFER BRAND",
+      "NB": "NEW BRANDS",
+      "ROA": "RECORD OF ANIMALS INSPECTION",
+      "MARRIAGE": "MARRIAGE LICENSE",
+      "VOID MC": "VOID MC",
+      "INF MAR": "INFORMAL MARRIAGE",
+      "VOID INF": "VOID INF",
+      "TRDMRK": "Trademarks",
+      "ES": "ESTRAY",
+      "MISC MS": "MISCELLANEOUS MS",
+      "NT": "NOTARY JOURNALS",
+      "VOID MS": "VOID MS",
+      "ITM": "Record of Intent to Marry 1923-1933",
+      "ER": "Election Records",
+      "RCCA": "Request to Clerk of Civil Appeals 1893-1904",
+      "BPD": "Booklets/Programs/Dissertations",
+      "BCC": "Bexar County Court",
+      "SM": "SCHOOL MINUTES",
+      "AMPLAT": "AMENDED PLAT",
+      "CONDO P": "CONDO PLAT",
+      "PLAT": "PLAT",
+      "REPLAT": "REPLAT",
+      "VACATE P": "VACATE & RESUB PLAT",
+      "VOID PL": "VOID PL",
+      "TC": "TAX CERTIFICATE",
+      "PI1": "Plat Index A-N 1891-1972",
+      "PI2": "Plat Index O-Z 1891-1972",
+      "CCB 1960": "COUNTY/CITY BLOCK 1960s",
+      "PUB": "PUBLIC NOTICE",
+      "VOID PUB": "VOID PUB",
+      "BKTR": "BK-TR",
+      "RELS": "REL",
+      "TERM": "TERM",
+      "UC3 ASGN": "UCC3 ASSIGNMENT PP",
+      "UC3AMND": "UCC3 AMENDMENT PP",
+      "UC3CONT": "UCC3 CONTINUATION PP",
+      "UC3PREL": "UCC3 PARTIAL RELEASE PP",
+      "UC3TERM": "UCC3 TERMINATION PP",
+      "UCC PP": "UCC/PERSONAL PROPERTY RECORDS",
+      "UCC3 PP": "UCC3 PERSONAL PROPERTY",
+      "VOID UCC": "VOID UCC",
+      "UCC SE": "UCC SECURED",
+      "FTL PP": "FEDERAL TAX LIEN PP",
+      "FTLCTPP": "FEDERAL TAX LIEN CERTIFICATE PP",
+      "RLFTLPP": "RELEASE OF FEDERAL TAX LIEN PP",
+      "VOID FTL PP": "VOID FTL PP",
+      "WRM": "Water Rights/Maps",
+      "UCC": "UCC",
+      "UCC1 RP": "UCC 1 REAL PROPERTY",
+      "UCC3RP": "UCC 3 REAL PROPERTY",
+      "VOID UCCRP": "VOID UCC RP",
+      "PART RL STL": "PARTIAL RELEASE STL",
+      "RL STL": "RELEASE OF STATE TAX LIEN",
+      "STL": "STATE TAX LIEN",
+      "VOID STL": "VOID STL",
+      "ACKNOW": "ACKNOWLEDGEMENT",
+      "ADDENDM": "ADDENDUM",
+      "AFFIDAV": "AFFIDAVIT",
+      "AGREEMT": "AGREEMENT",
+      "AMEND": "AMENDMENT",
+      "APPLICA": "APPLICATION",
+      "APPT": "APPOINTMENT",
+      "ART INC": "ARTICLES OF INC",
+      "ASIGN J": "ASSIGNMENT OF JUDGMENT",
+      "ASSN": "ASSIGNMENT",
+      "ASUMPTN": "ASSUMPTION",
+      "BFA": "BIRTH FROM ABROAD",
+      "BILLOFS": "BILL OF SALE",
+      "BOND": "BOND",
+      "BTI": "BOND TO INDEMNIFY",
+      "CANC J": "CANCELLATION OF JUDGMENT",
+      "CANCEL": "CANCELLATION",
+      "CEMTRY": "CEMETERY",
+      "CERT": "CERTIFICATE",
+      "CERT CP": "CERTIFIED COPY",
+      "CIQ": "CONFLICT OF INTEREST QUESTIONNAIRE",
+      "CONDAMC": "CONDOMINIUM ASSOCIATION MANAGEMENT CERTIFICATE",
+      "CONTRAC": "CONTRACT",
+      "CORP": "CORPORATE",
+      "CORRECT": "CORRECTION",
+      "CSUP LN": "CHILD SUPPORT LN",
+      "DA": "DEED AFFIDAVIT",
+      "DECLAR": "DECLARATION",
+      "DECREE": "DECREE",
+      "DEED": "DEED",
+      "DESGN": "DESIGNATION",
+      "DISMISS": "DISMISSAL",
+      "DT": "DEED OF TRUST",
+      "EASEMNT": "EASEMENT",
+      "EXT": "EXTENSION",
+      "HMST AF": "HOMESTEAD AFFIDAVIT",
+      "HOSP LN": "HOSPITAL LIEN",
+      "JUDG": "JUDGMENT",
+      "LEASE": "LEASE",
+      "LETTERS": "LETTERS",
+      "LEVY": "LEVY",
+      "LIEN": "LIEN",
+      "LIS PEN": "LIS PENDENS",
+      "LNLD LN": "LANDLORD LIEN",
+      "LOAN": "LOAN",
+      "M MORTG": "MASTER MORTGAGE",
+      "MARRIAGE OPR": "MARRIAGE LICENSE OPR",
+      "MECHLN": "MECHANICS LIEN",
+      "MEMO": "MEMORANDUM",
+      "MISC": "MISCELLANEOUS",
+      "MOD": "MODIFICATION",
+      "MORTG": "MORTGAGE",
+      "NOTE": "NOTE",
+      "NOTICE": "NOTICE",
+      "ORDER": "ORDER",
+      "ORDIN": "ORDINANCE",
+      "OWNCERT": "PROPERTY OWNERS ASSOCIATION MANAGEMENT CERT",
+      "P AS J": "PARTIAL ASSIGNMENT OF JUDGMENT",
+      "P RL J": "PARTIAL RELEASE OF JUDGMENT",
+      "P TR J": "PARTIAL TRANSFER OF JUDGMENT",
+      "PA": "POWER OF ATTORNEY",
+      "PART RL": "PARTIAL RELEASE",
+      "PLY": "POLYGRAPH LICENSE",
+      "PROBATE": "PROBATE",
+      "PWB": "PUBLIC WEIGHER BOND",
+      "RECONV": "RECONVEYANCE",
+      "REINST": "REINSTATEMENT",
+      "REL H LN": "RELEASE OF HL",
+      "RELEASE": "RELEASE",
+      "REMOVAL": "REMOVAL",
+      "RENEW": "RENEWAL",
+      "REPLACE": "REPLACEMENT",
+      "RESCISS": "RESCISSION",
+      "RESIGN": "RESIGNATION",
+      "RESOLUT": "RESOLUTION",
+      "REST LN": "AFFIDAVIT RESTITUTION LIEN",
+      "RESTRICT": "RESTRICTIONS",
+      "REVOCTN": "REVOCATION",
+      "RFSHEET": "REFERENCE SHEET",
+      "RIC": "RETAIL INST CONTRACT",
+      "RL H LN": "RL OF HOSP LN",
+      "RL J": "RELEASE OF JUDGMENT",
+      "RT WAY": "RIGHT OF WAY AGREEMENT",
+      "SAT": "SATISFACTION",
+      "SAT J": "SATISFACTION OF JUDGMENT",
+      "STATEMT": "STATEMENT",
+      "SUB": "SUBSTITUTION",
+      "SUBORD": "SUBORDINATION",
+      "TERMIN": "TERMINATION",
+      "TRANS": "TRANSFER",
+      "TRANS J": "TRANSFER OF JUDGMENT",
+      "TRSCR J": "TRANSCRIPT OF JUDGMENT",
+      "TRUST": "TRUST",
+      "TX HMST": "TX HOMESTEAD",
+      "VARIANC": "VARIANCE",
+      "VOID OPR": "VOID OPR",
+      "WAIVER": "WAIVER",
+      "WATER P": "WATER RIGHTS/PERMIT",
+      "WILL": "WILL & TESTAMENT",
+      "WP MAPS": "WATER PERMIT MAPS",
+      "ASSN SEC": "ASSIGNMENT SECURED",
+      "PA SEC": "POWER OF ATTORNEY SECURED",
+      "DT SEC": "DEED OF TRUST SECURED",
+      "FC": "FORECLOSURE",
+      "WP": "WATER PERMIT",
+      "CP": "CONDOMINIUM PLAN",
+      "NC": "NURSING CERTIFICATE",
+      "DR": "DENTAL RECORDS",
+      "SR": "State-Release",
+      "SJ": "State-Judgment",
+      "FTL": "FEDERAL TAX LIEN",
+      "FTLCERT": "FEDERAL TAX LIEN CERTIFICATE",
+      "PART RL FTL": "PARTIAL RELEASE FTL",
+      "RL FTL": "RELEASE OF FTL",
+      "VOID FTL": "VOID FTL",
+      "WATER": "WATER RIGHTS",
+      "WE": "Wills & Estates",
+      "UFOT": "Unidentified File Objects Translations",
+      "TRANSL": "TRANSLATION RECORDS 1731-1835",
+      "SP": "SPANISH ARCHIVES",
+      "VOID SP": "VOID SPANISH ARCHIVES",
+      "PI": "PROVINCIAS INTERNA",
+      "MEM": "MEMOIRS",
+      "MF": "MISC FRAGMENTS",
+      "MI": "MEMOIRS INTERNAL",
+      "DAD": "DEPOSITARIA ANO DE 1833-1834",
+      "CYLLSM": "Constitucion Y Leyes de la Sociedad Mutualista Mexicana",
+      "PEJB": "Papers in the Estate of James Bowie",
+      "PEDC": "Papers in the Estate of David Crockett",
+      "PEMJVG": "Papers in the Estate of Maria Josefa Veramendi de Garza",
+      "PEEDS": "Papers in the Estate of Erastus \"Deaf\" Smith",
+      "PECM": "Papers in the Estate of Charles Mckinley",
+      "UF": "Undated Fragments",
+      "ROSDV2": "RECORDS OF SPANISH DEEDS VOLUME 2",
+      "ROSDV3": "RECORDS OF SPANISH DEEDS VOLUME 3",
+      "PA1": "Postal Administration",
+      "O": "Oficios",
+      "NSDR": "Nuestra Se\u00f1ora del Rosario",
+      "SADV": "San Antonio de Valero",
+      "SJC": "San Juan Capistrano",
+      "PC": "Pur\u00edsima Concepci\u00f3n",
+      "SFDLE": "San Francisco de la Espada",
+      "SJSMDA": "San Jos\u00e9 y San Miguel de Aguayo",
+      "SJR": "San Juan Road Chavez Road Mission",
+      "MSR": "Mission Records",
+      "MR": "Military Reports",
+      "MAR": "Marriage",
+      "RBP": "Rebel Properties",
+      "POA": "Powers of Attorney",
+      "CAR": "Contracts, Agreements & Receipts",
+      "P": "Protocols",
+      "L": "Litigations",
+      "DELP": "Decrees, Edicts, Laws & Proclamation",
+      "LBG": "La Bah\u00eda-Goliad",
+      "N": "Nacogdoches",
+      "SP1": "San Patricio",
+      "LGS": "Land Grants & Sales",
+      "LOBC": "Land Outside Bexar County",
+      "GISDD": "GENERAL INDEX TO SPANISH DEEDS",
+      "INR": "INDEX TO NATURALIZATION RECORDS",
+      "DECL IN": "DECLARATION INTENT",
+      "VOID DECL IN": "VOID DECL IN",
+      "CPA": "Confederate Pension Applications",
+      "CHR": "Custom House Reports",
+      "B": "Broadsides",
+      "BRAND": "BRANDS",
+      "VOID BRAND": "VOID BRAND",
+      "AO": "Amnesty Oaths",
+      "E": "EMINENT DOMAIN",
+      "ROADS1800": "Roads 1800s",
+      "RM": "ROAD MINUTES"
+    },
+    "fraudAlert": {
+      "enabled": true,
+      "verbiage": {
+        "landingPage": {
+          "legalCopy": [
+            "ANY ACCESS TO OR USE OF THIS SERVICE IS SUBJECT TO THE TERMS AND CONDITIONS OF THIS DISCLAIMER. ANY USER WHO ATTEMPTS TO GAIN ACCESS TO ANY INFORMATION FROM THE WEB SITE AGREES AND UNDERSTANDS THAT HE, SHE, OR IT RELEASES BEXAR COUNTY, ITS ELECTED OFFICIALS, EMPLOYEES, CONTRACTORS, AGENTS, AND REPRESENTATIVES FROM ANY LIABILITY OR DAMAGES ASSOCIATED WITH THE COMPLETENESS, ACCURACY, OR RELAIBILITY OF SUCH INFORMATION.",
+            "This Web Site is owned, operated, and managed by a third-party service provider (the \u201cHosted Solution Provider\u201d).  All data, documents, materials, and other information (collectively, the \u201cInformation\u201d) submitted by you in connection with this Web Site is received, stored, managed, scanned, maintained, and made accessible to users such as yourself by the Hosted Solution Provider and not the County.",
+            "COUNTY has tried to ensure that the Information contained in and retrieved from this Web Site  is accurate. Information is available on an \u201cAS-IS\u201d and \u201cAS-AVAILABLE\u201d basis.",
+            "COUNTY does not represent, warrant, or endorse the accuracy or reliability of any of the Information accessed from any of the services contained in this Web Site (the \u2018Service\u2019). The COUNTY does not make any representation as to the accuracy, reliability, copyright compliance, legality or completeness of the Information or Service. COUNTY shall not be liable for errors  in the Information contained in or retrieved from this Website or for any damages in connection with the use of such Information. Assessing or determining the completeness, accuracy, and reliability of the Information retrieved is the sole responsibility of the user.",
+            "COUNTY EXPRESSLY DISCLAIMS ANY AND ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING, WITHOUT LIMITATION, WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE, WITH RESPECT TO THE SERVICE AND INFORMATION. COUNTY DOES NOT WARRANT THAT USE OF THIS SERVICE WILL BE UNINTERRUPTED OR ERROR FREE AND DOES NOT GUARANTEE AGAINST DETECTION OR SPREAD OF ANY COMPUTER VIRUSES OR OTHER DAMAGING SOFTWARE, HARDWARE, NETWORKING, HOSTED SOLUTION, OR COMPUTER-RELATED APPLICATIONS, TECHNOLOGIES, EITHER NOW OR IN THE FUTURE.",
+            "COUNTY assumes no liability for failure to provide any property owner, title company, legal counsel, or other interested person or entity with requested notice of recorded Information.  The COUNTY, its officers, and employees assume no liability for fulfilling their legal duty to record documents, even if those documents are in some instances later determined to be erroneous, fraudulent, or invalid.",
+            "By signing up for the Service, you acknowledge that you have read and agree to the above disclaimer."
+          ]
+        }
+      },
+      "omitValues": {
+        "legals": [
+          "SEE INSTR",
+          "SEE INSTRUMENT"
+        ]
     
