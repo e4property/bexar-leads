@@ -1,7 +1,8 @@
 """
 Bexar County Motivated Seller Lead Scraper
-- Reads results from window.__data['documents'] key
-- Logs in with CLERK_EMAIL / CLERK_PASSWORD secrets
+Approach: Log in with Playwright, steal the auth cookies, then
+make direct API calls using requests with those cookies.
+This bypasses the React SPA entirely.
 """
 
 from __future__ import annotations
@@ -34,9 +35,8 @@ logging.basicConfig(
 log = logging.getLogger(__name__)
 
 LOOKBACK_DAYS  = int(os.getenv("LOOKBACK_DAYS", "7"))
-# Try multiple env var name variations in case of secret naming issues
-CLERK_EMAIL    = (os.getenv("CLERK_EMAIL") or os.getenv("clerk_email") or "").strip()
-CLERK_PASSWORD = (os.getenv("CLERK_PASSWORD") or os.getenv("clerk_password") or "").strip()
+CLERK_EMAIL    = (os.getenv("CLERK_EMAIL") or "").strip()
+CLERK_PASSWORD = (os.getenv("CLERK_PASSWORD") or "").strip()
 CLERK_BASE     = "https://bexar.tx.publicsearch.us"
 ARCGIS_URL     = "https://maps.bexar.org/arcgis/rest/services/Parcels/MapServer/0/query"
 
@@ -158,132 +158,57 @@ def compute_score(record, flags):
 
 
 # ---------------------------------------------------------------------------
-# Parse a single document record from the Neumo SPA state
+# Parse document records
 # ---------------------------------------------------------------------------
 
 def parse_doc(src, doc_type):
-    """Parse one document from the window.__data['documents'] structure."""
     if not isinstance(src, dict):
         return None
     cat, cat_label = DOC_TYPE_MAP.get(doc_type, (doc_type, doc_type))
-
-    # Neumo stores documents with these field names
-    doc_num = clean(
-        src.get("docNum") or src.get("instrumentNumber") or
-        src.get("docNumber") or src.get("recordingNumber") or
-        src.get("instrument") or src.get("id") or ""
-    )
-    filed = clean(
-        src.get("recordedDate") or src.get("filedDate") or
-        src.get("dateRecorded") or src.get("recordingDate") or
-        src.get("recorded") or ""
-    )
-    grantor = clean(
-        src.get("grantor") or src.get("grantorName") or
-        src.get("grantors") or src.get("party1Name") or
-        src.get("sellerName") or src.get("owner") or
-        src.get("name") or ""
-    )
-    grantee = clean(
-        src.get("grantee") or src.get("granteeName") or
-        src.get("grantees") or src.get("party2Name") or ""
-    )
-    legal  = clean(src.get("legalDescription") or src.get("legal") or src.get("description") or "")
-    amount = parse_amount(str(src.get("considerationAmount") or src.get("amount") or "0"))
+    src = src.get("_source", src)
+    doc_num = clean(src.get("docNum") or src.get("instrumentNumber") or
+                    src.get("docNumber") or src.get("recordingNumber") or
+                    src.get("instrument") or src.get("id") or "")
+    filed   = clean(src.get("recordedDate") or src.get("filedDate") or
+                    src.get("dateRecorded") or src.get("recordingDate") or
+                    src.get("recorded") or "")
+    grantor = clean(src.get("grantor") or src.get("grantorName") or
+                    src.get("grantors") or src.get("party1Name") or
+                    src.get("sellerName") or src.get("owner") or "")
+    grantee = clean(src.get("grantee") or src.get("granteeName") or "")
+    legal   = clean(src.get("legalDescription") or src.get("legal") or "")
+    amount  = parse_amount(str(src.get("considerationAmount") or src.get("amount") or "0"))
     inst_id   = src.get("id") or src.get("instrumentId") or doc_num
     clerk_url = (CLERK_BASE + "/instruments/" + str(inst_id)) if inst_id else ""
-
     if filed and "T" in filed:
         try:
             filed = datetime.fromisoformat(filed.split("T")[0]).strftime("%m/%d/%Y")
         except Exception:
             pass
-
     if not (doc_num or filed):
         return None
-
     return {
-        "doc_num":   doc_num,
-        "doc_type":  doc_type,
-        "filed":     filed,
-        "cat":       cat,
-        "cat_label": cat_label,
-        "owner":     grantor,
-        "grantee":   grantee,
-        "amount":    amount,
-        "legal":     legal,
-        "clerk_url": clerk_url,
+        "doc_num": doc_num, "doc_type": doc_type,
+        "filed": filed, "cat": cat, "cat_label": cat_label,
+        "owner": grantor, "grantee": grantee,
+        "amount": amount, "legal": legal, "clerk_url": clerk_url,
     }
 
-
-def extract_from_documents_state(state, doc_type):
-    """
-    Extract records from window.__data['documents'].
-    The 'documents' key contains the search results in the Neumo SPA.
-    """
-    records = []
-    if not state or not isinstance(state, dict):
-        return records
-
-    # The key insight: results are in state['documents']
-    docs_state = state.get("documents", {})
-    if not docs_state:
-        return records
-
-    log.info("  [DOCS] documents state keys: %s",
-             list(docs_state.keys())[:10] if isinstance(docs_state, dict) else type(docs_state).__name__)
-
-    # Try various sub-keys
-    items = []
-    if isinstance(docs_state, dict):
-        items = (
-            docs_state.get("results", []) or
-            docs_state.get("items", []) or
-            docs_state.get("hits", []) or
-            docs_state.get("documents", []) or
-            docs_state.get("data", []) or
-            docs_state.get("list", []) or
-            []
-        )
-        # If docs_state itself is the list structure
-        if not items:
-            for k, v in docs_state.items():
-                if isinstance(v, list) and len(v) > 0:
-                    items = v
-                    log.info("  [DOCS] Found list at key '%s' len=%d", k, len(v))
-                    break
-    elif isinstance(docs_state, list):
-        items = docs_state
-
-    log.info("  [DOCS] Items found: %d", len(items))
-
-    for item in items:
-        try:
-            rec = parse_doc(item, doc_type)
-            if rec:
-                records.append(rec)
-        except Exception as exc:
-            log.warning("  [DOCS] Parse error: %s", exc)
-
-    return records
-
-
-def extract_from_xhr(body, doc_type):
-    """Extract records from XHR JSON response."""
-    if not body or not isinstance(body, (dict, list)):
+def parse_response(data, doc_type):
+    if not data:
         return []
     records = []
     items = []
-    if isinstance(body, list):
-        items = body
-    elif isinstance(body, dict):
+    if isinstance(data, list):
+        items = data
+    elif isinstance(data, dict):
         items = (
-            body.get("hits", {}).get("hits", []) if isinstance(body.get("hits"), dict) else []
-        ) or body.get("hits", []) or body.get("results", []) or \
-            body.get("documents", []) or body.get("items", []) or \
-            body.get("data", []) or []
-        if not items and ("docNum" in body or "instrumentNumber" in body):
-            items = [body]
+            data.get("hits", {}).get("hits", []) if isinstance(data.get("hits"), dict) else []
+        ) or data.get("hits", []) or data.get("results", []) or \
+            data.get("documents", []) or data.get("items", []) or \
+            data.get("data", []) or []
+        if not items and ("docNum" in data or "instrumentNumber" in data):
+            items = [data]
     for item in items:
         try:
             rec = parse_doc(item, doc_type)
@@ -295,37 +220,38 @@ def extract_from_xhr(body, doc_type):
 
 
 # ---------------------------------------------------------------------------
-# Authenticated Playwright scraper
+# Step 1: Get auth cookies via Playwright login
 # ---------------------------------------------------------------------------
 
-class AuthenticatedScraper:
-    def __init__(self, start_ymd, end_ymd):
-        self.start_ymd = start_ymd
-        self.end_ymd   = end_ymd
+async def get_auth_cookies():
+    """Log in and return cookies dict for use with requests."""
+    if not CLERK_EMAIL or not CLERK_PASSWORD:
+        log.warning("No credentials. Trying without auth.")
+        return {}
 
-    def _url(self, doc_type, offset=0, limit=200):
-        return (
-            CLERK_BASE + "/results"
-            + "?department=RP"
-            + "&limit=" + str(limit)
-            + "&offset=" + str(offset)
-            + "&recordedDateRange=" + self.start_ymd + "," + self.end_ymd
-            + "&searchOcrText=false"
-            + "&searchType=docType"
-            + "&searchValue=" + doc_type
+    if not PLAYWRIGHT_AVAILABLE:
+        return {}
+
+    cookies = {}
+    async with async_playwright() as pw:
+        browser = await pw.chromium.launch(
+            headless=True,
+            args=["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"],
         )
+        context = await browser.new_context(
+            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+            ignore_https_errors=True,
+        )
+        page = await context.new_page()
 
-    async def _login(self, page, context):
-        if not CLERK_EMAIL or not CLERK_PASSWORD:
-            log.warning("Credentials not set. Proceeding unauthenticated.")
-            return False
         try:
-            log.info("Logging in as %s***", CLERK_EMAIL[:4])
+            log.info("Navigating to signin...")
             await page.goto(CLERK_BASE + "/signin", wait_until="networkidle", timeout=30000)
             await asyncio.sleep(2)
 
+            # Fill email
             for sel in ["input[type='email']", "#email", "input[name='email']",
-                        "input[autocomplete='email']", "input[placeholder*='email' i]"]:
+                        "input[autocomplete='email']"]:
                 try:
                     await page.fill(sel, CLERK_EMAIL, timeout=3000)
                     log.info("Email filled: %s", sel)
@@ -333,6 +259,7 @@ class AuthenticatedScraper:
                 except Exception:
                     continue
 
+            # Fill password
             for sel in ["input[type='password']", "#password", "input[name='password']"]:
                 try:
                     await page.fill(sel, CLERK_PASSWORD, timeout=3000)
@@ -341,179 +268,213 @@ class AuthenticatedScraper:
                 except Exception:
                     continue
 
+            # Submit
             for sel in ["button[type='submit']", "button:has-text('Sign In')",
-                        "button:has-text('Log In')", "input[type='submit']"]:
+                        "button:has-text('Log In')"]:
                 try:
                     await page.click(sel, timeout=3000)
-                    log.info("Submit: %s", sel)
                     break
                 except Exception:
                     continue
 
             await page.wait_for_load_state("networkidle", timeout=20000)
-            await asyncio.sleep(3)
+            await asyncio.sleep(2)
 
-            url     = page.url
-            cookies = [c["name"] for c in await context.cookies()]
+            url = page.url
+            all_cookies = await context.cookies()
             log.info("Post-login URL: %s", url)
-            log.info("Post-login cookies: %s", cookies)
-            success = "signin" not in url.lower() or "authToken" in str(cookies)
-            log.info("Login %s", "SUCCESS" if success else "FAILED")
-            return success
+            log.info("Cookies: %s", [c["name"] for c in all_cookies])
+
+            cookies = {c["name"]: c["value"] for c in all_cookies}
+            if "authToken" in cookies:
+                log.info("Login SUCCESS - got authToken")
+            else:
+                log.warning("Login may have failed - no authToken in cookies")
+
         except Exception as exc:
             log.warning("Login error: %s", exc)
-            return False
 
-    async def _get_state_and_records(self, page, doc_type):
-        """Get window.__data and extract records from 'documents' key."""
-        # Wait for page to finish loading results
-        try:
-            await page.wait_for_function(
-                """() => {
-                    if (!window.__data) return false;
-                    const docs = window.__data.documents;
-                    if (!docs) return false;
-                    // Check if documents state has loaded (not just router state)
-                    const keys = Object.keys(docs);
-                    return keys.length > 0;
-                }""",
-                timeout=20000
-            )
-            log.info("  [WAIT] documents state loaded")
-        except Exception:
-            log.info("  [WAIT] timeout - checking state anyway")
+        await browser.close()
 
-        try:
-            state = await page.evaluate("() => window.__data || null")
-        except Exception as exc:
-            log.warning("  [JS] evaluate error: %s", exc)
-            return []
+    return cookies
 
-        if not state:
-            log.info("  [JS] window.__data is null")
-            return []
 
-        if isinstance(state, dict):
-            log.info("  [JS] state keys: %s", list(state.keys())[:15])
+# ---------------------------------------------------------------------------
+# Step 2: Use cookies to call the Neumo search API directly
+# ---------------------------------------------------------------------------
 
-            # Save state dump for first LP search (for debugging)
-            if doc_type == "LP":
-                try:
-                    dump_path = Path("data/state_dump.json")
-                    dump_path.parent.mkdir(parents=True, exist_ok=True)
-                    dump_path.write_text(
-                        json.dumps(state, indent=2, default=str)[:200000],
-                        encoding="utf-8"
-                    )
-                    log.info("  [JS] Saved state dump")
-                except Exception:
-                    pass
+class DirectAPIScraper:
+    """
+    Call the Neumo platform API directly using auth cookies from login.
+    Tries multiple known API endpoint patterns.
+    """
 
-        return extract_from_documents_state(state, doc_type)
+    # Known Neumo API endpoint patterns
+    API_PATTERNS = [
+        "/api/search/results",
+        "/api/publicly/search/results",
+        "/api/instruments/search",
+        "/api/search",
+        "/api/publicly/instruments",
+    ]
 
-    async def _scrape_doc_type(self, page, doc_type):
-        collected = []
+    def __init__(self, start_ymd, end_ymd, cookies):
+        self.start_ymd = start_ymd
+        self.end_ymd   = end_ymd
+        self.session   = requests.Session()
+        self.session.headers.update({
+            "User-Agent":      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/122.0.0.0 Safari/537.36",
+            "Accept":          "application/json, text/plain, */*",
+            "Accept-Language": "en-US,en;q=0.9",
+            "Referer":         CLERK_BASE + "/results",
+            "Origin":          CLERK_BASE,
+            "X-Requested-With": "XMLHttpRequest",
+        })
+        # Set cookies
+        for name, value in cookies.items():
+            self.session.cookies.set(name, value, domain="bexar.tx.publicsearch.us")
+        log.info("Session cookies set: %s", list(cookies.keys()))
 
-        async def on_response(response):
-            url = response.url
-            if "publicsearch.us" not in url:
-                return
-            if response.status != 200:
-                return
-            ct = response.headers.get("content-type", "")
-            if "json" in ct:
-                try:
-                    body = await response.json()
-                    if body:
-                        collected.append((url, body))
-                except Exception:
-                    pass
+    def _search_params(self, doc_type, offset=0, limit=200):
+        return {
+            "department":        "RP",
+            "limit":             str(limit),
+            "offset":            str(offset),
+            "recordedDateRange": self.start_ymd + "," + self.end_ymd,
+            "searchOcrText":     "false",
+            "searchType":        "docType",
+            "searchValue":       doc_type,
+        }
 
-        page.on("response", on_response)
-        all_records = []
-
-        for attempt in range(1, MAX_RETRIES + 1):
-            collected.clear()
-            url = self._url(doc_type, offset=0, limit=200)
+    def discover_api(self):
+        """Try API patterns to find the working one."""
+        for pattern in self.API_PATTERNS:
+            url = CLERK_BASE + pattern
             try:
-                await page.goto(url, wait_until="domcontentloaded", timeout=45000)
-                await asyncio.sleep(3)
+                resp = self.session.get(url, params=self._search_params("LP"), timeout=15)
+                log.info("API probe %s -> %d (ct=%s)",
+                         pattern, resp.status_code,
+                         resp.headers.get("content-type","")[:40])
+                if resp.status_code == 200:
+                    ct = resp.headers.get("content-type","")
+                    if "json" in ct:
+                        data = resp.json()
+                        log.info("  JSON keys: %s", list(data.keys())[:8] if isinstance(data, dict) else "list")
+                        return url
+            except Exception as exc:
+                log.warning("  Probe error: %s", exc)
+        return None
 
-                # Method 1: XHR interception
-                for resp_url, body in collected:
-                    recs = extract_from_xhr(body, doc_type)
-                    if recs:
-                        log.info("  [XHR] %d records", len(recs))
-                        all_records.extend(recs)
-
-                # Method 2: Read from window.__data['documents']
-                if not all_records:
-                    recs = await self._get_state_and_records(page, doc_type)
-                    if recs:
-                        log.info("  [STATE] %d records from documents", len(recs))
-                        all_records.extend(recs)
-
-                # Paginate
-                if all_records:
-                    offset = len(all_records)
-                    while True:
-                        collected.clear()
-                        await page.goto(
-                            self._url(doc_type, offset=offset),
-                            wait_until="domcontentloaded", timeout=30000
-                        )
-                        await asyncio.sleep(5)
-                        page_recs = []
-                        for _, body in collected:
-                            page_recs.extend(extract_from_xhr(body, doc_type))
-                        if not page_recs:
-                            page_recs = await self._get_state_and_records(page, doc_type)
-                        if not page_recs or len(page_recs) < 5:
-                            break
-                        all_records.extend(page_recs)
+    def search_doc_type(self, api_url, doc_type):
+        records = []
+        offset  = 0
+        while True:
+            for attempt in range(MAX_RETRIES):
+                try:
+                    resp = self.session.get(
+                        api_url,
+                        params=self._search_params(doc_type, offset=offset),
+                        timeout=30
+                    )
+                    if resp.status_code != 200:
+                        log.warning("  %s status %d", doc_type, resp.status_code)
+                        return records
+                    data = resp.json()
+                    page_recs = parse_response(data, doc_type)
+                    if page_recs:
+                        records.extend(page_recs)
+                        if len(page_recs) < 200:
+                            return records
                         offset += len(page_recs)
-
+                    else:
+                        return records
+                    break
+                except Exception as exc:
+                    log.warning("  Attempt %d: %s", attempt+1, exc)
+                    if attempt < MAX_RETRIES - 1:
+                        time.sleep(RETRY_DELAY)
+            else:
                 break
+        return records
+
+    def run(self):
+        log.info("Discovering API endpoint...")
+        api_url = self.discover_api()
+
+        if not api_url:
+            log.warning("No working API found. Trying results page scrape...")
+            return self.scrape_results_pages()
+
+        log.info("Using API: %s", api_url)
+        all_records = []
+        for doc_type in TARGET_DOC_TYPES:
+            log.info("Searching: %s", doc_type)
+            recs = self.search_doc_type(api_url, doc_type)
+            log.info("  Found %d for %s", len(recs), doc_type)
+            all_records.extend(recs)
+            time.sleep(0.5)
+        return all_records
+
+    def scrape_results_pages(self):
+        """
+        Fallback: fetch the results page as plain HTTP and parse
+        whatever the server returns (may include SSR data).
+        """
+        all_records = []
+        for doc_type in TARGET_DOC_TYPES:
+            url = (CLERK_BASE + "/results"
+                   + "?department=RP&limit=200&offset=0"
+                   + "&recordedDateRange=" + self.start_ymd + "," + self.end_ymd
+                   + "&searchOcrText=false&searchType=docType&searchValue=" + doc_type)
+            try:
+                resp = self.session.get(url, timeout=30)
+                log.info("Results page %s: status=%d size=%d",
+                         doc_type, resp.status_code, len(resp.content))
+
+                # Look for __INITIAL_STATE__ or similar SSR data
+                html = resp.text
+                for pattern in [
+                    r"window\.__INITIAL_STATE__\s*=\s*({.+?});\s*</script>",
+                    r"window\.__data\s*=\s*({.+?});\s*</script>",
+                    r"window\.__PRELOADED_STATE__\s*=\s*({.+?});\s*</script>",
+                ]:
+                    m = re.search(pattern, html, re.DOTALL)
+                    if m:
+                        try:
+                            state = json.loads(m.group(1))
+                            # Look for results anywhere in state
+                            recs = self._search_state(state, doc_type)
+                            if recs:
+                                log.info("  Found %d records in page state", len(recs))
+                                all_records.extend(recs)
+                                break
+                        except Exception:
+                            pass
 
             except Exception as exc:
-                log.warning("  Attempt %d/%d: %s", attempt, MAX_RETRIES, exc)
-                if attempt < MAX_RETRIES:
-                    await asyncio.sleep(RETRY_DELAY)
+                log.warning("Results page error %s: %s", doc_type, exc)
 
-        page.remove_listener("response", on_response)
         return all_records
 
-    async def run(self):
-        if not PLAYWRIGHT_AVAILABLE:
+    def _search_state(self, state, doc_type, depth=0):
+        if depth > 5 or not state:
             return []
-
-        all_records = []
-
-        async with async_playwright() as pw:
-            browser = await pw.chromium.launch(
-                headless=True,
-                args=["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"],
-            )
-            context = await browser.new_context(
-                user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
-                ignore_https_errors=True,
-                viewport={"width": 1280, "height": 900},
-                locale="en-US",
-            )
-            page = await context.new_page()
-
-            logged_in = await self._login(page, context)
-            log.info("Authenticated: %s", logged_in)
-
-            for doc_type in TARGET_DOC_TYPES:
-                log.info("Searching: %s", doc_type)
-                recs = await self._scrape_doc_type(page, doc_type)
-                log.info("  Found %d for %s", len(recs), doc_type)
-                all_records.extend(recs)
-
-            await browser.close()
-
-        return all_records
+        records = []
+        if isinstance(state, dict):
+            for key in ["results", "hits", "documents", "items", "data", "instruments"]:
+                val = state.get(key)
+                if isinstance(val, list) and val:
+                    recs = parse_response(val, doc_type)
+                    if recs:
+                        records.extend(recs)
+            for val in state.values():
+                if isinstance(val, (dict, list)):
+                    records.extend(self._search_state(val, doc_type, depth+1))
+        elif isinstance(state, list):
+            recs = parse_response(state, doc_type)
+            if recs:
+                records.extend(recs)
+        return records
 
 
 # ---------------------------------------------------------------------------
@@ -572,7 +533,7 @@ class ParcelLookup:
                         self.cache[owner] = self._parse_feature(attrs)
                 return
             except Exception as exc:
-                log.warning("ArcGIS attempt %d: %s", attempt + 1, exc)
+                log.warning("ArcGIS attempt %d: %s", attempt+1, exc)
                 time.sleep(RETRY_DELAY)
 
     def enrich_all(self, records):
@@ -701,21 +662,22 @@ async def main():
     log.info("=" * 60)
     log.info("Bexar County Motivated Seller Lead Scraper")
     log.info("Lookback: %d days", LOOKBACK_DAYS)
-    log.info("Email configured: %s (len=%d)", bool(CLERK_EMAIL), len(CLERK_EMAIL))
-    log.info("Password configured: %s (len=%d)", bool(CLERK_PASSWORD), len(CLERK_PASSWORD))
+    log.info("Email: %s", bool(CLERK_EMAIL))
+    log.info("Password: %s", bool(CLERK_PASSWORD))
     log.info("=" * 60)
-
-    # Log ALL env vars that might be credentials (for debugging)
-    for k, v in os.environ.items():
-        if "clerk" in k.lower() or "email" in k.lower():
-            log.info("ENV: %s = [len=%d]", k, len(v))
 
     start_ymd, end_ymd = date_range_yyyymmdd(LOOKBACK_DAYS)
     start_mdy, end_mdy = date_range_mmddyyyy(LOOKBACK_DAYS)
     log.info("Date range: %s to %s", start_mdy, end_mdy)
 
-    scraper     = AuthenticatedScraper(start_ymd, end_ymd)
-    raw_records = await scraper.run()
+    # Get auth cookies via Playwright login
+    log.info("Getting auth cookies...")
+    cookies = await get_auth_cookies()
+    log.info("Got %d cookies: %s", len(cookies), list(cookies.keys()))
+
+    # Use cookies to call API directly
+    scraper     = DirectAPIScraper(start_ymd, end_ymd, cookies)
+    raw_records = scraper.run()
     log.info("Total raw records: %d", len(raw_records))
 
     parcel = ParcelLookup()
