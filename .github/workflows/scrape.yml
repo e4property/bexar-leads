@@ -64,7 +64,7 @@ jobs:
           CLERK_EMAIL:    ${{ secrets.CLERK_EMAIL }}
           CLERK_PASSWORD: ${{ secrets.CLERK_PASSWORD }}
         run: python scraper/fetch.py
-        timeout-minutes: 20
+        timeout-minutes: 30
 
       - name: Show output summary
         run: |
