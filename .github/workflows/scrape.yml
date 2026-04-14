@@ -1,29 +1,105 @@
-# Bexar County Motivated Seller Lead Scraper
+name: Scrape Bexar County Leads
 
-## Project Overview
-Automated daily scraper that pulls motivated seller leads from Bexar County Clerk portal and enriches them with property/mailing addresses from Bexar County GIS.
+on:
+  schedule:
+    - cron: "0 7 * * *"
+  workflow_dispatch:
 
-## Architecture
-- **Scraper**: `scraper/fetch.py` — Playwright (SSR HTML parse) + ArcGIS REST API
-- **Dashboard**: `dashboard/index.html` + `dashboard/records.json`
-- **Automation**: `.github/workflows/scrape.yml` — runs daily at 2AM CST
-- **Live URL**: https://e4property.github.io/bexar-leads/
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
-## Data Sources
-- **Clerk Portal**: https://bexar.tx.publicsearch.us (SSR HTML, requires auth)
-- **Parcel Data**: https://maps.bexar.org/arcgis/rest/services/Parcels/MapServer/0/query (public ArcGIS)
+permissions:
+  contents: write
+  pages: write
+  id-token: write
 
-## Key Technical Details
-- Portal uses server-side rendering — results are in HTML table, no API calls
-- Requires login (CLERK_EMAIL + CLERK_PASSWORD GitHub Secrets)
-- Table headers: `['', '', '', 'grantor', 'grantee', 'doc type', 'recorded date', 'doc number', ...]`
-- First 3 columns are checkbox/icon columns (empty headers) — skip them
-- URL format: `/results?department=RP&keywordSearch=false&limit=50&offset=N&recordedDateRange=YYYYMMDD%2CYYYYMMDD&searchType=docType&searchValue=LP`
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
-## Lead Types
-LP, NOFC, TAXDEED, JUD, CCJ, DRJUD, LNCORPTX, LNIRS, LNFED, LN, LNMECH, LNHOA, MEDLN, PRO, NOC, RELLP
+jobs:
+  scrape:
+    name: Scrape & Enrich Leads
+    runs-on: ubuntu-22.04
 
-## GitHub Secrets Required
-- `CLERK_EMAIL` — registered account email for publicsearch.us
-- `CLERK_PASSWORD` — registered account password
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Python dependencies
+        run: |
+          pip install --upgrade pip
+          pip install requests beautifulsoup4 lxml playwright
+
+      - name: Install Playwright browsers
+        run: |
+          python -m playwright install --with-deps chromium
+
+      - name: Create output directories
+        run: mkdir -p dashboard data
+
+      - name: Verify secrets are set
+        env:
+          CLERK_EMAIL:    ${{ secrets.CLERK_EMAIL }}
+          CLERK_PASSWORD: ${{ secrets.CLERK_PASSWORD }}
+        run: |
+          python -c "
+          import os
+          email = os.getenv('CLERK_EMAIL','')
+          pwd   = os.getenv('CLERK_PASSWORD','')
+          print(f'CLERK_EMAIL set:    {bool(email)} (len={len(email)})')
+          print(f'CLERK_PASSWORD set: {bool(pwd)} (len={len(pwd)})')
+          if not email or not pwd:
+              print('WARNING: Add CLERK_EMAIL and CLERK_PASSWORD to repo Settings > Secrets > Actions')
+          "
+
+      - name: Run scraper
+        env:
+          LOOKBACK_DAYS:  "7"
+          CLERK_EMAIL:    ${{ secrets.CLERK_EMAIL }}
+          CLERK_PASSWORD: ${{ secrets.CLERK_PASSWORD }}
+        run: python scraper/fetch.py
+        timeout-minutes: 20
+
+      - name: Show output summary
+        run: |
+          python -c "
+          import json
+          with open('dashboard/records.json') as f:
+              d = json.load(f)
+          print(f'Total records : {d[\"total\"]}')
+          print(f'With address  : {d[\"with_address\"]}')
+          print(f'Fetched at    : {d[\"fetched_at\"]}')
+          "
+
+      - name: Commit updated records
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add dashboard/records.json data/records.json data/leads_export.csv CLAUDE.md || true
+          git diff --cached --quiet || git commit -m "chore: update leads $(date -u +'%Y-%m-%d %H:%M UTC')"
+          git push
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dashboard/
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: scrape
+    runs-on: ubuntu-22.04
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
 
