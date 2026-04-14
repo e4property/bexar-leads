@@ -1,7 +1,7 @@
 """
 Bexar County Motivated Seller Lead Scraper
-SSR HTML table parse with correct column offset (skip=3).
-Uses limit=200 and hard cap on pages to stay within 20min timeout.
+SSR HTML table - confirmed working column layout (skip=3).
+Trust the portal's recordedDateRange filter server-side.
 """
 
 from __future__ import annotations
@@ -60,8 +60,8 @@ DOC_TYPE_MAP = {
 TARGET_DOC_TYPES = list(DOC_TYPE_MAP.keys())
 MAX_RETRIES = 2
 RETRY_DELAY = 3
-PAGE_LIMIT  = 200   # records per page
-MAX_PAGES   = 5     # max pages per doc type (5 x 200 = 1000 records max)
+PAGE_LIMIT  = 200
+MAX_PAGES   = 5
 
 
 # ---------------------------------------------------------------------------
@@ -129,17 +129,6 @@ def count_leading_empty(headers):
             break
     return count
 
-def parse_date_str(date_str):
-    """Normalize date string to MM/DD/YYYY."""
-    if not date_str:
-        return ""
-    for fmt in ("%m/%d/%Y", "%Y-%m-%d", "%Y%m%d", "%m-%d-%Y"):
-        try:
-            return datetime.strptime(date_str.strip(), fmt).strftime("%m/%d/%Y")
-        except ValueError:
-            continue
-    return date_str
-
 
 # ---------------------------------------------------------------------------
 # Scoring
@@ -180,9 +169,9 @@ def compute_score(record, flags):
 # Parse SSR HTML table
 # ---------------------------------------------------------------------------
 
-def parse_results_html(html, doc_type, start_dt, end_dt):
+def parse_results_html(html, doc_type):
     """
-    Confirmed column layout (after skipping 3 leading empty cols):
+    Confirmed layout (skip 3 leading empty cols):
     0=grantor, 1=grantee, 2=doc type, 3=recorded date, 4=doc number,
     5=book/volume/page, 6=legal description, 7=lot, 8=block,
     9=ncb, 10=county block, 11=property address
@@ -193,15 +182,18 @@ def parse_results_html(html, doc_type, start_dt, end_dt):
     try:
         soup = BeautifulSoup(html, "lxml")
 
+        # Find table with grantor column
         table = None
         for t in soup.find_all("table"):
-            ths  = t.find_all("th")
+            ths   = t.find_all("th")
             htext = " ".join(th.get_text(strip=True).lower() for th in ths)
             if "grantor" in htext:
                 table = t
                 break
 
         if not table:
+            text = soup.get_text(" ", strip=True)[:200]
+            log.info("  [PARSE] no table found. page snippet: %s", text)
             return records
 
         rows = table.find_all("tr")
@@ -210,7 +202,7 @@ def parse_results_html(html, doc_type, start_dt, end_dt):
 
         raw_headers = [th.get_text(strip=True).lower()
                        for th in rows[0].find_all(["th","td"])]
-        skip = count_leading_empty(raw_headers)
+        skip    = count_leading_empty(raw_headers)
         headers = raw_headers[skip:]
 
         def ci(name):
@@ -226,6 +218,10 @@ def parse_results_html(html, doc_type, start_dt, end_dt):
         i_legal    = ci("legal")
         i_propaddr = ci("property address") if ci("property address") >= 0 else ci("property")
 
+        if doc_type == TARGET_DOC_TYPES[0]:  # log once
+            log.info("  [PARSE] skip=%d headers=%s", skip, headers[:6])
+
+        parsed = 0
         for row in rows[1:]:
             cells = row.find_all("td")
             if len(cells) <= skip:
@@ -238,14 +234,13 @@ def parse_results_html(html, doc_type, start_dt, end_dt):
                     return ""
                 return clean(data[idx].get_text(strip=True))
 
-            filed     = parse_date_str(cell(i_date))
             grantor   = cell(i_grantor)  if i_grantor  >= 0 else ""
             grantee   = cell(i_grantee)  if i_grantee  >= 0 else ""
+            filed     = cell(i_date)     if i_date     >= 0 else ""
             doc_num   = cell(i_docnum)   if i_docnum   >= 0 else ""
             legal     = cell(i_legal)    if i_legal    >= 0 else ""
             prop_addr = cell(i_propaddr) if i_propaddr >= 0 else ""
 
-            # Get link
             link = row.find("a", href=True)
             clerk_url = ""
             if link:
@@ -261,15 +256,6 @@ def parse_results_html(html, doc_type, start_dt, end_dt):
             if not grantor and not doc_num:
                 continue
 
-            # Date filter -- only keep records within our window
-            if filed and start_dt and end_dt:
-                try:
-                    d = datetime.strptime(filed, "%m/%d/%Y")
-                    if not (start_dt <= d <= end_dt):
-                        continue
-                except ValueError:
-                    pass
-
             records.append({
                 "doc_num":   doc_num,
                 "doc_type":  doc_type,
@@ -283,6 +269,9 @@ def parse_results_html(html, doc_type, start_dt, end_dt):
                 "prop_address_inline": prop_addr,
                 "clerk_url": clerk_url,
             })
+            parsed += 1
+
+        log.info("  [PARSE] parsed %d rows from table", parsed)
 
     except Exception as exc:
         log.warning("  [PARSE] error: %s", exc)
@@ -298,11 +287,9 @@ class SSRScraper:
     def __init__(self, start_ymd, end_ymd):
         self.start_ymd = start_ymd
         self.end_ymd   = end_ymd
-        # Parse for date filtering
-        self.start_dt  = datetime.strptime(start_ymd, "%Y%m%d")
-        self.end_dt    = datetime.strptime(end_ymd, "%Y%m%d")
 
     def _url(self, doc_type, offset=0):
+        # Exact URL format confirmed from browser network tab
         return (
             CLERK_BASE + "/results"
             + "?department=RP"
@@ -317,7 +304,7 @@ class SSRScraper:
 
     async def _login(self, page, context):
         if not CLERK_EMAIL or not CLERK_PASSWORD:
-            log.info("No credentials - proceeding without auth")
+            log.info("No credentials")
             return False
         try:
             log.info("Logging in as %s***", CLERK_EMAIL[:4])
@@ -370,13 +357,11 @@ class SSRScraper:
                         pass
 
                     html = await page.content()
-                    recs = parse_results_html(
-                        html, doc_type, self.start_dt, self.end_dt
-                    )
-                    log.info("  p%d offset=%d: %d in-range records",
+                    recs = parse_results_html(html, doc_type)
+
+                    log.info("  p%d offset=%d: %d records",
                              page_num, offset, len(recs))
 
-                    # If no in-range records on this page, we've gone past the date window
                     if not recs:
                         return all_records
 
@@ -395,7 +380,6 @@ class SSRScraper:
             else:
                 break
 
-        log.info("  Hit max pages (%d) for %s", MAX_PAGES, doc_type)
         return all_records
 
     async def run(self):
@@ -615,8 +599,8 @@ def save_ghl_csv(records, path_str):
 async def main():
     log.info("=" * 60)
     log.info("Bexar County Motivated Seller Lead Scraper")
-    log.info("Lookback: %d days | Page limit: %d | Max pages/type: %d",
-             LOOKBACK_DAYS, PAGE_LIMIT, MAX_PAGES)
+    log.info("Lookback: %d days | Pages/type: max %d x %d records",
+             LOOKBACK_DAYS, MAX_PAGES, PAGE_LIMIT)
     log.info("Email: %s | Password: %s", bool(CLERK_EMAIL), bool(CLERK_PASSWORD))
     log.info("=" * 60)
 
