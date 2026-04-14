@@ -1,8 +1,16 @@
 """
 Bexar County Motivated Seller Lead Scraper
-CONFIRMED: Results are server-side rendered into the HTML table.
-No API needed. Just parse the HTML table with correct URL params.
-URL format: /results?department=RP&keywordSearch=false&recordedDateRange=YYYYMMDD,YYYYMMDD&searchType=docType&searchValue=LP&limit=50&offset=0
+
+Key findings:
+- Portal uses SSR - results in HTML table, no API calls
+- Table headers: ['','','','grantor','grantee','doc type','recorded date',
+                  'doc number','book/volume/page','legal description',
+                  'lot','block','ncb','county block','property address']
+- First 3 columns are checkbox/icon columns (skip them)
+- URL: /results?department=RP&keywordSearch=false&limit=50&offset=N
+         &recordedDateRange=YYYYMMDD%2CYYYYMMDD
+         &searchType=docType&searchValue=LP
+- Login required for full access
 """
 
 from __future__ import annotations
@@ -61,6 +69,19 @@ DOC_TYPE_MAP = {
 TARGET_DOC_TYPES = list(DOC_TYPE_MAP.keys())
 MAX_RETRIES = 3
 RETRY_DELAY = 5
+
+# Confirmed column mapping from logs:
+# ['','','','grantor','grantee','doc type','recorded date','doc number',
+#  'book/volume/page','legal description','lot','block','ncb','county block',
+#  'property address']
+# Index (0-based after skipping first 3 empty cols):
+COL_GRANTOR  = 0  # col index 3 in raw table, 0 after skipping 3 empties
+COL_GRANTEE  = 1
+COL_DOCTYPE  = 2
+COL_DATE     = 3
+COL_DOCNUM   = 4
+COL_LEGAL    = 6  # legal description (after book/vol/page)
+COL_PROPADDR = 11 # property address
 
 
 # ---------------------------------------------------------------------------
@@ -121,6 +142,16 @@ def is_new_this_week(filed_str):
             continue
     return False
 
+def count_leading_empty(headers):
+    """Count how many leading empty/blank header columns there are."""
+    count = 0
+    for h in headers:
+        if h.strip() == "":
+            count += 1
+        else:
+            break
+    return count
+
 
 # ---------------------------------------------------------------------------
 # Scoring
@@ -158,14 +189,17 @@ def compute_score(record, flags):
 
 
 # ---------------------------------------------------------------------------
-# Parse SSR HTML table from results page
+# Parse SSR HTML table
 # ---------------------------------------------------------------------------
 
-def parse_results_html(html, doc_type, start_ymd, end_ymd):
+def parse_results_html(html, doc_type):
     """
-    Parse server-side rendered results table.
-    The table has columns: GRANTOR, GRANTEE, DOC TYPE, RECORDED DATE
-    Each row has a link to the instrument.
+    Parse the server-side rendered results table.
+    Confirmed headers: ['','','','grantor','grantee','doc type',
+                        'recorded date','doc number','book/volume/page',
+                        'legal description','lot','block','ncb',
+                        'county block','property address']
+    First N columns are empty (checkbox/icon) -- skip them.
     """
     cat, cat_label = DOC_TYPE_MAP.get(doc_type, (doc_type, doc_type))
     records = []
@@ -173,169 +207,130 @@ def parse_results_html(html, doc_type, start_ymd, end_ymd):
     try:
         soup = BeautifulSoup(html, "lxml")
 
-        # Find result count to log
-        count_el = soup.find(string=re.compile(r"\d[\d,]* results"))
-        if count_el:
-            log.info("  [HTML] Page reports: %s", count_el.strip()[:60])
-
-        # Find the results table - look for table with GRANTOR header
+        # Find table with grantor column
         table = None
         for t in soup.find_all("table"):
-            headers = t.find_all("th")
-            header_text = " ".join(h.get_text(strip=True).upper() for h in headers)
-            if "GRANTOR" in header_text or "DOC" in header_text:
+            ths = t.find_all("th")
+            htext = " ".join(th.get_text(strip=True).lower() for th in ths)
+            if "grantor" in htext:
                 table = t
                 break
 
-        # Also try finding rows by data attributes or specific classes
         if not table:
-            # Look for result rows by common Neumo patterns
-            rows = (
-                soup.find_all("tr", class_=re.compile(r"result|instrument|record", re.I)) or
-                soup.find_all(attrs={"data-testid": re.compile(r"result|row|instrument", re.I)})
-            )
-            if rows:
-                log.info("  [HTML] Found %d result rows via class/attr", len(rows))
-                for row in rows:
-                    rec = _parse_row_flexible(row, doc_type, cat, cat_label)
-                    if rec:
-                        records.append(rec)
-                return records
-
-        if not table:
-            # Log what we see on the page for debugging
-            text = soup.get_text(" ", strip=True)[:500]
-            log.info("  [HTML] No table found. Page text: %s", text)
             return records
 
         rows = table.find_all("tr")
         if not rows:
             return records
 
-        # Parse header row
+        # Get headers from first row
         header_row = rows[0]
-        headers = [th.get_text(strip=True).lower() for th in header_row.find_all(["th","td"])]
-        log.info("  [HTML] Table headers: %s", headers)
+        raw_headers = [th.get_text(strip=True).lower()
+                       for th in header_row.find_all(["th", "td"])]
 
-        def col(cells, *names):
-            for name in names:
-                for i, h in enumerate(headers):
-                    if name in h and i < len(cells):
-                        return clean(cells[i].get_text(strip=True))
-            return ""
+        # Count leading empty columns to skip
+        skip = count_leading_empty(raw_headers)
+        headers = raw_headers[skip:]
+
+        # Build column index map
+        def ci(name):
+            for i, h in enumerate(headers):
+                if name in h:
+                    return i
+            return -1
+
+        i_grantor  = ci("grantor")
+        i_grantee  = ci("grantee")
+        i_doctype  = ci("doc type") if ci("doc type") >= 0 else ci("type")
+        i_date     = ci("recorded") if ci("recorded") >= 0 else ci("date")
+        i_docnum   = ci("doc number") if ci("doc number") >= 0 else ci("number")
+        i_legal    = ci("legal")
+        i_propaddr = ci("property address") if ci("property address") >= 0 else ci("property")
+
+        log.info("  [PARSE] skip=%d, grantor=%d, date=%d, docnum=%d",
+                 skip, i_grantor, i_date, i_docnum)
 
         for row in rows[1:]:
             cells = row.find_all("td")
-            if len(cells) < 2:
+            if len(cells) <= skip:
                 continue
 
-            # Get link to instrument
-            link      = row.find("a", href=True)
+            # Skip leading empty cells
+            data_cells = cells[skip:]
+
+            def cell(idx):
+                if idx < 0 or idx >= len(data_cells):
+                    return ""
+                return clean(data_cells[idx].get_text(strip=True))
+
+            grantor  = cell(i_grantor)  if i_grantor  >= 0 else ""
+            grantee  = cell(i_grantee)  if i_grantee  >= 0 else ""
+            doc_col  = cell(i_doctype)  if i_doctype  >= 0 else ""
+            filed    = cell(i_date)     if i_date     >= 0 else ""
+            doc_num  = cell(i_docnum)   if i_docnum   >= 0 else ""
+            legal    = cell(i_legal)    if i_legal    >= 0 else ""
+            prop_addr= cell(i_propaddr) if i_propaddr >= 0 else ""
+
+            # Get clerk URL from the row link
+            link = row.find("a", href=True)
             clerk_url = ""
-            doc_num   = ""
             if link:
                 href = link["href"]
                 if not href.startswith("http"):
                     href = CLERK_BASE + href
                 clerk_url = href
-                # Extract instrument number from URL
-                m = re.search(r"/(?:doc|instruments?)/(\d+)", href)
-                if m:
-                    doc_num = m.group(1)
-
-            grantor  = col(cells, "grantor", "owner", "from", "party1", "seller")
-            grantee  = col(cells, "grantee", "to", "party2", "buyer")
-            doc_type_col = col(cells, "doc", "type", "document")
-            filed    = col(cells, "recorded", "date", "filed")
-            amount   = parse_amount(col(cells, "amount", "consideration"))
+                # If doc_num empty, try extracting from URL
+                if not doc_num:
+                    m = re.search(r"/(?:doc|instruments?)/(\w+)", href)
+                    if m:
+                        doc_num = m.group(1)
 
             if not grantor and not doc_num:
                 continue
 
-            # Filter by doc type if column shows a different type
-            if doc_type_col and doc_type not in doc_type_col.upper():
-                # Check if it matches any of our target types
-                matched = False
-                for dt in TARGET_DOC_TYPES:
-                    if dt in doc_type_col.upper():
-                        cat2, cat_label2 = DOC_TYPE_MAP.get(dt, (dt, dt))
-                        records.append({
-                            "doc_num": doc_num, "doc_type": dt,
-                            "filed": filed, "cat": cat2, "cat_label": cat_label2,
-                            "owner": grantor, "grantee": grantee,
-                            "amount": amount, "legal": "",
-                            "clerk_url": clerk_url,
-                        })
-                        matched = True
+            # Determine actual doc_type from the column if available
+            actual_doc_type = doc_type
+            actual_cat      = cat
+            actual_cat_label= cat_label
+            if doc_col:
+                for dt, (c, cl) in DOC_TYPE_MAP.items():
+                    if dt == doc_col.upper() or doc_col.upper() in cl.upper():
+                        actual_doc_type = dt
+                        actual_cat      = c
+                        actual_cat_label= cl
                         break
-                if not matched and doc_type_col:
-                    # Still add with searched doc_type
-                    pass
-                else:
-                    continue
 
             records.append({
-                "doc_num": doc_num, "doc_type": doc_type,
-                "filed": filed, "cat": cat, "cat_label": cat_label,
-                "owner": grantor, "grantee": grantee,
-                "amount": amount, "legal": "",
+                "doc_num":   doc_num,
+                "doc_type":  actual_doc_type,
+                "filed":     filed,
+                "cat":       actual_cat,
+                "cat_label": actual_cat_label,
+                "owner":     grantor,
+                "grantee":   grantee,
+                "amount":    0.0,
+                "legal":     legal,
+                "prop_address_inline": prop_addr,
                 "clerk_url": clerk_url,
             })
 
     except Exception as exc:
-        log.warning("  [HTML] Parse error: %s", exc)
+        log.warning("  [PARSE] error: %s", exc)
 
     return records
 
 
-def _parse_row_flexible(row, doc_type, cat, cat_label):
-    """Parse a result row when we don't have header context."""
-    cells = row.find_all(["td","th"])
-    if not cells:
-        return None
-    link = row.find("a", href=True)
-    clerk_url, doc_num = "", ""
-    if link:
-        href = link["href"]
-        if not href.startswith("http"):
-            href = CLERK_BASE + href
-        clerk_url = href
-        m = re.search(r"/(?:doc|instruments?)/(\d+)", href)
-        if m:
-            doc_num = m.group(1)
-    text = row.get_text(" ", strip=True)
-    date_m = re.search(r"(\d{1,2}/\d{1,2}/\d{4})", text)
-    filed  = date_m.group(1) if date_m else ""
-    if not (doc_num or filed):
-        return None
-    all_text = [c.get_text(strip=True) for c in cells]
-    grantor = all_text[0] if all_text else ""
-    grantee = all_text[1] if len(all_text) > 1 else ""
-    return {
-        "doc_num": doc_num, "doc_type": doc_type,
-        "filed": filed, "cat": cat, "cat_label": cat_label,
-        "owner": grantor, "grantee": grantee,
-        "amount": 0.0, "legal": "", "clerk_url": clerk_url,
-    }
-
-
 # ---------------------------------------------------------------------------
-# Scraper using Playwright for SSR pages
+# SSR Scraper
 # ---------------------------------------------------------------------------
 
 class SSRScraper:
-    """
-    The portal does SSR - results are in the HTML.
-    Use Playwright to render each page properly with auth,
-    then parse the rendered DOM.
-    """
-
     def __init__(self, start_ymd, end_ymd):
         self.start_ymd = start_ymd
         self.end_ymd   = end_ymd
 
     def _url(self, doc_type, offset=0, limit=50):
-        # Use the EXACT URL format observed in the browser
+        # Exact URL format confirmed from browser observation
         return (
             CLERK_BASE + "/results"
             + "?department=RP"
@@ -353,8 +348,9 @@ class SSRScraper:
             log.info("No credentials - proceeding without auth")
             return False
         try:
-            log.info("Logging in...")
-            await page.goto(CLERK_BASE + "/signin", wait_until="networkidle", timeout=30000)
+            log.info("Logging in as %s***", CLERK_EMAIL[:4])
+            await page.goto(CLERK_BASE + "/signin",
+                            wait_until="networkidle", timeout=30000)
             await asyncio.sleep(2)
             for sel in ["input[type='email']", "#email", "input[name='email']"]:
                 try:
@@ -385,33 +381,30 @@ class SSRScraper:
             return False
 
     async def _scrape_doc_type(self, page, doc_type):
-        cat, cat_label = DOC_TYPE_MAP.get(doc_type, (doc_type, doc_type))
         all_records = []
-        offset  = 0
-        limit   = 50
+        offset   = 0
+        limit    = 50
         page_num = 0
+        max_pages = 20  # safety cap per doc type
 
-        while True:
+        while page_num < max_pages:
             page_num += 1
             url = self._url(doc_type, offset=offset, limit=limit)
 
             for attempt in range(1, MAX_RETRIES + 1):
                 try:
                     await page.goto(url, wait_until="networkidle", timeout=45000)
-                    # Wait for table to render
+                    # Wait for table to appear
                     try:
-                        await page.wait_for_selector("table, tr[class*='result'], [data-testid*='result']",
-                                                      timeout=10000)
+                        await page.wait_for_selector("table th", timeout=10000)
                     except Exception:
                         pass
                     await asyncio.sleep(1)
 
                     html = await page.content()
-                    recs = parse_results_html(html, doc_type,
-                                              self.start_ymd, self.end_ymd)
+                    recs = parse_results_html(html, doc_type)
 
-                    if page_num == 1:
-                        log.info("  Page 1: %d records (offset=0)", len(recs))
+                    log.info("  p%d offset=%d: %d records", page_num, offset, len(recs))
 
                     if not recs:
                         return all_records
@@ -430,12 +423,7 @@ class SSRScraper:
                                 attempt, MAX_RETRIES, offset, exc)
                     if attempt < MAX_RETRIES:
                         await asyncio.sleep(RETRY_DELAY)
-
             else:
-                break
-
-            # Safety: max 20 pages per doc type
-            if page_num >= 20:
                 break
 
         return all_records
@@ -449,7 +437,8 @@ class SSRScraper:
         async with async_playwright() as pw:
             browser = await pw.chromium.launch(
                 headless=True,
-                args=["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"],
+                args=["--no-sandbox", "--disable-setuid-sandbox",
+                      "--disable-dev-shm-usage"],
             )
             context = await browser.new_context(
                 user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
@@ -458,7 +447,6 @@ class SSRScraper:
                 locale="en-US",
             )
             page = await context.new_page()
-
             await self._login(page, context)
 
             for doc_type in TARGET_DOC_TYPES:
@@ -569,7 +557,12 @@ def enrich_records(records, parcel):
         try:
             owner     = r.get("owner","")
             addr_info = parcel.get_address(owner)
-            r["prop_address"] = addr_info.get("prop_address","")
+
+            # Use inline prop_address from table if ArcGIS has none
+            inline_addr = r.pop("prop_address_inline", "")
+            prop_addr   = addr_info.get("prop_address","") or inline_addr
+
+            r["prop_address"] = prop_addr
             r["prop_city"]    = addr_info.get("prop_city","San Antonio")
             r["prop_state"]   = addr_info.get("prop_state","TX")
             r["prop_zip"]     = addr_info.get("prop_zip","")
@@ -578,6 +571,7 @@ def enrich_records(records, parcel):
             r["mail_state"]   = addr_info.get("mail_state","TX")
             r["mail_zip"]     = addr_info.get("mail_zip","")
             r["_owner_cats"]  = owner_cats.get(owner.upper(),[])
+
             flags  = compute_flags(r)
             score  = compute_score(r, flags)
             r["flags"] = flags
@@ -664,7 +658,7 @@ async def main():
     start_mdy, end_mdy = date_range_mmddyyyy(LOOKBACK_DAYS)
     log.info("Date range: %s to %s", start_mdy, end_mdy)
 
-    log.info("Scraping clerk portal (SSR HTML)...")
+    log.info("Scraping clerk portal (SSR HTML table)...")
     scraper     = SSRScraper(start_ymd, end_ymd)
     raw_records = await scraper.run()
     log.info("Total raw records: %d", len(raw_records))
