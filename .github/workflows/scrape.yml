@@ -34,37 +34,33 @@ jobs:
       - name: Install Python dependencies
         run: |
           pip install --upgrade pip
-          pip install requests beautifulsoup4 lxml playwright playwright-stealth
-
-      - name: Install Playwright browsers
-        run: |
-          python -m playwright install --with-deps chromium
+          pip install requests beautifulsoup4 lxml
 
       - name: Create output directories
         run: mkdir -p dashboard data
 
-      - name: Verify secrets are set
+      - name: Verify secrets
         env:
-          CLERK_EMAIL:    ${{ secrets.CLERK_EMAIL }}
-          CLERK_PASSWORD: ${{ secrets.CLERK_PASSWORD }}
+          CLERK_AUTH_TOKEN: ${{ secrets.CLERK_AUTH_TOKEN }}
+          CLERK_AUTH_SIG:   ${{ secrets.CLERK_AUTH_SIG }}
         run: |
           python -c "
           import os
-          email = os.getenv('CLERK_EMAIL','')
-          pwd   = os.getenv('CLERK_PASSWORD','')
-          print(f'CLERK_EMAIL set:    {bool(email)} (len={len(email)})')
-          print(f'CLERK_PASSWORD set: {bool(pwd)} (len={len(pwd)})')
-          if not email or not pwd:
-              print('WARNING: Add CLERK_EMAIL and CLERK_PASSWORD to repo Settings > Secrets > Actions')
+          t = os.getenv('CLERK_AUTH_TOKEN','')
+          s = os.getenv('CLERK_AUTH_SIG','')
+          print(f'CLERK_AUTH_TOKEN set: {bool(t)} (len={len(t)})')
+          print(f'CLERK_AUTH_SIG set:   {bool(s)} (len={len(s)})')
+          if not t:
+              print('ERROR: CLERK_AUTH_TOKEN missing - go to Settings > Secrets > Actions')
           "
 
       - name: Run scraper
         env:
-          LOOKBACK_DAYS:  "7"
-          CLERK_EMAIL:    ${{ secrets.CLERK_EMAIL }}
-          CLERK_PASSWORD: ${{ secrets.CLERK_PASSWORD }}
+          LOOKBACK_DAYS:    "7"
+          CLERK_AUTH_TOKEN: ${{ secrets.CLERK_AUTH_TOKEN }}
+          CLERK_AUTH_SIG:   ${{ secrets.CLERK_AUTH_SIG }}
         run: python scraper/fetch.py
-        timeout-minutes: 30
+        timeout-minutes: 15
 
       - name: Show output summary
         run: |
