@@ -1,12 +1,11 @@
 """
 Bexar County Motivated Seller Lead Scraper
-Uses playwright-stealth + proper Chrome fingerprint to bypass
-the "browser out of date" detection on bexar.tx.publicsearch.us
+Uses real browser cookies (authToken + authToken.sig) directly via requests.
+No Playwright needed for search - bypasses all bot detection.
 """
 
 from __future__ import annotations
 
-import asyncio
 import csv
 import json
 import logging
@@ -20,12 +19,6 @@ from pathlib import Path
 import requests
 from bs4 import BeautifulSoup
 
-try:
-    from playwright.async_api import async_playwright
-    PLAYWRIGHT_AVAILABLE = True
-except ImportError:
-    PLAYWRIGHT_AVAILABLE = False
-
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
@@ -33,11 +26,11 @@ logging.basicConfig(
 )
 log = logging.getLogger(__name__)
 
-LOOKBACK_DAYS  = int(os.getenv("LOOKBACK_DAYS", "7"))
-CLERK_EMAIL    = (os.getenv("CLERK_EMAIL") or "").strip()
-CLERK_PASSWORD = (os.getenv("CLERK_PASSWORD") or "").strip()
-CLERK_BASE     = "https://bexar.tx.publicsearch.us"
-ARCGIS_URL     = "https://maps.bexar.org/arcgis/rest/services/Parcels/MapServer/0/query"
+LOOKBACK_DAYS    = int(os.getenv("LOOKBACK_DAYS", "7"))
+AUTH_TOKEN       = (os.getenv("CLERK_AUTH_TOKEN") or "").strip()
+AUTH_TOKEN_SIG   = (os.getenv("CLERK_AUTH_SIG") or "").strip()
+CLERK_BASE       = "https://bexar.tx.publicsearch.us"
+ARCGIS_URL       = "https://maps.bexar.org/arcgis/rest/services/Parcels/MapServer/0/query"
 
 DOC_TYPE_MAP = {
     "LP":       ("LP",      "Lis Pendens"),
@@ -58,53 +51,10 @@ DOC_TYPE_MAP = {
     "RELLP":    ("RELLP",  "Release Lis Pendens"),
 }
 TARGET_DOC_TYPES = list(DOC_TYPE_MAP.keys())
-MAX_RETRIES = 2
-RETRY_DELAY = 3
 PAGE_LIMIT  = 200
 MAX_PAGES   = 5
-
-# Real Chrome 122 user agent
-UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
-
-# JS to inject that removes headless indicators
-STEALTH_JS = """
-() => {
-    // Remove webdriver flag
-    Object.defineProperty(navigator, 'webdriver', {get: () => undefined});
-    
-    // Mock plugins
-    Object.defineProperty(navigator, 'plugins', {
-        get: () => [
-            {name: 'Chrome PDF Plugin', filename: 'internal-pdf-viewer'},
-            {name: 'Chrome PDF Viewer', filename: 'mhjfbmdgcfjbbpaeojofohoefgiehjai'},
-            {name: 'Native Client', filename: 'internal-nacl-plugin'}
-        ]
-    });
-    
-    // Mock languages
-    Object.defineProperty(navigator, 'languages', {get: () => ['en-US', 'en']});
-    
-    // Mock chrome object
-    window.chrome = {
-        runtime: {},
-        loadTimes: function() {},
-        csi: function() {},
-        app: {}
-    };
-    
-    // Mock permissions
-    const originalQuery = window.navigator.permissions.query;
-    window.navigator.permissions.query = (parameters) => (
-        parameters.name === 'notifications' ?
-        Promise.resolve({state: Notification.permission}) :
-        originalQuery(parameters)
-    );
-    
-    // Spoof screen dimensions
-    Object.defineProperty(screen, 'width', {get: () => 1920});
-    Object.defineProperty(screen, 'height', {get: () => 1080});
-}
-"""
+MAX_RETRIES = 3
+RETRY_DELAY = 5
 
 
 # ---------------------------------------------------------------------------
@@ -213,17 +163,24 @@ def compute_score(record, flags):
 # ---------------------------------------------------------------------------
 
 def parse_results_html(html, doc_type):
+    """
+    Confirmed column layout after skipping leading empty cols:
+    0=grantor, 1=grantee, 2=doc type, 3=recorded date, 4=doc number,
+    5=book/vol/page, 6=legal description, 7=lot, 8=block,
+    9=ncb, 10=county block, 11=property address
+    """
     cat, cat_label = DOC_TYPE_MAP.get(doc_type, (doc_type, doc_type))
     records = []
 
     soup = BeautifulSoup(html, "lxml")
 
-    # Check for browser block page
+    # Detect bot-block page
     text = soup.get_text(" ", strip=True)
     if "out of date" in text.lower() or "update your browser" in text.lower():
-        log.warning("  [PARSE] browser detection page - stealth failed")
+        log.warning("  [HTML] Bot detection page returned")
         return records
 
+    # Find table with grantor header
     table = None
     for t in soup.find_all("table"):
         ths   = t.find_all("th")
@@ -233,8 +190,8 @@ def parse_results_html(html, doc_type):
             break
 
     if not table:
-        snippet = text[:150].replace("\n", " ")
-        log.info("  [PARSE] no table. snippet: %s", snippet)
+        snippet = text[:200].replace("\n", " ")
+        log.info("  [HTML] No table found. Page: %s", snippet)
         return records
 
     rows = table.find_all("tr")
@@ -259,7 +216,7 @@ def parse_results_html(html, doc_type):
     i_legal    = ci("legal")
     i_propaddr = ci("property address") if ci("property address") >= 0 else ci("property")
 
-    log.info("  [PARSE] skip=%d headers=%s", skip, headers[:6])
+    log.info("  [HTML] skip=%d headers=%s", skip, headers[:6])
 
     parsed = 0
     for row in rows[1:]:
@@ -310,18 +267,57 @@ def parse_results_html(html, doc_type):
         })
         parsed += 1
 
-    log.info("  [PARSE] %d rows parsed", parsed)
+    log.info("  [HTML] parsed %d rows", parsed)
     return records
 
 
 # ---------------------------------------------------------------------------
-# SSR Scraper with stealth
+# Direct HTTP scraper using real browser cookies
 # ---------------------------------------------------------------------------
 
-class SSRScraper:
+class CookieScraper:
+    """
+    Uses real authToken cookies from the user's browser session.
+    Makes direct HTTP requests - no browser, no bot detection.
+    """
+
+    HEADERS = {
+        "User-Agent":      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+        "Accept":          "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Connection":      "keep-alive",
+        "Upgrade-Insecure-Requests": "1",
+        "Sec-Fetch-Dest":  "document",
+        "Sec-Fetch-Mode":  "navigate",
+        "Sec-Fetch-Site":  "same-origin",
+        "sec-ch-ua":       '"Chromium";v="122", "Not(A:Brand";v="24", "Google Chrome";v="122"',
+        "sec-ch-ua-mobile":   "?0",
+        "sec-ch-ua-platform": '"Windows"',
+    }
+
     def __init__(self, start_ymd, end_ymd):
         self.start_ymd = start_ymd
         self.end_ymd   = end_ymd
+        self.session   = requests.Session()
+        self.session.headers.update(self.HEADERS)
+
+        # Set auth cookies from GitHub Secrets
+        if AUTH_TOKEN:
+            self.session.cookies.set(
+                "authToken", AUTH_TOKEN,
+                domain="bexar.tx.publicsearch.us", path="/"
+            )
+            log.info("authToken set (len=%d)", len(AUTH_TOKEN))
+        if AUTH_TOKEN_SIG:
+            self.session.cookies.set(
+                "authToken.sig", AUTH_TOKEN_SIG,
+                domain="bexar.tx.publicsearch.us", path="/"
+            )
+            log.info("authToken.sig set (len=%d)", len(AUTH_TOKEN_SIG))
+
+        if not AUTH_TOKEN:
+            log.warning("No CLERK_AUTH_TOKEN set! Add it as a GitHub Secret.")
 
     def _url(self, doc_type, offset=0):
         return (
@@ -336,119 +332,35 @@ class SSRScraper:
             + "&searchValue=" + doc_type
         )
 
-    async def _make_context(self, pw):
-        """Create a stealth browser context."""
-        browser = await pw.chromium.launch(
-            headless=True,
-            args=[
-                "--no-sandbox",
-                "--disable-setuid-sandbox",
-                "--disable-dev-shm-usage",
-                "--disable-blink-features=AutomationControlled",
-                "--disable-features=IsolateOrigins,site-per-process",
-                "--flag-switches-begin",
-                "--disable-site-isolation-trials",
-                "--flag-switches-end",
-            ],
-        )
-        context = await browser.new_context(
-            user_agent=UA,
-            viewport={"width": 1920, "height": 1080},
-            screen={"width": 1920, "height": 1080},
-            locale="en-US",
-            timezone_id="America/Chicago",
-            color_scheme="light",
-            ignore_https_errors=True,
-            extra_http_headers={
-                "Accept-Language": "en-US,en;q=0.9",
-                "Accept":          "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8",
-                "sec-ch-ua":       '"Chromium";v="122", "Not(A:Brand";v="24", "Google Chrome";v="122"',
-                "sec-ch-ua-mobile":   "?0",
-                "sec-ch-ua-platform": '"Windows"',
-                "Upgrade-Insecure-Requests": "1",
-            },
-        )
-        # Inject stealth JS on every new page
-        await context.add_init_script(STEALTH_JS)
-        return browser, context
-
-    async def _login(self, page, context):
-        if not CLERK_EMAIL or not CLERK_PASSWORD:
-            log.info("No credentials")
-            return False
-        try:
-            log.info("Logging in as %s***", CLERK_EMAIL[:4])
-            await page.goto(CLERK_BASE + "/signin",
-                            wait_until="domcontentloaded", timeout=30000)
-            await asyncio.sleep(3)
-
-            for sel in ["input[type='email']", "#email", "input[name='email']"]:
-                try:
-                    await page.fill(sel, CLERK_EMAIL, timeout=3000)
-                    log.info("Email filled: %s", sel)
-                    break
-                except Exception:
-                    continue
-
-            for sel in ["input[type='password']", "#password"]:
-                try:
-                    await page.fill(sel, CLERK_PASSWORD, timeout=3000)
-                    log.info("Password filled: %s", sel)
-                    break
-                except Exception:
-                    continue
-
-            for sel in ["button[type='submit']", "button:has-text('Sign In')"]:
-                try:
-                    await page.click(sel, timeout=3000)
-                    log.info("Submit clicked")
-                    break
-                except Exception:
-                    continue
-
-            await page.wait_for_load_state("domcontentloaded", timeout=20000)
-            await asyncio.sleep(3)
-
-            url     = page.url
-            cookies = [c["name"] for c in await context.cookies()]
-            log.info("Post-login URL: %s", url)
-            log.info("Cookies: %s", cookies)
-
-            success = "authToken" in str(cookies)
-            log.info("Login: %s", "SUCCESS" if success else "FAILED")
-            return success
-        except Exception as exc:
-            log.warning("Login error: %s", exc)
-            return False
-
-    async def _load_page(self, page, url):
-        """Load a page with retries, returning HTML."""
+    def _fetch(self, url):
+        """Fetch a URL with retries."""
         for attempt in range(1, MAX_RETRIES + 1):
             try:
-                await page.goto(url, wait_until="domcontentloaded", timeout=40000)
-                # Wait for either table or known content
-                await asyncio.sleep(4)
-                try:
-                    await page.wait_for_selector(
-                        "table th, .results-count, [class*='result']",
-                        timeout=8000
-                    )
-                except Exception:
-                    pass
-                return await page.content()
+                self.session.headers["Referer"] = CLERK_BASE + "/"
+                resp = self.session.get(url, timeout=30)
+                log.info("  GET %s -> %d (%d bytes)",
+                         url[-60:], resp.status_code, len(resp.content))
+                if resp.status_code == 200:
+                    return resp.text
+                elif resp.status_code in (401, 403):
+                    log.warning("  Auth error %d - cookies may be expired",
+                                resp.status_code)
+                    return None
+                else:
+                    log.warning("  Status %d", resp.status_code)
             except Exception as exc:
-                log.warning("  Load attempt %d: %s", attempt, exc)
+                log.warning("  Attempt %d: %s", attempt, exc)
                 if attempt < MAX_RETRIES:
-                    await asyncio.sleep(RETRY_DELAY)
-        return ""
+                    time.sleep(RETRY_DELAY)
+        return None
 
-    async def _scrape_doc_type(self, page, doc_type):
+    def scrape_doc_type(self, doc_type):
         all_records = []
         offset = 0
 
         for page_num in range(1, MAX_PAGES + 1):
             url  = self._url(doc_type, offset=offset)
-            html = await self._load_page(page, url)
+            html = self._fetch(url)
 
             if not html:
                 break
@@ -465,34 +377,28 @@ class SSRScraper:
                 break
 
             offset += PAGE_LIMIT
+            time.sleep(0.5)  # polite delay
 
         return all_records
 
-    async def run(self):
-        if not PLAYWRIGHT_AVAILABLE:
-            return []
+    def run(self):
+        # First verify cookies work by hitting homepage
+        log.info("Verifying auth cookies...")
+        resp = self._fetch(CLERK_BASE + "/")
+        if resp:
+            if "Sign Out" in resp or "sign-out" in resp.lower():
+                log.info("Cookies valid - user is logged in")
+            elif "Sign In" in resp or "signin" in resp.lower():
+                log.warning("Cookies appear invalid - not logged in")
+            else:
+                log.info("Homepage loaded (auth status unclear)")
 
         all_records = []
-
-        async with async_playwright() as pw:
-            browser, context = await self._make_context(pw)
-            page = await context.new_page()
-
-            # Verify stealth is working
-            ua = await page.evaluate("() => navigator.userAgent")
-            wd = await page.evaluate("() => navigator.webdriver")
-            log.info("UA: %s", ua[:60])
-            log.info("webdriver flag: %s", wd)
-
-            await self._login(page, context)
-
-            for doc_type in TARGET_DOC_TYPES:
-                log.info("Searching: %s", doc_type)
-                recs = await self._scrape_doc_type(page, doc_type)
-                log.info("  Total: %d for %s", len(recs), doc_type)
-                all_records.extend(recs)
-
-            await browser.close()
+        for doc_type in TARGET_DOC_TYPES:
+            log.info("Searching: %s", doc_type)
+            recs = self.scrape_doc_type(doc_type)
+            log.info("  Total: %d for %s", len(recs), doc_type)
+            all_records.extend(recs)
 
         return all_records
 
@@ -562,7 +468,7 @@ class ParcelLookup:
         if not owners:
             log.info("No owners to look up.")
             return
-        log.info("ArcGIS lookup: %d owners", len(owners))
+        log.info("ArcGIS: %d owners", len(owners))
         for i in range(0, len(owners), 50):
             self.lookup_batch(owners[i:i+50])
             time.sleep(0.3)
@@ -679,20 +585,21 @@ def save_ghl_csv(records, path_str):
 # Main
 # ---------------------------------------------------------------------------
 
-async def main():
+def main():
     log.info("=" * 60)
     log.info("Bexar County Motivated Seller Lead Scraper")
     log.info("Lookback: %d days | Pages/type: %d x %d",
              LOOKBACK_DAYS, MAX_PAGES, PAGE_LIMIT)
-    log.info("Email: %s | Password: %s", bool(CLERK_EMAIL), bool(CLERK_PASSWORD))
+    log.info("authToken set: %s | authToken.sig set: %s",
+             bool(AUTH_TOKEN), bool(AUTH_TOKEN_SIG))
     log.info("=" * 60)
 
     start_ymd, end_ymd = date_range_yyyymmdd(LOOKBACK_DAYS)
     start_mdy, end_mdy = date_range_mmddyyyy(LOOKBACK_DAYS)
     log.info("Date range: %s to %s", start_mdy, end_mdy)
 
-    scraper     = SSRScraper(start_ymd, end_ymd)
-    raw_records = await scraper.run()
+    scraper     = CookieScraper(start_ymd, end_ymd)
+    raw_records = scraper.run()
     log.info("Total raw records: %d", len(raw_records))
 
     parcel = ParcelLookup()
@@ -708,5 +615,5 @@ async def main():
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()
 
