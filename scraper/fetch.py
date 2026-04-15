@@ -1,7 +1,7 @@
 """
 Bexar County Motivated Seller Lead Scraper
-SSR HTML table - confirmed working column layout (skip=3).
-Trust the portal's recordedDateRange filter server-side.
+Uses playwright-stealth + proper Chrome fingerprint to bypass
+the "browser out of date" detection on bexar.tx.publicsearch.us
 """
 
 from __future__ import annotations
@@ -62,6 +62,49 @@ MAX_RETRIES = 2
 RETRY_DELAY = 3
 PAGE_LIMIT  = 200
 MAX_PAGES   = 5
+
+# Real Chrome 122 user agent
+UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+
+# JS to inject that removes headless indicators
+STEALTH_JS = """
+() => {
+    // Remove webdriver flag
+    Object.defineProperty(navigator, 'webdriver', {get: () => undefined});
+    
+    // Mock plugins
+    Object.defineProperty(navigator, 'plugins', {
+        get: () => [
+            {name: 'Chrome PDF Plugin', filename: 'internal-pdf-viewer'},
+            {name: 'Chrome PDF Viewer', filename: 'mhjfbmdgcfjbbpaeojofohoefgiehjai'},
+            {name: 'Native Client', filename: 'internal-nacl-plugin'}
+        ]
+    });
+    
+    // Mock languages
+    Object.defineProperty(navigator, 'languages', {get: () => ['en-US', 'en']});
+    
+    // Mock chrome object
+    window.chrome = {
+        runtime: {},
+        loadTimes: function() {},
+        csi: function() {},
+        app: {}
+    };
+    
+    // Mock permissions
+    const originalQuery = window.navigator.permissions.query;
+    window.navigator.permissions.query = (parameters) => (
+        parameters.name === 'notifications' ?
+        Promise.resolve({state: Notification.permission}) :
+        originalQuery(parameters)
+    );
+    
+    // Spoof screen dimensions
+    Object.defineProperty(screen, 'width', {get: () => 1920});
+    Object.defineProperty(screen, 'height', {get: () => 1080});
+}
+"""
 
 
 # ---------------------------------------------------------------------------
@@ -170,117 +213,109 @@ def compute_score(record, flags):
 # ---------------------------------------------------------------------------
 
 def parse_results_html(html, doc_type):
-    """
-    Confirmed layout (skip 3 leading empty cols):
-    0=grantor, 1=grantee, 2=doc type, 3=recorded date, 4=doc number,
-    5=book/volume/page, 6=legal description, 7=lot, 8=block,
-    9=ncb, 10=county block, 11=property address
-    """
     cat, cat_label = DOC_TYPE_MAP.get(doc_type, (doc_type, doc_type))
     records = []
 
-    try:
-        soup = BeautifulSoup(html, "lxml")
+    soup = BeautifulSoup(html, "lxml")
 
-        # Find table with grantor column
-        table = None
-        for t in soup.find_all("table"):
-            ths   = t.find_all("th")
-            htext = " ".join(th.get_text(strip=True).lower() for th in ths)
-            if "grantor" in htext:
-                table = t
-                break
+    # Check for browser block page
+    text = soup.get_text(" ", strip=True)
+    if "out of date" in text.lower() or "update your browser" in text.lower():
+        log.warning("  [PARSE] browser detection page - stealth failed")
+        return records
 
-        if not table:
-            text = soup.get_text(" ", strip=True)[:200]
-            log.info("  [PARSE] no table found. page snippet: %s", text)
-            return records
+    table = None
+    for t in soup.find_all("table"):
+        ths   = t.find_all("th")
+        htext = " ".join(th.get_text(strip=True).lower() for th in ths)
+        if "grantor" in htext:
+            table = t
+            break
 
-        rows = table.find_all("tr")
-        if not rows:
-            return records
+    if not table:
+        snippet = text[:150].replace("\n", " ")
+        log.info("  [PARSE] no table. snippet: %s", snippet)
+        return records
 
-        raw_headers = [th.get_text(strip=True).lower()
-                       for th in rows[0].find_all(["th","td"])]
-        skip    = count_leading_empty(raw_headers)
-        headers = raw_headers[skip:]
+    rows = table.find_all("tr")
+    if not rows:
+        return records
 
-        def ci(name):
-            for i, h in enumerate(headers):
-                if name in h:
-                    return i
-            return -1
+    raw_headers = [th.get_text(strip=True).lower()
+                   for th in rows[0].find_all(["th","td"])]
+    skip    = count_leading_empty(raw_headers)
+    headers = raw_headers[skip:]
 
-        i_grantor  = ci("grantor")
-        i_grantee  = ci("grantee")
-        i_date     = ci("recorded") if ci("recorded") >= 0 else ci("date")
-        i_docnum   = ci("doc number") if ci("doc number") >= 0 else ci("number")
-        i_legal    = ci("legal")
-        i_propaddr = ci("property address") if ci("property address") >= 0 else ci("property")
+    def ci(name):
+        for i, h in enumerate(headers):
+            if name in h:
+                return i
+        return -1
 
-        if doc_type == TARGET_DOC_TYPES[0]:  # log once
-            log.info("  [PARSE] skip=%d headers=%s", skip, headers[:6])
+    i_grantor  = ci("grantor")
+    i_grantee  = ci("grantee")
+    i_date     = ci("recorded") if ci("recorded") >= 0 else ci("date")
+    i_docnum   = ci("doc number") if ci("doc number") >= 0 else ci("number")
+    i_legal    = ci("legal")
+    i_propaddr = ci("property address") if ci("property address") >= 0 else ci("property")
 
-        parsed = 0
-        for row in rows[1:]:
-            cells = row.find_all("td")
-            if len(cells) <= skip:
-                continue
+    log.info("  [PARSE] skip=%d headers=%s", skip, headers[:6])
 
-            data = cells[skip:]
+    parsed = 0
+    for row in rows[1:]:
+        cells = row.find_all("td")
+        if len(cells) <= skip:
+            continue
+        data = cells[skip:]
 
-            def cell(idx):
-                if idx < 0 or idx >= len(data):
-                    return ""
-                return clean(data[idx].get_text(strip=True))
+        def cell(idx):
+            if idx < 0 or idx >= len(data):
+                return ""
+            return clean(data[idx].get_text(strip=True))
 
-            grantor   = cell(i_grantor)  if i_grantor  >= 0 else ""
-            grantee   = cell(i_grantee)  if i_grantee  >= 0 else ""
-            filed     = cell(i_date)     if i_date     >= 0 else ""
-            doc_num   = cell(i_docnum)   if i_docnum   >= 0 else ""
-            legal     = cell(i_legal)    if i_legal    >= 0 else ""
-            prop_addr = cell(i_propaddr) if i_propaddr >= 0 else ""
+        grantor   = cell(i_grantor)  if i_grantor  >= 0 else ""
+        grantee   = cell(i_grantee)  if i_grantee  >= 0 else ""
+        filed     = cell(i_date)     if i_date     >= 0 else ""
+        doc_num   = cell(i_docnum)   if i_docnum   >= 0 else ""
+        legal     = cell(i_legal)    if i_legal    >= 0 else ""
+        prop_addr = cell(i_propaddr) if i_propaddr >= 0 else ""
 
-            link = row.find("a", href=True)
-            clerk_url = ""
-            if link:
-                href = link["href"]
-                if not href.startswith("http"):
-                    href = CLERK_BASE + href
-                clerk_url = href
-                if not doc_num:
-                    m = re.search(r"/(?:doc|instruments?)/(\w+)", href)
-                    if m:
-                        doc_num = m.group(1)
+        link = row.find("a", href=True)
+        clerk_url = ""
+        if link:
+            href = link["href"]
+            if not href.startswith("http"):
+                href = CLERK_BASE + href
+            clerk_url = href
+            if not doc_num:
+                m = re.search(r"/(?:doc|instruments?)/(\w+)", href)
+                if m:
+                    doc_num = m.group(1)
 
-            if not grantor and not doc_num:
-                continue
+        if not grantor and not doc_num:
+            continue
 
-            records.append({
-                "doc_num":   doc_num,
-                "doc_type":  doc_type,
-                "filed":     filed,
-                "cat":       cat,
-                "cat_label": cat_label,
-                "owner":     grantor,
-                "grantee":   grantee,
-                "amount":    0.0,
-                "legal":     legal,
-                "prop_address_inline": prop_addr,
-                "clerk_url": clerk_url,
-            })
-            parsed += 1
+        records.append({
+            "doc_num":   doc_num,
+            "doc_type":  doc_type,
+            "filed":     filed,
+            "cat":       cat,
+            "cat_label": cat_label,
+            "owner":     grantor,
+            "grantee":   grantee,
+            "amount":    0.0,
+            "legal":     legal,
+            "prop_address_inline": prop_addr,
+            "clerk_url": clerk_url,
+        })
+        parsed += 1
 
-        log.info("  [PARSE] parsed %d rows from table", parsed)
-
-    except Exception as exc:
-        log.warning("  [PARSE] error: %s", exc)
-
+    log.info("  [PARSE] %d rows parsed", parsed)
     return records
 
 
 # ---------------------------------------------------------------------------
-# SSR Scraper
+# SSR Scraper with stealth
 # ---------------------------------------------------------------------------
 
 class SSRScraper:
@@ -289,7 +324,6 @@ class SSRScraper:
         self.end_ymd   = end_ymd
 
     def _url(self, doc_type, offset=0):
-        # Exact URL format confirmed from browser network tab
         return (
             CLERK_BASE + "/results"
             + "?department=RP"
@@ -302,6 +336,42 @@ class SSRScraper:
             + "&searchValue=" + doc_type
         )
 
+    async def _make_context(self, pw):
+        """Create a stealth browser context."""
+        browser = await pw.chromium.launch(
+            headless=True,
+            args=[
+                "--no-sandbox",
+                "--disable-setuid-sandbox",
+                "--disable-dev-shm-usage",
+                "--disable-blink-features=AutomationControlled",
+                "--disable-features=IsolateOrigins,site-per-process",
+                "--flag-switches-begin",
+                "--disable-site-isolation-trials",
+                "--flag-switches-end",
+            ],
+        )
+        context = await browser.new_context(
+            user_agent=UA,
+            viewport={"width": 1920, "height": 1080},
+            screen={"width": 1920, "height": 1080},
+            locale="en-US",
+            timezone_id="America/Chicago",
+            color_scheme="light",
+            ignore_https_errors=True,
+            extra_http_headers={
+                "Accept-Language": "en-US,en;q=0.9",
+                "Accept":          "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8",
+                "sec-ch-ua":       '"Chromium";v="122", "Not(A:Brand";v="24", "Google Chrome";v="122"',
+                "sec-ch-ua-mobile":   "?0",
+                "sec-ch-ua-platform": '"Windows"',
+                "Upgrade-Insecure-Requests": "1",
+            },
+        )
+        # Inject stealth JS on every new page
+        await context.add_init_script(STEALTH_JS)
+        return browser, context
+
     async def _login(self, page, context):
         if not CLERK_EMAIL or not CLERK_PASSWORD:
             log.info("No credentials")
@@ -309,29 +379,41 @@ class SSRScraper:
         try:
             log.info("Logging in as %s***", CLERK_EMAIL[:4])
             await page.goto(CLERK_BASE + "/signin",
-                            wait_until="networkidle", timeout=30000)
-            await asyncio.sleep(2)
+                            wait_until="domcontentloaded", timeout=30000)
+            await asyncio.sleep(3)
+
             for sel in ["input[type='email']", "#email", "input[name='email']"]:
                 try:
                     await page.fill(sel, CLERK_EMAIL, timeout=3000)
+                    log.info("Email filled: %s", sel)
                     break
                 except Exception:
                     continue
+
             for sel in ["input[type='password']", "#password"]:
                 try:
                     await page.fill(sel, CLERK_PASSWORD, timeout=3000)
+                    log.info("Password filled: %s", sel)
                     break
                 except Exception:
                     continue
+
             for sel in ["button[type='submit']", "button:has-text('Sign In')"]:
                 try:
                     await page.click(sel, timeout=3000)
+                    log.info("Submit clicked")
                     break
                 except Exception:
                     continue
-            await page.wait_for_load_state("networkidle", timeout=20000)
-            await asyncio.sleep(2)
+
+            await page.wait_for_load_state("domcontentloaded", timeout=20000)
+            await asyncio.sleep(3)
+
+            url     = page.url
             cookies = [c["name"] for c in await context.cookies()]
+            log.info("Post-login URL: %s", url)
+            log.info("Cookies: %s", cookies)
+
             success = "authToken" in str(cookies)
             log.info("Login: %s", "SUCCESS" if success else "FAILED")
             return success
@@ -339,46 +421,50 @@ class SSRScraper:
             log.warning("Login error: %s", exc)
             return False
 
+    async def _load_page(self, page, url):
+        """Load a page with retries, returning HTML."""
+        for attempt in range(1, MAX_RETRIES + 1):
+            try:
+                await page.goto(url, wait_until="domcontentloaded", timeout=40000)
+                # Wait for either table or known content
+                await asyncio.sleep(4)
+                try:
+                    await page.wait_for_selector(
+                        "table th, .results-count, [class*='result']",
+                        timeout=8000
+                    )
+                except Exception:
+                    pass
+                return await page.content()
+            except Exception as exc:
+                log.warning("  Load attempt %d: %s", attempt, exc)
+                if attempt < MAX_RETRIES:
+                    await asyncio.sleep(RETRY_DELAY)
+        return ""
+
     async def _scrape_doc_type(self, page, doc_type):
         all_records = []
-        offset   = 0
-        page_num = 0
+        offset = 0
 
-        while page_num < MAX_PAGES:
-            page_num += 1
-            url = self._url(doc_type, offset=offset)
+        for page_num in range(1, MAX_PAGES + 1):
+            url  = self._url(doc_type, offset=offset)
+            html = await self._load_page(page, url)
 
-            for attempt in range(1, MAX_RETRIES + 1):
-                try:
-                    await page.goto(url, wait_until="networkidle", timeout=40000)
-                    try:
-                        await page.wait_for_selector("table th", timeout=8000)
-                    except Exception:
-                        pass
-
-                    html = await page.content()
-                    recs = parse_results_html(html, doc_type)
-
-                    log.info("  p%d offset=%d: %d records",
-                             page_num, offset, len(recs))
-
-                    if not recs:
-                        return all_records
-
-                    all_records.extend(recs)
-
-                    if len(recs) < PAGE_LIMIT:
-                        return all_records
-
-                    offset += PAGE_LIMIT
-                    break
-
-                except Exception as exc:
-                    log.warning("  Attempt %d/%d: %s", attempt, MAX_RETRIES, exc)
-                    if attempt < MAX_RETRIES:
-                        await asyncio.sleep(RETRY_DELAY)
-            else:
+            if not html:
                 break
+
+            recs = parse_results_html(html, doc_type)
+            log.info("  p%d offset=%d: %d records", page_num, offset, len(recs))
+
+            if not recs:
+                break
+
+            all_records.extend(recs)
+
+            if len(recs) < PAGE_LIMIT:
+                break
+
+            offset += PAGE_LIMIT
 
         return all_records
 
@@ -389,18 +475,15 @@ class SSRScraper:
         all_records = []
 
         async with async_playwright() as pw:
-            browser = await pw.chromium.launch(
-                headless=True,
-                args=["--no-sandbox", "--disable-setuid-sandbox",
-                      "--disable-dev-shm-usage"],
-            )
-            context = await browser.new_context(
-                user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
-                ignore_https_errors=True,
-                viewport={"width": 1280, "height": 900},
-                locale="en-US",
-            )
+            browser, context = await self._make_context(pw)
             page = await context.new_page()
+
+            # Verify stealth is working
+            ua = await page.evaluate("() => navigator.userAgent")
+            wd = await page.evaluate("() => navigator.webdriver")
+            log.info("UA: %s", ua[:60])
+            log.info("webdriver flag: %s", wd)
+
             await self._login(page, context)
 
             for doc_type in TARGET_DOC_TYPES:
@@ -470,29 +553,29 @@ class ParcelLookup:
                         self.cache[owner] = self._parse_feature(attrs)
                 return
             except Exception as exc:
-                log.warning("ArcGIS attempt %d: %s", attempt+1, exc)
+                log.warning("ArcGIS %d: %s", attempt+1, exc)
                 time.sleep(3)
 
     def enrich_all(self, records):
         owners = list({r.get("owner","").upper()
                        for r in records if r.get("owner","").strip()})
         if not owners:
-            log.info("No owner names to look up.")
+            log.info("No owners to look up.")
             return
-        log.info("Looking up %d owners in ArcGIS...", len(owners))
+        log.info("ArcGIS lookup: %d owners", len(owners))
         for i in range(0, len(owners), 50):
             self.lookup_batch(owners[i:i+50])
             time.sleep(0.3)
         found = sum(1 for o in owners if o in self.cache)
-        log.info("ArcGIS matched %d / %d owners", found, len(owners))
+        log.info("ArcGIS matched %d/%d", found, len(owners))
 
     def get_address(self, owner):
         key = owner.upper().strip()
         if key in self.cache:
             return self.cache[key]
-        for variant in normalize_name(owner):
-            if variant in self.cache:
-                return self.cache[variant]
+        for v in normalize_name(owner):
+            if v in self.cache:
+                return self.cache[v]
         return {}
 
 
@@ -528,7 +611,7 @@ def enrich_records(records, parcel):
             del r["_owner_cats"]
             enriched.append(r)
         except Exception as exc:
-            log.warning("Enrich error: %s", exc)
+            log.warning("Enrich: %s", exc)
             enriched.append(r)
     return enriched
 
@@ -599,7 +682,7 @@ def save_ghl_csv(records, path_str):
 async def main():
     log.info("=" * 60)
     log.info("Bexar County Motivated Seller Lead Scraper")
-    log.info("Lookback: %d days | Pages/type: max %d x %d records",
+    log.info("Lookback: %d days | Pages/type: %d x %d",
              LOOKBACK_DAYS, MAX_PAGES, PAGE_LIMIT)
     log.info("Email: %s | Password: %s", bool(CLERK_EMAIL), bool(CLERK_PASSWORD))
     log.info("=" * 60)
