@@ -1,7 +1,7 @@
 """
 Bexar County Motivated Seller Lead Scraper
-Uses real browser cookies (authToken + authToken.sig) directly via requests.
-No Playwright needed for search - bypasses all bot detection.
+Uses real browser cookies via requests session.
+authToken is a UUID (36 chars) - this is correct for this portal.
 """
 
 from __future__ import annotations
@@ -26,11 +26,11 @@ logging.basicConfig(
 )
 log = logging.getLogger(__name__)
 
-LOOKBACK_DAYS    = int(os.getenv("LOOKBACK_DAYS", "7"))
-AUTH_TOKEN       = (os.getenv("CLERK_AUTH_TOKEN") or "").strip()
-AUTH_TOKEN_SIG   = (os.getenv("CLERK_AUTH_SIG") or "").strip()
-CLERK_BASE       = "https://bexar.tx.publicsearch.us"
-ARCGIS_URL       = "https://maps.bexar.org/arcgis/rest/services/Parcels/MapServer/0/query"
+LOOKBACK_DAYS  = int(os.getenv("LOOKBACK_DAYS", "7"))
+AUTH_TOKEN     = (os.getenv("CLERK_AUTH_TOKEN") or "").strip()
+AUTH_TOKEN_SIG = (os.getenv("CLERK_AUTH_SIG") or "").strip()
+CLERK_BASE     = "https://bexar.tx.publicsearch.us"
+ARCGIS_URL     = "https://maps.bexar.org/arcgis/rest/services/Parcels/MapServer/0/query"
 
 DOC_TYPE_MAP = {
     "LP":       ("LP",      "Lis Pendens"),
@@ -57,10 +57,6 @@ MAX_RETRIES = 3
 RETRY_DELAY = 5
 
 
-# ---------------------------------------------------------------------------
-# Helpers
-# ---------------------------------------------------------------------------
-
 def clean(val):
     if val is None:
         return ""
@@ -79,8 +75,7 @@ def normalize_name(name):
     if "," in name:
         parts = [p.strip() for p in name.split(",", 1)]
         if len(parts) == 2:
-            last, first = parts
-            variants.append(first + " " + last)
+            variants.append(parts[1] + " " + parts[0])
     else:
         tokens = name.split()
         if len(tokens) >= 2:
@@ -123,10 +118,6 @@ def count_leading_empty(headers):
     return count
 
 
-# ---------------------------------------------------------------------------
-# Scoring
-# ---------------------------------------------------------------------------
-
 def compute_flags(record):
     flags    = []
     cat      = record.get("cat", "")
@@ -158,48 +149,32 @@ def compute_score(record, flags):
     return min(score, 100)
 
 
-# ---------------------------------------------------------------------------
-# Parse SSR HTML table
-# ---------------------------------------------------------------------------
-
 def parse_results_html(html, doc_type):
-    """
-    Confirmed column layout after skipping leading empty cols:
-    0=grantor, 1=grantee, 2=doc type, 3=recorded date, 4=doc number,
-    5=book/vol/page, 6=legal description, 7=lot, 8=block,
-    9=ncb, 10=county block, 11=property address
-    """
     cat, cat_label = DOC_TYPE_MAP.get(doc_type, (doc_type, doc_type))
     records = []
-
     soup = BeautifulSoup(html, "lxml")
-
-    # Detect bot-block page
     text = soup.get_text(" ", strip=True)
+
     if "out of date" in text.lower() or "update your browser" in text.lower():
-        log.warning("  [HTML] Bot detection page returned")
+        log.warning("  [HTML] Bot detection page")
         return records
 
-    # Find table with grantor header
     table = None
     for t in soup.find_all("table"):
-        ths   = t.find_all("th")
-        htext = " ".join(th.get_text(strip=True).lower() for th in ths)
+        htext = " ".join(th.get_text(strip=True).lower() for th in t.find_all("th"))
         if "grantor" in htext:
             table = t
             break
 
     if not table:
-        snippet = text[:200].replace("\n", " ")
-        log.info("  [HTML] No table found. Page: %s", snippet)
+        log.info("  [HTML] No table. Snippet: %s", text[:150])
         return records
 
     rows = table.find_all("tr")
     if not rows:
         return records
 
-    raw_headers = [th.get_text(strip=True).lower()
-                   for th in rows[0].find_all(["th","td"])]
+    raw_headers = [th.get_text(strip=True).lower() for th in rows[0].find_all(["th","td"])]
     skip    = count_leading_empty(raw_headers)
     headers = raw_headers[skip:]
 
@@ -234,7 +209,7 @@ def parse_results_html(html, doc_type):
         grantee   = cell(i_grantee)  if i_grantee  >= 0 else ""
         filed     = cell(i_date)     if i_date     >= 0 else ""
         doc_num   = cell(i_docnum)   if i_docnum   >= 0 else ""
-        legal     = cell(i_legal)    if i_legal    >= 0 else ""
+        legal     = cell(i_legal)    if i_legal     >= 0 else ""
         prop_addr = cell(i_propaddr) if i_propaddr >= 0 else ""
 
         link = row.find("a", href=True)
@@ -253,71 +228,49 @@ def parse_results_html(html, doc_type):
             continue
 
         records.append({
-            "doc_num":   doc_num,
-            "doc_type":  doc_type,
-            "filed":     filed,
-            "cat":       cat,
-            "cat_label": cat_label,
-            "owner":     grantor,
-            "grantee":   grantee,
-            "amount":    0.0,
-            "legal":     legal,
+            "doc_num": doc_num, "doc_type": doc_type,
+            "filed": filed, "cat": cat, "cat_label": cat_label,
+            "owner": grantor, "grantee": grantee,
+            "amount": 0.0, "legal": legal,
             "prop_address_inline": prop_addr,
             "clerk_url": clerk_url,
         })
         parsed += 1
 
-    log.info("  [HTML] parsed %d rows", parsed)
+    log.info("  [HTML] %d rows parsed", parsed)
     return records
 
 
-# ---------------------------------------------------------------------------
-# Direct HTTP scraper using real browser cookies
-# ---------------------------------------------------------------------------
-
 class CookieScraper:
-    """
-    Uses real authToken cookies from the user's browser session.
-    Makes direct HTTP requests - no browser, no bot detection.
-    """
-
-    HEADERS = {
-        "User-Agent":      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
-        "Accept":          "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
-        "Accept-Language": "en-US,en;q=0.9",
-        "Accept-Encoding": "gzip, deflate, br",
-        "Connection":      "keep-alive",
-        "Upgrade-Insecure-Requests": "1",
-        "Sec-Fetch-Dest":  "document",
-        "Sec-Fetch-Mode":  "navigate",
-        "Sec-Fetch-Site":  "same-origin",
-        "sec-ch-ua":       '"Chromium";v="122", "Not(A:Brand";v="24", "Google Chrome";v="122"',
-        "sec-ch-ua-mobile":   "?0",
-        "sec-ch-ua-platform": '"Windows"',
-    }
-
     def __init__(self, start_ymd, end_ymd):
         self.start_ymd = start_ymd
         self.end_ymd   = end_ymd
         self.session   = requests.Session()
-        self.session.headers.update(self.HEADERS)
 
-        # Set auth cookies from GitHub Secrets
+        # Build cookie header exactly as a browser sends it
+        cookie_parts = []
         if AUTH_TOKEN:
-            self.session.cookies.set(
-                "authToken", AUTH_TOKEN,
-                domain="bexar.tx.publicsearch.us", path="/"
-            )
-            log.info("authToken set (len=%d)", len(AUTH_TOKEN))
+            cookie_parts.append(f"authToken={AUTH_TOKEN}")
         if AUTH_TOKEN_SIG:
-            self.session.cookies.set(
-                "authToken.sig", AUTH_TOKEN_SIG,
-                domain="bexar.tx.publicsearch.us", path="/"
-            )
-            log.info("authToken.sig set (len=%d)", len(AUTH_TOKEN_SIG))
+            cookie_parts.append(f"authToken.sig={AUTH_TOKEN_SIG}")
 
-        if not AUTH_TOKEN:
-            log.warning("No CLERK_AUTH_TOKEN set! Add it as a GitHub Secret.")
+        cookie_str = "; ".join(cookie_parts)
+
+        self.session.headers.update({
+            "User-Agent":      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+            "Accept":          "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+            "Accept-Language": "en-US,en;q=0.9",
+            "Accept-Encoding": "gzip, deflate, br",
+            "Cookie":          cookie_str,
+            "Referer":         CLERK_BASE + "/",
+            "sec-ch-ua":       '"Chromium";v="122", "Not(A:Brand";v="24", "Google Chrome";v="122"',
+            "sec-ch-ua-mobile":   "?0",
+            "sec-ch-ua-platform": '"Windows"',
+            "Upgrade-Insecure-Requests": "1",
+        })
+        log.info("Cookie header: authToken=%s... sig=%s...",
+                 AUTH_TOKEN[:8] if AUTH_TOKEN else "MISSING",
+                 AUTH_TOKEN_SIG[:8] if AUTH_TOKEN_SIG else "MISSING")
 
     def _url(self, doc_type, offset=0):
         return (
@@ -332,22 +285,36 @@ class CookieScraper:
             + "&searchValue=" + doc_type
         )
 
-    def _fetch(self, url):
-        """Fetch a URL with retries."""
+    def verify(self):
+        """Check homepage to see if we're logged in."""
+        try:
+            resp = self.session.get(CLERK_BASE + "/", timeout=20)
+            html = resp.text
+            soup = BeautifulSoup(html, "lxml")
+            text = soup.get_text(" ", strip=True)
+            if "Sign Out" in html or "sign-out" in html:
+                log.info("Auth OK - logged in (Sign Out found)")
+                return True
+            elif "Xavier" in text or "xsilva" in text.lower():
+                log.info("Auth OK - username found in page")
+                return True
+            else:
+                log.warning("Auth FAILED - not logged in. Page snippet: %s", text[:200])
+                # Log response cookies for debugging
+                log.info("Response cookies: %s", dict(resp.cookies))
+                return False
+        except Exception as exc:
+            log.warning("Verify error: %s", exc)
+            return False
+
+    def fetch(self, url):
         for attempt in range(1, MAX_RETRIES + 1):
             try:
-                self.session.headers["Referer"] = CLERK_BASE + "/"
                 resp = self.session.get(url, timeout=30)
-                log.info("  GET %s -> %d (%d bytes)",
-                         url[-60:], resp.status_code, len(resp.content))
+                log.info("  %d bytes | status=%d", len(resp.content), resp.status_code)
                 if resp.status_code == 200:
                     return resp.text
-                elif resp.status_code in (401, 403):
-                    log.warning("  Auth error %d - cookies may be expired",
-                                resp.status_code)
-                    return None
-                else:
-                    log.warning("  Status %d", resp.status_code)
+                log.warning("  Status %d", resp.status_code)
             except Exception as exc:
                 log.warning("  Attempt %d: %s", attempt, exc)
                 if attempt < MAX_RETRIES:
@@ -357,55 +324,31 @@ class CookieScraper:
     def scrape_doc_type(self, doc_type):
         all_records = []
         offset = 0
-
         for page_num in range(1, MAX_PAGES + 1):
-            url  = self._url(doc_type, offset=offset)
-            html = self._fetch(url)
-
+            html = self.fetch(self._url(doc_type, offset))
             if not html:
                 break
-
             recs = parse_results_html(html, doc_type)
-            log.info("  p%d offset=%d: %d records", page_num, offset, len(recs))
-
+            log.info("  p%d: %d records", page_num, len(recs))
             if not recs:
                 break
-
             all_records.extend(recs)
-
             if len(recs) < PAGE_LIMIT:
                 break
-
             offset += PAGE_LIMIT
-            time.sleep(0.5)  # polite delay
-
+            time.sleep(0.5)
         return all_records
 
     def run(self):
-        # First verify cookies work by hitting homepage
-        log.info("Verifying auth cookies...")
-        resp = self._fetch(CLERK_BASE + "/")
-        if resp:
-            if "Sign Out" in resp or "sign-out" in resp.lower():
-                log.info("Cookies valid - user is logged in")
-            elif "Sign In" in resp or "signin" in resp.lower():
-                log.warning("Cookies appear invalid - not logged in")
-            else:
-                log.info("Homepage loaded (auth status unclear)")
-
+        self.verify()
         all_records = []
         for doc_type in TARGET_DOC_TYPES:
             log.info("Searching: %s", doc_type)
             recs = self.scrape_doc_type(doc_type)
             log.info("  Total: %d for %s", len(recs), doc_type)
             all_records.extend(recs)
-
         return all_records
 
-
-# ---------------------------------------------------------------------------
-# ArcGIS parcel lookup
-# ---------------------------------------------------------------------------
 
 class ParcelLookup:
     def __init__(self):
@@ -484,10 +427,6 @@ class ParcelLookup:
                 return self.cache[v]
         return {}
 
-
-# ---------------------------------------------------------------------------
-# Enrichment + Output
-# ---------------------------------------------------------------------------
 
 def enrich_records(records, parcel):
     owner_cats = {}
@@ -581,17 +520,12 @@ def save_ghl_csv(records, path_str):
     log.info("Saved GHL CSV: %s", path)
 
 
-# ---------------------------------------------------------------------------
-# Main
-# ---------------------------------------------------------------------------
-
 def main():
     log.info("=" * 60)
     log.info("Bexar County Motivated Seller Lead Scraper")
-    log.info("Lookback: %d days | Pages/type: %d x %d",
-             LOOKBACK_DAYS, MAX_PAGES, PAGE_LIMIT)
-    log.info("authToken set: %s | authToken.sig set: %s",
-             bool(AUTH_TOKEN), bool(AUTH_TOKEN_SIG))
+    log.info("Lookback: %d days", LOOKBACK_DAYS)
+    log.info("authToken: %s (len=%d)", bool(AUTH_TOKEN), len(AUTH_TOKEN))
+    log.info("authToken.sig: %s (len=%d)", bool(AUTH_TOKEN_SIG), len(AUTH_TOKEN_SIG))
     log.info("=" * 60)
 
     start_ymd, end_ymd = date_range_yyyymmdd(LOOKBACK_DAYS)
