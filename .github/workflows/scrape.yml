@@ -41,32 +41,6 @@ jobs:
         timeout-minutes: 10
 
       - name: Copy records to dashboard
-            - name: Inline records JSON into dashboard HTML
-        run: |
-          python3 - <<'EOF'
-          import json, re
-
-          # Read the scraped records
-          with open('data/records.json', 'r') as f:
-              records = json.load(f)
-
-          # Serialize as compact JSON (safe for embedding in JS)
-          json_str = json.dumps(records, separators=(',', ':'))
-
-          # Read the dashboard HTML
-          with open('dashboard/index.html', 'r') as f:
-              html = f.read()
-
-          # Replace the placeholder with the actual data
-          html = html.replace("'__RECORDS_JSON__'", f"'{json_str}'", 1)
-
-          # Write it back
-          with open('dashboard/index.html', 'w') as f:
-              f.write(html)
-
-          print(f"Inlined {len(records)} records into dashboard/index.html")
-          EOF
-
         run: cp data/records.json dashboard/records.json
 
       - name: Show summary
