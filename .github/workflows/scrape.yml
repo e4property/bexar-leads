@@ -43,18 +43,32 @@ jobs:
       - name: Copy records to dashboard
         run: cp data/records.json dashboard/records.json
 
-      - name: Show summary
+      - name: Inline records JSON into dashboard HTML
         run: |
-          python -c "
-          import json
-          d = json.load(open('dashboard/records.json'))
-          print(f'Total: {d[\"total\"]} | With address: {d[\"with_address\"]}')
-          print(f'Source: {d[\"source\"]}')
-          print(f'Fetched: {d[\"fetched_at\"]}')
-          if d['records']:
-              r = d['records'][0]
-              print(f'Sample: {r.get(\"cat\")} | {r.get(\"prop_address\")} | {r.get(\"filed\")}')
-          "
+          python3 - <<'EOF'
+          import json, re
+
+          # Read the scraped records
+          with open('data/records.json', 'r') as f:
+              records = json.load(f)
+
+          # Serialize as compact JSON (safe for embedding in JS)
+          json_str = json.dumps(records, separators=(',', ':'))
+
+          # Read the dashboard HTML
+          with open('dashboard/index.html', 'r') as f:
+              html = f.read()
+
+          # Replace the placeholder with the actual data
+          html = html.replace("'__RECORDS_JSON__'", f"'{json_str}'", 1)
+
+          # Write it back
+          with open('dashboard/index.html', 'w') as f:
+              f.write(html)
+
+          print(f"Inlined {len(records)} records into dashboard/index.html")
+          EOF
+
 
       - name: Commit records
         run: |
