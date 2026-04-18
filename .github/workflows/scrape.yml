@@ -5,9 +5,6 @@ on:
     - cron: "0 7 * * *"
   workflow_dispatch:
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
 permissions:
   contents: write
   pages: write
@@ -43,22 +40,29 @@ jobs:
         run: python scraper/fetch.py
         timeout-minutes: 10
 
+      - name: Copy records to dashboard
+        run: cp data/records.json dashboard/records.json
+
       - name: Show summary
         run: |
           python -c "
           import json
           d = json.load(open('dashboard/records.json'))
           print(f'Total: {d[\"total\"]} | With address: {d[\"with_address\"]}')
+          print(f'Source: {d[\"source\"]}')
           print(f'Fetched: {d[\"fetched_at\"]}')
+          if d['records']:
+              r = d['records'][0]
+              print(f'Sample: {r.get(\"cat\")} | {r.get(\"prop_address\")} | {r.get(\"filed\")}')
           "
 
       - name: Commit records
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add dashboard/records.json data/records.json data/leads_export.csv || true
-          git diff --cached --quiet || git commit -m "chore: update leads $(date -u +'%Y-%m-%d %H:%M UTC')"
-          git push
+          git add -f dashboard/records.json data/records.json data/leads_export.csv
+          git diff --cached --quiet && echo "No changes" || git commit -m "chore: update leads $(date -u +'%Y-%m-%d %H:%M UTC')"
+          git push origin main
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
