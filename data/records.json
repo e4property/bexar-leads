@@ -2,7 +2,7 @@
   {
     "type": "TAX",
     "address": "2630 E COMMERCE ST",
-    "owner": "",
+    "owner": "TAYLOR GEORGIA  ETAL",
     "doc_number": "2012TA100316",
     "year": "2026",
     "month": "5",
@@ -11,10 +11,41 @@
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
     "flags": [
-      "TAX FORE",
-      "NO OWNER"
+      "TAX FORE"
     ],
-    "score": 8
+    "score": 9
+  },
+  {
+    "type": "TAX",
+    "address": "620 N NEW BRAUNFELS AVE",
+    "owner": "PAGETTE JEAN PAUL",
+    "doc_number": "2021TA101691",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78202",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "5/2026",
+    "flags": [
+      "TAX FORE"
+    ],
+    "score": 9
+  },
+  {
+    "type": "TAX",
+    "address": "20220 E LOOP 1604",
+    "owner": "WANDER URSULA HELEN",
+    "doc_number": "2013TA101644",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78264",
+    "school_dist": "Southside ISD",
+    "date_filed": "5/2026",
+    "flags": [
+      "TAX FORE"
+    ],
+    "score": 9
   },
   {
     "type": "TAX",
@@ -31,7 +62,7 @@
       "TAX FORE",
       "NO OWNER"
     ],
-    "score": 8
+    "score": 7
   },
   {
     "type": "TAX",
@@ -48,7 +79,7 @@
       "TAX FORE",
       "NO OWNER"
     ],
-    "score": 8
+    "score": 7
   },
   {
     "type": "TAX",
@@ -65,7 +96,7 @@
       "TAX FORE",
       "NO OWNER"
     ],
-    "score": 8
+    "score": 7
   },
   {
     "type": "TAX",
@@ -82,7 +113,7 @@
       "TAX FORE",
       "NO OWNER"
     ],
-    "score": 8
+    "score": 7
   },
   {
     "type": "TAX",
@@ -99,7 +130,7 @@
       "TAX FORE",
       "NO OWNER"
     ],
-    "score": 8
+    "score": 7
   },
   {
     "type": "TAX",
@@ -116,7 +147,7 @@
       "TAX FORE",
       "NO OWNER"
     ],
-    "score": 8
+    "score": 7
   },
   {
     "type": "TAX",
@@ -133,7 +164,7 @@
       "TAX FORE",
       "NO OWNER"
     ],
-    "score": 8
+    "score": 7
   },
   {
     "type": "TAX",
@@ -150,24 +181,7 @@
       "TAX FORE",
       "NO OWNER"
     ],
-    "score": 8
-  },
-  {
-    "type": "TAX",
-    "address": "620 N NEW BRAUNFELS AVE",
-    "owner": "",
-    "doc_number": "2021TA101691",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78202",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "5/2026",
-    "flags": [
-      "TAX FORE",
-      "NO OWNER"
-    ],
-    "score": 8
+    "score": 7
   },
   {
     "type": "TAX",
@@ -184,7 +198,7 @@
       "TAX FORE",
       "NO OWNER"
     ],
-    "score": 8
+    "score": 7
   },
   {
     "type": "TAX",
@@ -201,24 +215,7 @@
       "TAX FORE",
       "NO OWNER"
     ],
-    "score": 8
-  },
-  {
-    "type": "TAX",
-    "address": "20220 E LOOP 1604",
-    "owner": "",
-    "doc_number": "2013TA101644",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78264",
-    "school_dist": "Southside ISD",
-    "date_filed": "5/2026",
-    "flags": [
-      "TAX FORE",
-      "NO OWNER"
-    ],
-    "score": 8
+    "score": 7
   },
   {
     "type": "TAX",
@@ -235,7 +232,7 @@
       "TAX FORE",
       "NO OWNER"
     ],
-    "score": 8
+    "score": 7
   },
   {
     "type": "TAX",
@@ -252,7 +249,7 @@
       "TAX FORE",
       "NO OWNER"
     ],
-    "score": 8
+    "score": 7
   },
   {
     "type": "TAX",
@@ -269,7 +266,329 @@
       "TAX FORE",
       "NO OWNER"
     ],
-    "score": 8
+    "score": 7
+  },
+  {
+    "type": "NOF",
+    "address": "138 E ACKARD PL",
+    "owner": "GARCIA CELESTINA ANNMARIE",
+    "doc_number": "20260500006",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78221",
+    "school_dist": "Harlandale ISD",
+    "date_filed": "5/2026",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "203 E LAMBERT ST",
+    "owner": "FAHIM DURIME & ABDUL",
+    "doc_number": "20260500072",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78204",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "5/2026",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "2014 S TRINITY ST",
+    "owner": "SALAZAR FERNANDO",
+    "doc_number": "20260500090",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78207",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "5/2026",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "215 W MISTLETOE AVE",
+    "owner": "ELMWOOD CONDOMINIUM",
+    "doc_number": "20260500096",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78212",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "5/2026",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "2165 W GRAMERCY PL",
+    "owner": "HILDEBRANDT RITA M",
+    "doc_number": "20260400222",
+    "year": "2026",
+    "month": "4",
+    "city": "SAN ANTONIO",
+    "zip": "78201",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "4/2026",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "427 N SAN GABRIEL AVE",
+    "owner": "LUCIO MARTHA",
+    "doc_number": "20260400300",
+    "year": "2026",
+    "month": "4",
+    "city": "SAN ANTONIO",
+    "zip": "78228",
+    "school_dist": "Edgewood ISD (Bexar)",
+    "date_filed": "4/2026",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "711 S BROWNLEAF ST",
+    "owner": "MCKINLEY ELWOOD",
+    "doc_number": "20260400044",
+    "year": "2026",
+    "month": "4",
+    "city": "SAN ANTONIO",
+    "zip": "78227",
+    "school_dist": "Northside ISD (Bexar)",
+    "date_filed": "4/2026",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "167 E HUTCHINS PL",
+    "owner": "MARTINEZ HENRY JR & DIAZ VANESSA",
+    "doc_number": "20260400096",
+    "year": "2026",
+    "month": "4",
+    "city": "SAN ANTONIO",
+    "zip": "78221",
+    "school_dist": "Harlandale ISD",
+    "date_filed": "4/2026",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "2415 W SUMMIT AVE",
+    "owner": "GUMTREE PROPERTIES AND INVESTMENTS LLC",
+    "doc_number": "20260500207",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78228",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "5/2026",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "1108 W MARIPOSA DR",
+    "owner": "MONTEMAYOR AMANDA",
+    "doc_number": "20260500212",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78201",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "5/2026",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "215 N CENTER",
+    "owner": "SAN ANTONIO HOUSING TRUST PUBLIC FACILITY CORPORATION",
+    "doc_number": "20260500257",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78202",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "5/2026",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "1220 W HUISACHE AVE",
+    "owner": "ALVAREZ JULIO C & LILIANA",
+    "doc_number": "20260500261",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78201",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "5/2026",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "901 NE LOOP 410",
+    "owner": "NE LOOP 410 LLC",
+    "doc_number": "20260500270",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78209",
+    "school_dist": "Northeast ISD",
+    "date_filed": "5/2026",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "1634 E CHAVANEAUX RD",
+    "owner": "VILLASENOR NERI ULISES",
+    "doc_number": "20260500277",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78214",
+    "school_dist": "Southside ISD",
+    "date_filed": "5/2026",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "443 N SAN IGNACIO AVE",
+    "owner": "GUMM CHARLES C III",
+    "doc_number": "20260500287",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78228",
+    "school_dist": "Edgewood ISD (Bexar)",
+    "date_filed": "5/2026",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "1743 W FRENCH PL",
+    "owner": "DE DELGADO MARTINA MORENO",
+    "doc_number": "20260500300",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78207",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "5/2026",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "1327 W RIDGEWOOD CT",
+    "owner": "SAMANIEGO EDUARDO PAUL MORENO & FIGUEROA MARTHA THATIANA PERDOMO",
+    "doc_number": "20260500301",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78201",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "5/2026",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "158 E VESTAL PL",
+    "owner": "LUHRS ASHLEY ANNE & GARZA ARTURO SANTOS",
+    "doc_number": "20260500302",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78221",
+    "school_dist": "Harlandale ISD",
+    "date_filed": "5/2026",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "7200 S PRESA ST",
+    "owner": "CCM PRESA OWNER LLC",
+    "doc_number": "20260500321",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78223",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "5/2026",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "313 E LOCUST ST",
+    "owner": "LOCUST TOBIN HILL LLC",
+    "doc_number": "20260500337",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78212",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "5/2026",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "255 E PETALUMA BLVD",
+    "owner": "3RD ROCK ROOFING LLC",
+    "doc_number": "20260500353",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78221",
+    "school_dist": "Harlandale ISD",
+    "date_filed": "5/2026",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "224 S SAN MANUEL ST",
+    "owner": "ALVAREZ FRANCISCO ANTONIO & MORENO STEPHANIE",
+    "doc_number": "20260500366",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78237",
+    "school_dist": "Edgewood ISD (Bexar)",
+    "date_filed": "5/2026",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "439 E YOUNG",
+    "owner": "MAG REAL ESTATE SERVICES LLC",
+    "doc_number": "20260500375",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78214",
+    "school_dist": "Harlandale ISD",
+    "date_filed": "5/2026",
+    "flags": [],
+    "score": 6
   },
   {
     "type": "NOF",
@@ -585,22 +904,6 @@
     "city": "SAN ANTONIO",
     "zip": "78245",
     "school_dist": "Southwest ISD",
-    "date_filed": "5/2026",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 4
-  },
-  {
-    "type": "NOF",
-    "address": "138 E ACKARD PL",
-    "owner": "",
-    "doc_number": "20260500006",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78221",
-    "school_dist": "Harlandale ISD",
     "date_filed": "5/2026",
     "flags": [
       "NO OWNER"
@@ -1233,22 +1536,6 @@
   },
   {
     "type": "NOF",
-    "address": "203 E LAMBERT ST",
-    "owner": "",
-    "doc_number": "20260500072",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78204",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "5/2026",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 4
-  },
-  {
-    "type": "NOF",
     "address": "12247 SIRAGUSA",
     "owner": "",
     "doc_number": "20260500073",
@@ -1361,22 +1648,6 @@
   },
   {
     "type": "NOF",
-    "address": "2014 S TRINITY ST",
-    "owner": "",
-    "doc_number": "20260500090",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78207",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "5/2026",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 4
-  },
-  {
-    "type": "NOF",
     "address": "5326 SAN SIMEON DR",
     "owner": "",
     "doc_number": "20260500092",
@@ -1417,22 +1688,6 @@
     "city": "SAN ANTONIO",
     "zip": "78223",
     "school_dist": "East Central ISD",
-    "date_filed": "5/2026",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 4
-  },
-  {
-    "type": "NOF",
-    "address": "215 W MISTLETOE AVE",
-    "owner": "",
-    "doc_number": "20260500096",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78212",
-    "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
     "flags": [
       "NO OWNER"
@@ -2641,22 +2896,6 @@
   },
   {
     "type": "NOF",
-    "address": "2165 W GRAMERCY PL",
-    "owner": "",
-    "doc_number": "20260400222",
-    "year": "2026",
-    "month": "4",
-    "city": "SAN ANTONIO",
-    "zip": "78201",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "4/2026",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 4
-  },
-  {
-    "type": "NOF",
     "address": "3123 GOOSECREEK ST",
     "owner": "",
     "doc_number": "20260400224",
@@ -2921,22 +3160,6 @@
     "city": "SAN ANTONIO",
     "zip": "78254",
     "school_dist": "Northside ISD (Bexar)",
-    "date_filed": "4/2026",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 4
-  },
-  {
-    "type": "NOF",
-    "address": "427 N SAN GABRIEL AVE",
-    "owner": "",
-    "doc_number": "20260400300",
-    "year": "2026",
-    "month": "4",
-    "city": "SAN ANTONIO",
-    "zip": "78228",
-    "school_dist": "Edgewood ISD (Bexar)",
     "date_filed": "4/2026",
     "flags": [
       "NO OWNER"
@@ -3313,22 +3536,6 @@
   },
   {
     "type": "NOF",
-    "address": "711 S BROWNLEAF ST",
-    "owner": "",
-    "doc_number": "20260400044",
-    "year": "2026",
-    "month": "4",
-    "city": "SAN ANTONIO",
-    "zip": "78227",
-    "school_dist": "Northside ISD (Bexar)",
-    "date_filed": "4/2026",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 4
-  },
-  {
-    "type": "NOF",
     "address": "2402 VALENCIA",
     "owner": "",
     "doc_number": "20260400045",
@@ -3513,22 +3720,6 @@
     "city": "SAN ANTONIO",
     "zip": "78254",
     "school_dist": "Northside ISD (Bexar)",
-    "date_filed": "4/2026",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 4
-  },
-  {
-    "type": "NOF",
-    "address": "167 E HUTCHINS PL",
-    "owner": "",
-    "doc_number": "20260400096",
-    "year": "2026",
-    "month": "4",
-    "city": "SAN ANTONIO",
-    "zip": "78221",
-    "school_dist": "Harlandale ISD",
     "date_filed": "4/2026",
     "flags": [
       "NO OWNER"
@@ -4289,22 +4480,6 @@
   },
   {
     "type": "NOF",
-    "address": "2415 W SUMMIT AVE",
-    "owner": "",
-    "doc_number": "20260500207",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78228",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "5/2026",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 4
-  },
-  {
-    "type": "NOF",
     "address": "3139 GILBERT GARDEN",
     "owner": "",
     "doc_number": "20260500208",
@@ -4329,22 +4504,6 @@
     "city": "SAN ANTONIO",
     "zip": "78232",
     "school_dist": "Northeast ISD",
-    "date_filed": "5/2026",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 4
-  },
-  {
-    "type": "NOF",
-    "address": "1108 W MARIPOSA DR",
-    "owner": "",
-    "doc_number": "20260500212",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78201",
-    "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
     "flags": [
       "NO OWNER"
@@ -4801,22 +4960,6 @@
   },
   {
     "type": "NOF",
-    "address": "215 N CENTER",
-    "owner": "",
-    "doc_number": "20260500257",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78202",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "5/2026",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 4
-  },
-  {
-    "type": "NOF",
     "address": "21174 US HIGHWAY 281 S #2",
     "owner": "",
     "doc_number": "20260500258",
@@ -4856,22 +4999,6 @@
     "month": "5",
     "city": "SAN ANTONIO",
     "zip": "78207",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "5/2026",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 4
-  },
-  {
-    "type": "NOF",
-    "address": "1220 W HUISACHE AVE",
-    "owner": "",
-    "doc_number": "20260500261",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78201",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
     "flags": [
@@ -4937,22 +5064,6 @@
     "city": "SAN ANTONIO",
     "zip": "78264",
     "school_dist": "Southside ISD",
-    "date_filed": "5/2026",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 4
-  },
-  {
-    "type": "NOF",
-    "address": "901 NE LOOP 410",
-    "owner": "",
-    "doc_number": "20260500270",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78209",
-    "school_dist": "Northeast ISD",
     "date_filed": "5/2026",
     "flags": [
       "NO OWNER"
@@ -5049,22 +5160,6 @@
     "city": "SAN ANTONIO",
     "zip": "78220",
     "school_dist": "San Antonio ISD",
-    "date_filed": "5/2026",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 4
-  },
-  {
-    "type": "NOF",
-    "address": "1634 E CHAVANEAUX RD",
-    "owner": "",
-    "doc_number": "20260500277",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78214",
-    "school_dist": "Southside ISD",
     "date_filed": "5/2026",
     "flags": [
       "NO OWNER"
@@ -5217,22 +5312,6 @@
   },
   {
     "type": "NOF",
-    "address": "443 N SAN IGNACIO AVE",
-    "owner": "",
-    "doc_number": "20260500287",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78228",
-    "school_dist": "Edgewood ISD (Bexar)",
-    "date_filed": "5/2026",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 4
-  },
-  {
-    "type": "NOF",
     "address": "8851 TEABERRY DR",
     "owner": "",
     "doc_number": "20260500288",
@@ -5369,54 +5448,6 @@
     "city": "SAN ANTONIO",
     "zip": "78227",
     "school_dist": "Northside ISD (Bexar)",
-    "date_filed": "5/2026",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 4
-  },
-  {
-    "type": "NOF",
-    "address": "1743 W FRENCH PL",
-    "owner": "",
-    "doc_number": "20260500300",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78207",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "5/2026",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 4
-  },
-  {
-    "type": "NOF",
-    "address": "1327 W RIDGEWOOD CT",
-    "owner": "",
-    "doc_number": "20260500301",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78201",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "5/2026",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 4
-  },
-  {
-    "type": "NOF",
-    "address": "158 E VESTAL PL",
-    "owner": "",
-    "doc_number": "20260500302",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78221",
-    "school_dist": "Harlandale ISD",
     "date_filed": "5/2026",
     "flags": [
       "NO OWNER"
@@ -5649,22 +5680,6 @@
   },
   {
     "type": "NOF",
-    "address": "7200 S PRESA ST",
-    "owner": "",
-    "doc_number": "20260500321",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78223",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "5/2026",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 4
-  },
-  {
-    "type": "NOF",
     "address": "815 PIEDMONT AVE",
     "owner": "",
     "doc_number": "20260500322",
@@ -5857,22 +5872,6 @@
   },
   {
     "type": "NOF",
-    "address": "313 E LOCUST ST",
-    "owner": "",
-    "doc_number": "20260500337",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78212",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "5/2026",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 4
-  },
-  {
-    "type": "NOF",
     "address": "822 MEADOW STONE",
     "owner": "",
     "doc_number": "20260500344",
@@ -5945,22 +5944,6 @@
     "city": "ELMENDORF",
     "zip": "78112",
     "school_dist": "Southside ISD",
-    "date_filed": "5/2026",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 4
-  },
-  {
-    "type": "NOF",
-    "address": "255 E PETALUMA BLVD",
-    "owner": "",
-    "doc_number": "20260500353",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78221",
-    "school_dist": "Harlandale ISD",
     "date_filed": "5/2026",
     "flags": [
       "NO OWNER"
@@ -6145,22 +6128,6 @@
   },
   {
     "type": "NOF",
-    "address": "224 S SAN MANUEL ST",
-    "owner": "",
-    "doc_number": "20260500366",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78237",
-    "school_dist": "Edgewood ISD (Bexar)",
-    "date_filed": "5/2026",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 4
-  },
-  {
-    "type": "NOF",
     "address": "10148 SUNSET PL",
     "owner": "",
     "doc_number": "20260500367",
@@ -6281,22 +6248,6 @@
     "city": "SAN ANTONIO",
     "zip": "78227",
     "school_dist": "Northside ISD (Bexar)",
-    "date_filed": "5/2026",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 4
-  },
-  {
-    "type": "NOF",
-    "address": "439 E YOUNG",
-    "owner": "",
-    "doc_number": "20260500375",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78214",
-    "school_dist": "Harlandale ISD",
     "date_filed": "5/2026",
     "flags": [
       "NO OWNER"
