@@ -1,12 +1,14 @@
 """
-Bexar County Motivated Seller Lead Scraper
-Source: maps.bexar.org ArcGIS MapServer (public, no auth)
-Pushes new leads to GoHighLevel (Jarvis) CRM automatically.
+Bexar County Motivated Seller Lead Scraper v4
+- Pulls foreclosure data from maps.bexar.org
+- Looks up owner names from Bexar County Parcels layer (free, no auth)
+- Only pushes leads WITH owner names to GoHighLevel (Jarvis)
 """
 
 import json
 import logging
 import os
+import time
 import urllib.request
 import urllib.parse
 import urllib.error
@@ -19,33 +21,48 @@ logging.basicConfig(
 )
 log = logging.getLogger(__name__)
 
-BASE = "https://maps.bexar.org/arcgis/rest/services/CC/ForeclosuresProd/MapServer"
+# ── ArcGIS Sources ────────────────────────────────────────────────────────────
+FORECLOSURE_BASE = "https://maps.bexar.org/arcgis/rest/services/CC/ForeclosuresProd/MapServer"
+PARCELS_URL      = "https://maps.bexar.org/arcgis/rest/services/Parcels/MapServer/0"
 
 LAYERS = [
     {"index": 0, "type": "NOF", "label": "Mortgage Foreclosure"},
     {"index": 1, "type": "TAX", "label": "Tax Foreclosure"},
 ]
 
-# GHL config from GitHub Secrets
+# ── GHL Config ────────────────────────────────────────────────────────────────
 GHL_API_KEY     = os.environ.get("GHL_API_KEY", "")
 GHL_LOCATION_ID = os.environ.get("GHL_LOCATION_ID", "UAOJlgeerLu3GChP9jDJ")
 GHL_API_BASE    = "https://services.leadconnectorhq.com"
 
 
-# ── HTTP helpers ──────────────────────────────────────────────────────────────
-def fetch_json(url):
-    req = urllib.request.Request(
-        url,
-        headers={"User-Agent": "Mozilla/5.0 BexarLeadScraper/2.0", "Accept": "application/json"},
-    )
-    with urllib.request.urlopen(req, timeout=30) as r:
-        return json.loads(r.read().decode("utf-8", errors="replace"))
+# ── HTTP Helpers ──────────────────────────────────────────────────────────────
+def fetch_json(url, retries=3):
+    for attempt in range(retries):
+        try:
+            req = urllib.request.Request(
+                url,
+                headers={
+                    "User-Agent": "Mozilla/5.0 BexarLeadScraper/4.0",
+                    "Accept": "application/json",
+                },
+            )
+            with urllib.request.urlopen(req, timeout=30) as r:
+                return json.loads(r.read().decode("utf-8", errors="replace"))
+        except Exception as e:
+            if attempt < retries - 1:
+                time.sleep(2)
+            else:
+                raise e
 
 
 def arcgis_query(layer_url, where, fields="*", offset=0, limit=1000):
     params = urllib.parse.urlencode({
-        "where": where, "outFields": fields, "returnGeometry": "false",
-        "resultOffset": offset, "resultRecordCount": limit, "f": "json",
+        "where": where, "outFields": fields,
+        "returnGeometry": "false",
+        "resultOffset": offset,
+        "resultRecordCount": limit,
+        "f": "json",
     })
     data = fetch_json(f"{layer_url}/query?{params}")
     if "error" in data:
@@ -74,24 +91,66 @@ def pick(attrs, *candidates, default=""):
     return default
 
 
+# ── Owner Name Lookup from Bexar Parcels ─────────────────────────────────────
+def lookup_owner_names(addresses):
+    """
+    Query Bexar County Parcels layer to get owner names by address.
+    Returns dict: { "NORMALIZED ADDRESS": "OWNER NAME" }
+    """
+    if not addresses:
+        return {}
+
+    log.info(f"Looking up owner names for {len(addresses)} addresses from Bexar Parcels...")
+    owner_map = {}
+    batch_size = 50
+
+    for i in range(0, len(addresses), batch_size):
+        batch = addresses[i:i + batch_size]
+
+        # Escape single quotes and build IN clause
+        escaped = [a.replace("'", "''").upper() for a in batch]
+        quoted  = ", ".join(f"'{a}'" for a in escaped)
+        where   = f"UPPER(Situs) IN ({quoted})"
+
+        try:
+            feats = arcgis_query(
+                PARCELS_URL, where,
+                fields="Situs,Owner",
+                limit=200
+            )
+            for f in feats:
+                a     = f["attributes"]
+                situs = (a.get("Situs") or "").strip().upper()
+                owner = (a.get("Owner") or "").strip()
+                if situs and owner:
+                    owner_map[situs] = owner
+
+            log.info(f"  Parcel batch {i//batch_size + 1}: matched {len(feats)} records")
+            time.sleep(0.2)  # be polite to the server
+
+        except Exception as e:
+            log.warning(f"  Parcel lookup batch {i//batch_size + 1} failed: {e}")
+
+    log.info(f"Owner lookup complete: {len(owner_map)} names found out of {len(addresses)} addresses")
+    return owner_map
+
+
+# ── Scoring ───────────────────────────────────────────────────────────────────
 def score_record(rec):
     s = 0
     if rec.get("address"):       s += 3
-    if rec.get("type") == "TAX": s += 3
-    if rec.get("owner"):         s += 1
+    if rec.get("owner"):         s += 3  # name found = high value
+    if rec.get("type") == "TAX": s += 2
     s += len(rec.get("flags", []))
     return min(s, 10)
 
 
-# ── GHL Integration ───────────────────────────────────────────────────────────
+# ── GHL Push ─────────────────────────────────────────────────────────────────
 def ghl_request(method, endpoint, payload=None):
-    """Make a GHL API v2 request."""
     url  = f"{GHL_API_BASE}{endpoint}"
     data = json.dumps(payload).encode("utf-8") if payload else None
     req  = urllib.request.Request(
-        url,
-        data=data,
-        method=method,
+        url, data=data, method=method,
         headers={
             "Authorization": f"Bearer {GHL_API_KEY}",
             "Content-Type":  "application/json",
@@ -100,112 +159,134 @@ def ghl_request(method, endpoint, payload=None):
         },
     )
     try:
-        with urllib.request.urlopen(req, timeout=15) as r:
+        with urllib.request.urlopen(req, timeout=20) as r:
             return json.loads(r.read().decode("utf-8"))
     except urllib.error.HTTPError as e:
-        body = e.read().decode("utf-8")
-        log.warning(f"GHL {method} {endpoint} → HTTP {e.code}: {body[:200]}")
-        return None
+        body = e.read().decode("utf-8", errors="replace")
+        log.warning(f"GHL {method} {endpoint} → HTTP {e.code}: {body[:300]}")
+        return {"_error": e.code, "_body": body}
     except Exception as e:
-        log.warning(f"GHL request failed: {e}")
-        return None
+        log.warning(f"GHL request exception: {e}")
+        return {"_error": str(e)}
 
 
-def ghl_search_contact(doc_number):
-    """Search GHL for existing contact by doc number tag."""
+def ghl_contact_exists(doc_number):
+    """Check if contact with this doc number already exists in GHL."""
     result = ghl_request(
         "GET",
-        f"/contacts/?locationId={GHL_LOCATION_ID}&query={urllib.parse.quote(doc_number)}&limit=1"
+        f"/contacts/?locationId={GHL_LOCATION_ID}&query={urllib.parse.quote(str(doc_number))}&limit=5"
     )
-    if result and result.get("contacts"):
-        return result["contacts"][0]
-    return None
+    contacts = result.get("contacts", []) if result else []
+    # Check if any contact has this exact doc number in their notes/tags
+    for c in contacts:
+        tags = c.get("tags", [])
+        if f"doc-{doc_number}" in tags:
+            return True
+    return False
 
 
 def ghl_create_contact(rec):
-    """Create a new GHL contact from a lead record."""
-    lead_type  = "Tax Foreclosure" if rec["type"] == "TAX" else "Mortgage Foreclosure"
-    tags       = ["bexar-lead", rec["type"]]
+    """Create contact in GHL for a lead that has an owner name."""
+    owner     = rec.get("owner", "")
+    lead_type = "Tax Foreclosure" if rec["type"] == "TAX" else "Mortgage Foreclosure"
+
+    # Split owner name into first/last best we can
+    parts      = owner.strip().split()
+    first_name = parts[0].title() if parts else owner
+    last_name  = " ".join(parts[1:]).title() if len(parts) > 1 else ""
+
+    tags = [
+        "bexar-lead",
+        rec["type"],
+        f"doc-{rec.get('doc_number', '')}",
+    ]
     if rec.get("score", 0) >= 7:
         tags.append("hot-lead")
 
-    # Build name from owner or address
-    name = rec.get("owner") or rec.get("address") or "Unknown Owner"
-
     payload = {
-        "locationId":  GHL_LOCATION_ID,
-        "firstName":   name,
-        "lastName":    "",
-        "name":        name,
-        "address1":    rec.get("address", ""),
-        "city":        rec.get("city", ""),
-        "postalCode":  rec.get("zip", ""),
-        "state":       "TX",
-        "country":     "US",
-        "tags":        tags,
-        "source":      "Bexar County Scraper",
+        "locationId": GHL_LOCATION_ID,
+        "firstName":  first_name,
+        "lastName":   last_name,
+        "name":       owner.title(),
+        "address1":   rec.get("address", ""),
+        "city":       rec.get("city", "San Antonio"),
+        "state":      "TX",
+        "country":    "US",
+        "postalCode": rec.get("zip", ""),
+        "tags":       tags,
+        "source":     "Bexar County Scraper",
         "customFields": [
-            {"key": "lead_type",    "field_value": lead_type},
-            {"key": "doc_number",   "field_value": rec.get("doc_number", "")},
-            {"key": "date_filed",   "field_value": rec.get("date_filed", "")},
-            {"key": "score",        "field_value": str(rec.get("score", 0))},
-            {"key": "school_dist",  "field_value": rec.get("school_dist", "")},
-            {"key": "property_address", "field_value": rec.get("address", "")},
+            {"key": "lead_type",         "field_value": lead_type},
+            {"key": "doc_number",        "field_value": rec.get("doc_number", "")},
+            {"key": "date_filed",        "field_value": rec.get("date_filed", "")},
+            {"key": "score",             "field_value": str(rec.get("score", 0))},
+            {"key": "property_address",  "field_value": rec.get("address", "")},
+            {"key": "school_district",   "field_value": rec.get("school_dist", "")},
         ],
     }
 
-    result = ghl_request("POST", "/contacts/", payload)
-    return result
+    return ghl_request("POST", "/contacts/", payload)
 
 
 def push_to_ghl(records):
-    """Push all new leads to GHL, skip duplicates by doc number."""
+    """Push only leads WITH owner names to GHL. Skip duplicates."""
     if not GHL_API_KEY:
         log.warning("GHL_API_KEY not set — skipping GHL push")
-        return 0
+        return
 
-    log.info(f"Pushing leads to GHL (location: {GHL_LOCATION_ID})...")
+    named = [r for r in records if r.get("owner")]
+    log.info(f"GHL push: {len(named)} leads with names (out of {len(records)} total)")
+    log.info(f"GHL Location: {GHL_LOCATION_ID}")
+
+    # Test auth first
+    test = ghl_request("GET", f"/contacts/?locationId={GHL_LOCATION_ID}&limit=1")
+    if "_error" in test:
+        log.error(f"GHL auth test failed: {test} — check GHL_API_KEY secret")
+        return
+    log.info("GHL auth OK")
+
     created = 0
     skipped = 0
     errors  = 0
 
-    for i, rec in enumerate(records):
+    for i, rec in enumerate(named):
         doc = rec.get("doc_number", "")
-        if not doc:
+
+        # Check duplicate
+        if doc and ghl_contact_exists(doc):
             skipped += 1
             continue
 
-        # Check if already exists
-        existing = ghl_search_contact(doc)
-        if existing:
-            skipped += 1
-            continue
-
-        # Create new contact
         result = ghl_create_contact(rec)
+
         if result and result.get("contact"):
             created += 1
-            log.info(f"  [{i+1}/{len(records)}] Created: {rec.get('address','?')} (doc: {doc})")
+            log.info(f"  ✓ [{i+1}/{len(named)}] {rec.get('owner')} — {rec.get('address')}")
+        elif "_error" in result:
+            errors += 1
+            log.warning(f"  ✗ [{i+1}/{len(named)}] {rec.get('owner')} — {result.get('_body','')[:100]}")
         else:
             errors += 1
-            log.warning(f"  [{i+1}/{len(records)}] Failed:  {rec.get('address','?')} (doc: {doc})")
 
-    log.info(f"GHL push complete — Created: {created}, Skipped: {skipped}, Errors: {errors}")
-    return created
+        # Rate limit: 100 requests per 10 seconds max
+        time.sleep(0.15)
+
+    log.info(f"GHL push done — Created: {created} | Skipped (dup): {skipped} | Errors: {errors}")
 
 
-# ── Main scraper ──────────────────────────────────────────────────────────────
+# ── Main Scraper ──────────────────────────────────────────────────────────────
 def run():
     log.info("=" * 60)
-    log.info("Bexar County Motivated Seller Lead Scraper v3")
-    log.info(f"Source: {BASE}")
+    log.info("Bexar County Motivated Seller Lead Scraper v4")
+    log.info(f"Foreclosure source: {FORECLOSURE_BASE}")
+    log.info(f"Parcel/owner source: {PARCELS_URL}")
     log.info("=" * 60)
 
     raw = []
 
     for layer in LAYERS:
         idx       = layer["index"]
-        layer_url = f"{BASE}/{idx}"
+        layer_url = f"{FORECLOSURE_BASE}/{idx}"
         log.info(f"Fetching layer {idx} ({layer['label']})...")
 
         try:
@@ -213,30 +294,28 @@ def run():
             fields = [f["name"] for f in meta.get("fields", [])]
             log.info(f"  Fields: {fields}")
         except Exception as e:
-            log.warning(f"  Metadata fetch failed: {e}")
+            log.warning(f"  Metadata error: {e}")
 
         try:
             features = fetch_all(layer_url)
             log.info(f"  Layer {idx} total: {len(features)} records")
-
             if features:
-                log.info(f"  Sample: {dict(list(features[0]['attributes'].items())[:6])}")
+                log.info(f"  Sample: {dict(list(features[0]['attributes'].items())[:5])}")
 
             for feat in features:
                 a = feat["attributes"]
-                addr  = pick(a, "ADDRESS", "SITUS_ADD", "ADDR", "PROPERTY_ADDRESS", "SITE_ADDR")
-                owner = pick(a, "OWNER", "GRANTOR", "OWNER_NAME", "GRANTORNAME", "DEBTOR", "TAXPAYER")
-                doc   = pick(a, "DOC_NUMBER", "DOCNUM", "DOC_NUM", "DOCUMENT_NUMBER", "CASENUM")
-                year  = pick(a, "YEAR",  "YR",   "SALE_YEAR",  default="")
-                month = pick(a, "MONTH", "MO",   "SALE_MONTH", default="")
-                city  = pick(a, "CITY",  "MAIL_CITY", "PROP_CITY", default="")
-                zip_  = pick(a, "ZIP",   "ZIPCODE",   "ZIP_CODE",  "MAIL_ZIP", default="")
+                addr  = pick(a, "ADDRESS", "SITUS_ADD", "ADDR", "PROPERTY_ADDRESS")
+                doc   = pick(a, "DOC_NUMBER", "DOCNUM", "DOC_NUM", "DOCUMENT_NUMBER")
+                year  = pick(a, "YEAR",  "YR",   default="")
+                month = pick(a, "MONTH", "MO",   default="")
+                city  = pick(a, "CITY",  "MAIL_CITY", default="")
+                zip_  = pick(a, "ZIP",   "ZIPCODE", "ZIP_CODE", default="")
                 sdist = pick(a, "SCHOOL_DIST", "SCHOOL_DISTRICT", default="")
 
                 raw.append({
                     "type":        layer["type"],
                     "address":     addr,
-                    "owner":       owner,
+                    "owner":       "",   # filled in below
                     "doc_number":  doc,
                     "year":        year,
                     "month":       month,
@@ -252,24 +331,34 @@ def run():
 
     log.info(f"Total raw records: {len(raw)}")
 
+    # ── Owner Name Lookup ──────────────────────────────────────────────────────
+    addresses = [r["address"] for r in raw if r["address"]]
+    owner_map = lookup_owner_names(addresses)
+
+    # Apply owner names to records
+    for r in raw:
+        key = r["address"].strip().upper()
+        r["owner"] = owner_map.get(key, "")
+
+    named_count = sum(1 for r in raw if r["owner"])
+    log.info(f"Owner names found: {named_count} / {len(raw)}")
+
+    # ── Flags + Score ──────────────────────────────────────────────────────────
     records = []
     for r in raw:
-        if r["type"] == "TAX":
-            r["flags"].append("TAX FORE")
-        if not r["owner"]:
-            r["flags"].append("NO OWNER")
-        if not r["city"] and r["address"]:
-            r["flags"].append("NO CITY")
+        if r["type"] == "TAX":          r["flags"].append("TAX FORE")
+        if not r["owner"]:              r["flags"].append("NO OWNER")
+        if not r["city"] and r["address"]: r["flags"].append("NO CITY")
         r["score"] = score_record(r)
         records.append(r)
 
     records.sort(key=lambda x: x["score"], reverse=True)
     addr_count = sum(1 for r in records if r["address"])
-    log.info(f"Done. {len(records)} leads ({addr_count} with address).")
+    log.info(f"Done. {len(records)} leads ({addr_count} with address, {named_count} with owner name).")
     return records
 
 
-# ── Dashboard HTML template ───────────────────────────────────────────────────
+# ── Dashboard HTML Template ───────────────────────────────────────────────────
 DASHBOARD_TEMPLATE = """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -316,8 +405,10 @@ tbody td { padding:10px 12px; vertical-align:middle; }
 .type-tax { background:rgba(251,191,36,.15);  color:var(--warning); border:1px solid rgba(251,191,36,.25); }
 .flags { display:flex; gap:4px; flex-wrap:wrap; }
 .flag { display:inline-block; padding:2px 6px; font-size:10px; background:rgba(167,139,250,.12); color:var(--accent3); border:1px solid rgba(167,139,250,.25); border-radius:2px; white-space:nowrap; }
-.addr { color:var(--text); font-size:12px; max-width:220px; }
-.owner, .city, .doc { color:var(--muted); font-size:12px; }
+.addr { color:var(--text); font-size:12px; max-width:200px; }
+.owner { color:var(--success); font-size:12px; font-weight:500; }
+.owner-none { color:var(--muted); font-size:12px; }
+.city, .doc { color:var(--muted); font-size:12px; }
 .state-msg { text-align:center; padding:60px 20px; color:var(--muted); }
 .pagination { display:flex; justify-content:center; align-items:center; gap:8px; padding:20px 32px; color:var(--muted); font-size:12px; }
 .pagination button { background:var(--surface2); border:1px solid var(--border); color:var(--text); padding:6px 14px; cursor:pointer; font-family:'DM Mono',monospace; font-size:12px; }
@@ -335,7 +426,7 @@ tbody td { padding:10px 12px; vertical-align:middle; }
   <div class="stat-card"><div class="stat-num" id="s-total">—</div><div class="stat-label">Total Leads</div></div>
   <div class="stat-card"><div class="stat-num" id="s-nof">—</div><div class="stat-label">Foreclosures (NOF)</div></div>
   <div class="stat-card"><div class="stat-num" id="s-tax">—</div><div class="stat-label">Tax Foreclosures</div></div>
-  <div class="stat-card"><div class="stat-num" id="s-addr">—</div><div class="stat-label">With Address</div></div>
+  <div class="stat-card"><div class="stat-num" id="s-addr">—</div><div class="stat-label">With Owner Name</div></div>
 </div>
 <div class="controls">
   <input type="text" id="search" placeholder="Search address, owner, doc #…" oninput="applyFilters()"/>
@@ -343,6 +434,11 @@ tbody td { padding:10px 12px; vertical-align:middle; }
     <option value="">All Types</option>
     <option value="NOF">Foreclosure (NOF)</option>
     <option value="TAX">Tax Foreclosure</option>
+  </select>
+  <select id="owner-filter" onchange="applyFilters()">
+    <option value="">All Leads</option>
+    <option value="named">With Owner Name</option>
+    <option value="unnamed">No Name Yet</option>
   </select>
   <select id="sort-select" onchange="applyFilters()">
     <option value="score-desc">Sort: Score ↓</option>
@@ -356,7 +452,7 @@ tbody td { padding:10px 12px; vertical-align:middle; }
   <table>
     <thead><tr>
       <th>Score</th><th>Type</th><th>Property Address</th>
-      <th>Owner</th><th>Date Filed</th><th>Doc #</th><th>City/ZIP</th><th>Flags</th>
+      <th>Owner Name</th><th>Date Filed</th><th>Doc #</th><th>City/ZIP</th><th>Flags</th>
     </tr></thead>
     <tbody id="tbody"></tbody>
   </table>
@@ -372,23 +468,26 @@ var ALL_RECORDS = DATA_PLACEHOLDER;
 var filtered = [], page = 1, PAGE = 50;
 
 function init() {
+  var named = ALL_RECORDS.filter(function(r){return r.owner;}).length;
   document.getElementById('s-total').textContent = ALL_RECORDS.length;
   document.getElementById('s-nof').textContent   = ALL_RECORDS.filter(function(r){return r.type==='NOF';}).length;
   document.getElementById('s-tax').textContent   = ALL_RECORDS.filter(function(r){return r.type==='TAX';}).length;
-  document.getElementById('s-addr').textContent  = ALL_RECORDS.filter(function(r){return r.address;}).length;
+  document.getElementById('s-addr').textContent  = named;
   applyFilters();
 }
 
 function applyFilters() {
-  var q = document.getElementById('search').value.toLowerCase();
-  var t = document.getElementById('type-filter').value;
-  var s = document.getElementById('sort-select').value;
+  var q  = document.getElementById('search').value.toLowerCase();
+  var t  = document.getElementById('type-filter').value;
+  var ow = document.getElementById('owner-filter').value;
+  var s  = document.getElementById('sort-select').value;
   filtered = ALL_RECORDS.filter(function(r) {
-    var mq = !q || (r.address||'').toLowerCase().indexOf(q)>=0
-                || (r.owner||'').toLowerCase().indexOf(q)>=0
-                || (r.doc_number||'').toLowerCase().indexOf(q)>=0;
-    var mt = !t || r.type === t;
-    return mq && mt;
+    var mq  = !q || (r.address||'').toLowerCase().indexOf(q)>=0
+                 || (r.owner||'').toLowerCase().indexOf(q)>=0
+                 || (r.doc_number||'').toLowerCase().indexOf(q)>=0;
+    var mt  = !t  || r.type === t;
+    var mow = !ow || (ow==='named' ? !!r.owner : !r.owner);
+    return mq && mt && mow;
   });
   filtered.sort(function(a,b) {
     if (s==='score-desc') return b.score - a.score;
@@ -416,7 +515,10 @@ function render() {
     var tClass  = r.type==='TAX' ? 'type-tax' : 'type-nof';
     var tLabel  = r.type==='TAX' ? 'TAX FORE' : 'NOF';
     var cityzip = [r.city, r.zip].filter(Boolean).join(' ') || '—';
-    var flags   = (r.flags||[]);
+    var ownerHtml = r.owner
+      ? '<div class="owner">' + r.owner + '</div>'
+      : '<div class="owner-none">—</div>';
+    var flags = (r.flags||[]);
     var flagsHtml = '';
     for (var j=0; j<flags.length; j++) flagsHtml += '<span class="flag">'+flags[j]+'</span>';
     if (!flagsHtml) flagsHtml = '<span style="color:var(--muted)">—</span>';
@@ -424,7 +526,7 @@ function render() {
       + '<td><div class="score '+scClass+'">'+sc+'</div></td>'
       + '<td><span class="type-badge '+tClass+'">'+tLabel+'</span></td>'
       + '<td><div class="addr">'+(r.address||'—')+'</div></td>'
-      + '<td><div class="owner">'+(r.owner||'—')+'</div></td>'
+      + '<td>'+ownerHtml+'</td>'
       + '<td><div class="doc">'+(r.date_filed||'—')+'</div></td>'
       + '<td><div class="doc">'+(r.doc_number||'—')+'</div></td>'
       + '<td><div class="city">'+cityzip+'</div></td>'
@@ -448,26 +550,24 @@ init();
 def build_dashboard(records):
     updated  = datetime.now(timezone.utc).strftime("Updated: %b %d, %Y %H:%M UTC")
     json_str = json.dumps(records, separators=(",", ":"), ensure_ascii=False)
-
-    html = DASHBOARD_TEMPLATE
-    html = html.replace("UPDATED_PLACEHOLDER", updated, 1)
-    html = html.replace("DATA_PLACEHOLDER", json_str, 1)
+    html     = DASHBOARD_TEMPLATE
+    html     = html.replace("UPDATED_PLACEHOLDER", updated, 1)
+    html     = html.replace("DATA_PLACEHOLDER", json_str, 1)
 
     if "DATA_PLACEHOLDER" in html:
         raise RuntimeError("Data injection failed!")
 
     os.makedirs("dashboard", exist_ok=True)
-    out_path = "dashboard/index.html"
-    with open(out_path, "w", encoding="utf-8") as f:
+    path = "dashboard/index.html"
+    with open(path, "w", encoding="utf-8") as f:
         f.write(html)
-
-    size = os.path.getsize(out_path)
-    log.info(f"Built {out_path} — {len(records)} records, {size:,} bytes")
+    size = os.path.getsize(path)
+    log.info(f"Built {path} — {len(records)} records, {size:,} bytes")
     if size < 50000 and len(records) > 0:
-        raise RuntimeError(f"Output file too small ({size} bytes)!")
+        raise RuntimeError(f"Output too small: {size} bytes")
 
 
-# ── Entry point ───────────────────────────────────────────────────────────────
+# ── Entry Point ───────────────────────────────────────────────────────────────
 if __name__ == "__main__":
     os.makedirs("data", exist_ok=True)
     os.makedirs("dashboard", exist_ok=True)
@@ -484,6 +584,6 @@ if __name__ == "__main__":
 
     build_dashboard(records)
 
-    # Push to GHL
+    # Push only named leads to GHL
     push_to_ghl(records)
 
