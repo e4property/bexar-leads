@@ -1,6 +1,7 @@
 """
 Bexar County Motivated Seller Lead Scraper
 Source: maps.bexar.org ArcGIS MapServer (public, no auth)
+Pushes new leads to GoHighLevel (Jarvis) CRM automatically.
 """
 
 import json
@@ -8,6 +9,7 @@ import logging
 import os
 import urllib.request
 import urllib.parse
+import urllib.error
 from datetime import datetime, timezone
 
 logging.basicConfig(
@@ -24,15 +26,20 @@ LAYERS = [
     {"index": 1, "type": "TAX", "label": "Tax Foreclosure"},
 ]
 
+# GHL config from GitHub Secrets
+GHL_API_KEY     = os.environ.get("GHL_API_KEY", "")
+GHL_LOCATION_ID = os.environ.get("GHL_LOCATION_ID", "UAOJlgeerLu3GChP9jDJ")
+GHL_API_BASE    = "https://services.leadconnectorhq.com"
 
+
+# ── HTTP helpers ──────────────────────────────────────────────────────────────
 def fetch_json(url):
     req = urllib.request.Request(
         url,
         headers={"User-Agent": "Mozilla/5.0 BexarLeadScraper/2.0", "Accept": "application/json"},
     )
     with urllib.request.urlopen(req, timeout=30) as r:
-        raw = r.read().decode("utf-8", errors="replace")
-    return json.loads(raw)
+        return json.loads(r.read().decode("utf-8", errors="replace"))
 
 
 def arcgis_query(layer_url, where, fields="*", offset=0, limit=1000):
@@ -76,27 +83,137 @@ def score_record(rec):
     return min(s, 10)
 
 
+# ── GHL Integration ───────────────────────────────────────────────────────────
+def ghl_request(method, endpoint, payload=None):
+    """Make a GHL API v2 request."""
+    url  = f"{GHL_API_BASE}{endpoint}"
+    data = json.dumps(payload).encode("utf-8") if payload else None
+    req  = urllib.request.Request(
+        url,
+        data=data,
+        method=method,
+        headers={
+            "Authorization": f"Bearer {GHL_API_KEY}",
+            "Content-Type":  "application/json",
+            "Accept":        "application/json",
+            "Version":       "2021-07-28",
+        },
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=15) as r:
+            return json.loads(r.read().decode("utf-8"))
+    except urllib.error.HTTPError as e:
+        body = e.read().decode("utf-8")
+        log.warning(f"GHL {method} {endpoint} → HTTP {e.code}: {body[:200]}")
+        return None
+    except Exception as e:
+        log.warning(f"GHL request failed: {e}")
+        return None
+
+
+def ghl_search_contact(doc_number):
+    """Search GHL for existing contact by doc number tag."""
+    result = ghl_request(
+        "GET",
+        f"/contacts/?locationId={GHL_LOCATION_ID}&query={urllib.parse.quote(doc_number)}&limit=1"
+    )
+    if result and result.get("contacts"):
+        return result["contacts"][0]
+    return None
+
+
+def ghl_create_contact(rec):
+    """Create a new GHL contact from a lead record."""
+    lead_type  = "Tax Foreclosure" if rec["type"] == "TAX" else "Mortgage Foreclosure"
+    tags       = ["bexar-lead", rec["type"]]
+    if rec.get("score", 0) >= 7:
+        tags.append("hot-lead")
+
+    # Build name from owner or address
+    name = rec.get("owner") or rec.get("address") or "Unknown Owner"
+
+    payload = {
+        "locationId":  GHL_LOCATION_ID,
+        "firstName":   name,
+        "lastName":    "",
+        "name":        name,
+        "address1":    rec.get("address", ""),
+        "city":        rec.get("city", ""),
+        "postalCode":  rec.get("zip", ""),
+        "state":       "TX",
+        "country":     "US",
+        "tags":        tags,
+        "source":      "Bexar County Scraper",
+        "customFields": [
+            {"key": "lead_type",    "field_value": lead_type},
+            {"key": "doc_number",   "field_value": rec.get("doc_number", "")},
+            {"key": "date_filed",   "field_value": rec.get("date_filed", "")},
+            {"key": "score",        "field_value": str(rec.get("score", 0))},
+            {"key": "school_dist",  "field_value": rec.get("school_dist", "")},
+            {"key": "property_address", "field_value": rec.get("address", "")},
+        ],
+    }
+
+    result = ghl_request("POST", "/contacts/", payload)
+    return result
+
+
+def push_to_ghl(records):
+    """Push all new leads to GHL, skip duplicates by doc number."""
+    if not GHL_API_KEY:
+        log.warning("GHL_API_KEY not set — skipping GHL push")
+        return 0
+
+    log.info(f"Pushing leads to GHL (location: {GHL_LOCATION_ID})...")
+    created = 0
+    skipped = 0
+    errors  = 0
+
+    for i, rec in enumerate(records):
+        doc = rec.get("doc_number", "")
+        if not doc:
+            skipped += 1
+            continue
+
+        # Check if already exists
+        existing = ghl_search_contact(doc)
+        if existing:
+            skipped += 1
+            continue
+
+        # Create new contact
+        result = ghl_create_contact(rec)
+        if result and result.get("contact"):
+            created += 1
+            log.info(f"  [{i+1}/{len(records)}] Created: {rec.get('address','?')} (doc: {doc})")
+        else:
+            errors += 1
+            log.warning(f"  [{i+1}/{len(records)}] Failed:  {rec.get('address','?')} (doc: {doc})")
+
+    log.info(f"GHL push complete — Created: {created}, Skipped: {skipped}, Errors: {errors}")
+    return created
+
+
+# ── Main scraper ──────────────────────────────────────────────────────────────
 def run():
     log.info("=" * 60)
-    log.info("Bexar County Motivated Seller Lead Scraper v2")
+    log.info("Bexar County Motivated Seller Lead Scraper v3")
     log.info(f"Source: {BASE}")
     log.info("=" * 60)
 
     raw = []
 
     for layer in LAYERS:
-        idx = layer["index"]
+        idx       = layer["index"]
         layer_url = f"{BASE}/{idx}"
         log.info(f"Fetching layer {idx} ({layer['label']})...")
 
-        # Log available fields
         try:
-            meta = fetch_json(f"{layer_url}?f=json")
+            meta   = fetch_json(f"{layer_url}?f=json")
             fields = [f["name"] for f in meta.get("fields", [])]
             log.info(f"  Fields: {fields}")
         except Exception as e:
-            log.warning(f"  Could not fetch metadata: {e}")
-            fields = []
+            log.warning(f"  Metadata fetch failed: {e}")
 
         try:
             features = fetch_all(layer_url)
@@ -112,23 +229,22 @@ def run():
                 doc   = pick(a, "DOC_NUMBER", "DOCNUM", "DOC_NUM", "DOCUMENT_NUMBER", "CASENUM")
                 year  = pick(a, "YEAR",  "YR",   "SALE_YEAR",  default="")
                 month = pick(a, "MONTH", "MO",   "SALE_MONTH", default="")
-                date  = pick(a, "DATE",  "FILE_DATE", "SALE_DATE", "RECORDED_DATE", default="")
-                city  = pick(a, "CITY",  "MAIL_CITY", "PROP_CITY", "SITUS_CITY", default="")
-                zip_  = pick(a, "ZIP",   "ZIPCODE", "ZIP_CODE",  "MAIL_ZIP", default="")
-
-                date_filed = f"{month}/{year}" if (month and year) else date
+                city  = pick(a, "CITY",  "MAIL_CITY", "PROP_CITY", default="")
+                zip_  = pick(a, "ZIP",   "ZIPCODE",   "ZIP_CODE",  "MAIL_ZIP", default="")
+                sdist = pick(a, "SCHOOL_DIST", "SCHOOL_DISTRICT", default="")
 
                 raw.append({
-                    "type":       layer["type"],
-                    "address":    addr,
-                    "owner":      owner,
-                    "doc_number": doc,
-                    "year":       year,
-                    "month":      month,
-                    "city":       city,
-                    "zip":        zip_,
-                    "date_filed": date_filed,
-                    "flags":      [],
+                    "type":        layer["type"],
+                    "address":     addr,
+                    "owner":       owner,
+                    "doc_number":  doc,
+                    "year":        year,
+                    "month":       month,
+                    "city":        city,
+                    "zip":         zip_,
+                    "school_dist": sdist,
+                    "date_filed":  f"{month}/{year}" if (month and year) else "",
+                    "flags":       [],
                 })
 
         except Exception as e:
@@ -153,7 +269,7 @@ def run():
     return records
 
 
-# ── Dashboard HTML template (NO f-string — data injected separately) ──────────
+# ── Dashboard HTML template ───────────────────────────────────────────────────
 DASHBOARD_TEMPLATE = """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -330,7 +446,6 @@ init();
 
 
 def build_dashboard(records):
-    """Inject data into HTML template using simple string replace — no f-string."""
     updated  = datetime.now(timezone.utc).strftime("Updated: %b %d, %Y %H:%M UTC")
     json_str = json.dumps(records, separators=(",", ":"), ensure_ascii=False)
 
@@ -338,23 +453,21 @@ def build_dashboard(records):
     html = html.replace("UPDATED_PLACEHOLDER", updated, 1)
     html = html.replace("DATA_PLACEHOLDER", json_str, 1)
 
-    # Verify injection worked
     if "DATA_PLACEHOLDER" in html:
-        raise RuntimeError("Data injection failed — placeholder still present!")
-    if '"address"' not in html and len(records) > 0:
-        raise RuntimeError("Data injection failed — no address field found in output!")
+        raise RuntimeError("Data injection failed!")
 
     os.makedirs("dashboard", exist_ok=True)
     out_path = "dashboard/index.html"
     with open(out_path, "w", encoding="utf-8") as f:
         f.write(html)
 
-    actual_size = os.path.getsize(out_path)
-    log.info(f"Built {out_path} — {len(records)} records, {actual_size:,} bytes")
-    if actual_size < 50000 and len(records) > 0:
-        raise RuntimeError(f"Output file too small ({actual_size} bytes) — data injection may have failed!")
+    size = os.path.getsize(out_path)
+    log.info(f"Built {out_path} — {len(records)} records, {size:,} bytes")
+    if size < 50000 and len(records) > 0:
+        raise RuntimeError(f"Output file too small ({size} bytes)!")
 
 
+# ── Entry point ───────────────────────────────────────────────────────────────
 if __name__ == "__main__":
     os.makedirs("data", exist_ok=True)
     os.makedirs("dashboard", exist_ok=True)
@@ -370,4 +483,7 @@ if __name__ == "__main__":
     log.info(f"Saved dashboard/records.json ({len(records)} records)")
 
     build_dashboard(records)
+
+    # Push to GHL
+    push_to_ghl(records)
 
