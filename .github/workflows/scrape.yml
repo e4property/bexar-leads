@@ -1,9 +1,9 @@
-name: Scrape Bexar County Leads
+name: Scrape & Enrich Leads
 
 on:
   schedule:
-    - cron: "0 7 * * *"
-  workflow_dispatch:
+    - cron: '0 3 * * *'   # daily at 3 AM UTC
+  workflow_dispatch:        # manual trigger
 
 permissions:
   contents: write
@@ -11,13 +11,12 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: pages
   cancel-in-progress: false
 
 jobs:
-  scrape:
-    name: Scrape & Enrich Leads
-    runs-on: ubuntu-22.04
+  scrape-and-deploy:
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
@@ -26,67 +25,50 @@ jobs:
       - name: Set up Python 3.11
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install requests beautifulsoup4 lxml
+        run: |
+          pip install requests --break-system-packages 2>/dev/null || pip install requests
 
       - name: Create output directories
-        run: mkdir -p dashboard data
+        run: |
+          mkdir -p data dashboard
 
       - name: Run scraper
-        env:
-          LOOKBACK_DAYS: "7"
         run: python scraper/fetch.py
-        timeout-minutes: 10
 
-      - name: Copy records to dashboard
-        run: cp data/records.json dashboard/records.json
-
-      - name: Inline records JSON into dashboard HTML
+      - name: Show summary
         run: |
-          python3 - <<'EOF'
-          import json, re
-
-          # Read the scraped records
-          with open('data/records.json', 'r') as f:
-              records = json.load(f)
-
-          # Serialize as compact JSON (safe for embedding in JS)
-          json_str = json.dumps(records, separators=(',', ':'))
-
-          # Read the dashboard HTML
-          with open('dashboard/index.html', 'r') as f:
-              html = f.read()
-
-          # Replace the placeholder with the actual data
-          html = html.replace("'__RECORDS_JSON__'", f"'{json_str}'", 1)
-
-          # Write it back
-          with open('dashboard/index.html', 'w') as f:
-              f.write(html)
-
-          print(f"Inlined {len(records)} records into dashboard/index.html")
-          EOF
-
+          echo "=== Records ===" 
+          python3 -c "
+          import json
+          with open('data/records.json') as f:
+              r = json.load(f)
+          print(f'Total: {len(r)}')
+          print(f'NOF:   {sum(1 for x in r if x[\"type\"]==\"NOF\")}')
+          print(f'TAX:   {sum(1 for x in r if x[\"type\"]==\"TAX\")}')
+          print(f'Addr:  {sum(1 for x in r if x.get(\"address\"))}')
+          if r:
+              print(f'Sample: {r[0]}')
+          "
 
       - name: Commit records
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -f dashboard/records.json data/records.json data/leads_export.csv
-          git diff --cached --quiet && echo "No changes" || git commit -m "chore: update leads $(date -u +'%Y-%m-%d %H:%M UTC')"
-          git push origin main
+          git add data/records.json dashboard/records.json dashboard/index.html
+          git diff --cached --quiet || git commit -m "chore: update leads $(date -u +'%Y-%m-%d %H:%M UTC')"
+          git push
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dashboard/
+          path: dashboard
 
   deploy:
-    name: Deploy to GitHub Pages
-    needs: scrape
-    runs-on: ubuntu-22.04
+    needs: scrape-and-deploy
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
