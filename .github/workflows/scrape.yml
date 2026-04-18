@@ -30,8 +30,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: |
-          pip install requests --break-system-packages 2>/dev/null || pip install requests
+        run: pip install requests
 
       - name: Create output directories
         run: mkdir -p data dashboard
@@ -48,10 +47,12 @@ jobs:
           import json
           with open('data/records.json') as f:
               r = json.load(f)
-          print(f'Total: {len(r)}')
-          print(f'NOF:   {sum(1 for x in r if x[\"type\"]==\"NOF\")}')
-          print(f'TAX:   {sum(1 for x in r if x[\"type\"]==\"TAX\")}')
-          print(f'Addr:  {sum(1 for x in r if x.get(\"address\"))}')
+          named = sum(1 for x in r if x.get('owner'))
+          print(f'Total:  {len(r)}')
+          print(f'NOF:    {sum(1 for x in r if x[\"type\"]==\"NOF\")}')
+          print(f'TAX:    {sum(1 for x in r if x[\"type\"]==\"TAX\")}')
+          print(f'Named:  {named}')
+          print(f'GHL pushed: {named} contacts (named only)')
           "
 
       - name: Commit records
