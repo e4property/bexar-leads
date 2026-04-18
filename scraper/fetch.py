@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Bexar County Motivated Seller Lead Scraper
 Fetches foreclosure data from ArcGIS, enriches it, and
