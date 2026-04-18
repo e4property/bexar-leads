@@ -2,7 +2,9 @@ name: Scrape & Enrich Leads
 
 on:
   schedule:
-    - cron: '0 3 * * *'   # daily at 3 AM UTC
+    - cron: '0 13 * * *'   # 8:00 AM CST (UTC-5) = 13:00 UTC
+    - cron: '0 17 * * *'   # 12:00 PM CST (UTC-5) = 17:00 UTC
+    - cron: '0 21 * * *'   # 4:00 PM CST (UTC-5) = 21:00 UTC
   workflow_dispatch:        # manual trigger
 
 permissions:
@@ -40,17 +42,16 @@ jobs:
 
       - name: Show summary
         run: |
-          echo "=== Records ===" 
           python3 -c "
           import json
           with open('data/records.json') as f:
               r = json.load(f)
+          print(f'=== Records ===')
           print(f'Total: {len(r)}')
           print(f'NOF:   {sum(1 for x in r if x[\"type\"]==\"NOF\")}')
           print(f'TAX:   {sum(1 for x in r if x[\"type\"]==\"TAX\")}')
           print(f'Addr:  {sum(1 for x in r if x.get(\"address\"))}')
-          if r:
-              print(f'Sample: {r[0]}')
+          if r: print(f'Sample: {r[0]}')
           "
 
       - name: Commit records
