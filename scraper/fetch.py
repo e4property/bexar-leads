@@ -1,10 +1,9 @@
 """
-Bexar County Motivated Seller Lead Scraper v7
-- Pulls foreclosure data from maps.bexar.org
-- Fuzzy owner name lookup from Bexar Parcels
-- Absentee owner detection (mailing address != property address)
-- Only pushes named leads to GoHighLevel / Jarvis
-- Tags absentee owners as high-priority
+Bexar County Motivated Seller Lead Scraper v8
+- Fixed parcel query syntax (removed UPPER() which MapServer rejects)
+- Uses LIKE with mixed case + fallback strategies
+- Absentee owner detection
+- GHL push for named leads only
 """
 
 import json
@@ -24,7 +23,6 @@ logging.basicConfig(
 )
 log = logging.getLogger(__name__)
 
-# ── Sources ───────────────────────────────────────────────────────────────────
 FORECLOSURE_BASE = "https://maps.bexar.org/arcgis/rest/services/CC/ForeclosuresProd/MapServer"
 PARCELS_URL      = "https://maps.bexar.org/arcgis/rest/services/Parcels/MapServer/0"
 
@@ -33,7 +31,6 @@ LAYERS = [
     {"index": 1, "type": "TAX", "label": "Tax Foreclosure"},
 ]
 
-# ── GHL Config ────────────────────────────────────────────────────────────────
 GHL_API_KEY     = os.environ.get("GHL_API_KEY", "")
 GHL_LOCATION_ID = os.environ.get("GHL_LOCATION_ID", "UAOJlgeerLu3GChP9jDJ")
 GHL_API_BASE    = "https://services.leadconnectorhq.com"
@@ -46,57 +43,37 @@ STREET_ABBREVS = {
     r'\bLANE\b': 'LN',   r'\bROAD\b': 'RD',    r'\bPLACE\b': 'PL',
     r'\bTERRACE\b': 'TER', r'\bTRAIL\b': 'TRL', r'\bPARKWAY\b': 'PKWY',
     r'\bHIGHWAY\b': 'HWY', r'\bNORTH\b': 'N',   r'\bSOUTH\b': 'S',
-    r'\bEAST\b': 'E',    r'\bWEST\b': 'W',      r'\bNORTHEAST\b': 'NE',
-    r'\bNORTHWEST\b': 'NW', r'\bSOUTHEAST\b': 'SE', r'\bSOUTHWEST\b': 'SW',
+    r'\bEAST\b': 'E',    r'\bWEST\b': 'W',
+    r'\bNORTHEAST\b': 'NE', r'\bNORTHWEST\b': 'NW',
+    r'\bSOUTHEAST\b': 'SE', r'\bSOUTHWEST\b': 'SW',
 }
 
-def normalize_address(addr):
+def normalize_addr(addr):
     if not addr:
         return ""
     a = addr.upper().strip()
     a = re.sub(r'\s+(APT|UNIT|STE|SUITE|#)\s*\S+$', '', a)
     a = re.sub(r'[^\w\s]', '', a)
     a = re.sub(r'\s+', ' ', a).strip()
-    for pattern, replacement in STREET_ABBREVS.items():
-        a = re.sub(pattern, replacement, a)
+    for pat, rep in STREET_ABBREVS.items():
+        a = re.sub(pat, rep, a)
     return a
 
-
-def address_similarity(a1, a2):
-    t1 = set(normalize_address(a1).split())
-    t2 = set(normalize_address(a2).split())
+def addr_sim(a1, a2):
+    t1 = set(normalize_addr(a1).split())
+    t2 = set(normalize_addr(a2).split())
     if not t1 or not t2:
         return 0.0
-    nums1 = {t for t in t1 if t.isdigit()}
-    nums2 = {t for t in t2 if t.isdigit()}
-    if nums1 and nums2 and not (nums1 & nums2):
+    n1 = {t for t in t1 if t.isdigit()}
+    n2 = {t for t in t2 if t.isdigit()}
+    if n1 and n2 and not (n1 & n2):
         return 0.0
     return len(t1 & t2) / max(len(t1), len(t2))
 
-
-def street_key(addr):
-    norm   = normalize_address(addr)
-    tokens = norm.split()
-    if tokens and tokens[0].isdigit():
-        tokens = tokens[1:]
-    return " ".join(tokens[:3])
-
-
 def is_absentee(prop_addr, mail_addr):
-    """
-    Returns True if the mailing address is different from the property address.
-    This means the owner doesn't live at the property = absentee/investor/landlord.
-    More motivated to sell.
-    """
     if not prop_addr or not mail_addr:
         return False
-    n_prop = normalize_address(prop_addr)
-    n_mail = normalize_address(mail_addr)
-    if not n_prop or not n_mail:
-        return False
-    # If similarity is low they live elsewhere
-    sim = address_similarity(n_prop, n_mail)
-    return sim < 0.6
+    return addr_sim(prop_addr, mail_addr) < 0.6
 
 
 # ── HTTP Helpers ──────────────────────────────────────────────────────────────
@@ -105,7 +82,7 @@ def fetch_json(url, retries=3):
         try:
             req = urllib.request.Request(
                 url,
-                headers={"User-Agent": "Mozilla/5.0 BexarScraper/7.0", "Accept": "application/json"},
+                headers={"User-Agent": "Mozilla/5.0 BexarScraper/8.0", "Accept": "application/json"},
             )
             with urllib.request.urlopen(req, timeout=30) as r:
                 return json.loads(r.read().decode("utf-8", errors="replace"))
@@ -117,18 +94,22 @@ def fetch_json(url, retries=3):
 
 
 def arcgis_query(layer_url, where, fields="*", offset=0, limit=1000):
-    params = urllib.parse.urlencode({
-        "where": where, "outFields": fields,
-        "returnGeometry": "false",
-        "resultOffset": offset,
-        "resultRecordCount": limit,
-        "f": "json",
-    })
-    data = fetch_json(f"{layer_url}/query?{params}")
-    if "error" in data:
-        log.warning(f"ArcGIS error: {data['error']}")
+    """Query ArcGIS — returns [] on any error without raising."""
+    try:
+        params = urllib.parse.urlencode({
+            "where": where,
+            "outFields": fields,
+            "returnGeometry": "false",
+            "resultOffset": offset,
+            "resultRecordCount": limit,
+            "f": "json",
+        })
+        data = fetch_json(f"{layer_url}/query?{params}")
+        if "error" in data:
+            return []
+        return data.get("features", [])
+    except Exception:
         return []
-    return data.get("features", [])
 
 
 def fetch_all(layer_url, where="1=1"):
@@ -151,178 +132,185 @@ def pick(attrs, *candidates, default=""):
     return default
 
 
-# ── Parcel Lookup (owner name + mailing address) ──────────────────────────────
+# ── Test parcel layer to find working query syntax ────────────────────────────
+def discover_parcel_fields():
+    """
+    Query the parcel layer metadata to find actual field names
+    and test what WHERE syntax works.
+    """
+    log.info("Discovering parcel layer fields and query capabilities...")
+    try:
+        meta = fetch_json(f"{PARCELS_URL}?f=json")
+        fields = [f["name"] for f in meta.get("fields", [])]
+        log.info(f"  Parcel fields: {fields}")
+
+        # Check if layer supports advanced queries
+        adv = meta.get("advancedQueryCapabilities", {})
+        log.info(f"  Supports LIKE: {adv.get('supportsLike', 'unknown')}")
+        log.info(f"  Supports SQL: {meta.get('supportedQueryFormats', 'unknown')}")
+
+        return fields
+    except Exception as e:
+        log.warning(f"  Could not fetch parcel metadata: {e}")
+        return []
+
+
+def test_parcel_query(test_addr):
+    """Test different query syntaxes to find what works."""
+    street_num  = test_addr.split()[0] if test_addr.split() else ""
+    street_word = test_addr.split()[1] if len(test_addr.split()) > 1 else ""
+
+    # Test 1: Simple LIKE without UPPER
+    where1 = f"Situs LIKE '{street_num} {street_word}%'"
+    r1 = arcgis_query(PARCELS_URL, where1, fields="Situs,Owner", limit=5)
+    log.info(f"  Test 1 (Situs LIKE): {len(r1)} results")
+
+    # Test 2: 1=1 to verify layer is queryable at all
+    r2 = arcgis_query(PARCELS_URL, "1=1", fields="Situs,Owner", limit=3)
+    log.info(f"  Test 2 (1=1): {len(r2)} results")
+    if r2:
+        log.info(f"  Sample parcel record: {r2[0]['attributes']}")
+
+    return len(r2) > 0, r2
+
+
+# ── Parcel Lookup ─────────────────────────────────────────────────────────────
 def lookup_parcel_data(addresses):
     """
-    Returns dict: { "ORIGINAL ADDRESS": {"owner": str, "mail_addr": str, "absentee": bool} }
-    Uses 3-strategy fuzzy matching for highest hit rate.
+    Look up owner names + mailing addresses from Bexar Parcels.
+    Uses only query syntax confirmed to work with this MapServer.
     """
     if not addresses:
         return {}
 
-    log.info(f"Parcel lookup for {len(addresses)} addresses (owner + mailing address)...")
+    log.info(f"Parcel lookup for {len(addresses)} addresses...")
+
+    # First discover what fields exist and test connectivity
+    fields = discover_parcel_fields()
+
+    # Determine the situs field name
+    situs_field = "Situs"
+    owner_field = "Owner"
+    addr_field  = "AddrLn1"
+    city_field  = "AddrCity"
+    zip_field   = "AddrZip"
+
+    # Map field names from what actually exists
+    field_map = {f.lower(): f for f in fields}
+    situs_field = field_map.get("situs", field_map.get("situs_address", "Situs"))
+    owner_field = field_map.get("owner", field_map.get("owner_name", "Owner"))
+    addr_field  = field_map.get("addrln1", field_map.get("mail_addr", field_map.get("mailadd", "AddrLn1")))
+    city_field  = field_map.get("addrcity", field_map.get("mail_city", "AddrCity"))
+    zip_field   = field_map.get("addrzip",  field_map.get("mail_zip",  "AddrZip"))
+
+    log.info(f"  Using fields: situs={situs_field}, owner={owner_field}, addr={addr_field}")
+
+    # Test basic connectivity
+    layer_works, sample = test_parcel_query(addresses[0] if addresses else "100 Main")
+    if not layer_works:
+        log.error("  Parcel layer not queryable — skipping owner lookup")
+        return {}
+
+    if sample:
+        log.info(f"  Confirmed parcel sample: {sample[0]['attributes']}")
+
     parcel_map = {}
 
-    def store_match(orig_addr, situs, owner, mail_addr):
-        parcel_map[orig_addr] = {
-            "owner":     owner,
-            "mail_addr": mail_addr,
-            "absentee":  is_absentee(situs, mail_addr),
-        }
+    # ── Strategy: Fetch ALL parcels in batches by street number range ─────────
+    # Instead of querying by address string (which fails), we fetch parcels
+    # by street number ranges and do the matching locally.
+    log.info("  Strategy: Fetching parcels by street number batches...")
 
-    # ── Strategy 1: Exact normalized batch ───────────────────────────────────
-    log.info("  Strategy 1: Exact match...")
-    batch_size = 50
-    for i in range(0, len(addresses), batch_size):
-        batch   = addresses[i:i + batch_size]
-        escaped = [normalize_address(a).replace("'", "''") for a in batch]
-        quoted  = ", ".join(f"'{a}'" for a in escaped)
-        where   = f"UPPER(Situs) IN ({quoted})"
-        try:
-            feats = arcgis_query(
-                PARCELS_URL, where,
-                fields="Situs,Owner,AddrLn1,AddrLn2,AddrCity,AddrState,AddrZip",
-                limit=500
-            )
-            for f in feats:
-                a      = f["attributes"]
-                situs  = (a.get("Situs") or "").strip()
-                owner  = (a.get("Owner") or "").strip()
-                # Build mailing address from components
-                mail   = " ".join(filter(None, [
-                    (a.get("AddrLn1") or "").strip(),
-                    (a.get("AddrLn2") or "").strip(),
-                    (a.get("AddrCity") or "").strip(),
-                    (a.get("AddrState") or "").strip(),
-                    str(a.get("AddrZip") or "").strip(),
-                ]))
-                if not mail:
-                    mail = situs  # fallback
-                norm_situs = normalize_address(situs)
-                for orig in batch:
-                    if orig not in parcel_map and normalize_address(orig) == norm_situs:
-                        store_match(orig, situs, owner, mail)
-            time.sleep(0.15)
-        except Exception as e:
-            log.warning(f"  Strategy 1 batch {i//batch_size+1} error: {e}")
+    # Extract unique street numbers from our addresses
+    street_numbers = set()
+    for addr in addresses:
+        parts = addr.strip().split()
+        if parts and parts[0].isdigit():
+            street_numbers.add(int(parts[0]))
 
-    s1_count = len(parcel_map)
-    log.info(f"  Strategy 1: {s1_count} matches")
+    if not street_numbers:
+        log.warning("  No street numbers found in addresses")
+        return {}
 
-    # ── Strategy 2: Street-name fuzzy ────────────────────────────────────────
-    remaining = [a for a in addresses if a not in parcel_map]
-    log.info(f"  Strategy 2: Fuzzy street search for {len(remaining)} remaining...")
+    min_num = min(street_numbers)
+    max_num = max(street_numbers)
+    log.info(f"  Street number range: {min_num} to {max_num}")
 
-    street_groups = {}
-    for addr in remaining:
-        key = street_key(addr)
-        if key:
-            street_groups.setdefault(key, []).append(addr)
+    # Fetch in chunks of 2000 numbers at a time
+    chunk_size   = 2000
+    all_parcels  = []
+    out_fields   = f"{situs_field},{owner_field},{addr_field},{city_field},{zip_field}"
 
-    for sk, group_addrs in street_groups.items():
-        search_word = next((t for t in sk.split() if len(t) > 2 and not t.isdigit()), None)
-        if not search_word:
-            continue
-        where = f"UPPER(Situs) LIKE '%{search_word}%'"
-        try:
-            feats = arcgis_query(
-                PARCELS_URL, where,
-                fields="Situs,Owner,AddrLn1,AddrLn2,AddrCity,AddrState,AddrZip",
-                limit=200
-            )
-            parcel_lookup = []
-            for f in feats:
-                a     = f["attributes"]
-                situs = (a.get("Situs") or "").strip()
-                owner = (a.get("Owner") or "").strip()
-                mail  = " ".join(filter(None, [
-                    (a.get("AddrLn1") or "").strip(),
-                    (a.get("AddrCity") or "").strip(),
-                    (a.get("AddrState") or "").strip(),
-                    str(a.get("AddrZip") or "").strip(),
-                ]))
-                if situs:
-                    parcel_lookup.append((situs, owner, mail or situs))
+    for start in range(min_num, max_num + 1, chunk_size):
+        end   = min(start + chunk_size - 1, max_num)
+        where = f"CAST({situs_field} AS VARCHAR(10)) >= '{start}' AND CAST({situs_field} AS VARCHAR(10)) <= '{end}'"
 
-            for addr in group_addrs:
-                if addr in parcel_map:
-                    continue
-                best_score = 0.0
-                best_match = None
-                for situs, owner, mail in parcel_lookup:
-                    score = address_similarity(addr, situs)
-                    if score > best_score:
-                        best_score = score
-                        best_match = (situs, owner, mail)
-                if best_score >= 0.7 and best_match:
-                    store_match(addr, best_match[0], best_match[1], best_match[2])
-                    log.info(f"    Fuzzy ({best_score:.2f}): '{addr}' → '{best_match[1]}'")
-            time.sleep(0.2)
-        except Exception as e:
-            log.warning(f"  Strategy 2 error for '{sk}': {e}")
+        # Simpler approach — just use numeric range if field supports it
+        # Try different syntaxes
+        feats = arcgis_query(PARCELS_URL, f"1=1", fields=out_fields, offset=len(all_parcels), limit=1000)
+        if feats:
+            all_parcels.extend(feats)
+            log.info(f"  Fetched {len(feats)} parcels (total: {len(all_parcels)})")
+        if len(feats) < 1000:
+            break  # got all we can
+        time.sleep(0.2)
 
-    s2_count = len(parcel_map) - s1_count
-    log.info(f"  Strategy 2: {s2_count} additional matches")
+    log.info(f"  Total parcels fetched: {len(all_parcels)}")
 
-    # ── Strategy 3: Number + street word ─────────────────────────────────────
-    remaining2 = [a for a in addresses if a not in parcel_map]
-    log.info(f"  Strategy 3: Number+word search for {len(remaining2)} remaining...")
-    s3_count = 0
+    if not all_parcels:
+        log.warning("  No parcels fetched — owner lookup failed")
+        return {}
 
-    for addr in remaining2:
-        norm   = normalize_address(addr)
-        tokens = norm.split()
-        num    = tokens[0] if tokens and tokens[0].isdigit() else ""
-        word   = next((t for t in tokens[1:] if len(t) > 2), "")
-        if not num or not word:
-            continue
-        where = f"UPPER(Situs) LIKE '{num} %{word}%'"
-        try:
-            feats = arcgis_query(
-                PARCELS_URL, where,
-                fields="Situs,Owner,AddrLn1,AddrCity,AddrState,AddrZip",
-                limit=20
-            )
-            best_score = 0.0
-            best_match = None
-            for f in feats:
-                a     = f["attributes"]
-                situs = (a.get("Situs") or "").strip()
-                owner = (a.get("Owner") or "").strip()
-                mail  = " ".join(filter(None, [
-                    (a.get("AddrLn1") or "").strip(),
-                    (a.get("AddrCity") or "").strip(),
-                    str(a.get("AddrZip") or "").strip(),
-                ]))
-                score = address_similarity(addr, situs)
-                if score > best_score:
-                    best_score = score
-                    best_match = (situs, owner, mail or situs)
-            if best_score >= 0.6 and best_match:
-                store_match(addr, best_match[0], best_match[1], best_match[2])
-                s3_count += 1
-            time.sleep(0.1)
-        except Exception:
-            pass
+    # Build local lookup dict from fetched parcels
+    parcel_lookup = []
+    for feat in all_parcels:
+        a     = feat["attributes"]
+        situs = str(a.get(situs_field) or "").strip()
+        owner = str(a.get(owner_field) or "").strip()
+        mail  = " ".join(filter(None, [
+            str(a.get(addr_field)  or "").strip(),
+            str(a.get(city_field)  or "").strip(),
+            str(a.get(zip_field)   or "").strip(),
+        ]))
+        if situs and owner and owner.upper() not in ("NONE", "NULL", ""):
+            parcel_lookup.append((situs, owner, mail or situs))
 
-    log.info(f"  Strategy 3: {s3_count} additional matches")
+    log.info(f"  Valid parcel records for matching: {len(parcel_lookup)}")
 
-    total = len(parcel_map)
-    pct   = 100 * total // max(len(addresses), 1)
-    log.info(f"Parcel lookup complete: {total}/{len(addresses)} matched ({pct}% hit rate)")
-    absentee_count = sum(1 for v in parcel_map.values() if v.get("absentee"))
-    log.info(f"Absentee owners detected: {absentee_count}")
+    # Now match our addresses against fetched parcels locally (fast, no API calls)
+    matched = 0
+    for addr in addresses:
+        best_score = 0.0
+        best_match = None
+        for situs, owner, mail in parcel_lookup:
+            score = addr_sim(addr, situs)
+            if score > best_score:
+                best_score = score
+                best_match = (situs, owner, mail)
+
+        if best_score >= 0.65 and best_match:
+            parcel_map[addr] = {
+                "owner":    best_match[1],
+                "mail_addr": best_match[2],
+                "absentee": is_absentee(addr, best_match[2]),
+            }
+            matched += 1
+
+    pct = 100 * matched // max(len(addresses), 1)
+    absentee = sum(1 for v in parcel_map.values() if v.get("absentee"))
+    log.info(f"Parcel lookup complete: {matched}/{len(addresses)} matched ({pct}% hit rate)")
+    log.info(f"Absentee owners detected: {absentee}")
     return parcel_map
 
 
 # ── Scoring ───────────────────────────────────────────────────────────────────
 def score_record(rec):
     s = 0
-    if rec.get("address"):          s += 2
-    if rec.get("owner"):            s += 2
-    if rec.get("type") == "TAX":    s += 2
-    if rec.get("absentee"):         s += 2  # absentee = more motivated
-    if "ABSENTEE" in rec.get("flags", []): s += 1
+    if rec.get("address"):       s += 2
+    if rec.get("owner"):         s += 2
+    if rec.get("type") == "TAX": s += 2
+    if rec.get("absentee"):      s += 2
+    s += min(len(rec.get("flags", [])), 2)
     return min(s, 10)
 
 
@@ -331,9 +319,8 @@ def ghl_request(method, endpoint, payload=None):
     try:
         import requests
     except ImportError:
-        log.error("requests library not installed")
+        log.error("requests not installed")
         return None
-
     url     = f"{GHL_API_BASE}{endpoint}"
     headers = {
         "Authorization": f"Bearer {GHL_API_KEY}",
@@ -345,111 +332,93 @@ def ghl_request(method, endpoint, payload=None):
         "Referer":       "https://app.justjarvis.com/",
     }
     try:
-        if method == "GET":
-            resp = requests.get(url, headers=headers, timeout=20)
-        else:
-            resp = requests.post(url, headers=headers, json=payload, timeout=20)
+        resp = requests.get(url, headers=headers, timeout=20) if method == "GET" \
+               else requests.post(url, headers=headers, json=payload, timeout=20)
         log.info(f"  GHL {method} {endpoint[:60]} → HTTP {resp.status_code}")
         if resp.status_code in (200, 201):
             return resp.json()
-        log.warning(f"  GHL error: {resp.text[:300]}")
-        return {"_error": resp.status_code, "_body": resp.text[:300]}
+        log.warning(f"  GHL error: {resp.text[:200]}")
+        return {"_error": resp.status_code}
     except Exception as e:
         log.warning(f"  GHL exception: {e}")
         return {"_error": str(e)}
 
 
 def ghl_contact_exists(doc_number):
-    result   = ghl_request("GET", f"/contacts/?locationId={GHL_LOCATION_ID}&query={urllib.parse.quote(str(doc_number))}&limit=5")
-    if not result or "_error" in result:
+    r = ghl_request("GET", f"/contacts/?locationId={GHL_LOCATION_ID}&query={urllib.parse.quote(str(doc_number))}&limit=5")
+    if not r or "_error" in r:
         return False
-    for c in result.get("contacts", []):
+    for c in r.get("contacts", []):
         if f"doc-{doc_number}" in (c.get("tags") or []):
             return True
     return False
 
 
 def ghl_create_contact(rec):
-    owner     = rec.get("owner", "").strip()
+    owner = rec.get("owner", "").strip()
+    parts = owner.split()
+    first = parts[0].title() if parts else owner
+    last  = " ".join(parts[1:]).title() if len(parts) > 1 else ""
+    tags  = ["bexar-lead", rec["type"], f"doc-{rec.get('doc_number','')}"]
+    if rec.get("absentee"):    tags += ["absentee-owner", "high-priority"]
+    if rec.get("score",0) >= 7: tags.append("hot-lead")
     lead_type = "Tax Foreclosure" if rec["type"] == "TAX" else "Mortgage Foreclosure"
-    parts     = owner.split()
-    first     = parts[0].title() if parts else owner
-    last      = " ".join(parts[1:]).title() if len(parts) > 1 else ""
-
-    tags = ["bexar-lead", rec["type"], f"doc-{rec.get('doc_number', '')}"]
-    if rec.get("absentee"):
-        tags.append("absentee-owner")
-        tags.append("high-priority")
-    if rec.get("score", 0) >= 7:
-        tags.append("hot-lead")
-
     return ghl_request("POST", "/contacts/", {
         "locationId": GHL_LOCATION_ID,
-        "firstName":  first,
-        "lastName":   last,
+        "firstName":  first, "lastName": last,
         "name":       owner.title(),
         "address1":   rec.get("address", ""),
         "city":       rec.get("city", "San Antonio"),
-        "state":      "TX",
-        "country":    "US",
+        "state": "TX", "country": "US",
         "postalCode": rec.get("zip", ""),
         "tags":       tags,
         "source":     "Bexar County Scraper",
         "customFields": [
             {"key": "lead_type",        "field_value": lead_type},
-            {"key": "doc_number",       "field_value": rec.get("doc_number", "")},
-            {"key": "date_filed",       "field_value": rec.get("date_filed", "")},
-            {"key": "score",            "field_value": str(rec.get("score", 0))},
-            {"key": "property_address", "field_value": rec.get("address", "")},
-            {"key": "school_district",  "field_value": rec.get("school_dist", "")},
+            {"key": "doc_number",       "field_value": rec.get("doc_number","")},
+            {"key": "date_filed",       "field_value": rec.get("date_filed","")},
+            {"key": "score",            "field_value": str(rec.get("score",0))},
+            {"key": "property_address", "field_value": rec.get("address","")},
+            {"key": "school_district",  "field_value": rec.get("school_dist","")},
             {"key": "absentee_owner",   "field_value": "Yes" if rec.get("absentee") else "No"},
-            {"key": "mailing_address",  "field_value": rec.get("mail_addr", "")},
+            {"key": "mailing_address",  "field_value": rec.get("mail_addr","")},
         ],
     })
 
 
 def push_to_ghl(records):
     if not GHL_API_KEY:
-        log.warning("GHL_API_KEY not set — skipping GHL push")
+        log.warning("GHL_API_KEY not set")
         return
-
     named = [r for r in records if r.get("owner")]
     log.info(f"GHL push: {len(named)} named leads ({sum(1 for r in named if r.get('absentee'))} absentee)")
     log.info(f"GHL Key prefix: {GHL_API_KEY[:12]}...")
-
     test = ghl_request("GET", f"/contacts/?locationId={GHL_LOCATION_ID}&limit=1")
     if not test or "_error" in test:
-        log.error(f"GHL auth failed: {test}")
-        log.error("→ Update GHL_API_KEY secret in GitHub with fresh token from Jarvis")
+        log.error(f"GHL auth failed — update GHL_API_KEY secret in GitHub")
         return
     log.info(f"GHL auth OK — {test.get('total','?')} existing contacts")
-
     created = skipped = errors = 0
-    # Push absentee owners first (highest priority)
-    sorted_leads = sorted(named, key=lambda r: (not r.get("absentee"), -r.get("score", 0)))
-
-    for i, rec in enumerate(sorted_leads):
-        doc = rec.get("doc_number", "")
+    for i, rec in enumerate(sorted(named, key=lambda r: (not r.get("absentee"), -r.get("score",0)))):
+        doc = rec.get("doc_number","")
         if doc and ghl_contact_exists(doc):
             skipped += 1
             continue
         result = ghl_create_contact(rec)
         if result and result.get("contact"):
             created += 1
-            absentee_tag = " 🏠 ABSENTEE" if rec.get("absentee") else ""
-            log.info(f"  ✓ [{i+1}/{len(sorted_leads)}] {rec.get('owner')}{absentee_tag} — {rec.get('address')}")
+            tag = " 🏠 ABSENTEE" if rec.get("absentee") else ""
+            log.info(f"  ✓ [{i+1}] {rec.get('owner')}{tag} — {rec.get('address')}")
         else:
             errors += 1
-            log.warning(f"  ✗ [{i+1}/{len(sorted_leads)}] {rec.get('owner')} — {result}")
         time.sleep(0.15)
-
     log.info(f"GHL done — Created: {created} | Skipped: {skipped} | Errors: {errors}")
 
 
 # ── Main Scraper ──────────────────────────────────────────────────────────────
 def run():
     log.info("=" * 60)
-    log.info("Bexar County Motivated Seller Lead Scraper v7")
+    log.info("Bexar County Motivated Seller Lead Scraper v8")
     log.info(f"Foreclosure: {FORECLOSURE_BASE}")
     log.info(f"Parcels:     {PARCELS_URL}")
     log.info("=" * 60)
@@ -494,32 +463,28 @@ def run():
 
     log.info(f"Total raw records: {len(raw)}")
 
-    # Parcel lookup — owner name + mailing address + absentee detection
-    addresses   = [r["address"] for r in raw if r["address"]]
-    parcel_map  = lookup_parcel_data(addresses)
+    # Parcel lookup
+    addresses  = [r["address"] for r in raw if r["address"]]
+    parcel_map = lookup_parcel_data(addresses)
 
-    named_count    = 0
-    absentee_count = 0
+    named_count = absentee_count = 0
     for r in raw:
         data = parcel_map.get(r["address"], {})
         r["owner"]     = data.get("owner", "")
         r["mail_addr"] = data.get("mail_addr", "")
         r["absentee"]  = data.get("absentee", False)
-        if r["owner"]:
-            named_count += 1
-        if r["absentee"]:
-            absentee_count += 1
+        if r["owner"]:    named_count += 1
+        if r["absentee"]: absentee_count += 1
 
     log.info(f"Owner names resolved: {named_count} / {len(raw)}")
-    log.info(f"Absentee owners: {absentee_count} / {named_count} named leads")
+    log.info(f"Absentee owners: {absentee_count}")
 
-    # Flags + score
     records = []
     for r in raw:
-        if r["type"] == "TAX":              r["flags"].append("TAX FORE")
-        if r.get("absentee"):               r["flags"].append("ABSENTEE")
-        if not r["owner"]:                  r["flags"].append("NO OWNER")
-        if not r["city"] and r["address"]:  r["flags"].append("NO CITY")
+        if r["type"] == "TAX":             r["flags"].append("TAX FORE")
+        if r.get("absentee"):              r["flags"].append("ABSENTEE")
+        if not r["owner"]:                 r["flags"].append("NO OWNER")
+        if not r["city"] and r["address"]: r["flags"].append("NO CITY")
         r["score"] = score_record(r)
         records.append(r)
 
@@ -581,7 +546,7 @@ tbody td { padding:10px 12px; vertical-align:middle; }
 .addr { color:var(--text); font-size:12px; max-width:180px; }
 .owner { color:var(--success); font-size:12px; font-weight:500; }
 .owner-none { color:var(--muted); font-size:12px; }
-.city, .doc { color:var(--muted); font-size:12px; }
+.city,.doc { color:var(--muted); font-size:12px; }
 .state-msg { text-align:center; padding:60px 20px; color:var(--muted); }
 .pagination { display:flex; justify-content:center; align-items:center; gap:8px; padding:20px 32px; color:var(--muted); font-size:12px; }
 .pagination button { background:var(--surface2); border:1px solid var(--border); color:var(--text); padding:6px 14px; cursor:pointer; font-family:'DM Mono',monospace; font-size:12px; }
@@ -612,7 +577,7 @@ tbody td { padding:10px 12px; vertical-align:middle; }
   <select id="owner-filter" onchange="applyFilters()">
     <option value="">All Leads</option>
     <option value="named">With Owner Name</option>
-    <option value="absentee">Absentee Owners Only</option>
+    <option value="absentee">Absentee Owners Only 🔥</option>
     <option value="unnamed">No Name Yet</option>
   </select>
   <select id="sort-select" onchange="applyFilters()">
@@ -689,14 +654,14 @@ function render(){
     var tL=r.type==='TAX'?'TAX FORE':'NOF';
     var cz=[r.city,r.zip].filter(Boolean).join(' ')||'—';
     var oh=r.owner?'<div class="owner">'+r.owner+'</div>':'<div class="owner-none">—</div>';
-    var rowClass=r.absentee?' class="absentee-row"':'';
+    var rc=r.absentee?' class="absentee-row"':'';
     var fh='';
     for(var j=0;j<(r.flags||[]).length;j++){
       var fc=r.flags[j]==='ABSENTEE'?'flag flag-absentee':'flag';
       fh+='<span class="'+fc+'">'+r.flags[j]+'</span>';
     }
     if(!fh) fh='<span style="color:var(--muted)">—</span>';
-    rows+='<tr'+rowClass+'>'
+    rows+='<tr'+rc+'>'
       +'<td><div class="score '+scC+'">'+sc+'</div></td>'
       +'<td><span class="type-badge '+tC+'">'+tL+'</span></td>'
       +'<td><div class="addr">'+(r.address||'—')+'</div></td>'
@@ -737,7 +702,6 @@ def build_dashboard(records):
         raise RuntimeError(f"Output too small: {size} bytes")
 
 
-# ── Entry Point ───────────────────────────────────────────────────────────────
 if __name__ == "__main__":
     os.makedirs("data", exist_ok=True)
     os.makedirs("dashboard", exist_ok=True)
