@@ -1,8 +1,10 @@
 """
-Bexar County Motivated Seller Lead Scraper v6
+Bexar County Motivated Seller Lead Scraper v7
 - Pulls foreclosure data from maps.bexar.org
-- Looks up owner names using fuzzy address matching (much higher hit rate)
+- Fuzzy owner name lookup from Bexar Parcels
+- Absentee owner detection (mailing address != property address)
 - Only pushes named leads to GoHighLevel / Jarvis
+- Tags absentee owners as high-priority
 """
 
 import json
@@ -39,74 +41,62 @@ GHL_API_BASE    = "https://services.leadconnectorhq.com"
 
 # ── Address Normalization ─────────────────────────────────────────────────────
 STREET_ABBREVS = {
-    r'\bSTREET\b': 'ST',
-    r'\bAVENUE\b': 'AVE',
-    r'\bBOULEVARD\b': 'BLVD',
-    r'\bDRIVE\b': 'DR',
-    r'\bCOURT\b': 'CT',
-    r'\bCIRCLE\b': 'CIR',
-    r'\bLANE\b': 'LN',
-    r'\bROAD\b': 'RD',
-    r'\bPLACE\b': 'PL',
-    r'\bTERRACE\b': 'TER',
-    r'\bTRAIL\b': 'TRL',
-    r'\bPARKWAY\b': 'PKWY',
-    r'\bHIGHWAY\b': 'HWY',
-    r'\bNORTH\b': 'N',
-    r'\bSOUTH\b': 'S',
-    r'\bEAST\b': 'E',
-    r'\bWEST\b': 'W',
-    r'\bNORTHEAST\b': 'NE',
-    r'\bNORTHWEST\b': 'NW',
-    r'\bSOUTHEAST\b': 'SE',
-    r'\bSOUTHWEST\b': 'SW',
-    r'\bSAINT\b': 'ST',
+    r'\bSTREET\b': 'ST', r'\bAVENUE\b': 'AVE', r'\bBOULEVARD\b': 'BLVD',
+    r'\bDRIVE\b': 'DR',  r'\bCOURT\b': 'CT',   r'\bCIRCLE\b': 'CIR',
+    r'\bLANE\b': 'LN',   r'\bROAD\b': 'RD',    r'\bPLACE\b': 'PL',
+    r'\bTERRACE\b': 'TER', r'\bTRAIL\b': 'TRL', r'\bPARKWAY\b': 'PKWY',
+    r'\bHIGHWAY\b': 'HWY', r'\bNORTH\b': 'N',   r'\bSOUTH\b': 'S',
+    r'\bEAST\b': 'E',    r'\bWEST\b': 'W',      r'\bNORTHEAST\b': 'NE',
+    r'\bNORTHWEST\b': 'NW', r'\bSOUTHEAST\b': 'SE', r'\bSOUTHWEST\b': 'SW',
 }
 
 def normalize_address(addr):
-    """Normalize address for fuzzy matching."""
     if not addr:
         return ""
     a = addr.upper().strip()
-    # Remove unit/apt/suite suffixes
     a = re.sub(r'\s+(APT|UNIT|STE|SUITE|#)\s*\S+$', '', a)
-    # Remove punctuation except spaces
     a = re.sub(r'[^\w\s]', '', a)
-    # Normalize whitespace
     a = re.sub(r'\s+', ' ', a).strip()
-    # Expand/contract abbreviations
     for pattern, replacement in STREET_ABBREVS.items():
         a = re.sub(pattern, replacement, a)
     return a
 
 
 def address_similarity(a1, a2):
-    """
-    Simple token-based similarity score (0.0 - 1.0).
-    Checks what fraction of tokens match between two addresses.
-    """
     t1 = set(normalize_address(a1).split())
     t2 = set(normalize_address(a2).split())
     if not t1 or not t2:
         return 0.0
-    intersection = t1 & t2
-    # Weight: street number must match
-    # Get numbers from each
     nums1 = {t for t in t1 if t.isdigit()}
     nums2 = {t for t in t2 if t.isdigit()}
     if nums1 and nums2 and not (nums1 & nums2):
-        return 0.0  # different street numbers = definite mismatch
-    return len(intersection) / max(len(t1), len(t2))
+        return 0.0
+    return len(t1 & t2) / max(len(t1), len(t2))
 
 
 def street_key(addr):
-    """Extract just the street name tokens (no number) for broad search."""
-    norm = normalize_address(addr)
+    norm   = normalize_address(addr)
     tokens = norm.split()
-    # Remove leading number
     if tokens and tokens[0].isdigit():
         tokens = tokens[1:]
-    return " ".join(tokens[:3])  # first 3 street name words
+    return " ".join(tokens[:3])
+
+
+def is_absentee(prop_addr, mail_addr):
+    """
+    Returns True if the mailing address is different from the property address.
+    This means the owner doesn't live at the property = absentee/investor/landlord.
+    More motivated to sell.
+    """
+    if not prop_addr or not mail_addr:
+        return False
+    n_prop = normalize_address(prop_addr)
+    n_mail = normalize_address(mail_addr)
+    if not n_prop or not n_mail:
+        return False
+    # If similarity is low they live elsewhere
+    sim = address_similarity(n_prop, n_mail)
+    return sim < 0.6
 
 
 # ── HTTP Helpers ──────────────────────────────────────────────────────────────
@@ -115,7 +105,7 @@ def fetch_json(url, retries=3):
         try:
             req = urllib.request.Request(
                 url,
-                headers={"User-Agent": "Mozilla/5.0 BexarScraper/6.0", "Accept": "application/json"},
+                headers={"User-Agent": "Mozilla/5.0 BexarScraper/7.0", "Accept": "application/json"},
             )
             with urllib.request.urlopen(req, timeout=30) as r:
                 return json.loads(r.read().decode("utf-8", errors="replace"))
@@ -161,56 +151,68 @@ def pick(attrs, *candidates, default=""):
     return default
 
 
-# ── Owner Name Lookup (Fuzzy) ─────────────────────────────────────────────────
-def lookup_owner_names(addresses):
+# ── Parcel Lookup (owner name + mailing address) ──────────────────────────────
+def lookup_parcel_data(addresses):
     """
-    Multi-strategy owner lookup:
-    1. Exact normalized match
-    2. Fuzzy street-name search → best token match
-    Returns dict: { "ORIGINAL ADDRESS": "Owner Name" }
+    Returns dict: { "ORIGINAL ADDRESS": {"owner": str, "mail_addr": str, "absentee": bool} }
+    Uses 3-strategy fuzzy matching for highest hit rate.
     """
     if not addresses:
         return {}
 
-    log.info(f"Looking up owner names for {len(addresses)} addresses (fuzzy matching enabled)...")
-    owner_map = {}
+    log.info(f"Parcel lookup for {len(addresses)} addresses (owner + mailing address)...")
+    parcel_map = {}
 
-    # ── Strategy 1: Exact normalized batch match ──────────────────────────────
-    log.info("  Strategy 1: Exact normalized address match...")
-    exact_found = 0
-    batch_size  = 50
+    def store_match(orig_addr, situs, owner, mail_addr):
+        parcel_map[orig_addr] = {
+            "owner":     owner,
+            "mail_addr": mail_addr,
+            "absentee":  is_absentee(situs, mail_addr),
+        }
 
+    # ── Strategy 1: Exact normalized batch ───────────────────────────────────
+    log.info("  Strategy 1: Exact match...")
+    batch_size = 50
     for i in range(0, len(addresses), batch_size):
         batch   = addresses[i:i + batch_size]
         escaped = [normalize_address(a).replace("'", "''") for a in batch]
         quoted  = ", ".join(f"'{a}'" for a in escaped)
-        # Try both Situs and normalized Situs
         where   = f"UPPER(Situs) IN ({quoted})"
         try:
-            feats = arcgis_query(PARCELS_URL, where, fields="Situs,Owner", limit=500)
+            feats = arcgis_query(
+                PARCELS_URL, where,
+                fields="Situs,Owner,AddrLn1,AddrLn2,AddrCity,AddrState,AddrZip",
+                limit=500
+            )
             for f in feats:
-                a     = f["attributes"]
-                situs = (a.get("Situs") or "").strip().upper()
-                owner = (a.get("Owner") or "").strip()
-                if situs and owner:
-                    norm_situs = normalize_address(situs)
-                    # Map back to original addresses
-                    for orig in batch:
-                        if normalize_address(orig) == norm_situs:
-                            owner_map[orig] = owner
-                            exact_found += 1
+                a      = f["attributes"]
+                situs  = (a.get("Situs") or "").strip()
+                owner  = (a.get("Owner") or "").strip()
+                # Build mailing address from components
+                mail   = " ".join(filter(None, [
+                    (a.get("AddrLn1") or "").strip(),
+                    (a.get("AddrLn2") or "").strip(),
+                    (a.get("AddrCity") or "").strip(),
+                    (a.get("AddrState") or "").strip(),
+                    str(a.get("AddrZip") or "").strip(),
+                ]))
+                if not mail:
+                    mail = situs  # fallback
+                norm_situs = normalize_address(situs)
+                for orig in batch:
+                    if orig not in parcel_map and normalize_address(orig) == norm_situs:
+                        store_match(orig, situs, owner, mail)
             time.sleep(0.15)
         except Exception as e:
-            log.warning(f"  Exact batch {i//batch_size+1} failed: {e}")
+            log.warning(f"  Strategy 1 batch {i//batch_size+1} error: {e}")
 
-    log.info(f"  Strategy 1 found: {exact_found} names")
+    s1_count = len(parcel_map)
+    log.info(f"  Strategy 1: {s1_count} matches")
 
-    # ── Strategy 2: Street-name fuzzy search for remaining ───────────────────
-    remaining = [a for a in addresses if a not in owner_map]
-    log.info(f"  Strategy 2: Fuzzy street search for {len(remaining)} remaining addresses...")
-    fuzzy_found = 0
+    # ── Strategy 2: Street-name fuzzy ────────────────────────────────────────
+    remaining = [a for a in addresses if a not in parcel_map]
+    log.info(f"  Strategy 2: Fuzzy street search for {len(remaining)} remaining...")
 
-    # Group by street key to minimize API calls
     street_groups = {}
     for addr in remaining:
         key = street_key(addr)
@@ -218,108 +220,109 @@ def lookup_owner_names(addresses):
             street_groups.setdefault(key, []).append(addr)
 
     for sk, group_addrs in street_groups.items():
-        if not sk or len(sk) < 4:
-            continue
-        # Extract just the street name words (not the number)
-        tokens = sk.split()
-        # Search by street name — use first meaningful word
-        search_word = next((t for t in tokens if len(t) > 2 and not t.isdigit()), None)
+        search_word = next((t for t in sk.split() if len(t) > 2 and not t.isdigit()), None)
         if not search_word:
             continue
-
         where = f"UPPER(Situs) LIKE '%{search_word}%'"
         try:
-            feats = arcgis_query(PARCELS_URL, where, fields="Situs,Owner", limit=200)
-            if not feats:
-                continue
-
-            # Build lookup from results
+            feats = arcgis_query(
+                PARCELS_URL, where,
+                fields="Situs,Owner,AddrLn1,AddrLn2,AddrCity,AddrState,AddrZip",
+                limit=200
+            )
             parcel_lookup = []
             for f in feats:
                 a     = f["attributes"]
                 situs = (a.get("Situs") or "").strip()
                 owner = (a.get("Owner") or "").strip()
-                if situs and owner:
-                    parcel_lookup.append((situs, owner))
+                mail  = " ".join(filter(None, [
+                    (a.get("AddrLn1") or "").strip(),
+                    (a.get("AddrCity") or "").strip(),
+                    (a.get("AddrState") or "").strip(),
+                    str(a.get("AddrZip") or "").strip(),
+                ]))
+                if situs:
+                    parcel_lookup.append((situs, owner, mail or situs))
 
-            # Match each address in group to best parcel
             for addr in group_addrs:
-                if addr in owner_map:
+                if addr in parcel_map:
                     continue
-                best_score  = 0.0
-                best_owner  = ""
-                for situs, owner in parcel_lookup:
+                best_score = 0.0
+                best_match = None
+                for situs, owner, mail in parcel_lookup:
                     score = address_similarity(addr, situs)
                     if score > best_score:
                         best_score = score
-                        best_owner = owner
-
-                # Accept match if similarity >= 0.7
-                if best_score >= 0.7 and best_owner:
-                    owner_map[addr] = best_owner
-                    fuzzy_found += 1
-                    log.info(f"    Fuzzy match ({best_score:.2f}): '{addr}' → '{best_owner}'")
-
+                        best_match = (situs, owner, mail)
+                if best_score >= 0.7 and best_match:
+                    store_match(addr, best_match[0], best_match[1], best_match[2])
+                    log.info(f"    Fuzzy ({best_score:.2f}): '{addr}' → '{best_match[1]}'")
             time.sleep(0.2)
-
         except Exception as e:
-            log.warning(f"  Fuzzy search for '{sk}' failed: {e}")
+            log.warning(f"  Strategy 2 error for '{sk}': {e}")
 
-    log.info(f"  Strategy 2 found: {fuzzy_found} additional names")
+    s2_count = len(parcel_map) - s1_count
+    log.info(f"  Strategy 2: {s2_count} additional matches")
 
-    # ── Strategy 3: Number + first street word for stubborn misses ───────────
-    remaining2 = [a for a in addresses if a not in owner_map]
-    log.info(f"  Strategy 3: Number+street search for {len(remaining2)} remaining...")
-    s3_found = 0
+    # ── Strategy 3: Number + street word ─────────────────────────────────────
+    remaining2 = [a for a in addresses if a not in parcel_map]
+    log.info(f"  Strategy 3: Number+word search for {len(remaining2)} remaining...")
+    s3_count = 0
 
     for addr in remaining2:
         norm   = normalize_address(addr)
         tokens = norm.split()
-        if len(tokens) < 2:
+        num    = tokens[0] if tokens and tokens[0].isdigit() else ""
+        word   = next((t for t in tokens[1:] if len(t) > 2), "")
+        if not num or not word:
             continue
-        num         = tokens[0] if tokens[0].isdigit() else ""
-        street_word = next((t for t in tokens[1:] if len(t) > 2), "")
-        if not num or not street_word:
-            continue
-
-        where = f"UPPER(Situs) LIKE '{num} %{street_word}%'"
+        where = f"UPPER(Situs) LIKE '{num} %{word}%'"
         try:
-            feats = arcgis_query(PARCELS_URL, where, fields="Situs,Owner", limit=20)
+            feats = arcgis_query(
+                PARCELS_URL, where,
+                fields="Situs,Owner,AddrLn1,AddrCity,AddrState,AddrZip",
+                limit=20
+            )
             best_score = 0.0
-            best_owner = ""
+            best_match = None
             for f in feats:
                 a     = f["attributes"]
                 situs = (a.get("Situs") or "").strip()
                 owner = (a.get("Owner") or "").strip()
-                if situs and owner:
-                    score = address_similarity(addr, situs)
-                    if score > best_score:
-                        best_score = score
-                        best_owner = owner
-
-            if best_score >= 0.6 and best_owner:
-                owner_map[addr] = best_owner
-                s3_found += 1
-
+                mail  = " ".join(filter(None, [
+                    (a.get("AddrLn1") or "").strip(),
+                    (a.get("AddrCity") or "").strip(),
+                    str(a.get("AddrZip") or "").strip(),
+                ]))
+                score = address_similarity(addr, situs)
+                if score > best_score:
+                    best_score = score
+                    best_match = (situs, owner, mail or situs)
+            if best_score >= 0.6 and best_match:
+                store_match(addr, best_match[0], best_match[1], best_match[2])
+                s3_count += 1
             time.sleep(0.1)
         except Exception:
             pass
 
-    log.info(f"  Strategy 3 found: {s3_found} additional names")
+    log.info(f"  Strategy 3: {s3_count} additional matches")
 
-    total_found = len(owner_map)
-    log.info(f"Owner lookup complete: {total_found}/{len(addresses)} names found "
-             f"({100*total_found//max(len(addresses),1)}% hit rate)")
-    return owner_map
+    total = len(parcel_map)
+    pct   = 100 * total // max(len(addresses), 1)
+    log.info(f"Parcel lookup complete: {total}/{len(addresses)} matched ({pct}% hit rate)")
+    absentee_count = sum(1 for v in parcel_map.values() if v.get("absentee"))
+    log.info(f"Absentee owners detected: {absentee_count}")
+    return parcel_map
 
 
 # ── Scoring ───────────────────────────────────────────────────────────────────
 def score_record(rec):
     s = 0
-    if rec.get("address"):       s += 3
-    if rec.get("owner"):         s += 3
-    if rec.get("type") == "TAX": s += 2
-    s += len(rec.get("flags", []))
+    if rec.get("address"):          s += 2
+    if rec.get("owner"):            s += 2
+    if rec.get("type") == "TAX":    s += 2
+    if rec.get("absentee"):         s += 2  # absentee = more motivated
+    if "ABSENTEE" in rec.get("flags", []): s += 1
     return min(s, 10)
 
 
@@ -346,14 +349,11 @@ def ghl_request(method, endpoint, payload=None):
             resp = requests.get(url, headers=headers, timeout=20)
         else:
             resp = requests.post(url, headers=headers, json=payload, timeout=20)
-
-        log.info(f"  GHL {method} {endpoint[:50]} → HTTP {resp.status_code}")
-
+        log.info(f"  GHL {method} {endpoint[:60]} → HTTP {resp.status_code}")
         if resp.status_code in (200, 201):
             return resp.json()
-        else:
-            log.warning(f"  GHL error: {resp.text[:300]}")
-            return {"_error": resp.status_code, "_body": resp.text[:300]}
+        log.warning(f"  GHL error: {resp.text[:300]}")
+        return {"_error": resp.status_code, "_body": resp.text[:300]}
     except Exception as e:
         log.warning(f"  GHL exception: {e}")
         return {"_error": str(e)}
@@ -363,8 +363,7 @@ def ghl_contact_exists(doc_number):
     result   = ghl_request("GET", f"/contacts/?locationId={GHL_LOCATION_ID}&query={urllib.parse.quote(str(doc_number))}&limit=5")
     if not result or "_error" in result:
         return False
-    contacts = result.get("contacts", [])
-    for c in contacts:
+    for c in result.get("contacts", []):
         if f"doc-{doc_number}" in (c.get("tags") or []):
             return True
     return False
@@ -376,7 +375,11 @@ def ghl_create_contact(rec):
     parts     = owner.split()
     first     = parts[0].title() if parts else owner
     last      = " ".join(parts[1:]).title() if len(parts) > 1 else ""
-    tags      = ["bexar-lead", rec["type"], f"doc-{rec.get('doc_number','')}"]
+
+    tags = ["bexar-lead", rec["type"], f"doc-{rec.get('doc_number', '')}"]
+    if rec.get("absentee"):
+        tags.append("absentee-owner")
+        tags.append("high-priority")
     if rec.get("score", 0) >= 7:
         tags.append("hot-lead")
 
@@ -399,6 +402,8 @@ def ghl_create_contact(rec):
             {"key": "score",            "field_value": str(rec.get("score", 0))},
             {"key": "property_address", "field_value": rec.get("address", "")},
             {"key": "school_district",  "field_value": rec.get("school_dist", "")},
+            {"key": "absentee_owner",   "field_value": "Yes" if rec.get("absentee") else "No"},
+            {"key": "mailing_address",  "field_value": rec.get("mail_addr", "")},
         ],
     })
 
@@ -409,10 +414,9 @@ def push_to_ghl(records):
         return
 
     named = [r for r in records if r.get("owner")]
-    log.info(f"GHL push: {len(named)} named leads (of {len(records)} total)")
+    log.info(f"GHL push: {len(named)} named leads ({sum(1 for r in named if r.get('absentee'))} absentee)")
     log.info(f"GHL Key prefix: {GHL_API_KEY[:12]}...")
 
-    # Auth test
     test = ghl_request("GET", f"/contacts/?locationId={GHL_LOCATION_ID}&limit=1")
     if not test or "_error" in test:
         log.error(f"GHL auth failed: {test}")
@@ -421,7 +425,10 @@ def push_to_ghl(records):
     log.info(f"GHL auth OK — {test.get('total','?')} existing contacts")
 
     created = skipped = errors = 0
-    for i, rec in enumerate(named):
+    # Push absentee owners first (highest priority)
+    sorted_leads = sorted(named, key=lambda r: (not r.get("absentee"), -r.get("score", 0)))
+
+    for i, rec in enumerate(sorted_leads):
         doc = rec.get("doc_number", "")
         if doc and ghl_contact_exists(doc):
             skipped += 1
@@ -429,10 +436,11 @@ def push_to_ghl(records):
         result = ghl_create_contact(rec)
         if result and result.get("contact"):
             created += 1
-            log.info(f"  ✓ [{i+1}/{len(named)}] {rec.get('owner')} — {rec.get('address')}")
+            absentee_tag = " 🏠 ABSENTEE" if rec.get("absentee") else ""
+            log.info(f"  ✓ [{i+1}/{len(sorted_leads)}] {rec.get('owner')}{absentee_tag} — {rec.get('address')}")
         else:
             errors += 1
-            log.warning(f"  ✗ [{i+1}/{len(named)}] {rec.get('owner')} — {result}")
+            log.warning(f"  ✗ [{i+1}/{len(sorted_leads)}] {rec.get('owner')} — {result}")
         time.sleep(0.15)
 
     log.info(f"GHL done — Created: {created} | Skipped: {skipped} | Errors: {errors}")
@@ -441,7 +449,7 @@ def push_to_ghl(records):
 # ── Main Scraper ──────────────────────────────────────────────────────────────
 def run():
     log.info("=" * 60)
-    log.info("Bexar County Motivated Seller Lead Scraper v6")
+    log.info("Bexar County Motivated Seller Lead Scraper v7")
     log.info(f"Foreclosure: {FORECLOSURE_BASE}")
     log.info(f"Parcels:     {PARCELS_URL}")
     log.info("=" * 60)
@@ -470,6 +478,8 @@ def run():
                     "type":        layer["type"],
                     "address":     pick(a, "ADDRESS", "SITUS_ADD", "ADDR"),
                     "owner":       "",
+                    "mail_addr":   "",
+                    "absentee":    False,
                     "doc_number":  pick(a, "DOC_NUMBER", "DOCNUM", "DOC_NUM"),
                     "year":        year,
                     "month":       month,
@@ -484,26 +494,37 @@ def run():
 
     log.info(f"Total raw records: {len(raw)}")
 
-    # Owner name lookup with fuzzy matching
-    addresses = [r["address"] for r in raw if r["address"]]
-    owner_map = lookup_owner_names(addresses)
-    for r in raw:
-        r["owner"] = owner_map.get(r["address"], "")
+    # Parcel lookup — owner name + mailing address + absentee detection
+    addresses   = [r["address"] for r in raw if r["address"]]
+    parcel_map  = lookup_parcel_data(addresses)
 
-    named_count = sum(1 for r in raw if r["owner"])
+    named_count    = 0
+    absentee_count = 0
+    for r in raw:
+        data = parcel_map.get(r["address"], {})
+        r["owner"]     = data.get("owner", "")
+        r["mail_addr"] = data.get("mail_addr", "")
+        r["absentee"]  = data.get("absentee", False)
+        if r["owner"]:
+            named_count += 1
+        if r["absentee"]:
+            absentee_count += 1
+
     log.info(f"Owner names resolved: {named_count} / {len(raw)}")
+    log.info(f"Absentee owners: {absentee_count} / {named_count} named leads")
 
     # Flags + score
     records = []
     for r in raw:
-        if r["type"] == "TAX":             r["flags"].append("TAX FORE")
-        if not r["owner"]:                 r["flags"].append("NO OWNER")
-        if not r["city"] and r["address"]: r["flags"].append("NO CITY")
+        if r["type"] == "TAX":              r["flags"].append("TAX FORE")
+        if r.get("absentee"):               r["flags"].append("ABSENTEE")
+        if not r["owner"]:                  r["flags"].append("NO OWNER")
+        if not r["city"] and r["address"]:  r["flags"].append("NO CITY")
         r["score"] = score_record(r)
         records.append(r)
 
     records.sort(key=lambda x: x["score"], reverse=True)
-    log.info(f"Done. {len(records)} leads ({named_count} with owner name).")
+    log.info(f"Done. {len(records)} leads | {named_count} named | {absentee_count} absentee")
     return records
 
 
@@ -519,7 +540,7 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
 :root {
   --bg:#0d0f14; --surface:#13161e; --surface2:#1a1e2a; --border:#252836;
   --accent:#00e5ff; --accent3:#a78bfa; --text:#e8eaf0; --muted:#6b7280;
-  --success:#22d3a5; --warning:#fbbf24; --danger:#f87171;
+  --success:#22d3a5; --warning:#fbbf24; --danger:#f87171; --hot:#ff6b35;
 }
 * { box-sizing:border-box; margin:0; padding:0; }
 body { background:var(--bg); color:var(--text); font-family:'DM Mono',monospace; font-size:13px; min-height:100vh; }
@@ -527,13 +548,14 @@ header { display:flex; align-items:center; justify-content:space-between; paddin
 .logo { font-family:'Syne',sans-serif; font-size:20px; font-weight:800; }
 .logo span { color:var(--accent); }
 #last-updated { color:var(--muted); font-size:11px; }
-.stats { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); border-bottom:1px solid var(--border); }
-.stat-card { background:var(--surface); padding:24px 28px; display:flex; flex-direction:column; gap:6px; }
-.stat-num { font-family:'Syne',sans-serif; font-size:36px; font-weight:800; line-height:1; color:var(--accent); }
+.stats { display:grid; grid-template-columns:repeat(5,1fr); gap:1px; background:var(--border); border-bottom:1px solid var(--border); }
+.stat-card { background:var(--surface); padding:20px 24px; display:flex; flex-direction:column; gap:6px; }
+.stat-num { font-family:'Syne',sans-serif; font-size:32px; font-weight:800; line-height:1; color:var(--accent); }
 .stat-card:nth-child(2) .stat-num { color:var(--danger); }
 .stat-card:nth-child(3) .stat-num { color:var(--warning); }
 .stat-card:nth-child(4) .stat-num { color:var(--success); }
-.stat-label { color:var(--muted); font-size:11px; text-transform:uppercase; letter-spacing:1px; }
+.stat-card:nth-child(5) .stat-num { color:var(--hot); }
+.stat-label { color:var(--muted); font-size:10px; text-transform:uppercase; letter-spacing:1px; }
 .controls { display:flex; gap:10px; padding:16px 32px; background:var(--surface); border-bottom:1px solid var(--border); align-items:center; flex-wrap:wrap; }
 input[type=text] { flex:1; min-width:200px; background:var(--surface2); border:1px solid var(--border); color:var(--text); padding:8px 14px; font-family:'DM Mono',monospace; font-size:13px; outline:none; transition:border-color .2s; }
 input[type=text]:focus { border-color:var(--accent); }
@@ -544,6 +566,7 @@ table { width:100%; border-collapse:collapse; margin-top:16px; }
 thead th { text-align:left; padding:10px 12px; font-size:10px; text-transform:uppercase; letter-spacing:1.2px; color:var(--muted); border-bottom:1px solid var(--border); white-space:nowrap; }
 tbody tr { border-bottom:1px solid var(--border); transition:background .12s; }
 tbody tr:hover { background:var(--surface2); }
+tbody tr.absentee-row { border-left:3px solid var(--hot); }
 tbody td { padding:10px 12px; vertical-align:middle; }
 .score { display:inline-flex; width:36px; height:36px; border-radius:50%; align-items:center; justify-content:center; font-weight:500; font-size:12px; font-family:'Syne',sans-serif; }
 .score-high { background:rgba(34,211,165,.15); color:var(--success); border:1px solid rgba(34,211,165,.3); }
@@ -554,7 +577,8 @@ tbody td { padding:10px 12px; vertical-align:middle; }
 .type-tax { background:rgba(251,191,36,.15);  color:var(--warning); border:1px solid rgba(251,191,36,.25); }
 .flags { display:flex; gap:4px; flex-wrap:wrap; }
 .flag { display:inline-block; padding:2px 6px; font-size:10px; background:rgba(167,139,250,.12); color:var(--accent3); border:1px solid rgba(167,139,250,.25); border-radius:2px; white-space:nowrap; }
-.addr { color:var(--text); font-size:12px; max-width:200px; }
+.flag-absentee { background:rgba(255,107,53,.15); color:var(--hot); border:1px solid rgba(255,107,53,.3); font-weight:600; }
+.addr { color:var(--text); font-size:12px; max-width:180px; }
 .owner { color:var(--success); font-size:12px; font-weight:500; }
 .owner-none { color:var(--muted); font-size:12px; }
 .city, .doc { color:var(--muted); font-size:12px; }
@@ -563,7 +587,7 @@ tbody td { padding:10px 12px; vertical-align:middle; }
 .pagination button { background:var(--surface2); border:1px solid var(--border); color:var(--text); padding:6px 14px; cursor:pointer; font-family:'DM Mono',monospace; font-size:12px; }
 .pagination button:hover:not(:disabled) { border-color:var(--accent); color:var(--accent); }
 .pagination button:disabled { opacity:.3; cursor:default; }
-@media(max-width:900px) { .stats { grid-template-columns:repeat(2,1fr); } .controls,.table-wrap { padding-left:16px; padding-right:16px; } }
+@media(max-width:1000px) { .stats { grid-template-columns:repeat(3,1fr); } .controls,.table-wrap { padding-left:16px; padding-right:16px; } }
 </style>
 </head>
 <body>
@@ -575,7 +599,8 @@ tbody td { padding:10px 12px; vertical-align:middle; }
   <div class="stat-card"><div class="stat-num" id="s-total">—</div><div class="stat-label">Total Leads</div></div>
   <div class="stat-card"><div class="stat-num" id="s-nof">—</div><div class="stat-label">Foreclosures (NOF)</div></div>
   <div class="stat-card"><div class="stat-num" id="s-tax">—</div><div class="stat-label">Tax Foreclosures</div></div>
-  <div class="stat-card"><div class="stat-num" id="s-addr">—</div><div class="stat-label">With Owner Name</div></div>
+  <div class="stat-card"><div class="stat-num" id="s-named">—</div><div class="stat-label">With Owner Name</div></div>
+  <div class="stat-card"><div class="stat-num" id="s-absentee">—</div><div class="stat-label">Absentee Owners 🔥</div></div>
 </div>
 <div class="controls">
   <input type="text" id="search" placeholder="Search address, owner, doc #…" oninput="applyFilters()"/>
@@ -587,6 +612,7 @@ tbody td { padding:10px 12px; vertical-align:middle; }
   <select id="owner-filter" onchange="applyFilters()">
     <option value="">All Leads</option>
     <option value="named">With Owner Name</option>
+    <option value="absentee">Absentee Owners Only</option>
     <option value="unnamed">No Name Yet</option>
   </select>
   <select id="sort-select" onchange="applyFilters()">
@@ -616,11 +642,11 @@ tbody td { padding:10px 12px; vertical-align:middle; }
 var ALL_RECORDS=DATA_PLACEHOLDER;
 var filtered=[],page=1,PAGE=50;
 function init(){
-  var named=ALL_RECORDS.filter(function(r){return r.owner;}).length;
   document.getElementById('s-total').textContent=ALL_RECORDS.length;
   document.getElementById('s-nof').textContent=ALL_RECORDS.filter(function(r){return r.type==='NOF';}).length;
   document.getElementById('s-tax').textContent=ALL_RECORDS.filter(function(r){return r.type==='TAX';}).length;
-  document.getElementById('s-addr').textContent=named;
+  document.getElementById('s-named').textContent=ALL_RECORDS.filter(function(r){return r.owner;}).length;
+  document.getElementById('s-absentee').textContent=ALL_RECORDS.filter(function(r){return r.absentee;}).length;
   applyFilters();
 }
 function applyFilters(){
@@ -631,7 +657,10 @@ function applyFilters(){
   filtered=ALL_RECORDS.filter(function(r){
     var mq=!q||(r.address||'').toLowerCase().indexOf(q)>=0||(r.owner||'').toLowerCase().indexOf(q)>=0||(r.doc_number||'').toLowerCase().indexOf(q)>=0;
     var mt=!t||r.type===t;
-    var mow=!ow||(ow==='named'?!!r.owner:!r.owner);
+    var mow=true;
+    if(ow==='named')    mow=!!r.owner;
+    if(ow==='absentee') mow=!!r.absentee;
+    if(ow==='unnamed')  mow=!r.owner;
     return mq&&mt&&mow;
   });
   filtered.sort(function(a,b){
@@ -660,10 +689,14 @@ function render(){
     var tL=r.type==='TAX'?'TAX FORE':'NOF';
     var cz=[r.city,r.zip].filter(Boolean).join(' ')||'—';
     var oh=r.owner?'<div class="owner">'+r.owner+'</div>':'<div class="owner-none">—</div>';
+    var rowClass=r.absentee?' class="absentee-row"':'';
     var fh='';
-    for(var j=0;j<(r.flags||[]).length;j++) fh+='<span class="flag">'+r.flags[j]+'</span>';
+    for(var j=0;j<(r.flags||[]).length;j++){
+      var fc=r.flags[j]==='ABSENTEE'?'flag flag-absentee':'flag';
+      fh+='<span class="'+fc+'">'+r.flags[j]+'</span>';
+    }
     if(!fh) fh='<span style="color:var(--muted)">—</span>';
-    rows+='<tr>'
+    rows+='<tr'+rowClass+'>'
       +'<td><div class="score '+scC+'">'+sc+'</div></td>'
       +'<td><span class="type-badge '+tC+'">'+tL+'</span></td>'
       +'<td><div class="addr">'+(r.address||'—')+'</div></td>'
