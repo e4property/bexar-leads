@@ -1,7 +1,8 @@
 """
-Bexar County Motivated Seller Lead Scraper v10
-- Targeted parcel queries (no bulk fetch — was 710K records/2hrs)
-- Queries BCAD esearch API for owner names by address
+Bexar County Motivated Seller Lead Scraper v11
+- Foreclosure data from maps.bexar.org (working perfectly)
+- Owner names from bexar.tx.publicsearch.us using DOC NUMBER
+  (Bexar County Clerk Official Records — free, public, no auth)
 - Absentee owner detection
 - GHL push for named leads only
 """
@@ -22,9 +23,8 @@ logging.basicConfig(
 )
 log = logging.getLogger(__name__)
 
-FORECLOSURE_BASE = "https://maps.bexar.org/arcgis/rest/services/CC/ForeclosuresProd/MapServer"
-# BCAD property search — free public API, no auth required
-BCAD_SEARCH_URL  = "https://esearch.bcad.org/api/search"
+FORECLOSURE_BASE   = "https://maps.bexar.org/arcgis/rest/services/CC/ForeclosuresProd/MapServer"
+CLERK_SEARCH_URL   = "https://bexar.tx.publicsearch.us/api/search"
 
 LAYERS = [
     {"index": 0, "type": "NOF", "label": "Mortgage Foreclosure"},
@@ -41,18 +41,16 @@ ABBREVS = {
     r'\bSTREET\b':'ST', r'\bAVENUE\b':'AVE', r'\bBOULEVARD\b':'BLVD',
     r'\bDRIVE\b':'DR',  r'\bCOURT\b':'CT',   r'\bCIRCLE\b':'CIR',
     r'\bLANE\b':'LN',   r'\bROAD\b':'RD',    r'\bPLACE\b':'PL',
-    r'\bTERRACE\b':'TER',r'\bTRAIL\b':'TRL', r'\bPARKWAY\b':'PKWY',
     r'\bNORTH\b':'N',   r'\bSOUTH\b':'S',    r'\bEAST\b':'E', r'\bWEST\b':'W',
 }
 
 def norm(addr):
     if not addr: return ""
     a = addr.upper().strip()
-    a = re.sub(r'\s+(APT|UNIT|STE|SUITE|#)\s*\S+$','',a)
-    a = re.sub(r'[^\w\s]','',a)
-    a = re.sub(r'\s+',' ',a).strip()
-    for p,r in ABBREVS.items():
-        a = re.sub(p,r,a)
+    a = re.sub(r'[^\w\s]', '', a)
+    a = re.sub(r'\s+', ' ', a).strip()
+    for p, r in ABBREVS.items():
+        a = re.sub(p, r, a)
     return a
 
 def addr_sim(a1, a2):
@@ -61,225 +59,238 @@ def addr_sim(a1, a2):
     if not t1 or not t2: return 0.0
     n1 = {t for t in t1 if t.isdigit()}
     n2 = {t for t in t2 if t.isdigit()}
-    if n1 and n2 and not (n1&n2): return 0.0
-    return len(t1&t2)/max(len(t1),len(t2))
+    if n1 and n2 and not (n1 & n2): return 0.0
+    return len(t1 & t2) / max(len(t1), len(t2))
 
 def is_absentee(prop, mail):
     if not prop or not mail: return False
     return addr_sim(prop, mail) < 0.6
 
-def street_num(addr):
-    parts = addr.strip().split()
-    return parts[0] if parts and parts[0].isdigit() else ""
 
-def street_name_word(addr):
-    parts = norm(addr).split()
-    return next((t for t in parts[1:] if len(t)>2 and not t.isdigit()), "")
-
-
-# ── HTTP ──────────────────────────────────────────────────────────────────────
-def fetch_json(url, retries=3, headers=None):
-    default_headers = {"User-Agent":"Mozilla/5.0 BexarScraper/10.0","Accept":"application/json"}
-    if headers: default_headers.update(headers)
+# ── HTTP helpers ──────────────────────────────────────────────────────────────
+def fetch_json(url, retries=3, extra_headers=None):
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Accept": "application/json, text/plain, */*",
+        "Accept-Language": "en-US,en;q=0.9",
+    }
+    if extra_headers:
+        headers.update(extra_headers)
     for attempt in range(retries):
         try:
-            req = urllib.request.Request(url, headers=default_headers)
+            req = urllib.request.Request(url, headers=headers)
             with urllib.request.urlopen(req, timeout=20) as r:
                 return json.loads(r.read().decode("utf-8", errors="replace"))
         except Exception as e:
-            if attempt < retries-1: time.sleep(1)
-            else: return {}
-
-def post_json(url, payload, headers=None):
-    default_headers = {
-        "User-Agent":"Mozilla/5.0 BexarScraper/10.0",
-        "Content-Type":"application/json",
-        "Accept":"application/json",
-    }
-    if headers: default_headers.update(headers)
-    try:
-        data = json.dumps(payload).encode("utf-8")
-        req  = urllib.request.Request(url, data=data, headers=default_headers, method="POST")
-        with urllib.request.urlopen(req, timeout=20) as r:
-            return json.loads(r.read().decode("utf-8", errors="replace"))
-    except Exception as e:
-        log.debug(f"POST error {url}: {e}")
-        return {}
+            if attempt < retries - 1:
+                time.sleep(1)
+            else:
+                log.debug(f"fetch_json failed {url}: {e}")
+                return {}
 
 def arcgis_query(layer_url, where, fields="*", offset=0, limit=1000):
     try:
         params = urllib.parse.urlencode({
-            "where":where,"outFields":fields,"returnGeometry":"false",
-            "resultOffset":offset,"resultRecordCount":limit,"f":"json",
+            "where": where, "outFields": fields, "returnGeometry": "false",
+            "resultOffset": offset, "resultRecordCount": limit, "f": "json",
         })
         data = fetch_json(f"{layer_url}/query?{params}")
         if "error" in data: return []
-        return data.get("features",[])
+        return data.get("features", [])
     except Exception: return []
 
 def pick(attrs, *candidates, default=""):
     for c in candidates:
         v = attrs.get(c)
-        if v is not None and str(v).strip() not in ("","None","null","<Null>"):
+        if v is not None and str(v).strip() not in ("", "None", "null", "<Null>"):
             return str(v).strip()
     return default
 
 
-# ── BCAD Owner Lookup ─────────────────────────────────────────────────────────
-def bcad_lookup(address):
+# ── Bexar County Clerk — owner lookup by doc number ──────────────────────────
+def clerk_lookup_by_doc(doc_number):
     """
-    Search BCAD (Bexar Central Appraisal District) for a property by address.
-    Returns {"owner": str, "mail_addr": str} or {}
-    BCAD is the authoritative source for owner names in Bexar County.
+    Search Bexar County Clerk Official Records by document number.
+    Returns grantor (owner) name and any address info.
+    Doc numbers look like: 20260500185 or 2012TA100316
     """
-    # Extract house number and street for search
-    num  = street_num(address)
-    word = street_name_word(address)
-    if not num or not word:
+    if not doc_number:
         return {}
 
-    # BCAD search API — search by address
-    search_term = f"{num} {word}"
-    try:
-        # Try BCAD quick search endpoint
-        url    = f"https://esearch.bcad.org/Search/GetResults?searchText={urllib.parse.quote(search_term)}&searchType=address"
-        result = fetch_json(url, headers={
-            "Referer": "https://esearch.bcad.org/",
-            "Accept":  "application/json, text/javascript",
-        })
+    # The publicsearch.us API accepts document number searches
+    url = (
+        f"https://bexar.tx.publicsearch.us/api/search"
+        f"?searchType=quickSearch"
+        f"&searchValue={urllib.parse.quote(str(doc_number))}"
+        f"&startIndex=0"
+        f"&limit=5"
+    )
 
-        if not result:
-            return {}
+    result = fetch_json(url, extra_headers={
+        "Referer":  "https://bexar.tx.publicsearch.us/",
+        "Origin":   "https://bexar.tx.publicsearch.us",
+    })
 
-        # BCAD returns a list of property records
-        records = result if isinstance(result, list) else result.get("results", result.get("data", []))
-        if not records:
-            return {}
+    if not result:
+        return {}
 
-        # Find best matching record
-        best_score = 0.0
-        best_rec   = None
-        for rec in records[:10]:  # check top 10 results
-            prop_addr = (
-                rec.get("siteAddress") or
+    # Response can be a list or dict with results
+    records = []
+    if isinstance(result, list):
+        records = result
+    elif isinstance(result, dict):
+        records = (
+            result.get("results") or
+            result.get("data") or
+            result.get("documents") or
+            result.get("hits") or
+            []
+        )
+
+    if not records:
+        return {}
+
+    # Find the record matching our doc number
+    for rec in records[:5]:
+        rec_doc = str(
+            rec.get("documentNumber") or
+            rec.get("docNumber") or
+            rec.get("instrumentNumber") or
+            rec.get("id") or ""
+        ).strip()
+
+        # Match doc numbers loosely (strip leading zeros etc)
+        if rec_doc and (
+            rec_doc == str(doc_number) or
+            rec_doc.lstrip("0") == str(doc_number).lstrip("0")
+        ):
+            # Extract grantor (owner/seller)
+            grantor = str(
+                rec.get("grantor") or
+                rec.get("grantorName") or
+                rec.get("grantor1") or
+                rec.get("seller") or
+                rec.get("owner") or
+                ""
+            ).strip()
+
+            # Extract address
+            addr = str(
+                rec.get("legalDescription") or
                 rec.get("address") or
                 rec.get("propertyAddress") or
-                rec.get("situs") or ""
-            )
-            score = addr_sim(address, prop_addr)
-            if score > best_score:
-                best_score = score
-                best_rec   = rec
-
-        if best_score >= 0.6 and best_rec:
-            owner = (
-                best_rec.get("ownerName") or
-                best_rec.get("owner") or
-                best_rec.get("name") or ""
+                ""
             ).strip()
-            mail = (
-                best_rec.get("mailingAddress") or
-                best_rec.get("mailAddress") or
-                best_rec.get("ownerAddress") or ""
-            ).strip()
-            if owner:
-                return {"owner": owner, "mail_addr": mail}
 
-    except Exception as e:
-        log.debug(f"BCAD lookup error for '{address}': {e}")
+            if grantor:
+                return {
+                    "owner":    grantor,
+                    "mail_addr": addr,
+                }
+
+    # If no exact match, return first result's grantor
+    if records:
+        rec     = records[0]
+        grantor = str(
+            rec.get("grantor") or rec.get("grantorName") or
+            rec.get("grantor1") or ""
+        ).strip()
+        if grantor and len(grantor) > 2:
+            return {"owner": grantor, "mail_addr": ""}
 
     return {}
 
 
-def bcad_lookup_alt(address):
+def clerk_lookup_by_address(address):
     """
-    Alternative BCAD lookup using their trueautomation endpoint.
+    Fallback: search by address if doc number search fails.
     """
-    num  = street_num(address)
-    word = street_name_word(address)
-    if not num or not word:
+    if not address:
         return {}
 
-    try:
-        # TrueAutomation search (used by BCAD map)
-        url = f"https://bexar.trueautomation.com/clientdb/api/Search?searchText={urllib.parse.quote(f'{num} {word}')}&searchType=address&cid=110"
-        result = fetch_json(url, headers={
-            "Referer":  "https://bexar.trueautomation.com/",
-            "Origin":   "https://bexar.trueautomation.com",
-        })
+    # Use just street number + first word of street name
+    parts = address.strip().split()
+    if len(parts) < 2:
+        return {}
+    search_term = f"{parts[0]} {parts[1]}"
 
-        records = result if isinstance(result, list) else result.get("results", [])
-        if not records:
-            return {}
+    url = (
+        f"https://bexar.tx.publicsearch.us/api/search"
+        f"?searchType=quickSearch"
+        f"&searchValue={urllib.parse.quote(search_term)}"
+        f"&startIndex=0"
+        f"&limit=10"
+    )
 
-        best_score = 0.0
-        best_rec   = None
-        for rec in records[:5]:
-            prop_addr = str(rec.get("siteAddress") or rec.get("address") or "")
-            score = addr_sim(address, prop_addr)
-            if score > best_score:
-                best_score = score
-                best_rec   = rec
+    result = fetch_json(url, extra_headers={
+        "Referer": "https://bexar.tx.publicsearch.us/",
+        "Origin":  "https://bexar.tx.publicsearch.us",
+    })
 
-        if best_score >= 0.6 and best_rec:
-            owner = str(best_rec.get("ownerName") or best_rec.get("owner") or "").strip()
-            mail  = str(best_rec.get("mailingAddress") or "").strip()
-            if owner:
-                return {"owner": owner, "mail_addr": mail}
+    if not result:
+        return {}
 
-    except Exception as e:
-        log.debug(f"BCAD alt lookup error for '{address}': {e}")
+    records = result if isinstance(result, list) else (
+        result.get("results") or result.get("data") or []
+    )
+
+    # Find best address match
+    best_score = 0.0
+    best_owner = ""
+    for rec in records[:10]:
+        rec_addr = str(
+            rec.get("address") or rec.get("propertyAddress") or
+            rec.get("legalDescription") or ""
+        )
+        score = addr_sim(address, rec_addr)
+        if score > best_score:
+            best_score = score
+            grantor = str(rec.get("grantor") or rec.get("grantorName") or "").strip()
+            if grantor:
+                best_owner = grantor
+
+    if best_score >= 0.6 and best_owner:
+        return {"owner": best_owner, "mail_addr": ""}
 
     return {}
 
 
-def lookup_owner_names(addresses):
+def lookup_owner_names(records_raw):
     """
-    Look up owner names for foreclosure addresses using BCAD.
-    Queries ~407 addresses individually but each call is fast (<1s).
-    Total time: ~5-10 minutes max.
+    Look up owner names using Bexar County Clerk records.
+    Uses doc number (most accurate) with address fallback.
+    407 lookups × 0.5s = ~3-4 minutes.
     """
-    if not addresses:
-        return {}
+    log.info(f"Looking up {len(records_raw)} owner names via Bexar County Clerk...")
+    owner_map = {}
+    found = 0
 
-    log.info(f"Looking up {len(addresses)} owner names via BCAD...")
-    owner_map  = {}
-    found      = 0
-    errors     = 0
+    for i, rec in enumerate(records_raw):
+        addr = rec.get("address", "")
+        doc  = rec.get("doc_number", "")
 
-    for i, addr in enumerate(addresses):
-        if not addr:
-            continue
+        # Strategy 1: Doc number (most precise)
+        result = {}
+        if doc:
+            result = clerk_lookup_by_doc(doc)
 
-        # Try primary BCAD endpoint
-        result = bcad_lookup(addr)
-
-        # Fallback to TrueAutomation if primary fails
-        if not result:
-            result = bcad_lookup_alt(addr)
+        # Strategy 2: Address fallback
+        if not result and addr:
+            result = clerk_lookup_by_address(addr)
 
         if result and result.get("owner"):
             owner_map[addr] = result
             found += 1
-            if found <= 10 or found % 50 == 0:
-                log.info(f"  [{i+1}/{len(addresses)}] ✓ {addr} → {result['owner']}")
-        else:
-            errors += 1
+            log.info(f"  [{i+1}/{len(records_raw)}] ✓ {addr} → {result['owner']}")
+        
+        # Progress every 50
+        if (i + 1) % 50 == 0:
+            log.info(f"  Progress: {i+1}/{len(records_raw)} | Found: {found}")
 
-        # Rate limiting — be polite to BCAD servers
-        time.sleep(0.3)
+        time.sleep(0.4)  # polite rate limiting
 
-        # Progress update every 50
-        if (i+1) % 50 == 0:
-            log.info(f"  Progress: {i+1}/{len(addresses)} | Found: {found} | Not found: {errors}")
-
-    pct      = 100*found//max(len(addresses),1)
-    absentee = sum(1 for v in owner_map.values() if is_absentee(
-        addresses[list(owner_map.keys()).index(k)] if k in list(owner_map.keys()) else "",
-        v.get("mail_addr","")
-    ) for k,v in owner_map.items())
-
-    log.info(f"Owner lookup complete: {found}/{len(addresses)} names ({pct}% hit rate)")
+    pct = 100 * found // max(len(records_raw), 1)
+    log.info(f"Owner lookup complete: {found}/{len(records_raw)} ({pct}% hit rate)")
     return owner_map
 
 
@@ -288,10 +299,10 @@ def score_record(rec):
     s = 0
     if rec.get("address"):       s += 2
     if rec.get("owner"):         s += 2
-    if rec.get("type")=="TAX":   s += 2
+    if rec.get("type") == "TAX": s += 2
     if rec.get("absentee"):      s += 2
-    s += min(len(rec.get("flags",[])),2)
-    return min(s,10)
+    s += min(len(rec.get("flags", [])), 2)
+    return min(s, 10)
 
 
 # ── GHL ───────────────────────────────────────────────────────────────────────
@@ -300,56 +311,56 @@ def ghl_request(method, endpoint, payload=None):
         import requests
     except ImportError:
         log.error("requests not installed"); return None
-    url     = f"{GHL_API_BASE}{endpoint}"
+    url = f"{GHL_API_BASE}{endpoint}"
     headers = {
-        "Authorization":f"Bearer {GHL_API_KEY}",
-        "Content-Type":"application/json","Accept":"application/json",
-        "Version":"2021-07-28",
-        "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36",
-        "Origin":"https://app.justjarvis.com","Referer":"https://app.justjarvis.com/",
+        "Authorization": f"Bearer {GHL_API_KEY}",
+        "Content-Type": "application/json", "Accept": "application/json",
+        "Version": "2021-07-28",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36",
+        "Origin": "https://app.justjarvis.com", "Referer": "https://app.justjarvis.com/",
     }
     try:
-        resp = requests.get(url,headers=headers,timeout=20) if method=="GET" \
-               else requests.post(url,headers=headers,json=payload,timeout=20)
+        resp = requests.get(url, headers=headers, timeout=20) if method == "GET" \
+               else requests.post(url, headers=headers, json=payload, timeout=20)
         log.info(f"  GHL {method} {endpoint[:60]} → HTTP {resp.status_code}")
-        if resp.status_code in (200,201): return resp.json()
+        if resp.status_code in (200, 201): return resp.json()
         log.warning(f"  GHL error: {resp.text[:200]}")
-        return {"_error":resp.status_code}
+        return {"_error": resp.status_code}
     except Exception as e:
-        log.warning(f"  GHL exception: {e}"); return {"_error":str(e)}
+        log.warning(f"  GHL exception: {e}"); return {"_error": str(e)}
 
 def ghl_contact_exists(doc):
-    r = ghl_request("GET",f"/contacts/?locationId={GHL_LOCATION_ID}&query={urllib.parse.quote(str(doc))}&limit=5")
+    r = ghl_request("GET", f"/contacts/?locationId={GHL_LOCATION_ID}&query={urllib.parse.quote(str(doc))}&limit=5")
     if not r or "_error" in r: return False
-    for c in r.get("contacts",[]):
+    for c in r.get("contacts", []):
         if f"doc-{doc}" in (c.get("tags") or []): return True
     return False
 
 def ghl_create_contact(rec):
-    owner = rec.get("owner","").strip()
+    owner = rec.get("owner", "").strip()
     parts = owner.split()
     first = parts[0].title() if parts else owner
-    last  = " ".join(parts[1:]).title() if len(parts)>1 else ""
-    tags  = ["bexar-lead",rec["type"],f"doc-{rec.get('doc_number','')}"]
-    if rec.get("absentee"):      tags+=["absentee-owner","high-priority"]
-    if rec.get("score",0)>=7:    tags.append("hot-lead")
-    lead_type = "Tax Foreclosure" if rec["type"]=="TAX" else "Mortgage Foreclosure"
-    return ghl_request("POST","/contacts/",{
-        "locationId":GHL_LOCATION_ID,
-        "firstName":first,"lastName":last,"name":owner.title(),
-        "address1":rec.get("address",""),
-        "city":rec.get("city","San Antonio"),
-        "state":"TX","country":"US","postalCode":rec.get("zip",""),
-        "tags":tags,"source":"Bexar County Scraper",
-        "customFields":[
-            {"key":"lead_type",        "field_value":lead_type},
-            {"key":"doc_number",       "field_value":rec.get("doc_number","")},
-            {"key":"date_filed",       "field_value":rec.get("date_filed","")},
-            {"key":"score",            "field_value":str(rec.get("score",0))},
-            {"key":"property_address", "field_value":rec.get("address","")},
-            {"key":"school_district",  "field_value":rec.get("school_dist","")},
-            {"key":"absentee_owner",   "field_value":"Yes" if rec.get("absentee") else "No"},
-            {"key":"mailing_address",  "field_value":rec.get("mail_addr","")},
+    last  = " ".join(parts[1:]).title() if len(parts) > 1 else ""
+    tags  = ["bexar-lead", rec["type"], f"doc-{rec.get('doc_number', '')}"]
+    if rec.get("absentee"):      tags += ["absentee-owner", "high-priority"]
+    if rec.get("score", 0) >= 7: tags.append("hot-lead")
+    lead_type = "Tax Foreclosure" if rec["type"] == "TAX" else "Mortgage Foreclosure"
+    return ghl_request("POST", "/contacts/", {
+        "locationId": GHL_LOCATION_ID,
+        "firstName": first, "lastName": last, "name": owner.title(),
+        "address1": rec.get("address", ""),
+        "city": rec.get("city", "San Antonio"),
+        "state": "TX", "country": "US", "postalCode": rec.get("zip", ""),
+        "tags": tags, "source": "Bexar County Scraper",
+        "customFields": [
+            {"key": "lead_type",        "field_value": lead_type},
+            {"key": "doc_number",       "field_value": rec.get("doc_number", "")},
+            {"key": "date_filed",       "field_value": rec.get("date_filed", "")},
+            {"key": "score",            "field_value": str(rec.get("score", 0))},
+            {"key": "property_address", "field_value": rec.get("address", "")},
+            {"key": "school_district",  "field_value": rec.get("school_dist", "")},
+            {"key": "absentee_owner",   "field_value": "Yes" if rec.get("absentee") else "No"},
+            {"key": "mailing_address",  "field_value": rec.get("mail_addr", "")},
         ],
     })
 
@@ -359,32 +370,32 @@ def push_to_ghl(records):
     named = [r for r in records if r.get("owner")]
     log.info(f"GHL push: {len(named)} named ({sum(1 for r in named if r.get('absentee'))} absentee)")
     log.info(f"GHL Key prefix: {GHL_API_KEY[:12]}...")
-    test = ghl_request("GET",f"/contacts/?locationId={GHL_LOCATION_ID}&limit=1")
+    test = ghl_request("GET", f"/contacts/?locationId={GHL_LOCATION_ID}&limit=1")
     if not test or "_error" in test:
         log.error("GHL auth failed — update GHL_API_KEY in GitHub secrets"); return
-    log.info(f"GHL auth OK — {test.get('total','?')} existing contacts")
-    created=skipped=errors=0
-    for i,rec in enumerate(sorted(named,key=lambda r:(not r.get("absentee"),-r.get("score",0)))):
-        doc = rec.get("doc_number","")
-        if doc and ghl_contact_exists(doc): skipped+=1; continue
+    log.info(f"GHL auth OK — {test.get('total', '?')} existing contacts")
+    created = skipped = errors = 0
+    for i, rec in enumerate(sorted(named, key=lambda r: (not r.get("absentee"), -r.get("score", 0)))):
+        doc = rec.get("doc_number", "")
+        if doc and ghl_contact_exists(doc): skipped += 1; continue
         result = ghl_create_contact(rec)
         if result and result.get("contact"):
-            created+=1
-            tag=" 🏠 ABSENTEE" if rec.get("absentee") else ""
+            created += 1
+            tag = " 🏠 ABSENTEE" if rec.get("absentee") else ""
             log.info(f"  ✓ [{i+1}] {rec.get('owner')}{tag} — {rec.get('address')}")
         else:
-            errors+=1
+            errors += 1
         time.sleep(0.15)
     log.info(f"GHL done — Created:{created} | Skipped:{skipped} | Errors:{errors}")
 
 
 # ── Main Scraper ──────────────────────────────────────────────────────────────
 def run():
-    log.info("="*60)
-    log.info("Bexar County Motivated Seller Lead Scraper v10")
+    log.info("=" * 60)
+    log.info("Bexar County Motivated Seller Lead Scraper v11")
     log.info(f"Foreclosure: {FORECLOSURE_BASE}")
-    log.info(f"Owner lookup: BCAD esearch.bcad.org")
-    log.info("="*60)
+    log.info(f"Owner lookup: Bexar County Clerk (publicsearch.us)")
+    log.info("=" * 60)
 
     raw = []
     for layer in LAYERS:
@@ -393,71 +404,82 @@ def run():
         log.info(f"Fetching layer {idx} ({layer['label']})...")
         try:
             meta   = fetch_json(f"{layer_url}?f=json")
-            fields = [f["name"] for f in meta.get("fields",[])]
+            fields = [f["name"] for f in meta.get("fields", [])]
             log.info(f"  Fields: {fields}")
         except Exception as e:
             log.warning(f"  Metadata error: {e}")
         try:
             features, offset = [], 0
             while True:
-                batch = arcgis_query(layer_url,"1=1",offset=offset)
+                batch = arcgis_query(layer_url, "1=1", offset=offset)
                 features.extend(batch)
                 log.info(f"    offset={offset}: got {len(batch)} (total: {len(features)})")
-                if len(batch)<1000: break
-                offset+=len(batch)
+                if len(batch) < 1000: break
+                offset += len(batch)
             log.info(f"  Layer {idx} total: {len(features)} records")
             if features:
                 log.info(f"  Sample: {dict(list(features[0]['attributes'].items())[:5])}")
             for feat in features:
                 a     = feat["attributes"]
-                month = pick(a,"MONTH","MO",default="")
-                year  = pick(a,"YEAR","YR",default="")
+                month = pick(a, "MONTH", "MO", default="")
+                year  = pick(a, "YEAR",  "YR", default="")
                 raw.append({
                     "type":        layer["type"],
-                    "address":     pick(a,"ADDRESS","SITUS_ADD","ADDR"),
+                    "address":     pick(a, "ADDRESS", "SITUS_ADD", "ADDR"),
                     "owner":       "",
                     "mail_addr":   "",
                     "absentee":    False,
-                    "doc_number":  pick(a,"DOC_NUMBER","DOCNUM","DOC_NUM"),
+                    "doc_number":  pick(a, "DOC_NUMBER", "DOCNUM", "DOC_NUM"),
                     "year":        year,
                     "month":       month,
-                    "city":        pick(a,"CITY","MAIL_CITY",default=""),
-                    "zip":         pick(a,"ZIP","ZIPCODE","ZIP_CODE",default=""),
-                    "school_dist": pick(a,"SCHOOL_DIST",default=""),
+                    "city":        pick(a, "CITY", "MAIL_CITY", default=""),
+                    "zip":         pick(a, "ZIP", "ZIPCODE", "ZIP_CODE", default=""),
+                    "school_dist": pick(a, "SCHOOL_DIST", default=""),
                     "date_filed":  f"{month}/{year}".strip("/"),
                     "flags":       [],
                 })
         except Exception as e:
-            log.error(f"  Layer {idx} failed: {e}",exc_info=True)
+            log.error(f"  Layer {idx} failed: {e}", exc_info=True)
 
     log.info(f"Total raw records: {len(raw)}")
 
-    # Owner lookup via BCAD
-    addresses  = [r["address"] for r in raw if r["address"]]
-    owner_map  = lookup_owner_names(addresses)
+    # Test the clerk API with one doc number before running all 407
+    if raw:
+        test_doc  = raw[0].get("doc_number", "")
+        test_addr = raw[0].get("address", "")
+        log.info(f"Testing Clerk API with doc: {test_doc}...")
+        test_result = clerk_lookup_by_doc(test_doc)
+        log.info(f"Test result: {test_result}")
+        if not test_result:
+            log.info(f"Doc lookup returned nothing, trying address: {test_addr}")
+            test_result2 = clerk_lookup_by_address(test_addr)
+            log.info(f"Address test result: {test_result2}")
 
-    named_count=absentee_count=0
+    # Owner lookup
+    owner_map = lookup_owner_names(raw)
+
+    named_count = absentee_count = 0
     for r in raw:
-        data = owner_map.get(r["address"],{})
-        r["owner"]     = data.get("owner","")
-        r["mail_addr"] = data.get("mail_addr","")
-        r["absentee"]  = is_absentee(r["address"], r["mail_addr"]) if r["owner"] else False
-        if r["owner"]:    named_count+=1
-        if r["absentee"]: absentee_count+=1
+        data = owner_map.get(r["address"], {})
+        r["owner"]     = data.get("owner", "")
+        r["mail_addr"] = data.get("mail_addr", "")
+        r["absentee"]  = is_absentee(r["address"], r["mail_addr"]) if r["owner"] and r["mail_addr"] else False
+        if r["owner"]:    named_count += 1
+        if r["absentee"]: absentee_count += 1
 
     log.info(f"Owner names resolved: {named_count} / {len(raw)}")
     log.info(f"Absentee owners: {absentee_count}")
 
-    records=[]
+    records = []
     for r in raw:
-        if r["type"]=="TAX":               r["flags"].append("TAX FORE")
-        if r.get("absentee"):              r["flags"].append("ABSENTEE")
-        if not r["owner"]:                 r["flags"].append("NO OWNER")
-        if not r["city"] and r["address"]: r["flags"].append("NO CITY")
-        r["score"]=score_record(r)
+        if r["type"] == "TAX":              r["flags"].append("TAX FORE")
+        if r.get("absentee"):               r["flags"].append("ABSENTEE")
+        if not r["owner"]:                  r["flags"].append("NO OWNER")
+        if not r["city"] and r["address"]:  r["flags"].append("NO CITY")
+        r["score"] = score_record(r)
         records.append(r)
 
-    records.sort(key=lambda x:x["score"],reverse=True)
+    records.sort(key=lambda x: x["score"], reverse=True)
     log.info(f"Done. {len(records)} leads | {named_count} named | {absentee_count} absentee")
     return records
 
@@ -651,25 +673,25 @@ init();
 
 def build_dashboard(records):
     updated  = datetime.now(timezone.utc).strftime("Updated: %b %d, %Y %H:%M UTC")
-    json_str = json.dumps(records,separators=(",",":"),ensure_ascii=False)
-    html     = DASHBOARD_TEMPLATE.replace("UPDATED_PLACEHOLDER",updated,1)
-    html     = html.replace("DATA_PLACEHOLDER",json_str,1)
+    json_str = json.dumps(records, separators=(",", ":"), ensure_ascii=False)
+    html     = DASHBOARD_TEMPLATE.replace("UPDATED_PLACEHOLDER", updated, 1)
+    html     = html.replace("DATA_PLACEHOLDER", json_str, 1)
     if "DATA_PLACEHOLDER" in html: raise RuntimeError("Data injection failed!")
-    os.makedirs("dashboard",exist_ok=True)
-    path="dashboard/index.html"
-    with open(path,"w",encoding="utf-8") as f: f.write(html)
-    size=os.path.getsize(path)
+    os.makedirs("dashboard", exist_ok=True)
+    path = "dashboard/index.html"
+    with open(path, "w", encoding="utf-8") as f: f.write(html)
+    size = os.path.getsize(path)
     log.info(f"Built {path} — {len(records)} records, {size:,} bytes")
-    if size<50000 and len(records)>0: raise RuntimeError(f"Too small: {size}")
+    if size < 50000 and len(records) > 0: raise RuntimeError(f"Too small: {size}")
 
 
-if __name__=="__main__":
-    os.makedirs("data",exist_ok=True)
-    os.makedirs("dashboard",exist_ok=True)
-    records=run()
-    with open("data/records.json","w",encoding="utf-8") as f: json.dump(records,f,indent=2)
+if __name__ == "__main__":
+    os.makedirs("data", exist_ok=True)
+    os.makedirs("dashboard", exist_ok=True)
+    records = run()
+    with open("data/records.json", "w", encoding="utf-8") as f: json.dump(records, f, indent=2)
     log.info(f"Saved data/records.json ({len(records)} records)")
-    with open("dashboard/records.json","w",encoding="utf-8") as f: json.dump(records,f,indent=2)
+    with open("dashboard/records.json", "w", encoding="utf-8") as f: json.dump(records, f, indent=2)
     log.info(f"Saved dashboard/records.json ({len(records)} records)")
     build_dashboard(records)
     push_to_ghl(records)
