@@ -1,8 +1,9 @@
 """
-Bexar County Motivated Seller Lead Scraper v9
-- Fixed: uses AddrLn1 (full mailing address) not Situs (street name only)
-- Fixed: correct parcel pagination with resultOffset
-- Absentee owner detection + GHL push
+Bexar County Motivated Seller Lead Scraper v10
+- Targeted parcel queries (no bulk fetch — was 710K records/2hrs)
+- Queries BCAD esearch API for owner names by address
+- Absentee owner detection
+- GHL push for named leads only
 """
 
 import json
@@ -22,7 +23,8 @@ logging.basicConfig(
 log = logging.getLogger(__name__)
 
 FORECLOSURE_BASE = "https://maps.bexar.org/arcgis/rest/services/CC/ForeclosuresProd/MapServer"
-PARCELS_URL      = "https://maps.bexar.org/arcgis/rest/services/Parcels/MapServer/0"
+# BCAD property search — free public API, no auth required
+BCAD_SEARCH_URL  = "https://esearch.bcad.org/api/search"
 
 LAYERS = [
     {"index": 0, "type": "NOF", "label": "Mortgage Foreclosure"},
@@ -34,16 +36,13 @@ GHL_LOCATION_ID = os.environ.get("GHL_LOCATION_ID", "UAOJlgeerLu3GChP9jDJ")
 GHL_API_BASE    = "https://services.leadconnectorhq.com"
 
 
-# ── Address Normalization ─────────────────────────────────────────────────────
+# ── Address helpers ───────────────────────────────────────────────────────────
 ABBREVS = {
     r'\bSTREET\b':'ST', r'\bAVENUE\b':'AVE', r'\bBOULEVARD\b':'BLVD',
     r'\bDRIVE\b':'DR',  r'\bCOURT\b':'CT',   r'\bCIRCLE\b':'CIR',
     r'\bLANE\b':'LN',   r'\bROAD\b':'RD',    r'\bPLACE\b':'PL',
     r'\bTERRACE\b':'TER',r'\bTRAIL\b':'TRL', r'\bPARKWAY\b':'PKWY',
-    r'\bHIGHWAY\b':'HWY',r'\bNORTH\b':'N',   r'\bSOUTH\b':'S',
-    r'\bEAST\b':'E',    r'\bWEST\b':'W',
-    r'\bNORTHEAST\b':'NE',r'\bNORTHWEST\b':'NW',
-    r'\bSOUTHEAST\b':'SE',r'\bSOUTHWEST\b':'SW',
+    r'\bNORTH\b':'N',   r'\bSOUTH\b':'S',    r'\bEAST\b':'E', r'\bWEST\b':'W',
 }
 
 def norm(addr):
@@ -56,7 +55,7 @@ def norm(addr):
         a = re.sub(p,r,a)
     return a
 
-def sim(a1, a2):
+def addr_sim(a1, a2):
     t1 = set(norm(a1).split())
     t2 = set(norm(a2).split())
     if not t1 or not t2: return 0.0
@@ -67,20 +66,45 @@ def sim(a1, a2):
 
 def is_absentee(prop, mail):
     if not prop or not mail: return False
-    return sim(prop, mail) < 0.6
+    return addr_sim(prop, mail) < 0.6
+
+def street_num(addr):
+    parts = addr.strip().split()
+    return parts[0] if parts and parts[0].isdigit() else ""
+
+def street_name_word(addr):
+    parts = norm(addr).split()
+    return next((t for t in parts[1:] if len(t)>2 and not t.isdigit()), "")
 
 
 # ── HTTP ──────────────────────────────────────────────────────────────────────
-def fetch_json(url, retries=3):
+def fetch_json(url, retries=3, headers=None):
+    default_headers = {"User-Agent":"Mozilla/5.0 BexarScraper/10.0","Accept":"application/json"}
+    if headers: default_headers.update(headers)
     for attempt in range(retries):
         try:
-            req = urllib.request.Request(
-                url, headers={"User-Agent":"Mozilla/5.0 BexarScraper/9.0","Accept":"application/json"})
-            with urllib.request.urlopen(req, timeout=30) as r:
+            req = urllib.request.Request(url, headers=default_headers)
+            with urllib.request.urlopen(req, timeout=20) as r:
                 return json.loads(r.read().decode("utf-8", errors="replace"))
         except Exception as e:
-            if attempt < retries-1: time.sleep(2)
-            else: raise e
+            if attempt < retries-1: time.sleep(1)
+            else: return {}
+
+def post_json(url, payload, headers=None):
+    default_headers = {
+        "User-Agent":"Mozilla/5.0 BexarScraper/10.0",
+        "Content-Type":"application/json",
+        "Accept":"application/json",
+    }
+    if headers: default_headers.update(headers)
+    try:
+        data = json.dumps(payload).encode("utf-8")
+        req  = urllib.request.Request(url, data=data, headers=default_headers, method="POST")
+        with urllib.request.urlopen(req, timeout=20) as r:
+            return json.loads(r.read().decode("utf-8", errors="replace"))
+    except Exception as e:
+        log.debug(f"POST error {url}: {e}")
+        return {}
 
 def arcgis_query(layer_url, where, fields="*", offset=0, limit=1000):
     try:
@@ -89,23 +113,9 @@ def arcgis_query(layer_url, where, fields="*", offset=0, limit=1000):
             "resultOffset":offset,"resultRecordCount":limit,"f":"json",
         })
         data = fetch_json(f"{layer_url}/query?{params}")
-        if "error" in data:
-            log.debug(f"ArcGIS error: {data['error']}")
-            return []
+        if "error" in data: return []
         return data.get("features",[])
-    except Exception as e:
-        log.debug(f"ArcGIS query error: {e}")
-        return []
-
-def fetch_all_foreclosures(layer_url):
-    records, offset = [], 0
-    while True:
-        batch = arcgis_query(layer_url,"1=1",offset=offset)
-        records.extend(batch)
-        log.info(f"    offset={offset}: got {len(batch)} (total: {len(records)})")
-        if len(batch) < 1000: break
-        offset += len(batch)
-    return records
+    except Exception: return []
 
 def pick(attrs, *candidates, default=""):
     for c in candidates:
@@ -115,119 +125,162 @@ def pick(attrs, *candidates, default=""):
     return default
 
 
-# ── Parcel Lookup ─────────────────────────────────────────────────────────────
-def lookup_parcel_data(foreclosure_addresses):
+# ── BCAD Owner Lookup ─────────────────────────────────────────────────────────
+def bcad_lookup(address):
     """
-    Fetch Bexar County parcels and match against foreclosure addresses.
-
-    Key insight from logs:
-    - Situs = street name only (e.g. 'MATHIS') — NOT useful for matching
-    - AddrLn1 = owner's mailing address line 1 — this is the full address
-    - We match foreclosure ADDRESS against AddrLn1 to find absentee owners
-      (if they're different, owner doesn't live at the property)
-    - We also try matching foreclosure ADDRESS against AddrSt (address street)
-      which may have the property situs address in full form
+    Search BCAD (Bexar Central Appraisal District) for a property by address.
+    Returns {"owner": str, "mail_addr": str} or {}
+    BCAD is the authoritative source for owner names in Bexar County.
     """
-    if not foreclosure_addresses:
+    # Extract house number and street for search
+    num  = street_num(address)
+    word = street_name_word(address)
+    if not num or not word:
         return {}
 
-    log.info(f"Fetching Bexar County parcels for owner lookup...")
-
-    # Fetch all parcels with pagination
-    # Fields from logs: OBJECTID,PropID,Situs,Owner,AddrLn1,AddrLn2,AddrLn3,
-    # AddrCity,AddrSt,Country,Zip,Zip4,DBA,AcctNumb,...
-    PARCEL_FIELDS = "Situs,Owner,AddrLn1,AddrCity,AddrSt,Zip"
-    all_parcels   = []
-    offset        = 0
-    batch_size    = 1000
-
-    while True:
-        batch = arcgis_query(
-            PARCELS_URL, "1=1",
-            fields=PARCEL_FIELDS,
-            offset=offset,
-            limit=batch_size
-        )
-        all_parcels.extend(batch)
-        log.info(f"  Parcels fetched: {len(all_parcels)} (batch: {len(batch)})")
-        if len(batch) < batch_size:
-            break
-        offset += len(batch)
-        time.sleep(0.1)
-
-    log.info(f"Total parcels fetched: {len(all_parcels)}")
-
-    if not all_parcels:
-        log.warning("No parcels fetched — parcel layer may require authentication or different query")
-        return {}
-
-    # Log sample to understand data
-    if all_parcels:
-        sample = all_parcels[0]["attributes"]
-        log.info(f"Parcel sample: {dict(list(sample.items()))}")
-
-    # Build parcel lookup list
-    # AddrSt = property street address (what we want to match against foreclosure address)
-    # AddrLn1 = mailing address (used to detect absentee owners)
-    parcel_list = []
-    for feat in all_parcels:
-        a        = feat["attributes"]
-        situs    = str(a.get("Situs")    or "").strip()
-        owner    = str(a.get("Owner")    or "").strip()
-        addr_st  = str(a.get("AddrSt")  or "").strip()  # property street
-        addr_ln1 = str(a.get("AddrLn1") or "").strip()  # mailing address
-        city     = str(a.get("AddrCity") or "").strip()
-        zip_     = str(a.get("Zip")      or "").strip()
-
-        if not owner or owner.upper() in ("NONE","NULL",""):
-            continue
-
-        # Property address = AddrSt if available, else Situs
-        prop_addr = addr_st if addr_st else situs
-        mail_addr = f"{addr_ln1} {city} {zip_}".strip() if addr_ln1 else prop_addr
-
-        parcel_list.append({
-            "prop_addr": prop_addr,
-            "mail_addr": mail_addr,
-            "owner":     owner,
-            "situs":     situs,
+    # BCAD search API — search by address
+    search_term = f"{num} {word}"
+    try:
+        # Try BCAD quick search endpoint
+        url    = f"https://esearch.bcad.org/Search/GetResults?searchText={urllib.parse.quote(search_term)}&searchType=address"
+        result = fetch_json(url, headers={
+            "Referer": "https://esearch.bcad.org/",
+            "Accept":  "application/json, text/javascript",
         })
 
-    log.info(f"Valid parcel records: {len(parcel_list)}")
+        if not result:
+            return {}
 
-    # Match foreclosure addresses against parcel property addresses
-    parcel_map  = {}
-    matched     = 0
-    THRESHOLD   = 0.65
+        # BCAD returns a list of property records
+        records = result if isinstance(result, list) else result.get("results", result.get("data", []))
+        if not records:
+            return {}
 
-    for addr in foreclosure_addresses:
+        # Find best matching record
         best_score = 0.0
-        best       = None
-
-        for p in parcel_list:
-            # Try matching against property address
-            s1 = sim(addr, p["prop_addr"])
-            # Also try matching against situs (street name) if prop_addr is empty
-            s2 = sim(addr, p["situs"]) if not p["prop_addr"] else 0.0
-            score = max(s1, s2)
-
+        best_rec   = None
+        for rec in records[:10]:  # check top 10 results
+            prop_addr = (
+                rec.get("siteAddress") or
+                rec.get("address") or
+                rec.get("propertyAddress") or
+                rec.get("situs") or ""
+            )
+            score = addr_sim(address, prop_addr)
             if score > best_score:
                 best_score = score
-                best       = p
+                best_rec   = rec
 
-        if best_score >= THRESHOLD and best:
-            parcel_map[addr] = {
-                "owner":    best["owner"],
-                "mail_addr": best["mail_addr"],
-                "absentee": is_absentee(addr, best["mail_addr"]),
-            }
-            matched += 1
+        if best_score >= 0.6 and best_rec:
+            owner = (
+                best_rec.get("ownerName") or
+                best_rec.get("owner") or
+                best_rec.get("name") or ""
+            ).strip()
+            mail = (
+                best_rec.get("mailingAddress") or
+                best_rec.get("mailAddress") or
+                best_rec.get("ownerAddress") or ""
+            ).strip()
+            if owner:
+                return {"owner": owner, "mail_addr": mail}
 
-    pct      = 100*matched//max(len(foreclosure_addresses),1)
-    absentee = sum(1 for v in parcel_map.values() if v.get("absentee"))
-    log.info(f"Parcel match: {matched}/{len(foreclosure_addresses)} ({pct}% hit rate)")
-    log.info(f"Absentee owners: {absentee}")
-    return parcel_map
+    except Exception as e:
+        log.debug(f"BCAD lookup error for '{address}': {e}")
+
+    return {}
+
+
+def bcad_lookup_alt(address):
+    """
+    Alternative BCAD lookup using their trueautomation endpoint.
+    """
+    num  = street_num(address)
+    word = street_name_word(address)
+    if not num or not word:
+        return {}
+
+    try:
+        # TrueAutomation search (used by BCAD map)
+        url = f"https://bexar.trueautomation.com/clientdb/api/Search?searchText={urllib.parse.quote(f'{num} {word}')}&searchType=address&cid=110"
+        result = fetch_json(url, headers={
+            "Referer":  "https://bexar.trueautomation.com/",
+            "Origin":   "https://bexar.trueautomation.com",
+        })
+
+        records = result if isinstance(result, list) else result.get("results", [])
+        if not records:
+            return {}
+
+        best_score = 0.0
+        best_rec   = None
+        for rec in records[:5]:
+            prop_addr = str(rec.get("siteAddress") or rec.get("address") or "")
+            score = addr_sim(address, prop_addr)
+            if score > best_score:
+                best_score = score
+                best_rec   = rec
+
+        if best_score >= 0.6 and best_rec:
+            owner = str(best_rec.get("ownerName") or best_rec.get("owner") or "").strip()
+            mail  = str(best_rec.get("mailingAddress") or "").strip()
+            if owner:
+                return {"owner": owner, "mail_addr": mail}
+
+    except Exception as e:
+        log.debug(f"BCAD alt lookup error for '{address}': {e}")
+
+    return {}
+
+
+def lookup_owner_names(addresses):
+    """
+    Look up owner names for foreclosure addresses using BCAD.
+    Queries ~407 addresses individually but each call is fast (<1s).
+    Total time: ~5-10 minutes max.
+    """
+    if not addresses:
+        return {}
+
+    log.info(f"Looking up {len(addresses)} owner names via BCAD...")
+    owner_map  = {}
+    found      = 0
+    errors     = 0
+
+    for i, addr in enumerate(addresses):
+        if not addr:
+            continue
+
+        # Try primary BCAD endpoint
+        result = bcad_lookup(addr)
+
+        # Fallback to TrueAutomation if primary fails
+        if not result:
+            result = bcad_lookup_alt(addr)
+
+        if result and result.get("owner"):
+            owner_map[addr] = result
+            found += 1
+            if found <= 10 or found % 50 == 0:
+                log.info(f"  [{i+1}/{len(addresses)}] ✓ {addr} → {result['owner']}")
+        else:
+            errors += 1
+
+        # Rate limiting — be polite to BCAD servers
+        time.sleep(0.3)
+
+        # Progress update every 50
+        if (i+1) % 50 == 0:
+            log.info(f"  Progress: {i+1}/{len(addresses)} | Found: {found} | Not found: {errors}")
+
+    pct      = 100*found//max(len(addresses),1)
+    absentee = sum(1 for v in owner_map.values() if is_absentee(
+        addresses[list(owner_map.keys()).index(k)] if k in list(owner_map.keys()) else "",
+        v.get("mail_addr","")
+    ) for k,v in owner_map.items())
+
+    log.info(f"Owner lookup complete: {found}/{len(addresses)} names ({pct}% hit rate)")
+    return owner_map
 
 
 # ── Scoring ───────────────────────────────────────────────────────────────────
@@ -278,8 +331,8 @@ def ghl_create_contact(rec):
     first = parts[0].title() if parts else owner
     last  = " ".join(parts[1:]).title() if len(parts)>1 else ""
     tags  = ["bexar-lead",rec["type"],f"doc-{rec.get('doc_number','')}"]
-    if rec.get("absentee"):     tags+=["absentee-owner","high-priority"]
-    if rec.get("score",0)>=7:   tags.append("hot-lead")
+    if rec.get("absentee"):      tags+=["absentee-owner","high-priority"]
+    if rec.get("score",0)>=7:    tags.append("hot-lead")
     lead_type = "Tax Foreclosure" if rec["type"]=="TAX" else "Mortgage Foreclosure"
     return ghl_request("POST","/contacts/",{
         "locationId":GHL_LOCATION_ID,
@@ -304,7 +357,7 @@ def push_to_ghl(records):
     if not GHL_API_KEY:
         log.warning("GHL_API_KEY not set"); return
     named = [r for r in records if r.get("owner")]
-    log.info(f"GHL push: {len(named)} named leads ({sum(1 for r in named if r.get('absentee'))} absentee)")
+    log.info(f"GHL push: {len(named)} named ({sum(1 for r in named if r.get('absentee'))} absentee)")
     log.info(f"GHL Key prefix: {GHL_API_KEY[:12]}...")
     test = ghl_request("GET",f"/contacts/?locationId={GHL_LOCATION_ID}&limit=1")
     if not test or "_error" in test:
@@ -328,9 +381,9 @@ def push_to_ghl(records):
 # ── Main Scraper ──────────────────────────────────────────────────────────────
 def run():
     log.info("="*60)
-    log.info("Bexar County Motivated Seller Lead Scraper v9")
+    log.info("Bexar County Motivated Seller Lead Scraper v10")
     log.info(f"Foreclosure: {FORECLOSURE_BASE}")
-    log.info(f"Parcels:     {PARCELS_URL}")
+    log.info(f"Owner lookup: BCAD esearch.bcad.org")
     log.info("="*60)
 
     raw = []
@@ -345,7 +398,13 @@ def run():
         except Exception as e:
             log.warning(f"  Metadata error: {e}")
         try:
-            features = fetch_all_foreclosures(layer_url)
+            features, offset = [], 0
+            while True:
+                batch = arcgis_query(layer_url,"1=1",offset=offset)
+                features.extend(batch)
+                log.info(f"    offset={offset}: got {len(batch)} (total: {len(features)})")
+                if len(batch)<1000: break
+                offset+=len(batch)
             log.info(f"  Layer {idx} total: {len(features)} records")
             if features:
                 log.info(f"  Sample: {dict(list(features[0]['attributes'].items())[:5])}")
@@ -373,15 +432,16 @@ def run():
 
     log.info(f"Total raw records: {len(raw)}")
 
+    # Owner lookup via BCAD
     addresses  = [r["address"] for r in raw if r["address"]]
-    parcel_map = lookup_parcel_data(addresses)
+    owner_map  = lookup_owner_names(addresses)
 
     named_count=absentee_count=0
     for r in raw:
-        data = parcel_map.get(r["address"],{})
+        data = owner_map.get(r["address"],{})
         r["owner"]     = data.get("owner","")
         r["mail_addr"] = data.get("mail_addr","")
-        r["absentee"]  = data.get("absentee",False)
+        r["absentee"]  = is_absentee(r["address"], r["mail_addr"]) if r["owner"] else False
         if r["owner"]:    named_count+=1
         if r["absentee"]: absentee_count+=1
 
@@ -390,10 +450,10 @@ def run():
 
     records=[]
     for r in raw:
-        if r["type"]=="TAX":              r["flags"].append("TAX FORE")
-        if r.get("absentee"):             r["flags"].append("ABSENTEE")
-        if not r["owner"]:                r["flags"].append("NO OWNER")
-        if not r["city"] and r["address"]:r["flags"].append("NO CITY")
+        if r["type"]=="TAX":               r["flags"].append("TAX FORE")
+        if r.get("absentee"):              r["flags"].append("ABSENTEE")
+        if not r["owner"]:                 r["flags"].append("NO OWNER")
+        if not r["city"] and r["address"]: r["flags"].append("NO CITY")
         r["score"]=score_record(r)
         records.append(r)
 
