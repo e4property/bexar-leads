@@ -2,8 +2,8 @@
   {
     "type": "TAX",
     "address": "2630 E COMMERCE ST",
-    "owner": "",
-    "mail_addr": "",
+    "owner": "CEMETERY",
+    "mail_addr": "E COMMERCE ST",
     "absentee": false,
     "doc_number": "2012TA100316",
     "year": "2026",
@@ -13,10 +13,9 @@
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
     "flags": [
-      "TAX FORE",
-      "NO OWNER"
+      "TAX FORE"
     ],
-    "score": 6
+    "score": 7
   },
   {
     "type": "TAX",
@@ -302,6 +301,54 @@
       "NO OWNER"
     ],
     "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "14233 LUCKEY ROAD",
+    "owner": "BLACKHILL BURIAL PARK",
+    "mail_addr": "LUCKEY RD",
+    "absentee": false,
+    "doc_number": "20260500186",
+    "year": "2026",
+    "month": "5",
+    "city": "ATASCOSA",
+    "zip": "78002",
+    "school_dist": "Southwest ISD",
+    "date_filed": "5/2026",
+    "flags": [],
+    "score": 4
+  },
+  {
+    "type": "NOF",
+    "address": "14217 LUCKEY RD",
+    "owner": "BLACKHILL BURIAL PARK",
+    "mail_addr": "LUCKEY RD",
+    "absentee": false,
+    "doc_number": "20260500265",
+    "year": "2026",
+    "month": "5",
+    "city": "ATASCOSA",
+    "zip": "78002",
+    "school_dist": "Southwest ISD",
+    "date_filed": "5/2026",
+    "flags": [],
+    "score": 4
+  },
+  {
+    "type": "NOF",
+    "address": "17042 BENTON CITY RD",
+    "owner": "PRIVATE CEMETERY",
+    "mail_addr": "BENTON CITY RD",
+    "absentee": false,
+    "doc_number": "20260500333",
+    "year": "2026",
+    "month": "5",
+    "city": "VON ORMY",
+    "zip": "78073",
+    "school_dist": "Somerset ISD",
+    "date_filed": "5/2026",
+    "flags": [],
+    "score": 4
   },
   {
     "type": "NOF",
@@ -4589,24 +4636,6 @@
   },
   {
     "type": "NOF",
-    "address": "14233 LUCKEY ROAD",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "doc_number": "20260500186",
-    "year": "2026",
-    "month": "5",
-    "city": "ATASCOSA",
-    "zip": "78002",
-    "school_dist": "Southwest ISD",
-    "date_filed": "5/2026",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
     "address": "10203 HACKELBERG ROAD",
     "owner": "",
     "mail_addr": "",
@@ -5517,24 +5546,6 @@
     "city": "SAN ANTONIO",
     "zip": "78213",
     "school_dist": "Northeast ISD",
-    "date_filed": "5/2026",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "14217 LUCKEY RD",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "doc_number": "20260500265",
-    "year": "2026",
-    "month": "5",
-    "city": "ATASCOSA",
-    "zip": "78002",
-    "school_dist": "Southwest ISD",
     "date_filed": "5/2026",
     "flags": [
       "NO OWNER"
@@ -6525,24 +6536,6 @@
     "city": "SAN ANTONIO",
     "zip": "78238",
     "school_dist": "Northside ISD (Bexar)",
-    "date_filed": "5/2026",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "17042 BENTON CITY RD",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "doc_number": "20260500333",
-    "year": "2026",
-    "month": "5",
-    "city": "VON ORMY",
-    "zip": "78073",
-    "school_dist": "Somerset ISD",
     "date_filed": "5/2026",
     "flags": [
       "NO OWNER"
