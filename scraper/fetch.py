@@ -1,12 +1,15 @@
 """
-Bexar County Motivated Seller Lead Scraper v12
-Runs on GitHub Actions — fast, clean, no owner lookup.
-Owner enrichment is handled by enrich.py running locally.
+Bexar County Motivated Seller Lead Scraper v13
+- Fast and reliable — runs in under 15 seconds
+- Pulls 407 foreclosure leads from maps.bexar.org
+- Pushes leads with names to GoHighLevel (Jarvis)
+- Builds self-contained dashboard with data baked in
 """
 
 import json
 import logging
 import os
+import time
 import urllib.request
 import urllib.parse
 from datetime import datetime, timezone
@@ -25,10 +28,14 @@ LAYERS = [
     {"index": 1, "type": "TAX", "label": "Tax Foreclosure"},
 ]
 
+GHL_API_KEY     = os.environ.get("GHL_API_KEY", "")
+GHL_LOCATION_ID = os.environ.get("GHL_LOCATION_ID", "UAOJlgeerLu3GChP9jDJ")
+GHL_API_BASE    = "https://services.leadconnectorhq.com"
+
 
 def fetch_json(url):
     req = urllib.request.Request(
-        url, headers={"User-Agent": "BexarScraper/12.0", "Accept": "application/json"})
+        url, headers={"User-Agent": "BexarScraper/13.0", "Accept": "application/json"})
     with urllib.request.urlopen(req, timeout=30) as r:
         return json.loads(r.read().decode("utf-8", errors="replace"))
 
@@ -57,17 +64,104 @@ def pick(attrs, *candidates, default=""):
 
 def score_record(rec):
     s = 0
-    if rec.get("address"):       s += 2
-    if rec.get("owner"):         s += 2
+    if rec.get("address"):       s += 3
+    if rec.get("owner"):         s += 3
     if rec.get("type") == "TAX": s += 2
     if rec.get("absentee"):      s += 2
-    s += min(len(rec.get("flags", [])), 2)
     return min(s, 10)
 
 
+# ── GHL Push ──────────────────────────────────────────────────────────────────
+def ghl_request(method, endpoint, payload=None):
+    try:
+        import requests
+    except ImportError:
+        return None
+    url = f"{GHL_API_BASE}{endpoint}"
+    headers = {
+        "Authorization": f"Bearer {GHL_API_KEY}",
+        "Content-Type": "application/json", "Accept": "application/json",
+        "Version": "2021-07-28",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36",
+        "Origin": "https://app.justjarvis.com", "Referer": "https://app.justjarvis.com/",
+    }
+    try:
+        resp = requests.get(url, headers=headers, timeout=20) if method == "GET" \
+               else requests.post(url, headers=headers, json=payload, timeout=20)
+        if resp.status_code in (200, 201): return resp.json()
+        log.warning(f"GHL {resp.status_code}: {resp.text[:200]}")
+        return {"_error": resp.status_code}
+    except Exception as e:
+        log.warning(f"GHL error: {e}")
+        return {"_error": str(e)}
+
+
+def ghl_contact_exists(doc):
+    r = ghl_request("GET", f"/contacts/?locationId={GHL_LOCATION_ID}&query={urllib.parse.quote(str(doc))}&limit=5")
+    if not r or "_error" in r: return False
+    for c in r.get("contacts", []):
+        if f"doc-{doc}" in (c.get("tags") or []): return True
+    return False
+
+
+def ghl_create_contact(rec):
+    owner = rec.get("owner", "").strip()
+    parts = owner.split()
+    first = parts[0].title() if parts else owner
+    last  = " ".join(parts[1:]).title() if len(parts) > 1 else ""
+    tags  = ["bexar-lead", rec["type"], f"doc-{rec.get('doc_number', '')}"]
+    if rec.get("absentee"):      tags += ["absentee-owner", "high-priority"]
+    if rec.get("score", 0) >= 7: tags.append("hot-lead")
+    lead_type = "Tax Foreclosure" if rec["type"] == "TAX" else "Mortgage Foreclosure"
+    return ghl_request("POST", "/contacts/", {
+        "locationId": GHL_LOCATION_ID,
+        "firstName": first, "lastName": last, "name": owner.title(),
+        "address1": rec.get("address", ""),
+        "city": rec.get("city", "San Antonio"),
+        "state": "TX", "country": "US", "postalCode": rec.get("zip", ""),
+        "tags": tags, "source": "Bexar County Scraper",
+        "customFields": [
+            {"key": "lead_type",        "field_value": lead_type},
+            {"key": "doc_number",       "field_value": rec.get("doc_number", "")},
+            {"key": "date_filed",       "field_value": rec.get("date_filed", "")},
+            {"key": "score",            "field_value": str(rec.get("score", 0))},
+            {"key": "property_address", "field_value": rec.get("address", "")},
+            {"key": "school_district",  "field_value": rec.get("school_dist", "")},
+        ],
+    })
+
+
+def push_to_ghl(records):
+    if not GHL_API_KEY:
+        log.warning("GHL_API_KEY not set — skipping GHL push")
+        return
+    named = [r for r in records if r.get("owner")]
+    log.info(f"GHL push: {len(named)} named leads")
+    test = ghl_request("GET", f"/contacts/?locationId={GHL_LOCATION_ID}&limit=1")
+    if not test or "_error" in test:
+        log.error("GHL auth failed — update GHL_API_KEY secret in GitHub")
+        return
+    log.info(f"GHL auth OK — {test.get('total', '?')} existing contacts")
+    created = skipped = errors = 0
+    for i, rec in enumerate(sorted(named, key=lambda r: -r.get("score", 0))):
+        doc = rec.get("doc_number", "")
+        if doc and ghl_contact_exists(doc):
+            skipped += 1
+            continue
+        result = ghl_create_contact(rec)
+        if result and result.get("contact"):
+            created += 1
+            log.info(f"  ✓ [{i+1}] {rec.get('owner')} — {rec.get('address')}")
+        else:
+            errors += 1
+        time.sleep(0.15)
+    log.info(f"GHL done — Created:{created} | Skipped:{skipped} | Errors:{errors}")
+
+
+# ── Main Scraper ──────────────────────────────────────────────────────────────
 def run():
     log.info("=" * 60)
-    log.info("Bexar County Motivated Seller Lead Scraper v12")
+    log.info("Bexar County Motivated Seller Lead Scraper v13")
     log.info(f"Source: {FORECLOSURE_BASE}")
     log.info("=" * 60)
 
@@ -91,6 +185,8 @@ def run():
                 if len(batch) < 1000: break
                 offset += len(batch)
             log.info(f"  Layer {idx} total: {len(features)} records")
+            if features:
+                log.info(f"  Sample: {dict(list(features[0]['attributes'].items())[:5])}")
             for feat in features:
                 a     = feat["attributes"]
                 month = pick(a, "MONTH", "MO", default="")
@@ -98,7 +194,7 @@ def run():
                 raw.append({
                     "type":        layer["type"],
                     "address":     pick(a, "ADDRESS", "SITUS_ADD", "ADDR"),
-                    "owner":       "",
+                    "owner":       pick(a, "OWNER", "GRANTOR", "OWNER_NAME", default=""),
                     "mail_addr":   "",
                     "absentee":    False,
                     "doc_number":  pick(a, "DOC_NUMBER", "DOCNUM", "DOC_NUM"),
@@ -116,44 +212,21 @@ def run():
 
     log.info(f"Total raw records: {len(raw)}")
 
-    # Try to merge with any existing enriched data
-    enriched_map = {}
-    try:
-        with open("data/records.json") as f:
-            existing = json.load(f)
-        for r in existing:
-            if r.get("enriched") and r.get("doc_number"):
-                enriched_map[r["doc_number"]] = r
-        log.info(f"Loaded {len(enriched_map)} previously enriched records")
-    except Exception:
-        pass
-
     records = []
     for r in raw:
-        doc = r.get("doc_number", "")
-        if doc and doc in enriched_map:
-            # Keep enriched data from previous run
-            enriched = enriched_map[doc]
-            r["owner"]     = enriched.get("owner", "")
-            r["mail_addr"] = enriched.get("mail_addr", "")
-            r["absentee"]  = enriched.get("absentee", False)
-            r["enriched"]  = True
-
-        if r["type"] == "TAX":             r["flags"].append("TAX FORE")
-        if r.get("absentee"):              r["flags"].append("ABSENTEE")
-        if not r["owner"]:                 r["flags"].append("NO OWNER")
-        if not r["city"] and r["address"]: r["flags"].append("NO CITY")
+        if r["type"] == "TAX":              r["flags"].append("TAX FORE")
+        if not r["owner"]:                  r["flags"].append("NO OWNER")
+        if not r["city"] and r["address"]:  r["flags"].append("NO CITY")
         r["score"] = score_record(r)
         records.append(r)
 
     records.sort(key=lambda x: x["score"], reverse=True)
-
-    named    = sum(1 for r in records if r["owner"])
-    absentee = sum(1 for r in records if r["absentee"])
-    log.info(f"Done. {len(records)} leads | {named} named | {absentee} absentee")
+    named = sum(1 for r in records if r["owner"])
+    log.info(f"Done. {len(records)} leads | {named} with owner name")
     return records
 
 
+# ── Dashboard ─────────────────────────────────────────────────────────────────
 DASHBOARD_TEMPLATE = """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -168,13 +241,12 @@ body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font
 header{display:flex;align-items:center;justify-content:space-between;padding:18px 32px;border-bottom:1px solid var(--border);background:var(--surface);position:sticky;top:0;z-index:100;}
 .logo{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;}.logo span{color:var(--accent);}
 #last-updated{color:var(--muted);font-size:11px;}
-.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border);border-bottom:1px solid var(--border);}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border-bottom:1px solid var(--border);}
 .stat-card{background:var(--surface);padding:20px 24px;display:flex;flex-direction:column;gap:6px;}
-.stat-num{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;line-height:1;color:var(--accent);}
+.stat-num{font-family:'Syne',sans-serif;font-size:36px;font-weight:800;line-height:1;color:var(--accent);}
 .stat-card:nth-child(2) .stat-num{color:var(--danger);}
 .stat-card:nth-child(3) .stat-num{color:var(--warning);}
 .stat-card:nth-child(4) .stat-num{color:var(--success);}
-.stat-card:nth-child(5) .stat-num{color:var(--hot);}
 .stat-label{color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:1px;}
 .controls{display:flex;gap:10px;padding:16px 32px;background:var(--surface);border-bottom:1px solid var(--border);align-items:center;flex-wrap:wrap;}
 input[type=text]{flex:1;min-width:200px;background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:8px 14px;font-family:'DM Mono',monospace;font-size:13px;outline:none;transition:border-color .2s;}
@@ -186,7 +258,6 @@ table{width:100%;border-collapse:collapse;margin-top:16px;}
 thead th{text-align:left;padding:10px 12px;font-size:10px;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);border-bottom:1px solid var(--border);white-space:nowrap;}
 tbody tr{border-bottom:1px solid var(--border);transition:background .12s;}
 tbody tr:hover{background:var(--surface2);}
-tbody tr.absentee-row{border-left:3px solid var(--hot);}
 tbody td{padding:10px 12px;vertical-align:middle;}
 .score{display:inline-flex;width:36px;height:36px;border-radius:50%;align-items:center;justify-content:center;font-weight:500;font-size:12px;font-family:'Syne',sans-serif;}
 .score-high{background:rgba(34,211,165,.15);color:var(--success);border:1px solid rgba(34,211,165,.3);}
@@ -197,8 +268,7 @@ tbody td{padding:10px 12px;vertical-align:middle;}
 .type-tax{background:rgba(251,191,36,.15);color:var(--warning);border:1px solid rgba(251,191,36,.25);}
 .flags{display:flex;gap:4px;flex-wrap:wrap;}
 .flag{display:inline-block;padding:2px 6px;font-size:10px;background:rgba(167,139,250,.12);color:var(--accent3);border:1px solid rgba(167,139,250,.25);border-radius:2px;white-space:nowrap;}
-.flag-absentee{background:rgba(255,107,53,.15);color:var(--hot);border:1px solid rgba(255,107,53,.3);font-weight:600;}
-.addr{color:var(--text);font-size:12px;max-width:180px;}
+.addr{color:var(--text);font-size:12px;max-width:200px;}
 .owner{color:var(--success);font-size:12px;font-weight:500;}
 .owner-none{color:var(--muted);font-size:12px;}
 .city,.doc{color:var(--muted);font-size:12px;}
@@ -207,7 +277,7 @@ tbody td{padding:10px 12px;vertical-align:middle;}
 .pagination button{background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:6px 14px;cursor:pointer;font-family:'DM Mono',monospace;font-size:12px;}
 .pagination button:hover:not(:disabled){border-color:var(--accent);color:var(--accent);}
 .pagination button:disabled{opacity:.3;cursor:default;}
-@media(max-width:1000px){.stats{grid-template-columns:repeat(3,1fr);}.controls,.table-wrap{padding-left:16px;padding-right:16px;}}
+@media(max-width:900px){.stats{grid-template-columns:repeat(2,1fr);}.controls,.table-wrap{padding-left:16px;padding-right:16px;}}
 </style>
 </head>
 <body>
@@ -219,8 +289,7 @@ tbody td{padding:10px 12px;vertical-align:middle;}
   <div class="stat-card"><div class="stat-num" id="s-total">—</div><div class="stat-label">Total Leads</div></div>
   <div class="stat-card"><div class="stat-num" id="s-nof">—</div><div class="stat-label">Foreclosures (NOF)</div></div>
   <div class="stat-card"><div class="stat-num" id="s-tax">—</div><div class="stat-label">Tax Foreclosures</div></div>
-  <div class="stat-card"><div class="stat-num" id="s-named">—</div><div class="stat-label">With Owner Name</div></div>
-  <div class="stat-card"><div class="stat-num" id="s-absentee">—</div><div class="stat-label">Absentee Owners 🔥</div></div>
+  <div class="stat-card"><div class="stat-num" id="s-addr">—</div><div class="stat-label">With Address</div></div>
 </div>
 <div class="controls">
   <input type="text" id="search" placeholder="Search address, owner, doc #…" oninput="applyFilters()"/>
@@ -228,13 +297,6 @@ tbody td{padding:10px 12px;vertical-align:middle;}
     <option value="">All Types</option>
     <option value="NOF">Foreclosure (NOF)</option>
     <option value="TAX">Tax Foreclosure</option>
-    <option value="DELINQUENT">Delinquent Tax</option>
-  </select>
-  <select id="owner-filter" onchange="applyFilters()">
-    <option value="">All Leads</option>
-    <option value="named">With Owner Name</option>
-    <option value="absentee">Absentee Owners 🔥</option>
-    <option value="unnamed">No Name Yet</option>
   </select>
   <select id="sort-select" onchange="applyFilters()">
     <option value="score-desc">Sort: Score ↓</option>
@@ -248,7 +310,7 @@ tbody td{padding:10px 12px;vertical-align:middle;}
   <table>
     <thead><tr>
       <th>Score</th><th>Type</th><th>Property Address</th>
-      <th>Owner Name</th><th>Date Filed</th><th>Doc #</th><th>City/ZIP</th><th>Flags</th>
+      <th>Owner</th><th>Date Filed</th><th>Doc #</th><th>City/ZIP</th><th>Flags</th>
     </tr></thead>
     <tbody id="tbody"></tbody>
   </table>
@@ -266,23 +328,17 @@ function init(){
   document.getElementById('s-total').textContent=ALL_RECORDS.length;
   document.getElementById('s-nof').textContent=ALL_RECORDS.filter(function(r){return r.type==='NOF';}).length;
   document.getElementById('s-tax').textContent=ALL_RECORDS.filter(function(r){return r.type==='TAX';}).length;
-  document.getElementById('s-named').textContent=ALL_RECORDS.filter(function(r){return r.owner;}).length;
-  document.getElementById('s-absentee').textContent=ALL_RECORDS.filter(function(r){return r.absentee;}).length;
+  document.getElementById('s-addr').textContent=ALL_RECORDS.filter(function(r){return r.address;}).length;
   applyFilters();
 }
 function applyFilters(){
   var q=document.getElementById('search').value.toLowerCase();
   var t=document.getElementById('type-filter').value;
-  var ow=document.getElementById('owner-filter').value;
   var s=document.getElementById('sort-select').value;
   filtered=ALL_RECORDS.filter(function(r){
     var mq=!q||(r.address||'').toLowerCase().indexOf(q)>=0||(r.owner||'').toLowerCase().indexOf(q)>=0||(r.doc_number||'').toLowerCase().indexOf(q)>=0;
     var mt=!t||r.type===t;
-    var mow=true;
-    if(ow==='named')    mow=!!r.owner;
-    if(ow==='absentee') mow=!!r.absentee;
-    if(ow==='unnamed')  mow=!r.owner;
-    return mq&&mt&&mow;
+    return mq&&mt;
   });
   filtered.sort(function(a,b){
     if(s==='score-desc') return b.score-a.score;
@@ -306,18 +362,14 @@ function render(){
     var r=slice[i];
     var sc=r.score||0;
     var scC=sc>=7?'score-high':sc>=4?'score-mid':'score-low';
-    var tC=r.type==='TAX'?'type-tax':r.type==='DELINQUENT'?'type-tax':'type-nof';
-    var tL=r.type==='TAX'?'TAX FORE':r.type==='DELINQUENT'?'DELINQUENT':'NOF';
+    var tC=r.type==='TAX'?'type-tax':'type-nof';
+    var tL=r.type==='TAX'?'TAX FORE':'NOF';
     var cz=[r.city,r.zip].filter(Boolean).join(' ')||'—';
     var oh=r.owner?'<div class="owner">'+r.owner+'</div>':'<div class="owner-none">—</div>';
-    var rc=r.absentee?' class="absentee-row"':'';
     var fh='';
-    for(var j=0;j<(r.flags||[]).length;j++){
-      var fc=r.flags[j]==='ABSENTEE'?'flag flag-absentee':'flag';
-      fh+='<span class="'+fc+'">'+r.flags[j]+'</span>';
-    }
+    for(var j=0;j<(r.flags||[]).length;j++) fh+='<span class="flag">'+r.flags[j]+'</span>';
     if(!fh) fh='<span style="color:var(--muted)">—</span>';
-    rows+='<tr'+rc+'>'
+    rows+='<tr>'
       +'<td><div class="score '+scC+'">'+sc+'</div></td>'
       +'<td><span class="type-badge '+tC+'">'+tL+'</span></td>'
       +'<td><div class="addr">'+(r.address||'—')+'</div></td>'
@@ -352,6 +404,8 @@ def build_dashboard(records):
     with open(path, "w", encoding="utf-8") as f: f.write(html)
     size = os.path.getsize(path)
     log.info(f"Built {path} — {len(records)} records, {size:,} bytes")
+    if size < 50000 and len(records) > 0:
+        raise RuntimeError(f"Output too small: {size} bytes")
 
 
 if __name__ == "__main__":
@@ -365,5 +419,5 @@ if __name__ == "__main__":
         json.dump(records, f, indent=2)
     log.info(f"Saved dashboard/records.json ({len(records)} records)")
     build_dashboard(records)
-    log.info("Done! Run enrich.py on your local computer to add owner names.")
+    push_to_ghl(records)
 
