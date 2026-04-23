@@ -414,3 +414,4 @@ if __name__ == "__main__":
     log.info(f"Saved dashboard/records.json ({len(records)} records)")
     build_dashboard(records)
     push_to_ghl(records)
+
