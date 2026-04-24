@@ -1,17 +1,18 @@
 """
-Bexar County Motivated Seller Lead Scraper v17
-- Waits for JavaScript to finish rendering results table
-- Extracts GRANTOR (owner) names from Clerk site
-- Falls back to ArcGIS for tax foreclosures
+Bexar County Motivated Seller Lead Scraper v19
+- ArcGIS foreclosure data (working perfectly)
+- Owner names from ArcGIS Parcels layer via targeted address queries
+  Same server, no bot detection, works from GitHub Actions
 """
 
 import json
 import logging
 import os
+import re
 import time
 import urllib.request
 import urllib.parse
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timezone
 
 logging.basicConfig(
     level=logging.INFO,
@@ -20,227 +21,162 @@ logging.basicConfig(
 )
 log = logging.getLogger(__name__)
 
-CLERK_URL     = "https://bexar.tx.publicsearch.us"
-ARCGIS_BASE   = "https://maps.bexar.org/arcgis/rest/services/CC/ForeclosuresProd/MapServer"
-LOOKBACK_DAYS = 90
+FORECLOSURE_BASE = "https://maps.bexar.org/arcgis/rest/services/CC/ForeclosuresProd/MapServer"
+PARCELS_URL      = "https://maps.bexar.org/arcgis/rest/services/Parcels/MapServer/0"
+
+LAYERS = [
+    {"index": 0, "type": "NOF", "label": "Mortgage Foreclosure"},
+    {"index": 1, "type": "TAX", "label": "Tax Foreclosure"},
+]
 
 GHL_API_KEY     = os.environ.get("GHL_API_KEY", "")
 GHL_LOCATION_ID = os.environ.get("GHL_LOCATION_ID", "UAOJlgeerLu3GChP9jDJ")
 GHL_API_BASE    = "https://services.leadconnectorhq.com"
 
 
-def scrape_clerk():
-    log.info("Starting Clerk scraper (v17)...")
+# ── HTTP ──────────────────────────────────────────────────────────────────────
+def fetch_json(url, retries=3):
+    for attempt in range(retries):
+        try:
+            req = urllib.request.Request(
+                url, headers={"User-Agent": "BexarScraper/19.0", "Accept": "application/json"})
+            with urllib.request.urlopen(req, timeout=20) as r:
+                return json.loads(r.read().decode("utf-8", errors="replace"))
+        except Exception as e:
+            if attempt < retries - 1:
+                time.sleep(1)
+            else:
+                log.debug(f"fetch_json failed: {e}")
+                return {}
+
+
+def arcgis_query(layer_url, where, fields="*", offset=0, limit=1000):
     try:
-        from selenium import webdriver
-        from selenium.webdriver.chrome.options import Options
-        from selenium.webdriver.chrome.service import Service
-        from selenium.webdriver.common.by import By
-        from selenium.webdriver.support.ui import WebDriverWait
-        from selenium.webdriver.support import expected_conditions as EC
-        from selenium.common.exceptions import TimeoutException
-    except ImportError as e:
-        log.error(f"Selenium not available: {e}")
+        params = urllib.parse.urlencode({
+            "where": where, "outFields": fields, "returnGeometry": "false",
+            "resultOffset": offset, "resultRecordCount": limit, "f": "json",
+        })
+        data = fetch_json(f"{layer_url}/query?{params}")
+        if "error" in data: return []
+        return data.get("features", [])
+    except Exception:
         return []
 
-    options = Options()
-    options.add_argument("--headless=new")
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-shm-usage")
-    options.add_argument("--disable-gpu")
-    options.add_argument("--window-size=1920,1080")
-    options.add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36")
-    options.add_argument("--disable-blink-features=AutomationControlled")
-    options.binary_location = "/usr/bin/chromium-browser"
 
-    driver = None
-    records = []
-    now    = datetime.now(timezone.utc)
-    cutoff = now - timedelta(days=LOOKBACK_DAYS)
+def pick(attrs, *candidates, default=""):
+    for c in candidates:
+        v = attrs.get(c)
+        if v is not None and str(v).strip() not in ("", "None", "null", "<Null>"):
+            return str(v).strip()
+    return default
+
+
+# ── Owner lookup via ArcGIS Parcels ──────────────────────────────────────────
+def lookup_owner_by_address(address):
+    """
+    Query the Bexar County Parcels ArcGIS layer to find the owner name
+    for a given property address. Uses the street number for exact matching.
+
+    Parcel fields available: Situs (street name), Owner, AddrLn1, AddrCity, Zip
+    Situs contains the street name only (e.g. 'LAGUNA MADRE ST')
+    We match using the street number from AddrLn1 or by Situs LIKE query.
+    """
+    if not address:
+        return {}
+
+    # Extract street number and street name from address
+    # e.g. "13114 LAGUNA MADRE ST" -> num="13114", street="LAGUNA MADRE"
+    parts = address.strip().upper().split()
+    if not parts:
+        return {}
+
+    street_num = parts[0] if parts[0].isdigit() else ""
+    # Get first meaningful word of street name (skip number)
+    street_words = [p for p in parts[1:] if len(p) > 2 and p not in ("ST","AVE","DR","RD","LN","CT","BLVD","WAY","PL","CIR","TRL","PKWY","HWY")]
+    street_key = street_words[0] if street_words else (parts[1] if len(parts) > 1 else "")
+
+    if not street_key:
+        return {}
 
     try:
-        service = Service("/usr/bin/chromedriver")
-        driver  = webdriver.Chrome(service=service, options=options)
-        wait    = WebDriverWait(driver, 45)  # wait up to 45s for JS to render
+        # Query parcels where Situs contains the street name keyword
+        # and AddrLn1 starts with the street number
+        if street_num:
+            where = f"Situs LIKE '%{street_key}%' AND AddrLn1 LIKE '{street_num}%'"
+        else:
+            where = f"Situs LIKE '%{street_key}%'"
 
-        date_from = cutoff.strftime("%Y%m%d")
-        date_to   = now.strftime("%Y%m%d")
-        url = (
-            f"{CLERK_URL}/results"
-            f"?department=FC"
-            f"&instrumentDateRange={date_from}%2C{date_to}"
-            f"&keywordSearch=false"
-            f"&limit=500"
-            f"&offset=0"
+        features = arcgis_query(
+            PARCELS_URL, where,
+            fields="Situs,Owner,AddrLn1,AddrCity,Zip",
+            limit=10
         )
 
-        log.info(f"  Loading: {url}")
-        driver.get(url)
+        if not features:
+            # Try broader search with just street key
+            where2 = f"Situs LIKE '%{street_key}%'"
+            features = arcgis_query(
+                PARCELS_URL, where2,
+                fields="Situs,Owner,AddrLn1,AddrCity,Zip",
+                limit=20
+            )
 
-        # Wait for "Loading Search Results..." to disappear
-        # and actual results to appear
-        log.info("  Waiting for results to load...")
-        try:
-            # Wait until loading text disappears
-            wait.until(EC.invisibility_of_element_located(
-                (By.XPATH, "//*[contains(text(),'Loading Search Results')]")
-            ))
-            log.info("  Loading complete")
-        except TimeoutException:
-            log.warning("  Loading text did not disappear — continuing anyway")
+        if not features:
+            return {}
 
-        # Wait for actual result rows
-        try:
-            wait.until(EC.presence_of_element_located(
-                (By.CSS_SELECTOR, "table tbody tr td")
-            ))
-            log.info("  Result rows found!")
-        except TimeoutException:
-            log.warning("  No result rows found after waiting")
+        # Find best match
+        best_owner = ""
+        best_mail  = ""
+        best_score = 0
 
-        # Extra wait for all rows to render
-        time.sleep(3)
+        for feat in features:
+            a = feat["attributes"]
+            situs  = str(a.get("Situs")  or "").strip().upper()
+            owner  = str(a.get("Owner")  or "").strip()
+            addr1  = str(a.get("AddrLn1") or "").strip()
+            city   = str(a.get("AddrCity") or "").strip()
+            zipcode= str(a.get("Zip")    or "").strip()
 
-        # Log page state
-        log.info(f"  Title: {driver.title}")
-        body_text = driver.find_element(By.TAG_NAME, "body").text
-        log.info(f"  Page text preview: {body_text[:400]}")
+            if not owner or owner.upper() in ("", "NONE", "NULL"):
+                continue
 
-        # Get headers
-        headers = [h.text.strip() for h in driver.find_elements(By.CSS_SELECTOR, "table thead th")]
-        log.info(f"  Table headers: {headers}")
+            # Score this match
+            score = 0
+            if street_num and addr1.startswith(street_num):
+                score += 3
+            if street_key in situs:
+                score += 2
+            # Check all address parts match
+            match_parts = sum(1 for p in parts[1:3] if p in situs)
+            score += match_parts
 
-        # Get rows
-        rows = driver.find_elements(By.CSS_SELECTOR, "table tbody tr")
-        log.info(f"  Found {len(rows)} rows")
+            if score > best_score:
+                best_score = score
+                best_owner = owner
+                best_mail  = f"{addr1} {city} {zipcode}".strip() if addr1 else ""
 
-        if rows:
-            first = [c.text.strip() for c in rows[0].find_elements(By.TAG_NAME, "td")]
-            log.info(f"  First row: {first}")
-
-        # Map columns based on headers
-        # Expected: GRANTOR | GRANTEE | DOC TYPE | RECORDED DATE | SALE DATE | DOC NUMBER | PROPERTY ADDRESS
-        col_map = {}
-        for i, h in enumerate(headers):
-            h_upper = h.upper()
-            if "GRANTOR" in h_upper:      col_map["grantor"]   = i
-            elif "GRANTEE" in h_upper:    col_map["grantee"]   = i
-            elif "DOC TYPE" in h_upper or "TYPE" in h_upper: col_map["doc_type"] = i
-            elif "RECORDED" in h_upper:   col_map["rec_date"]  = i
-            elif "SALE" in h_upper:       col_map["sale_date"] = i
-            elif "DOC" in h_upper and "NUMBER" in h_upper: col_map["doc_num"] = i
-            elif "PROPERTY" in h_upper or "ADDRESS" in h_upper: col_map["address"] = i
-
-        log.info(f"  Column map: {col_map}")
-
-        # If no headers found, use positional fallback based on screenshot
-        # Screenshot showed: GRANTOR | GRANTEE | DOC TYPE | RECORDED DATE | SALE DATE | DOC NUMBER | PROPERTY ADDRESS
-        if not col_map:
-            col_map = {
-                "grantor": 0, "grantee": 1, "doc_type": 2,
-                "rec_date": 3, "sale_date": 4, "doc_num": 5, "address": 6
-            }
-            log.info("  Using default column positions")
-
-        def get_col(cells, key, default=""):
-            idx = col_map.get(key)
-            if idx is not None and idx < len(cells):
-                return cells[idx].strip()
-            return default
-
-        for i, row in enumerate(rows):
-            try:
-                cells = [c.text.strip() for c in row.find_elements(By.TAG_NAME, "td")]
-                if len(cells) < 3:
-                    continue
-
-                grantor   = get_col(cells, "grantor")
-                grantee   = get_col(cells, "grantee")
-                doc_type  = get_col(cells, "doc_type")
-                rec_date  = get_col(cells, "rec_date")
-                sale_date = get_col(cells, "sale_date")
-                doc_num   = get_col(cells, "doc_num")
-                address   = get_col(cells, "address")
-
-                # Skip non-foreclosure types
-                if doc_type and "FORECLO" not in doc_type.upper() and "TRUSTEE" not in doc_type.upper():
-                    continue
-
-                if not address and not doc_num:
-                    continue
-
-                records.append({
-                    "type":        "NOF",
-                    "source":      "clerk",
-                    "address":     address,
-                    "owner":       grantor,
-                    "mail_addr":   "",
-                    "absentee":    False,
-                    "doc_number":  doc_num,
-                    "year":        rec_date[-4:] if len(rec_date) >= 4 else "",
-                    "month":       "",
-                    "city":        "San Antonio",
-                    "zip":         "",
-                    "school_dist": "",
-                    "date_filed":  rec_date,
-                    "sale_date":   sale_date,
-                    "grantee":     grantee,
-                    "flags":       [],
-                    "enriched":    bool(grantor),
-                })
-
-            except Exception as e:
-                log.debug(f"  Row {i} error: {e}")
-
-        named = sum(1 for r in records if r.get("owner"))
-        log.info(f"Clerk: {len(records)} records, {named} with owner name")
+        if best_score >= 2 and best_owner:
+            return {"owner": best_owner, "mail_addr": best_mail}
 
     except Exception as e:
-        log.error(f"Clerk error: {e}", exc_info=True)
-    finally:
-        if driver:
-            driver.quit()
+        log.debug(f"Parcel lookup error for '{address}': {e}")
 
-    return records
+    return {}
 
 
-def fetch_arcgis():
-    log.info("Fetching ArcGIS records...")
-
-    def fetch_json(url):
-        req = urllib.request.Request(
-            url, headers={"User-Agent": "BexarScraper/17.0", "Accept": "application/json"})
-        with urllib.request.urlopen(req, timeout=30) as r:
-            return json.loads(r.read().decode("utf-8", errors="replace"))
-
-    def query(layer_url, offset=0):
-        try:
-            params = urllib.parse.urlencode({
-                "where": "1=1", "outFields": "*", "returnGeometry": "false",
-                "resultOffset": offset, "resultRecordCount": 1000, "f": "json",
-            })
-            data = fetch_json(f"{layer_url}/query?{params}")
-            if "error" in data: return []
-            return data.get("features", [])
-        except Exception as e:
-            log.warning(f"ArcGIS error: {e}")
-            return []
-
-    def pick(a, *keys, default=""):
-        for k in keys:
-            v = a.get(k)
-            if v is not None and str(v).strip() not in ("", "None", "null", "<Null>"):
-                return str(v).strip()
-        return default
-
+# ── Fetch foreclosures ────────────────────────────────────────────────────────
+def fetch_foreclosures():
+    log.info("Fetching foreclosure records from ArcGIS...")
     raw = []
-    for idx, typ in [(0, "NOF"), (1, "TAX")]:
-        layer_url = f"{ARCGIS_BASE}/{idx}"
+    for layer in LAYERS:
+        idx       = layer["index"]
+        layer_url = f"{FORECLOSURE_BASE}/{idx}"
+        log.info(f"  Layer {idx} ({layer['label']})...")
         features, offset = [], 0
         while True:
-            batch = query(layer_url, offset)
+            batch = arcgis_query(layer_url, "1=1", offset=offset)
             features.extend(batch)
-            log.info(f"  Layer {idx}: {len(batch)} records (total: {len(features)})")
+            log.info(f"    offset={offset}: {len(batch)} (total: {len(features)})")
             if len(batch) < 1000: break
             offset += len(batch)
         for feat in features:
@@ -248,10 +184,9 @@ def fetch_arcgis():
             month = pick(a, "MONTH", "MO", default="")
             year  = pick(a, "YEAR",  "YR", default="")
             raw.append({
-                "type":        typ,
-                "source":      "arcgis",
+                "type":        layer["type"],
                 "address":     pick(a, "ADDRESS", "SITUS_ADD", "ADDR"),
-                "owner":       pick(a, "OWNER", "GRANTOR", "OWNER_NAME", default=""),
+                "owner":       "",
                 "mail_addr":   "",
                 "absentee":    False,
                 "doc_number":  pick(a, "DOC_NUMBER", "DOCNUM", "DOC_NUM"),
@@ -264,40 +199,73 @@ def fetch_arcgis():
                 "sale_date":   "",
                 "grantee":     "",
                 "flags":       [],
-                "enriched":    False,
             })
-
-    log.info(f"ArcGIS: {len(raw)} records")
+    log.info(f"Foreclosures: {len(raw)} total records")
     return raw
 
 
-def merge(clerk, arcgis):
-    merged = {}
-    for r in clerk:
-        key = r.get("doc_number") or r.get("address", "").upper()
-        if key: merged[key] = r
-    clerk_addrs = {r.get("address", "").upper() for r in clerk if r.get("address")}
-    added = 0
-    for r in arcgis:
-        doc  = r.get("doc_number", "")
-        addr = r.get("address", "").upper()
-        if doc in merged or addr in clerk_addrs: continue
-        key = doc or addr
-        if key:
-            merged[key] = r
-            added += 1
-    log.info(f"Merged: {len(clerk)} clerk + {added} arcgis = {len(merged)} total")
-    return list(merged.values())
+# ── Enrich with owner names ───────────────────────────────────────────────────
+def enrich_owner_names(records):
+    """
+    Look up owner names from ArcGIS Parcels layer.
+    Uses targeted queries — fast and no bot detection.
+    Budget: ~407 queries × 0.2s = ~80 seconds.
+    """
+    log.info(f"Looking up owner names for {len(records)} records...")
+
+    # First, probe the parcel layer to understand data format
+    log.info("  Probing parcel layer...")
+    sample = arcgis_query(PARCELS_URL, "1=1", fields="Situs,Owner,AddrLn1,AddrCity,Zip", limit=3)
+    if sample:
+        for i, feat in enumerate(sample[:3]):
+            log.info(f"  Parcel sample {i+1}: {dict(feat['attributes'])}")
+    else:
+        log.warning("  Parcel layer returned no sample records!")
+
+    found = 0
+    for i, rec in enumerate(records):
+        addr = rec.get("address", "")
+        if not addr:
+            continue
+
+        result = lookup_owner_by_address(addr)
+        if result and result.get("owner"):
+            rec["owner"]     = result["owner"]
+            rec["mail_addr"] = result.get("mail_addr", "")
+            # Absentee: mailing address differs from property address
+            if rec["mail_addr"] and addr.upper() not in rec["mail_addr"].upper():
+                prop_words = set(addr.upper().split())
+                mail_words = set(rec["mail_addr"].upper().split())
+                if len(prop_words & mail_words) < 2:
+                    rec["absentee"] = True
+            found += 1
+            if found <= 5 or found % 25 == 0:
+                log.info(f"  [{i+1}/{len(records)}] ✓ {addr} → {result['owner']}")
+
+        # Progress update every 50
+        if (i + 1) % 50 == 0:
+            log.info(f"  Progress: {i+1}/{len(records)} | Found: {found}")
+
+        time.sleep(0.2)  # rate limiting
+
+    pct      = 100 * found // max(len(records), 1)
+    absentee = sum(1 for r in records if r.get("absentee"))
+    log.info(f"Owner lookup complete: {found}/{len(records)} ({pct}% hit rate)")
+    log.info(f"Absentee owners: {absentee}")
+    return records
 
 
-def score(rec):
+# ── Scoring ───────────────────────────────────────────────────────────────────
+def score_record(rec):
     s = 0
     if rec.get("address"):       s += 3
     if rec.get("owner"):         s += 3
     if rec.get("type") == "TAX": s += 2
+    if rec.get("absentee"):      s += 2
     return min(s, 10)
 
 
+# ── GHL ───────────────────────────────────────────────────────────────────────
 def ghl_req(method, endpoint, payload=None):
     try:
         import requests
@@ -324,14 +292,12 @@ def ghl_req(method, endpoint, payload=None):
 
 def push_ghl(records):
     if not GHL_API_KEY:
-        log.warning("GHL_API_KEY not set")
-        return
+        log.warning("GHL_API_KEY not set"); return
     named = [r for r in records if r.get("owner")]
-    log.info(f"GHL: {len(named)} named leads")
+    log.info(f"GHL: {len(named)} named leads to push")
     test = ghl_req("GET", f"/contacts/?locationId={GHL_LOCATION_ID}&limit=1")
     if not test or "_error" in test:
-        log.error("GHL auth failed")
-        return
+        log.error("GHL auth failed"); return
     log.info(f"GHL auth OK — {test.get('total','?')} existing contacts")
     created = skipped = errors = 0
     for i, rec in enumerate(sorted(named, key=lambda r: -r.get("score", 0))):
@@ -347,6 +313,7 @@ def push_ghl(records):
         first = parts[0].title() if parts else owner
         last  = " ".join(parts[1:]).title() if len(parts) > 1 else ""
         tags  = ["bexar-lead", rec["type"], f"doc-{doc}"]
+        if rec.get("absentee"):      tags += ["absentee-owner", "high-priority"]
         if rec.get("score", 0) >= 7: tags.append("hot-lead")
         lt = "Tax Foreclosure" if rec["type"] == "TAX" else "Mortgage Foreclosure"
         result = ghl_req("POST", "/contacts/", {
@@ -355,26 +322,29 @@ def push_ghl(records):
             "address1": rec.get("address", ""),
             "city": rec.get("city", "San Antonio"),
             "state": "TX", "country": "US", "postalCode": rec.get("zip", ""),
-            "tags": tags, "source": "Bexar County Clerk",
+            "tags": tags, "source": "Bexar County Scraper",
             "customFields": [
                 {"key": "lead_type",        "field_value": lt},
                 {"key": "doc_number",       "field_value": doc},
                 {"key": "date_filed",       "field_value": rec.get("date_filed", "")},
-                {"key": "sale_date",        "field_value": rec.get("sale_date", "")},
                 {"key": "score",            "field_value": str(rec.get("score", 0))},
                 {"key": "property_address", "field_value": rec.get("address", "")},
-                {"key": "lender",           "field_value": rec.get("grantee", "")},
+                {"key": "school_district",  "field_value": rec.get("school_dist", "")},
+                {"key": "absentee_owner",   "field_value": "Yes" if rec.get("absentee") else "No"},
+                {"key": "mailing_address",  "field_value": rec.get("mail_addr", "")},
             ],
         })
         if result and result.get("contact"):
             created += 1
-            log.info(f"  ✓ [{i+1}] {owner} — {rec.get('address')}")
+            ab = " 🏠 ABSENTEE" if rec.get("absentee") else ""
+            log.info(f"  ✓ [{i+1}]{ab} {owner} — {rec.get('address')}")
         else:
             errors += 1
         time.sleep(0.15)
     log.info(f"GHL done — Created:{created} | Skipped:{skipped} | Errors:{errors}")
 
 
+# ── Dashboard ─────────────────────────────────────────────────────────────────
 DASHBOARD_TEMPLATE = """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -383,18 +353,19 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
 <title>Bexar County Motivated Seller Leads</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@600;700;800&display=swap" rel="stylesheet"/>
 <style>
-:root{--bg:#0d0f14;--surface:#13161e;--surface2:#1a1e2a;--border:#252836;--accent:#00e5ff;--accent3:#a78bfa;--text:#e8eaf0;--muted:#6b7280;--success:#22d3a5;--warning:#fbbf24;--danger:#f87171;}
+:root{--bg:#0d0f14;--surface:#13161e;--surface2:#1a1e2a;--border:#252836;--accent:#00e5ff;--accent3:#a78bfa;--text:#e8eaf0;--muted:#6b7280;--success:#22d3a5;--warning:#fbbf24;--danger:#f87171;--hot:#ff6b35;}
 *{box-sizing:border-box;margin:0;padding:0;}
 body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font-size:13px;min-height:100vh;}
 header{display:flex;align-items:center;justify-content:space-between;padding:18px 32px;border-bottom:1px solid var(--border);background:var(--surface);position:sticky;top:0;z-index:100;}
 .logo{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;}.logo span{color:var(--accent);}
 #last-updated{color:var(--muted);font-size:11px;}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border-bottom:1px solid var(--border);}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border);border-bottom:1px solid var(--border);}
 .stat-card{background:var(--surface);padding:20px 24px;display:flex;flex-direction:column;gap:6px;}
-.stat-num{font-family:'Syne',sans-serif;font-size:36px;font-weight:800;line-height:1;color:var(--accent);}
+.stat-num{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;line-height:1;color:var(--accent);}
 .stat-card:nth-child(2) .stat-num{color:var(--danger);}
 .stat-card:nth-child(3) .stat-num{color:var(--warning);}
 .stat-card:nth-child(4) .stat-num{color:var(--success);}
+.stat-card:nth-child(5) .stat-num{color:var(--hot);}
 .stat-label{color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:1px;}
 .controls{display:flex;gap:10px;padding:16px 32px;background:var(--surface);border-bottom:1px solid var(--border);align-items:center;flex-wrap:wrap;}
 input[type=text]{flex:1;min-width:200px;background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:8px 14px;font-family:'DM Mono',monospace;font-size:13px;outline:none;transition:border-color .2s;}
@@ -406,6 +377,7 @@ table{width:100%;border-collapse:collapse;margin-top:16px;}
 thead th{text-align:left;padding:10px 12px;font-size:10px;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);border-bottom:1px solid var(--border);white-space:nowrap;}
 tbody tr{border-bottom:1px solid var(--border);transition:background .12s;}
 tbody tr:hover{background:var(--surface2);}
+tbody tr.absentee-row{border-left:3px solid var(--hot);}
 tbody td{padding:10px 12px;vertical-align:middle;}
 .score{display:inline-flex;width:36px;height:36px;border-radius:50%;align-items:center;justify-content:center;font-weight:500;font-size:12px;font-family:'Syne',sans-serif;}
 .score-high{background:rgba(34,211,165,.15);color:var(--success);border:1px solid rgba(34,211,165,.3);}
@@ -414,16 +386,18 @@ tbody td{padding:10px 12px;vertical-align:middle;}
 .type-badge{display:inline-block;padding:2px 8px;font-size:10px;font-weight:500;border-radius:2px;text-transform:uppercase;letter-spacing:.5px;white-space:nowrap;}
 .type-nof{background:rgba(248,113,113,.15);color:var(--danger);border:1px solid rgba(248,113,113,.25);}
 .type-tax{background:rgba(251,191,36,.15);color:var(--warning);border:1px solid rgba(251,191,36,.25);}
-.addr{color:var(--text);font-size:12px;max-width:200px;}
+.addr{color:var(--text);font-size:12px;max-width:180px;}
 .owner{color:var(--success);font-size:12px;font-weight:500;}
 .owner-none{color:var(--muted);font-size:12px;}
 .doc{color:var(--muted);font-size:12px;}
+.flag{display:inline-block;padding:2px 6px;font-size:10px;background:rgba(167,139,250,.12);color:var(--accent3);border:1px solid rgba(167,139,250,.25);border-radius:2px;margin-right:3px;}
+.flag-hot{background:rgba(255,107,53,.15);color:var(--hot);border-color:rgba(255,107,53,.3);font-weight:600;}
 .state-msg{text-align:center;padding:60px 20px;color:var(--muted);}
 .pagination{display:flex;justify-content:center;align-items:center;gap:8px;padding:20px 32px;color:var(--muted);font-size:12px;}
 .pagination button{background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:6px 14px;cursor:pointer;font-family:'DM Mono',monospace;font-size:12px;}
 .pagination button:hover:not(:disabled){border-color:var(--accent);color:var(--accent);}
 .pagination button:disabled{opacity:.3;cursor:default;}
-@media(max-width:900px){.stats{grid-template-columns:repeat(2,1fr);}.controls,.table-wrap{padding-left:16px;padding-right:16px;}}
+@media(max-width:1100px){.stats{grid-template-columns:repeat(3,1fr);}.controls,.table-wrap{padding-left:16px;padding-right:16px;}}
 </style>
 </head>
 <body>
@@ -433,25 +407,28 @@ tbody td{padding:10px 12px;vertical-align:middle;}
 </header>
 <div class="stats">
   <div class="stat-card"><div class="stat-num" id="s-total">—</div><div class="stat-label">Total Leads</div></div>
-  <div class="stat-card"><div class="stat-num" id="s-nof">—</div><div class="stat-label">NOF Foreclosures</div></div>
+  <div class="stat-card"><div class="stat-num" id="s-nof">—</div><div class="stat-label">Foreclosures (NOF)</div></div>
   <div class="stat-card"><div class="stat-num" id="s-tax">—</div><div class="stat-label">Tax Foreclosures</div></div>
   <div class="stat-card"><div class="stat-num" id="s-named">—</div><div class="stat-label">With Owner Name</div></div>
+  <div class="stat-card"><div class="stat-num" id="s-absentee">—</div><div class="stat-label">Absentee Owners 🔥</div></div>
 </div>
 <div class="controls">
   <input type="text" id="search" placeholder="Search address, owner, doc #…" oninput="applyFilters()"/>
   <select id="type-filter" onchange="applyFilters()">
     <option value="">All Types</option>
-    <option value="NOF">NOF Foreclosure</option>
+    <option value="NOF">Foreclosure (NOF)</option>
     <option value="TAX">Tax Foreclosure</option>
   </select>
   <select id="owner-filter" onchange="applyFilters()">
     <option value="">All Leads</option>
     <option value="named">With Owner Name</option>
+    <option value="absentee">Absentee Owners 🔥</option>
     <option value="unnamed">No Name Yet</option>
   </select>
   <select id="sort-select" onchange="applyFilters()">
     <option value="score-desc">Sort: Score ↓</option>
     <option value="date-desc">Sort: Date ↓</option>
+    <option value="score-asc">Sort: Score ↑</option>
   </select>
   <span class="count-badge" id="count-badge"></span>
 </div>
@@ -459,7 +436,7 @@ tbody td{padding:10px 12px;vertical-align:middle;}
   <table>
     <thead><tr>
       <th>Score</th><th>Type</th><th>Property Address</th>
-      <th>Owner (Grantor)</th><th>Lender (Grantee)</th><th>Date Filed</th><th>Sale Date</th><th>Doc #</th>
+      <th>Owner Name</th><th>Date Filed</th><th>Doc #</th><th>City/ZIP</th><th>Flags</th>
     </tr></thead>
     <tbody id="tbody"></tbody>
   </table>
@@ -478,6 +455,7 @@ function init(){
   document.getElementById('s-nof').textContent=ALL_RECORDS.filter(function(r){return r.type==='NOF';}).length;
   document.getElementById('s-tax').textContent=ALL_RECORDS.filter(function(r){return r.type==='TAX';}).length;
   document.getElementById('s-named').textContent=ALL_RECORDS.filter(function(r){return r.owner;}).length;
+  document.getElementById('s-absentee').textContent=ALL_RECORDS.filter(function(r){return r.absentee;}).length;
   applyFilters();
 }
 function applyFilters(){
@@ -488,11 +466,12 @@ function applyFilters(){
   filtered=ALL_RECORDS.filter(function(r){
     var mq=!q||(r.address||'').toLowerCase().indexOf(q)>=0||(r.owner||'').toLowerCase().indexOf(q)>=0||(r.doc_number||'').toLowerCase().indexOf(q)>=0;
     var mt=!t||r.type===t;
-    var mow=!ow||(ow==='named'?!!r.owner:!r.owner);
+    var mow=!ow||(ow==='named'?!!r.owner:ow==='absentee'?!!r.absentee:!r.owner);
     return mq&&mt&&mow;
   });
   filtered.sort(function(a,b){
     if(s==='score-desc') return b.score-a.score;
+    if(s==='score-asc')  return a.score-b.score;
     if(s==='date-desc')  return (b.date_filed||'')>(a.date_filed||'')?1:-1;
     return 0;
   });
@@ -513,17 +492,24 @@ function render(){
     var scC=sc>=7?'score-high':sc>=4?'score-mid':'score-low';
     var tC=r.type==='TAX'?'type-tax':'type-nof';
     var tL=r.type==='TAX'?'TAX FORE':'NOF';
+    var cz=[r.city,r.zip].filter(Boolean).join(' ')||'—';
     var oh=r.owner?'<div class="owner">'+r.owner+'</div>':'<div class="owner-none">—</div>';
-    var gh=r.grantee?'<div class="doc">'+r.grantee+'</div>':'<div class="owner-none">—</div>';
-    rows+='<tr>'
+    var rc=r.absentee?' class="absentee-row"':'';
+    var fh='';
+    for(var j=0;j<(r.flags||[]).length;j++){
+      var fc=r.flags[j]==='ABSENTEE'?'flag flag-hot':'flag';
+      fh+='<span class="'+fc+'">'+r.flags[j]+'</span>';
+    }
+    if(!fh) fh='<span style="color:var(--muted)">—</span>';
+    rows+='<tr'+rc+'>'
       +'<td><div class="score '+scC+'">'+sc+'</div></td>'
       +'<td><span class="type-badge '+tC+'">'+tL+'</span></td>'
       +'<td><div class="addr">'+(r.address||'—')+'</div></td>'
       +'<td>'+oh+'</td>'
-      +'<td>'+gh+'</td>'
       +'<td><div class="doc">'+(r.date_filed||'—')+'</div></td>'
-      +'<td><div class="doc">'+(r.sale_date||'—')+'</div></td>'
       +'<td><div class="doc">'+(r.doc_number||'—')+'</div></td>'
+      +'<td><div class="doc">'+cz+'</div></td>'
+      +'<td>'+fh+'</td>'
       +'</tr>';
   }
   tbody.innerHTML=rows;
@@ -559,22 +545,26 @@ if __name__ == "__main__":
     os.makedirs("dashboard", exist_ok=True)
 
     log.info("="*60)
-    log.info("Bexar County Lead Scraper v17")
+    log.info("Bexar County Lead Scraper v19")
+    log.info(f"Foreclosures: {FORECLOSURE_BASE}")
+    log.info(f"Owner lookup: {PARCELS_URL}")
     log.info("="*60)
 
-    clerk_records  = scrape_clerk()
-    arcgis_records = fetch_arcgis()
-    records        = merge(clerk_records, arcgis_records)
+    records = fetch_foreclosures()
+    records = enrich_owner_names(records)
 
     for r in records:
+        r["flags"] = []
         if r["type"] == "TAX":             r["flags"].append("TAX FORE")
+        if r.get("absentee"):              r["flags"].append("ABSENTEE")
         if not r["owner"]:                 r["flags"].append("NO OWNER")
         if not r["city"] and r["address"]: r["flags"].append("NO CITY")
-        r["score"] = score(r)
+        r["score"] = score_record(r)
 
     records.sort(key=lambda x: x["score"], reverse=True)
-    named = sum(1 for r in records if r["owner"])
-    log.info(f"Final: {len(records)} leads | {named} with owner name")
+    named    = sum(1 for r in records if r["owner"])
+    absentee = sum(1 for r in records if r["absentee"])
+    log.info(f"Final: {len(records)} leads | {named} named | {absentee} absentee")
 
     with open("data/records.json", "w", encoding="utf-8") as f:
         json.dump(records, f, indent=2)
