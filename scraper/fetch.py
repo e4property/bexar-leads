@@ -623,3 +623,4 @@ if __name__ == "__main__":
 
     build_dashboard(records)
     push_to_ghl(records)
+
