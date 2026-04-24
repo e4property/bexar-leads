@@ -1,9 +1,8 @@
 """
-Bexar County Motivated Seller Lead Scraper v16
-- Scrapes bexar.tx.publicsearch.us with Selenium (daily, owner names)
-- Filters to last 90 days only (no old 2006/2013 records)
+Bexar County Motivated Seller Lead Scraper v17
+- Waits for JavaScript to finish rendering results table
+- Extracts GRANTOR (owner) names from Clerk site
 - Falls back to ArcGIS for tax foreclosures
-- Pushes named leads to GHL
 """
 
 import json
@@ -31,9 +30,7 @@ GHL_API_BASE    = "https://services.leadconnectorhq.com"
 
 
 def scrape_clerk():
-    """Scrape bexar.tx.publicsearch.us using Selenium headless Chrome."""
-    log.info("Starting Clerk scraper...")
-
+    log.info("Starting Clerk scraper (v17)...")
     try:
         from selenium import webdriver
         from selenium.webdriver.chrome.options import Options
@@ -58,16 +55,14 @@ def scrape_clerk():
 
     driver = None
     records = []
-
     now    = datetime.now(timezone.utc)
     cutoff = now - timedelta(days=LOOKBACK_DAYS)
 
     try:
         service = Service("/usr/bin/chromedriver")
         driver  = webdriver.Chrome(service=service, options=options)
-        wait    = WebDriverWait(driver, 20)
+        wait    = WebDriverWait(driver, 45)  # wait up to 45s for JS to render
 
-        # Build URL — FC = Foreclosures department, date range = last 90 days
         date_from = cutoff.strftime("%Y%m%d")
         date_to   = now.strftime("%Y%m%d")
         url = (
@@ -81,99 +76,95 @@ def scrape_clerk():
 
         log.info(f"  Loading: {url}")
         driver.get(url)
-        time.sleep(4)
 
-        # Accept disclaimer if shown
+        # Wait for "Loading Search Results..." to disappear
+        # and actual results to appear
+        log.info("  Waiting for results to load...")
         try:
-            for btn_text in ["Accept", "agree", "Continue", "I Agree"]:
-                btns = driver.find_elements(By.XPATH, f"//button[contains(text(),'{btn_text}')]")
-                if btns:
-                    btns[0].click()
-                    log.info(f"  Clicked: {btn_text}")
-                    time.sleep(2)
-                    break
-        except Exception:
-            pass
-
-        log.info(f"  URL after load: {driver.current_url}")
-        log.info(f"  Title: {driver.title}")
-
-        # Wait for table
-        try:
-            wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "table")))
+            # Wait until loading text disappears
+            wait.until(EC.invisibility_of_element_located(
+                (By.XPATH, "//*[contains(text(),'Loading Search Results')]")
+            ))
+            log.info("  Loading complete")
         except TimeoutException:
-            log.warning("  No table found — logging page text")
-            log.warning(f"  Page: {driver.find_element(By.TAG_NAME,'body').text[:500]}")
+            log.warning("  Loading text did not disappear — continuing anyway")
 
-        # Get all rows
+        # Wait for actual result rows
+        try:
+            wait.until(EC.presence_of_element_located(
+                (By.CSS_SELECTOR, "table tbody tr td")
+            ))
+            log.info("  Result rows found!")
+        except TimeoutException:
+            log.warning("  No result rows found after waiting")
+
+        # Extra wait for all rows to render
+        time.sleep(3)
+
+        # Log page state
+        log.info(f"  Title: {driver.title}")
+        body_text = driver.find_element(By.TAG_NAME, "body").text
+        log.info(f"  Page text preview: {body_text[:400]}")
+
+        # Get headers
+        headers = [h.text.strip() for h in driver.find_elements(By.CSS_SELECTOR, "table thead th")]
+        log.info(f"  Table headers: {headers}")
+
+        # Get rows
         rows = driver.find_elements(By.CSS_SELECTOR, "table tbody tr")
         log.info(f"  Found {len(rows)} rows")
 
         if rows:
-            # Log first row to understand column layout
-            first_cells = [c.text.strip() for c in rows[0].find_elements(By.TAG_NAME, "td")]
-            log.info(f"  First row cells: {first_cells}")
+            first = [c.text.strip() for c in rows[0].find_elements(By.TAG_NAME, "td")]
+            log.info(f"  First row: {first}")
 
-            # Log header to understand column order
-            headers = [h.text.strip() for h in driver.find_elements(By.CSS_SELECTOR, "table thead th")]
-            log.info(f"  Headers: {headers}")
+        # Map columns based on headers
+        # Expected: GRANTOR | GRANTEE | DOC TYPE | RECORDED DATE | SALE DATE | DOC NUMBER | PROPERTY ADDRESS
+        col_map = {}
+        for i, h in enumerate(headers):
+            h_upper = h.upper()
+            if "GRANTOR" in h_upper:      col_map["grantor"]   = i
+            elif "GRANTEE" in h_upper:    col_map["grantee"]   = i
+            elif "DOC TYPE" in h_upper or "TYPE" in h_upper: col_map["doc_type"] = i
+            elif "RECORDED" in h_upper:   col_map["rec_date"]  = i
+            elif "SALE" in h_upper:       col_map["sale_date"] = i
+            elif "DOC" in h_upper and "NUMBER" in h_upper: col_map["doc_num"] = i
+            elif "PROPERTY" in h_upper or "ADDRESS" in h_upper: col_map["address"] = i
 
-        for row in rows:
+        log.info(f"  Column map: {col_map}")
+
+        # If no headers found, use positional fallback based on screenshot
+        # Screenshot showed: GRANTOR | GRANTEE | DOC TYPE | RECORDED DATE | SALE DATE | DOC NUMBER | PROPERTY ADDRESS
+        if not col_map:
+            col_map = {
+                "grantor": 0, "grantee": 1, "doc_type": 2,
+                "rec_date": 3, "sale_date": 4, "doc_num": 5, "address": 6
+            }
+            log.info("  Using default column positions")
+
+        def get_col(cells, key, default=""):
+            idx = col_map.get(key)
+            if idx is not None and idx < len(cells):
+                return cells[idx].strip()
+            return default
+
+        for i, row in enumerate(rows):
             try:
                 cells = [c.text.strip() for c in row.find_elements(By.TAG_NAME, "td")]
                 if len(cells) < 3:
                     continue
 
-                # Based on headers seen in your screenshots:
-                # GRANTOR | GRANTEE | DOC TYPE | RECORDED DATE | SALE DATE | DOC NUMBER | PROPERTY ADDRESS
-                # OR (from earlier screenshot without grantor col):
-                # DOC TYPE | RECORDED DATE | SALE DATE | DOC NUMBER | REMARKS | PROPERTY ADDRESS
+                grantor   = get_col(cells, "grantor")
+                grantee   = get_col(cells, "grantee")
+                doc_type  = get_col(cells, "doc_type")
+                rec_date  = get_col(cells, "rec_date")
+                sale_date = get_col(cells, "sale_date")
+                doc_num   = get_col(cells, "doc_num")
+                address   = get_col(cells, "address")
 
-                # Detect layout by checking if first cell looks like a name or doc type
-                first = cells[0]
-                is_name_first = (
-                    len(first) > 3 and
-                    not any(x in first.upper() for x in ["NOTICE", "DEED", "RELEASE", "LIEN", "TRUST"]) and
-                    not first.replace(" ", "").isdigit()
-                )
-
-                if is_name_first and len(cells) >= 5:
-                    # Layout: GRANTOR | GRANTEE | DOC TYPE | RECORDED DATE | SALE DATE | DOC# | ADDRESS
-                    grantor   = cells[0]
-                    grantee   = cells[1] if len(cells) > 1 else ""
-                    doc_type  = cells[2] if len(cells) > 2 else ""
-                    rec_date  = cells[3] if len(cells) > 3 else ""
-                    sale_date = cells[4] if len(cells) > 4 else ""
-                    doc_num   = cells[5] if len(cells) > 5 else ""
-                    address   = cells[6] if len(cells) > 6 else ""
-                else:
-                    # Layout: DOC TYPE | RECORDED DATE | SALE DATE | DOC# | REMARKS | ADDRESS
-                    grantor   = ""
-                    grantee   = ""
-                    doc_type  = cells[0]
-                    rec_date  = cells[1] if len(cells) > 1 else ""
-                    sale_date = cells[2] if len(cells) > 2 else ""
-                    doc_num   = cells[3] if len(cells) > 3 else ""
-                    address   = cells[5] if len(cells) > 5 else cells[-1]
-
-                # Skip non-foreclosure doc types
+                # Skip non-foreclosure types
                 if doc_type and "FORECLO" not in doc_type.upper() and "TRUSTEE" not in doc_type.upper():
                     continue
-
-                # Skip records outside our date window
-                if rec_date:
-                    try:
-                        # Parse various date formats: M/D/YYYY or YYYY-MM-DD
-                        for fmt in ("%m/%d/%Y", "%Y-%m-%d", "%m-%d-%Y"):
-                            try:
-                                rec_dt = datetime.strptime(rec_date, fmt)
-                                if rec_dt < cutoff.replace(tzinfo=None):
-                                    continue  # skip old record
-                                break
-                            except ValueError:
-                                continue
-                    except Exception:
-                        pass
 
                 if not address and not doc_num:
                     continue
@@ -199,13 +190,13 @@ def scrape_clerk():
                 })
 
             except Exception as e:
-                log.debug(f"  Row parse error: {e}")
+                log.debug(f"  Row {i} error: {e}")
 
         named = sum(1 for r in records if r.get("owner"))
         log.info(f"Clerk: {len(records)} records, {named} with owner name")
 
     except Exception as e:
-        log.error(f"Clerk scraper error: {e}", exc_info=True)
+        log.error(f"Clerk error: {e}", exc_info=True)
     finally:
         if driver:
             driver.quit()
@@ -214,12 +205,11 @@ def scrape_clerk():
 
 
 def fetch_arcgis():
-    """Fetch from ArcGIS — always run to get tax foreclosures."""
     log.info("Fetching ArcGIS records...")
 
     def fetch_json(url):
         req = urllib.request.Request(
-            url, headers={"User-Agent": "BexarScraper/16.0", "Accept": "application/json"})
+            url, headers={"User-Agent": "BexarScraper/17.0", "Accept": "application/json"})
         with urllib.request.urlopen(req, timeout=30) as r:
             return json.loads(r.read().decode("utf-8", errors="replace"))
 
@@ -243,17 +233,14 @@ def fetch_arcgis():
                 return str(v).strip()
         return default
 
-    now    = datetime.now(timezone.utc)
-    cutoff = now - timedelta(days=90)
-
     raw = []
-    for idx, typ, label in [(0, "NOF", "Mortgage"), (1, "TAX", "Tax")]:
+    for idx, typ in [(0, "NOF"), (1, "TAX")]:
         layer_url = f"{ARCGIS_BASE}/{idx}"
         features, offset = [], 0
         while True:
             batch = query(layer_url, offset)
             features.extend(batch)
-            log.info(f"  Layer {idx}: offset={offset}, {len(batch)} records")
+            log.info(f"  Layer {idx}: {len(batch)} records (total: {len(features)})")
             if len(batch) < 1000: break
             offset += len(batch)
         for feat in features:
@@ -322,7 +309,8 @@ def ghl_req(method, endpoint, payload=None):
         "Content-Type": "application/json", "Accept": "application/json",
         "Version": "2021-07-28",
         "User-Agent": "Mozilla/5.0 Chrome/120.0.0.0",
-        "Origin": "https://app.justjarvis.com", "Referer": "https://app.justjarvis.com/",
+        "Origin": "https://app.justjarvis.com",
+        "Referer": "https://app.justjarvis.com/",
     }
     try:
         resp = requests.get(url, headers=h, timeout=20) if method == "GET" \
@@ -339,7 +327,7 @@ def push_ghl(records):
         log.warning("GHL_API_KEY not set")
         return
     named = [r for r in records if r.get("owner")]
-    log.info(f"GHL: {len(named)} named leads to push")
+    log.info(f"GHL: {len(named)} named leads")
     test = ghl_req("GET", f"/contacts/?locationId={GHL_LOCATION_ID}&limit=1")
     if not test or "_error" in test:
         log.error("GHL auth failed")
@@ -348,7 +336,6 @@ def push_ghl(records):
     created = skipped = errors = 0
     for i, rec in enumerate(sorted(named, key=lambda r: -r.get("score", 0))):
         doc = rec.get("doc_number", "")
-        # Check duplicate
         if doc:
             r = ghl_req("GET", f"/contacts/?locationId={GHL_LOCATION_ID}&query={urllib.parse.quote(doc)}&limit=3")
             if r and not r.get("_error"):
@@ -427,12 +414,10 @@ tbody td{padding:10px 12px;vertical-align:middle;}
 .type-badge{display:inline-block;padding:2px 8px;font-size:10px;font-weight:500;border-radius:2px;text-transform:uppercase;letter-spacing:.5px;white-space:nowrap;}
 .type-nof{background:rgba(248,113,113,.15);color:var(--danger);border:1px solid rgba(248,113,113,.25);}
 .type-tax{background:rgba(251,191,36,.15);color:var(--warning);border:1px solid rgba(251,191,36,.25);}
-.flags{display:flex;gap:4px;flex-wrap:wrap;}
-.flag{display:inline-block;padding:2px 6px;font-size:10px;background:rgba(167,139,250,.12);color:var(--accent3);border:1px solid rgba(167,139,250,.25);border-radius:2px;white-space:nowrap;}
 .addr{color:var(--text);font-size:12px;max-width:200px;}
 .owner{color:var(--success);font-size:12px;font-weight:500;}
 .owner-none{color:var(--muted);font-size:12px;}
-.city,.doc{color:var(--muted);font-size:12px;}
+.doc{color:var(--muted);font-size:12px;}
 .state-msg{text-align:center;padding:60px 20px;color:var(--muted);}
 .pagination{display:flex;justify-content:center;align-items:center;gap:8px;padding:20px 32px;color:var(--muted);font-size:12px;}
 .pagination button{background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:6px 14px;cursor:pointer;font-family:'DM Mono',monospace;font-size:12px;}
@@ -574,9 +559,7 @@ if __name__ == "__main__":
     os.makedirs("dashboard", exist_ok=True)
 
     log.info("="*60)
-    log.info("Bexar County Lead Scraper v16")
-    log.info(f"Primary:  {CLERK_URL}")
-    log.info(f"Fallback: {ARCGIS_BASE}")
+    log.info("Bexar County Lead Scraper v17")
     log.info("="*60)
 
     clerk_records  = scrape_clerk()
