@@ -29,17 +29,16 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install Chrome
+      - name: Install Chrome and ChromeDriver
         run: |
-          wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-          echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
           sudo apt-get update -qq
-          sudo apt-get install -y google-chrome-stable
-          google-chrome --version
+          sudo apt-get install -y chromium-browser chromium-chromedriver
+          chromium-browser --version
+          chromedriver --version
 
-      - name: Install dependencies
+      - name: Install Python dependencies
         run: |
-          pip install requests selenium webdriver-manager
+          pip install requests selenium
 
       - name: Create output directories
         run: mkdir -p data dashboard
@@ -48,7 +47,6 @@ jobs:
         env:
           GHL_API_KEY:     ${{ secrets.GHL_API_KEY }}
           GHL_LOCATION_ID: ${{ secrets.GHL_LOCATION_ID }}
-          DISPLAY: ""
         run: python scraper/fetch.py
 
       - name: Show summary
