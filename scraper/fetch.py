@@ -1,7 +1,7 @@
 """
 Bexar County Motivated Seller Lead Scraper v15
-Primary: bexar.tx.publicsearch.us (Selenium headless Chrome — daily updates with owner names)
-Fallback: maps.bexar.org ArcGIS (monthly updates)
+Primary: bexar.tx.publicsearch.us (Selenium headless Chrome — daily, owner names included)
+Fallback: maps.bexar.org ArcGIS (monthly updates, tax foreclosures)
 """
 
 import json
@@ -19,9 +19,9 @@ logging.basicConfig(
 )
 log = logging.getLogger(__name__)
 
-CLERK_URL    = "https://bexar.tx.publicsearch.us"
-ARCGIS_BASE  = "https://maps.bexar.org/arcgis/rest/services/CC/ForeclosuresProd/MapServer"
-LOOKBACK_DAYS = 90  # how far back to pull notices
+CLERK_URL     = "https://bexar.tx.publicsearch.us"
+ARCGIS_BASE   = "https://maps.bexar.org/arcgis/rest/services/CC/ForeclosuresProd/MapServer"
+LOOKBACK_DAYS = 90
 
 GHL_API_KEY     = os.environ.get("GHL_API_KEY", "")
 GHL_LOCATION_ID = os.environ.get("GHL_LOCATION_ID", "UAOJlgeerLu3GChP9jDJ")
@@ -30,10 +30,6 @@ GHL_API_BASE    = "https://services.leadconnectorhq.com"
 
 # ── Selenium scraper ──────────────────────────────────────────────────────────
 def scrape_clerk_with_selenium():
-    """
-    Use headless Chrome to scrape bexar.tx.publicsearch.us foreclosure records.
-    Returns list of lead records with grantor (owner) names.
-    """
     log.info("Starting Selenium scraper for bexar.tx.publicsearch.us...")
 
     try:
@@ -44,11 +40,11 @@ def scrape_clerk_with_selenium():
         from selenium.webdriver.support.ui import WebDriverWait
         from selenium.webdriver.support import expected_conditions as EC
         from selenium.common.exceptions import TimeoutException, NoSuchElementException
+        from webdriver_manager.chrome import ChromeDriverManager
     except ImportError as e:
-        log.error(f"Selenium not installed: {e}")
+        log.error(f"Import error: {e}")
         return []
 
-    # Chrome options for headless operation
     options = Options()
     options.add_argument("--headless=new")
     options.add_argument("--no-sandbox")
@@ -64,23 +60,21 @@ def scrape_clerk_with_selenium():
     records = []
 
     try:
-        driver = webdriver.Chrome(options=options)
+        service = Service(ChromeDriverManager().install())
+        driver  = webdriver.Chrome(service=service, options=options)
         driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
-        wait = WebDriverWait(driver, 20)
+        wait = WebDriverWait(driver, 25)
 
-        # Calculate date range
         now    = datetime.now(timezone.utc)
         cutoff = now - timedelta(days=LOOKBACK_DAYS)
-        date_from = cutoff.strftime("%-m/%-d/%Y")  # e.g. 1/22/2026
-        date_to   = now.strftime("%-m/%-d/%Y")
+        date_from = cutoff.strftime("%Y%m%d")
+        date_to   = now.strftime("%Y%m%d")
 
-        log.info(f"  Date range: {date_from} → {date_to}")
-
-        # Build search URL for Foreclosures department
+        # Direct URL with foreclosure department + date range
         search_url = (
             f"{CLERK_URL}/results"
             f"?department=FC"
-            f"&instrumentDateRange={cutoff.strftime('%Y%m%d')}%2C{now.strftime('%Y%m%d')}"
+            f"&instrumentDateRange={date_from}%2C{date_to}"
             f"&keywordSearch=false"
             f"&limit=250"
             f"&offset=0"
@@ -88,48 +82,47 @@ def scrape_clerk_with_selenium():
 
         log.info(f"  Loading: {search_url}")
         driver.get(search_url)
-        time.sleep(3)
+        time.sleep(4)
 
-        # Accept disclaimer if present
+        # Handle disclaimer if present
         try:
-            disclaimer = driver.find_element(By.XPATH, "//button[contains(text(),'Accept') or contains(text(),'agree') or contains(text(),'Continue')]")
-            disclaimer.click()
-            log.info("  Accepted disclaimer")
-            time.sleep(2)
-        except NoSuchElementException:
+            btns = driver.find_elements(By.XPATH,
+                "//button[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'accept') or contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'agree') or contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'continue')]"
+            )
+            if btns:
+                btns[0].click()
+                log.info("  Accepted disclaimer")
+                time.sleep(2)
+        except Exception:
             pass
 
-        # Wait for results table
-        try:
-            wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "table tbody tr, .result-row, [data-testid='result-row']")))
-            log.info("  Results table loaded")
-        except TimeoutException:
-            log.warning("  Results table not found — trying alternate approach")
-            # Try clicking on Foreclosures in the department dropdown
-            try:
-                driver.get(CLERK_URL)
-                time.sleep(2)
-                # Look for department dropdown
-                dept_dropdown = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "select[name='department'], .department-select, [data-cy='department']")))
-                driver.execute_script("arguments[0].value = 'FC'", dept_dropdown)
-                driver.execute_script("arguments[0].dispatchEvent(new Event('change'))", dept_dropdown)
-                time.sleep(1)
-                # Set date range and search
-                search_btn = driver.find_element(By.CSS_SELECTOR, "button[type='submit'], .search-btn, [data-cy='search-button']")
-                search_btn.click()
-                time.sleep(3)
-                wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "table tbody tr")))
-            except Exception as e2:
-                log.error(f"  Alternative approach failed: {e2}")
-
-        # Log current URL and page source snippet for debugging
         log.info(f"  Current URL: {driver.current_url}")
-        page_text = driver.find_element(By.TAG_NAME, "body").text[:500]
-        log.info(f"  Page preview: {page_text[:300]}")
+        log.info(f"  Page title: {driver.title}")
 
-        # Extract records from table rows
-        rows = driver.find_elements(By.CSS_SELECTOR, "table tbody tr")
-        log.info(f"  Found {len(rows)} table rows")
+        # Wait for results
+        try:
+            wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "table tbody tr")))
+            log.info("  Table loaded")
+        except TimeoutException:
+            # Log what we see
+            body = driver.find_element(By.TAG_NAME, "body").text[:800]
+            log.warning(f"  Table not found. Page content: {body}")
+
+        # Try multiple selectors for rows
+        rows = []
+        for selector in ["table tbody tr", ".result-row", "[role='row']", "tr"]:
+            rows = driver.find_elements(By.CSS_SELECTOR, selector)
+            if rows:
+                log.info(f"  Found {len(rows)} rows using selector: {selector}")
+                break
+
+        # Log first row structure for debugging
+        if rows:
+            first_row = rows[0]
+            cells = first_row.find_elements(By.TAG_NAME, "td")
+            log.info(f"  First row has {len(cells)} cells")
+            if cells:
+                log.info(f"  Cell texts: {[c.text.strip()[:30] for c in cells]}")
 
         for i, row in enumerate(rows):
             try:
@@ -137,32 +130,47 @@ def scrape_clerk_with_selenium():
                 if len(cells) < 3:
                     continue
 
-                cell_texts = [c.text.strip() for c in cells]
-                log.info(f"  Row {i+1}: {cell_texts}")
+                texts = [c.text.strip() for c in cells]
 
-                # Map columns based on what we see:
-                # GRANTOR | GRANTEE | DOC TYPE | RECORDED DATE | SALE DATE | DOC NUMBER | PROPERTY ADDRESS
-                grantor   = cell_texts[0] if len(cell_texts) > 0 else ""
-                grantee   = cell_texts[1] if len(cell_texts) > 1 else ""
-                doc_type  = cell_texts[2] if len(cell_texts) > 2 else ""
-                rec_date  = cell_texts[3] if len(cell_texts) > 3 else ""
-                sale_date = cell_texts[4] if len(cell_texts) > 4 else ""
-                doc_num   = cell_texts[5] if len(cell_texts) > 5 else ""
-                address   = cell_texts[6] if len(cell_texts) > 6 else ""
+                # Determine column layout from page
+                # Layout A: GRANTOR | GRANTEE | DOC TYPE | RECORDED DATE | SALE DATE | DOC NUMBER | PROPERTY ADDRESS
+                # Layout B: DOC TYPE | RECORDED DATE | SALE DATE | DOC NUMBER | REMARKS | PROPERTY ADDRESS
+                grantor   = ""
+                grantee   = ""
+                doc_type  = ""
+                rec_date  = ""
+                sale_date = ""
+                doc_num   = ""
+                address   = ""
 
-                # Filter to foreclosure-related doc types
-                if doc_type and "FORECLO" not in doc_type.upper() and "TRUSTEE" not in doc_type.upper():
-                    # Try REMARKS column layout:
-                    # GRANTOR | DOC TYPE | RECORDED DATE | SALE DATE | DOC NUMBER | REMARKS | PROPERTY ADDRESS
-                    if len(cell_texts) >= 5:
-                        doc_type  = cell_texts[1] if len(cell_texts) > 1 else ""
-                        rec_date  = cell_texts[2] if len(cell_texts) > 2 else ""
-                        sale_date = cell_texts[3] if len(cell_texts) > 3 else ""
-                        doc_num   = cell_texts[4] if len(cell_texts) > 4 else ""
-                        address   = cell_texts[6] if len(cell_texts) > 6 else cell_texts[-1]
+                if len(texts) >= 7:
+                    # Assume layout A (has grantor)
+                    grantor   = texts[0]
+                    grantee   = texts[1]
+                    doc_type  = texts[2]
+                    rec_date  = texts[3]
+                    sale_date = texts[4]
+                    doc_num   = texts[5]
+                    address   = texts[6]
+                elif len(texts) >= 6:
+                    doc_type  = texts[0]
+                    rec_date  = texts[1]
+                    sale_date = texts[2]
+                    doc_num   = texts[3]
+                    address   = texts[5] if len(texts) > 5 else texts[4]
+                elif len(texts) >= 4:
+                    doc_type = texts[0]
+                    rec_date = texts[1]
+                    doc_num  = texts[2]
+                    address  = texts[3]
 
-                if not grantor and not address:
+                if not address and not doc_num:
                     continue
+
+                # Only keep foreclosure records
+                if doc_type and doc_type.upper() not in ("", "NOTICE OF FORECLOSURE", "NOTICE OF FORE...", "NOF", "NTS", "NOTICE OF TRUSTEE"):
+                    if "FORECLO" not in doc_type.upper() and "TRUSTEE" not in doc_type.upper():
+                        continue
 
                 records.append({
                     "type":        "NOF",
@@ -172,7 +180,7 @@ def scrape_clerk_with_selenium():
                     "mail_addr":   "",
                     "absentee":    False,
                     "doc_number":  doc_num,
-                    "year":        rec_date[-4:] if rec_date else "",
+                    "year":        rec_date[-4:] if len(rec_date) >= 4 else "",
                     "month":       rec_date[:2].strip("/") if rec_date else "",
                     "city":        "San Antonio",
                     "zip":         "",
@@ -185,14 +193,14 @@ def scrape_clerk_with_selenium():
                 })
 
             except Exception as e:
-                log.warning(f"  Row {i+1} parse error: {e}")
+                log.debug(f"  Row {i} error: {e}")
                 continue
 
         named = sum(1 for r in records if r.get("owner"))
-        log.info(f"  Clerk scrape complete: {len(records)} records, {named} with owner name")
+        log.info(f"Clerk scrape: {len(records)} records, {named} with owner name")
 
     except Exception as e:
-        log.error(f"Selenium scraper failed: {e}", exc_info=True)
+        log.error(f"Selenium error: {e}", exc_info=True)
     finally:
         if driver:
             driver.quit()
@@ -202,7 +210,7 @@ def scrape_clerk_with_selenium():
 
 # ── ArcGIS fallback ───────────────────────────────────────────────────────────
 def fetch_arcgis_records():
-    log.info("Fetching ArcGIS records (fallback/supplement)...")
+    log.info("Fetching ArcGIS records...")
 
     def fetch_json(url):
         req = urllib.request.Request(
@@ -277,30 +285,25 @@ def fetch_arcgis_records():
     return raw
 
 
-# ── Merge records ─────────────────────────────────────────────────────────────
+# ── Merge ─────────────────────────────────────────────────────────────────────
 def merge_records(clerk_records, arcgis_records):
     merged = {}
-
-    # Clerk first (freshest, has owner names)
     for r in clerk_records:
         key = r.get("doc_number") or r.get("address", "").upper()
-        if key:
-            merged[key] = r
+        if key: merged[key] = r
 
-    # ArcGIS — add only what's not already in clerk data
     clerk_addrs = {r.get("address", "").upper() for r in clerk_records if r.get("address")}
-    new_from_arcgis = 0
+    new_count = 0
     for r in arcgis_records:
         doc  = r.get("doc_number", "")
         addr = r.get("address", "").upper()
-        if doc in merged or addr in clerk_addrs:
-            continue
+        if doc in merged or addr in clerk_addrs: continue
         key = doc or addr
         if key:
             merged[key] = r
-            new_from_arcgis += 1
+            new_count += 1
 
-    log.info(f"Merged: {len(clerk_records)} clerk + {new_from_arcgis} new ArcGIS = {len(merged)} total")
+    log.info(f"Merged: {len(clerk_records)} clerk + {new_count} new ArcGIS = {len(merged)} total")
     return list(merged.values())
 
 
@@ -310,11 +313,10 @@ def score_record(rec):
     if rec.get("address"):       s += 3
     if rec.get("owner"):         s += 3
     if rec.get("type") == "TAX": s += 2
-    if rec.get("absentee"):      s += 2
     return min(s, 10)
 
 
-# ── GHL Push ─────────────────────────────────────────────────────────────────
+# ── GHL ───────────────────────────────────────────────────────────────────────
 def ghl_request(method, endpoint, payload=None):
     try:
         import requests
@@ -368,7 +370,6 @@ def ghl_create_contact(rec):
             {"key": "sale_date",        "field_value": rec.get("sale_date", "")},
             {"key": "score",            "field_value": str(rec.get("score", 0))},
             {"key": "property_address", "field_value": rec.get("address", "")},
-            {"key": "school_district",  "field_value": rec.get("school_dist", "")},
             {"key": "lender",           "field_value": rec.get("grantee", "")},
         ],
     })
@@ -376,15 +377,15 @@ def ghl_create_contact(rec):
 
 def push_to_ghl(records):
     if not GHL_API_KEY:
-        log.warning("GHL_API_KEY not set — skipping")
+        log.warning("GHL_API_KEY not set")
         return
     named = [r for r in records if r.get("owner")]
-    log.info(f"GHL push: {len(named)} named leads (of {len(records)} total)")
+    log.info(f"GHL push: {len(named)} named leads")
     test = ghl_request("GET", f"/contacts/?locationId={GHL_LOCATION_ID}&limit=1")
     if not test or "_error" in test:
         log.error("GHL auth failed")
         return
-    log.info(f"GHL auth OK — {test.get('total', '?')} existing contacts")
+    log.info(f"GHL auth OK — {test.get('total','?')} existing contacts")
     created = skipped = errors = 0
     for i, rec in enumerate(sorted(named, key=lambda r: -r.get("score", 0))):
         doc = rec.get("doc_number", "")
@@ -410,7 +411,7 @@ DASHBOARD_TEMPLATE = """<!DOCTYPE html>
 <title>Bexar County Motivated Seller Leads</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@600;700;800&display=swap" rel="stylesheet"/>
 <style>
-:root{--bg:#0d0f14;--surface:#13161e;--surface2:#1a1e2a;--border:#252836;--accent:#00e5ff;--accent3:#a78bfa;--text:#e8eaf0;--muted:#6b7280;--success:#22d3a5;--warning:#fbbf24;--danger:#f87171;--hot:#ff6b35;}
+:root{--bg:#0d0f14;--surface:#13161e;--surface2:#1a1e2a;--border:#252836;--accent:#00e5ff;--accent3:#a78bfa;--text:#e8eaf0;--muted:#6b7280;--success:#22d3a5;--warning:#fbbf24;--danger:#f87171;}
 *{box-sizing:border-box;margin:0;padding:0;}
 body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font-size:13px;min-height:100vh;}
 header{display:flex;align-items:center;justify-content:space-between;padding:18px 32px;border-bottom:1px solid var(--border);background:var(--surface);position:sticky;top:0;z-index:100;}
@@ -588,27 +589,20 @@ def build_dashboard(records):
         raise RuntimeError(f"Output too small: {size} bytes")
 
 
-# ── Entry point ───────────────────────────────────────────────────────────────
 if __name__ == "__main__":
     os.makedirs("data", exist_ok=True)
     os.makedirs("dashboard", exist_ok=True)
 
     log.info("="*60)
     log.info("Bexar County Lead Scraper v15")
-    log.info(f"Primary:  {CLERK_URL} (Selenium)")
-    log.info(f"Fallback: {ARCGIS_BASE} (ArcGIS)")
+    log.info(f"Primary:  {CLERK_URL}")
+    log.info(f"Fallback: {ARCGIS_BASE}")
     log.info("="*60)
 
-    # Primary: Selenium scraper (daily, has owner names)
-    clerk_records = scrape_clerk_with_selenium()
-
-    # Fallback: ArcGIS (always run — gets tax foreclosures)
+    clerk_records  = scrape_clerk_with_selenium()
     arcgis_records = fetch_arcgis_records()
+    records        = merge_records(clerk_records, arcgis_records)
 
-    # Merge both
-    records = merge_records(clerk_records, arcgis_records)
-
-    # Score and flag
     for r in records:
         if r["type"] == "TAX":             r["flags"].append("TAX FORE")
         if not r["owner"]:                 r["flags"].append("NO OWNER")
@@ -616,7 +610,6 @@ if __name__ == "__main__":
         r["score"] = score_record(r)
 
     records.sort(key=lambda x: x["score"], reverse=True)
-
     named = sum(1 for r in records if r["owner"])
     log.info(f"Final: {len(records)} leads | {named} with owner name")
 
