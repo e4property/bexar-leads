@@ -1,7 +1,9 @@
 """
-Bexar County Motivated Seller Lead Scraper v15
-Primary: bexar.tx.publicsearch.us (Selenium headless Chrome — daily, owner names included)
-Fallback: maps.bexar.org ArcGIS (monthly updates, tax foreclosures)
+Bexar County Motivated Seller Lead Scraper v16
+- Scrapes bexar.tx.publicsearch.us with Selenium (daily, owner names)
+- Filters to last 90 days only (no old 2006/2013 records)
+- Falls back to ArcGIS for tax foreclosures
+- Pushes named leads to GHL
 """
 
 import json
@@ -28,9 +30,9 @@ GHL_LOCATION_ID = os.environ.get("GHL_LOCATION_ID", "UAOJlgeerLu3GChP9jDJ")
 GHL_API_BASE    = "https://services.leadconnectorhq.com"
 
 
-# ── Selenium scraper ──────────────────────────────────────────────────────────
-def scrape_clerk_with_selenium():
-    log.info("Starting Selenium scraper for bexar.tx.publicsearch.us...")
+def scrape_clerk():
+    """Scrape bexar.tx.publicsearch.us using Selenium headless Chrome."""
+    log.info("Starting Clerk scraper...")
 
     try:
         from selenium import webdriver
@@ -39,10 +41,9 @@ def scrape_clerk_with_selenium():
         from selenium.webdriver.common.by import By
         from selenium.webdriver.support.ui import WebDriverWait
         from selenium.webdriver.support import expected_conditions as EC
-        from selenium.common.exceptions import TimeoutException, NoSuchElementException
-        from webdriver_manager.chrome import ChromeDriverManager
+        from selenium.common.exceptions import TimeoutException
     except ImportError as e:
-        log.error(f"Import error: {e}")
+        log.error(f"Selenium not available: {e}")
         return []
 
     options = Options()
@@ -51,126 +52,131 @@ def scrape_clerk_with_selenium():
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--disable-gpu")
     options.add_argument("--window-size=1920,1080")
-    options.add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
+    options.add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36")
     options.add_argument("--disable-blink-features=AutomationControlled")
-    options.add_experimental_option("excludeSwitches", ["enable-automation"])
-    options.add_experimental_option("useAutomationExtension", False)
+    options.binary_location = "/usr/bin/chromium-browser"
 
     driver = None
     records = []
 
-    try:
-        service = Service(ChromeDriverManager().install())
-        driver  = webdriver.Chrome(service=service, options=options)
-        driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
-        wait = WebDriverWait(driver, 25)
+    now    = datetime.now(timezone.utc)
+    cutoff = now - timedelta(days=LOOKBACK_DAYS)
 
-        now    = datetime.now(timezone.utc)
-        cutoff = now - timedelta(days=LOOKBACK_DAYS)
+    try:
+        service = Service("/usr/bin/chromedriver")
+        driver  = webdriver.Chrome(service=service, options=options)
+        wait    = WebDriverWait(driver, 20)
+
+        # Build URL — FC = Foreclosures department, date range = last 90 days
         date_from = cutoff.strftime("%Y%m%d")
         date_to   = now.strftime("%Y%m%d")
-
-        # Direct URL with foreclosure department + date range
-        search_url = (
+        url = (
             f"{CLERK_URL}/results"
             f"?department=FC"
             f"&instrumentDateRange={date_from}%2C{date_to}"
             f"&keywordSearch=false"
-            f"&limit=250"
+            f"&limit=500"
             f"&offset=0"
         )
 
-        log.info(f"  Loading: {search_url}")
-        driver.get(search_url)
+        log.info(f"  Loading: {url}")
+        driver.get(url)
         time.sleep(4)
 
-        # Handle disclaimer if present
+        # Accept disclaimer if shown
         try:
-            btns = driver.find_elements(By.XPATH,
-                "//button[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'accept') or contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'agree') or contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'continue')]"
-            )
-            if btns:
-                btns[0].click()
-                log.info("  Accepted disclaimer")
-                time.sleep(2)
+            for btn_text in ["Accept", "agree", "Continue", "I Agree"]:
+                btns = driver.find_elements(By.XPATH, f"//button[contains(text(),'{btn_text}')]")
+                if btns:
+                    btns[0].click()
+                    log.info(f"  Clicked: {btn_text}")
+                    time.sleep(2)
+                    break
         except Exception:
             pass
 
-        log.info(f"  Current URL: {driver.current_url}")
-        log.info(f"  Page title: {driver.title}")
+        log.info(f"  URL after load: {driver.current_url}")
+        log.info(f"  Title: {driver.title}")
 
-        # Wait for results
+        # Wait for table
         try:
-            wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "table tbody tr")))
-            log.info("  Table loaded")
+            wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "table")))
         except TimeoutException:
-            # Log what we see
-            body = driver.find_element(By.TAG_NAME, "body").text[:800]
-            log.warning(f"  Table not found. Page content: {body}")
+            log.warning("  No table found — logging page text")
+            log.warning(f"  Page: {driver.find_element(By.TAG_NAME,'body').text[:500]}")
 
-        # Try multiple selectors for rows
-        rows = []
-        for selector in ["table tbody tr", ".result-row", "[role='row']", "tr"]:
-            rows = driver.find_elements(By.CSS_SELECTOR, selector)
-            if rows:
-                log.info(f"  Found {len(rows)} rows using selector: {selector}")
-                break
+        # Get all rows
+        rows = driver.find_elements(By.CSS_SELECTOR, "table tbody tr")
+        log.info(f"  Found {len(rows)} rows")
 
-        # Log first row structure for debugging
         if rows:
-            first_row = rows[0]
-            cells = first_row.find_elements(By.TAG_NAME, "td")
-            log.info(f"  First row has {len(cells)} cells")
-            if cells:
-                log.info(f"  Cell texts: {[c.text.strip()[:30] for c in cells]}")
+            # Log first row to understand column layout
+            first_cells = [c.text.strip() for c in rows[0].find_elements(By.TAG_NAME, "td")]
+            log.info(f"  First row cells: {first_cells}")
 
-        for i, row in enumerate(rows):
+            # Log header to understand column order
+            headers = [h.text.strip() for h in driver.find_elements(By.CSS_SELECTOR, "table thead th")]
+            log.info(f"  Headers: {headers}")
+
+        for row in rows:
             try:
-                cells = row.find_elements(By.TAG_NAME, "td")
+                cells = [c.text.strip() for c in row.find_elements(By.TAG_NAME, "td")]
                 if len(cells) < 3:
                     continue
 
-                texts = [c.text.strip() for c in cells]
+                # Based on headers seen in your screenshots:
+                # GRANTOR | GRANTEE | DOC TYPE | RECORDED DATE | SALE DATE | DOC NUMBER | PROPERTY ADDRESS
+                # OR (from earlier screenshot without grantor col):
+                # DOC TYPE | RECORDED DATE | SALE DATE | DOC NUMBER | REMARKS | PROPERTY ADDRESS
 
-                # Determine column layout from page
-                # Layout A: GRANTOR | GRANTEE | DOC TYPE | RECORDED DATE | SALE DATE | DOC NUMBER | PROPERTY ADDRESS
-                # Layout B: DOC TYPE | RECORDED DATE | SALE DATE | DOC NUMBER | REMARKS | PROPERTY ADDRESS
-                grantor   = ""
-                grantee   = ""
-                doc_type  = ""
-                rec_date  = ""
-                sale_date = ""
-                doc_num   = ""
-                address   = ""
+                # Detect layout by checking if first cell looks like a name or doc type
+                first = cells[0]
+                is_name_first = (
+                    len(first) > 3 and
+                    not any(x in first.upper() for x in ["NOTICE", "DEED", "RELEASE", "LIEN", "TRUST"]) and
+                    not first.replace(" ", "").isdigit()
+                )
 
-                if len(texts) >= 7:
-                    # Assume layout A (has grantor)
-                    grantor   = texts[0]
-                    grantee   = texts[1]
-                    doc_type  = texts[2]
-                    rec_date  = texts[3]
-                    sale_date = texts[4]
-                    doc_num   = texts[5]
-                    address   = texts[6]
-                elif len(texts) >= 6:
-                    doc_type  = texts[0]
-                    rec_date  = texts[1]
-                    sale_date = texts[2]
-                    doc_num   = texts[3]
-                    address   = texts[5] if len(texts) > 5 else texts[4]
-                elif len(texts) >= 4:
-                    doc_type = texts[0]
-                    rec_date = texts[1]
-                    doc_num  = texts[2]
-                    address  = texts[3]
+                if is_name_first and len(cells) >= 5:
+                    # Layout: GRANTOR | GRANTEE | DOC TYPE | RECORDED DATE | SALE DATE | DOC# | ADDRESS
+                    grantor   = cells[0]
+                    grantee   = cells[1] if len(cells) > 1 else ""
+                    doc_type  = cells[2] if len(cells) > 2 else ""
+                    rec_date  = cells[3] if len(cells) > 3 else ""
+                    sale_date = cells[4] if len(cells) > 4 else ""
+                    doc_num   = cells[5] if len(cells) > 5 else ""
+                    address   = cells[6] if len(cells) > 6 else ""
+                else:
+                    # Layout: DOC TYPE | RECORDED DATE | SALE DATE | DOC# | REMARKS | ADDRESS
+                    grantor   = ""
+                    grantee   = ""
+                    doc_type  = cells[0]
+                    rec_date  = cells[1] if len(cells) > 1 else ""
+                    sale_date = cells[2] if len(cells) > 2 else ""
+                    doc_num   = cells[3] if len(cells) > 3 else ""
+                    address   = cells[5] if len(cells) > 5 else cells[-1]
+
+                # Skip non-foreclosure doc types
+                if doc_type and "FORECLO" not in doc_type.upper() and "TRUSTEE" not in doc_type.upper():
+                    continue
+
+                # Skip records outside our date window
+                if rec_date:
+                    try:
+                        # Parse various date formats: M/D/YYYY or YYYY-MM-DD
+                        for fmt in ("%m/%d/%Y", "%Y-%m-%d", "%m-%d-%Y"):
+                            try:
+                                rec_dt = datetime.strptime(rec_date, fmt)
+                                if rec_dt < cutoff.replace(tzinfo=None):
+                                    continue  # skip old record
+                                break
+                            except ValueError:
+                                continue
+                    except Exception:
+                        pass
 
                 if not address and not doc_num:
                     continue
-
-                # Only keep foreclosure records
-                if doc_type and doc_type.upper() not in ("", "NOTICE OF FORECLOSURE", "NOTICE OF FORE...", "NOF", "NTS", "NOTICE OF TRUSTEE"):
-                    if "FORECLO" not in doc_type.upper() and "TRUSTEE" not in doc_type.upper():
-                        continue
 
                 records.append({
                     "type":        "NOF",
@@ -181,7 +187,7 @@ def scrape_clerk_with_selenium():
                     "absentee":    False,
                     "doc_number":  doc_num,
                     "year":        rec_date[-4:] if len(rec_date) >= 4 else "",
-                    "month":       rec_date[:2].strip("/") if rec_date else "",
+                    "month":       "",
                     "city":        "San Antonio",
                     "zip":         "",
                     "school_dist": "",
@@ -193,14 +199,13 @@ def scrape_clerk_with_selenium():
                 })
 
             except Exception as e:
-                log.debug(f"  Row {i} error: {e}")
-                continue
+                log.debug(f"  Row parse error: {e}")
 
         named = sum(1 for r in records if r.get("owner"))
-        log.info(f"Clerk scrape: {len(records)} records, {named} with owner name")
+        log.info(f"Clerk: {len(records)} records, {named} with owner name")
 
     except Exception as e:
-        log.error(f"Selenium error: {e}", exc_info=True)
+        log.error(f"Clerk scraper error: {e}", exc_info=True)
     finally:
         if driver:
             driver.quit()
@@ -208,17 +213,17 @@ def scrape_clerk_with_selenium():
     return records
 
 
-# ── ArcGIS fallback ───────────────────────────────────────────────────────────
-def fetch_arcgis_records():
+def fetch_arcgis():
+    """Fetch from ArcGIS — always run to get tax foreclosures."""
     log.info("Fetching ArcGIS records...")
 
     def fetch_json(url):
         req = urllib.request.Request(
-            url, headers={"User-Agent": "BexarScraper/15.0", "Accept": "application/json"})
+            url, headers={"User-Agent": "BexarScraper/16.0", "Accept": "application/json"})
         with urllib.request.urlopen(req, timeout=30) as r:
             return json.loads(r.read().decode("utf-8", errors="replace"))
 
-    def arcgis_query(layer_url, offset=0):
+    def query(layer_url, offset=0):
         try:
             params = urllib.parse.urlencode({
                 "where": "1=1", "outFields": "*", "returnGeometry": "false",
@@ -228,87 +233,77 @@ def fetch_arcgis_records():
             if "error" in data: return []
             return data.get("features", [])
         except Exception as e:
-            log.warning(f"ArcGIS query error: {e}")
+            log.warning(f"ArcGIS error: {e}")
             return []
 
-    def pick(attrs, *candidates, default=""):
-        for c in candidates:
-            v = attrs.get(c)
+    def pick(a, *keys, default=""):
+        for k in keys:
+            v = a.get(k)
             if v is not None and str(v).strip() not in ("", "None", "null", "<Null>"):
                 return str(v).strip()
         return default
 
-    LAYERS = [
-        {"index": 0, "type": "NOF", "label": "Mortgage Foreclosure"},
-        {"index": 1, "type": "TAX", "label": "Tax Foreclosure"},
-    ]
+    now    = datetime.now(timezone.utc)
+    cutoff = now - timedelta(days=90)
 
     raw = []
-    for layer in LAYERS:
-        idx       = layer["index"]
+    for idx, typ, label in [(0, "NOF", "Mortgage"), (1, "TAX", "Tax")]:
         layer_url = f"{ARCGIS_BASE}/{idx}"
-        try:
-            features, offset = [], 0
-            while True:
-                batch = arcgis_query(layer_url, offset=offset)
-                features.extend(batch)
-                log.info(f"  Layer {idx}: offset={offset}, got {len(batch)} (total: {len(features)})")
-                if len(batch) < 1000: break
-                offset += len(batch)
-            for feat in features:
-                a     = feat["attributes"]
-                month = pick(a, "MONTH", "MO", default="")
-                year  = pick(a, "YEAR",  "YR", default="")
-                raw.append({
-                    "type":        layer["type"],
-                    "source":      "arcgis",
-                    "address":     pick(a, "ADDRESS", "SITUS_ADD", "ADDR"),
-                    "owner":       pick(a, "OWNER", "GRANTOR", "OWNER_NAME", default=""),
-                    "mail_addr":   "",
-                    "absentee":    False,
-                    "doc_number":  pick(a, "DOC_NUMBER", "DOCNUM", "DOC_NUM"),
-                    "year":        year,
-                    "month":       month,
-                    "city":        pick(a, "CITY", "MAIL_CITY", default=""),
-                    "zip":         pick(a, "ZIP", "ZIPCODE", "ZIP_CODE", default=""),
-                    "school_dist": pick(a, "SCHOOL_DIST", default=""),
-                    "date_filed":  f"{month}/{year}".strip("/"),
-                    "sale_date":   "",
-                    "grantee":     "",
-                    "flags":       [],
-                    "enriched":    False,
-                })
-        except Exception as e:
-            log.error(f"  Layer {idx} failed: {e}")
+        features, offset = [], 0
+        while True:
+            batch = query(layer_url, offset)
+            features.extend(batch)
+            log.info(f"  Layer {idx}: offset={offset}, {len(batch)} records")
+            if len(batch) < 1000: break
+            offset += len(batch)
+        for feat in features:
+            a     = feat["attributes"]
+            month = pick(a, "MONTH", "MO", default="")
+            year  = pick(a, "YEAR",  "YR", default="")
+            raw.append({
+                "type":        typ,
+                "source":      "arcgis",
+                "address":     pick(a, "ADDRESS", "SITUS_ADD", "ADDR"),
+                "owner":       pick(a, "OWNER", "GRANTOR", "OWNER_NAME", default=""),
+                "mail_addr":   "",
+                "absentee":    False,
+                "doc_number":  pick(a, "DOC_NUMBER", "DOCNUM", "DOC_NUM"),
+                "year":        year,
+                "month":       month,
+                "city":        pick(a, "CITY", "MAIL_CITY", default=""),
+                "zip":         pick(a, "ZIP", "ZIPCODE", "ZIP_CODE", default=""),
+                "school_dist": pick(a, "SCHOOL_DIST", default=""),
+                "date_filed":  f"{month}/{year}".strip("/"),
+                "sale_date":   "",
+                "grantee":     "",
+                "flags":       [],
+                "enriched":    False,
+            })
 
     log.info(f"ArcGIS: {len(raw)} records")
     return raw
 
 
-# ── Merge ─────────────────────────────────────────────────────────────────────
-def merge_records(clerk_records, arcgis_records):
+def merge(clerk, arcgis):
     merged = {}
-    for r in clerk_records:
+    for r in clerk:
         key = r.get("doc_number") or r.get("address", "").upper()
         if key: merged[key] = r
-
-    clerk_addrs = {r.get("address", "").upper() for r in clerk_records if r.get("address")}
-    new_count = 0
-    for r in arcgis_records:
+    clerk_addrs = {r.get("address", "").upper() for r in clerk if r.get("address")}
+    added = 0
+    for r in arcgis:
         doc  = r.get("doc_number", "")
         addr = r.get("address", "").upper()
         if doc in merged or addr in clerk_addrs: continue
         key = doc or addr
         if key:
             merged[key] = r
-            new_count += 1
-
-    log.info(f"Merged: {len(clerk_records)} clerk + {new_count} new ArcGIS = {len(merged)} total")
+            added += 1
+    log.info(f"Merged: {len(clerk)} clerk + {added} arcgis = {len(merged)} total")
     return list(merged.values())
 
 
-# ── Scoring ───────────────────────────────────────────────────────────────────
-def score_record(rec):
+def score(rec):
     s = 0
     if rec.get("address"):       s += 3
     if rec.get("owner"):         s += 3
@@ -316,72 +311,36 @@ def score_record(rec):
     return min(s, 10)
 
 
-# ── GHL ───────────────────────────────────────────────────────────────────────
-def ghl_request(method, endpoint, payload=None):
+def ghl_req(method, endpoint, payload=None):
     try:
         import requests
     except ImportError:
         return None
     url = f"{GHL_API_BASE}{endpoint}"
-    headers = {
+    h = {
         "Authorization": f"Bearer {GHL_API_KEY}",
         "Content-Type": "application/json", "Accept": "application/json",
         "Version": "2021-07-28",
-        "User-Agent": "Mozilla/5.0 Chrome/120.0.0.0 Safari/537.36",
+        "User-Agent": "Mozilla/5.0 Chrome/120.0.0.0",
         "Origin": "https://app.justjarvis.com", "Referer": "https://app.justjarvis.com/",
     }
     try:
-        resp = requests.get(url, headers=headers, timeout=20) if method == "GET" \
-               else requests.post(url, headers=headers, json=payload, timeout=20)
+        resp = requests.get(url, headers=h, timeout=20) if method == "GET" \
+               else requests.post(url, headers=h, json=payload, timeout=20)
         if resp.status_code in (200, 201): return resp.json()
-        log.warning(f"GHL {resp.status_code}: {resp.text[:200]}")
+        log.warning(f"GHL {resp.status_code}: {resp.text[:150]}")
         return {"_error": resp.status_code}
     except Exception as e:
         return {"_error": str(e)}
 
 
-def ghl_contact_exists(doc):
-    r = ghl_request("GET", f"/contacts/?locationId={GHL_LOCATION_ID}&query={urllib.parse.quote(str(doc))}&limit=5")
-    if not r or "_error" in r: return False
-    for c in r.get("contacts", []):
-        if f"doc-{doc}" in (c.get("tags") or []): return True
-    return False
-
-
-def ghl_create_contact(rec):
-    owner = rec.get("owner", "").strip()
-    parts = owner.split()
-    first = parts[0].title() if parts else owner
-    last  = " ".join(parts[1:]).title() if len(parts) > 1 else ""
-    tags  = ["bexar-lead", rec["type"], f"doc-{rec.get('doc_number', '')}"]
-    if rec.get("score", 0) >= 7: tags.append("hot-lead")
-    lead_type = "Tax Foreclosure" if rec["type"] == "TAX" else "Mortgage Foreclosure"
-    return ghl_request("POST", "/contacts/", {
-        "locationId": GHL_LOCATION_ID,
-        "firstName": first, "lastName": last, "name": owner.title(),
-        "address1": rec.get("address", ""),
-        "city": rec.get("city", "San Antonio"),
-        "state": "TX", "country": "US", "postalCode": rec.get("zip", ""),
-        "tags": tags, "source": "Bexar County Clerk Scraper",
-        "customFields": [
-            {"key": "lead_type",        "field_value": lead_type},
-            {"key": "doc_number",       "field_value": rec.get("doc_number", "")},
-            {"key": "date_filed",       "field_value": rec.get("date_filed", "")},
-            {"key": "sale_date",        "field_value": rec.get("sale_date", "")},
-            {"key": "score",            "field_value": str(rec.get("score", 0))},
-            {"key": "property_address", "field_value": rec.get("address", "")},
-            {"key": "lender",           "field_value": rec.get("grantee", "")},
-        ],
-    })
-
-
-def push_to_ghl(records):
+def push_ghl(records):
     if not GHL_API_KEY:
         log.warning("GHL_API_KEY not set")
         return
     named = [r for r in records if r.get("owner")]
-    log.info(f"GHL push: {len(named)} named leads")
-    test = ghl_request("GET", f"/contacts/?locationId={GHL_LOCATION_ID}&limit=1")
+    log.info(f"GHL: {len(named)} named leads to push")
+    test = ghl_req("GET", f"/contacts/?locationId={GHL_LOCATION_ID}&limit=1")
     if not test or "_error" in test:
         log.error("GHL auth failed")
         return
@@ -389,20 +348,46 @@ def push_to_ghl(records):
     created = skipped = errors = 0
     for i, rec in enumerate(sorted(named, key=lambda r: -r.get("score", 0))):
         doc = rec.get("doc_number", "")
-        if doc and ghl_contact_exists(doc):
-            skipped += 1
-            continue
-        result = ghl_create_contact(rec)
+        # Check duplicate
+        if doc:
+            r = ghl_req("GET", f"/contacts/?locationId={GHL_LOCATION_ID}&query={urllib.parse.quote(doc)}&limit=3")
+            if r and not r.get("_error"):
+                if any(f"doc-{doc}" in (c.get("tags") or []) for c in r.get("contacts", [])):
+                    skipped += 1
+                    continue
+        owner = rec.get("owner", "").strip()
+        parts = owner.split()
+        first = parts[0].title() if parts else owner
+        last  = " ".join(parts[1:]).title() if len(parts) > 1 else ""
+        tags  = ["bexar-lead", rec["type"], f"doc-{doc}"]
+        if rec.get("score", 0) >= 7: tags.append("hot-lead")
+        lt = "Tax Foreclosure" if rec["type"] == "TAX" else "Mortgage Foreclosure"
+        result = ghl_req("POST", "/contacts/", {
+            "locationId": GHL_LOCATION_ID,
+            "firstName": first, "lastName": last, "name": owner.title(),
+            "address1": rec.get("address", ""),
+            "city": rec.get("city", "San Antonio"),
+            "state": "TX", "country": "US", "postalCode": rec.get("zip", ""),
+            "tags": tags, "source": "Bexar County Clerk",
+            "customFields": [
+                {"key": "lead_type",        "field_value": lt},
+                {"key": "doc_number",       "field_value": doc},
+                {"key": "date_filed",       "field_value": rec.get("date_filed", "")},
+                {"key": "sale_date",        "field_value": rec.get("sale_date", "")},
+                {"key": "score",            "field_value": str(rec.get("score", 0))},
+                {"key": "property_address", "field_value": rec.get("address", "")},
+                {"key": "lender",           "field_value": rec.get("grantee", "")},
+            ],
+        })
         if result and result.get("contact"):
             created += 1
-            log.info(f"  ✓ [{i+1}] {rec.get('owner')} — {rec.get('address')}")
+            log.info(f"  ✓ [{i+1}] {owner} — {rec.get('address')}")
         else:
             errors += 1
         time.sleep(0.15)
     log.info(f"GHL done — Created:{created} | Skipped:{skipped} | Errors:{errors}")
 
 
-# ── Dashboard ─────────────────────────────────────────────────────────────────
 DASHBOARD_TEMPLATE = """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -482,7 +467,6 @@ tbody td{padding:10px 12px;vertical-align:middle;}
   <select id="sort-select" onchange="applyFilters()">
     <option value="score-desc">Sort: Score ↓</option>
     <option value="date-desc">Sort: Date ↓</option>
-    <option value="score-asc">Sort: Score ↑</option>
   </select>
   <span class="count-badge" id="count-badge"></span>
 </div>
@@ -490,7 +474,7 @@ tbody td{padding:10px 12px;vertical-align:middle;}
   <table>
     <thead><tr>
       <th>Score</th><th>Type</th><th>Property Address</th>
-      <th>Owner (Grantor)</th><th>Date Filed</th><th>Sale Date</th><th>Doc #</th><th>City/ZIP</th>
+      <th>Owner (Grantor)</th><th>Lender (Grantee)</th><th>Date Filed</th><th>Sale Date</th><th>Doc #</th>
     </tr></thead>
     <tbody id="tbody"></tbody>
   </table>
@@ -524,7 +508,6 @@ function applyFilters(){
   });
   filtered.sort(function(a,b){
     if(s==='score-desc') return b.score-a.score;
-    if(s==='score-asc')  return a.score-b.score;
     if(s==='date-desc')  return (b.date_filed||'')>(a.date_filed||'')?1:-1;
     return 0;
   });
@@ -545,20 +528,17 @@ function render(){
     var scC=sc>=7?'score-high':sc>=4?'score-mid':'score-low';
     var tC=r.type==='TAX'?'type-tax':'type-nof';
     var tL=r.type==='TAX'?'TAX FORE':'NOF';
-    var cz=[r.city,r.zip].filter(Boolean).join(' ')||'—';
     var oh=r.owner?'<div class="owner">'+r.owner+'</div>':'<div class="owner-none">—</div>';
-    var fh='';
-    for(var j=0;j<(r.flags||[]).length;j++) fh+='<span class="flag">'+r.flags[j]+'</span>';
-    if(!fh) fh='<span style="color:var(--muted)">—</span>';
+    var gh=r.grantee?'<div class="doc">'+r.grantee+'</div>':'<div class="owner-none">—</div>';
     rows+='<tr>'
       +'<td><div class="score '+scC+'">'+sc+'</div></td>'
       +'<td><span class="type-badge '+tC+'">'+tL+'</span></td>'
       +'<td><div class="addr">'+(r.address||'—')+'</div></td>'
       +'<td>'+oh+'</td>'
+      +'<td>'+gh+'</td>'
       +'<td><div class="doc">'+(r.date_filed||'—')+'</div></td>'
       +'<td><div class="doc">'+(r.sale_date||'—')+'</div></td>'
       +'<td><div class="doc">'+(r.doc_number||'—')+'</div></td>'
-      +'<td><div class="city">'+cz+'</div></td>'
       +'</tr>';
   }
   tbody.innerHTML=rows;
@@ -586,7 +566,7 @@ def build_dashboard(records):
     size = os.path.getsize(path)
     log.info(f"Built {path} — {len(records)} records, {size:,} bytes")
     if size < 50000 and len(records) > 0:
-        raise RuntimeError(f"Output too small: {size} bytes")
+        raise RuntimeError(f"Too small: {size} bytes")
 
 
 if __name__ == "__main__":
@@ -594,20 +574,20 @@ if __name__ == "__main__":
     os.makedirs("dashboard", exist_ok=True)
 
     log.info("="*60)
-    log.info("Bexar County Lead Scraper v15")
+    log.info("Bexar County Lead Scraper v16")
     log.info(f"Primary:  {CLERK_URL}")
     log.info(f"Fallback: {ARCGIS_BASE}")
     log.info("="*60)
 
-    clerk_records  = scrape_clerk_with_selenium()
-    arcgis_records = fetch_arcgis_records()
-    records        = merge_records(clerk_records, arcgis_records)
+    clerk_records  = scrape_clerk()
+    arcgis_records = fetch_arcgis()
+    records        = merge(clerk_records, arcgis_records)
 
     for r in records:
         if r["type"] == "TAX":             r["flags"].append("TAX FORE")
         if not r["owner"]:                 r["flags"].append("NO OWNER")
         if not r["city"] and r["address"]: r["flags"].append("NO CITY")
-        r["score"] = score_record(r)
+        r["score"] = score(r)
 
     records.sort(key=lambda x: x["score"], reverse=True)
     named = sum(1 for r in records if r["owner"])
@@ -615,12 +595,11 @@ if __name__ == "__main__":
 
     with open("data/records.json", "w", encoding="utf-8") as f:
         json.dump(records, f, indent=2)
-    log.info(f"Saved data/records.json ({len(records)} records)")
+    log.info(f"Saved {len(records)} records")
 
     with open("dashboard/records.json", "w", encoding="utf-8") as f:
         json.dump(records, f, indent=2)
-    log.info(f"Saved dashboard/records.json ({len(records)} records)")
 
     build_dashboard(records)
-    push_to_ghl(records)
+    push_ghl(records)
 
