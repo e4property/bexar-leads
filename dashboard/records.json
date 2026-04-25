@@ -1,10 +1,46 @@
 [
   {
+    "type": "NOF",
+    "address": "210 W VISTA RIDGE",
+    "owner": "ASKEATON REALTY LLC",
+    "mail_addr": "210 Rainbow Bldg 12 SAN ANTONIO 78259",
+    "absentee": false,
+    "doc_number": "20260400356",
+    "year": "2026",
+    "month": "4",
+    "city": "SAN ANTONIO",
+    "zip": "78260",
+    "school_dist": "Comal ISD",
+    "date_filed": "4/2026",
+    "sale_date": "",
+    "grantee": "",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "443 N SAN IGNACIO AVE",
+    "owner": "GARDENIA HOME INVESTMENTS LLC",
+    "mail_addr": "443 Sw 42Nd Street Series SAN ANTONIO 78228",
+    "absentee": false,
+    "doc_number": "20260500287",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78228",
+    "school_dist": "Edgewood ISD (Bexar)",
+    "date_filed": "5/2026",
+    "sale_date": "",
+    "grantee": "",
+    "flags": [],
+    "score": 6
+  },
+  {
     "type": "TAX",
     "address": "2630 E COMMERCE ST",
-    "owner": "GEORGE GERVIN YOUTH CENTER INC",
-    "mail_addr": "NULL SAN ANTONIO 78218",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "2012TA100316",
     "year": "2026",
     "month": "5",
@@ -16,16 +52,16 @@
     "grantee": "",
     "flags": [
       "TAX FORE",
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 10
+    "score": 5
   },
   {
     "type": "TAX",
     "address": "1004 MENCHACA ST",
-    "owner": "DIAZ IRENE F",
-    "mail_addr": "NULL SAN ANTONIO 78207",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "2015TA103199",
     "year": "2026",
     "month": "5",
@@ -37,16 +73,16 @@
     "grantee": "",
     "flags": [
       "TAX FORE",
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 10
+    "score": 5
   },
   {
     "type": "TAX",
     "address": "133 HOLLY ST",
-    "owner": "EURESTE JOE T & GLORIA N",
-    "mail_addr": "NULL SAN ANTONIO 78222",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "2017TA100737",
     "year": "2026",
     "month": "5",
@@ -58,16 +94,16 @@
     "grantee": "",
     "flags": [
       "TAX FORE",
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 10
+    "score": 5
   },
   {
     "type": "TAX",
     "address": "1702 GUADALUPE ST",
-    "owner": "PACHECO EMILY & GARZA FELIPE JR",
-    "mail_addr": "NULL SAN ANTONIO 78259",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "2017TA102488",
     "year": "2026",
     "month": "5",
@@ -79,16 +115,16 @@
     "grantee": "",
     "flags": [
       "TAX FORE",
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 10
+    "score": 5
   },
   {
     "type": "TAX",
     "address": "6510 HIGHLAND GRASS",
-    "owner": "DORCH LARRY R & BRENDA M",
-    "mail_addr": "NULL SAN ANTONIO 78210",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "2017TA102785",
     "year": "2026",
     "month": "5",
@@ -100,16 +136,16 @@
     "grantee": "",
     "flags": [
       "TAX FORE",
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 10
+    "score": 5
   },
   {
     "type": "TAX",
     "address": "938 KEATS ST",
-    "owner": "LEMUS MANUEL V JR & IRMA A",
-    "mail_addr": "NULL BOERNE 78006",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "2018TA100039",
     "year": "2026",
     "month": "5",
@@ -121,16 +157,16 @@
     "grantee": "",
     "flags": [
       "TAX FORE",
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 10
+    "score": 5
   },
   {
     "type": "TAX",
     "address": "2255 THOUSAND OAKS DR",
-    "owner": "EDCOUCH COMMUNITY HOUSING FINANCE CORPORATION",
-    "mail_addr": "NULL AUSTIN 78746",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "2019TA102533",
     "year": "2026",
     "month": "5",
@@ -142,16 +178,16 @@
     "grantee": "",
     "flags": [
       "TAX FORE",
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 10
+    "score": 5
   },
   {
     "type": "TAX",
     "address": "4110 TWIN RISE",
-    "owner": "STIEWIG BRANDON DALE",
-    "mail_addr": "NULL VON ORMY 78073",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "2021TA100442",
     "year": "2026",
     "month": "5",
@@ -163,16 +199,16 @@
     "grantee": "",
     "flags": [
       "TAX FORE",
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 10
+    "score": 5
   },
   {
     "type": "TAX",
     "address": "3677 CANDLEHEAD LN",
-    "owner": "SANCHEZ VICTOR & SONIA",
-    "mail_addr": "NULL SAN ANTONIO 78244",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "2021TA101342",
     "year": "2026",
     "month": "5",
@@ -184,16 +220,16 @@
     "grantee": "",
     "flags": [
       "TAX FORE",
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 10
+    "score": 5
   },
   {
     "type": "TAX",
     "address": "620 N NEW BRAUNFELS AVE",
-    "owner": "ARRIETA FELIX V",
-    "mail_addr": "NULL ELMENDORF 78112",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "2021TA101691",
     "year": "2026",
     "month": "5",
@@ -205,16 +241,16 @@
     "grantee": "",
     "flags": [
       "TAX FORE",
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 10
+    "score": 5
   },
   {
     "type": "TAX",
     "address": "5866 MIDCROWN DR",
-    "owner": "RAMIREZ RICARDO MARTIN REVOCABLE TRUST",
-    "mail_addr": "NULL SAN ANTONIO 78218",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "2022TA100303",
     "year": "2026",
     "month": "5",
@@ -226,16 +262,16 @@
     "grantee": "",
     "flags": [
       "TAX FORE",
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 10
+    "score": 5
   },
   {
     "type": "TAX",
     "address": "4334 SILVER LAKE DR",
-    "owner": "RODRIGUEZ JAZIEL & RODRIGUEZ VICTORIA",
-    "mail_addr": "NULL SAN ANTONIO 78223",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "2024TA100419",
     "year": "2026",
     "month": "5",
@@ -247,16 +283,16 @@
     "grantee": "",
     "flags": [
       "TAX FORE",
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 10
+    "score": 5
   },
   {
     "type": "TAX",
     "address": "20220 E LOOP 1604",
-    "owner": "GARCIA GERARDO",
-    "mail_addr": "NULL ELMENDORF 78112",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "2013TA101644",
     "year": "2026",
     "month": "5",
@@ -268,16 +304,16 @@
     "grantee": "",
     "flags": [
       "TAX FORE",
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 10
+    "score": 5
   },
   {
     "type": "TAX",
     "address": "1136 ELVIRA ST",
-    "owner": "MCELROY JOSEPH & USNORD LLC",
-    "mail_addr": "NULL DALLAS 75208",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "2012TA100529",
     "year": "2026",
     "month": "5",
@@ -289,16 +325,16 @@
     "grantee": "",
     "flags": [
       "TAX FORE",
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 10
+    "score": 5
   },
   {
     "type": "TAX",
     "address": "318 AMARILLO AVE",
-    "owner": "SANTOS OSCAR",
-    "mail_addr": "NULL SAN ANTONIO 78225",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "2012TA104960",
     "year": "2026",
     "month": "5",
@@ -310,16 +346,16 @@
     "grantee": "",
     "flags": [
       "TAX FORE",
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 10
+    "score": 5
   },
   {
     "type": "TAX",
     "address": "2903 CASTROVILLE RD",
-    "owner": "BEXAR COUNTY",
-    "mail_addr": "NULL SAN ANTONIO 78283",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "2012TA102511",
     "year": "2026",
     "month": "5",
@@ -331,16 +367,16 @@
     "grantee": "",
     "flags": [
       "TAX FORE",
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 10
+    "score": 5
   },
   {
     "type": "NOF",
     "address": "13114 LAGUNA MADRE ST",
-    "owner": "BRAZOS DE SANTOS PARTNERS LTD",
-    "mail_addr": "NULL SAN ANTONIO 78283",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500185",
     "year": "2026",
     "month": "5",
@@ -351,16 +387,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "28210 VERSANT HLS",
-    "owner": "KANE STEVEN E & FRASHIER DENISE",
-    "mail_addr": "NULL BOERNE 78015",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500103",
     "year": "2026",
     "month": "5",
@@ -371,16 +407,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "8954 NATURE TRAIL",
-    "owner": "DUQUE DAVID C EST OF & DUQUE OSCAR O",
-    "mail_addr": "NULL SAN ANTONIO 78263",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500003",
     "year": "2026",
     "month": "5",
@@ -391,16 +427,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "10411 MCCLINTOCK DR",
-    "owner": "FKH SFR N LP",
-    "mail_addr": "NULL MARIETTA 30067",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500013",
     "year": "2026",
     "month": "5",
@@ -411,16 +447,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "7030 SUNSPOT",
-    "owner": "HAMILTON CHRISTOPHER JAMES &",
-    "mail_addr": "HAMILTON KARLA M CONVERSE 78109",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500015",
     "year": "2026",
     "month": "5",
@@ -431,16 +467,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "9710 FALCON BAY",
-    "owner": "DIAZ ISMAEL JR",
-    "mail_addr": "NULL CONVERSE 78109",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500064",
     "year": "2026",
     "month": "5",
@@ -451,16 +487,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "2147 COLLINS ALLEY",
-    "owner": "HUERTA YOLANDA",
-    "mail_addr": "NULL SAN ANTONIO 78219",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500086",
     "year": "2026",
     "month": "5",
@@ -471,16 +507,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "5911 KELLOG CT",
-    "owner": "CASTRO ISIS FABIOLA HERNANDEZ & HILARIO MARK ANTHONY",
-    "mail_addr": "NULL CONVERSE 78109",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500108",
     "year": "2026",
     "month": "5",
@@ -491,16 +527,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "4802 LOST HILLS DR",
-    "owner": "REYES MACARIO",
-    "mail_addr": "NULL SAN ANTONIO 78242",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500038",
     "year": "2026",
     "month": "5",
@@ -511,16 +547,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "4802 LOST HILLS DR",
-    "owner": "REYES MACARIO",
-    "mail_addr": "NULL SAN ANTONIO 78242",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500123",
     "year": "2026",
     "month": "5",
@@ -531,16 +567,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "4802 WATERWOOD PASS DR",
-    "owner": "CITY OF SANDY OAKS",
-    "mail_addr": "NULL ELMENDORF 78112",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500151",
     "year": "2026",
     "month": "5",
@@ -551,16 +587,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "23018 OPPORTUNITY DR",
-    "owner": "CASIAS GEORGE",
-    "mail_addr": "NULL ELMENDORF 78112",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500182",
     "year": "2026",
     "month": "5",
@@ -571,16 +607,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "17503 JUAN CANTU DR",
-    "owner": "RODRIGUEZ ANTHONY M &",
-    "mail_addr": "GENEVIEVE E ELMENDORF 78112",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500183",
     "year": "2026",
     "month": "5",
@@ -591,16 +627,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "3907 ANAQUA DR",
-    "owner": "CRUZ ROSA E",
-    "mail_addr": "NULL VON ORMY 78073",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500184",
     "year": "2026",
     "month": "5",
@@ -611,16 +647,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "10829 DAVIS FARMS",
-    "owner": "COMMONWEALTH COFFEE LLC",
-    "mail_addr": "NULL SAN ANTONIO 78209",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500087",
     "year": "2026",
     "month": "5",
@@ -631,16 +667,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "5207 STARFIRE STREET",
-    "owner": "BJORK DARLENE A TRUST",
-    "mail_addr": "BJORK DARLENE A TRUSTEE CATHEDRAL CITY 92234",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500150",
     "year": "2026",
     "month": "5",
@@ -651,16 +687,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "12835 BASIL CLUSTER",
-    "owner": "QUIROZ ANDREW & SANDRA VALDEZ-QUIROZ",
-    "mail_addr": "NULL SAN ANTONIO 78245",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500155",
     "year": "2026",
     "month": "5",
@@ -671,16 +707,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "4427 OLYMPUS BAY",
-    "owner": "ORTA ANGELA CHRISTINE",
-    "mail_addr": "NULL UNIVERSAL CITY 78148",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500002",
     "year": "2026",
     "month": "5",
@@ -691,16 +727,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "919 LOMBRANO ST",
-    "owner": "VARGAS VANESSA & GARCIA LUIS ENRIQUE SANCHEZ",
-    "mail_addr": "NULL SAN ANTONIO 78207",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500004",
     "year": "2026",
     "month": "5",
@@ -711,16 +747,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "11355 OLNEY SPRINGS",
-    "owner": "WOOD CAROL NANETTE",
-    "mail_addr": "NULL SAN ANTONIO 78231",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500005",
     "year": "2026",
     "month": "5",
@@ -731,16 +767,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "138 E ACKARD PL",
-    "owner": "FRUMEXICO LLC",
-    "mail_addr": "NULL SAN ANTONIO 78260",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500006",
     "year": "2026",
     "month": "5",
@@ -751,16 +787,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "9706 HIDDEN PLAINS STREET",
-    "owner": "SILICI JONATHAN NICHOLAS",
-    "mail_addr": "NULL ELMENDORF 78112",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500008",
     "year": "2026",
     "month": "5",
@@ -771,16 +807,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "170 ANTRIM DRIVE",
-    "owner": "ZINGELMANN PROPERTIES LLC",
-    "mail_addr": "NULL HELOTES 78023",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500009",
     "year": "2026",
     "month": "5",
@@ -791,16 +827,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "1414 ARCADIAN LILY",
-    "owner": "JORDAN MICHAEL ANTHONY",
-    "mail_addr": "NULL SAN ANTONIO 78245",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500010",
     "year": "2026",
     "month": "5",
@@ -811,16 +847,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "9103 OSAGE VLY",
-    "owner": "BANUELOS LUIS CORTEZ",
-    "mail_addr": "NULL SAN ANTONIO 78216",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500012",
     "year": "2026",
     "month": "5",
@@ -831,16 +867,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "636 CORDELIA ST",
-    "owner": "SANCHEZ ROBERTO P SR",
-    "mail_addr": "ETAL SAN ANTONIO 78237",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500014",
     "year": "2026",
     "month": "5",
@@ -851,16 +887,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "3035 LINDENWOOD WAY",
-    "owner": "SALINAS ERIC",
-    "mail_addr": "NULL SAN ANTONIO 78245",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500016",
     "year": "2026",
     "month": "5",
@@ -871,16 +907,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "12058 STILL PASS",
-    "owner": "BIBBS JUAREZ & RUTH",
-    "mail_addr": "NULL SAN ANTONIO 78222",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500018",
     "year": "2026",
     "month": "5",
@@ -891,16 +927,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "216 STRATFORD CT",
-    "owner": "ESQUIVEL CARLOS G & ISABEL C",
-    "mail_addr": "NULL SAN ANTONIO 78216",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500022",
     "year": "2026",
     "month": "5",
@@ -911,16 +947,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "3523 IRONWOOD FLS",
-    "owner": "WARNS STEPHEN & MARGARET",
-    "mail_addr": "NULL SAN ANTONIO 78261",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500024",
     "year": "2026",
     "month": "5",
@@ -931,16 +967,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "8903 LAMUS WHEEL",
-    "owner": "SISON PORFIRIO MARIANO & MALBAS MARJORIE ANN",
-    "mail_addr": "NULL SAN ANTONIO 78254",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500025",
     "year": "2026",
     "month": "5",
@@ -951,16 +987,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "24719 CHIANTI WAY",
-    "owner": "LOPEZ ENRIQUE SERRET",
-    "mail_addr": "NULL SAN ANTONIO 78260",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500026",
     "year": "2026",
     "month": "5",
@@ -971,16 +1007,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "102 KIPLING AVENUE",
-    "owner": "VASQUEZ ALMA ROSA",
-    "mail_addr": "NULL SAN ANTONIO 78223",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500028",
     "year": "2026",
     "month": "5",
@@ -991,16 +1027,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "10139 CEDARCLIFF",
-    "owner": "FLINT STEVEN & CYNTHIA",
-    "mail_addr": "NULL SAN ANTONIO 78245",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500029",
     "year": "2026",
     "month": "5",
@@ -1011,16 +1047,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "7911 LIVE OAK VIS",
-    "owner": "SHADROCK FAMILY LIVING",
-    "mail_addr": "REVOCABLE TRUST ADKINS 78101",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500032",
     "year": "2026",
     "month": "5",
@@ -1031,16 +1067,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "9223 WIND CROWN",
-    "owner": "MALDONADO ADOLFO & ALEJANDRINA",
-    "mail_addr": "NULL SAN ANTONIO 78112",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500033",
     "year": "2026",
     "month": "5",
@@ -1051,16 +1087,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "6326 INDIGO FOREST",
-    "owner": "WAY WILLIAM K & SANDRA L",
-    "mail_addr": "NULL SAN ANTONIO 78239",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500034",
     "year": "2026",
     "month": "5",
@@ -1071,16 +1107,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "2050 CINCINNATI AVE",
-    "owner": "ZUNIGA FELIX & DORA",
-    "mail_addr": "NULL SAN ANTONIO 78228",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500035",
     "year": "2026",
     "month": "5",
@@ -1091,16 +1127,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "3606 SOUTHPORT DRIVE",
-    "owner": "CRUZ FAMILY LIVING TRUST",
-    "mail_addr": "NULL SAN ANTONIO 78223",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500036",
     "year": "2026",
     "month": "5",
@@ -1111,16 +1147,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "1215 LAMAR",
-    "owner": "HENDERSON ANNETTE",
-    "mail_addr": "NULL AUSTIN 78725",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500037",
     "year": "2026",
     "month": "5",
@@ -1131,16 +1167,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "10351 ROSEWOOD CREEK",
-    "owner": "NCFRP-123 LLC",
-    "mail_addr": "NULL ALPHARETTA 30009",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500039",
     "year": "2026",
     "month": "5",
@@ -1151,16 +1187,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "614 BARROW PEAK",
-    "owner": "FKH SFR PROPCO K LP",
-    "mail_addr": "NULL MARIETTA 30067",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500040",
     "year": "2026",
     "month": "5",
@@ -1171,16 +1207,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "13822 QUIET FOX LN",
-    "owner": "MOYE TYRONE &",
-    "mail_addr": "STEEN PATRICIA SAN ANTONIO 78222",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500041",
     "year": "2026",
     "month": "5",
@@ -1191,16 +1227,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "4138 WINCHESTER COVE",
-    "owner": "OCAMPO THOMAS & CHRISTINA ANN",
-    "mail_addr": "NULL SAN ANTONIO 78254",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500042",
     "year": "2026",
     "month": "5",
@@ -1211,16 +1247,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "12618 MONOCEROS",
-    "owner": "MERIDIAN AT BLUE SKIES HOMEOWNERS ASSOCIATION INC",
-    "mail_addr": "NULL SAN ANTONIO 78249",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500044",
     "year": "2026",
     "month": "5",
@@ -1231,16 +1267,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "307 CEDRON CHASE",
-    "owner": "ALBERTA CARLOS",
-    "mail_addr": "NULL SAN ANTONIO 78253",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500046",
     "year": "2026",
     "month": "5",
@@ -1251,16 +1287,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "402 PRESTWICK BLVD",
-    "owner": "SALAY LORRAINE L & VICTOR M",
-    "mail_addr": "NULL SAN ANTONIO 78223",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500048",
     "year": "2026",
     "month": "5",
@@ -1271,16 +1307,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "923 VANCE JACKSON RD",
-    "owner": "CRAWFORD GUILLERMINA",
-    "mail_addr": "NULL SAN ANTONIO 78220",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500049",
     "year": "2026",
     "month": "5",
@@ -1291,16 +1327,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "6830 AGUA CALIENTES",
-    "owner": "HARA YURI",
-    "mail_addr": "NULL SAN ANTONIO 78239",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500050",
     "year": "2026",
     "month": "5",
@@ -1311,16 +1347,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "11771 PADDLEBROOK",
-    "owner": "SERNA ALVARO V",
-    "mail_addr": "NULL SAN ANTONIO 78253",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500053",
     "year": "2026",
     "month": "5",
@@ -1331,16 +1367,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "1011 FABULOUS DR",
-    "owner": "RAMIREZ IRIS NOEMI & VILLARREAL LUCAS JOHN",
-    "mail_addr": "NULL SAN ANTONIO 78216",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500056",
     "year": "2026",
     "month": "5",
@@ -1351,16 +1387,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "105 REGINA ST",
-    "owner": "ALVAREZ CARLOS",
-    "mail_addr": "NULL SAN ANTONIO 78223",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500057",
     "year": "2026",
     "month": "5",
@@ -1371,16 +1407,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "142 SOUTHILL",
-    "owner": "DEAL RONALD K & SOMRAK",
-    "mail_addr": "NULL SAN ANTONIO 78228",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500059",
     "year": "2026",
     "month": "5",
@@ -1391,16 +1427,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "7131 GREAT LAKES DR",
-    "owner": "ZAMUDIO ELOY VILLASENOR & CARBALLO ADRIANA SANDOVAL",
-    "mail_addr": "NULL SAN ANTONIO 78244",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500063",
     "year": "2026",
     "month": "5",
@@ -1411,16 +1447,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "13815 LLAMA PLACE",
-    "owner": "SAN ANTONIO RIVER AUTHORITY",
-    "mail_addr": "NULL SAN ANTONIO 78204",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500066",
     "year": "2026",
     "month": "5",
@@ -1431,16 +1467,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "13815 LLAMA PLACE",
-    "owner": "SAN ANTONIO RIVER AUTHORITY",
-    "mail_addr": "NULL SAN ANTONIO 78204",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500067",
     "year": "2026",
     "month": "5",
@@ -1451,16 +1487,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "318 SURRELS AVE",
-    "owner": "CUELLAR MATTHEW SALDANA",
-    "mail_addr": "NULL SAN ANTONIO 78237",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500068",
     "year": "2026",
     "month": "5",
@@ -1471,16 +1507,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "11007 DREAMLAND DR",
-    "owner": "ROBERTSON JAMES E LIVING TRUST",
-    "mail_addr": "NULL SAN ANTONIO 78230",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500069",
     "year": "2026",
     "month": "5",
@@ -1491,16 +1527,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "154 WEIZMANN ST",
-    "owner": "MARTINEZ LINDA MAE",
-    "mail_addr": "NULL SAN ANTONIO 78212",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500070",
     "year": "2026",
     "month": "5",
@@ -1511,16 +1547,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "463 WAYSIDE DR",
-    "owner": "MARSHALL DAVID R REVOCABLE TRUST",
-    "mail_addr": "NULL ORANGE PARK 32073",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500071",
     "year": "2026",
     "month": "5",
@@ -1531,16 +1567,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "203 E LAMBERT ST",
-    "owner": "GUARIN CHRISTINA MARIE & GUARIN JAMES",
-    "mail_addr": "NULL FRIENDSWOOD 77546",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500072",
     "year": "2026",
     "month": "5",
@@ -1551,16 +1587,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "12247 SIRAGUSA",
-    "owner": "SIFUENTES JOSE JR",
-    "mail_addr": "NULL SAN ANTONIO 78252",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500073",
     "year": "2026",
     "month": "5",
@@ -1571,16 +1607,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "9202 NEW GUILBEAU RD",
-    "owner": "ARRIETA FELIX V",
-    "mail_addr": "NULL ELMENDORF 78112",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500074",
     "year": "2026",
     "month": "5",
@@ -1591,16 +1627,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "7731 NOPALITOS COVE",
-    "owner": "SAENZ GABRIELA & LUGO MATTHEW ISIAH",
-    "mail_addr": "NULL SAN ANTONIO 78239",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500076",
     "year": "2026",
     "month": "5",
@@ -1611,16 +1647,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "1066 HICKORY TRAIL ST",
-    "owner": "ANDREWS IRMA MARTINEZ",
-    "mail_addr": "NULL SAN ANTONIO 78240",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500077",
     "year": "2026",
     "month": "5",
@@ -1631,16 +1667,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "815 STONEWAY DR",
-    "owner": "BEHNSCH BOBBY V & SHARON K",
-    "mail_addr": "NULL SAN ANTONIO 78258",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500081",
     "year": "2026",
     "month": "5",
@@ -1651,16 +1687,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "14211 FAIRLEE",
-    "owner": "OWENS BRENDA KAY",
-    "mail_addr": "NULL SAN ANTONIO 78217",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500082",
     "year": "2026",
     "month": "5",
@@ -1671,16 +1707,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "1115 GALAPAGOS",
-    "owner": "RODRIGUEZ ARMANDO G JR & DIJHA H",
-    "mail_addr": "NULL SAN ANTONIO 78214",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500085",
     "year": "2026",
     "month": "5",
@@ -1691,16 +1727,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "2014 S TRINITY ST",
-    "owner": "JAPHET HOLDINGS LTD",
-    "mail_addr": "NULL SHAVANO PARK 78231",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500090",
     "year": "2026",
     "month": "5",
@@ -1711,16 +1747,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "5326 SAN SIMEON DR",
-    "owner": "VERETTE RENETTA L",
-    "mail_addr": "NULL ABILENE 79601",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500092",
     "year": "2026",
     "month": "5",
@@ -1731,16 +1767,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "215 OAKLEAF DR",
-    "owner": "PREVOST LARA JEANNETTE",
-    "mail_addr": "NULL SAN ANTONIO 78209",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500093",
     "year": "2026",
     "month": "5",
@@ -1751,16 +1787,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "10411 GREEN LAKE DR",
-    "owner": "HERNANDEZ ROBERTO &",
-    "mail_addr": "BERTHA SAN ANTONIO 78223",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500095",
     "year": "2026",
     "month": "5",
@@ -1771,16 +1807,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "215 W MISTLETOE AVE",
-    "owner": "FLETCHER STRATEGIES LLC",
-    "mail_addr": "NULL SAN ANTONIO 78212",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500096",
     "year": "2026",
     "month": "5",
@@ -1791,16 +1827,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "101 WILDROSE AVE",
-    "owner": "ALLEGRO TRUST",
-    "mail_addr": "NULL SAN ANTONIO 78209",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500099",
     "year": "2026",
     "month": "5",
@@ -1811,16 +1847,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "8023 SHEPPARD KNOLL",
-    "owner": "TAPAR ROSLIN JANERO MENO & CATHERINE CHO",
-    "mail_addr": "NULL SAN ANTONIO 78227",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500101",
     "year": "2026",
     "month": "5",
@@ -1831,16 +1867,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "9721 GREEN PLAIN DR",
-    "owner": "FYR SFR BORROWER LLC",
-    "mail_addr": "NULL SCOTTSDALE 85261",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500102",
     "year": "2026",
     "month": "5",
@@ -1851,16 +1887,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "115 HAVERFORD DR",
-    "owner": "AGUAYO GEORGE A",
-    "mail_addr": "NULL SAN ANTONIO 78217",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500104",
     "year": "2026",
     "month": "5",
@@ -1871,16 +1907,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "12207 MEDINA MILL",
-    "owner": "REYES ELIZABETH RUTH",
-    "mail_addr": "NULL SAN ANTONIO 78264",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500105",
     "year": "2026",
     "month": "5",
@@ -1891,16 +1927,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "716 FLORIDA ST",
-    "owner": "SOUTHERN HENKE ICE COMPANY LLC",
-    "mail_addr": "NULL BOERNE 78006",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500106",
     "year": "2026",
     "month": "5",
@@ -1911,16 +1947,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "5314 MAPLE VISTA",
-    "owner": "GONZALEZ MIGUEL & VILLARREAL LLUVIA SANTOS",
-    "mail_addr": "NULL SAN ANTONIO 78242",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500107",
     "year": "2026",
     "month": "5",
@@ -1931,16 +1967,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "17507 SAPPHIRE RIM DR",
-    "owner": "MONTES ARACELY & ALVAREZ ENRIQUE R",
-    "mail_addr": "NULL SAN ANTONIO 78222",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500109",
     "year": "2026",
     "month": "5",
@@ -1951,16 +1987,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "13107 PHAETHON ST",
-    "owner": "BALL DAVID & WILKERSON MICHAEL",
-    "mail_addr": "NULL SAN ANTONIO 78245",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500110",
     "year": "2026",
     "month": "5",
@@ -1971,16 +2007,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "13350 LOMA BONITA",
-    "owner": "2723 LAKELOMA ST LAND TRUST",
-    "mail_addr": "2186 JACKSON KELLER RD SAN ANTONIO 78213",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500112",
     "year": "2026",
     "month": "5",
@@ -1991,16 +2027,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "430 KAREN LN",
-    "owner": "YANEZ DANIEL F & RACHAEL T",
-    "mail_addr": "NULL SAN ANTONIO 78217",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500113",
     "year": "2026",
     "month": "5",
@@ -2011,16 +2047,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "12727 VISTA DEL NORTE",
-    "owner": "BROWN ARTHUR G",
-    "mail_addr": "NULL SAN ANTONIO 78223",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500116",
     "year": "2026",
     "month": "5",
@@ -2031,16 +2067,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "822 COWHIDE DR",
-    "owner": "ORTEGA STEVIE R & AMANDA N",
-    "mail_addr": "NULL SAN ANTONIO 78260",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500119",
     "year": "2026",
     "month": "5",
@@ -2051,16 +2087,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "310 CYPRESS GARDENS DR",
-    "owner": "WRIGHT CLARA L",
-    "mail_addr": "NULL SAN ANTONIO 78244",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500120",
     "year": "2026",
     "month": "5",
@@ -2071,16 +2107,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "11209 PLAUDIT",
-    "owner": "SANCHEZ JORGE L JR & MARTINEZ DARIELA E",
-    "mail_addr": "NULL SAN ANTONIO 78245",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500121",
     "year": "2026",
     "month": "5",
@@ -2091,16 +2127,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "7516 LINKMEADOW ST",
-    "owner": "VALLEJO GLORIA",
-    "mail_addr": "NULL SAN ANTONIO 78240",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500122",
     "year": "2026",
     "month": "5",
@@ -2111,16 +2147,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "5330 SOUTHAMPTON DR",
-    "owner": "LUGO PEDRO",
-    "mail_addr": "NULL SAN ANTONIO 78228",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500128",
     "year": "2026",
     "month": "5",
@@ -2131,16 +2167,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "6039 LITTLE BRANDYWINE",
-    "owner": "RODRIGUEZ JUAN CARLOS ESTRADA &",
-    "mail_addr": "DE LARA MARIA CONCEPCION LIVAS SAN ANTONIO 78264",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500129",
     "year": "2026",
     "month": "5",
@@ -2151,16 +2187,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "16318 ELK GLEN ST",
-    "owner": "TOVAR ROSEMARY",
-    "mail_addr": "NULL SAN ANTONIO 78222",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500132",
     "year": "2026",
     "month": "5",
@@ -2171,16 +2207,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "11231 KEMBLE ST",
-    "owner": "BRANNON ANAMARIA M",
-    "mail_addr": "NULL SAN ANTONIO 78249",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500138",
     "year": "2026",
     "month": "5",
@@ -2191,16 +2227,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "7538 SUTTER HOME",
-    "owner": "TAZIOLE JOHN J",
-    "mail_addr": "NULL CONVERSE 78109",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500139",
     "year": "2026",
     "month": "5",
@@ -2211,16 +2247,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "6719 RAINTREE FRST",
-    "owner": "CLOUSE THOMAS ANDREW &",
-    "mail_addr": "ELIZABETH L SAN ANTONIO 78233",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500140",
     "year": "2026",
     "month": "5",
@@ -2231,16 +2267,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "4827 BLUE HERON ST",
-    "owner": "GONZALEZ RUFINO PUENTE",
-    "mail_addr": "NULL ELMENDORF 78112",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500141",
     "year": "2026",
     "month": "5",
@@ -2251,16 +2287,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "822 VENICE ST",
-    "owner": "IBARRA LUCIO VILLALON",
-    "mail_addr": "NULL SAN ANTONIO 78201",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500142",
     "year": "2026",
     "month": "5",
@@ -2271,16 +2307,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "639 WESTFALL AVE",
-    "owner": "UNION PACIFIC RAILROAD CO",
-    "mail_addr": "PROP TAX DEPT OMAHA 68179",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500143",
     "year": "2026",
     "month": "5",
@@ -2291,16 +2327,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "10031 INK WELLS DR",
-    "owner": "TARANGO LORETTA & RAUL P",
-    "mail_addr": "NULL SAN ANTONIO 78233",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500147",
     "year": "2026",
     "month": "5",
@@ -2311,16 +2347,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "130 BALSA DI PRATO",
-    "owner": "SANCHEZ VICTORIANO D",
-    "mail_addr": "NULL SAN ANTONIO 78253",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500152",
     "year": "2026",
     "month": "5",
@@ -2331,16 +2367,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "6210 MYRTLE PASS",
-    "owner": "OTERO EDDIE R & BLANCHE L",
-    "mail_addr": "NULL SAN ANTONIO 78244",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500153",
     "year": "2026",
     "month": "5",
@@ -2351,16 +2387,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "7818 WILD EAGLE RD",
-    "owner": "MARRUFO MARIA E",
-    "mail_addr": "NULL ELMENDORF 78112",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500154",
     "year": "2026",
     "month": "5",
@@ -2371,16 +2407,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "5115 FLIPPER DR",
-    "owner": "TESORO HOMES LTD",
-    "mail_addr": "PMB 425 SPRING BRANCH 78070",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500159",
     "year": "2026",
     "month": "5",
@@ -2391,16 +2427,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "7818 FARLIN PARK DRIVE",
-    "owner": "GRAHAM JOHN S & CANDACE L",
-    "mail_addr": "NULL SAN ANTONIO 78249",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500162",
     "year": "2026",
     "month": "5",
@@ -2411,16 +2447,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "5210 ANEMONE",
-    "owner": "HARPER MARISSA & QUINCY",
-    "mail_addr": "NULL SAN ANTONIO 78253",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500163",
     "year": "2026",
     "month": "5",
@@ -2431,16 +2467,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "12130 PEASE RIVER",
-    "owner": "CLARK TONY L & TAMEIKA",
-    "mail_addr": "NULL CONVERSE 78109",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500164",
     "year": "2026",
     "month": "5",
@@ -2451,16 +2487,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "2119 FORT SUMTER STREET",
-    "owner": "BAIZA RALPH",
-    "mail_addr": "NULL HELOTES 78023",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500165",
     "year": "2026",
     "month": "5",
@@ -2471,16 +2507,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "623 DAKOTA ST",
-    "owner": "LYERLY JACKIE E",
-    "mail_addr": "NULL SAN ANTONIO 78203",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500167",
     "year": "2026",
     "month": "5",
@@ -2491,16 +2527,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "1303 KLONDIKE ST",
-    "owner": "LOZANO MIKE & VICKY I",
-    "mail_addr": "NULL SAN ANTONIO 78232",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500187",
     "year": "2026",
     "month": "5",
@@ -2511,16 +2547,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "9822 AUTUMN DAWN",
-    "owner": "LEWIS CLINTON",
-    "mail_addr": "NULL SAN ANTONIO 78222",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400404",
     "year": "2026",
     "month": "4",
@@ -2531,16 +2567,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "8906 ANDERSON BLF",
-    "owner": "NIOUS MILDRED L/E  ETAL",
-    "mail_addr": "NULL SAN ANTONIO 78203",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400442",
     "year": "2026",
     "month": "4",
@@ -2551,16 +2587,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "9614 AUTUMN PL",
-    "owner": "LEWIS CLINTON",
-    "mail_addr": "NULL SAN ANTONIO 78222",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400203",
     "year": "2026",
     "month": "4",
@@ -2571,16 +2607,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "3609 SNOWBIRD",
-    "owner": "RUIZ EMMANUEL PAUL TOBIAS & RUIZ SABRINA D",
-    "mail_addr": "NULL CONVERSE 78109",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400290",
     "year": "2026",
     "month": "4",
@@ -2591,16 +2627,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "10543 WAVERUNNER",
-    "owner": "SUMMERHILL HOA INC",
-    "mail_addr": "% FIRST SERVICE RESIDENTIAL SAN ANTONIO 78231",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400311",
     "year": "2026",
     "month": "4",
@@ -2611,16 +2647,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "8868 STAGHORN ML",
-    "owner": "DIGGES ESTHER B",
-    "mail_addr": "NULL CONVERSE 78109",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400011",
     "year": "2026",
     "month": "4",
@@ -2631,16 +2667,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "10822 FOX TROT WAY",
-    "owner": "HENDRICKSON JUDITH MARIE",
-    "mail_addr": "NULL ELMENDORF 78112",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400049",
     "year": "2026",
     "month": "4",
@@ -2651,16 +2687,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "8434 DUSTY RIDGE",
-    "owner": "JARZOMBEK BERNICE E",
-    "mail_addr": "NULL SCHERTZ 78154",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400105",
     "year": "2026",
     "month": "4",
@@ -2671,16 +2707,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "10954 DELIGHT GROVE",
-    "owner": "PAREDES NELSON DELGADO & ALVARADO ANA MARIA VILCHEZ",
-    "mail_addr": "NULL SAN ANTONIO 78248",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400112",
     "year": "2026",
     "month": "4",
@@ -2691,16 +2727,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "4322 RED TOP HL",
-    "owner": "GUERRERO JOE P & EMMA JEAN & GUERRERO CHRISTIAN JOEL",
-    "mail_addr": "NULL ELMENDORF 78112",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400346",
     "year": "2026",
     "month": "4",
@@ -2711,16 +2747,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "17503 JUAN CANTU DR",
-    "owner": "RODRIGUEZ ANTHONY M &",
-    "mail_addr": "GENEVIEVE E ELMENDORF 78112",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400347",
     "year": "2026",
     "month": "4",
@@ -2731,16 +2767,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "3907 ANAQUA DR",
-    "owner": "CRUZ ROSA E",
-    "mail_addr": "NULL VON ORMY 78073",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400350",
     "year": "2026",
     "month": "4",
@@ -2751,16 +2787,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "4102 WATERWOOD PASS DR",
-    "owner": "CITY OF SANDY OAKS",
-    "mail_addr": "NULL ELMENDORF 78112",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400099",
     "year": "2026",
     "month": "4",
@@ -2771,16 +2807,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "10935 WINECUP FLD",
-    "owner": "CASTILLO MICHELLE",
-    "mail_addr": "NULL HELOTES 78023",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400210",
     "year": "2026",
     "month": "4",
@@ -2791,16 +2827,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "11729 PEACH CROSSING",
-    "owner": "HAYMAN WILLIAM E & CLAIRE E",
-    "mail_addr": "NULL SAN ANTONIO 78247",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400325",
     "year": "2026",
     "month": "4",
@@ -2811,16 +2847,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "10018 CEDAR CREST DR",
-    "owner": "ZUNIGA IVAN & MENDOZA EMILY MARIE",
-    "mail_addr": "NULL ELMENDORF 78112",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400110",
     "year": "2026",
     "month": "4",
@@ -2831,16 +2867,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "11222 OCATE",
-    "owner": "ZAPATA JULIAN DAVID & JIMENEZ DAVID  III",
-    "mail_addr": "NULL SAN ANTONIO 78023",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400195",
     "year": "2026",
     "month": "4",
@@ -2851,16 +2887,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "147 EL CERRITO CIRCLE",
-    "owner": "DRASH CHESTER JOSEPH & DRASH JILL MARIE",
-    "mail_addr": "NULL SAN ANTONIO 78258",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400453",
     "year": "2026",
     "month": "4",
@@ -2871,16 +2907,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "5230 ALAN BEAN DRIVE",
-    "owner": "NOCKROES JAMES S & ESTELLA",
-    "mail_addr": "NULL SAN ANTONIO 78264",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400426",
     "year": "2026",
     "month": "4",
@@ -2891,16 +2927,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "7405 LEADING OAKS ST",
-    "owner": "FULLMER ERIC & MICHELLE L",
-    "mail_addr": "NULL LIVE OAK 78233",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400460",
     "year": "2026",
     "month": "4",
@@ -2911,16 +2947,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "5306 LISA POINT",
-    "owner": "ALVINO LEOBARDO MARTINEZ & BELTRAN GRISELDA ESCOBAR",
-    "mail_addr": "NULL SAN ANTONIO 78223",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400104",
     "year": "2026",
     "month": "4",
@@ -2931,16 +2967,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "427 BLUEGRASS CRK",
-    "owner": "WARD JAMES ALBERT",
-    "mail_addr": "NULL SAN ANTONIO 78253",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400405",
     "year": "2026",
     "month": "4",
@@ -2951,16 +2987,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "15822 MISSION RDG",
-    "owner": "GUAJARDO GERARDO GABRIEL JR",
-    "mail_addr": "NULL LAREDO 78045",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400406",
     "year": "2026",
     "month": "4",
@@ -2971,16 +3007,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "418 ELLANA CLAIRE ST",
-    "owner": "LONGORIA RICARDO G & SUSIE ANN",
-    "mail_addr": "NULL SAN ANTONIO 78225",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400417",
     "year": "2026",
     "month": "4",
@@ -2991,16 +3027,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "4126 WARM WINDS",
-    "owner": "JAMES BRUCE",
-    "mail_addr": "NULL SAN ANTONIO 78253",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400418",
     "year": "2026",
     "month": "4",
@@ -3011,16 +3047,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "5303 MOUNTAIN VISTA DR",
-    "owner": "SAN JUAN JESUS",
-    "mail_addr": "NULL ELMENDORF 78112",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400419",
     "year": "2026",
     "month": "4",
@@ -3031,16 +3067,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "2851 LAVENDER MEADOW",
-    "owner": "IVY APARTMENTS LLC",
-    "mail_addr": "ATTN  VAL TRIF SAN ANTONIO 78255",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400421",
     "year": "2026",
     "month": "4",
@@ -3051,16 +3087,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "9742 GREEN MESA",
-    "owner": "FYR SFR BORROWER LLC",
-    "mail_addr": "NULL SCOTTSDALE 85261",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400427",
     "year": "2026",
     "month": "4",
@@ -3071,16 +3107,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "15903 HEIMER RD",
-    "owner": "612 LIVE OAK LP",
-    "mail_addr": "NULL HOUSTON 77008",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400430",
     "year": "2026",
     "month": "4",
@@ -3091,16 +3127,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "5650 RIDGE RUN STREET",
-    "owner": "KB HOME LONE STAR LP",
-    "mail_addr": "NULL SAN ANTONIO 78229",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400441",
     "year": "2026",
     "month": "4",
@@ -3111,16 +3147,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "4341 SOUTHTON BED",
-    "owner": "FAULKNER TAMMY & FAULKNER CURTIS C",
-    "mail_addr": "NULL ELMENDORF 78112",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400443",
     "year": "2026",
     "month": "4",
@@ -3131,16 +3167,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "8719 HIDEOUT BEND",
-    "owner": "CANADAY SHAWN",
-    "mail_addr": "NULL SAN ANTONIO 78261",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400444",
     "year": "2026",
     "month": "4",
@@ -3151,16 +3187,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "12331 LA BARCA STREET",
-    "owner": "NOGUE RAUL & ELIZABETH OJEDA",
-    "mail_addr": "NULL SAN ANTONIO 78233",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400454",
     "year": "2026",
     "month": "4",
@@ -3171,16 +3207,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "5907 HIDDEN GLADE",
-    "owner": "SILICI JONATHAN NICHOLAS",
-    "mail_addr": "NULL ELMENDORF 78112",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400462",
     "year": "2026",
     "month": "4",
@@ -3191,16 +3227,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "9022 BOWEN BR",
-    "owner": "PEREZ ELIZABETH & JOSE A",
-    "mail_addr": "NULL SAN ANTONIO 78250",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400206",
     "year": "2026",
     "month": "4",
@@ -3211,16 +3247,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "5126 GALAHAD DR",
-    "owner": "CEMETERY",
-    "mail_addr": "NULL SAN ANTONIO 78218",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400208",
     "year": "2026",
     "month": "4",
@@ -3231,16 +3267,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "127 DEAN ST",
-    "owner": "CHACON LEONOR D & RICHARD D",
-    "mail_addr": "NULL SAN ANTONIO 78212",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400211",
     "year": "2026",
     "month": "4",
@@ -3251,16 +3287,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "22453 RED SAND DR",
-    "owner": "GUERRERO JOE P & EMMA JEAN & GUERRERO CHRISTIAN JOEL",
-    "mail_addr": "NULL ELMENDORF 78112",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400212",
     "year": "2026",
     "month": "4",
@@ -3271,16 +3307,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "12249 CASHTON",
-    "owner": "KAEWPOOBARN ANUWAT",
-    "mail_addr": "NULL SAN ANTONIO 78252",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400215",
     "year": "2026",
     "month": "4",
@@ -3291,16 +3327,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "2165 W GRAMERCY PL",
-    "owner": "JJL MANAGEMENT TRUST",
-    "mail_addr": "NULL SAN ANTONIO 78212",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400222",
     "year": "2026",
     "month": "4",
@@ -3311,16 +3347,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "3123 GOOSECREEK ST",
-    "owner": "RABAGO JUAN M & RABAGO LESLIE NICOLE",
-    "mail_addr": "NULL SAN ANTONIO 78211",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400224",
     "year": "2026",
     "month": "4",
@@ -3331,16 +3367,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "1907 RIVER OAK LN",
-    "owner": "HEINZ BARBARA JEAN WAID & SIMPSON JOYCE",
-    "mail_addr": "NULL CONVERSE 78109",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400225",
     "year": "2026",
     "month": "4",
@@ -3351,16 +3387,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "24715 FARADAY",
-    "owner": "EZDEKOV MURAT OLEGOVICH & EZDEKOV TETYANA",
-    "mail_addr": "NULL SAN ANTONIO 78257",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400226",
     "year": "2026",
     "month": "4",
@@ -3371,16 +3407,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "10139 PEARL CREEK",
-    "owner": "CFT PROPERTY MGMT LLC",
-    "mail_addr": "NULL BOERNE 78006",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400232",
     "year": "2026",
     "month": "4",
@@ -3391,16 +3427,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "11713 TROUBADOUR TRAIL",
-    "owner": "BALDERAS AMPARO",
-    "mail_addr": "NULL SAN ANTONIO 78245",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400238",
     "year": "2026",
     "month": "4",
@@ -3411,16 +3447,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "15619 ASHTON WOOD",
-    "owner": "GUERRERO MICHAEL",
-    "mail_addr": "NULL SAN ANTONIO 78229",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400239",
     "year": "2026",
     "month": "4",
@@ -3431,16 +3467,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "500 BARRETT",
-    "owner": "REYNA BLASA & SIERRA MISAEL",
-    "mail_addr": "NULL SAN ANTONIO 78224",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400242",
     "year": "2026",
     "month": "4",
@@ -3451,16 +3487,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "10059 AMBER FIELD DR",
-    "owner": "SOTO PEDRO GONZALES",
-    "mail_addr": "NULL SAN ANTONIO 78264",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400251",
     "year": "2026",
     "month": "4",
@@ -3471,16 +3507,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "1522 OVERLOOK COVE",
-    "owner": "ARCE BONIFACIA B",
-    "mail_addr": "NULL SAN ANTONIO 78233",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400265",
     "year": "2026",
     "month": "4",
@@ -3491,16 +3527,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "16118 AMBUSH GRV",
-    "owner": "REST LLC",
-    "mail_addr": "% TRUAX ALLAN L SAN ANTONIO 78257",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400268",
     "year": "2026",
     "month": "4",
@@ -3511,16 +3547,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "5303 KENTON CREST",
-    "owner": "CASBEER MARK",
-    "mail_addr": "NULL SAN ANTONIO 78258",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400270",
     "year": "2026",
     "month": "4",
@@ -3531,16 +3567,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "12262 STRATSBURG",
-    "owner": "CASTILLO FRANCISCO DOROTEO",
-    "mail_addr": "NULL SAN ANTONIO 78252",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400276",
     "year": "2026",
     "month": "4",
@@ -3551,16 +3587,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "7815 BEECHNUT OAK",
-    "owner": "POZOS JUSTIN",
-    "mail_addr": "NULL SAN ANTONIO 78223",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400279",
     "year": "2026",
     "month": "4",
@@ -3571,16 +3607,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "5 STALLION HLS",
-    "owner": "FIGUEROA JOSE L JR",
-    "mail_addr": "NULL SAN ANTONIO 78244",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400285",
     "year": "2026",
     "month": "4",
@@ -3591,16 +3627,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "9107 VALLEY BND",
-    "owner": "SAINASUHU LLC",
-    "mail_addr": "NULL SAN ANTONIO 78223",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400286",
     "year": "2026",
     "month": "4",
@@ -3611,16 +3647,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "411 MCMULLEN ST",
-    "owner": "GONZALEZ ARIK STEPHEN JOE",
-    "mail_addr": "NULL SAN ANTONIO 78210",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400289",
     "year": "2026",
     "month": "4",
@@ -3631,16 +3667,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "14503 WYOMING PASS",
-    "owner": "BARRERA MARIA DEL SOCORRO",
-    "mail_addr": "NULL SAN ANTONIO 78203",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400298",
     "year": "2026",
     "month": "4",
@@ -3651,16 +3687,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "427 N SAN GABRIEL AVE",
-    "owner": "VERETTE RENETTA L",
-    "mail_addr": "NULL ABILENE 79601",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400300",
     "year": "2026",
     "month": "4",
@@ -3671,16 +3707,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "4130 SUNRISE CREEK DR",
-    "owner": "GARCIA GLORIA & GARCIA ALEJANDRA & GARICA GISEL",
-    "mail_addr": "NULL SAN ANTONIO 78244",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400301",
     "year": "2026",
     "month": "4",
@@ -3691,16 +3727,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "7112 ELM CV",
-    "owner": "DEHOYOS RUTH RIOS",
-    "mail_addr": "NULL HALTOM CITY 76117",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400302",
     "year": "2026",
     "month": "4",
@@ -3711,16 +3747,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "818 LAUREL RUN",
-    "owner": "SAENZ ADAM & FLORES ELIANA BERENICE",
-    "mail_addr": "NULL SAN ANTONIO 78223",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400303",
     "year": "2026",
     "month": "4",
@@ -3731,16 +3767,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "9922 MOFFITT DR",
-    "owner": "DEHOYOS PEDRO RICARDO JR & QUIRINA GUADALUPE",
-    "mail_addr": "NULL SAN ANTONIO 78251",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400306",
     "year": "2026",
     "month": "4",
@@ -3751,16 +3787,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "2638 LAKELEDGE ST",
-    "owner": "WALKER ANNIE L",
-    "mail_addr": "NULL SAN ANTONIO 78222",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400308",
     "year": "2026",
     "month": "4",
@@ -3771,16 +3807,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "415 HERMINE BLVD",
-    "owner": "DIAZ RANULFO MARTINEZ",
-    "mail_addr": "NULL SAN ANTONIO 78212",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400309",
     "year": "2026",
     "month": "4",
@@ -3791,16 +3827,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "4634 AVERI NICOLE",
-    "owner": "MAGEE YVETTE W",
-    "mail_addr": "NULL SAN ANTONIO 78247",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400310",
     "year": "2026",
     "month": "4",
@@ -3811,16 +3847,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "7106 WHIPSAW PT",
-    "owner": "ROGIER JACOB S & RICHELLE",
-    "mail_addr": "NULL SAN ANTONIO 78253",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400312",
     "year": "2026",
     "month": "4",
@@ -3831,16 +3867,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "1926 LINDAL POINTE",
-    "owner": "BICE ANTHONY C & JULIE M",
-    "mail_addr": "NULL SAN ANTONIO 78260",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400316",
     "year": "2026",
     "month": "4",
@@ -3851,16 +3887,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "5119 SENISA SPRINGS",
-    "owner": "GONZALES DAVID E & SALLY",
-    "mail_addr": "NULL SAN ANTONIO 78251",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400319",
     "year": "2026",
     "month": "4",
@@ -3871,16 +3907,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "6411 CASTLE VW",
-    "owner": "ESPINOZA DAVID & MARICELLA",
-    "mail_addr": "NULL VON ORMY 78073",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400320",
     "year": "2026",
     "month": "4",
@@ -3891,16 +3927,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "810 RETAMA PASS",
-    "owner": "CASTILLO HORACIO & BIRRUETA-GARIBAY ROSA",
-    "mail_addr": "NULL LIVE OAK 78233",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400321",
     "year": "2026",
     "month": "4",
@@ -3911,16 +3947,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "8023 MADDIE LANE",
-    "owner": "STAGE RUN (SA) HOA INC",
-    "mail_addr": "% ALAMO MANAGEMENT GROUP SAN ANTONIO 78258",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400326",
     "year": "2026",
     "month": "4",
@@ -3931,16 +3967,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "4307 GLENOVER",
-    "owner": "MEZA RAMIRO  JR",
-    "mail_addr": "NULL SAN ANTONIO 78217",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400330",
     "year": "2026",
     "month": "4",
@@ -3951,16 +3987,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "21010 LAS LOMAS BLVD",
-    "owner": "PLAYA ENTERPRISES LLC",
-    "mail_addr": "NULL SAN ANTONIO 78264",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400333",
     "year": "2026",
     "month": "4",
@@ -3971,36 +4007,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
-  },
-  {
-    "type": "NOF",
-    "address": "210 W VISTA RIDGE",
-    "owner": "BROWN ARTHUR G",
-    "mail_addr": "NULL SAN ANTONIO 78223",
-    "absentee": true,
-    "doc_number": "20260400356",
-    "year": "2026",
-    "month": "4",
-    "city": "SAN ANTONIO",
-    "zip": "78260",
-    "school_dist": "Comal ISD",
-    "date_filed": "4/2026",
-    "sale_date": "",
-    "grantee": "",
-    "flags": [
-      "ABSENTEE"
-    ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "10210 SUNRISE FIELD",
-    "owner": "GARCIA GLORIA & GARCIA ALEJANDRA & GARICA GISEL",
-    "mail_addr": "NULL SAN ANTONIO 78244",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400001",
     "year": "2026",
     "month": "4",
@@ -4011,16 +4027,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "618 STOCKTON DR",
-    "owner": "WEAVER CHARLES N",
-    "mail_addr": "NULL SAN ANTONIO 78213",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400009",
     "year": "2026",
     "month": "4",
@@ -4031,16 +4047,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "1054 DONALDSON AVE",
-    "owner": "ARYANA AFGHAN LLC",
-    "mail_addr": "MERWAIS SAFI - OWNR SAN ANTONIO 78254",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400016",
     "year": "2026",
     "month": "4",
@@ -4051,16 +4067,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "315 BRIGHTON",
-    "owner": "QUIROGA RICHARD ROBERT",
-    "mail_addr": "NULL SAN ANTONIO 78214",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400031",
     "year": "2026",
     "month": "4",
@@ -4071,16 +4087,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "811 ARTISAN WAY",
-    "owner": "ISHAK MOHEB I & AMANY A NASR",
-    "mail_addr": "NULL SAN ANTONIO 78260",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400037",
     "year": "2026",
     "month": "4",
@@ -4091,16 +4107,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "131 ELMO AVE",
-    "owner": "MENDEZ BLUE MOON SHERKAN",
-    "mail_addr": "NULL SAN ANTONIO 78202",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400040",
     "year": "2026",
     "month": "4",
@@ -4111,16 +4127,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "226 LANSING LN",
-    "owner": "SALAZAR DEYANIRA M",
-    "mail_addr": "NULL SAN ANTONIO 78207",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400041",
     "year": "2026",
     "month": "4",
@@ -4131,16 +4147,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "711 S BROWNLEAF ST",
-    "owner": "RAYFIELD ROBERT JAMES & HANCOCK CAROL ANN",
-    "mail_addr": "NULL CANYON LAKE 78133",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400044",
     "year": "2026",
     "month": "4",
@@ -4151,16 +4167,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "2402 VALENCIA",
-    "owner": "KILLEY SHANNON",
-    "mail_addr": "NULL UNIVERSAL CITY 78148",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400045",
     "year": "2026",
     "month": "4",
@@ -4171,16 +4187,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "4351 SUN GATE ST",
-    "owner": "JUAREZ JANETH LUCERO MORALES",
-    "mail_addr": "NULL SAN ANTONIO 78245",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400056",
     "year": "2026",
     "month": "4",
@@ -4191,16 +4207,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "8914 SUNGATE BAY",
-    "owner": "ESCOTT MIGUEL A & FACIO GLORIA M",
-    "mail_addr": "NULL SAN ANTONIO 78245",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400066",
     "year": "2026",
     "month": "4",
@@ -4211,16 +4227,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "722 JOHN ADAMS DR",
-    "owner": "RODRIGUEZ SAUL",
-    "mail_addr": "NULL SOMERSET 78069",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400073",
     "year": "2026",
     "month": "4",
@@ -4231,16 +4247,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "7130 CALYPSO DAWN",
-    "owner": "SOLANA RIDGE HOA INC",
-    "mail_addr": "% SPECTRUM ASSN MNGMNT LP SAN ANTONIO 78232",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400074",
     "year": "2026",
     "month": "4",
@@ -4251,16 +4267,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "4922 BERNADINE DR",
-    "owner": "RODRIGUEZ NELDA",
-    "mail_addr": "NULL SAN ANTONIO 78220",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400078",
     "year": "2026",
     "month": "4",
@@ -4271,16 +4287,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "9242 EMERALD PORT DR",
-    "owner": "GONZALEZ LETICIA & ALVIN KING JR",
-    "mail_addr": "NULL SAN ANTONIO 78222",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400087",
     "year": "2026",
     "month": "4",
@@ -4291,16 +4307,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "1822 COYOTE CROSSING",
-    "owner": "HERNANDEZ CHRISTINE L &",
-    "mail_addr": "GILBERT A CONVERSE 78109",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400090",
     "year": "2026",
     "month": "4",
@@ -4311,16 +4327,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "12215 CLAIBORNE",
-    "owner": "CARRINGTON ALICE",
-    "mail_addr": "NULL SAN ANTONIO 78209",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400092",
     "year": "2026",
     "month": "4",
@@ -4331,16 +4347,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "2020 SISYPHUS VW",
-    "owner": "APPIAH JOHN KWAKU",
-    "mail_addr": "NULL SAN ANTONIO 78245",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400093",
     "year": "2026",
     "month": "4",
@@ -4351,16 +4367,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "2026 SUNBEND FALLS",
-    "owner": "QUINTERO KIMBERLY N",
-    "mail_addr": "NULL SAN ANTONIO 78224",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400094",
     "year": "2026",
     "month": "4",
@@ -4371,16 +4387,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "7903 BLUEWATER COVE",
-    "owner": "LAKESIDE AT CANYON SPRINGS HOA",
-    "mail_addr": "% AMG SAN ANTONIO 78258",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400095",
     "year": "2026",
     "month": "4",
@@ -4391,16 +4407,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "167 E HUTCHINS PL",
-    "owner": "VANCE EMERSON",
-    "mail_addr": "NULL LAKESIDE 92040",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400096",
     "year": "2026",
     "month": "4",
@@ -4411,16 +4427,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "22615 S US HWY 281 S",
-    "owner": "BARRIOS LEOBARD  JR",
-    "mail_addr": "NULL HOUSTON 77044",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400102",
     "year": "2026",
     "month": "4",
@@ -4431,16 +4447,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "2523 SUNDROP BAY",
-    "owner": "AVILA DIANA",
-    "mail_addr": "NULL SAN ANTONIO 78224",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400103",
     "year": "2026",
     "month": "4",
@@ -4451,16 +4467,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "14215 RIDGEBORO DR",
-    "owner": "LAROSE ANDRE THOMAS",
-    "mail_addr": "NULL SAN ANTONIO 78232",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400106",
     "year": "2026",
     "month": "4",
@@ -4471,16 +4487,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "14818 TURKEY TRL",
-    "owner": "PEREZ EDWARD & SARA J",
-    "mail_addr": "NULL SAN ANTONIO 78264",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400109",
     "year": "2026",
     "month": "4",
@@ -4491,16 +4507,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "3822 SOUTHERN FLD",
-    "owner": "SILGERO PHILIP",
-    "mail_addr": "NULL SAN ANTONIO 78222",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400116",
     "year": "2026",
     "month": "4",
@@ -4511,16 +4527,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "14502 CAMINO WAY",
-    "owner": "SAN ANTONIO RIVER AUTHORITY",
-    "mail_addr": "NULL SAN ANTONIO 78204",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400117",
     "year": "2026",
     "month": "4",
@@ -4531,16 +4547,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "246 CREATH PL",
-    "owner": "PEREZ DIANA ALVARADO & PEREZ MARIA LUISA",
-    "mail_addr": "NULL SAN ANTONIO 78221",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400120",
     "year": "2026",
     "month": "4",
@@ -4551,16 +4567,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "11954 JASMINE WAY",
-    "owner": "SALCEDO LUIS IGNACIO & JANET GUADALUPE",
-    "mail_addr": "NULL SAN ANTONIO 78253",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400122",
     "year": "2026",
     "month": "4",
@@ -4571,16 +4587,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "5218 GRAY BUFFALO ST",
-    "owner": "CELLMER DENISE",
-    "mail_addr": "NULL SAINT HEDWIG 78152",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400123",
     "year": "2026",
     "month": "4",
@@ -4591,16 +4607,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "835 CELOSIA",
-    "owner": "CERDA DENISE & JOHNS SCOTTY JOHN",
-    "mail_addr": "NULL SAN ANTONIO 78245",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400126",
     "year": "2026",
     "month": "4",
@@ -4611,16 +4627,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "7323 BLUEBONNET BAY",
-    "owner": "MILE HIGH BORROWER 1 CORE LLC",
-    "mail_addr": "NULL SCOTTSDALE 85261",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400139",
     "year": "2026",
     "month": "4",
@@ -4631,16 +4647,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "6042 ELM VALLEY DR",
-    "owner": "DEHOYOS RUTH RIOS",
-    "mail_addr": "NULL HALTOM CITY 76117",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400149",
     "year": "2026",
     "month": "4",
@@ -4651,16 +4667,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "9846 CHARLINE LN",
-    "owner": "MARQUEZ SAMUEL JEROME",
-    "mail_addr": "NULL SAN ANTONIO 78254",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400151",
     "year": "2026",
     "month": "4",
@@ -4671,16 +4687,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "543 DRAKE AVE",
-    "owner": "TRAN LAN MY THI & TAY SAM",
-    "mail_addr": "NULL WINDCREST 78239",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400156",
     "year": "2026",
     "month": "4",
@@ -4691,16 +4707,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "4134 GOSHEN PASS ST",
-    "owner": "TEJEDA ADRIAN A & ELSA M",
-    "mail_addr": "NULL SAN ANTONIO 78230",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400157",
     "year": "2026",
     "month": "4",
@@ -4711,16 +4727,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "1008 STONEWALL ST",
-    "owner": "CITY OF SAN ANTONIO",
-    "mail_addr": "NULL SAN ANTONIO 78283",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400158",
     "year": "2026",
     "month": "4",
@@ -4731,16 +4747,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "2747 TRINITY VW",
-    "owner": "JAPHET HOLDINGS LTD",
-    "mail_addr": "NULL SHAVANO PARK 78231",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400159",
     "year": "2026",
     "month": "4",
@@ -4751,16 +4767,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "203 PLEASANTON SPG",
-    "owner": "CLAUDIO RICHARD G",
-    "mail_addr": "NULL SAN ANTONIO 78211",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400168",
     "year": "2026",
     "month": "4",
@@ -4771,16 +4787,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "1207 BEACON CV",
-    "owner": "FIERRO JOSE F MURILLO & MURILLO IRMA SANDOVAL",
-    "mail_addr": "NULL CONVERSE 78109",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400170",
     "year": "2026",
     "month": "4",
@@ -4791,16 +4807,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "3406 CANDLEPASS DR",
-    "owner": "MAYES JERRICA",
-    "mail_addr": "NULL SAN ANTONIO 78244",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400175",
     "year": "2026",
     "month": "4",
@@ -4811,16 +4827,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "6278 RIDGEBROOK ST",
-    "owner": "RAMSEY DENNIS R",
-    "mail_addr": "NULL SAN ANTONIO 78250",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400176",
     "year": "2026",
     "month": "4",
@@ -4831,16 +4847,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "1010 CERALVO ST",
-    "owner": "CITY OF SAN ANTONIO",
-    "mail_addr": "NULL SAN ANTONIO 78283",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400179",
     "year": "2026",
     "month": "4",
@@ -4851,16 +4867,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "204 GORMAN",
-    "owner": "SAPENTER RICHARD H & ET UX",
-    "mail_addr": "NULL ROUND ROCK 78664",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400180",
     "year": "2026",
     "month": "4",
@@ -4871,16 +4887,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "8635 CAPE VALLEY ST",
-    "owner": "DB MANNING3 SERIES LLC SERIES D",
-    "mail_addr": "NULL SAN ANTONIO 78249",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400189",
     "year": "2026",
     "month": "4",
@@ -4891,16 +4907,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "735 PELICAN POINT",
-    "owner": "VALLADOLID MIGUEL & MARGARITA R & LUCIA",
-    "mail_addr": "NULL SAN ANTONIO 78244",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400190",
     "year": "2026",
     "month": "4",
@@ -4911,16 +4927,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "7211 BROOKSIDE ST",
-    "owner": "LAGRANGE DAVID ROSS & MEGAN T",
-    "mail_addr": "NULL SAN ANTONIO 78209",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400192",
     "year": "2026",
     "month": "4",
@@ -4931,16 +4947,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "546 RICE RD",
-    "owner": "MCKINNEY BETTY M &",
-    "mail_addr": "MCLINTON CHERYL T SAN ANTONIO 78220",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400197",
     "year": "2026",
     "month": "4",
@@ -4951,16 +4967,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "14611 HIGHLAND RDG",
-    "owner": "DORCH LARRY R & BRENDA M",
-    "mail_addr": "NULL SAN ANTONIO 78210",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400198",
     "year": "2026",
     "month": "4",
@@ -4971,16 +4987,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "107 E WRIGHT",
-    "owner": "GUTIERREZ ANITA M",
-    "mail_addr": "NULL SAN ANTONIO 78221",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400256",
     "year": "2026",
     "month": "4",
@@ -4991,16 +5007,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "15123 FOLEY HILL",
-    "owner": "CAMARILLO NOE",
-    "mail_addr": "NULL VON ORMY 78073",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400216",
     "year": "2026",
     "month": "4",
@@ -5011,16 +5027,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "5711 REPEATING WAY",
-    "owner": "CARTER CALEB MATTHEW",
-    "mail_addr": "NULL SAN ANTONIO 78073",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400229",
     "year": "2026",
     "month": "4",
@@ -5031,16 +5047,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "4207 MOUNTAIN PASS",
-    "owner": "SAN JUAN JESUS",
-    "mail_addr": "NULL ELMENDORF 78112",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400259",
     "year": "2026",
     "month": "4",
@@ -5051,16 +5067,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "722 JOHN ADAMS DR",
-    "owner": "RODRIGUEZ SAUL",
-    "mail_addr": "NULL SOMERSET 78069",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260200236",
     "year": "2026",
     "month": "2",
@@ -5071,16 +5087,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "8910 FOWLER HILL",
-    "owner": "MURGUIA THOMAS YARBOROUGH",
-    "mail_addr": "NULL ATASCOSA 78002",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500023",
     "year": "2026",
     "month": "5",
@@ -5091,16 +5107,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "14233 LUCKEY ROAD",
-    "owner": "WITHERSPOON MATTHEW ANTHONY & KRISTAN",
-    "mail_addr": "NULL SOMERSET 78069",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500186",
     "year": "2026",
     "month": "5",
@@ -5111,16 +5127,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "10203 HACKELBERG ROAD",
-    "owner": "KINDLE DYLAN & MARY",
-    "mail_addr": "NULL ATACOSA 78002",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500111",
     "year": "2026",
     "month": "5",
@@ -5131,16 +5147,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "407 FLEMING ST",
-    "owner": "GARCIA EPITACIO",
-    "mail_addr": "NULL SAN ANTONIO 78208",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400036",
     "year": "2026",
     "month": "4",
@@ -5151,16 +5167,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "6619 GALLERY OAK DR",
-    "owner": "MCENTIRE ROBERT WAYNE L/E",
-    "mail_addr": "MCENTIRE  AMELIA M APO 09114",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400174",
     "year": "2026",
     "month": "4",
@@ -5171,16 +5187,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "3191 WOODFIN DR",
-    "owner": "BERNAL RUDY",
-    "mail_addr": "NULL SAN ANTONIO 78264",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260400351",
     "year": "2026",
     "month": "4",
@@ -5191,16 +5207,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "4615 LEGEND FLS",
-    "owner": "BRITELET LLC",
-    "mail_addr": "NULL CIBOLO 78108",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500160",
     "year": "2026",
     "month": "5",
@@ -5211,16 +5227,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "14616 STABLE SPRINGS",
-    "owner": "AN JULIET & MOORE TYLER BRYANT",
-    "mail_addr": "NULL SAN ANTONIO 78244",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500195",
     "year": "2026",
     "month": "5",
@@ -5231,16 +5247,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "159 YUMA ST",
-    "owner": "BOTELLO GABRIEL P",
-    "mail_addr": "NULL ELMENDORF 78112",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500196",
     "year": "2026",
     "month": "5",
@@ -5251,16 +5267,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "314 CHICKERING AVE",
-    "owner": "CITY OF SAN ANTONIO",
-    "mail_addr": "NULL SAN ANTONIO 78283",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500197",
     "year": "2026",
     "month": "5",
@@ -5271,16 +5287,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "8425 AHERN DR",
-    "owner": "SIECZYNSKA POLA",
-    "mail_addr": "NULL SAN ANTONIO 78233",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500199",
     "year": "2026",
     "month": "5",
@@ -5291,16 +5307,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "2107 EL JARDIN RD",
-    "owner": "YUN ELBERT HYUNG-JOON & JENIFFER",
-    "mail_addr": "NULL SAN ANTONIO 78258",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500200",
     "year": "2026",
     "month": "5",
@@ -5311,16 +5327,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "2406 ROSEVILLE ST",
-    "owner": "RAMIREZ ROSIE A & BARBOZA DAVID",
-    "mail_addr": "NULL SAN ANTONIO 78219",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500201",
     "year": "2026",
     "month": "5",
@@ -5331,16 +5347,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "7655 RIMHURST",
-    "owner": "REYES MOISES BARRON & RAMIREZ EMILIO BARRON",
-    "mail_addr": "NULL SAN ANTONIO 78221",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500204",
     "year": "2026",
     "month": "5",
@@ -5351,16 +5367,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "2415 W SUMMIT AVE",
-    "owner": "FREEMAN JOE CHARLES & MARTHA DOTY",
-    "mail_addr": "NULL WEST LAKE HILLS 78746",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500207",
     "year": "2026",
     "month": "5",
@@ -5371,16 +5387,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "3139 GILBERT GARDEN",
-    "owner": "MAGGIO YOLANDA",
-    "mail_addr": "NULL SAN ANTONIO 78213",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500208",
     "year": "2026",
     "month": "5",
@@ -5391,16 +5407,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "1770 THOUSAND OAKS DR",
-    "owner": "EDCOUCH COMMUNITY HOUSING FINANCE CORPORATION",
-    "mail_addr": "NULL AUSTIN 78746",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500209",
     "year": "2026",
     "month": "5",
@@ -5411,16 +5427,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "1108 W MARIPOSA DR",
-    "owner": "HERNANDEZ STEPHEN E & ELIZABETH Z",
-    "mail_addr": "NULL SAN ANTONIO 78212",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500212",
     "year": "2026",
     "month": "5",
@@ -5431,16 +5447,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "2914 LAKELAND DR",
-    "owner": "BENITEZ RAY",
-    "mail_addr": "NULL SAN ANTONIO 78222",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500214",
     "year": "2026",
     "month": "5",
@@ -5451,16 +5467,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "616 FERN MEADOW DR",
-    "owner": "CG STRUCTURES LLC",
-    "mail_addr": "NULL SAN ANTONIO 78210",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500216",
     "year": "2026",
     "month": "5",
@@ -5471,16 +5487,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "1683 RIGSBY AVE",
-    "owner": "DELGADO RUBEN",
-    "mail_addr": "NULL SAN ANTONIO 78223",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500219",
     "year": "2026",
     "month": "5",
@@ -5491,16 +5507,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "6934 ELMWOOD CREST",
-    "owner": "VASQUEZ DANIEL A",
-    "mail_addr": "NULL LIVE OAK 78233",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500220",
     "year": "2026",
     "month": "5",
@@ -5511,16 +5527,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "6903 EMERALD VALLEY",
-    "owner": "GONZALEZ LETICIA & ALVIN KING JR",
-    "mail_addr": "NULL SAN ANTONIO 78222",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500221",
     "year": "2026",
     "month": "5",
@@ -5531,16 +5547,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "6515 DYNAMIC SOUND",
-    "owner": "OSBURN VANESSA R",
-    "mail_addr": "NULL SAN ANTONIO 78252",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500222",
     "year": "2026",
     "month": "5",
@@ -5551,16 +5567,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "15010 SILVERTREE COVE",
-    "owner": "PRESERVE AT MEDINA RIVER ASSOCIATION INC",
-    "mail_addr": "NULL SAN ANTONIO 78213",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500223",
     "year": "2026",
     "month": "5",
@@ -5571,16 +5587,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "7206 LEAFWOOD DR",
-    "owner": "GAYER STEPHEN P & DIANA B",
-    "mail_addr": "NULL SPRING BRANCH 78070",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500224",
     "year": "2026",
     "month": "5",
@@ -5591,16 +5607,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "7810 OXBOW WAY",
-    "owner": "SANCHEZ FELIPE S JR & KARLA A",
-    "mail_addr": "NULL SAN ANTONIO 78254",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500225",
     "year": "2026",
     "month": "5",
@@ -5611,16 +5627,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "15719 CLOVE SPICE WAY",
-    "owner": "DYCUS JAMES",
-    "mail_addr": "NULL SAN ANTONIO 78209",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500226",
     "year": "2026",
     "month": "5",
@@ -5631,16 +5647,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "1706 ROMERO",
-    "owner": "MELENDEZ JUAN & MARIA DOLORES",
-    "mail_addr": "NULL SAN ANTONIO 78237",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500227",
     "year": "2026",
     "month": "5",
@@ -5651,16 +5667,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "211 MARBAUCH AVE",
-    "owner": "SANDOVAL ISRAEL ARTURO &",
-    "mail_addr": "SANDRA RAMOS SAN ANTONIO 78237",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500228",
     "year": "2026",
     "month": "5",
@@ -5671,16 +5687,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "4202 BRIGADIER DRIVE",
-    "owner": "HUGHES SUSAN",
-    "mail_addr": "NULL CONVERSE 78109",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500229",
     "year": "2026",
     "month": "5",
@@ -5691,16 +5707,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "7900 DEEP FRST",
-    "owner": "ESQUIVEL YORDAN MAYOL",
-    "mail_addr": "NULL SAN ANTONIO 78239",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500230",
     "year": "2026",
     "month": "5",
@@ -5711,16 +5727,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "11223 VOLLMER LN",
-    "owner": "MEJIA  BRIDGET W",
-    "mail_addr": "NULL SAN ANTONIO 78254",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500233",
     "year": "2026",
     "month": "5",
@@ -5731,16 +5747,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "14726 CALAMITY WAY",
-    "owner": "LOGAN JACKIE M & KIRK GAIL C",
-    "mail_addr": "NULL HELOTES 78023",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500234",
     "year": "2026",
     "month": "5",
@@ -5751,16 +5767,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "10230 W LOOP 1604",
-    "owner": "ESPINOZA GILBERT & CRUZ CYNTHIA",
-    "mail_addr": "NULL ELMENDORF 78112",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500236",
     "year": "2026",
     "month": "5",
@@ -5771,16 +5787,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "10836 BANGO FARMS",
-    "owner": "RANGEL VALENTINE R &",
-    "mail_addr": "MARIA A SAN ANTONIO 78228",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500237",
     "year": "2026",
     "month": "5",
@@ -5791,16 +5807,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "125 GLASS AVENUE",
-    "owner": "KNOX STEPHEN & STEPHANIE",
-    "mail_addr": "NULL SAN ANTONIO 78222",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500240",
     "year": "2026",
     "month": "5",
@@ -5811,16 +5827,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "1825 N GRAYTOWN ROAD",
-    "owner": "CELLMER DENISE",
-    "mail_addr": "NULL SAINT HEDWIG 78152",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500241",
     "year": "2026",
     "month": "5",
@@ -5831,16 +5847,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "10927 CHATHAM COURT",
-    "owner": "TRAN PHUC LUU TAM",
-    "mail_addr": "NULL ROUND ROCK 78665",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500242",
     "year": "2026",
     "month": "5",
@@ -5851,16 +5867,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "9458 BRAMAN PT",
-    "owner": "STARR EDWARD CONRAD",
-    "mail_addr": "NULL HELOTES 78023",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500243",
     "year": "2026",
     "month": "5",
@@ -5871,16 +5887,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "14290 SAVANNAH PASS",
-    "owner": "NICHOLS ALAN JAMES & CAROL",
-    "mail_addr": "NULL VON ORMY 78073",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500251",
     "year": "2026",
     "month": "5",
@@ -5891,16 +5907,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "4335 SOMERVILLE BAY",
-    "owner": "GONZALEZ ELPIDIO &",
-    "mail_addr": "MERCADO VICTOR MANUEL SAN ANTONIO 78244",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500252",
     "year": "2026",
     "month": "5",
@@ -5911,16 +5927,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "6703 MORNING SHADOW LANE",
-    "owner": "SAENZ JOSEPH A",
-    "mail_addr": "NULL SAN ANTONIO 78223",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500253",
     "year": "2026",
     "month": "5",
@@ -5931,16 +5947,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "706 VIRGIN OAK",
-    "owner": "RANDOLPH FRANK III",
-    "mail_addr": "NULL SEGUIN 78155",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500254",
     "year": "2026",
     "month": "5",
@@ -5951,16 +5967,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "219 ROYAL DR",
-    "owner": "DIAZ JESSE &",
-    "mail_addr": "NATALIE R MCGARITY-DIAZ SAN ANTONIO 78244",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500255",
     "year": "2026",
     "month": "5",
@@ -5971,16 +5987,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "9727 GYPSY CV",
-    "owner": "RODGERS JOSEPH R",
-    "mail_addr": "NULL CONVERSE 78109",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500256",
     "year": "2026",
     "month": "5",
@@ -5991,16 +6007,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "215 N CENTER",
-    "owner": "AMAYA ABEL",
-    "mail_addr": "NULL SAN ANTONIO 78202",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500257",
     "year": "2026",
     "month": "5",
@@ -6011,16 +6027,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "21174 US HIGHWAY 281 S #2",
-    "owner": "CARL BEATRICE M",
-    "mail_addr": "NULL SAN ANTONIO 78223",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500258",
     "year": "2026",
     "month": "5",
@@ -6031,16 +6047,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "10811 LAZY OAKS DR",
-    "owner": "TOVAR FRANCISCO & TORRES MA SOCORRO REMES",
-    "mail_addr": "NULL SAN ANTONIO 78210",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500259",
     "year": "2026",
     "month": "5",
@@ -6051,16 +6067,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "827 ANGELA ST",
-    "owner": "DAY LAURA LEE",
-    "mail_addr": "NULL ROACHDALE 46172",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500260",
     "year": "2026",
     "month": "5",
@@ -6071,16 +6087,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "1220 W HUISACHE AVE",
-    "owner": "TSANDOULA ALICIA",
-    "mail_addr": "NULL SAN ANTONIO 78227",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500261",
     "year": "2026",
     "month": "5",
@@ -6091,16 +6107,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "7123 THRUSH VIEW LANE",
-    "owner": "PROMENADE CONDOMINIUM",
-    "mail_addr": "NULL SAN ANTONIO 78209",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500262",
     "year": "2026",
     "month": "5",
@@ -6111,16 +6127,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "1211 VIEWRIDGE DR",
-    "owner": "TAPIA JENNIFER H",
-    "mail_addr": "NULL SAN ANTONIO 78213",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500264",
     "year": "2026",
     "month": "5",
@@ -6131,16 +6147,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "14217 LUCKEY RD",
-    "owner": "WITHERSPOON MATTHEW ANTHONY & KRISTAN",
-    "mail_addr": "NULL SOMERSET 78069",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500265",
     "year": "2026",
     "month": "5",
@@ -6151,16 +6167,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "24565 ROBERT JARED",
-    "owner": "GUERRERO CELSO C &",
-    "mail_addr": "ROSALINDA R SAN ANTONIO 78264",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500269",
     "year": "2026",
     "month": "5",
@@ -6171,16 +6187,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "901 NE LOOP 410",
-    "owner": "GARCIA GERARDO",
-    "mail_addr": "NULL ELMENDORF 78112",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500270",
     "year": "2026",
     "month": "5",
@@ -6191,16 +6207,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "6002 ELM VALLEY DR",
-    "owner": "DEHOYOS RUTH RIOS",
-    "mail_addr": "NULL HALTOM CITY 76117",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500271",
     "year": "2026",
     "month": "5",
@@ -6211,16 +6227,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "3431 OAKDALE ST",
-    "owner": "GUADARRAMA JESSICA",
-    "mail_addr": "NULL SAN ANTONIO 78254",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500272",
     "year": "2026",
     "month": "5",
@@ -6231,16 +6247,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "1601 W OLMOS",
-    "owner": "GARZA SALVADOR C & MARIA I",
-    "mail_addr": "NULL SAN ANTONIO 78212",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500273",
     "year": "2026",
     "month": "5",
@@ -6251,16 +6267,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "2614 WAYNE DR",
-    "owner": "MONTES ROGELIO SR",
-    "mail_addr": "NULL SAN ANTONIO 78201",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500274",
     "year": "2026",
     "month": "5",
@@ -6271,16 +6287,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "2726 BERMUDA",
-    "owner": "PINON-SANCHEZ JAIME & RAMONA BELMONTE-SANCHEZ",
-    "mail_addr": "NULL SAN ANTONIO 78222",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500275",
     "year": "2026",
     "month": "5",
@@ -6291,16 +6307,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "2602 BERMUDA",
-    "owner": "PINON-SANCHEZ JAIME & RAMONA BELMONTE-SANCHEZ",
-    "mail_addr": "NULL SAN ANTONIO 78222",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500276",
     "year": "2026",
     "month": "5",
@@ -6311,16 +6327,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "1634 E CHAVANEAUX RD",
-    "owner": "GUTIERREZ EDWARD C",
-    "mail_addr": "NULL SAN ANTONIO 78208",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500277",
     "year": "2026",
     "month": "5",
@@ -6331,16 +6347,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "10507 WESTFIELD PL",
-    "owner": "KHAN JAMIL",
-    "mail_addr": "NULL SAN ANTONIO 78249",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500278",
     "year": "2026",
     "month": "5",
@@ -6351,16 +6367,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "7211 ROCK KNOLL DR",
-    "owner": "PEREZ LEONEL M &",
-    "mail_addr": "MAGDALENA R ELMENDORF 78112",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500279",
     "year": "2026",
     "month": "5",
@@ -6371,16 +6387,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "8507 SEA RIM DRIVE",
-    "owner": "BELMAN VERONICA",
-    "mail_addr": "NULL SAN ANTONIO 78220",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500280",
     "year": "2026",
     "month": "5",
@@ -6391,16 +6407,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "3807 SOUTHERN FIELD",
-    "owner": "SOUTHERN HILLS HOA",
-    "mail_addr": "NULL HELOTES 78023",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500281",
     "year": "2026",
     "month": "5",
@@ -6411,16 +6427,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "9835 HIGHLAND CRK",
-    "owner": "DORCH LARRY R & BRENDA M",
-    "mail_addr": "NULL SAN ANTONIO 78210",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500282",
     "year": "2026",
     "month": "5",
@@ -6431,16 +6447,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "25003 EARTHSTONE DR",
-    "owner": "JIMENEZ LUIS A",
-    "mail_addr": "NULL SAN ANTONIO 78258",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500283",
     "year": "2026",
     "month": "5",
@@ -6451,16 +6467,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "9207 MARE COUNTRY",
-    "owner": "ELIZONDO JAVIER & SANDRA",
-    "mail_addr": "NULL SAN ANTONIO 78224",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500284",
     "year": "2026",
     "month": "5",
@@ -6471,16 +6487,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "13246 REGENCY FOREST",
-    "owner": "HAMLYN JEFFREY M & VICKIE M",
-    "mail_addr": "NULL SAN ANTONIO 78231",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500285",
     "year": "2026",
     "month": "5",
@@ -6491,16 +6507,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "22915 SAVANNAH HEIGHTS",
-    "owner": "NICHOLS ALAN JAMES & CAROL",
-    "mail_addr": "NULL VON ORMY 78073",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500286",
     "year": "2026",
     "month": "5",
@@ -6511,36 +6527,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
-  },
-  {
-    "type": "NOF",
-    "address": "443 N SAN IGNACIO AVE",
-    "owner": "VERETTE RENETTA L",
-    "mail_addr": "NULL ABILENE 79601",
-    "absentee": true,
-    "doc_number": "20260500287",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78228",
-    "school_dist": "Edgewood ISD (Bexar)",
-    "date_filed": "5/2026",
-    "sale_date": "",
-    "grantee": "",
-    "flags": [
-      "ABSENTEE"
-    ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "8851 TEABERRY DR",
-    "owner": "PERALES ALBERT",
-    "mail_addr": "NULL SAN ANTONIO 78250",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500288",
     "year": "2026",
     "month": "5",
@@ -6551,16 +6547,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "8914 ARABIAN KING",
-    "owner": "MATHIWOS PAUL & DORA REVOCABLE LIVING TRUST",
-    "mail_addr": "NULL SAN ANTONIO 78244",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500289",
     "year": "2026",
     "month": "5",
@@ -6571,16 +6567,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "9374 VILLAGE LANCE",
-    "owner": "MARTINEZ VICENTE JR & TERESA",
-    "mail_addr": "NULL SAN ANTONIO 78218",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500292",
     "year": "2026",
     "month": "5",
@@ -6591,16 +6587,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "5906 VALLEY WOOD",
-    "owner": "SAINASUHU LLC",
-    "mail_addr": "NULL SAN ANTONIO 78223",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500293",
     "year": "2026",
     "month": "5",
@@ -6611,16 +6607,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "11846 WILDCAT COVE",
-    "owner": "KESER JEREMY G",
-    "mail_addr": "NULL SAN ANTONIO 78252",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500294",
     "year": "2026",
     "month": "5",
@@ -6631,16 +6627,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "2821 GUADALUPE ST",
-    "owner": "PACHECO EMILY & GARZA FELIPE JR",
-    "mail_addr": "NULL SAN ANTONIO 78259",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500295",
     "year": "2026",
     "month": "5",
@@ -6651,16 +6647,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "118 DAVIS CT",
-    "owner": "COMMONWEALTH COFFEE LLC",
-    "mail_addr": "NULL SAN ANTONIO 78209",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500296",
     "year": "2026",
     "month": "5",
@@ -6671,16 +6667,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "122 DAVIS CT",
-    "owner": "COMMONWEALTH COFFEE LLC",
-    "mail_addr": "NULL SAN ANTONIO 78209",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500297",
     "year": "2026",
     "month": "5",
@@ -6691,16 +6687,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "1216 CANYON RIDGE DR",
-    "owner": "PADILLA EFRAIN",
-    "mail_addr": "NULL ELMENDORF 78112",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500299",
     "year": "2026",
     "month": "5",
@@ -6711,16 +6707,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "1743 W FRENCH PL",
-    "owner": "CATHOLIC CHARITIES",
-    "mail_addr": "ARCHDIOCESE OF SAN ANTONIO INC SAN ANTONIO 78212",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500300",
     "year": "2026",
     "month": "5",
@@ -6731,16 +6727,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "1327 W RIDGEWOOD CT",
-    "owner": "MORRELL CHERY  KATHLEEN & AREMENDARIZ RICHARD ANTHONY  JR",
-    "mail_addr": "NULL SAN ANTONIO 78212",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500301",
     "year": "2026",
     "month": "5",
@@ -6751,16 +6747,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "158 E VESTAL PL",
-    "owner": "GUTIERREZ GUSTAVO",
-    "mail_addr": "NULL SAN ANTONIO 78221",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500302",
     "year": "2026",
     "month": "5",
@@ -6771,16 +6767,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "123 HOOVER AVE",
-    "owner": "RFMG PROPERTY LLC",
-    "mail_addr": "NULL SAN ANTONIO 78225",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500303",
     "year": "2026",
     "month": "5",
@@ -6791,16 +6787,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "24 DONORE SQ",
-    "owner": "VARGAS MARIA ALEJANDRA & ALVAREZ GERARDO",
-    "mail_addr": "NULL SAN ANTONIO 78229",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500304",
     "year": "2026",
     "month": "5",
@@ -6811,16 +6807,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "5201 VINECREST CIRCLE",
-    "owner": "MOLINA MELISSA & MATTHEW",
-    "mail_addr": "NULL SAN ANTONIO 78248",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500305",
     "year": "2026",
     "month": "5",
@@ -6831,16 +6827,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "6160 ECKHERT ROAD",
-    "owner": "ARCY PROPERTIES LLC",
-    "mail_addr": "NULL SAN ANTONIO 78258",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500306",
     "year": "2026",
     "month": "5",
@@ -6851,16 +6847,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "6160 ECKHERT ROAD",
-    "owner": "ARCY PROPERTIES LLC",
-    "mail_addr": "NULL SAN ANTONIO 78258",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500307",
     "year": "2026",
     "month": "5",
@@ -6871,16 +6867,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "9623 MILL PATH",
-    "owner": "AUD-TOM-JON CORPORATION",
-    "mail_addr": "NULL SAN ANTONIO 78223",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500308",
     "year": "2026",
     "month": "5",
@@ -6891,16 +6887,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "7431 SUMMER BLOSSOM COURT",
-    "owner": "MARTINEZ DEBORAH ANN",
-    "mail_addr": "NULL SAN ANTONIO 78222",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500309",
     "year": "2026",
     "month": "5",
@@ -6911,16 +6907,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "6723 SUNLIT PASS",
-    "owner": "HARTSOCK NATHANAEL ANTHONY",
-    "mail_addr": "NULL SAN ANTONIO 78244",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500310",
     "year": "2026",
     "month": "5",
@@ -6931,16 +6927,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "3219 JANE ELLEN ST",
-    "owner": "ALANIZ JOSEPH L",
-    "mail_addr": "NULL SAN ANTONIO 78221",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500311",
     "year": "2026",
     "month": "5",
@@ -6951,16 +6947,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "9110 SPRUCE FALLS",
-    "owner": "PARKER ERVIN EST OF",
-    "mail_addr": "NULL SAN ANTONIO 78203",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500312",
     "year": "2026",
     "month": "5",
@@ -6971,16 +6967,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "170 DE CHANTLE RD",
-    "owner": "NIKAIDO DAVID",
-    "mail_addr": "NULL SAN ANTONIO 78201",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500317",
     "year": "2026",
     "month": "5",
@@ -6991,16 +6987,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "406 ARTEMIS DR",
-    "owner": "MARTIN PATRICIA A",
-    "mail_addr": "NULL SAN ANTONIO 78218",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500318",
     "year": "2026",
     "month": "5",
@@ -7011,16 +7007,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "6811 AGUA CALIENTES",
-    "owner": "HARA YURI",
-    "mail_addr": "NULL SAN ANTONIO 78239",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500319",
     "year": "2026",
     "month": "5",
@@ -7031,16 +7027,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "6695 LOW BID LN",
-    "owner": "GARCIA LUISA S",
-    "mail_addr": "NULL ELMENDORF 78112",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500320",
     "year": "2026",
     "month": "5",
@@ -7051,16 +7047,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "7200 S PRESA ST",
-    "owner": "WESTERN TRAILS WATER SUPPLY",
-    "mail_addr": "NULL SAN ANTONIO 78223",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500321",
     "year": "2026",
     "month": "5",
@@ -7071,16 +7067,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "815 PIEDMONT AVE",
-    "owner": "MEIER GILBERT L JR",
-    "mail_addr": "NULL SAN ANTONIO 78223",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500322",
     "year": "2026",
     "month": "5",
@@ -7091,16 +7087,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "4718 TRAILWOOD DR",
-    "owner": "SIVELLS WILLIAM C JR &",
-    "mail_addr": "DIANA P SAN ANTONIO 78228",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500323",
     "year": "2026",
     "month": "5",
@@ -7111,16 +7107,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "6206 VILLAGE PT",
-    "owner": "MARTINEZ VICENTE JR & TERESA",
-    "mail_addr": "NULL SAN ANTONIO 78218",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500325",
     "year": "2026",
     "month": "5",
@@ -7131,16 +7127,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "110 COLGATE AVE",
-    "owner": "SALINAS MARIA J",
-    "mail_addr": "NULL SAN ANTONIO 78228",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500326",
     "year": "2026",
     "month": "5",
@@ -7151,16 +7147,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "821 MARTIN LUTHER KING DR",
-    "owner": "CITY OF SAN ANTONIO",
-    "mail_addr": "NULL SAN ANTONIO 78283",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500327",
     "year": "2026",
     "month": "5",
@@ -7171,16 +7167,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "817 MARTIN LUTHER KING DR",
-    "owner": "CITY OF SAN ANTONIO",
-    "mail_addr": "NULL SAN ANTONIO 78283",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500328",
     "year": "2026",
     "month": "5",
@@ -7191,16 +7187,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "510 S OLIVE ST",
-    "owner": "SHADROCK FAMILY LIVING",
-    "mail_addr": "REVOCABLE TRUST ADKINS 78101",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500329",
     "year": "2026",
     "month": "5",
@@ -7211,16 +7207,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "5918 PEARL PASS",
-    "owner": "CFT PROPERTY MGMT LLC",
-    "mail_addr": "NULL BOERNE 78006",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500330",
     "year": "2026",
     "month": "5",
@@ -7231,16 +7227,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "6343 MARY JAMISON ST",
-    "owner": "BELL BETTY JOHNSON",
-    "mail_addr": "NULL SAN ANTONIO 78222",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500332",
     "year": "2026",
     "month": "5",
@@ -7251,16 +7247,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "17042 BENTON CITY RD",
-    "owner": "HERNANDEZ JEREMY & GONZALES CHELSEA",
-    "mail_addr": "NULL SOMERSET 78069",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500333",
     "year": "2026",
     "month": "5",
@@ -7271,16 +7267,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "1880 HORAL ST",
-    "owner": "NORTHSIDE I S D",
-    "mail_addr": "NULL SAN ANTONIO 78238",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500334",
     "year": "2026",
     "month": "5",
@@ -7291,16 +7287,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "6606 VELMA PATH",
-    "owner": "HUFF CHRISTIAN BLAKE",
-    "mail_addr": "NULL SAN ANTONIO 78253",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500336",
     "year": "2026",
     "month": "5",
@@ -7311,16 +7307,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "313 E LOCUST ST",
-    "owner": "5701 BROADWAY LTD",
-    "mail_addr": "NULL SAN ANTONIO 78209",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500337",
     "year": "2026",
     "month": "5",
@@ -7331,16 +7327,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "822 MEADOW STONE",
-    "owner": "THORNTON WILLIAM DEWEY & LETECIA G",
-    "mail_addr": "NULL SAN ANTONIO 78210",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500344",
     "year": "2026",
     "month": "5",
@@ -7351,16 +7347,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "2426 TUCKER DRIVE",
-    "owner": "BORALIS USA INC",
-    "mail_addr": "NULL SAN ANTONIO 78230",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500348",
     "year": "2026",
     "month": "5",
@@ -7371,16 +7367,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "227 POOL DR",
-    "owner": "MEZA-CARATACHEA MARIA L",
-    "mail_addr": "NULL SAN ANTONIO 78223",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500350",
     "year": "2026",
     "month": "5",
@@ -7391,16 +7387,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "4735 GUADALAJARA DR",
-    "owner": "JOPSON MICHAEL CHARLES &",
-    "mail_addr": "SUZAINE ANN SAN ANTONIO 78233",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500351",
     "year": "2026",
     "month": "5",
@@ -7411,16 +7407,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "23026 SANDY FOREST DRIVE",
-    "owner": "ZARAGOZA JUAN JOSE & CALDERON NATALIE NICOLE",
-    "mail_addr": "NULL ELMENDORF 78112",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500352",
     "year": "2026",
     "month": "5",
@@ -7431,16 +7427,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "255 E PETALUMA BLVD",
-    "owner": "ARCHDIOCESE OF SAN ANTONIO",
-    "mail_addr": "NULL SAN ANTONIO 78221",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500353",
     "year": "2026",
     "month": "5",
@@ -7451,16 +7447,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "6010 HILLJE ST",
-    "owner": "SANCHEZ CASIMIRO & ROSA V",
-    "mail_addr": "NULL SAN ANTONIO 78223",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500354",
     "year": "2026",
     "month": "5",
@@ -7471,16 +7467,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "25518 VEINING WAY",
-    "owner": "SERRANO ANNA M",
-    "mail_addr": "NULL SAN ANTONIO 78261",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500356",
     "year": "2026",
     "month": "5",
@@ -7491,16 +7487,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "9814 BROAD FOREST ST",
-    "owner": "SAUNDERS DANIEL A",
-    "mail_addr": "NULL SAN ANTONIO 78210",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500357",
     "year": "2026",
     "month": "5",
@@ -7511,16 +7507,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "14016 MINT TRAIL DR",
-    "owner": "FRANKLIN JOHNNY L &",
-    "mail_addr": "LOIS ELAINE SAN ANTONIO 78219",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500358",
     "year": "2026",
     "month": "5",
@@ -7531,16 +7527,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "315 HOWARD ST",
-    "owner": "RIPPS WILLIAM C & JUDITH A",
-    "mail_addr": "NULL VON ORMY 78073",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500359",
     "year": "2026",
     "month": "5",
@@ -7551,16 +7547,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "421 HOWARD ST",
-    "owner": "RIPPS WILLIAM C & JUDITH A",
-    "mail_addr": "NULL VON ORMY 78073",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500360",
     "year": "2026",
     "month": "5",
@@ -7571,16 +7567,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "1906 BUFFALO ST",
-    "owner": "JUAREZ DAVID",
-    "mail_addr": "NULL SAN ANTONIO 78221",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500361",
     "year": "2026",
     "month": "5",
@@ -7591,16 +7587,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "12820 PEARSALL RD",
-    "owner": "MARTINEZ MARTIN CORTEZ",
-    "mail_addr": "NULL ATASCOSA 78002",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500362",
     "year": "2026",
     "month": "5",
@@ -7611,16 +7607,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "8425 AHERN DR",
-    "owner": "SIECZYNSKA POLA",
-    "mail_addr": "NULL SAN ANTONIO 78233",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500363",
     "year": "2026",
     "month": "5",
@@ -7631,16 +7627,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "8915 DATAPOINT DR",
-    "owner": "ARIEL HOUSE ASSOCIATES",
-    "mail_addr": "NULL SAN ANTONIO 78229",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500364",
     "year": "2026",
     "month": "5",
@@ -7651,16 +7647,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "414 CARROLL ST",
-    "owner": "FLORES MARCOS & TORRES AZENETH",
-    "mail_addr": "NULL SAN ANTONIO 78225",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500365",
     "year": "2026",
     "month": "5",
@@ -7671,16 +7667,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "224 S SAN MANUEL ST",
-    "owner": "VERETTE RENETTA L",
-    "mail_addr": "NULL ABILENE 79601",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500366",
     "year": "2026",
     "month": "5",
@@ -7691,16 +7687,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "10148 SUNSET PL",
-    "owner": "TORRES PEARL B & ISIDRA R",
-    "mail_addr": "NULL SAN ANTONIO 78264",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500367",
     "year": "2026",
     "month": "5",
@@ -7711,16 +7707,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "8342 TIMBERWILDE",
-    "owner": "GREAT NORTHWEST COMMUNITY",
-    "mail_addr": "IMPROVEMENT ASSOCIATION INC SAN ANTONIO 78250",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500368",
     "year": "2026",
     "month": "5",
@@ -7731,16 +7727,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "9014 WISDOM RIDGE",
-    "owner": "HERNANDEZ NICOLASA",
-    "mail_addr": "NULL LYTLE 78052",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500369",
     "year": "2026",
     "month": "5",
@@ -7751,16 +7747,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "614 SEWANEE",
-    "owner": "LEDESMA MARIA",
-    "mail_addr": "NULL SAN ANTONIO 78210",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500370",
     "year": "2026",
     "month": "5",
@@ -7771,16 +7767,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "119 COMETA ST",
-    "owner": "AGUILAR JUAN ALFREDO",
-    "mail_addr": "NULL SAN ANTONIO 78250",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500371",
     "year": "2026",
     "month": "5",
@@ -7791,16 +7787,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "138 LOS ARBOLES",
-    "owner": "REYES MACARIO",
-    "mail_addr": "NULL SAN ANTONIO 78242",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500372",
     "year": "2026",
     "month": "5",
@@ -7811,16 +7807,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "9038 OLD SKY HARBOR",
-    "owner": "REYES CONNIE J",
-    "mail_addr": "NULL ELMENDORF 78112",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500373",
     "year": "2026",
     "month": "5",
@@ -7831,16 +7827,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "143 APPLETON DR",
-    "owner": "VIDAL PABLO  JR & TERESA L",
-    "mail_addr": "NULL SAN ANTONIO 78227",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500374",
     "year": "2026",
     "month": "5",
@@ -7851,16 +7847,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "439 E YOUNG",
-    "owner": "ABREGO GUADALUPE",
-    "mail_addr": "NULL ELMENDORF 78112",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500375",
     "year": "2026",
     "month": "5",
@@ -7871,16 +7867,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "14222 PHEASANT",
-    "owner": "HUERTA HUMBERTO JR & MICHELLE",
-    "mail_addr": "NULL ELMENDORF 78112",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500376",
     "year": "2026",
     "month": "5",
@@ -7891,16 +7887,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "337 AVONDALE AVE",
-    "owner": "ROSENSTEIN MAURICE ET AL",
-    "mail_addr": "NULL COLLEGE STATION 77842",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500377",
     "year": "2026",
     "month": "5",
@@ -7911,16 +7907,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "121 BOEHMER",
-    "owner": "BONILLA EUGENE & BONILLA ARACELY VAZQUEZ",
-    "mail_addr": "NULL SAN ANTONIO 78245",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500378",
     "year": "2026",
     "month": "5",
@@ -7931,16 +7927,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "6807 BLUEGRASS RUN",
-    "owner": "WARD JAMES ALBERT",
-    "mail_addr": "NULL SAN ANTONIO 78253",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500379",
     "year": "2026",
     "month": "5",
@@ -7951,16 +7947,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "9507 FULWOOD TRAIL",
-    "owner": "LEMIRE LISA",
-    "mail_addr": "NULL SAN ANTONIO 78239",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500380",
     "year": "2026",
     "month": "5",
@@ -7971,16 +7967,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "SE LOOP 410",
-    "owner": "GARCIA GERARDO",
-    "mail_addr": "NULL ELMENDORF 78112",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500298",
     "year": "2026",
     "month": "5",
@@ -7991,16 +7987,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "BABCOCK RD",
-    "owner": "JASIK BERNICE",
-    "mail_addr": "NULL PLEASANTON 78064",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500335",
     "year": "2026",
     "month": "5",
@@ -8011,16 +8007,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "12227 LUCKEY SUMMIT",
-    "owner": "WITHERSPOON MATTHEW ANTHONY & KRISTAN",
-    "mail_addr": "NULL SOMERSET 78069",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500191",
     "year": "2026",
     "month": "5",
@@ -8031,16 +8027,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "10627 BRADY CREEK CAMP",
-    "owner": "SAN ANTONIO HOUSING FACILITY CORP",
-    "mail_addr": "NULL SAN ANTONIO 78204",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500193",
     "year": "2026",
     "month": "5",
@@ -8051,16 +8047,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "PECAN VALLEY DR",
-    "owner": "SAINASUHU LLC",
-    "mail_addr": "NULL SAN ANTONIO 78223",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500349",
     "year": "2026",
     "month": "5",
@@ -8071,16 +8067,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "27715 RIATA RANCH DR",
-    "owner": "BRYANT JAMES R & JAN R",
-    "mail_addr": "NULL SAN ANTONIO 78261",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500188",
     "year": "2026",
     "month": "5",
@@ -8091,16 +8087,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "DEER RUN",
-    "owner": "DZIUK LESTER LEE & DZIUK ALICE SANCHEZ",
-    "mail_addr": "NULL SAN ANTONIO 78222",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500263",
     "year": "2026",
     "month": "5",
@@ -8111,16 +8107,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "LAMM RD",
-    "owner": "JASIK BERNICE",
-    "mail_addr": "NULL PLEASANTON 78064",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500266",
     "year": "2026",
     "month": "5",
@@ -8131,16 +8127,16 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   },
   {
     "type": "NOF",
     "address": "S WEIDNER RD",
-    "owner": "CHEYENNE VALLEY HOMEOWNERS ASSOCIATION INC",
-    "mail_addr": "% AMG SAN ANTONIO 78258",
-    "absentee": true,
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
     "doc_number": "20260500290",
     "year": "2026",
     "month": "5",
@@ -8151,8 +8147,8 @@
     "sale_date": "",
     "grantee": "",
     "flags": [
-      "ABSENTEE"
+      "NO OWNER"
     ],
-    "score": 8
+    "score": 3
   }
 ]
