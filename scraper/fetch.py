@@ -4,6 +4,8 @@ Bexar County Motivated Seller Lead Scraper v21
   This gives us ACCURATE owner names because AddrLn1 = where the owner receives mail
   If AddrLn1 starts with '919' and contains 'LOMBRANO', that IS Jessicca J Diaz's parcel
 - Falls back to Situs LIKE for parcels where AddrLn1 is NULL
+- BUGFIX v21.1: Fixed chained assignment wipe in lookup_by_addrln1 that prevented owner names from saving
+- BUGFIX v21.1: Fixed broken absentee detection referencing wrong parsed key
 """
 
 import json
@@ -86,7 +88,6 @@ def parse_address(address):
         return None
     num = parts[0]
     rest = parts[1:] if len(parts) > 1 else []
-    # Last token may be suffix
     suffix = ""
     SUFFIXES = {"ST","AVE","DR","RD","LN","CT","CIR","BLVD","WAY","PL","TRL","PKWY","HWY","LOOP","PASS","CV","PT"}
     if rest and rest[-1] in SUFFIXES:
@@ -111,15 +112,14 @@ def lookup_by_addrln1(parsed):
     if not parsed:
         return None
 
-    num    = parsed["num"]
-    street = parsed["street"]
+    num        = parsed["num"]
+    street     = parsed["street"]
     first_word = street.split()[0] if street.split() else ""
 
     if not first_word:
         return None
 
     try:
-        # Query: mailing address starts with house number
         where = f"AddrLn1 LIKE '{num} %'"
         feats = arcgis_query(
             PARCELS_URL, where,
@@ -130,18 +130,17 @@ def lookup_by_addrln1(parsed):
         if not feats:
             return None
 
-        # Filter: mailing address also contains the street name
         best_owner = ""
         best_addr1 = ""
         best_score = 0
 
         for feat in feats:
-            a      = feat["attributes"]
-            situs  = str(a.get("Situs")   or "").strip().upper()
-            owner  = str(a.get("Owner")   or "").strip()
-            addr1  = str(a.get("AddrLn1") or "").strip().upper()
-            city   = str(a.get("AddrCity") or "").strip()
-            zipcode= str(a.get("Zip")     or "").strip()
+            a       = feat["attributes"]
+            situs   = str(a.get("Situs")    or "").strip().upper()
+            owner   = str(a.get("Owner")    or "").strip()
+            addr1   = str(a.get("AddrLn1")  or "").strip().upper()
+            city    = str(a.get("AddrCity") or "").strip()
+            zipcode = str(a.get("Zip")      or "").strip()
 
             if not owner or owner.upper() in ("NULL", "NONE", ""):
                 continue
@@ -149,28 +148,31 @@ def lookup_by_addrln1(parsed):
                 continue
 
             score = 0
-            # Check if street name appears in mailing address
             if first_word in addr1:
                 score += 5
-            # Check all street words
             for w in street.split():
                 if w in addr1:
                     score += 1
-            # Check Situs also matches (bonus)
             if first_word in situs:
                 score += 2
 
+            # FIXED: no chained assignment — just compare and assign cleanly
             if score > best_score:
-                best_score = best_owner = ""
                 best_score = score
                 best_owner = owner
                 best_addr1 = f"{addr1.title()} {city} {zipcode}".strip()
 
         if best_score >= 5 and best_owner:
             log.debug(f"  AddrLn1 match (score={best_score}): {parsed['full']} → {best_owner}")
-            # Absentee: mailing address different from property
-            absentee = first_word not in (parsed.get("street","").upper())
-            return {"owner": best_owner, "mail_addr": best_addr1, "absentee": False, "method": "addrln1"}
+            # FIXED: absentee check compares mailing addr vs property address
+            mail_upper = best_addr1.upper()
+            absentee   = first_word not in mail_upper or num not in mail_upper
+            return {
+                "owner":     best_owner,
+                "mail_addr": best_addr1,
+                "absentee":  absentee,
+                "method":    "addrln1"
+            }
 
     except Exception as e:
         log.debug(f"lookup_by_addrln1 error: {e}")
@@ -210,26 +212,23 @@ def lookup_by_situs(parsed):
         best_mail  = ""
 
         for feat in feats:
-            a      = feat["attributes"]
-            situs  = str(a.get("Situs")   or "").strip().upper()
-            owner  = str(a.get("Owner")   or "").strip()
-            addr1  = str(a.get("AddrLn1") or "").strip().upper()
-            city   = str(a.get("AddrCity") or "").strip()
-            zipcode= str(a.get("Zip")     or "").strip()
+            a       = feat["attributes"]
+            situs   = str(a.get("Situs")    or "").strip().upper()
+            owner   = str(a.get("Owner")    or "").strip()
+            addr1   = str(a.get("AddrLn1")  or "").strip().upper()
+            city    = str(a.get("AddrCity") or "").strip()
+            zipcode = str(a.get("Zip")      or "").strip()
 
             if not owner or owner.upper() in ("NULL", "NONE", ""):
                 continue
 
             score = 0
-            # Strong match: AddrLn1 starts with our house number
             if addr1 and addr1 != "NULL" and addr1.startswith(num):
                 score += 10
                 if first_word in addr1:
                     score += 5
-            # Street name in Situs
             if first_word in situs:
                 score += 3
-            # Multiple street words match
             for w in street.split():
                 if w in situs:
                     score += 1
@@ -240,7 +239,6 @@ def lookup_by_situs(parsed):
                 mail = f"{addr1.title()} {city} {zipcode}".strip() if addr1 and addr1 != "NULL" else ""
                 best_mail = mail
 
-        # Only accept strong matches (AddrLn1 house number match required)
         if best_score >= 10 and best_owner:
             log.debug(f"  Situs fallback (score={best_score}): {parsed['full']} → {best_owner}")
             absentee = bool(best_mail) and num not in best_mail.upper().split()[:2]
@@ -327,10 +325,8 @@ def fetch_foreclosures():
 def enrich_owners(records):
     log.info(f"Looking up owners for {len(records)} records...")
 
-    # Validate the parcel layer with a diagnostic first
     log.info("  Diagnostic: testing parcel queries...")
 
-    # Test 1: Does AddrLn1 LIKE work?
     test1 = arcgis_query(PARCELS_URL, "AddrLn1 LIKE '919 %'",
                          fields="Situs,Owner,AddrLn1,AddrCity,Zip", limit=5)
     log.info(f"  Test 1 (AddrLn1 LIKE '919 %'): {len(test1)} results")
@@ -338,7 +334,6 @@ def enrich_owners(records):
         for i, f in enumerate(test1[:3]):
             log.info(f"    Result {i+1}: {dict(f['attributes'])}")
 
-    # Test 2: Specific lookup for 919 LOMBRANO
     test2 = arcgis_query(PARCELS_URL, "AddrLn1 LIKE '919 %' AND Situs LIKE '%LOMBRANO%'",
                          fields="Situs,Owner,AddrLn1", limit=5)
     log.info(f"  Test 2 (919 LOMBRANO): {len(test2)} results")
@@ -346,9 +341,9 @@ def enrich_owners(records):
         for f in test2:
             log.info(f"    → {dict(f['attributes'])}")
 
-    found = 0
+    found        = 0
     addrln1_hits = 0
-    situs_hits = 0
+    situs_hits   = 0
 
     for i, rec in enumerate(records):
         addr = rec.get("address", "")
@@ -672,7 +667,7 @@ if __name__ == "__main__":
     os.makedirs("dashboard", exist_ok=True)
 
     log.info("="*60)
-    log.info("Bexar County Lead Scraper v21")
+    log.info("Bexar County Lead Scraper v21.1 (owner name fix)")
     log.info(f"Foreclosures: {FORECLOSURE_BASE}")
     log.info(f"Owner lookup: {PARCELS_URL} (AddrLn1 method)")
     log.info("="*60)
