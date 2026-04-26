@@ -59,7 +59,7 @@ tbody td{padding:10px 12px;vertical-align:middle;}
 .flag-hot{background:rgba(255,107,53,.15);color:var(--hot);border-color:rgba(255,107,53,.3);font-weight:600;}
 .flag-new{background:rgba(167,139,250,.15);color:var(--new);border-color:rgba(167,139,250,.3);font-weight:600;}
 .flag-dup{background:rgba(251,191,36,.1);color:var(--warning);border-color:rgba(251,191,36,.25);}
-.loading{text-align:center;padding:60px 20px;color:var(--muted);}
+.loading{text-align:center;padding:60px 20px;color:var(--muted);font-size:14px;}
 .state-msg{text-align:center;padding:60px 20px;color:var(--muted);}
 .pagination{display:flex;justify-content:center;align-items:center;gap:8px;padding:20px 32px;color:var(--muted);font-size:12px;}
 .pagination button{background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:6px 14px;cursor:pointer;font-family:'DM Mono',monospace;font-size:12px;}
@@ -132,21 +132,26 @@ tbody td{padding:10px 12px;vertical-align:middle;}
 <script>
 var ALL_RECORDS=[],filtered=[],page=1,PAGE=50,sortCol='score',sortDir=-1;
 
-// Load data from records.json at runtime — no injection needed
-fetch('records.json?v=' + Date.now())
-  .then(function(r){ return r.json(); })
+// Load from raw GitHub — bypasses Pages artifact caching
+var DATA_URL='https://raw.githubusercontent.com/e4property/bexar-leads/main/dashboard/records.json?v='+Date.now();
+
+fetch(DATA_URL)
+  .then(function(r){
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    return r.json();
+  })
   .then(function(data){
-    ALL_RECORDS = data;
+    ALL_RECORDS=data;
     document.getElementById('loading').style.display='none';
     document.getElementById('main-table').style.display='table';
     init();
   })
   .catch(function(err){
-    document.getElementById('loading').textContent='Error loading data: ' + err;
+    document.getElementById('loading').textContent='Error loading data: '+err+'. Try refreshing.';
   });
 
 function init(){
-  var ts = ALL_RECORDS.length > 0 ? (ALL_RECORDS[0].run_ts || '') : '';
+  var ts=ALL_RECORDS.length>0?(ALL_RECORDS[0].run_ts||''):'';
   if(ts) document.getElementById('last-updated').textContent='Updated: '+ts.replace('T',' ').replace('Z',' UTC');
   document.getElementById('s-total').textContent=ALL_RECORDS.length;
   document.getElementById('s-nof').textContent=ALL_RECORDS.filter(function(r){return r.type==='NOF';}).length;
@@ -173,18 +178,18 @@ function applyFilters(){
     var mow=!ow||(ow==='named'?!!r.owner:ow==='absentee'?!!r.absentee:ow==='new'?!!r.is_new:ow==='duplicate'?!!r.duplicate:!r.owner);
     return mq&&mt&&mow;
   });
-  if(!sortCol){
+  if(sortCol){
+    filtered.sort(function(a,b){
+      var av=a[sortCol]||'',bv=b[sortCol]||'';
+      if(typeof av==='number'&&typeof bv==='number') return (av-bv)*sortDir;
+      return av>bv?sortDir:av<bv?-sortDir:0;
+    });
+  } else {
     filtered.sort(function(a,b){
       if(s==='score-desc') return b.score-a.score;
       if(s==='score-asc')  return a.score-b.score;
       if(s==='date-desc')  return (b.date_filed||'')>(a.date_filed||'')?1:-1;
       return 0;
-    });
-  } else {
-    filtered.sort(function(a,b){
-      var av=a[sortCol]||'',bv=b[sortCol]||'';
-      if(typeof av==='number'&&typeof bv==='number') return (av-bv)*sortDir;
-      return av>bv?sortDir:av<bv?-sortDir:0;
     });
   }
   page=1;
@@ -210,7 +215,7 @@ function render(){
     var addrHtml='<div class="addr">'+(r.address||'—')+'<a href="'+mapUrl+'" target="_blank">map</a></div>';
     var ownerHtml=r.owner
       ?'<div class="owner">'+r.owner+(r.duplicate?' [DUP]':'')+'</div>'
-      +'<div class="mail">'+(r.mail_addr&&r.absentee?r.mail_addr:'')+'</div>'
+       +'<div class="mail">'+(r.mail_addr&&r.absentee?r.mail_addr:'')+'</div>'
       :'<div class="owner-none">—</div>';
     var mailHtml='<div class="doc">'+(r.absentee&&r.mail_addr?r.mail_addr:'—')+'</div>';
     var rc='';
