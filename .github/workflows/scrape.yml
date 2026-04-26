@@ -39,8 +39,7 @@ jobs:
         run: python scraper/fetch.py
 
       - name: Show summary
-        run: |
-          python3 scraper/summary.py
+        run: python3 scraper/summary.py
 
       - name: Verify dashboard
         run: |
@@ -51,6 +50,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          git pull --rebase origin main
           git add data/records.json dashboard/records.json dashboard/index.html
           git diff --cached --quiet || git commit -m "chore: update leads $(date -u +'%Y-%m-%d %H:%M UTC')"
           git push
