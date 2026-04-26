@@ -1,10 +1,7 @@
 """
-Bexar County Motivated Seller Lead Scraper v25
-KEY ARCHITECTURE CHANGE:
-  Dashboard no longer embeds data inside HTML.
-  Instead, dashboard/index.html loads dashboard/records.json via fetch() at runtime.
-  This means the HTML template never changes between runs — only records.json changes.
-  No more data injection issues, no more caching problems with the artifact upload.
+Bexar County Motivated Seller Lead Scraper v25.1
+FIX: Dashboard loads records.json from raw GitHub URL instead of relative path.
+This bypasses the Pages artifact limitation where only index.html gets served.
 """
 
 import json
@@ -42,7 +39,7 @@ def fetch_json(url, retries=3):
     for attempt in range(retries):
         try:
             req = urllib.request.Request(
-                url, headers={"User-Agent": "BexarScraper/25.0", "Accept": "application/json"})
+                url, headers={"User-Agent": "BexarScraper/25.1", "Accept": "application/json"})
             with urllib.request.urlopen(req, timeout=25) as r:
                 return json.loads(r.read().decode("utf-8", errors="replace"))
         except Exception as e:
@@ -376,7 +373,8 @@ def push_ghl(records):
     log.info(f"GHL done — Created:{created} | Skipped:{skipped} | Errors:{errors}")
 
 
-# ── Dashboard — loads data from records.json at runtime via fetch() ────────────
+# ── Dashboard ─────────────────────────────────────────────────────────────────
+# Records loaded at runtime from raw GitHub URL — no data injection needed
 DASHBOARD_HTML = """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -438,7 +436,7 @@ tbody td{padding:10px 12px;vertical-align:middle;}
 .flag-hot{background:rgba(255,107,53,.15);color:var(--hot);border-color:rgba(255,107,53,.3);font-weight:600;}
 .flag-new{background:rgba(167,139,250,.15);color:var(--new);border-color:rgba(167,139,250,.3);font-weight:600;}
 .flag-dup{background:rgba(251,191,36,.1);color:var(--warning);border-color:rgba(251,191,36,.25);}
-.loading{text-align:center;padding:60px 20px;color:var(--muted);}
+.loading{text-align:center;padding:60px 20px;color:var(--muted);font-size:14px;}
 .state-msg{text-align:center;padding:60px 20px;color:var(--muted);}
 .pagination{display:flex;justify-content:center;align-items:center;gap:8px;padding:20px 32px;color:var(--muted);font-size:12px;}
 .pagination button{background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:6px 14px;cursor:pointer;font-family:'DM Mono',monospace;font-size:12px;}
@@ -511,21 +509,26 @@ tbody td{padding:10px 12px;vertical-align:middle;}
 <script>
 var ALL_RECORDS=[],filtered=[],page=1,PAGE=50,sortCol='score',sortDir=-1;
 
-// Load data from records.json at runtime — no injection needed
-fetch('records.json?v=' + Date.now())
-  .then(function(r){ return r.json(); })
+// Load from raw GitHub — bypasses Pages artifact caching
+var DATA_URL='https://raw.githubusercontent.com/e4property/bexar-leads/main/dashboard/records.json?v='+Date.now();
+
+fetch(DATA_URL)
+  .then(function(r){
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    return r.json();
+  })
   .then(function(data){
-    ALL_RECORDS = data;
+    ALL_RECORDS=data;
     document.getElementById('loading').style.display='none';
     document.getElementById('main-table').style.display='table';
     init();
   })
   .catch(function(err){
-    document.getElementById('loading').textContent='Error loading data: ' + err;
+    document.getElementById('loading').textContent='Error loading data: '+err+'. Try refreshing.';
   });
 
 function init(){
-  var ts = ALL_RECORDS.length > 0 ? (ALL_RECORDS[0].run_ts || '') : '';
+  var ts=ALL_RECORDS.length>0?(ALL_RECORDS[0].run_ts||''):'';
   if(ts) document.getElementById('last-updated').textContent='Updated: '+ts.replace('T',' ').replace('Z',' UTC');
   document.getElementById('s-total').textContent=ALL_RECORDS.length;
   document.getElementById('s-nof').textContent=ALL_RECORDS.filter(function(r){return r.type==='NOF';}).length;
@@ -552,18 +555,18 @@ function applyFilters(){
     var mow=!ow||(ow==='named'?!!r.owner:ow==='absentee'?!!r.absentee:ow==='new'?!!r.is_new:ow==='duplicate'?!!r.duplicate:!r.owner);
     return mq&&mt&&mow;
   });
-  if(!sortCol){
+  if(sortCol){
+    filtered.sort(function(a,b){
+      var av=a[sortCol]||'',bv=b[sortCol]||'';
+      if(typeof av==='number'&&typeof bv==='number') return (av-bv)*sortDir;
+      return av>bv?sortDir:av<bv?-sortDir:0;
+    });
+  } else {
     filtered.sort(function(a,b){
       if(s==='score-desc') return b.score-a.score;
       if(s==='score-asc')  return a.score-b.score;
       if(s==='date-desc')  return (b.date_filed||'')>(a.date_filed||'')?1:-1;
       return 0;
-    });
-  } else {
-    filtered.sort(function(a,b){
-      var av=a[sortCol]||'',bv=b[sortCol]||'';
-      if(typeof av==='number'&&typeof bv==='number') return (av-bv)*sortDir;
-      return av>bv?sortDir:av<bv?-sortDir:0;
     });
   }
   page=1;
@@ -589,7 +592,7 @@ function render(){
     var addrHtml='<div class="addr">'+(r.address||'—')+'<a href="'+mapUrl+'" target="_blank">map</a></div>';
     var ownerHtml=r.owner
       ?'<div class="owner">'+r.owner+(r.duplicate?' [DUP]':'')+'</div>'
-      +'<div class="mail">'+(r.mail_addr&&r.absentee?r.mail_addr:'')+'</div>'
+       +'<div class="mail">'+(r.mail_addr&&r.absentee?r.mail_addr:'')+'</div>'
       :'<div class="owner-none">—</div>';
     var mailHtml='<div class="doc">'+(r.absentee&&r.mail_addr?r.mail_addr:'—')+'</div>';
     var rc='';
@@ -645,18 +648,18 @@ function exportCSV(){
 def build_dashboard(records):
     os.makedirs("dashboard", exist_ok=True)
 
-    # Write the static HTML — never changes between runs
+    # Static HTML — loads data from GitHub at runtime
     with open("dashboard/index.html", "w", encoding="utf-8") as f:
         f.write(DASHBOARD_HTML)
 
-    # Write the data as a separate JSON file — this is what changes each run
+    # Data file — committed to repo and fetched at runtime
     json_str = json.dumps(records, separators=(",", ":"), ensure_ascii=True)
     with open("dashboard/records.json", "w", encoding="utf-8") as f:
         f.write(json_str)
 
     html_size = os.path.getsize("dashboard/index.html")
     json_size = os.path.getsize("dashboard/records.json")
-    log.info(f"Built dashboard/index.html — {html_size:,} bytes (static)")
+    log.info(f"Built dashboard/index.html — {html_size:,} bytes (static shell)")
     log.info(f"Built dashboard/records.json — {len(records)} records, {json_size:,} bytes")
 
 
@@ -665,7 +668,7 @@ if __name__ == "__main__":
     os.makedirs("dashboard", exist_ok=True)
 
     log.info("="*60)
-    log.info("Bexar County Lead Scraper v25 (fetch-based dashboard)")
+    log.info("Bexar County Lead Scraper v25.1 (raw GitHub data fetch)")
     log.info(f"Foreclosures: {FORECLOSURE_BASE}")
     log.info(f"Owner lookup: {PARCELS_URL}")
     log.info("="*60)
