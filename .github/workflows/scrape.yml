@@ -53,7 +53,7 @@ jobs:
           git stash
           git pull --rebase origin main
           git stash pop
-          git add data/records.json dashboard/records.json dashboard/index.html
+          git add data/records.json dashboard/records.json dashboard/index.html dashboard/leads.html
           git diff --cached --quiet || git commit -m "chore: update leads $(date -u +'%Y-%m-%d %H:%M UTC')"
           git push
 
