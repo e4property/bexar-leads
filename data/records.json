@@ -14,7 +14,7 @@
     "zip": "78232",
     "school_dist": "Northeast ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "TAX FORE",
@@ -37,7 +37,7 @@
     "zip": "78237",
     "school_dist": "Edgewood ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "TAX FORE",
@@ -60,7 +60,7 @@
     "zip": "78109",
     "school_dist": "Judson ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "ABSENTEE"
@@ -82,7 +82,7 @@
     "zip": "78265",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "ABSENTEE"
@@ -104,7 +104,7 @@
     "zip": "78250",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "ABSENTEE"
@@ -126,7 +126,7 @@
     "zip": "78252",
     "school_dist": "Medina Valley ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "ABSENTEE",
@@ -149,7 +149,7 @@
     "zip": "78260",
     "school_dist": "Medina Valley ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "ABSENTEE",
@@ -172,7 +172,7 @@
     "zip": "78252",
     "school_dist": "Medina Valley ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "ABSENTEE"
@@ -194,7 +194,29 @@
     "zip": "78109",
     "school_dist": "Judson ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [
+      "ABSENTEE"
+    ],
+    "score": 8
+  },
+  {
+    "type": "NOF",
+    "address": "427 N SAN GABRIEL AVE",
+    "owner": "LARA ARMANDO RODRIGUEZ &",
+    "mail_addr": "BEATRIZ RIVERA LARA SAN ANTONIO 78237",
+    "absentee": true,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260400300",
+    "year": "2026",
+    "month": "4",
+    "city": "SAN ANTONIO",
+    "zip": "78228",
+    "school_dist": "Edgewood ISD (Bexar)",
+    "date_filed": "4/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "ABSENTEE"
@@ -216,7 +238,29 @@
     "zip": "78260",
     "school_dist": "Comal ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [
+      "ABSENTEE"
+    ],
+    "score": 8
+  },
+  {
+    "type": "NOF",
+    "address": "167 E HUTCHINS PL",
+    "owner": "MARTINEZ HENRY JR & DIAZ VANESSA",
+    "mail_addr": "& DIAZ DIANA SAN ANTONIO 78221",
+    "absentee": true,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260400096",
+    "year": "2026",
+    "month": "4",
+    "city": "SAN ANTONIO",
+    "zip": "78221",
+    "school_dist": "Harlandale ISD",
+    "date_filed": "4/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "ABSENTEE"
@@ -238,7 +282,7 @@
     "zip": "78245",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "ABSENTEE"
@@ -260,7 +304,95 @@
     "zip": "78244",
     "school_dist": "Judson ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [
+      "ABSENTEE"
+    ],
+    "score": 8
+  },
+  {
+    "type": "NOF",
+    "address": "10230 W LOOP 1604",
+    "owner": "ALVARADO VICTOR F &",
+    "mail_addr": "DOROTHY ATASCOSA 78002",
+    "absentee": true,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260500236",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78254",
+    "school_dist": "Northside ISD (Bexar)",
+    "date_filed": "5/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [
+      "ABSENTEE"
+    ],
+    "score": 8
+  },
+  {
+    "type": "NOF",
+    "address": "13246 REGENCY FOREST",
+    "owner": "GARCIA ALEXANDRA &",
+    "mail_addr": "HERNANDEZ MICHAEL SAN ANTONIO 78216",
+    "absentee": true,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260500285",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78249",
+    "school_dist": "Northside ISD (Bexar)",
+    "date_filed": "5/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [
+      "ABSENTEE"
+    ],
+    "score": 8
+  },
+  {
+    "type": "NOF",
+    "address": "443 N SAN IGNACIO AVE",
+    "owner": "GUMM CHARLES C III",
+    "mail_addr": "ATTN GUMM & ASSOCIATES BEDFORD 76021",
+    "absentee": true,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260500287",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78228",
+    "school_dist": "Edgewood ISD (Bexar)",
+    "date_filed": "5/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [
+      "ABSENTEE"
+    ],
+    "score": 8
+  },
+  {
+    "type": "NOF",
+    "address": "170 DE CHANTLE RD",
+    "owner": "VILLA BORDEAUX CONDOMINIUM",
+    "mail_addr": "% MANAGEMENT PROF OF TEXAS SAN ANTONIO 78255",
+    "absentee": true,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260500317",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78201",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "5/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "ABSENTEE"
@@ -282,10 +414,32 @@
     "zip": "78207",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "ABSENTEE"
+    ],
+    "score": 8
+  },
+  {
+    "type": "TAX",
+    "address": "2630 E COMMERCE ST",
+    "owner": "TAYLOR GEORGIA  ETAL",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "2012TA100316",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78203",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "5/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [
+      "TAX FORE"
     ],
     "score": 8
   },
@@ -304,7 +458,7 @@
     "zip": "78207",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "TAX FORE"
@@ -326,7 +480,7 @@
     "zip": "78207",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "TAX FORE"
@@ -348,7 +502,7 @@
     "zip": "78109",
     "school_dist": "Judson ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "TAX FORE"
@@ -370,7 +524,7 @@
     "zip": "78211",
     "school_dist": "Harlandale ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "TAX FORE"
@@ -392,7 +546,7 @@
     "zip": "78073",
     "school_dist": "Somerset ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "TAX FORE"
@@ -414,7 +568,29 @@
     "zip": "78244",
     "school_dist": "Judson ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [
+      "TAX FORE"
+    ],
+    "score": 8
+  },
+  {
+    "type": "TAX",
+    "address": "620 N NEW BRAUNFELS AVE",
+    "owner": "PAGETTE JEAN PAUL",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "2021TA101691",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78202",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "5/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "TAX FORE"
@@ -436,7 +612,7 @@
     "zip": "78218",
     "school_dist": "Judson ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "TAX FORE"
@@ -458,7 +634,29 @@
     "zip": "78219",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [
+      "TAX FORE"
+    ],
+    "score": 8
+  },
+  {
+    "type": "TAX",
+    "address": "20220 E LOOP 1604",
+    "owner": "ESQUIVEL HENRY R",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "2013TA101644",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78264",
+    "school_dist": "Southside ISD",
+    "date_filed": "5/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "TAX FORE"
@@ -480,7 +678,7 @@
     "zip": "78207",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "TAX FORE"
@@ -502,7 +700,7 @@
     "zip": "78225",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "TAX FORE"
@@ -524,7 +722,7 @@
     "zip": "78002",
     "school_dist": "Southwest ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -544,7 +742,7 @@
     "zip": "78015",
     "school_dist": "Boerne ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -564,7 +762,7 @@
     "zip": "78109",
     "school_dist": "East Central ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -584,7 +782,7 @@
     "zip": "78109",
     "school_dist": "Judson ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -604,7 +802,7 @@
     "zip": "78109",
     "school_dist": "Judson ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -624,7 +822,7 @@
     "zip": "78263",
     "school_dist": "East Central ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -644,7 +842,7 @@
     "zip": "78109",
     "school_dist": "Judson ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -664,7 +862,7 @@
     "zip": "78112",
     "school_dist": "Southside ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "DUPLICATE"
@@ -686,7 +884,7 @@
     "zip": "78112",
     "school_dist": "Southside ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "DUPLICATE"
@@ -708,7 +906,7 @@
     "zip": "78112",
     "school_dist": "Southside ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -728,7 +926,7 @@
     "zip": "78112",
     "school_dist": "Southside ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -748,7 +946,7 @@
     "zip": "78112",
     "school_dist": "East Central ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "DUPLICATE"
@@ -770,7 +968,7 @@
     "zip": "78112",
     "school_dist": "Southside ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "DUPLICATE"
@@ -792,7 +990,7 @@
     "zip": "78023",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -812,7 +1010,7 @@
     "zip": "78219",
     "school_dist": "Judson ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -832,7 +1030,7 @@
     "zip": "78152",
     "school_dist": "Schertz-Cibolo-Universal City ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -852,7 +1050,7 @@
     "zip": "78245",
     "school_dist": "Southwest ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -872,7 +1070,7 @@
     "zip": "78207",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -892,7 +1090,27 @@
     "zip": "78245",
     "school_dist": "Southwest ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "138 E ACKARD PL",
+    "owner": "GARCIA CELESTINA ANNMARIE",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260500006",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78221",
+    "school_dist": "Harlandale ISD",
+    "date_filed": "5/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -912,7 +1130,7 @@
     "zip": "78250",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -932,7 +1150,7 @@
     "zip": "78218",
     "school_dist": "Northeast ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "DUPLICATE"
@@ -954,7 +1172,7 @@
     "zip": "78245",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -974,7 +1192,7 @@
     "zip": "78251",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -994,7 +1212,7 @@
     "zip": "78237",
     "school_dist": "Edgewood ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1014,7 +1232,27 @@
     "zip": "78245",
     "school_dist": "Medina Valley ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "12058 STILL PASS",
+    "owner": "SMITH MILDRED K",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260500018",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78221",
+    "school_dist": "Southside ISD",
+    "date_filed": "5/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1034,7 +1272,7 @@
     "zip": "78223",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1054,7 +1292,7 @@
     "zip": "78261",
     "school_dist": "Northeast ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1074,7 +1312,7 @@
     "zip": "78254",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1094,7 +1332,7 @@
     "zip": "78260",
     "school_dist": "Northeast ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1114,7 +1352,7 @@
     "zip": "78223",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1134,7 +1372,7 @@
     "zip": "78239",
     "school_dist": "Northeast ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1154,7 +1392,7 @@
     "zip": "78239",
     "school_dist": "Northeast ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1174,7 +1412,7 @@
     "zip": "78223",
     "school_dist": "East Central ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1194,7 +1432,7 @@
     "zip": "78202",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1214,7 +1452,7 @@
     "zip": "78245",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1234,7 +1472,7 @@
     "zip": "78251",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1254,7 +1492,7 @@
     "zip": "78245",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1274,7 +1512,7 @@
     "zip": "78109",
     "school_dist": "East Central ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1294,7 +1532,7 @@
     "zip": "78245",
     "school_dist": "Medina Valley ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1314,7 +1552,7 @@
     "zip": "78253",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1334,7 +1572,7 @@
     "zip": "78223",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1354,7 +1592,7 @@
     "zip": "78239",
     "school_dist": "Judson ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1374,7 +1612,7 @@
     "zip": "78253",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1394,7 +1632,7 @@
     "zip": "78213",
     "school_dist": "Northeast ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1414,7 +1652,7 @@
     "zip": "78223",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1434,7 +1672,7 @@
     "zip": "78201",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1454,7 +1692,7 @@
     "zip": "78244",
     "school_dist": "Judson ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1474,7 +1712,7 @@
     "zip": "78228",
     "school_dist": "Edgewood ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1494,7 +1732,7 @@
     "zip": "78230",
     "school_dist": "Northeast ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1514,7 +1752,27 @@
     "zip": "78212",
     "school_dist": "Northeast ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "203 E LAMBERT ST",
+    "owner": "FAHIM DURIME & ABDUL",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260500072",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78204",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "5/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1534,7 +1792,7 @@
     "zip": "78250",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1554,7 +1812,7 @@
     "zip": "78239",
     "school_dist": "Judson ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1574,7 +1832,7 @@
     "zip": "78245",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1594,7 +1852,7 @@
     "zip": "78258",
     "school_dist": "Northeast ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1614,7 +1872,7 @@
     "zip": "78217",
     "school_dist": "Northeast ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1634,7 +1892,27 @@
     "zip": "78214",
     "school_dist": "Harlandale ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "2014 S TRINITY ST",
+    "owner": "SALAZAR FERNANDO",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260500090",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78207",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "5/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1654,7 +1932,7 @@
     "zip": "78228",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1674,7 +1952,7 @@
     "zip": "78209",
     "school_dist": "Alamo Heights ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1694,7 +1972,27 @@
     "zip": "78223",
     "school_dist": "East Central ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "215 W MISTLETOE AVE",
+    "owner": "ELMWOOD CONDOMINIUM",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260500096",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78212",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "5/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1714,7 +2012,7 @@
     "zip": "78209",
     "school_dist": "Alamo Heights ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1734,7 +2032,7 @@
     "zip": "78227",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1754,7 +2052,7 @@
     "zip": "78245",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1774,7 +2072,7 @@
     "zip": "78217",
     "school_dist": "Northeast ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1794,7 +2092,7 @@
     "zip": "78253",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1814,7 +2112,27 @@
     "zip": "78210",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "5314 MAPLE VISTA",
+    "owner": "ELLIS BRYANT DAVID",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260500107",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78247",
+    "school_dist": "Northeast ISD",
+    "date_filed": "5/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1834,7 +2152,7 @@
     "zip": "78232",
     "school_dist": "Northeast ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1854,7 +2172,7 @@
     "zip": "78245",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1874,7 +2192,7 @@
     "zip": "78233",
     "school_dist": "Northeast ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1894,7 +2212,7 @@
     "zip": "78209",
     "school_dist": "Northeast ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1914,7 +2232,7 @@
     "zip": "78216",
     "school_dist": "Northeast ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1934,7 +2252,27 @@
     "zip": "78260",
     "school_dist": "Comal ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "310 CYPRESS GARDENS DR",
+    "owner": "FERDINAND JUSTIN EST OF",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260500120",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78245",
+    "school_dist": "Northside ISD (Bexar)",
+    "date_filed": "5/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1954,7 +2292,7 @@
     "zip": "78245",
     "school_dist": "Medina Valley ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1974,7 +2312,7 @@
     "zip": "78240",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -1994,7 +2332,7 @@
     "zip": "78228",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -2014,7 +2352,7 @@
     "zip": "78233",
     "school_dist": "Northeast ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -2034,7 +2372,7 @@
     "zip": "78247",
     "school_dist": "Northeast ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -2054,7 +2392,7 @@
     "zip": "78249",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -2074,7 +2412,7 @@
     "zip": "78253",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -2094,7 +2432,7 @@
     "zip": "78233",
     "school_dist": "Northeast ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -2114,7 +2452,7 @@
     "zip": "78217",
     "school_dist": "Northeast ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -2134,7 +2472,7 @@
     "zip": "78201",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -2154,7 +2492,7 @@
     "zip": "78310",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -2174,7 +2512,7 @@
     "zip": "78250",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -2194,7 +2532,7 @@
     "zip": "78253",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -2214,7 +2552,7 @@
     "zip": "78255",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -2234,7 +2572,7 @@
     "zip": "78238",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -2254,7 +2592,7 @@
     "zip": "78249",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -2274,7 +2612,7 @@
     "zip": "78253",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -2294,7 +2632,7 @@
     "zip": "78245",
     "school_dist": "Medina Valley ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -2314,7 +2652,7 @@
     "zip": "78245",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "DUPLICATE"
@@ -2336,7 +2674,7 @@
     "zip": "78202",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -2356,7 +2694,7 @@
     "zip": "78245",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -2376,7 +2714,7 @@
     "zip": "78109",
     "school_dist": "Judson ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -2396,7 +2734,7 @@
     "zip": "78109",
     "school_dist": "Judson ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -2416,7 +2754,7 @@
     "zip": "78109",
     "school_dist": "East Central ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -2436,7 +2774,7 @@
     "zip": "78109",
     "school_dist": "Judson ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -2456,7 +2794,7 @@
     "zip": "78109",
     "school_dist": "East Central ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -2476,7 +2814,7 @@
     "zip": "78109",
     "school_dist": "Judson ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -2496,7 +2834,7 @@
     "zip": "78109",
     "school_dist": "East Central ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -2516,7 +2854,7 @@
     "zip": "78112",
     "school_dist": "Southside ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -2536,7 +2874,7 @@
     "zip": "78112",
     "school_dist": "East Central ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "DUPLICATE"
@@ -2558,7 +2896,7 @@
     "zip": "78112",
     "school_dist": "Southside ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "DUPLICATE"
@@ -2580,7 +2918,7 @@
     "zip": "78112",
     "school_dist": "Southside ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -2600,7 +2938,7 @@
     "zip": "78023",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -2620,7 +2958,7 @@
     "zip": "78023",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -2640,7 +2978,7 @@
     "zip": "78023",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -2660,7 +2998,27 @@
     "zip": "78023",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "147 EL CERRITO CIRCLE",
+    "owner": "BERCHELMANN JAMES",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260400453",
+    "year": "2026",
+    "month": "4",
+    "city": "HOLLYWOOD PARK",
+    "zip": "78232",
+    "school_dist": "Northeast ISD",
+    "date_filed": "4/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -2680,7 +3038,7 @@
     "zip": "78219",
     "school_dist": "Judson ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -2700,7 +3058,7 @@
     "zip": "78233",
     "school_dist": "Judson ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -2720,7 +3078,7 @@
     "zip": "78253",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -2740,7 +3098,7 @@
     "zip": "78232",
     "school_dist": "Northeast ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -2760,7 +3118,7 @@
     "zip": "78225",
     "school_dist": "San Antonio ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -2780,7 +3138,7 @@
     "zip": "78253",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -2800,7 +3158,7 @@
     "zip": "78247",
     "school_dist": "Northeast ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -2820,7 +3178,7 @@
     "zip": "78222",
     "school_dist": "East Central ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -2840,7 +3198,7 @@
     "zip": "78245",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -2860,7 +3218,7 @@
     "zip": "78232",
     "school_dist": "Northeast ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -2880,7 +3238,7 @@
     "zip": "78250",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -2900,7 +3258,7 @@
     "zip": "78223",
     "school_dist": "East Central ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -2920,7 +3278,27 @@
     "zip": "78254",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "12331 LA BARCA STREET",
+    "owner": "WILLIAMSON WENDY R",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260400454",
+    "year": "2026",
+    "month": "4",
+    "city": "SAN ANTONIO",
+    "zip": "78233",
+    "school_dist": "Northeast ISD",
+    "date_filed": "4/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -2940,7 +3318,7 @@
     "zip": "78250",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -2960,7 +3338,7 @@
     "zip": "78254",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -2980,7 +3358,7 @@
     "zip": "78218",
     "school_dist": "Northeast ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3000,7 +3378,7 @@
     "zip": "78212",
     "school_dist": "San Antonio ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3020,7 +3398,7 @@
     "zip": "78264",
     "school_dist": "Southside ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3040,7 +3418,7 @@
     "zip": "78252",
     "school_dist": "Medina Valley ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3060,7 +3438,7 @@
     "zip": "78211",
     "school_dist": "South San Antonio ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3080,7 +3458,7 @@
     "zip": "78232",
     "school_dist": "Northeast ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3100,7 +3478,27 @@
     "zip": "78257",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "10139 PEARL CREEK",
+    "owner": "SOTO JOSE M & MARIA I",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260400232",
+    "year": "2026",
+    "month": "4",
+    "city": "SAN ANTONIO",
+    "zip": "78245",
+    "school_dist": "Northside ISD (Bexar)",
+    "date_filed": "4/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3120,7 +3518,7 @@
     "zip": "78245",
     "school_dist": "Medina Valley ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3140,7 +3538,7 @@
     "zip": "78248",
     "school_dist": "Northeast ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3160,7 +3558,7 @@
     "zip": "78225",
     "school_dist": "Harlandale ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3180,7 +3578,7 @@
     "zip": "78245",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3200,7 +3598,7 @@
     "zip": "78247",
     "school_dist": "Northeast ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3220,7 +3618,7 @@
     "zip": "78240",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3240,7 +3638,7 @@
     "zip": "78252",
     "school_dist": "Medina Valley ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3260,7 +3658,7 @@
     "zip": "78223",
     "school_dist": "East Central ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3280,7 +3678,7 @@
     "zip": "78238",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3300,7 +3698,7 @@
     "zip": "78250",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3320,7 +3718,7 @@
     "zip": "78210",
     "school_dist": "San Antonio ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3340,7 +3738,7 @@
     "zip": "78254",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3360,7 +3758,27 @@
     "zip": "78244",
     "school_dist": "Judson ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "818 LAUREL RUN",
+    "owner": "GROOM-RANSON DIANE L",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260400303",
+    "year": "2026",
+    "month": "4",
+    "city": "SAN ANTONIO",
+    "zip": "78219",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "4/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3380,7 +3798,7 @@
     "zip": "78251",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3400,7 +3818,7 @@
     "zip": "78222",
     "school_dist": "East Central ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3420,7 +3838,7 @@
     "zip": "78212",
     "school_dist": "San Antonio ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3440,7 +3858,7 @@
     "zip": "78217",
     "school_dist": "Northeast ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3460,7 +3878,7 @@
     "zip": "78253",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3480,7 +3898,7 @@
     "zip": "78251",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3500,7 +3918,7 @@
     "zip": "78218",
     "school_dist": "Judson ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3520,7 +3938,7 @@
     "zip": "78219",
     "school_dist": "San Antonio ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3540,7 +3958,7 @@
     "zip": "78255",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3560,7 +3978,7 @@
     "zip": "78217",
     "school_dist": "Northeast ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3580,7 +3998,47 @@
     "zip": "78258",
     "school_dist": "Northeast ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "210 W VISTA RIDGE",
+    "owner": "CARTER CALEB L & MANDY W",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260400356",
+    "year": "2026",
+    "month": "4",
+    "city": "SAN ANTONIO",
+    "zip": "78260",
+    "school_dist": "Comal ISD",
+    "date_filed": "4/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "10210 SUNRISE FIELD",
+    "owner": "TOBIAS KEVIN",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260400001",
+    "year": "2026",
+    "month": "4",
+    "city": "SAN ANTONIO",
+    "zip": "78245",
+    "school_dist": "Southwest ISD",
+    "date_filed": "4/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3600,7 +4058,7 @@
     "zip": "78216",
     "school_dist": "Northeast ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3620,7 +4078,7 @@
     "zip": "78214",
     "school_dist": "Harlandale ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3640,7 +4098,7 @@
     "zip": "78260",
     "school_dist": "Northeast ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3660,7 +4118,7 @@
     "zip": "78225",
     "school_dist": "San Antonio ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3680,7 +4138,27 @@
     "zip": "78207",
     "school_dist": "San Antonio ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "711 S BROWNLEAF ST",
+    "owner": "MCKINLEY ELWOOD",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260400044",
+    "year": "2026",
+    "month": "4",
+    "city": "SAN ANTONIO",
+    "zip": "78227",
+    "school_dist": "Northside ISD (Bexar)",
+    "date_filed": "4/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3700,7 +4178,7 @@
     "zip": "78237",
     "school_dist": "Edgewood ISD (Bexar)",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3720,7 +4198,7 @@
     "zip": "78217",
     "school_dist": "Northeast ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3740,7 +4218,7 @@
     "zip": "78224",
     "school_dist": "South San Antonio ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3760,7 +4238,7 @@
     "zip": "78228",
     "school_dist": "San Antonio ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "DUPLICATE"
@@ -3782,7 +4260,7 @@
     "zip": "78252",
     "school_dist": "Southwest ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3802,7 +4280,7 @@
     "zip": "78220",
     "school_dist": "San Antonio ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3822,7 +4300,7 @@
     "zip": "78242",
     "school_dist": "Southwest ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3842,7 +4320,7 @@
     "zip": "78245",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3862,7 +4340,7 @@
     "zip": "78252",
     "school_dist": "Medina Valley ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3882,7 +4360,7 @@
     "zip": "78245",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3902,7 +4380,7 @@
     "zip": "78224",
     "school_dist": "South San Antonio ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3922,7 +4400,27 @@
     "zip": "78254",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "22615 S US HWY 281 S",
+    "owner": "KFD INC",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260400102",
+    "year": "2026",
+    "month": "4",
+    "city": "SAN ANTONIO",
+    "zip": "78264",
+    "school_dist": "Southside ISD",
+    "date_filed": "4/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3942,7 +4440,7 @@
     "zip": "78224",
     "school_dist": "South San Antonio ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3962,7 +4460,7 @@
     "zip": "78232",
     "school_dist": "Northeast ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -3982,7 +4480,7 @@
     "zip": "78232",
     "school_dist": "Northeast ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4002,7 +4500,27 @@
     "zip": "78222",
     "school_dist": "East Central ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "14502 CAMINO WAY",
+    "owner": "HAWS ASSET HOLDINGS GROUP LLC & MALU INVESTMENTS LLC",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260400117",
+    "year": "2026",
+    "month": "4",
+    "city": "SAN ANTONIO",
+    "zip": "78253",
+    "school_dist": "Northside ISD (Bexar)",
+    "date_filed": "4/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4022,7 +4540,7 @@
     "zip": "78221",
     "school_dist": "Harlandale ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4042,7 +4560,7 @@
     "zip": "78253",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4062,7 +4580,7 @@
     "zip": "78242",
     "school_dist": "Southwest ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4082,7 +4600,7 @@
     "zip": "78218",
     "school_dist": "Judson ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4102,7 +4620,7 @@
     "zip": "78242",
     "school_dist": "South San Antonio ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4122,7 +4640,7 @@
     "zip": "78254",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4142,7 +4660,7 @@
     "zip": "78204",
     "school_dist": "San Antonio ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4162,7 +4680,7 @@
     "zip": "78230",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4182,7 +4700,7 @@
     "zip": "78211",
     "school_dist": "Harlandale ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4202,7 +4720,7 @@
     "zip": "78261",
     "school_dist": "Comal ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4222,7 +4740,27 @@
     "zip": "78221",
     "school_dist": "Harlandale ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "1207 BEACON CV",
+    "owner": "BARBOSA LENIEL MENDEZ",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260400170",
+    "year": "2026",
+    "month": "4",
+    "city": "SAN ANTONIO",
+    "zip": "78245",
+    "school_dist": "Northside ISD (Bexar)",
+    "date_filed": "4/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4242,7 +4780,7 @@
     "zip": "78250",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4262,7 +4800,7 @@
     "zip": "78207",
     "school_dist": "San Antonio ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4282,7 +4820,7 @@
     "zip": "78202",
     "school_dist": "San Antonio ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4302,7 +4840,7 @@
     "zip": "78227",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4322,7 +4860,7 @@
     "zip": "78221",
     "school_dist": "Southside ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4342,7 +4880,7 @@
     "zip": "78209",
     "school_dist": "Northeast ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4362,7 +4900,7 @@
     "zip": "78220",
     "school_dist": "San Antonio ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4382,7 +4920,27 @@
     "zip": "78233",
     "school_dist": "Northeast ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "107 E WRIGHT",
+    "owner": "MATNEY MARSHALL K",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260400256",
+    "year": "2026",
+    "month": "4",
+    "city": "UNIVERSAL CITY",
+    "zip": "78101",
+    "school_dist": "Schertz-Cibolo-Universal City ISD",
+    "date_filed": "4/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4402,7 +4960,7 @@
     "zip": "78073",
     "school_dist": "Southwest ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4422,7 +4980,7 @@
     "zip": "78073",
     "school_dist": "Southwest ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4442,7 +5000,7 @@
     "zip": "78073",
     "school_dist": "Somerset ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4462,7 +5020,7 @@
     "zip": "78228",
     "school_dist": "San Antonio ISD",
     "date_filed": "2/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "DUPLICATE"
@@ -4484,7 +5042,27 @@
     "zip": "78015",
     "school_dist": "Boerne ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "14233 LUCKEY ROAD",
+    "owner": "GONZALES G ANTHONY & EMI N",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260500186",
+    "year": "2026",
+    "month": "5",
+    "city": "ATASCOSA",
+    "zip": "78002",
+    "school_dist": "Southwest ISD",
+    "date_filed": "5/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4504,7 +5082,7 @@
     "zip": "78002",
     "school_dist": "Southwest ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4524,7 +5102,7 @@
     "zip": "78211",
     "school_dist": "South San Antonio ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4544,7 +5122,7 @@
     "zip": "78109",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4564,7 +5142,7 @@
     "zip": "78264",
     "school_dist": "Southside ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4584,7 +5162,7 @@
     "zip": "78253",
     "school_dist": "",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4604,7 +5182,7 @@
     "zip": "78112",
     "school_dist": "East Central ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4624,7 +5202,7 @@
     "zip": "78211",
     "school_dist": "South San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4644,7 +5222,7 @@
     "zip": "78210",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4664,11 +5242,31 @@
     "zip": "78216",
     "school_dist": "Northeast ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "DUPLICATE"
     ],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "2107 EL JARDIN RD",
+    "owner": "MATA MARIA ELENA S",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260500200",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78237",
+    "school_dist": "Edgewood ISD (Bexar)",
+    "date_filed": "5/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [],
     "score": 6
   },
   {
@@ -4686,7 +5284,7 @@
     "zip": "78219",
     "school_dist": "Judson ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4706,7 +5304,27 @@
     "zip": "78250",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "2415 W SUMMIT AVE",
+    "owner": "CORONADO JOSE A",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260500207",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78228",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "5/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4726,7 +5344,7 @@
     "zip": "78109",
     "school_dist": "East Central ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4746,7 +5364,27 @@
     "zip": "78232",
     "school_dist": "Northeast ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "1108 W MARIPOSA DR",
+    "owner": "MONTEMAYOR AMANDA",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260500212",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78201",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "5/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4766,7 +5404,7 @@
     "zip": "78222",
     "school_dist": "East Central ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4786,7 +5424,7 @@
     "zip": "78148",
     "school_dist": "Judson ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4806,7 +5444,7 @@
     "zip": "78233",
     "school_dist": "Northeast ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4826,7 +5464,7 @@
     "zip": "78242",
     "school_dist": "South San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4846,7 +5484,7 @@
     "zip": "78252",
     "school_dist": "Medina Valley ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4866,7 +5504,7 @@
     "zip": "78073",
     "school_dist": "Southwest ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4886,7 +5524,7 @@
     "zip": "78227",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4906,7 +5544,27 @@
     "zip": "78254",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "15719 CLOVE SPICE WAY",
+    "owner": "MONTERO NICHOLE ANN",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260500226",
+    "year": "2026",
+    "month": "5",
+    "city": "VON ORMY",
+    "zip": "78073",
+    "school_dist": "Southwest ISD",
+    "date_filed": "5/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4926,7 +5584,7 @@
     "zip": "78237",
     "school_dist": "Edgewood ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4946,7 +5604,7 @@
     "zip": "78237",
     "school_dist": "Edgewood ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4966,7 +5624,7 @@
     "zip": "78109",
     "school_dist": "East Central ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -4986,7 +5644,7 @@
     "zip": "78239",
     "school_dist": "Northeast ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -5006,7 +5664,7 @@
     "zip": "78254",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -5026,7 +5684,7 @@
     "zip": "78254",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -5046,7 +5704,7 @@
     "zip": "78023",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -5066,7 +5724,27 @@
     "zip": "78204",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "1825 N GRAYTOWN ROAD",
+    "owner": "MONTALVO-RAMOS EDITH & COX JOHN",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260500241",
+    "year": "2026",
+    "month": "5",
+    "city": "SAINT HEDWIG",
+    "zip": "78152",
+    "school_dist": "East Central ISD",
+    "date_filed": "5/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -5086,7 +5764,7 @@
     "zip": "78109",
     "school_dist": "East Central ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -5106,7 +5784,27 @@
     "zip": "78109",
     "school_dist": "East Central ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "14290 SAVANNAH PASS",
+    "owner": "R&G QUALITY CONTRACTORS INC",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260500251",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78216",
+    "school_dist": "Northeast ISD",
+    "date_filed": "5/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -5126,7 +5824,7 @@
     "zip": "78244",
     "school_dist": "Judson ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -5146,7 +5844,7 @@
     "zip": "78256",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -5166,7 +5864,7 @@
     "zip": "78258",
     "school_dist": "Northeast ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -5186,7 +5884,7 @@
     "zip": "78109",
     "school_dist": "Judson ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -5206,7 +5904,47 @@
     "zip": "78109",
     "school_dist": "Judson ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "215 N CENTER",
+    "owner": "GAMEZ DENISE MONSSERRATTI",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260500257",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78202",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "5/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "21174 US HIGHWAY 281 S #2",
+    "owner": "GUERRERO JUAN MANUEL VENEGAS & VENEGAS BEATRIZ",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260500258",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78264",
+    "school_dist": "Southside ISD",
+    "date_filed": "5/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -5226,7 +5964,7 @@
     "zip": "78217",
     "school_dist": "Northeast ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -5246,7 +5984,27 @@
     "zip": "78207",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "1220 W HUISACHE AVE",
+    "owner": "ALVAREZ JULIO C & LILIANA",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260500261",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78201",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "5/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -5266,7 +6024,7 @@
     "zip": "78209",
     "school_dist": "Northeast ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -5286,7 +6044,27 @@
     "zip": "78213",
     "school_dist": "Northeast ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "14217 LUCKEY RD",
+    "owner": "ESCOBEDO JOHN JR & CRYSTAL LYNN",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260500265",
+    "year": "2026",
+    "month": "5",
+    "city": "ATASCOSA",
+    "zip": "78002",
+    "school_dist": "Southwest ISD",
+    "date_filed": "5/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -5306,7 +6084,27 @@
     "zip": "78264",
     "school_dist": "Southside ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "901 NE LOOP 410",
+    "owner": "NE LOOP 410 LLC",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260500270",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78209",
+    "school_dist": "Northeast ISD",
+    "date_filed": "5/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -5326,7 +6124,7 @@
     "zip": "78242",
     "school_dist": "South San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -5346,7 +6144,7 @@
     "zip": "78229",
     "school_dist": "Northeast ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -5366,7 +6164,7 @@
     "zip": "78222",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -5386,7 +6184,7 @@
     "zip": "78222",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -5406,7 +6204,27 @@
     "zip": "78220",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "1634 E CHAVANEAUX RD",
+    "owner": "VILLASENOR NERI ULISES",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260500277",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78214",
+    "school_dist": "Southside ISD",
+    "date_filed": "5/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -5426,7 +6244,7 @@
     "zip": "78240",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -5446,7 +6264,7 @@
     "zip": "78227",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -5466,7 +6284,7 @@
     "zip": "78109",
     "school_dist": "Judson ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -5486,7 +6304,7 @@
     "zip": "78222",
     "school_dist": "East Central ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -5506,7 +6324,7 @@
     "zip": "78245",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -5526,7 +6344,7 @@
     "zip": "78258",
     "school_dist": "Northeast ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -5546,7 +6364,7 @@
     "zip": "78254",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -5566,7 +6384,7 @@
     "zip": "78073",
     "school_dist": "Somerset ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -5586,7 +6404,7 @@
     "zip": "78250",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -5606,7 +6424,7 @@
     "zip": "78109",
     "school_dist": "Judson ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -5626,7 +6444,7 @@
     "zip": "78250",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -5646,7 +6464,7 @@
     "zip": "78250",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -5666,7 +6484,7 @@
     "zip": "78254",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -5686,7 +6504,7 @@
     "zip": "78209",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "DUPLICATE"
@@ -5708,7 +6526,7 @@
     "zip": "78209",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "DUPLICATE"
@@ -5730,7 +6548,47 @@
     "zip": "78227",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "1327 W RIDGEWOOD CT",
+    "owner": "LUNA SERAFIN",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260500301",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78201",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "5/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "158 E VESTAL PL",
+    "owner": "LUHRS ASHLEY ANNE & GARZA ARTURO SANTOS",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260500302",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78221",
+    "school_dist": "Harlandale ISD",
+    "date_filed": "5/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -5750,7 +6608,7 @@
     "zip": "78225",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -5770,7 +6628,7 @@
     "zip": "78229",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -5790,7 +6648,7 @@
     "zip": "78219",
     "school_dist": "Judson ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -5810,7 +6668,7 @@
     "zip": "78240",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "DUPLICATE"
@@ -5832,7 +6690,7 @@
     "zip": "78240",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "DUPLICATE"
@@ -5854,7 +6712,7 @@
     "zip": "78254",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -5874,7 +6732,7 @@
     "zip": "78109",
     "school_dist": "Judson ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -5894,7 +6752,7 @@
     "zip": "78239",
     "school_dist": "Judson ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -5914,7 +6772,7 @@
     "zip": "78237",
     "school_dist": "Edgewood ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -5934,7 +6792,7 @@
     "zip": "78218",
     "school_dist": "Northeast ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -5954,7 +6812,7 @@
     "zip": "78239",
     "school_dist": "Judson ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -5974,7 +6832,27 @@
     "zip": "78250",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "7200 S PRESA ST",
+    "owner": "CCM PRESA OWNER LLC",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260500321",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78223",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "5/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -5994,7 +6872,7 @@
     "zip": "78210",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -6014,7 +6892,7 @@
     "zip": "78228",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -6034,7 +6912,47 @@
     "zip": "78228",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "817 MARTIN LUTHER KING DR",
+    "owner": "PORTER MEMORIAL CHRISTIAN METHODIST EPISCOPAL CH",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260500328",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78203",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "5/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "510 S OLIVE ST",
+    "owner": "510 SOUTH OLIVE CONDOMINIUM ASSOCIATION",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260500329",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78203",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "5/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -6054,7 +6972,7 @@
     "zip": "78222",
     "school_dist": "East Central ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -6074,7 +6992,7 @@
     "zip": "78238",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -6094,7 +7012,7 @@
     "zip": "78073",
     "school_dist": "Somerset ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -6114,7 +7032,7 @@
     "zip": "78227",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -6134,7 +7052,27 @@
     "zip": "78253",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "313 E LOCUST ST",
+    "owner": "LOCUST TOBIN HILL LLC",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260500337",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78212",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "5/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -6154,7 +7092,7 @@
     "zip": "78109",
     "school_dist": "Judson ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -6174,7 +7112,7 @@
     "zip": "78222",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -6194,7 +7132,7 @@
     "zip": "78233",
     "school_dist": "Northeast ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -6214,7 +7152,27 @@
     "zip": "78112",
     "school_dist": "Southside ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "255 E PETALUMA BLVD",
+    "owner": "3RD ROCK ROOFING LLC",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260500353",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78221",
+    "school_dist": "Harlandale ISD",
+    "date_filed": "5/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -6234,7 +7192,7 @@
     "zip": "78223",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -6254,7 +7212,7 @@
     "zip": "78261",
     "school_dist": "Comal ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -6274,7 +7232,7 @@
     "zip": "78238",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -6294,7 +7252,7 @@
     "zip": "78232",
     "school_dist": "Northeast ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -6314,7 +7272,7 @@
     "zip": "78212",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -6334,7 +7292,27 @@
     "zip": "78212",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "12820 PEARSALL RD",
+    "owner": "J MOLINA ASSETS LLC",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260500362",
+    "year": "2026",
+    "month": "5",
+    "city": "ATASCOSA",
+    "zip": "78002",
+    "school_dist": "Southwest ISD",
+    "date_filed": "5/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -6354,7 +7332,7 @@
     "zip": "78216",
     "school_dist": "Northeast ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "DUPLICATE"
@@ -6376,7 +7354,7 @@
     "zip": "78229",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -6396,7 +7374,47 @@
     "zip": "78225",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "224 S SAN MANUEL ST",
+    "owner": "ALVAREZ FRANCISCO ANTONIO & MORENO STEPHANIE",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260500366",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78237",
+    "school_dist": "Edgewood ISD (Bexar)",
+    "date_filed": "5/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "10148 SUNSET PL",
+    "owner": "TODD CHARITY",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260500367",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78245",
+    "school_dist": "Northside ISD (Bexar)",
+    "date_filed": "5/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -6416,7 +7434,7 @@
     "zip": "78250",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -6436,7 +7454,7 @@
     "zip": "78252",
     "school_dist": "Southwest ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -6456,7 +7474,7 @@
     "zip": "78210",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -6476,7 +7494,7 @@
     "zip": "78214",
     "school_dist": "Harlandale ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -6496,7 +7514,7 @@
     "zip": "78242",
     "school_dist": "Southwest ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -6516,9 +7534,31 @@
     "zip": "78227",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
+    "score": 6
+  },
+  {
+    "type": "NOF",
+    "address": "439 E YOUNG",
+    "owner": "MAG REAL ESTATE SERVICES LLC",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": true,
+    "is_new": false,
+    "doc_number": "20260500375",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78214",
+    "school_dist": "Harlandale ISD",
+    "date_filed": "5/2026",
+    "run_ts": "2026-04-26T22:16:38Z",
+    "sale_date": "",
+    "flags": [
+      "DUPLICATE"
+    ],
     "score": 6
   },
   {
@@ -6536,7 +7576,7 @@
     "zip": "78223",
     "school_dist": "East Central ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "DUPLICATE"
@@ -6558,7 +7598,7 @@
     "zip": "78223",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -6578,7 +7618,7 @@
     "zip": "78204",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "DUPLICATE"
@@ -6600,7 +7640,7 @@
     "zip": "78240",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -6620,7 +7660,7 @@
     "zip": "78239",
     "school_dist": "Northeast ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -6640,7 +7680,7 @@
     "zip": "78252",
     "school_dist": "Medina Valley ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -6660,7 +7700,7 @@
     "zip": "78252",
     "school_dist": "Southwest ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
@@ -6680,33 +7720,10 @@
     "zip": "78261",
     "school_dist": "Comal ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [],
     "score": 6
-  },
-  {
-    "type": "TAX",
-    "address": "2630 E COMMERCE ST",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "2012TA100316",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78203",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "TAX FORE",
-      "NO OWNER"
-    ],
-    "score": 5
   },
   {
     "type": "TAX",
@@ -6723,103 +7740,13 @@
     "zip": "78207",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "TAX FORE",
       "NO OWNER"
     ],
     "score": 5
-  },
-  {
-    "type": "TAX",
-    "address": "620 N NEW BRAUNFELS AVE",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "2021TA101691",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78202",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "TAX FORE",
-      "NO OWNER"
-    ],
-    "score": 5
-  },
-  {
-    "type": "TAX",
-    "address": "20220 E LOOP 1604",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "2013TA101644",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78264",
-    "school_dist": "Southside ISD",
-    "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "TAX FORE",
-      "NO OWNER"
-    ],
-    "score": 5
-  },
-  {
-    "type": "NOF",
-    "address": "138 E ACKARD PL",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260500006",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78221",
-    "school_dist": "Harlandale ISD",
-    "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "12058 STILL PASS",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260500018",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78221",
-    "school_dist": "Southside ISD",
-    "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
   },
   {
     "type": "NOF",
@@ -6836,7 +7763,7 @@
     "zip": "78228",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "NO OWNER"
@@ -6858,7 +7785,7 @@
     "zip": "78201",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "NO OWNER"
@@ -6880,117 +7807,7 @@
     "zip": "78213",
     "school_dist": "Northeast ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "203 E LAMBERT ST",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260500072",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78204",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "2014 S TRINITY ST",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260500090",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78207",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "215 W MISTLETOE AVE",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260500096",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78212",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "5314 MAPLE VISTA",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260500107",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78247",
-    "school_dist": "Northeast ISD",
-    "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "310 CYPRESS GARDENS DR",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260500120",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78245",
-    "school_dist": "Northside ISD (Bexar)",
-    "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "NO OWNER"
@@ -7012,7 +7829,7 @@
     "zip": "78222",
     "school_dist": "East Central ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "NO OWNER"
@@ -7034,29 +7851,7 @@
     "zip": "78109",
     "school_dist": "Judson ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "147 EL CERRITO CIRCLE",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260400453",
-    "year": "2026",
-    "month": "4",
-    "city": "HOLLYWOOD PARK",
-    "zip": "78232",
-    "school_dist": "Northeast ISD",
-    "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "NO OWNER"
@@ -7078,29 +7873,7 @@
     "zip": "78152",
     "school_dist": "Schertz-Cibolo-Universal City ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "12331 LA BARCA STREET",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260400454",
-    "year": "2026",
-    "month": "4",
-    "city": "SAN ANTONIO",
-    "zip": "78233",
-    "school_dist": "Northeast ISD",
-    "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "NO OWNER"
@@ -7122,29 +7895,7 @@
     "zip": "78201",
     "school_dist": "San Antonio ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "10139 PEARL CREEK",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260400232",
-    "year": "2026",
-    "month": "4",
-    "city": "SAN ANTONIO",
-    "zip": "78245",
-    "school_dist": "Northside ISD (Bexar)",
-    "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "NO OWNER"
@@ -7166,29 +7917,7 @@
     "zip": "78245",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "427 N SAN GABRIEL AVE",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260400300",
-    "year": "2026",
-    "month": "4",
-    "city": "SAN ANTONIO",
-    "zip": "78228",
-    "school_dist": "Edgewood ISD (Bexar)",
-    "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "NO OWNER"
@@ -7210,73 +7939,7 @@
     "zip": "78244",
     "school_dist": "Judson ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "818 LAUREL RUN",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260400303",
-    "year": "2026",
-    "month": "4",
-    "city": "SAN ANTONIO",
-    "zip": "78219",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "210 W VISTA RIDGE",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260400356",
-    "year": "2026",
-    "month": "4",
-    "city": "SAN ANTONIO",
-    "zip": "78260",
-    "school_dist": "Comal ISD",
-    "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "10210 SUNRISE FIELD",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260400001",
-    "year": "2026",
-    "month": "4",
-    "city": "SAN ANTONIO",
-    "zip": "78245",
-    "school_dist": "Southwest ISD",
-    "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "NO OWNER"
@@ -7298,227 +7961,7 @@
     "zip": "78228",
     "school_dist": "San Antonio ISD",
     "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "711 S BROWNLEAF ST",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260400044",
-    "year": "2026",
-    "month": "4",
-    "city": "SAN ANTONIO",
-    "zip": "78227",
-    "school_dist": "Northside ISD (Bexar)",
-    "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "167 E HUTCHINS PL",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260400096",
-    "year": "2026",
-    "month": "4",
-    "city": "SAN ANTONIO",
-    "zip": "78221",
-    "school_dist": "Harlandale ISD",
-    "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "22615 S US HWY 281 S",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260400102",
-    "year": "2026",
-    "month": "4",
-    "city": "SAN ANTONIO",
-    "zip": "78264",
-    "school_dist": "Southside ISD",
-    "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "14502 CAMINO WAY",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260400117",
-    "year": "2026",
-    "month": "4",
-    "city": "SAN ANTONIO",
-    "zip": "78253",
-    "school_dist": "Northside ISD (Bexar)",
-    "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "1207 BEACON CV",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260400170",
-    "year": "2026",
-    "month": "4",
-    "city": "SAN ANTONIO",
-    "zip": "78245",
-    "school_dist": "Northside ISD (Bexar)",
-    "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "107 E WRIGHT",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260400256",
-    "year": "2026",
-    "month": "4",
-    "city": "UNIVERSAL CITY",
-    "zip": "78101",
-    "school_dist": "Schertz-Cibolo-Universal City ISD",
-    "date_filed": "4/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "14233 LUCKEY ROAD",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260500186",
-    "year": "2026",
-    "month": "5",
-    "city": "ATASCOSA",
-    "zip": "78002",
-    "school_dist": "Southwest ISD",
-    "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "2107 EL JARDIN RD",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260500200",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78237",
-    "school_dist": "Edgewood ISD (Bexar)",
-    "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "2415 W SUMMIT AVE",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260500207",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78228",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "1108 W MARIPOSA DR",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260500212",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78201",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "NO OWNER"
@@ -7540,205 +7983,7 @@
     "zip": "78210",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "15719 CLOVE SPICE WAY",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260500226",
-    "year": "2026",
-    "month": "5",
-    "city": "VON ORMY",
-    "zip": "78073",
-    "school_dist": "Southwest ISD",
-    "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "10230 W LOOP 1604",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260500236",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78254",
-    "school_dist": "Northside ISD (Bexar)",
-    "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "1825 N GRAYTOWN ROAD",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260500241",
-    "year": "2026",
-    "month": "5",
-    "city": "SAINT HEDWIG",
-    "zip": "78152",
-    "school_dist": "East Central ISD",
-    "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "14290 SAVANNAH PASS",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260500251",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78216",
-    "school_dist": "Northeast ISD",
-    "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "215 N CENTER",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260500257",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78202",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "21174 US HIGHWAY 281 S #2",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260500258",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78264",
-    "school_dist": "Southside ISD",
-    "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "1220 W HUISACHE AVE",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260500261",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78201",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "14217 LUCKEY RD",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260500265",
-    "year": "2026",
-    "month": "5",
-    "city": "ATASCOSA",
-    "zip": "78002",
-    "school_dist": "Southwest ISD",
-    "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "901 NE LOOP 410",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260500270",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78209",
-    "school_dist": "Northeast ISD",
-    "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "NO OWNER"
@@ -7760,73 +8005,7 @@
     "zip": "78201",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "1634 E CHAVANEAUX RD",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260500277",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78214",
-    "school_dist": "Southside ISD",
-    "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "13246 REGENCY FOREST",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260500285",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78249",
-    "school_dist": "Northside ISD (Bexar)",
-    "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "443 N SAN IGNACIO AVE",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260500287",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78228",
-    "school_dist": "Edgewood ISD (Bexar)",
-    "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "NO OWNER"
@@ -7848,7 +8027,7 @@
     "zip": "78207",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "NO OWNER"
@@ -7870,51 +8049,7 @@
     "zip": "78207",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "1327 W RIDGEWOOD CT",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260500301",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78201",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "158 E VESTAL PL",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260500302",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78221",
-    "school_dist": "Harlandale ISD",
-    "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "NO OWNER"
@@ -7936,51 +8071,7 @@
     "zip": "78245",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "170 DE CHANTLE RD",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260500317",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78201",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "7200 S PRESA ST",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260500321",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78223",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "NO OWNER"
@@ -8002,7 +8093,7 @@
     "zip": "78250",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "NO OWNER"
@@ -8024,73 +8115,7 @@
     "zip": "78203",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "817 MARTIN LUTHER KING DR",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260500328",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78203",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "510 S OLIVE ST",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260500329",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78203",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "313 E LOCUST ST",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260500337",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78212",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "NO OWNER"
@@ -8112,29 +8137,7 @@
     "zip": "78223",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "255 E PETALUMA BLVD",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260500353",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78221",
-    "school_dist": "Harlandale ISD",
-    "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "NO OWNER"
@@ -8156,95 +8159,7 @@
     "zip": "78211",
     "school_dist": "Harlandale ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "12820 PEARSALL RD",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260500362",
-    "year": "2026",
-    "month": "5",
-    "city": "ATASCOSA",
-    "zip": "78002",
-    "school_dist": "Southwest ISD",
-    "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "224 S SAN MANUEL ST",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260500366",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78237",
-    "school_dist": "Edgewood ISD (Bexar)",
-    "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "10148 SUNSET PL",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260500367",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78245",
-    "school_dist": "Northside ISD (Bexar)",
-    "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
-    "sale_date": "",
-    "flags": [
-      "NO OWNER"
-    ],
-    "score": 3
-  },
-  {
-    "type": "NOF",
-    "address": "439 E YOUNG",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260500375",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78214",
-    "school_dist": "Harlandale ISD",
-    "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "NO OWNER"
@@ -8266,7 +8181,7 @@
     "zip": "78223",
     "school_dist": "East Central ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "NO OWNER"
@@ -8288,7 +8203,7 @@
     "zip": "78255",
     "school_dist": "Northside ISD (Bexar)",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "NO OWNER"
@@ -8310,7 +8225,7 @@
     "zip": "78223",
     "school_dist": "San Antonio ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "NO OWNER"
@@ -8332,7 +8247,7 @@
     "zip": "78264",
     "school_dist": "Northeast ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "NO OWNER"
@@ -8354,7 +8269,7 @@
     "zip": "78112",
     "school_dist": "Southside ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "NO OWNER"
@@ -8376,7 +8291,7 @@
     "zip": "78233",
     "school_dist": "Northeast ISD",
     "date_filed": "5/2026",
-    "run_ts": "2026-04-26T21:37:27Z",
+    "run_ts": "2026-04-26T22:16:38Z",
     "sale_date": "",
     "flags": [
       "NO OWNER"
