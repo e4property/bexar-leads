@@ -1,6 +1,6 @@
 """
-Bexar County Motivated Seller Lead Scraper v25.1
-Dashboard loads records.json from raw GitHub URL at runtime.
+Bexar County Motivated Seller Lead Scraper v25.2
+Dashboard loads records.json from GitHub Pages URL at runtime.
 No data injection - bypasses Pages artifact caching completely.
 """
 
@@ -38,7 +38,7 @@ def fetch_json(url, retries=3):
     for attempt in range(retries):
         try:
             req = urllib.request.Request(
-                url, headers={"User-Agent": "BexarScraper/25.1", "Accept": "application/json"})
+                url, headers={"User-Agent": "BexarScraper/25.2", "Accept": "application/json"})
             with urllib.request.urlopen(req, timeout=25) as r:
                 return json.loads(r.read().decode("utf-8", errors="replace"))
         except Exception as e:
@@ -227,7 +227,7 @@ def enrich_owners(records):
             elif "s3" in method: s3 += 1
             if found <= 10 or found % 50 == 0:
                 ab = " [ABSENTEE]" if rec["absentee"] else ""
-                log.info(f"  [{i+1}/{len(records)}] {ab} [{method}] {addr} -> {result['owner']}")
+                log.info(f"  [{i+1}/{len(records)}]{ab} [{method}] {addr} -> {result['owner']}")
         if (i + 1) % 50 == 0:
             log.info(f"  Progress: {i+1}/{len(records)} | Found: {found} (s1={s1} s2={s2} s3={s3})")
         time.sleep(0.15)
@@ -347,6 +347,9 @@ def push_ghl(records):
     log.info(f"GHL done - Created:{created} | Skipped:{skipped} | Errors:{errors}")
 
 
+# ── Dashboard HTML ─────────────────────────────────────────────────────────────
+# KEY FIX v25.2: DATA_URL now points to GitHub Pages URL (not raw.githubusercontent.com)
+# This is the same URL that works: https://e4property.github.io/bexar-leads/records.json
 DASHBOARD_HTML = """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -480,7 +483,10 @@ tbody td{padding:10px 12px;vertical-align:middle;}
 </div>
 <script>
 var ALL_RECORDS=[],filtered=[],page=1,PAGE=50,sortCol='score',sortDir=-1;
-var DATA_URL='https://raw.githubusercontent.com/e4property/bexar-leads/main/dashboard/records.json?v='+Date.now();
+
+// KEY FIX v25.2: Load from GitHub Pages URL - same domain, no CORS issues
+var DATA_URL='https://e4property.github.io/bexar-leads/records.json?v='+Date.now();
+
 fetch(DATA_URL)
   .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();})
   .then(function(data){
@@ -492,6 +498,7 @@ fetch(DATA_URL)
   .catch(function(err){
     document.getElementById('loading').textContent='Error loading data: '+err+'. Try refreshing.';
   });
+
 function init(){
   var ts=ALL_RECORDS.length>0?(ALL_RECORDS[0].run_ts||''):'';
   if(ts) document.getElementById('last-updated').textContent='Updated: '+ts.replace('T',' ').replace('Z',' UTC');
@@ -503,7 +510,9 @@ function init(){
   document.getElementById('s-new').textContent=ALL_RECORDS.filter(function(r){return r.is_new;}).length;
   applyFilters();
 }
+
 function sortBy(col){if(sortCol===col)sortDir*=-1;else{sortCol=col;sortDir=-1;}applyFilters();}
+
 function applyFilters(){
   var q=document.getElementById('search').value.toLowerCase();
   var t=document.getElementById('type-filter').value;
@@ -523,6 +532,7 @@ function applyFilters(){
   document.getElementById('count-badge').textContent=filtered.length+' of '+ALL_RECORDS.length+' leads';
   render();
 }
+
 function render(){
   var tbody=document.getElementById('tbody');
   var msg=document.getElementById('state-msg');
@@ -554,7 +564,17 @@ function render(){
     if(r.type==='TAX')fh+='<span class="flag">TAX FORE</span>';
     if(!r.owner)fh+='<span class="flag">NO OWNER</span>';
     if(!fh)fh='<span style="color:var(--muted)">-</span>';
-    rows+='<tr'+rc+'><td><div class="score '+scC+'">'+sc+'</div></td><td><span class="type-badge '+tC+'">'+tL+'</span></td><td>'+addrHtml+'</td><td>'+ownerHtml+'</td><td>'+mailHtml+'</td><td><div class="doc">'+(r.date_filed||'-')+'</div></td><td><div class="doc">'+(r.doc_number||'-')+'</div></td><td><div class="doc">'+cz+'</div></td><td>'+fh+'</td></tr>';
+    rows+='<tr'+rc+'>'
+      +'<td><div class="score '+scC+'">'+sc+'</div></td>'
+      +'<td><span class="type-badge '+tC+'">'+tL+'</span></td>'
+      +'<td>'+addrHtml+'</td>'
+      +'<td>'+ownerHtml+'</td>'
+      +'<td>'+mailHtml+'</td>'
+      +'<td><div class="doc">'+(r.date_filed||'-')+'</div></td>'
+      +'<td><div class="doc">'+(r.doc_number||'-')+'</div></td>'
+      +'<td><div class="doc">'+cz+'</div></td>'
+      +'<td>'+fh+'</td>'
+      +'</tr>';
   }
   tbody.innerHTML=rows;
   var total=Math.ceil(filtered.length/PAGE);
@@ -562,10 +582,17 @@ function render(){
   document.getElementById('btn-prev').disabled=page<=1;
   document.getElementById('btn-next').disabled=page>=total;
 }
+
 function changePage(d){page+=d;render();window.scrollTo({top:0,behavior:'smooth'});}
+
 function exportCSV(){
   var cols=['score','type','address','owner','mail_addr','absentee','duplicate','is_new','date_filed','doc_number','city','zip','school_dist'];
-  var rows=ALL_RECORDS.map(function(r){return cols.map(function(c){var v=r[c];if(v===null||v===undefined)v='';return'"'+String(v).replace(/"/g,'""')+'"';}).join(',');});
+  var rows=ALL_RECORDS.map(function(r){
+    return cols.map(function(c){
+      var v=r[c];if(v===null||v===undefined)v='';
+      return'"'+String(v).replace(/"/g,'""')+'"';
+    }).join(',');
+  });
   var csv=cols.join(',')+'\n'+rows.join('\n');
   var blob=new Blob([csv],{type:'text/csv'});
   var a=document.createElement('a');
@@ -592,7 +619,7 @@ if __name__ == "__main__":
     os.makedirs("dashboard", exist_ok=True)
 
     log.info("=" * 60)
-    log.info("Bexar County Lead Scraper v25.1")
+    log.info("Bexar County Lead Scraper v25.2")
     log.info(f"Foreclosures: {FORECLOSURE_BASE}")
     log.info(f"Owner lookup: {PARCELS_URL}")
     log.info("=" * 60)
@@ -622,4 +649,3 @@ if __name__ == "__main__":
 
     build_dashboard(records)
     push_ghl(records)
-
