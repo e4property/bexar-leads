@@ -1,7 +1,7 @@
 """
 Bexar County Motivated Seller Lead Scraper v25.1
-FIX: Dashboard loads records.json from raw GitHub URL instead of relative path.
-This bypasses the Pages artifact limitation where only index.html gets served.
+Dashboard loads records.json from raw GitHub URL at runtime.
+No data injection - bypasses Pages artifact caching completely.
 """
 
 import json
@@ -34,7 +34,6 @@ GHL_API_BASE    = "https://services.leadconnectorhq.com"
 RUN_TIMESTAMP = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
-# ── HTTP ──────────────────────────────────────────────────────────────────────
 def fetch_json(url, retries=3):
     for attempt in range(retries):
         try:
@@ -79,7 +78,6 @@ def normalize(s):
     return " ".join(str(s).upper().split())
 
 
-# ── Address parsing ───────────────────────────────────────────────────────────
 def parse_address(address):
     if not address:
         return None
@@ -105,7 +103,6 @@ def parse_address(address):
     }
 
 
-# ── Core matcher ──────────────────────────────────────────────────────────────
 def match_features(feats, num, first_word):
     for feat in feats:
         a       = feat["attributes"]
@@ -114,49 +111,39 @@ def match_features(feats, num, first_word):
         addr1   = str(a.get("AddrLn1")  or "").strip()
         city    = str(a.get("AddrCity") or "").strip()
         zipcode = str(a.get("Zip")      or "").strip()
-
         if not owner or owner.upper() in ("NULL", "NONE", ""):
             continue
-
         situs_norm = normalize(situs)
         if not situs_norm.startswith(num + " "):
             continue
         if first_word and first_word not in situs_norm:
             continue
-
         mail_addr = f"{addr1} {city} {zipcode}".strip() if addr1 and addr1.upper() not in ("NULL","NONE","") else ""
         absentee  = bool(mail_addr) and not normalize(mail_addr).startswith(num + " ")
-
         return {"owner": owner, "mail_addr": mail_addr, "absentee": absentee}
     return None
 
 
-# ── Owner lookup ──────────────────────────────────────────────────────────────
 def lookup_owner(address):
     parsed = parse_address(address)
     if not parsed:
         return {}
-
     num        = parsed["num"]
     words      = parsed["words"]
     first_word = words[0] if words else ""
-
     if not first_word or len(first_word) < 3:
         return {}
-
     if len(words) >= 2:
         feats  = arcgis_query(PARCELS_URL, f"Situs LIKE '%{words[0]} {words[1]}%'",
                               fields="Situs,Owner,AddrLn1,AddrCity,Zip", limit=200)
         result = match_features(feats, num, first_word)
         if result:
             result["method"] = "s1_two_word"; return result
-
     feats  = arcgis_query(PARCELS_URL, f"Situs LIKE '%{first_word}%'",
                           fields="Situs,Owner,AddrLn1,AddrCity,Zip", limit=200)
     result = match_features(feats, num, first_word)
     if result:
         result["method"] = "s2_one_word"; return result
-
     for word in words[1:]:
         if len(word) < 4:
             continue
@@ -165,11 +152,9 @@ def lookup_owner(address):
         result = match_features(feats, num, word)
         if result:
             result["method"] = "s3_alt_word"; return result
-
     return {}
 
 
-# ── Fetch foreclosures ────────────────────────────────────────────────────────
 def fetch_foreclosures():
     log.info("Fetching foreclosure records from ArcGIS...")
     raw = []
@@ -196,7 +181,6 @@ def fetch_foreclosures():
             except Exception as e:
                 log.error(f"Layer {idx} query error: {e}")
                 break
-
         for feat in features:
             a     = feat["attributes"]
             month = pick(a, "MONTH", "MO", default="")
@@ -220,21 +204,17 @@ def fetch_foreclosures():
                 "sale_date":   "",
                 "flags":       [],
             })
-
     log.info(f"Foreclosures: {len(raw)} total records")
     return raw
 
 
-# ── Enrich owners ─────────────────────────────────────────────────────────────
 def enrich_owners(records):
     log.info(f"Looking up owners for {len(records)} records...")
     found = s1 = s2 = s3 = 0
-
     for i, rec in enumerate(records):
         addr = rec.get("address", "")
         if not addr:
             continue
-
         result = lookup_owner(addr)
         if result and result.get("owner"):
             rec["owner"]     = result["owner"]
@@ -247,22 +227,18 @@ def enrich_owners(records):
             elif "s3" in method: s3 += 1
             if found <= 10 or found % 50 == 0:
                 ab = " [ABSENTEE]" if rec["absentee"] else ""
-                log.info(f"  [{i+1}/{len(records)}] ✓{ab} [{method}] {addr} → {result['owner']}")
-
+                log.info(f"  [{i+1}/{len(records)}] {ab} [{method}] {addr} -> {result['owner']}")
         if (i + 1) % 50 == 0:
             log.info(f"  Progress: {i+1}/{len(records)} | Found: {found} (s1={s1} s2={s2} s3={s3})")
-
         time.sleep(0.15)
-
     pct      = 100 * found // max(len(records), 1)
     absentee = sum(1 for r in records if r.get("absentee"))
     log.info(f"Owner lookup: {found}/{len(records)} ({pct}% hit rate)")
-    log.info(f"  Strategy breakdown — s1:{s1} s2:{s2} s3:{s3}")
+    log.info(f"  Strategy breakdown - s1:{s1} s2:{s2} s3:{s3}")
     log.info(f"  Absentee owners: {absentee}")
     return records
 
 
-# ── Duplicate detection ───────────────────────────────────────────────────────
 def detect_duplicates(records):
     from collections import Counter
     owner_counts = Counter(
@@ -280,7 +256,6 @@ def detect_duplicates(records):
     return records
 
 
-# ── Scoring ───────────────────────────────────────────────────────────────────
 def score_record(rec):
     s = 0
     if rec.get("address"):       s += 3
@@ -290,7 +265,6 @@ def score_record(rec):
     return min(s, 10)
 
 
-# ── GHL ───────────────────────────────────────────────────────────────────────
 def ghl_req(method, endpoint, payload=None):
     try:
         import requests
@@ -324,7 +298,7 @@ def push_ghl(records):
     test = ghl_req("GET", f"/contacts/?locationId={GHL_LOCATION_ID}&limit=1")
     if not test or "_error" in test:
         log.error("GHL auth failed"); return
-    log.info(f"GHL auth OK — {test.get('total','?')} existing contacts")
+    log.info(f"GHL auth OK - {test.get('total','?')} existing contacts")
     created = skipped = errors = 0
     for i, rec in enumerate(sorted(named, key=lambda r: -r.get("score", 0))):
         doc = rec.get("doc_number", "")
@@ -364,17 +338,15 @@ def push_ghl(records):
         })
         if result and result.get("contact"):
             created += 1
-            ab  = " 🏠 ABSENTEE" if rec.get("absentee") else ""
-            dup = " ♻ DUP"       if rec.get("duplicate") else ""
-            log.info(f"  ✓ [{i+1}]{ab}{dup} {owner} — {rec.get('address')}")
+            ab  = " ABSENTEE" if rec.get("absentee") else ""
+            dup = " DUP"      if rec.get("duplicate") else ""
+            log.info(f"  [{i+1}]{ab}{dup} {owner} - {rec.get('address')}")
         else:
             errors += 1
         time.sleep(0.15)
-    log.info(f"GHL done — Created:{created} | Skipped:{skipped} | Errors:{errors}")
+    log.info(f"GHL done - Created:{created} | Skipped:{skipped} | Errors:{errors}")
 
 
-# ── Dashboard ─────────────────────────────────────────────────────────────────
-# Records loaded at runtime from raw GitHub URL — no data injection needed
 DASHBOARD_HTML = """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -454,12 +426,12 @@ tbody td{padding:10px 12px;vertical-align:middle;}
   </div>
 </header>
 <div class="stats">
-  <div class="stat-card"><div class="stat-num" id="s-total">—</div><div class="stat-label">Total Leads</div></div>
-  <div class="stat-card"><div class="stat-num" id="s-nof">—</div><div class="stat-label">Foreclosures</div></div>
-  <div class="stat-card"><div class="stat-num" id="s-tax">—</div><div class="stat-label">Tax Fore.</div></div>
-  <div class="stat-card"><div class="stat-num" id="s-named">—</div><div class="stat-label">With Owner</div></div>
-  <div class="stat-card"><div class="stat-num" id="s-absentee">—</div><div class="stat-label">Absentee</div></div>
-  <div class="stat-card"><div class="stat-num" id="s-new">—</div><div class="stat-label">New This Run</div></div>
+  <div class="stat-card"><div class="stat-num" id="s-total">-</div><div class="stat-label">Total Leads</div></div>
+  <div class="stat-card"><div class="stat-num" id="s-nof">-</div><div class="stat-label">Foreclosures</div></div>
+  <div class="stat-card"><div class="stat-num" id="s-tax">-</div><div class="stat-label">Tax Fore.</div></div>
+  <div class="stat-card"><div class="stat-num" id="s-named">-</div><div class="stat-label">With Owner</div></div>
+  <div class="stat-card"><div class="stat-num" id="s-absentee">-</div><div class="stat-label">Absentee</div></div>
+  <div class="stat-card"><div class="stat-num" id="s-new">-</div><div class="stat-label">New This Run</div></div>
 </div>
 <div class="controls">
   <input type="text" id="search" placeholder="Search address, owner, doc #..." oninput="applyFilters()"/>
@@ -508,15 +480,9 @@ tbody td{padding:10px 12px;vertical-align:middle;}
 </div>
 <script>
 var ALL_RECORDS=[],filtered=[],page=1,PAGE=50,sortCol='score',sortDir=-1;
-
-// Load from raw GitHub — bypasses Pages artifact caching
 var DATA_URL='https://raw.githubusercontent.com/e4property/bexar-leads/main/dashboard/records.json?v='+Date.now();
-
 fetch(DATA_URL)
-  .then(function(r){
-    if(!r.ok) throw new Error('HTTP '+r.status);
-    return r.json();
-  })
+  .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();})
   .then(function(data){
     ALL_RECORDS=data;
     document.getElementById('loading').style.display='none';
@@ -526,7 +492,6 @@ fetch(DATA_URL)
   .catch(function(err){
     document.getElementById('loading').textContent='Error loading data: '+err+'. Try refreshing.';
   });
-
 function init(){
   var ts=ALL_RECORDS.length>0?(ALL_RECORDS[0].run_ts||''):'';
   if(ts) document.getElementById('last-updated').textContent='Updated: '+ts.replace('T',' ').replace('Z',' UTC');
@@ -538,42 +503,26 @@ function init(){
   document.getElementById('s-new').textContent=ALL_RECORDS.filter(function(r){return r.is_new;}).length;
   applyFilters();
 }
-
-function sortBy(col){
-  if(sortCol===col) sortDir*=-1; else{sortCol=col;sortDir=-1;}
-  applyFilters();
-}
-
+function sortBy(col){if(sortCol===col)sortDir*=-1;else{sortCol=col;sortDir=-1;}applyFilters();}
 function applyFilters(){
   var q=document.getElementById('search').value.toLowerCase();
   var t=document.getElementById('type-filter').value;
   var ow=document.getElementById('owner-filter').value;
-  var s=document.getElementById('sort-select').value;
   filtered=ALL_RECORDS.filter(function(r){
     var mq=!q||(r.address||'').toLowerCase().indexOf(q)>=0||(r.owner||'').toLowerCase().indexOf(q)>=0||(r.doc_number||'').toLowerCase().indexOf(q)>=0;
     var mt=!t||r.type===t;
     var mow=!ow||(ow==='named'?!!r.owner:ow==='absentee'?!!r.absentee:ow==='new'?!!r.is_new:ow==='duplicate'?!!r.duplicate:!r.owner);
     return mq&&mt&&mow;
   });
-  if(sortCol){
-    filtered.sort(function(a,b){
-      var av=a[sortCol]||'',bv=b[sortCol]||'';
-      if(typeof av==='number'&&typeof bv==='number') return (av-bv)*sortDir;
-      return av>bv?sortDir:av<bv?-sortDir:0;
-    });
-  } else {
-    filtered.sort(function(a,b){
-      if(s==='score-desc') return b.score-a.score;
-      if(s==='score-asc')  return a.score-b.score;
-      if(s==='date-desc')  return (b.date_filed||'')>(a.date_filed||'')?1:-1;
-      return 0;
-    });
-  }
+  filtered.sort(function(a,b){
+    var av=a[sortCol]||'',bv=b[sortCol]||'';
+    if(typeof av==='number'&&typeof bv==='number')return(av-bv)*sortDir;
+    return av>bv?sortDir:av<bv?-sortDir:0;
+  });
   page=1;
   document.getElementById('count-badge').textContent=filtered.length+' of '+ALL_RECORDS.length+' leads';
   render();
 }
-
 function render(){
   var tbody=document.getElementById('tbody');
   var msg=document.getElementById('state-msg');
@@ -587,36 +536,25 @@ function render(){
     var scC=sc>=7?'score-high':sc>=4?'score-mid':'score-low';
     var tC=r.type==='TAX'?'type-tax':'type-nof';
     var tL=r.type==='TAX'?'TAX':'NOF';
-    var cz=[r.city,r.zip].filter(Boolean).join(' ')||'—';
+    var cz=[r.city,r.zip].filter(Boolean).join(' ')||'-';
     var mapUrl='https://maps.google.com/?q='+encodeURIComponent((r.address||'')+(r.city?', '+r.city+', TX':''));
-    var addrHtml='<div class="addr">'+(r.address||'—')+'<a href="'+mapUrl+'" target="_blank">map</a></div>';
+    var addrHtml='<div class="addr">'+(r.address||'-')+'<a href="'+mapUrl+'" target="_blank">map</a></div>';
     var ownerHtml=r.owner
-      ?'<div class="owner">'+r.owner+(r.duplicate?' [DUP]':'')+'</div>'
-       +'<div class="mail">'+(r.mail_addr&&r.absentee?r.mail_addr:'')+'</div>'
-      :'<div class="owner-none">—</div>';
-    var mailHtml='<div class="doc">'+(r.absentee&&r.mail_addr?r.mail_addr:'—')+'</div>';
+      ?'<div class="owner">'+r.owner+(r.duplicate?' [DUP]':'')+'</div><div class="mail">'+(r.mail_addr&&r.absentee?r.mail_addr:'')+'</div>'
+      :'<div class="owner-none">-</div>';
+    var mailHtml='<div class="doc">'+(r.absentee&&r.mail_addr?r.mail_addr:'-')+'</div>';
     var rc='';
-    if(r.absentee&&r.is_new) rc=' class="absentee-row new-row"';
-    else if(r.absentee) rc=' class="absentee-row"';
-    else if(r.is_new)   rc=' class="new-row"';
+    if(r.absentee&&r.is_new)rc=' class="absentee-row new-row"';
+    else if(r.absentee)rc=' class="absentee-row"';
+    else if(r.is_new)rc=' class="new-row"';
     var fh='';
-    if(r.is_new)       fh+='<span class="flag flag-new">NEW</span>';
-    if(r.absentee)     fh+='<span class="flag flag-hot">ABSENTEE</span>';
-    if(r.duplicate)    fh+='<span class="flag flag-dup">DUP</span>';
-    if(r.type==='TAX') fh+='<span class="flag">TAX FORE</span>';
-    if(!r.owner)       fh+='<span class="flag">NO OWNER</span>';
-    if(!fh)            fh='<span style="color:var(--muted)">—</span>';
-    rows+='<tr'+rc+'>'
-      +'<td><div class="score '+scC+'">'+sc+'</div></td>'
-      +'<td><span class="type-badge '+tC+'">'+tL+'</span></td>'
-      +'<td>'+addrHtml+'</td>'
-      +'<td>'+ownerHtml+'</td>'
-      +'<td>'+mailHtml+'</td>'
-      +'<td><div class="doc">'+(r.date_filed||'—')+'</div></td>'
-      +'<td><div class="doc">'+(r.doc_number||'—')+'</div></td>'
-      +'<td><div class="doc">'+cz+'</div></td>'
-      +'<td>'+fh+'</td>'
-      +'</tr>';
+    if(r.is_new)fh+='<span class="flag flag-new">NEW</span>';
+    if(r.absentee)fh+='<span class="flag flag-hot">ABSENTEE</span>';
+    if(r.duplicate)fh+='<span class="flag flag-dup">DUP</span>';
+    if(r.type==='TAX')fh+='<span class="flag">TAX FORE</span>';
+    if(!r.owner)fh+='<span class="flag">NO OWNER</span>';
+    if(!fh)fh='<span style="color:var(--muted)">-</span>';
+    rows+='<tr'+rc+'><td><div class="score '+scC+'">'+sc+'</div></td><td><span class="type-badge '+tC+'">'+tL+'</span></td><td>'+addrHtml+'</td><td>'+ownerHtml+'</td><td>'+mailHtml+'</td><td><div class="doc">'+(r.date_filed||'-')+'</div></td><td><div class="doc">'+(r.doc_number||'-')+'</div></td><td><div class="doc">'+cz+'</div></td><td>'+fh+'</td></tr>';
   }
   tbody.innerHTML=rows;
   var total=Math.ceil(filtered.length/PAGE);
@@ -624,21 +562,14 @@ function render(){
   document.getElementById('btn-prev').disabled=page<=1;
   document.getElementById('btn-next').disabled=page>=total;
 }
-
 function changePage(d){page+=d;render();window.scrollTo({top:0,behavior:'smooth'});}
-
 function exportCSV(){
   var cols=['score','type','address','owner','mail_addr','absentee','duplicate','is_new','date_filed','doc_number','city','zip','school_dist'];
-  var rows=ALL_RECORDS.map(function(r){
-    return cols.map(function(c){
-      var v=r[c]; if(v===null||v===undefined) v='';
-      return '"'+String(v).replace(/"/g,'""')+'"';
-    }).join(',');
-  });
+  var rows=ALL_RECORDS.map(function(r){return cols.map(function(c){var v=r[c];if(v===null||v===undefined)v='';return'"'+String(v).replace(/"/g,'""')+'"';}).join(',');});
   var csv=cols.join(',')+'\n'+rows.join('\n');
   var blob=new Blob([csv],{type:'text/csv'});
   var a=document.createElement('a');
-  a.href=URL.createObjectURL(blob); a.download='bexar-leads.csv'; a.click();
+  a.href=URL.createObjectURL(blob);a.download='bexar-leads.csv';a.click();
 }
 </script>
 </body>
@@ -647,31 +578,24 @@ function exportCSV(){
 
 def build_dashboard(records):
     os.makedirs("dashboard", exist_ok=True)
-
-    # Static HTML — loads data from GitHub at runtime
     with open("dashboard/index.html", "w", encoding="utf-8") as f:
         f.write(DASHBOARD_HTML)
-
-    # Data file — committed to repo and fetched at runtime
     json_str = json.dumps(records, separators=(",", ":"), ensure_ascii=True)
     with open("dashboard/records.json", "w", encoding="utf-8") as f:
         f.write(json_str)
-
-    html_size = os.path.getsize("dashboard/index.html")
-    json_size = os.path.getsize("dashboard/records.json")
-    log.info(f"Built dashboard/index.html — {html_size:,} bytes (static shell)")
-    log.info(f"Built dashboard/records.json — {len(records)} records, {json_size:,} bytes")
+    log.info(f"Built dashboard/index.html - {os.path.getsize('dashboard/index.html'):,} bytes")
+    log.info(f"Built dashboard/records.json - {len(records)} records, {os.path.getsize('dashboard/records.json'):,} bytes")
 
 
 if __name__ == "__main__":
     os.makedirs("data", exist_ok=True)
     os.makedirs("dashboard", exist_ok=True)
 
-    log.info("="*60)
-    log.info("Bexar County Lead Scraper v25.1 (raw GitHub data fetch)")
+    log.info("=" * 60)
+    log.info("Bexar County Lead Scraper v25.1")
     log.info(f"Foreclosures: {FORECLOSURE_BASE}")
     log.info(f"Owner lookup: {PARCELS_URL}")
-    log.info("="*60)
+    log.info("=" * 60)
 
     records = fetch_foreclosures()
     records = enrich_owners(records)
