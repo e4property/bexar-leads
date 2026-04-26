@@ -131,10 +131,7 @@ tbody td{padding:10px 12px;vertical-align:middle;}
 </div>
 <script>
 var ALL_RECORDS=[],filtered=[],page=1,PAGE=50,sortCol='score',sortDir=-1;
-
-// KEY FIX v25.2: Load from GitHub Pages URL - same domain, no CORS issues
 var DATA_URL='https://e4property.github.io/bexar-leads/records.json?v='+Date.now();
-
 fetch(DATA_URL)
   .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();})
   .then(function(data){
@@ -146,7 +143,6 @@ fetch(DATA_URL)
   .catch(function(err){
     document.getElementById('loading').textContent='Error loading data: '+err+'. Try refreshing.';
   });
-
 function init(){
   var ts=ALL_RECORDS.length>0?(ALL_RECORDS[0].run_ts||''):'';
   if(ts) document.getElementById('last-updated').textContent='Updated: '+ts.replace('T',' ').replace('Z',' UTC');
@@ -158,9 +154,7 @@ function init(){
   document.getElementById('s-new').textContent=ALL_RECORDS.filter(function(r){return r.is_new;}).length;
   applyFilters();
 }
-
 function sortBy(col){if(sortCol===col)sortDir*=-1;else{sortCol=col;sortDir=-1;}applyFilters();}
-
 function applyFilters(){
   var q=document.getElementById('search').value.toLowerCase();
   var t=document.getElementById('type-filter').value;
@@ -180,7 +174,6 @@ function applyFilters(){
   document.getElementById('count-badge').textContent=filtered.length+' of '+ALL_RECORDS.length+' leads';
   render();
 }
-
 function render(){
   var tbody=document.getElementById('tbody');
   var msg=document.getElementById('state-msg');
@@ -230,9 +223,7 @@ function render(){
   document.getElementById('btn-prev').disabled=page<=1;
   document.getElementById('btn-next').disabled=page>=total;
 }
-
 function changePage(d){page+=d;render();window.scrollTo({top:0,behavior:'smooth'});}
-
 function exportCSV(){
   var cols=['score','type','address','owner','mail_addr','absentee','duplicate','is_new','date_filed','doc_number','city','zip','school_dist'];
   var rows=ALL_RECORDS.map(function(r){
