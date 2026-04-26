@@ -1,8 +1,10 @@
 """
-Bexar County Motivated Seller Lead Scraper v24.1
-KEY FIX: Dashboard data now injected via <script type="application/json" id="data">
-instead of raw JS var assignment. This prevents any special characters in owner
-names, addresses, or school districts from breaking the JavaScript.
+Bexar County Motivated Seller Lead Scraper v25
+KEY ARCHITECTURE CHANGE:
+  Dashboard no longer embeds data inside HTML.
+  Instead, dashboard/index.html loads dashboard/records.json via fetch() at runtime.
+  This means the HTML template never changes between runs — only records.json changes.
+  No more data injection issues, no more caching problems with the artifact upload.
 """
 
 import json
@@ -40,7 +42,7 @@ def fetch_json(url, retries=3):
     for attempt in range(retries):
         try:
             req = urllib.request.Request(
-                url, headers={"User-Agent": "BexarScraper/24.1", "Accept": "application/json"})
+                url, headers={"User-Agent": "BexarScraper/25.0", "Accept": "application/json"})
             with urllib.request.urlopen(req, timeout=25) as r:
                 return json.loads(r.read().decode("utf-8", errors="replace"))
         except Exception as e:
@@ -145,7 +147,6 @@ def lookup_owner(address):
     if not first_word or len(first_word) < 3:
         return {}
 
-    # Strategy 1: two-word search
     if len(words) >= 2:
         feats  = arcgis_query(PARCELS_URL, f"Situs LIKE '%{words[0]} {words[1]}%'",
                               fields="Situs,Owner,AddrLn1,AddrCity,Zip", limit=200)
@@ -153,14 +154,12 @@ def lookup_owner(address):
         if result:
             result["method"] = "s1_two_word"; return result
 
-    # Strategy 2: one-word search
     feats  = arcgis_query(PARCELS_URL, f"Situs LIKE '%{first_word}%'",
                           fields="Situs,Owner,AddrLn1,AddrCity,Zip", limit=200)
     result = match_features(feats, num, first_word)
     if result:
         result["method"] = "s2_one_word"; return result
 
-    # Strategy 3: alternate words
     for word in words[1:]:
         if len(word) < 4:
             continue
@@ -377,8 +376,8 @@ def push_ghl(records):
     log.info(f"GHL done — Created:{created} | Skipped:{skipped} | Errors:{errors}")
 
 
-# ── Dashboard ─────────────────────────────────────────────────────────────────
-DASHBOARD_TEMPLATE = """<!DOCTYPE html>
+# ── Dashboard — loads data from records.json at runtime via fetch() ────────────
+DASHBOARD_HTML = """<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
@@ -439,6 +438,7 @@ tbody td{padding:10px 12px;vertical-align:middle;}
 .flag-hot{background:rgba(255,107,53,.15);color:var(--hot);border-color:rgba(255,107,53,.3);font-weight:600;}
 .flag-new{background:rgba(167,139,250,.15);color:var(--new);border-color:rgba(167,139,250,.3);font-weight:600;}
 .flag-dup{background:rgba(251,191,36,.1);color:var(--warning);border-color:rgba(251,191,36,.25);}
+.loading{text-align:center;padding:60px 20px;color:var(--muted);}
 .state-msg{text-align:center;padding:60px 20px;color:var(--muted);}
 .pagination{display:flex;justify-content:center;align-items:center;gap:8px;padding:20px 32px;color:var(--muted);font-size:12px;}
 .pagination button{background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:6px 14px;cursor:pointer;font-family:'DM Mono',monospace;font-size:12px;}
@@ -449,10 +449,10 @@ tbody td{padding:10px 12px;vertical-align:middle;}
 </head>
 <body>
 <header>
-  <div class="logo">🏠 Bexar County <span>Leads</span></div>
+  <div class="logo">&#127968; Bexar County <span>Leads</span></div>
   <div class="header-right">
-    <div id="last-updated">UPDATED_PLACEHOLDER</div>
-    <button class="btn btn-csv" onclick="exportCSV()">⬇ Export CSV</button>
+    <div id="last-updated">Loading...</div>
+    <button class="btn btn-csv" onclick="exportCSV()">&#8595; Export CSV</button>
   </div>
 </header>
 <div class="stats">
@@ -460,11 +460,11 @@ tbody td{padding:10px 12px;vertical-align:middle;}
   <div class="stat-card"><div class="stat-num" id="s-nof">—</div><div class="stat-label">Foreclosures</div></div>
   <div class="stat-card"><div class="stat-num" id="s-tax">—</div><div class="stat-label">Tax Fore.</div></div>
   <div class="stat-card"><div class="stat-num" id="s-named">—</div><div class="stat-label">With Owner</div></div>
-  <div class="stat-card"><div class="stat-num" id="s-absentee">—</div><div class="stat-label">Absentee 🔥</div></div>
-  <div class="stat-card"><div class="stat-num" id="s-new">—</div><div class="stat-label">New This Run ✨</div></div>
+  <div class="stat-card"><div class="stat-num" id="s-absentee">—</div><div class="stat-label">Absentee</div></div>
+  <div class="stat-card"><div class="stat-num" id="s-new">—</div><div class="stat-label">New This Run</div></div>
 </div>
 <div class="controls">
-  <input type="text" id="search" placeholder="Search address, owner, doc #…" oninput="applyFilters()"/>
+  <input type="text" id="search" placeholder="Search address, owner, doc #..." oninput="applyFilters()"/>
   <select id="type-filter" onchange="applyFilters()">
     <option value="">All Types</option>
     <option value="NOF">Foreclosure (NOF)</option>
@@ -473,27 +473,28 @@ tbody td{padding:10px 12px;vertical-align:middle;}
   <select id="owner-filter" onchange="applyFilters()">
     <option value="">All Leads</option>
     <option value="named">With Owner Name</option>
-    <option value="absentee">Absentee Owners 🔥</option>
-    <option value="new">New This Run ✨</option>
-    <option value="duplicate">Duplicate Owners ♻</option>
+    <option value="absentee">Absentee Owners</option>
+    <option value="new">New This Run</option>
+    <option value="duplicate">Duplicate Owners</option>
     <option value="unnamed">No Name Yet</option>
   </select>
   <select id="sort-select" onchange="applyFilters()">
-    <option value="score-desc">Sort: Score ↓</option>
-    <option value="date-desc">Sort: Date ↓</option>
-    <option value="score-asc">Sort: Score ↑</option>
+    <option value="score-desc">Sort: Score Down</option>
+    <option value="date-desc">Sort: Date Down</option>
+    <option value="score-asc">Sort: Score Up</option>
   </select>
   <span class="count-badge" id="count-badge"></span>
 </div>
 <div class="table-wrap">
-  <table>
+  <div id="loading" class="loading">Loading leads data...</div>
+  <table id="main-table" style="display:none">
     <thead><tr>
-      <th onclick="sortBy('score')">Score ⇅</th>
+      <th onclick="sortBy('score')">Score</th>
       <th>Type</th>
-      <th onclick="sortBy('address')">Property Address ⇅</th>
-      <th onclick="sortBy('owner')">Owner Name ⇅</th>
+      <th onclick="sortBy('address')">Property Address</th>
+      <th onclick="sortBy('owner')">Owner Name</th>
       <th>Mailing Address</th>
-      <th onclick="sortBy('date_filed')">Date Filed ⇅</th>
+      <th onclick="sortBy('date_filed')">Date Filed</th>
       <th>Doc #</th>
       <th>City/ZIP</th>
       <th>Flags</th>
@@ -503,19 +504,29 @@ tbody td{padding:10px 12px;vertical-align:middle;}
   <div id="state-msg" class="state-msg" style="display:none">No records match.</div>
 </div>
 <div class="pagination">
-  <button id="btn-prev" onclick="changePage(-1)">← Prev</button>
+  <button id="btn-prev" onclick="changePage(-1)">Prev</button>
   <span id="page-info"></span>
-  <button id="btn-next" onclick="changePage(1)">Next →</button>
+  <button id="btn-next" onclick="changePage(1)">Next</button>
 </div>
-
-<!-- SAFE DATA INJECTION: stored in JSON script tag, never breaks JS parser -->
-<script type="application/json" id="leads-data">DATA_PLACEHOLDER</script>
-
 <script>
-var ALL_RECORDS = JSON.parse(document.getElementById('leads-data').textContent);
-var filtered=[],page=1,PAGE=50,sortCol='score',sortDir=-1;
+var ALL_RECORDS=[],filtered=[],page=1,PAGE=50,sortCol='score',sortDir=-1;
+
+// Load data from records.json at runtime — no injection needed
+fetch('records.json?v=' + Date.now())
+  .then(function(r){ return r.json(); })
+  .then(function(data){
+    ALL_RECORDS = data;
+    document.getElementById('loading').style.display='none';
+    document.getElementById('main-table').style.display='table';
+    init();
+  })
+  .catch(function(err){
+    document.getElementById('loading').textContent='Error loading data: ' + err;
+  });
 
 function init(){
+  var ts = ALL_RECORDS.length > 0 ? (ALL_RECORDS[0].run_ts || '') : '';
+  if(ts) document.getElementById('last-updated').textContent='Updated: '+ts.replace('T',' ').replace('Z',' UTC');
   document.getElementById('s-total').textContent=ALL_RECORDS.length;
   document.getElementById('s-nof').textContent=ALL_RECORDS.filter(function(r){return r.type==='NOF';}).length;
   document.getElementById('s-tax').textContent=ALL_RECORDS.filter(function(r){return r.type==='TAX';}).length;
@@ -534,25 +545,30 @@ function applyFilters(){
   var q=document.getElementById('search').value.toLowerCase();
   var t=document.getElementById('type-filter').value;
   var ow=document.getElementById('owner-filter').value;
+  var s=document.getElementById('sort-select').value;
   filtered=ALL_RECORDS.filter(function(r){
     var mq=!q||(r.address||'').toLowerCase().indexOf(q)>=0||(r.owner||'').toLowerCase().indexOf(q)>=0||(r.doc_number||'').toLowerCase().indexOf(q)>=0;
     var mt=!t||r.type===t;
     var mow=!ow||(ow==='named'?!!r.owner:ow==='absentee'?!!r.absentee:ow==='new'?!!r.is_new:ow==='duplicate'?!!r.duplicate:!r.owner);
     return mq&&mt&&mow;
   });
-  filtered.sort(function(a,b){
-    var av=a[sortCol]||'',bv=b[sortCol]||'';
-    if(typeof av==='number'&&typeof bv==='number') return (av-bv)*sortDir;
-    return av>bv?sortDir:av<bv?-sortDir:0;
-  });
+  if(!sortCol){
+    filtered.sort(function(a,b){
+      if(s==='score-desc') return b.score-a.score;
+      if(s==='score-asc')  return a.score-b.score;
+      if(s==='date-desc')  return (b.date_filed||'')>(a.date_filed||'')?1:-1;
+      return 0;
+    });
+  } else {
+    filtered.sort(function(a,b){
+      var av=a[sortCol]||'',bv=b[sortCol]||'';
+      if(typeof av==='number'&&typeof bv==='number') return (av-bv)*sortDir;
+      return av>bv?sortDir:av<bv?-sortDir:0;
+    });
+  }
   page=1;
   document.getElementById('count-badge').textContent=filtered.length+' of '+ALL_RECORDS.length+' leads';
   render();
-}
-
-function mapLink(addr,city){
-  var q=encodeURIComponent((addr||'')+(city?', '+city+', TX':''));
-  return 'https://maps.google.com/?q='+q;
 }
 
 function render(){
@@ -569,11 +585,11 @@ function render(){
     var tC=r.type==='TAX'?'type-tax':'type-nof';
     var tL=r.type==='TAX'?'TAX':'NOF';
     var cz=[r.city,r.zip].filter(Boolean).join(' ')||'—';
-    var mapUrl=mapLink(r.address,r.city);
-    var addrHtml='<div class="addr">'+(r.address||'—')+'<a href="'+mapUrl+'" target="_blank">📍</a></div>';
+    var mapUrl='https://maps.google.com/?q='+encodeURIComponent((r.address||'')+(r.city?', '+r.city+', TX':''));
+    var addrHtml='<div class="addr">'+(r.address||'—')+'<a href="'+mapUrl+'" target="_blank">map</a></div>';
     var ownerHtml=r.owner
-      ?'<div class="owner">'+r.owner+(r.duplicate?' <span style="color:var(--warning);font-size:10px">♻</span>':'')+'</div>'
-      +'<div class="mail">'+(r.mail_addr&&r.absentee?'✉ '+r.mail_addr:'')+'</div>'
+      ?'<div class="owner">'+r.owner+(r.duplicate?' [DUP]':'')+'</div>'
+      +'<div class="mail">'+(r.mail_addr&&r.absentee?r.mail_addr:'')+'</div>'
       :'<div class="owner-none">—</div>';
     var mailHtml='<div class="doc">'+(r.absentee&&r.mail_addr?r.mail_addr:'—')+'</div>';
     var rc='';
@@ -581,9 +597,9 @@ function render(){
     else if(r.absentee) rc=' class="absentee-row"';
     else if(r.is_new)   rc=' class="new-row"';
     var fh='';
-    if(r.is_new)       fh+='<span class="flag flag-new">✨ NEW</span>';
-    if(r.absentee)     fh+='<span class="flag flag-hot">🔥 ABSENTEE</span>';
-    if(r.duplicate)    fh+='<span class="flag flag-dup">♻ DUP</span>';
+    if(r.is_new)       fh+='<span class="flag flag-new">NEW</span>';
+    if(r.absentee)     fh+='<span class="flag flag-hot">ABSENTEE</span>';
+    if(r.duplicate)    fh+='<span class="flag flag-dup">DUP</span>';
     if(r.type==='TAX') fh+='<span class="flag">TAX FORE</span>';
     if(!r.owner)       fh+='<span class="flag">NO OWNER</span>';
     if(!fh)            fh='<span style="color:var(--muted)">—</span>';
@@ -621,27 +637,27 @@ function exportCSV(){
   var a=document.createElement('a');
   a.href=URL.createObjectURL(blob); a.download='bexar-leads.csv'; a.click();
 }
-
-init();
 </script>
 </body>
 </html>"""
 
 
 def build_dashboard(records):
-    updated  = datetime.now(timezone.utc).strftime("Updated: %b %d, %Y %H:%M UTC")
-    # Safe JSON — no special escaping needed, stored in <script type="application/json">
-    json_str = json.dumps(records, separators=(",", ":"), ensure_ascii=True)
-    html     = DASHBOARD_TEMPLATE.replace("UPDATED_PLACEHOLDER", updated, 1)
-    html     = html.replace("DATA_PLACEHOLDER", json_str, 1)
-    if "DATA_PLACEHOLDER" in html: raise RuntimeError("Data injection failed!")
     os.makedirs("dashboard", exist_ok=True)
-    path = "dashboard/index.html"
-    with open(path, "w", encoding="utf-8") as f: f.write(html)
-    size = os.path.getsize(path)
-    log.info(f"Built {path} — {len(records)} records, {size:,} bytes")
-    if size < 50000 and len(records) > 0:
-        raise RuntimeError(f"Too small: {size} bytes")
+
+    # Write the static HTML — never changes between runs
+    with open("dashboard/index.html", "w", encoding="utf-8") as f:
+        f.write(DASHBOARD_HTML)
+
+    # Write the data as a separate JSON file — this is what changes each run
+    json_str = json.dumps(records, separators=(",", ":"), ensure_ascii=True)
+    with open("dashboard/records.json", "w", encoding="utf-8") as f:
+        f.write(json_str)
+
+    html_size = os.path.getsize("dashboard/index.html")
+    json_size = os.path.getsize("dashboard/records.json")
+    log.info(f"Built dashboard/index.html — {html_size:,} bytes (static)")
+    log.info(f"Built dashboard/records.json — {len(records)} records, {json_size:,} bytes")
 
 
 if __name__ == "__main__":
@@ -649,7 +665,7 @@ if __name__ == "__main__":
     os.makedirs("dashboard", exist_ok=True)
 
     log.info("="*60)
-    log.info("Bexar County Lead Scraper v24.1 (safe data injection fix)")
+    log.info("Bexar County Lead Scraper v25 (fetch-based dashboard)")
     log.info(f"Foreclosures: {FORECLOSURE_BASE}")
     log.info(f"Owner lookup: {PARCELS_URL}")
     log.info("="*60)
@@ -676,8 +692,7 @@ if __name__ == "__main__":
 
     with open("data/records.json", "w", encoding="utf-8") as f:
         json.dump(records, f, indent=2)
-    with open("dashboard/records.json", "w", encoding="utf-8") as f:
-        json.dump(records, f, indent=2)
 
     build_dashboard(records)
     push_ghl(records)
+
