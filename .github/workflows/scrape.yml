@@ -49,10 +49,12 @@ jobs:
           print(f'Named:  {named}')
           "
 
-      - name: Verify dashboard was built
+      - name: Verify dashboard size
         run: |
           ls -lh dashboard/
           wc -c dashboard/index.html
+          echo "SHA256:"
+          sha256sum dashboard/index.html
 
       - name: Commit records
         run: |
@@ -62,10 +64,19 @@ jobs:
           git diff --cached --quiet || git commit -m "chore: update leads $(date -u +'%Y-%m-%d %H:%M UTC')"
           git push
 
+      - name: Copy dashboard to _site for Pages upload
+        run: |
+          mkdir -p _site
+          cp dashboard/index.html _site/index.html
+          cp dashboard/records.json _site/records.json
+          echo "--- _site contents ---"
+          ls -lh _site/
+          wc -c _site/index.html
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dashboard
+          path: _site
 
   deploy:
     needs: scrape-and-deploy
@@ -77,3 +88,4 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
