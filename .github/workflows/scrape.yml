@@ -1,25 +1,20 @@
 name: Scrape & Enrich Leads
-
 on:
   schedule:
     - cron: '0 13 * * *'   # 8:00 AM CST
     - cron: '0 17 * * *'   # 12:00 PM CST
     - cron: '0 21 * * *'   # 4:00 PM CST
   workflow_dispatch:
-
 permissions:
   contents: write
   pages: write
   id-token: write
-
 concurrency:
   group: pages
   cancel-in-progress: false
-
 jobs:
   scrape-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -29,16 +24,8 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install Chrome and ChromeDriver
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y chromium-browser chromium-chromedriver
-          chromium-browser --version
-          chromedriver --version
-
       - name: Install Python dependencies
-        run: |
-          pip install requests selenium
+        run: pip install requests selenium
 
       - name: Create output directories
         run: mkdir -p data dashboard
@@ -61,6 +48,11 @@ jobs:
           print(f'TAX:    {sum(1 for x in r if x[\"type\"]==\"TAX\")}')
           print(f'Named:  {named}')
           "
+
+      - name: Verify dashboard was built
+        run: |
+          ls -lh dashboard/
+          wc -c dashboard/index.html
 
       - name: Commit records
         run: |
@@ -85,4 +77,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
