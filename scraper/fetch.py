@@ -1,7 +1,7 @@
 """
-Bexar County Motivated Seller Lead Scraper v25.2
-Dashboard loads records.json from GitHub Pages URL at runtime.
-No data injection - bypasses Pages artifact caching completely.
+Bexar County Motivated Seller Lead Scraper v25.3
+FIX: is_new now correctly marks only leads that didn't exist in the previous run.
+     Loads previous records.json from GitHub Pages before scraping to get known doc numbers.
 """
 
 import json
@@ -21,6 +21,7 @@ log = logging.getLogger(__name__)
 
 FORECLOSURE_BASE = "https://maps.bexar.org/arcgis/rest/services/CC/ForeclosuresProd/MapServer"
 PARCELS_URL      = "https://maps.bexar.org/arcgis/rest/services/Parcels/MapServer/0"
+PAGES_RECORDS    = "https://e4property.github.io/bexar-leads/records.json"
 
 LAYERS = [
     {"index": 0, "type": "NOF", "label": "Mortgage Foreclosure"},
@@ -38,7 +39,7 @@ def fetch_json(url, retries=3):
     for attempt in range(retries):
         try:
             req = urllib.request.Request(
-                url, headers={"User-Agent": "BexarScraper/25.2", "Accept": "application/json"})
+                url, headers={"User-Agent": "BexarScraper/25.3", "Accept": "application/json"})
             with urllib.request.urlopen(req, timeout=25) as r:
                 return json.loads(r.read().decode("utf-8", errors="replace"))
         except Exception as e:
@@ -78,6 +79,24 @@ def normalize(s):
     return " ".join(str(s).upper().split())
 
 
+# ── Load previous doc numbers ─────────────────────────────────────────────────
+def load_known_docs():
+    """Load doc numbers from the previous run via GitHub Pages URL."""
+    try:
+        req = urllib.request.Request(
+            PAGES_RECORDS + "?v=" + str(int(time.time())),
+            headers={"User-Agent": "BexarScraper/25.3", "Accept": "application/json"})
+        with urllib.request.urlopen(req, timeout=15) as r:
+            prev = json.loads(r.read().decode("utf-8", errors="replace"))
+            docs = {str(rec.get("doc_number", "")) for rec in prev if rec.get("doc_number")}
+            log.info(f"Loaded {len(docs)} known doc numbers from previous run")
+            return docs
+    except Exception as e:
+        log.info(f"No previous records found (first run?): {e}")
+        return set()
+
+
+# ── Address parsing ───────────────────────────────────────────────────────────
 def parse_address(address):
     if not address:
         return None
@@ -155,7 +174,7 @@ def lookup_owner(address):
     return {}
 
 
-def fetch_foreclosures():
+def fetch_foreclosures(known_docs):
     log.info("Fetching foreclosure records from ArcGIS...")
     raw = []
     for layer in LAYERS:
@@ -182,9 +201,11 @@ def fetch_foreclosures():
                 log.error(f"Layer {idx} query error: {e}")
                 break
         for feat in features:
-            a     = feat["attributes"]
-            month = pick(a, "MONTH", "MO", default="")
-            year  = pick(a, "YEAR",  "YR", default="")
+            a      = feat["attributes"]
+            month  = pick(a, "MONTH", "MO", default="")
+            year   = pick(a, "YEAR",  "YR", default="")
+            doc    = pick(a, "DOC_NUMBER", "DOCNUM", "DOC_NUM")
+            is_new = doc not in known_docs  # TRUE only if doc wasn't in previous run
             raw.append({
                 "type":        layer["type"],
                 "address":     pick(a, "ADDRESS", "SITUS_ADD", "ADDR"),
@@ -192,8 +213,8 @@ def fetch_foreclosures():
                 "mail_addr":   "",
                 "absentee":    False,
                 "duplicate":   False,
-                "is_new":      True,
-                "doc_number":  pick(a, "DOC_NUMBER", "DOCNUM", "DOC_NUM"),
+                "is_new":      is_new,
+                "doc_number":  doc,
                 "year":        year,
                 "month":       month,
                 "city":        pick(a, "CITY", "MAIL_CITY", default=""),
@@ -204,7 +225,8 @@ def fetch_foreclosures():
                 "sale_date":   "",
                 "flags":       [],
             })
-    log.info(f"Foreclosures: {len(raw)} total records")
+    new_count = sum(1 for r in raw if r["is_new"])
+    log.info(f"Foreclosures: {len(raw)} total | {new_count} NEW this run")
     return raw
 
 
@@ -293,14 +315,19 @@ def ghl_req(method, endpoint, payload=None):
 def push_ghl(records):
     if not GHL_API_KEY:
         log.warning("GHL_API_KEY not set"); return
-    named = [r for r in records if r.get("owner")]
-    log.info(f"GHL: {len(named)} named leads")
+    # Only push NEW leads to GHL
+    new_leads = [r for r in records if r.get("owner") and r.get("is_new")]
+    all_named = [r for r in records if r.get("owner")]
+    log.info(f"GHL: {len(new_leads)} NEW named leads to push (of {len(all_named)} total named)")
+    if not new_leads:
+        log.info("No new leads to push to GHL this run.")
+        return
     test = ghl_req("GET", f"/contacts/?locationId={GHL_LOCATION_ID}&limit=1")
     if not test or "_error" in test:
         log.error("GHL auth failed"); return
     log.info(f"GHL auth OK - {test.get('total','?')} existing contacts")
     created = skipped = errors = 0
-    for i, rec in enumerate(sorted(named, key=lambda r: -r.get("score", 0))):
+    for i, rec in enumerate(sorted(new_leads, key=lambda r: -r.get("score", 0))):
         doc = rec.get("doc_number", "")
         if doc:
             r = ghl_req("GET", f"/contacts/?locationId={GHL_LOCATION_ID}&query={urllib.parse.quote(doc)}&limit=3")
@@ -347,9 +374,6 @@ def push_ghl(records):
     log.info(f"GHL done - Created:{created} | Skipped:{skipped} | Errors:{errors}")
 
 
-# ── Dashboard HTML ─────────────────────────────────────────────────────────────
-# KEY FIX v25.2: DATA_URL now points to GitHub Pages URL (not raw.githubusercontent.com)
-# This is the same URL that works: https://e4property.github.io/bexar-leads/records.json
 DASHBOARD_HTML = """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -483,10 +507,7 @@ tbody td{padding:10px 12px;vertical-align:middle;}
 </div>
 <script>
 var ALL_RECORDS=[],filtered=[],page=1,PAGE=50,sortCol='score',sortDir=-1;
-
-// KEY FIX v25.2: Load from GitHub Pages URL - same domain, no CORS issues
 var DATA_URL='https://e4property.github.io/bexar-leads/records.json?v='+Date.now();
-
 fetch(DATA_URL)
   .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();})
   .then(function(data){
@@ -498,7 +519,6 @@ fetch(DATA_URL)
   .catch(function(err){
     document.getElementById('loading').textContent='Error loading data: '+err+'. Try refreshing.';
   });
-
 function init(){
   var ts=ALL_RECORDS.length>0?(ALL_RECORDS[0].run_ts||''):'';
   if(ts) document.getElementById('last-updated').textContent='Updated: '+ts.replace('T',' ').replace('Z',' UTC');
@@ -510,9 +530,7 @@ function init(){
   document.getElementById('s-new').textContent=ALL_RECORDS.filter(function(r){return r.is_new;}).length;
   applyFilters();
 }
-
 function sortBy(col){if(sortCol===col)sortDir*=-1;else{sortCol=col;sortDir=-1;}applyFilters();}
-
 function applyFilters(){
   var q=document.getElementById('search').value.toLowerCase();
   var t=document.getElementById('type-filter').value;
@@ -532,7 +550,6 @@ function applyFilters(){
   document.getElementById('count-badge').textContent=filtered.length+' of '+ALL_RECORDS.length+' leads';
   render();
 }
-
 function render(){
   var tbody=document.getElementById('tbody');
   var msg=document.getElementById('state-msg');
@@ -582,9 +599,7 @@ function render(){
   document.getElementById('btn-prev').disabled=page<=1;
   document.getElementById('btn-next').disabled=page>=total;
 }
-
 function changePage(d){page+=d;render();window.scrollTo({top:0,behavior:'smooth'});}
-
 function exportCSV(){
   var cols=['score','type','address','owner','mail_addr','absentee','duplicate','is_new','date_filed','doc_number','city','zip','school_dist'];
   var rows=ALL_RECORDS.map(function(r){
@@ -607,10 +622,12 @@ def build_dashboard(records):
     os.makedirs("dashboard", exist_ok=True)
     with open("dashboard/index.html", "w", encoding="utf-8") as f:
         f.write(DASHBOARD_HTML)
+    with open("dashboard/leads.html", "w", encoding="utf-8") as f:
+        f.write(DASHBOARD_HTML)
     json_str = json.dumps(records, separators=(",", ":"), ensure_ascii=True)
     with open("dashboard/records.json", "w", encoding="utf-8") as f:
         f.write(json_str)
-    log.info(f"Built dashboard/index.html - {os.path.getsize('dashboard/index.html'):,} bytes")
+    log.info(f"Built dashboard/index.html + leads.html - {os.path.getsize('dashboard/index.html'):,} bytes")
     log.info(f"Built dashboard/records.json - {len(records)} records, {os.path.getsize('dashboard/records.json'):,} bytes")
 
 
@@ -619,12 +636,15 @@ if __name__ == "__main__":
     os.makedirs("dashboard", exist_ok=True)
 
     log.info("=" * 60)
-    log.info("Bexar County Lead Scraper v25.2")
+    log.info("Bexar County Lead Scraper v25.3")
     log.info(f"Foreclosures: {FORECLOSURE_BASE}")
     log.info(f"Owner lookup: {PARCELS_URL}")
     log.info("=" * 60)
 
-    records = fetch_foreclosures()
+    # Load previous doc numbers BEFORE scraping
+    known_docs = load_known_docs()
+
+    records = fetch_foreclosures(known_docs)
     records = enrich_owners(records)
     records = detect_duplicates(records)
 
@@ -642,10 +662,12 @@ if __name__ == "__main__":
     named    = sum(1 for r in records if r["owner"])
     absentee = sum(1 for r in records if r["absentee"])
     dupes    = sum(1 for r in records if r["duplicate"])
-    log.info(f"Final: {len(records)} leads | {named} named | {absentee} absentee | {dupes} dupes")
+    new_ct   = sum(1 for r in records if r["is_new"])
+    log.info(f"Final: {len(records)} leads | {named} named | {absentee} absentee | {dupes} dupes | {new_ct} NEW")
 
     with open("data/records.json", "w", encoding="utf-8") as f:
         json.dump(records, f, indent=2)
 
     build_dashboard(records)
     push_ghl(records)
+
