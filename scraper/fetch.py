@@ -383,8 +383,9 @@ def push_ghl(records):
                         break
 
         if existing_id:
-            # UPDATE existing contact
-            result = ghl_req("PUT", f"/contacts/{existing_id}", payload)
+            # UPDATE existing contact - remove locationId, not allowed in PUT
+            update_payload = {k: v for k, v in payload.items() if k != "locationId"}
+            result = ghl_req("PUT", f"/contacts/{existing_id}", update_payload)
             if result and not result.get("_error"):
                 updated += 1
                 if updated <= 5 or updated % 50 == 0:
