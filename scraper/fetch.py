@@ -1,17 +1,8 @@
 """
-Bexar County Motivated Seller Lead Scraper v24
-SCRAPER IMPROVEMENTS:
-  - Multi-strategy owner lookup for 90%+ hit rate
-  - Strategy 1: 2-word street search + house number filter (normalized)
-  - Strategy 2: 1-word street search + house number filter
-  - Strategy 3: All-words fallback — tries each word in street name
-  - Better absentee detection: compares normalized mailing vs property address
-DASHBOARD IMPROVEMENTS:
-  - CSV export button
-  - Map view (Google Maps links per property)
-  - "New this run" badge on leads added in latest scrape
-  - Duplicate owner detection (flags same owner appearing 2+ times)
-  - Improved absentee labeling with mailing address shown
+Bexar County Motivated Seller Lead Scraper v24.1
+KEY FIX: Dashboard data now injected via <script type="application/json" id="data">
+instead of raw JS var assignment. This prevents any special characters in owner
+names, addresses, or school districts from breaking the JavaScript.
 """
 
 import json
@@ -49,7 +40,7 @@ def fetch_json(url, retries=3):
     for attempt in range(retries):
         try:
             req = urllib.request.Request(
-                url, headers={"User-Agent": "BexarScraper/24.0", "Accept": "application/json"})
+                url, headers={"User-Agent": "BexarScraper/24.1", "Accept": "application/json"})
             with urllib.request.urlopen(req, timeout=25) as r:
                 return json.loads(r.read().decode("utf-8", errors="replace"))
         except Exception as e:
@@ -86,7 +77,6 @@ def pick(attrs, *candidates, default=""):
 
 
 def normalize(s):
-    """Collapse multiple spaces, strip, uppercase. Handles Situs double-space quirk."""
     return " ".join(str(s).upper().split())
 
 
@@ -97,32 +87,27 @@ def parse_address(address):
     parts = address.strip().upper().split()
     if not parts or not parts[0].isdigit():
         return None
-    num        = parts[0]
-    rest       = parts[1:] if len(parts) > 1 else []
-    street     = " ".join(rest)
-    # Strip common suffixes for better matching
+    num  = parts[0]
+    rest = parts[1:] if len(parts) > 1 else []
     SUFFIXES = {"ST","AVE","DR","RD","LN","CT","CIR","BLVD","WAY","PL",
                 "TRL","PKWY","HWY","LOOP","PASS","CV","PT","HLS","TRAIL",
                 "GROVE","RIDGE","CREEK","LAKE","PARK","GLEN","RUN","XING"}
-    words      = rest[:]
-    suffix     = ""
+    words  = rest[:]
+    suffix = ""
     if words and words[-1] in SUFFIXES:
         suffix = words[-1]
         words  = words[:-1]
-    core_street = " ".join(words)  # Street name without suffix
     return {
-        "num":         num,
-        "street":      street,
-        "core_street": core_street,
-        "words":       words,
-        "suffix":      suffix,
-        "full":        address.strip().upper()
+        "num":    num,
+        "street": " ".join(rest),
+        "words":  words,
+        "suffix": suffix,
+        "full":   address.strip().upper()
     }
 
 
 # ── Core matcher ──────────────────────────────────────────────────────────────
 def match_features(feats, num, first_word):
-    """Given ArcGIS results, find the one whose normalized Situs starts with our house number."""
     for feat in feats:
         a       = feat["attributes"]
         owner   = str(a.get("Owner")    or "").strip()
@@ -135,69 +120,47 @@ def match_features(feats, num, first_word):
             continue
 
         situs_norm = normalize(situs)
-
-        # Must start with exactly our house number
         if not situs_norm.startswith(num + " "):
             continue
-
-        # Street name word must appear in situs
         if first_word and first_word not in situs_norm:
             continue
 
-        mail_addr  = f"{addr1} {city} {zipcode}".strip() if addr1 and addr1.upper() not in ("NULL","NONE","") else ""
-        mail_norm  = normalize(mail_addr)
-        prop_norm  = normalize(f"{num} {first_word}")
+        mail_addr = f"{addr1} {city} {zipcode}".strip() if addr1 and addr1.upper() not in ("NULL","NONE","") else ""
+        absentee  = bool(mail_addr) and not normalize(mail_addr).startswith(num + " ")
 
-        # Absentee: mailing address doesn't start with same house number
-        absentee   = bool(mail_addr) and not mail_norm.startswith(num + " ")
-
-        return {
-            "owner":     owner,
-            "mail_addr": mail_addr,
-            "absentee":  absentee,
-        }
+        return {"owner": owner, "mail_addr": mail_addr, "absentee": absentee}
     return None
 
 
-# ── Owner lookup — multi-strategy ─────────────────────────────────────────────
+# ── Owner lookup ──────────────────────────────────────────────────────────────
 def lookup_owner(address):
-    """
-    Multi-strategy lookup for maximum hit rate:
-    Strategy 1: Search '%WORD1 WORD2%' (two-word, most precise)
-    Strategy 2: Search '%WORD1%' (one-word fallback)
-    Strategy 3: Try each remaining word in street name
-    Each strategy filters results by normalized house number match.
-    """
     parsed = parse_address(address)
     if not parsed:
         return {}
 
     num        = parsed["num"]
-    words      = parsed["words"]      # Street words without suffix
+    words      = parsed["words"]
     first_word = words[0] if words else ""
 
     if not first_word or len(first_word) < 3:
         return {}
 
-    # Strategy 1: Two-word search (most precise, fewer false positives)
+    # Strategy 1: two-word search
     if len(words) >= 2:
-        search = f"{words[0]} {words[1]}"
-        feats  = arcgis_query(PARCELS_URL, f"Situs LIKE '%{search}%'",
+        feats  = arcgis_query(PARCELS_URL, f"Situs LIKE '%{words[0]} {words[1]}%'",
                               fields="Situs,Owner,AddrLn1,AddrCity,Zip", limit=200)
         result = match_features(feats, num, first_word)
         if result:
-            result["method"] = "s1_two_word"
-            return result
+            result["method"] = "s1_two_word"; return result
 
-    # Strategy 2: One-word search
+    # Strategy 2: one-word search
     feats  = arcgis_query(PARCELS_URL, f"Situs LIKE '%{first_word}%'",
                           fields="Situs,Owner,AddrLn1,AddrCity,Zip", limit=200)
     result = match_features(feats, num, first_word)
     if result:
-        result["method"] = "s2_one_word"
-        return result
+        result["method"] = "s2_one_word"; return result
 
-    # Strategy 3: Try other words in street name (skip short ones)
+    # Strategy 3: alternate words
     for word in words[1:]:
         if len(word) < 4:
             continue
@@ -205,8 +168,7 @@ def lookup_owner(address):
                               fields="Situs,Owner,AddrLn1,AddrCity,Zip", limit=200)
         result = match_features(feats, num, word)
         if result:
-            result["method"] = "s3_alt_word"
-            return result
+            result["method"] = "s3_alt_word"; return result
 
     return {}
 
@@ -267,10 +229,9 @@ def fetch_foreclosures():
     return raw
 
 
-# ── Enrich owner names ────────────────────────────────────────────────────────
+# ── Enrich owners ─────────────────────────────────────────────────────────────
 def enrich_owners(records):
     log.info(f"Looking up owners for {len(records)} records...")
-
     found = s1 = s2 = s3 = 0
 
     for i, rec in enumerate(records):
@@ -307,7 +268,6 @@ def enrich_owners(records):
 
 # ── Duplicate detection ───────────────────────────────────────────────────────
 def detect_duplicates(records):
-    """Flag records where the same owner appears more than once."""
     from collections import Counter
     owner_counts = Counter(
         r["owner"].upper().strip()
@@ -316,8 +276,8 @@ def detect_duplicates(records):
     )
     dupes = 0
     for r in records:
-        owner_key = (r.get("owner") or "").upper().strip()
-        if owner_key and owner_counts[owner_key] > 1:
+        key = (r.get("owner") or "").upper().strip()
+        if key and owner_counts[key] > 1:
             r["duplicate"] = True
             dupes += 1
     log.info(f"Duplicate owners flagged: {dupes}")
@@ -393,8 +353,7 @@ def push_ghl(records):
             "city":       rec.get("city", "San Antonio"),
             "state":      "TX", "country": "US",
             "postalCode": rec.get("zip", ""),
-            "tags":       tags,
-            "source":     "Bexar County Scraper",
+            "tags":       tags, "source": "Bexar County Scraper",
             "customFields": [
                 {"key": "lead_type",        "field_value": lt},
                 {"key": "doc_number",       "field_value": doc},
@@ -410,7 +369,7 @@ def push_ghl(records):
         if result and result.get("contact"):
             created += 1
             ab  = " 🏠 ABSENTEE" if rec.get("absentee") else ""
-            dup = " ♻ DUP" if rec.get("duplicate") else ""
+            dup = " ♻ DUP"       if rec.get("duplicate") else ""
             log.info(f"  ✓ [{i+1}]{ab}{dup} {owner} — {rec.get('address')}")
         else:
             errors += 1
@@ -548,8 +507,12 @@ tbody td{padding:10px 12px;vertical-align:middle;}
   <span id="page-info"></span>
   <button id="btn-next" onclick="changePage(1)">Next →</button>
 </div>
+
+<!-- SAFE DATA INJECTION: stored in JSON script tag, never breaks JS parser -->
+<script type="application/json" id="leads-data">DATA_PLACEHOLDER</script>
+
 <script>
-var ALL_RECORDS=DATA_PLACEHOLDER;
+var ALL_RECORDS = JSON.parse(document.getElementById('leads-data').textContent);
 var filtered=[],page=1,PAGE=50,sortCol='score',sortDir=-1;
 
 function init(){
@@ -606,30 +569,30 @@ function render(){
     var tC=r.type==='TAX'?'type-tax':'type-nof';
     var tL=r.type==='TAX'?'TAX':'NOF';
     var cz=[r.city,r.zip].filter(Boolean).join(' ')||'—';
-    var addrStr=r.address||'—';
     var mapUrl=mapLink(r.address,r.city);
-    var addrHtml='<div class="addr">'+addrStr+'<a href="'+mapUrl+'" target="_blank" title="View on map">📍</a></div>';
+    var addrHtml='<div class="addr">'+(r.address||'—')+'<a href="'+mapUrl+'" target="_blank">📍</a></div>';
     var ownerHtml=r.owner
-      ?'<div class="owner">'+r.owner+(r.duplicate?' <span style="color:var(--warning);font-size:10px">♻ DUP</span>':'')+'</div>'
+      ?'<div class="owner">'+r.owner+(r.duplicate?' <span style="color:var(--warning);font-size:10px">♻</span>':'')+'</div>'
+      +'<div class="mail">'+(r.mail_addr&&r.absentee?'✉ '+r.mail_addr:'')+'</div>'
       :'<div class="owner-none">—</div>';
-    var mailHtml=r.mail_addr&&r.absentee?'<div class="mail">✉ '+r.mail_addr+'</div>':'';
+    var mailHtml='<div class="doc">'+(r.absentee&&r.mail_addr?r.mail_addr:'—')+'</div>';
     var rc='';
     if(r.absentee&&r.is_new) rc=' class="absentee-row new-row"';
     else if(r.absentee) rc=' class="absentee-row"';
-    else if(r.is_new) rc=' class="new-row"';
+    else if(r.is_new)   rc=' class="new-row"';
     var fh='';
-    if(r.is_new)     fh+='<span class="flag flag-new">✨ NEW</span>';
-    if(r.absentee)   fh+='<span class="flag flag-hot">🔥 ABSENTEE</span>';
-    if(r.duplicate)  fh+='<span class="flag flag-dup">♻ DUP</span>';
+    if(r.is_new)       fh+='<span class="flag flag-new">✨ NEW</span>';
+    if(r.absentee)     fh+='<span class="flag flag-hot">🔥 ABSENTEE</span>';
+    if(r.duplicate)    fh+='<span class="flag flag-dup">♻ DUP</span>';
     if(r.type==='TAX') fh+='<span class="flag">TAX FORE</span>';
-    if(!r.owner)     fh+='<span class="flag">NO OWNER</span>';
-    if(!fh)          fh='<span style="color:var(--muted)">—</span>';
+    if(!r.owner)       fh+='<span class="flag">NO OWNER</span>';
+    if(!fh)            fh='<span style="color:var(--muted)">—</span>';
     rows+='<tr'+rc+'>'
       +'<td><div class="score '+scC+'">'+sc+'</div></td>'
       +'<td><span class="type-badge '+tC+'">'+tL+'</span></td>'
       +'<td>'+addrHtml+'</td>'
-      +'<td>'+ownerHtml+mailHtml+'</td>'
-      +'<td><div class="mail">'+(r.mail_addr&&r.absentee?r.mail_addr:'—')+'</div></td>'
+      +'<td>'+ownerHtml+'</td>'
+      +'<td>'+mailHtml+'</td>'
       +'<td><div class="doc">'+(r.date_filed||'—')+'</div></td>'
       +'<td><div class="doc">'+(r.doc_number||'—')+'</div></td>'
       +'<td><div class="doc">'+cz+'</div></td>'
@@ -647,21 +610,16 @@ function changePage(d){page+=d;render();window.scrollTo({top:0,behavior:'smooth'
 
 function exportCSV(){
   var cols=['score','type','address','owner','mail_addr','absentee','duplicate','is_new','date_filed','doc_number','city','zip','school_dist'];
-  var headers=cols.join(',');
   var rows=ALL_RECORDS.map(function(r){
     return cols.map(function(c){
-      var v=r[c];
-      if(v===null||v===undefined) v='';
-      v=String(v).replace(/"/g,'""');
-      return '"'+v+'"';
+      var v=r[c]; if(v===null||v===undefined) v='';
+      return '"'+String(v).replace(/"/g,'""')+'"';
     }).join(',');
   });
-  var csv=headers+'\n'+rows.join('\n');
+  var csv=cols.join(',')+'\n'+rows.join('\n');
   var blob=new Blob([csv],{type:'text/csv'});
-  var url=URL.createObjectURL(blob);
   var a=document.createElement('a');
-  a.href=url; a.download='bexar-leads.csv'; a.click();
-  URL.revokeObjectURL(url);
+  a.href=URL.createObjectURL(blob); a.download='bexar-leads.csv'; a.click();
 }
 
 init();
@@ -672,7 +630,8 @@ init();
 
 def build_dashboard(records):
     updated  = datetime.now(timezone.utc).strftime("Updated: %b %d, %Y %H:%M UTC")
-    json_str = json.dumps(records, separators=(",", ":"), ensure_ascii=False)
+    # Safe JSON — no special escaping needed, stored in <script type="application/json">
+    json_str = json.dumps(records, separators=(",", ":"), ensure_ascii=True)
     html     = DASHBOARD_TEMPLATE.replace("UPDATED_PLACEHOLDER", updated, 1)
     html     = html.replace("DATA_PLACEHOLDER", json_str, 1)
     if "DATA_PLACEHOLDER" in html: raise RuntimeError("Data injection failed!")
@@ -690,7 +649,7 @@ if __name__ == "__main__":
     os.makedirs("dashboard", exist_ok=True)
 
     log.info("="*60)
-    log.info("Bexar County Lead Scraper v24")
+    log.info("Bexar County Lead Scraper v24.1 (safe data injection fix)")
     log.info(f"Foreclosures: {FORECLOSURE_BASE}")
     log.info(f"Owner lookup: {PARCELS_URL}")
     log.info("="*60)
@@ -713,8 +672,7 @@ if __name__ == "__main__":
     named    = sum(1 for r in records if r["owner"])
     absentee = sum(1 for r in records if r["absentee"])
     dupes    = sum(1 for r in records if r["duplicate"])
-    new_ct   = sum(1 for r in records if r["is_new"])
-    log.info(f"Final: {len(records)} leads | {named} named | {absentee} absentee | {dupes} dupes | {new_ct} new")
+    log.info(f"Final: {len(records)} leads | {named} named | {absentee} absentee | {dupes} dupes")
 
     with open("data/records.json", "w", encoding="utf-8") as f:
         json.dump(records, f, indent=2)
@@ -723,4 +681,3 @@ if __name__ == "__main__":
 
     build_dashboard(records)
     push_ghl(records)
-
