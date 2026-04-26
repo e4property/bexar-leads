@@ -1,9 +1,9 @@
 """
-Bexar County Motivated Seller Lead Scraper v25.4
-GHL UPSERT: Updates existing contacts with fresh data AND pushes new leads.
-- is_new correctly marks only leads new since last run
-- build_dashboard writes index.html (redirect) and records.json only
-- leads.html is managed manually and never overwritten
+Bexar County Motivated Seller Lead Scraper v25.5
+HIT RATE IMPROVEMENTS:
+  Strategy 4: Search by ZIP + house number (no street name required)
+  Strategy 5: Search parcels where Situs starts with house number only
+  These two new strategies target the 19% of leads that fail street name matching.
 """
 
 import json
@@ -41,7 +41,7 @@ def fetch_json(url, retries=3):
     for attempt in range(retries):
         try:
             req = urllib.request.Request(
-                url, headers={"User-Agent": "BexarScraper/25.4", "Accept": "application/json"})
+                url, headers={"User-Agent": "BexarScraper/25.5", "Accept": "application/json"})
             with urllib.request.urlopen(req, timeout=25) as r:
                 return json.loads(r.read().decode("utf-8", errors="replace"))
         except Exception as e:
@@ -85,7 +85,7 @@ def load_known_docs():
     try:
         req = urllib.request.Request(
             PAGES_RECORDS + "?v=" + str(int(time.time())),
-            headers={"User-Agent": "BexarScraper/25.4", "Accept": "application/json"})
+            headers={"User-Agent": "BexarScraper/25.5", "Accept": "application/json"})
         with urllib.request.urlopen(req, timeout=15) as r:
             prev = json.loads(r.read().decode("utf-8", errors="replace"))
             docs = {str(rec.get("doc_number", "")) for rec in prev if rec.get("doc_number")}
@@ -121,7 +121,8 @@ def parse_address(address):
     }
 
 
-def match_features(feats, num, first_word):
+def match_features(feats, num, first_word=None):
+    """Match features by house number, optionally also checking street word."""
     for feat in feats:
         a       = feat["attributes"]
         owner   = str(a.get("Owner")    or "").strip()
@@ -129,39 +130,58 @@ def match_features(feats, num, first_word):
         addr1   = str(a.get("AddrLn1")  or "").strip()
         city    = str(a.get("AddrCity") or "").strip()
         zipcode = str(a.get("Zip")      or "").strip()
+
         if not owner or owner.upper() in ("NULL", "NONE", ""):
             continue
+
         situs_norm = normalize(situs)
         if not situs_norm.startswith(num + " "):
             continue
+
+        # If first_word provided, it must appear in situs
         if first_word and first_word not in situs_norm:
             continue
+
         mail_addr = f"{addr1} {city} {zipcode}".strip() if addr1 and addr1.upper() not in ("NULL","NONE","") else ""
         absentee  = bool(mail_addr) and not normalize(mail_addr).startswith(num + " ")
         return {"owner": owner, "mail_addr": mail_addr, "absentee": absentee}
     return None
 
 
-def lookup_owner(address):
+def lookup_owner(address, zipcode=""):
+    """
+    5-strategy owner lookup:
+    S1: Two-word street search + house number filter
+    S2: One-word street search + house number filter
+    S3: Alternate words in street name
+    S4: ZIP code + house number (no street name needed)
+    S5: House number only - broad search, strict number match
+    """
     parsed = parse_address(address)
     if not parsed:
         return {}
+
     num        = parsed["num"]
     words      = parsed["words"]
     first_word = words[0] if words else ""
-    if not first_word or len(first_word) < 3:
-        return {}
+
+    # Strategy 1: Two-word street search
     if len(words) >= 2:
         feats  = arcgis_query(PARCELS_URL, f"Situs LIKE '%{words[0]} {words[1]}%'",
                               fields="Situs,Owner,AddrLn1,AddrCity,Zip", limit=200)
         result = match_features(feats, num, first_word)
         if result:
             result["method"] = "s1_two_word"; return result
-    feats  = arcgis_query(PARCELS_URL, f"Situs LIKE '%{first_word}%'",
-                          fields="Situs,Owner,AddrLn1,AddrCity,Zip", limit=200)
-    result = match_features(feats, num, first_word)
-    if result:
-        result["method"] = "s2_one_word"; return result
+
+    # Strategy 2: One-word street search
+    if first_word and len(first_word) >= 3:
+        feats  = arcgis_query(PARCELS_URL, f"Situs LIKE '%{first_word}%'",
+                              fields="Situs,Owner,AddrLn1,AddrCity,Zip", limit=200)
+        result = match_features(feats, num, first_word)
+        if result:
+            result["method"] = "s2_one_word"; return result
+
+    # Strategy 3: Alternate words in street name
     for word in words[1:]:
         if len(word) < 4:
             continue
@@ -170,6 +190,26 @@ def lookup_owner(address):
         result = match_features(feats, num, word)
         if result:
             result["method"] = "s3_alt_word"; return result
+
+    # Strategy 4: ZIP code filter + house number
+    # Query parcels where Zip matches and Situs starts with our number
+    if zipcode and len(zipcode) >= 5:
+        zip5 = zipcode[:5]
+        feats = arcgis_query(PARCELS_URL, f"Zip = '{zip5}'",
+                             fields="Situs,Owner,AddrLn1,AddrCity,Zip", limit=1000)
+        result = match_features(feats, num, None)  # No street word check
+        if result:
+            result["method"] = "s4_zip_match"; return result
+
+    # Strategy 5: Broad house number search - no street name filter at all
+    # Only use for longer/unique house numbers (5+ digits) to avoid false matches
+    if len(num) >= 5:
+        feats = arcgis_query(PARCELS_URL, f"Situs LIKE '%{num}%'",
+                             fields="Situs,Owner,AddrLn1,AddrCity,Zip", limit=50)
+        result = match_features(feats, num, None)
+        if result:
+            result["method"] = "s5_num_only"; return result
+
     return {}
 
 
@@ -231,12 +271,15 @@ def fetch_foreclosures(known_docs):
 
 def enrich_owners(records):
     log.info(f"Looking up owners for {len(records)} records...")
-    found = s1 = s2 = s3 = 0
+    found = s1 = s2 = s3 = s4 = s5 = 0
+
     for i, rec in enumerate(records):
         addr = rec.get("address", "")
+        zip_ = rec.get("zip", "")
         if not addr:
             continue
-        result = lookup_owner(addr)
+
+        result = lookup_owner(addr, zip_)
         if result and result.get("owner"):
             rec["owner"]     = result["owner"]
             rec["mail_addr"] = result.get("mail_addr", "")
@@ -246,16 +289,21 @@ def enrich_owners(records):
             if "s1" in method: s1 += 1
             elif "s2" in method: s2 += 1
             elif "s3" in method: s3 += 1
+            elif "s4" in method: s4 += 1
+            elif "s5" in method: s5 += 1
             if found <= 10 or found % 50 == 0:
                 ab = " [ABSENTEE]" if rec["absentee"] else ""
                 log.info(f"  [{i+1}/{len(records)}]{ab} [{method}] {addr} -> {result['owner']}")
+
         if (i + 1) % 50 == 0:
-            log.info(f"  Progress: {i+1}/{len(records)} | Found: {found} (s1={s1} s2={s2} s3={s3})")
+            log.info(f"  Progress: {i+1}/{len(records)} | Found: {found} (s1={s1} s2={s2} s3={s3} s4={s4} s5={s5})")
+
         time.sleep(0.15)
+
     pct      = 100 * found // max(len(records), 1)
     absentee = sum(1 for r in records if r.get("absentee"))
     log.info(f"Owner lookup: {found}/{len(records)} ({pct}% hit rate)")
-    log.info(f"  Strategy breakdown - s1:{s1} s2:{s2} s3:{s3}")
+    log.info(f"  Strategy breakdown - s1:{s1} s2:{s2} s3:{s3} s4:{s4} s5:{s5}")
     log.info(f"  Absentee owners: {absentee}")
     return records
 
@@ -314,7 +362,6 @@ def ghl_req(method, endpoint, payload=None):
 
 
 def build_contact_payload(rec, location_id):
-    """Build the GHL contact payload from a record."""
     owner = rec.get("owner", "").strip()
     parts = owner.split()
     first = parts[0].title() if parts else owner
@@ -372,8 +419,6 @@ def push_ghl(records):
         payload = build_contact_payload(rec, GHL_LOCATION_ID)
 
         existing_id = None
-
-        # Search for existing contact by doc number tag
         if doc:
             r = ghl_req("GET", f"/contacts/?locationId={GHL_LOCATION_ID}&query={urllib.parse.quote(doc)}&limit=5")
             if r and not r.get("_error"):
@@ -383,24 +428,20 @@ def push_ghl(records):
                         break
 
         if existing_id:
-            # UPDATE existing contact - remove locationId, not allowed in PUT
             update_payload = {k: v for k, v in payload.items() if k != "locationId"}
             result = ghl_req("PUT", f"/contacts/{existing_id}", update_payload)
             if result and not result.get("_error"):
                 updated += 1
                 if updated <= 5 or updated % 50 == 0:
-                    ab = " ABSENTEE" if rec.get("absentee") else ""
-                    log.info(f"  ~ [{i+1}]{ab} UPDATED {owner} - {rec.get('address')}")
+                    log.info(f"  ~ [{i+1}] UPDATED {owner} - {rec.get('address')}")
             else:
                 errors += 1
         else:
-            # CREATE new contact
             result = ghl_req("POST", "/contacts/", payload)
             if result and result.get("contact"):
                 created += 1
                 ab  = " ABSENTEE" if rec.get("absentee") else ""
-                dup = " DUP"      if rec.get("duplicate") else ""
-                log.info(f"  + [{i+1}]{ab}{dup} CREATED {owner} - {rec.get('address')}")
+                log.info(f"  + [{i+1}]{ab} CREATED {owner} - {rec.get('address')}")
             else:
                 errors += 1
 
@@ -410,22 +451,15 @@ def push_ghl(records):
 
 
 def build_dashboard(records):
-    """
-    Writes records.json and a redirect index.html only.
-    leads.html is managed manually and never overwritten.
-    """
     os.makedirs("dashboard", exist_ok=True)
-
     json_str = json.dumps(records, separators=(",", ":"), ensure_ascii=True)
     with open("dashboard/records.json", "w", encoding="utf-8") as f:
         f.write(json_str)
-
     with open("dashboard/index.html", "w", encoding="utf-8") as f:
         f.write('<!DOCTYPE html><html><head><meta charset="UTF-8"/>'
                 '<meta http-equiv="refresh" content="0;url=leads.html"/>'
                 '<title>Redirecting...</title></head>'
                 '<body><script>window.location.href="leads.html";</script></body></html>')
-
     log.info(f"Built dashboard/records.json - {len(records)} records, {os.path.getsize('dashboard/records.json'):,} bytes")
 
 
@@ -434,7 +468,7 @@ if __name__ == "__main__":
     os.makedirs("dashboard", exist_ok=True)
 
     log.info("=" * 60)
-    log.info("Bexar County Lead Scraper v25.4")
+    log.info("Bexar County Lead Scraper v25.5")
     log.info(f"Foreclosures: {FORECLOSURE_BASE}")
     log.info(f"Owner lookup: {PARCELS_URL}")
     log.info("=" * 60)
