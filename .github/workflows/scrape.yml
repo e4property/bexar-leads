@@ -1,9 +1,9 @@
 name: Scrape & Enrich Leads
 on:
   schedule:
-    - cron: '0 13 * * *'   # 8:00 AM CST
-    - cron: '0 17 * * *'   # 12:00 PM CST
-    - cron: '0 21 * * *'   # 4:00 PM CST
+    - cron: '0 13 * * *'
+    - cron: '0 17 * * *'
+    - cron: '0 21 * * *'
   workflow_dispatch:
 permissions:
   contents: write
@@ -34,22 +34,13 @@ jobs:
 
       - name: Run scraper
         env:
-          GHL_API_KEY:     ${{ secrets.GHL_API_KEY }}
+          GHL_API_KEY: ${{ secrets.GHL_API_KEY }}
           GHL_LOCATION_ID: ${{ secrets.GHL_LOCATION_ID }}
         run: python scraper/fetch.py
 
       - name: Show summary
         run: |
-          python3 -c "
-          import json
-          with open('data/records.json') as f:
-              r = json.load(f)
-          named = sum(1 for x in r if x.get('owner'))
-          print(f'Total:  {len(r)}')
-          print(f'NOF:    {sum(1 for x in r if x[\"type\"]==\"NOF\")}')
-          print(f'TAX:    {sum(1 for x in r if x[\"type\"]==\"TAX\")}')
-          print(f'Named:  {named}')
-          "
+          python3 scraper/summary.py
 
       - name: Verify dashboard
         run: |
@@ -58,7 +49,7 @@ jobs:
 
       - name: Commit records
         run: |
-          git config user.name  "github-actions[bot]"
+          git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/records.json dashboard/records.json dashboard/index.html
           git diff --cached --quiet || git commit -m "chore: update leads $(date -u +'%Y-%m-%d %H:%M UTC')"
