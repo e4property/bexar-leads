@@ -1,9 +1,9 @@
 """
-Bexar County Motivated Seller Lead Scraper v25.3
+Bexar County Motivated Seller Lead Scraper v25.4
+GHL UPSERT: Updates existing contacts with fresh data AND pushes new leads.
 - is_new correctly marks only leads new since last run
-- GHL only pushes new leads
-- build_dashboard writes index.html and records.json only (NOT leads.html)
-- leads.html is managed manually in the repo and never overwritten
+- build_dashboard writes index.html (redirect) and records.json only
+- leads.html is managed manually and never overwritten
 """
 
 import json
@@ -41,7 +41,7 @@ def fetch_json(url, retries=3):
     for attempt in range(retries):
         try:
             req = urllib.request.Request(
-                url, headers={"User-Agent": "BexarScraper/25.3", "Accept": "application/json"})
+                url, headers={"User-Agent": "BexarScraper/25.4", "Accept": "application/json"})
             with urllib.request.urlopen(req, timeout=25) as r:
                 return json.loads(r.read().decode("utf-8", errors="replace"))
         except Exception as e:
@@ -85,7 +85,7 @@ def load_known_docs():
     try:
         req = urllib.request.Request(
             PAGES_RECORDS + "?v=" + str(int(time.time())),
-            headers={"User-Agent": "BexarScraper/25.3", "Accept": "application/json"})
+            headers={"User-Agent": "BexarScraper/25.4", "Accept": "application/json"})
         with urllib.request.urlopen(req, timeout=15) as r:
             prev = json.loads(r.read().decode("utf-8", errors="replace"))
             docs = {str(rec.get("doc_number", "")) for rec in prev if rec.get("doc_number")}
@@ -303,7 +303,9 @@ def ghl_req(method, endpoint, payload=None):
     }
     try:
         resp = requests.get(url, headers=h, timeout=20) if method == "GET" \
-               else requests.post(url, headers=h, json=payload, timeout=20)
+               else requests.post(url, headers=h, json=payload, timeout=20) \
+               if method == "POST" \
+               else requests.put(url, headers=h, json=payload, timeout=20)
         if resp.status_code in (200, 201): return resp.json()
         log.warning(f"GHL {resp.status_code}: {resp.text[:150]}")
         return {"_error": resp.status_code}
@@ -311,79 +313,112 @@ def ghl_req(method, endpoint, payload=None):
         return {"_error": str(e)}
 
 
+def build_contact_payload(rec, location_id):
+    """Build the GHL contact payload from a record."""
+    owner = rec.get("owner", "").strip()
+    parts = owner.split()
+    first = parts[0].title() if parts else owner
+    last  = " ".join(parts[1:]).title() if len(parts) > 1 else ""
+    doc   = rec.get("doc_number", "")
+    tags  = ["bexar-lead", rec["type"], f"doc-{doc}"]
+    if rec.get("absentee"):      tags += ["absentee-owner", "high-priority"]
+    if rec.get("duplicate"):     tags.append("duplicate-owner")
+    if rec.get("score", 0) >= 7: tags.append("hot-lead")
+    if rec.get("is_new"):        tags.append("new-lead")
+    lt = "Tax Foreclosure" if rec["type"] == "TAX" else "Mortgage Foreclosure"
+    return {
+        "locationId": location_id,
+        "firstName":  first,
+        "lastName":   last,
+        "name":       owner.title(),
+        "address1":   rec.get("address", ""),
+        "city":       rec.get("city", "San Antonio"),
+        "state":      "TX",
+        "country":    "US",
+        "postalCode": rec.get("zip", ""),
+        "tags":       tags,
+        "source":     "Bexar County Scraper",
+        "customFields": [
+            {"key": "lead_type",        "field_value": lt},
+            {"key": "doc_number",       "field_value": doc},
+            {"key": "date_filed",       "field_value": rec.get("date_filed", "")},
+            {"key": "score",            "field_value": str(rec.get("score", 0))},
+            {"key": "property_address", "field_value": rec.get("address", "")},
+            {"key": "school_district",  "field_value": rec.get("school_dist", "")},
+            {"key": "absentee_owner",   "field_value": "Yes" if rec.get("absentee") else "No"},
+            {"key": "mailing_address",  "field_value": rec.get("mail_addr", "")},
+            {"key": "duplicate_owner",  "field_value": "Yes" if rec.get("duplicate") else "No"},
+        ],
+    }
+
+
 def push_ghl(records):
     if not GHL_API_KEY:
         log.warning("GHL_API_KEY not set"); return
-    new_leads = [r for r in records if r.get("owner") and r.get("is_new")]
-    log.info(f"GHL: {len(new_leads)} NEW leads to push")
-    if not new_leads:
-        log.info("No new leads this run - skipping GHL push")
-        return
+
+    named = [r for r in records if r.get("owner")]
+    log.info(f"GHL: {len(named)} named leads to upsert")
+
     test = ghl_req("GET", f"/contacts/?locationId={GHL_LOCATION_ID}&limit=1")
     if not test or "_error" in test:
         log.error("GHL auth failed"); return
     log.info(f"GHL auth OK - {test.get('total','?')} existing contacts")
-    created = skipped = errors = 0
-    for i, rec in enumerate(sorted(new_leads, key=lambda r: -r.get("score", 0))):
-        doc = rec.get("doc_number", "")
+
+    created = updated = errors = 0
+
+    for i, rec in enumerate(sorted(named, key=lambda r: -r.get("score", 0))):
+        doc     = rec.get("doc_number", "")
+        owner   = rec.get("owner", "").strip()
+        payload = build_contact_payload(rec, GHL_LOCATION_ID)
+
+        existing_id = None
+
+        # Search for existing contact by doc number tag
         if doc:
-            r = ghl_req("GET", f"/contacts/?locationId={GHL_LOCATION_ID}&query={urllib.parse.quote(doc)}&limit=3")
+            r = ghl_req("GET", f"/contacts/?locationId={GHL_LOCATION_ID}&query={urllib.parse.quote(doc)}&limit=5")
             if r and not r.get("_error"):
-                if any(f"doc-{doc}" in (c.get("tags") or []) for c in r.get("contacts", [])):
-                    skipped += 1; continue
-        owner = rec.get("owner", "").strip()
-        parts = owner.split()
-        first = parts[0].title() if parts else owner
-        last  = " ".join(parts[1:]).title() if len(parts) > 1 else ""
-        tags  = ["bexar-lead", rec["type"], f"doc-{doc}"]
-        if rec.get("absentee"):      tags += ["absentee-owner", "high-priority"]
-        if rec.get("duplicate"):     tags.append("duplicate-owner")
-        if rec.get("score", 0) >= 7: tags.append("hot-lead")
-        lt = "Tax Foreclosure" if rec["type"] == "TAX" else "Mortgage Foreclosure"
-        result = ghl_req("POST", "/contacts/", {
-            "locationId": GHL_LOCATION_ID,
-            "firstName":  first, "lastName": last, "name": owner.title(),
-            "address1":   rec.get("address", ""),
-            "city":       rec.get("city", "San Antonio"),
-            "state":      "TX", "country": "US",
-            "postalCode": rec.get("zip", ""),
-            "tags":       tags, "source": "Bexar County Scraper",
-            "customFields": [
-                {"key": "lead_type",        "field_value": lt},
-                {"key": "doc_number",       "field_value": doc},
-                {"key": "date_filed",       "field_value": rec.get("date_filed", "")},
-                {"key": "score",            "field_value": str(rec.get("score", 0))},
-                {"key": "property_address", "field_value": rec.get("address", "")},
-                {"key": "school_district",  "field_value": rec.get("school_dist", "")},
-                {"key": "absentee_owner",   "field_value": "Yes" if rec.get("absentee") else "No"},
-                {"key": "mailing_address",  "field_value": rec.get("mail_addr", "")},
-                {"key": "duplicate_owner",  "field_value": "Yes" if rec.get("duplicate") else "No"},
-            ],
-        })
-        if result and result.get("contact"):
-            created += 1
-            ab  = " ABSENTEE" if rec.get("absentee") else ""
-            dup = " DUP"      if rec.get("duplicate") else ""
-            log.info(f"  [{i+1}]{ab}{dup} {owner} - {rec.get('address')}")
+                for c in r.get("contacts", []):
+                    if f"doc-{doc}" in (c.get("tags") or []):
+                        existing_id = c.get("id")
+                        break
+
+        if existing_id:
+            # UPDATE existing contact
+            result = ghl_req("PUT", f"/contacts/{existing_id}", payload)
+            if result and not result.get("_error"):
+                updated += 1
+                if updated <= 5 or updated % 50 == 0:
+                    ab = " ABSENTEE" if rec.get("absentee") else ""
+                    log.info(f"  ~ [{i+1}]{ab} UPDATED {owner} - {rec.get('address')}")
+            else:
+                errors += 1
         else:
-            errors += 1
+            # CREATE new contact
+            result = ghl_req("POST", "/contacts/", payload)
+            if result and result.get("contact"):
+                created += 1
+                ab  = " ABSENTEE" if rec.get("absentee") else ""
+                dup = " DUP"      if rec.get("duplicate") else ""
+                log.info(f"  + [{i+1}]{ab}{dup} CREATED {owner} - {rec.get('address')}")
+            else:
+                errors += 1
+
         time.sleep(0.15)
-    log.info(f"GHL done - Created:{created} | Skipped:{skipped} | Errors:{errors}")
+
+    log.info(f"GHL done - Created:{created} | Updated:{updated} | Errors:{errors}")
 
 
 def build_dashboard(records):
     """
-    Writes records.json and index.html only.
-    leads.html is managed manually in the repo and never overwritten here.
+    Writes records.json and a redirect index.html only.
+    leads.html is managed manually and never overwritten.
     """
     os.makedirs("dashboard", exist_ok=True)
 
-    # Write records.json - this is what the dashboard fetches at runtime
     json_str = json.dumps(records, separators=(",", ":"), ensure_ascii=True)
     with open("dashboard/records.json", "w", encoding="utf-8") as f:
         f.write(json_str)
 
-    # Write a minimal index.html that just redirects to leads.html
     with open("dashboard/index.html", "w", encoding="utf-8") as f:
         f.write('<!DOCTYPE html><html><head><meta charset="UTF-8"/>'
                 '<meta http-equiv="refresh" content="0;url=leads.html"/>'
@@ -391,7 +426,6 @@ def build_dashboard(records):
                 '<body><script>window.location.href="leads.html";</script></body></html>')
 
     log.info(f"Built dashboard/records.json - {len(records)} records, {os.path.getsize('dashboard/records.json'):,} bytes")
-    log.info("Built dashboard/index.html - redirects to leads.html")
 
 
 if __name__ == "__main__":
@@ -399,7 +433,7 @@ if __name__ == "__main__":
     os.makedirs("dashboard", exist_ok=True)
 
     log.info("=" * 60)
-    log.info("Bexar County Lead Scraper v25.3")
+    log.info("Bexar County Lead Scraper v25.4")
     log.info(f"Foreclosures: {FORECLOSURE_BASE}")
     log.info(f"Owner lookup: {PARCELS_URL}")
     log.info("=" * 60)
