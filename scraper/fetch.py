@@ -1,26 +1,23 @@
 """
-Bexar County Motivated Seller Lead Scraper v27.3
+Bexar County Motivated Seller Lead Scraper v27.4
 HYBRID SCRAPER:
   Primary:   bexar.tx.publicsearch.us  (Selenium, runs 3x daily)
-             - Scrapes in 14-day chunks covering the full 90-day window
-             - Each chunk is small enough for React table to render reliably
-             - Includes sale date, doc number, address
-             - Grantor extraction skipped (detail pages have no party data)
+             - Single date window (today back 90 days)
+             - Skips rows older than 90 days inline during scraping
+             - Stops pagination as soon as a full page of old rows is seen
+             - 180s flat timeout on every page (no scaling)
+             - Added &sort=desc to URL to match browser behavior
   Secondary: ArcGIS GIS layer (urllib, runs weekly on Sunday)
              - Backfill only — fills gaps missed by primary
-             - Absentee owner detection via parcel mailing address
 
-  Owner enrichment: 5-strategy ArcGIS parcel lookup for any record missing owner
+  Owner enrichment: 5-strategy ArcGIS parcel lookup for missing owners
 
-  Filter logic:
-    KEEP if filed within 90 days
-    KEEP if sale_date is in the future (auction still live)
-    DROP if older than 90 days AND no future sale date AND completely empty
-
-  Fixes v27.3:
-    - Replaced single 90-day URL with sliding 14-day chunks (6 chunks = 90 days)
-    - Each chunk renders fast; dedup handles any overlap between chunks
-    - known_docs rebuilt from filtered set after filter runs
+  Fixes v27.4:
+    - Skip old rows during scraping (don't rely on post-filter to drop them)
+    - Early-exit pagination when consecutive pages are all-old
+    - 180s flat timeout (was 75s scaling — too short for deep pages)
+    - Added &sort=desc to search URL to match browser sort behavior
+    - Simplified back to single URL window (chunking not needed once old rows skipped)
 """
 
 import json
@@ -54,9 +51,9 @@ RUN_TIMESTAMP  = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 TODAY          = datetime.now(timezone.utc)
 TODAY_NAIVE    = datetime.now()
 IS_SUNDAY      = TODAY.weekday() == 6
-KEEP_DAYS      = 90   # Dashboard rolling window
-CHUNK_DAYS     = 14   # Each Selenium scrape chunk (keeps React table fast)
+KEEP_DAYS      = 90
 CUTOFF_DATE    = TODAY_NAIVE - timedelta(days=KEEP_DAYS)
+PAGE_TIMEOUT   = 180  # Fixed generous timeout for all pages
 
 
 # ── HELPERS ───────────────────────────────────────────────────────────────────
@@ -64,7 +61,7 @@ def fetch_json(url, retries=3):
     for attempt in range(retries):
         try:
             req = urllib.request.Request(
-                url, headers={"User-Agent": "BexarScraper/27.3", "Accept": "application/json"})
+                url, headers={"User-Agent": "BexarScraper/27.4", "Accept": "application/json"})
             with urllib.request.urlopen(req, timeout=25) as r:
                 return json.loads(r.read().decode("utf-8", errors="replace"))
         except Exception as e:
@@ -121,7 +118,7 @@ def load_known_docs():
     try:
         req = urllib.request.Request(
             PAGES_RECORDS + "?v=" + str(int(time.time())),
-            headers={"User-Agent": "BexarScraper/27.3", "Accept": "application/json"})
+            headers={"User-Agent": "BexarScraper/27.4", "Accept": "application/json"})
         with urllib.request.urlopen(req, timeout=15) as r:
             prev = json.loads(r.read().decode("utf-8", errors="replace"))
             docs = {str(rec.get("doc_number", "")) for rec in prev if rec.get("doc_number")}
@@ -130,6 +127,14 @@ def load_known_docs():
     except Exception as e:
         log.info(f"No previous records found (first run?): {e}")
         return set(), []
+
+
+def parse_recorded_date(date_str):
+    """Parse recorded date string like '4/23/2026' into a datetime."""
+    try:
+        return datetime.strptime(date_str.strip(), "%m/%d/%Y")
+    except Exception:
+        return None
 
 
 # ── RECORD FILTER ─────────────────────────────────────────────────────────────
@@ -146,7 +151,7 @@ def should_keep(rec):
         try:
             sale_dt = datetime.strptime(sale_date_str.strip(), "%m/%d/%Y")
             if sale_dt >= TODAY_NAIVE:
-                return True  # Live auction — always keep
+                return True
         except Exception:
             pass
 
@@ -161,7 +166,7 @@ def should_keep(rec):
         except Exception:
             pass
 
-    return True  # Can't parse date — keep
+    return True
 
 
 # ── SELENIUM SETUP ────────────────────────────────────────────────────────────
@@ -174,7 +179,7 @@ def get_driver():
     opts.add_argument("--no-sandbox")
     opts.add_argument("--disable-dev-shm-usage")
     opts.add_argument("--disable-gpu")
-    opts.add_argument("--window-size=1280,900")
+    opts.add_argument("--window-size=1920,1080")
     opts.add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36")
     opts.add_argument("--disable-blink-features=AutomationControlled")
     opts.add_experimental_option("excludeSwitches", ["enable-automation"])
@@ -189,181 +194,170 @@ def get_driver():
         return webdriver.Chrome(options=opts)
 
 
-# ── SINGLE CHUNK SCRAPER ──────────────────────────────────────────────────────
-def scrape_chunk(driver, known_docs, start_dt, end_dt):
+# ── PUBLICSEARCH SCRAPER ──────────────────────────────────────────────────────
+def scrape_publicsearch(known_docs, keep_days=90):
     """
-    Scrape one date-range chunk. Returns list of new records found.
-    Uses the already-open driver to avoid repeated startup overhead.
+    Scrape publicsearch for the last keep_days days.
+    - Skips rows older than keep_days inline during scraping
+    - Stops pagination when a full page has no rows within keep_days
+    - Uses 180s flat timeout on every page
+    - Added &sort=desc to match browser sort behavior
     """
     from selenium.webdriver.common.by import By
     from selenium.webdriver.support.ui import WebDriverWait
     from selenium.webdriver.support import expected_conditions as EC
 
-    start_str = start_dt.strftime("%Y%m%d")
-    end_str   = end_dt.strftime("%Y%m%d")
+    start_date = (TODAY - timedelta(days=keep_days)).strftime("%Y%m%d")
+    end_date   = (TODAY + timedelta(days=1)).strftime("%Y%m%d")
 
+    # Match exact browser URL format including &sort=desc
     search_url = (
         f"{PUBLICSEARCH_BASE}/results"
         f"?department=FC"
-        f"&instrumentDateRange={start_str}%2C{end_str}"
+        f"&instrumentDateRange={start_date}%2C{end_date}"
         f"&keywordSearch=false"
         f"&limit=50"
         f"&offset=0"
+        f"&sort=desc"
         f"&sortBy=recordedDate"
         f"&sortDir=desc"
     )
 
-    records  = []
-    page     = 0
-    offset   = 0
+    log.info(f"PublicSearch: scraping last {keep_days} days ({start_date} to {end_date})")
+    log.info(f"  Timeout: {PAGE_TIMEOUT}s per page | Skipping rows older than {CUTOFF_DATE.strftime('%Y-%m-%d')}")
 
-    while True:
-        url = search_url.replace("offset=0", f"offset={offset}")
-        log.info(f"    [{start_str}-{end_str}] Page {page+1} (offset={offset})")
-        driver.get(url)
-
-        page_timeout = min(75 + (page * 20), 150)
-        wait = WebDriverWait(driver, page_timeout)
-
-        try:
-            wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "td.col-3")))
-            time.sleep(2)
-        except Exception as wait_err:
-            log.info(f"    Timeout on page {page+1}: {wait_err}")
-            try:
-                log.info(f"    Title: {driver.title}")
-            except Exception:
-                pass
-            # One extra attempt
-            try:
-                time.sleep(10)
-                els = driver.find_elements(By.CSS_SELECTOR, "td.col-3")
-                if not els:
-                    log.info(f"    No results after retry — stopping chunk")
-                    break
-            except Exception:
-                break
-
-        rows = driver.find_elements(By.CSS_SELECTOR, "table tbody tr")
-        if not rows:
-            col3_cells = driver.find_elements(By.CSS_SELECTOR, "td.col-3")
-            rows = []
-            for cell in col3_cells:
-                try:
-                    rows.append(cell.find_element(By.XPATH, ".."))
-                except Exception:
-                    pass
-        if not rows:
-            log.info(f"    No rows — stopping chunk")
-            break
-
-        page_new = 0
-        for row in rows:
-            try:
-                def get_col(row, col_class):
-                    try:
-                        el = row.find_element(By.CSS_SELECTOR, f"td.{col_class}")
-                        return el.text.strip()
-                    except Exception:
-                        return ""
-
-                doc_type_text = get_col(row, "col-3")
-                recorded_date = get_col(row, "col-4")
-                sale_date     = get_col(row, "col-5")
-                doc_number    = get_col(row, "col-6")
-                address       = get_col(row, "col-8")
-
-                doc_number = doc_number.strip()
-                address    = address.replace("\n", " ").replace(",", " ").strip()
-                sale_date  = sale_date.strip() if sale_date.strip() not in ("N/A", "") else ""
-
-                if not doc_number:
-                    continue
-                if doc_number in known_docs:
-                    continue
-
-                rec_type       = "TAX" if "TAX" in doc_type_text.upper() else "NOF"
-                city, zip_code = parse_city_zip(address)
-                month, year    = parse_month_year(recorded_date)
-
-                rec = {
-                    "type":        rec_type,
-                    "address":     clean_address(address),
-                    "owner":       "",
-                    "mail_addr":   "",
-                    "absentee":    False,
-                    "duplicate":   False,
-                    "is_new":      True,
-                    "doc_number":  doc_number,
-                    "year":        year,
-                    "month":       month,
-                    "city":        city,
-                    "zip":         zip_code,
-                    "school_dist": "",
-                    "date_filed":  f"{month}/{year}".strip("/"),
-                    "sale_date":   sale_date,
-                    "run_ts":      RUN_TIMESTAMP,
-                    "flags":       [],
-                    "source":      "publicsearch",
-                }
-                records.append(rec)
-                known_docs.add(doc_number)
-                page_new += 1
-
-            except Exception as e:
-                log.debug(f"    Row parse error: {e}")
-                continue
-
-        log.info(f"    Page {page+1}: {page_new} new records ({len(rows)} rows)")
-
-        if len(rows) < 50:
-            break  # Last page of this chunk
-        if page_new == 0 and page > 0:
-            break  # All known in this chunk — caught up
-
-        offset += 50
-        page   += 1
-        time.sleep(1.5)
-
-    return records
-
-
-# ── PUBLICSEARCH SCRAPER (chunked) ────────────────────────────────────────────
-def scrape_publicsearch(known_docs, keep_days=90, chunk_days=14):
-    """
-    Scrape publicsearch in sliding chunk_days windows covering keep_days total.
-    Most recent chunk first, oldest last. Driver reused across chunks.
-    """
-    # Build chunks: most recent → oldest
-    chunks = []
-    chunk_end = TODAY_NAIVE + timedelta(days=1)
-    while chunk_end > TODAY_NAIVE - timedelta(days=keep_days):
-        chunk_start = max(chunk_end - timedelta(days=chunk_days),
-                          TODAY_NAIVE - timedelta(days=keep_days))
-        chunks.append((chunk_start, chunk_end))
-        chunk_end = chunk_start
-        if chunk_end <= TODAY_NAIVE - timedelta(days=keep_days):
-            break
-
-    log.info(f"PublicSearch: {len(chunks)} chunks x {chunk_days}d = {keep_days}d coverage")
-    for i, (s, e) in enumerate(chunks):
-        log.info(f"  Chunk {i+1}: {s.strftime('%Y-%m-%d')} → {e.strftime('%Y-%m-%d')}")
-
-    all_records = []
-    driver = None
+    driver  = None
+    records = []
 
     try:
         driver = get_driver()
+        wait   = WebDriverWait(driver, PAGE_TIMEOUT)
+        page   = 0
+        offset = 0
 
-        for i, (chunk_start, chunk_end) in enumerate(chunks):
-            log.info(f"Scraping chunk {i+1}/{len(chunks)}: "
-                     f"{chunk_start.strftime('%Y-%m-%d')} → {chunk_end.strftime('%Y-%m-%d')}")
-            chunk_records = scrape_chunk(driver, known_docs, chunk_start, chunk_end)
-            all_records.extend(chunk_records)
-            log.info(f"  Chunk {i+1} done: {len(chunk_records)} new records "
-                     f"(running total: {len(all_records)})")
-            if i < len(chunks) - 1:
-                time.sleep(2)  # Brief pause between chunks
+        while True:
+            url = search_url.replace("offset=0", f"offset={offset}")
+            log.info(f"  Loading page {page+1} (offset={offset})")
+            driver.get(url)
+
+            try:
+                wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "td.col-3")))
+                time.sleep(3)
+            except Exception as wait_err:
+                log.info(f"  Page {page+1} timed out: {wait_err}")
+                try:
+                    log.info(f"  Title: {driver.title}")
+                    log.info(f"  Source preview: {driver.page_source[:200]}")
+                except Exception:
+                    pass
+                try:
+                    time.sleep(15)
+                    els = driver.find_elements(By.CSS_SELECTOR, "td.col-3")
+                    if not els:
+                        log.info("  No results after retry — stopping")
+                        break
+                except Exception:
+                    break
+
+            rows = driver.find_elements(By.CSS_SELECTOR, "table tbody tr")
+            if not rows:
+                col3_cells = driver.find_elements(By.CSS_SELECTOR, "td.col-3")
+                rows = []
+                for cell in col3_cells:
+                    try:
+                        rows.append(cell.find_element(By.XPATH, ".."))
+                    except Exception:
+                        pass
+            if not rows:
+                log.info("  No rows found — stopping")
+                break
+
+            col3s = driver.find_elements(By.CSS_SELECTOR, "td.col-3")
+            first_sample = col3s[0].text[:30] if col3s else ""
+            log.info(f"  Page {page+1}: {len(rows)} rows | first: {first_sample}")
+
+            page_new      = 0
+            page_old      = 0
+            page_known    = 0
+
+            for row in rows:
+                try:
+                    def get_col(row, col_class):
+                        try:
+                            el = row.find_element(By.CSS_SELECTOR, f"td.{col_class}")
+                            return el.text.strip()
+                        except Exception:
+                            return ""
+
+                    doc_type_text = get_col(row, "col-3")
+                    recorded_date = get_col(row, "col-4")
+                    sale_date     = get_col(row, "col-5")
+                    doc_number    = get_col(row, "col-6")
+                    address       = get_col(row, "col-8")
+
+                    doc_number = doc_number.strip()
+                    address    = address.replace("\n", " ").replace(",", " ").strip()
+                    sale_date  = sale_date.strip() if sale_date.strip() not in ("N/A", "") else ""
+
+                    if not doc_number:
+                        continue
+
+                    # Skip rows older than cutoff — inline filter
+                    rec_date = parse_recorded_date(recorded_date)
+                    if rec_date and rec_date < CUTOFF_DATE:
+                        page_old += 1
+                        continue
+
+                    if doc_number in known_docs:
+                        page_known += 1
+                        continue
+
+                    rec_type       = "TAX" if "TAX" in doc_type_text.upper() else "NOF"
+                    city, zip_code = parse_city_zip(address)
+                    month, year    = parse_month_year(recorded_date)
+
+                    rec = {
+                        "type":        rec_type,
+                        "address":     clean_address(address),
+                        "owner":       "",
+                        "mail_addr":   "",
+                        "absentee":    False,
+                        "duplicate":   False,
+                        "is_new":      True,
+                        "doc_number":  doc_number,
+                        "year":        year,
+                        "month":       month,
+                        "city":        city,
+                        "zip":         zip_code,
+                        "school_dist": "",
+                        "date_filed":  f"{month}/{year}".strip("/"),
+                        "sale_date":   sale_date,
+                        "run_ts":      RUN_TIMESTAMP,
+                        "flags":       [],
+                        "source":      "publicsearch",
+                    }
+                    records.append(rec)
+                    known_docs.add(doc_number)
+                    page_new += 1
+
+                except Exception as e:
+                    log.debug(f"  Row parse error: {e}")
+                    continue
+
+            log.info(f"  Page {page+1}: {page_new} new | {page_known} known | {page_old} old/skipped")
+
+            # Stop if entire page was old records — we've gone past the cutoff
+            if page_old == len(rows):
+                log.info("  Full page of old records — stopping pagination")
+                break
+
+            if len(rows) < 50:
+                log.info("  Last page reached")
+                break
+
+            offset += 50
+            page   += 1
+            time.sleep(2)
 
     except Exception as e:
         log.error(f"PublicSearch scrape error: {e}")
@@ -374,8 +368,8 @@ def scrape_publicsearch(known_docs, keep_days=90, chunk_days=14):
             except Exception:
                 pass
 
-    log.info(f"PublicSearch: {len(all_records)} total new records scraped")
-    return all_records
+    log.info(f"PublicSearch: {len(records)} new records scraped")
+    return records
 
 
 # ── ADDRESS PARSING ───────────────────────────────────────────────────────────
@@ -707,8 +701,8 @@ if __name__ == "__main__":
     os.makedirs("dashboard", exist_ok=True)
 
     log.info("=" * 60)
-    log.info("Bexar County Lead Scraper v27.3 (Hybrid)")
-    log.info(f"Primary:   PublicSearch.us ({KEEP_DAYS}d window, {CHUNK_DAYS}d chunks)")
+    log.info("Bexar County Lead Scraper v27.4 (Hybrid)")
+    log.info(f"Primary:   PublicSearch.us ({KEEP_DAYS}d window, {PAGE_TIMEOUT}s timeout)")
     log.info(f"Secondary: ArcGIS weekly backfill = {IS_SUNDAY}")
     log.info(f"Filter:    {KEEP_DAYS}-day cutoff ({CUTOFF_DATE.strftime('%Y-%m-%d')}) "
              f"| live auctions always kept")
@@ -716,10 +710,8 @@ if __name__ == "__main__":
 
     known_docs, prev_records = load_known_docs()
 
-    # ── Step 1: PublicSearch chunked scrape ───────────────────────────────────
-    new_records = scrape_publicsearch(known_docs,
-                                      keep_days=KEEP_DAYS,
-                                      chunk_days=CHUNK_DAYS)
+    # ── Step 1: PublicSearch scrape ───────────────────────────────────────────
+    new_records = scrape_publicsearch(known_docs, keep_days=KEEP_DAYS)
 
     # ── Step 2: ArcGIS weekly backfill (Sundays only) ────────────────────────
     arcgis_records = []
@@ -747,11 +739,10 @@ if __name__ == "__main__":
     log.info(f"After {KEEP_DAYS}-day filter: {len(records)} records kept, {dropped} dropped")
 
     # ── Step 5: Rebuild known_docs from filtered set ──────────────────────────
-    # Dropped records won't stay "known" — re-evaluated on next run
     known_docs = {str(r.get("doc_number", "")) for r in records if r.get("doc_number")}
     log.info(f"known_docs rebuilt: {len(known_docs)} active doc numbers")
 
-    # ── Step 6: Enrich missing owners via ArcGIS parcel lookup ───────────────
+    # ── Step 6: Enrich missing owners ─────────────────────────────────────────
     records = enrich_owners(records)
 
     # ── Step 7: Detect duplicates ─────────────────────────────────────────────
