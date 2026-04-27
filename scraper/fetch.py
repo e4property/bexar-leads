@@ -1,20 +1,26 @@
 """
-Bexar County Motivated Seller Lead Scraper v26.0
+Bexar County Motivated Seller Lead Scraper v27.0
 HYBRID SCRAPER:
   Primary:   bexar.tx.publicsearch.us  (Selenium, runs 3x daily)
              - Real-time courthouse filings
              - Includes sale date, doc number, address
-             - Grantor (owner) extracted from document detail page
+             - Grantor extraction skipped (detail pages have no party data)
   Secondary: ArcGIS GIS layer (urllib, runs weekly on Sunday)
              - Backfill only — fills gaps missed by primary
              - Absentee owner detection via parcel mailing address
 
-  Owner enrichment: 5-strategy parcel lookup for any record missing owner
+  Owner enrichment: 5-strategy ArcGIS parcel lookup for any record missing owner
+  Fixes v27.0:
+    - Removed dead detail-page grantor extraction (publicsearch has no party data)
+    - Fixed ArcGIS owner lookup: proper field quoting, pagination, transfer limit handling
+    - Dynamic Selenium timeout: scales per page (75s page1 -> 150s max)
+    - Removed selenium driver from enrich step (no longer needed)
 """
 
 import json
 import logging
 import os
+import re
 import time
 import urllib.request
 import urllib.parse
@@ -40,7 +46,7 @@ LAYERS = [
 
 RUN_TIMESTAMP = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 TODAY         = datetime.now(timezone.utc)
-IS_SUNDAY     = TODAY.weekday() == 6  # Run ArcGIS backfill on Sundays
+IS_SUNDAY     = TODAY.weekday() == 6
 
 
 # ── HELPERS ───────────────────────────────────────────────────────────────────
@@ -48,7 +54,7 @@ def fetch_json(url, retries=3):
     for attempt in range(retries):
         try:
             req = urllib.request.Request(
-                url, headers={"User-Agent": "BexarScraper/26.0", "Accept": "application/json"})
+                url, headers={"User-Agent": "BexarScraper/27.0", "Accept": "application/json"})
             with urllib.request.urlopen(req, timeout=25) as r:
                 return json.loads(r.read().decode("utf-8", errors="replace"))
         except Exception as e:
@@ -59,21 +65,37 @@ def fetch_json(url, retries=3):
                 return {}
 
 
-def arcgis_query(layer_url, where, fields="*", limit=50):
-    try:
-        params = urllib.parse.urlencode({
-            "where": where, "outFields": fields,
-            "returnGeometry": "false",
-            "resultRecordCount": limit, "f": "json",
-        })
-        data = fetch_json(f"{layer_url}/query?{params}")
-        if "error" in data:
-            log.debug(f"ArcGIS error: {data['error']}")
-            return []
-        return data.get("features", [])
-    except Exception as e:
-        log.debug(f"arcgis_query error: {e}")
-        return []
+def arcgis_query(layer_url, where, fields="*", limit=200):
+    """
+    Query ArcGIS with pagination to handle exceededTransferLimit.
+    Returns all matching features across pages.
+    """
+    all_features = []
+    offset = 0
+    while True:
+        try:
+            params = urllib.parse.urlencode({
+                "where":             where,
+                "outFields":         fields,
+                "returnGeometry":    "false",
+                "resultOffset":      offset,
+                "resultRecordCount": limit,
+                "f":                 "json",
+            })
+            data = fetch_json(f"{layer_url}/query?{params}")
+            if not data or "error" in data:
+                log.debug(f"ArcGIS error: {data.get('error') if data else 'empty'}")
+                break
+            batch = data.get("features", [])
+            all_features.extend(batch)
+            exceeded = data.get("exceededTransferLimit", False)
+            if not exceeded or len(batch) < limit:
+                break
+            offset += len(batch)
+        except Exception as e:
+            log.debug(f"arcgis_query error: {e}")
+            break
+    return all_features
 
 
 def pick(attrs, *candidates, default=""):
@@ -92,7 +114,7 @@ def load_known_docs():
     try:
         req = urllib.request.Request(
             PAGES_RECORDS + "?v=" + str(int(time.time())),
-            headers={"User-Agent": "BexarScraper/26.0", "Accept": "application/json"})
+            headers={"User-Agent": "BexarScraper/27.0", "Accept": "application/json"})
         with urllib.request.urlopen(req, timeout=15) as r:
             prev = json.loads(r.read().decode("utf-8", errors="replace"))
             docs = {str(rec.get("doc_number", "")) for rec in prev if rec.get("doc_number")}
@@ -107,7 +129,6 @@ def load_known_docs():
 def get_driver():
     from selenium import webdriver
     from selenium.webdriver.chrome.options import Options
-    from selenium.webdriver.chrome.service import Service
 
     opts = Options()
     opts.add_argument("--headless")
@@ -115,9 +136,10 @@ def get_driver():
     opts.add_argument("--disable-dev-shm-usage")
     opts.add_argument("--disable-gpu")
     opts.add_argument("--window-size=1280,900")
-    opts.add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36")
+    opts.add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36")
     opts.add_argument("--disable-blink-features=AutomationControlled")
     opts.add_experimental_option("excludeSwitches", ["enable-automation"])
+    opts.add_experimental_option("useAutomationExtension", False)
 
     try:
         from selenium.webdriver.chrome.service import Service as ChromeService
@@ -129,10 +151,11 @@ def get_driver():
 
 
 # ── PUBLICSEARCH SCRAPER ──────────────────────────────────────────────────────
-def scrape_publicsearch(known_docs, days_back=7):
+def scrape_publicsearch(known_docs, days_back=14):
     """
-    Scrape bexar.tx.publicsearch.us for foreclosure filings
-    in the last `days_back` days. Returns list of records.
+    Scrape bexar.tx.publicsearch.us for foreclosure filings.
+    Owner enrichment is done later via ArcGIS parcel lookup —
+    detail pages on publicsearch have no party data for foreclosure docs.
     """
     from selenium.webdriver.common.by import By
     from selenium.webdriver.support.ui import WebDriverWait
@@ -141,7 +164,6 @@ def scrape_publicsearch(known_docs, days_back=7):
     start_date = (TODAY - timedelta(days=days_back)).strftime("%Y%m%d")
     end_date   = (TODAY + timedelta(days=1)).strftime("%Y%m%d")
 
-    # Build search URL — department FC = Foreclosures, sorted by recorded date desc
     search_url = (
         f"{PUBLICSEARCH_BASE}/results"
         f"?department=FC"
@@ -155,13 +177,11 @@ def scrape_publicsearch(known_docs, days_back=7):
 
     log.info(f"PublicSearch: scraping last {days_back} days ({start_date} to {end_date})")
 
-    driver = None
+    driver  = None
     records = []
 
     try:
         driver = get_driver()
-        wait   = WebDriverWait(driver, 60)
-
         page   = 0
         offset = 0
 
@@ -170,25 +190,25 @@ def scrape_publicsearch(known_docs, days_back=7):
             log.info(f"  Loading page {page+1} (offset={offset}): {url}")
             driver.get(url)
 
-            # Wait for results table to load — wait for col-3 cells (doc type column)
+            # Dynamic timeout — later pages need more time for React to hydrate
+            page_timeout = min(75 + (page * 20), 150)
+            wait = WebDriverWait(driver, page_timeout)
+
             try:
                 wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "td.col-3")))
-                time.sleep(3)  # Extra wait for full render
+                time.sleep(3)
             except Exception as wait_err:
                 log.info(f"  Page timed out waiting for results: {wait_err}")
-                # Log page title and partial source for debugging
                 try:
                     log.info(f"  Page title: {driver.title}")
-                    src = driver.page_source[:500]
-                    log.info(f"  Page source preview: {src}")
+                    log.info(f"  Page source preview: {driver.page_source[:300]}")
                 except Exception:
                     pass
-                # Try one more time with longer wait
+                # One extra attempt with additional wait
                 try:
                     time.sleep(15)
                     els = driver.find_elements(By.CSS_SELECTOR, "td.col-3")
                     if not els:
-                        # Try alternate selector
                         els2 = driver.find_elements(By.CSS_SELECTOR, "table tbody tr")
                         log.info(f"  Alternate selector found {len(els2)} rows")
                         if not els2:
@@ -197,10 +217,8 @@ def scrape_publicsearch(known_docs, days_back=7):
                 except Exception:
                     break
 
-            # Get rows — find all tr elements that contain col-3 cells
             rows = driver.find_elements(By.CSS_SELECTOR, "table tbody tr")
             if not rows:
-                # Fallback: find parent tr of any col-3 cell
                 col3_cells = driver.find_elements(By.CSS_SELECTOR, "td.col-3")
                 rows = []
                 for cell in col3_cells:
@@ -211,17 +229,16 @@ def scrape_publicsearch(known_docs, days_back=7):
             if not rows:
                 log.info("  No rows found on this page — stopping")
                 break
-            log.info(f"  Found {len(rows)} rows, first col-3 sample: {driver.find_elements(By.CSS_SELECTOR, 'td.col-3')[0].text[:30] if driver.find_elements(By.CSS_SELECTOR, 'td.col-3') else 'none'}")
 
+            col3s = driver.find_elements(By.CSS_SELECTOR, "td.col-3")
+            first_sample = col3s[0].text[:30] if col3s else ""
+            log.info(f"  Found {len(rows)} rows, first col-3 sample: {first_sample}")
             log.info(f"  Found {len(rows)} rows on page {page+1}")
+
             page_new = 0
 
             for row in rows:
                 try:
-                    # Use class-based selectors — confirmed column mapping:
-                    # col-0=checkbox, col-1=dropdown, col-2=dropdown,
-                    # col-3=doc_type, col-4=recorded_date, col-5=sale_date,
-                    # col-6=doc_number, col-7=remarks, col-8=address
                     def get_col(row, col_class):
                         try:
                             el = row.find_element(By.CSS_SELECTOR, f"td.{col_class}")
@@ -235,37 +252,20 @@ def scrape_publicsearch(known_docs, days_back=7):
                     doc_number    = get_col(row, "col-6")
                     address       = get_col(row, "col-8")
 
-                    # Clean up
                     doc_number = doc_number.strip()
                     address    = address.replace("\n", " ").replace(",", " ").strip()
                     sale_date  = sale_date.strip() if sale_date.strip() not in ("N/A", "") else ""
 
-                    # Log first few for debugging
                     if not doc_type_text and not doc_number:
                         continue
-
                     if not doc_number:
                         continue
-
-                    # Skip already known docs
                     if doc_number in known_docs:
                         continue
 
-                    # Determine type
-                    rec_type = "TAX" if "TAX" in doc_type_text.upper() else "NOF"
-
-                    # Parse city and zip from address
-                    city, zip_code = parse_city_zip(address)
-
-                    # Parse recorded date for month/year
-                    month, year = parse_month_year(recorded_date)
-
-                    # Try to get link to detail page for grantor (owner)
-                    link_el = None
-                    try:
-                        link_el = row.find_element(By.TAG_NAME, "a")
-                    except Exception:
-                        pass
+                    rec_type         = "TAX" if "TAX" in doc_type_text.upper() else "NOF"
+                    city, zip_code   = parse_city_zip(address)
+                    month, year      = parse_month_year(recorded_date)
 
                     rec = {
                         "type":        rec_type,
@@ -286,7 +286,6 @@ def scrape_publicsearch(known_docs, days_back=7):
                         "run_ts":      RUN_TIMESTAMP,
                         "flags":       [],
                         "source":      "publicsearch",
-                        "_detail_link": link_el.get_attribute("href") if link_el else "",
                     }
                     records.append(rec)
                     known_docs.add(doc_number)
@@ -305,10 +304,6 @@ def scrape_publicsearch(known_docs, days_back=7):
             page   += 1
             time.sleep(1.5)
 
-        # Enrich with grantor (owner) from detail pages
-        # Only fetch detail for records missing owner — limit to 50 per run to be polite
-        records = enrich_from_detail_pages(driver, records, wait, limit=50)
-
     except Exception as e:
         log.error(f"PublicSearch scrape error: {e}")
     finally:
@@ -322,83 +317,8 @@ def scrape_publicsearch(known_docs, days_back=7):
     return records
 
 
-def enrich_from_detail_pages(driver, records, wait, limit=50):
-    """Visit detail pages to get grantor (owner) name."""
-    from selenium.webdriver.common.by import By
-    from selenium.webdriver.support import expected_conditions as EC
-
-    enriched = 0
-    for rec in records:
-        if enriched >= limit:
-            break
-        if rec.get("owner") or not rec.get("_detail_link"):
-            continue
-        try:
-            driver.get(rec["_detail_link"])
-            time.sleep(1.5)
-
-            # Look for grantor in summary section
-            # The page shows: Grantor | Grantee sections
-            page_text = driver.page_source
-
-            # Try to find grantor from page source
-            grantor = extract_grantor(page_text, driver)
-            if grantor:
-                rec["owner"] = grantor
-                enriched += 1
-                log.info(f"  Detail: {rec['address']} -> {grantor}")
-
-        except Exception as e:
-            log.debug(f"  Detail page error for {rec.get('doc_number')}: {e}")
-        finally:
-            time.sleep(0.5)
-
-    log.info(f"  Enriched {enriched} records from detail pages")
-    return records
-
-
-def extract_grantor(page_source, driver):
-    """Extract grantor name from detail page."""
-    from selenium.webdriver.common.by import By
-
-    try:
-        # Try finding grantor label then sibling value
-        elements = driver.find_elements(By.XPATH,
-            "//*[contains(text(),'Grantor') or contains(text(),'GRANTOR')]/../following-sibling::*[1]")
-        for el in elements:
-            text = el.text.strip()
-            if text and len(text) > 2:
-                return text.upper()
-    except Exception:
-        pass
-
-    try:
-        # Try table approach
-        rows = driver.find_elements(By.CSS_SELECTOR, "table tr, .field-row, [class*='party']")
-        for row in rows:
-            text = row.text.upper()
-            if "GRANTOR" in text:
-                parts = text.replace("GRANTOR", "").strip()
-                if parts and len(parts) > 2:
-                    return parts
-    except Exception:
-        pass
-
-    # Fallback: parse from raw HTML
-    try:
-        import re
-        match = re.search(r'[Gg]rantor["\s:>]+([A-Z][A-Z\s,&]+?)[\s<"]{2,}', page_source)
-        if match:
-            return match.group(1).strip().upper()
-    except Exception:
-        pass
-
-    return ""
-
-
 # ── ADDRESS PARSING ───────────────────────────────────────────────────────────
 def clean_address(raw):
-    """Extract just the street address — format: STREET, CITY, STATE, ZIP"""
     if not raw:
         return ""
     parts = [p.strip() for p in raw.split(",")]
@@ -406,13 +326,9 @@ def clean_address(raw):
 
 
 def parse_city_zip(raw):
-    """Extract city and zip — format: STREET, CITY, STATE, ZIP"""
-    import re
-    parts = [p.strip() for p in raw.split(",")]
-    # parts[0]=street, parts[1]=city, parts[2]=state, parts[3]=zip (sometimes combined)
-    city = ""
+    parts    = [p.strip() for p in raw.split(",")]
+    city     = ""
     zip_code = ""
-
     if len(parts) >= 4:
         city = parts[1].strip().upper()
         zip_match = re.search(r'\b(\d{5})\b', parts[3])
@@ -422,15 +338,12 @@ def parse_city_zip(raw):
         zip_match = re.search(r'\b(\d{5})\b', parts[2])
         zip_code = zip_match.group(1) if zip_match else ""
     else:
-        # Fallback: scan for zip
         zip_match = re.search(r'\b(\d{5})\b', raw)
         zip_code = zip_match.group(1) if zip_match else ""
-
     return city, zip_code
 
 
 def parse_month_year(date_str):
-    """Parse '4/23/2026' into month='4', year='2026'"""
     try:
         parts = date_str.strip().split("/")
         if len(parts) >= 3:
@@ -444,10 +357,6 @@ def parse_month_year(date_str):
 
 # ── ARCGIS BACKFILL (weekly) ──────────────────────────────────────────────────
 def fetch_arcgis_backfill(known_docs):
-    """
-    Full ArcGIS scrape — runs weekly on Sundays.
-    Returns records not already in known_docs.
-    """
     log.info("ArcGIS weekly backfill starting...")
     raw = []
 
@@ -455,7 +364,8 @@ def fetch_arcgis_backfill(known_docs):
         idx       = layer["index"]
         layer_url = f"{FORECLOSURE_BASE}/{idx}"
         log.info(f"  Layer {idx} ({layer['label']})...")
-        features, offset = [], 0
+        features = []
+        offset   = 0
 
         while True:
             try:
@@ -478,13 +388,13 @@ def fetch_arcgis_backfill(known_docs):
                 break
 
         for feat in features:
-            a      = feat["attributes"]
-            month  = pick(a, "MONTH", "MO", default="")
-            year   = pick(a, "YEAR",  "YR", default="")
-            doc    = pick(a, "DOC_NUMBER", "DOCNUM", "DOC_NUM")
+            a     = feat["attributes"]
+            month = pick(a, "MONTH", "MO", default="")
+            year  = pick(a, "YEAR",  "YR", default="")
+            doc   = pick(a, "DOC_NUMBER", "DOCNUM", "DOC_NUM")
 
             if doc in known_docs:
-                continue  # Already have this one
+                continue
 
             raw.append({
                 "type":        layer["type"],
@@ -513,102 +423,151 @@ def fetch_arcgis_backfill(known_docs):
 
 
 # ── OWNER ENRICHMENT ──────────────────────────────────────────────────────────
-def parse_address(address):
+def parse_address_parts(address):
+    """Break address into components for ArcGIS Situs matching."""
     if not address:
         return None
     parts = address.strip().upper().split()
     if not parts or not parts[0].isdigit():
         return None
+
     num  = parts[0]
     rest = parts[1:] if len(parts) > 1 else []
-    SUFFIXES = {"ST","AVE","DR","RD","LN","CT","CIR","BLVD","WAY","PL",
-                "TRL","PKWY","HWY","LOOP","PASS","CV","PT","HLS","TRAIL",
-                "GROVE","RIDGE","CREEK","LAKE","PARK","GLEN","RUN","XING"}
+
+    SUFFIXES = {
+        "ST", "AVE", "DR", "RD", "LN", "CT", "CIR", "BLVD", "WAY", "PL",
+        "TRL", "PKWY", "HWY", "LOOP", "PASS", "CV", "PT", "HLS", "TRAIL",
+        "GROVE", "RIDGE", "CREEK", "LAKE", "PARK", "GLEN", "RUN", "XING",
+        "STREET", "AVENUE", "DRIVE", "ROAD", "LANE", "COURT", "CIRCLE",
+        "BOULEVARD", "PARKWAY", "HIGHWAY",
+    }
+
     words  = rest[:]
     suffix = ""
     if words and words[-1] in SUFFIXES:
         suffix = words[-1]
         words  = words[:-1]
-    return {"num": num, "street": " ".join(rest), "words": words,
-            "suffix": suffix, "full": address.strip().upper()}
+
+    return {
+        "num":    num,
+        "street": " ".join(rest),
+        "words":  words,
+        "suffix": suffix,
+        "full":   address.strip().upper(),
+    }
 
 
-def match_features(feats, num, first_word=None):
+def match_features(feats, num, required_word=None):
+    """
+    Find the best matching parcel from ArcGIS features.
+    Confirmed field names from live API: Situs, Owner, AddrLn1, AddrCity, Zip
+    """
     for feat in feats:
-        a       = feat["attributes"]
-        owner   = str(a.get("Owner")    or "").strip()
-        situs   = str(a.get("Situs")    or "").strip()
-        addr1   = str(a.get("AddrLn1")  or "").strip()
-        city    = str(a.get("AddrCity") or "").strip()
-        zipcode = str(a.get("Zip")      or "").strip()
+        a = feat.get("attributes", {})
+
+        owner   = str(a.get("Owner",    "") or "").strip()
+        situs   = str(a.get("Situs",    "") or "").strip()
+        addr1   = str(a.get("AddrLn1",  "") or "").strip()
+        city    = str(a.get("AddrCity", "") or "").strip()
+        zipcode = str(a.get("Zip",      "") or "").strip()
 
         if not owner or owner.upper() in ("NULL", "NONE", ""):
             continue
 
         situs_norm = normalize(situs)
+
         if not situs_norm.startswith(num + " "):
             continue
-        if first_word and first_word not in situs_norm:
+
+        if required_word and required_word not in situs_norm:
             continue
 
-        mail_addr = f"{addr1} {city} {zipcode}".strip() if addr1 and addr1.upper() not in ("NULL","NONE","") else ""
-        absentee  = bool(mail_addr) and not normalize(mail_addr).startswith(num + " ")
-        return {"owner": owner, "mail_addr": mail_addr, "absentee": absentee}
+        mail_addr = ""
+        if addr1 and addr1.upper() not in ("NULL", "NONE", ""):
+            mail_addr = f"{addr1} {city} {zipcode}".strip()
+
+        absentee = bool(mail_addr) and not normalize(mail_addr).startswith(num + " ")
+
+        return {
+            "owner":     owner.upper(),
+            "mail_addr": mail_addr,
+            "absentee":  absentee,
+        }
     return None
 
 
 def lookup_owner(address, zipcode=""):
-    parsed = parse_address(address)
+    """
+    5-strategy ArcGIS parcel lookup.
+    Confirmed fields from live API: Situs, Owner, AddrLn1, AddrCity, Zip
+    """
+    parsed = parse_address_parts(address)
     if not parsed:
         return {}
 
     num        = parsed["num"]
     words      = parsed["words"]
     first_word = words[0] if words else ""
+    FIELDS     = "Situs,Owner,AddrLn1,AddrCity,Zip"
 
+    # Strategy 1: street number + first two words (most specific)
     if len(words) >= 2:
-        feats  = arcgis_query(PARCELS_URL, f"Situs LIKE '%{words[0]} {words[1]}%'",
-                              fields="Situs,Owner,AddrLn1,AddrCity,Zip", limit=200)
+        w1, w2 = words[0], words[1]
+        feats  = arcgis_query(PARCELS_URL,
+                              f"Situs LIKE '{num} {w1} {w2}%'",
+                              fields=FIELDS, limit=50)
         result = match_features(feats, num, first_word)
         if result:
-            result["method"] = "s1_two_word"; return result
+            result["method"] = "s1_two_word"
+            return result
 
+    # Strategy 2: street number + first word
     if first_word and len(first_word) >= 3:
-        feats  = arcgis_query(PARCELS_URL, f"Situs LIKE '%{first_word}%'",
-                              fields="Situs,Owner,AddrLn1,AddrCity,Zip", limit=200)
+        feats  = arcgis_query(PARCELS_URL,
+                              f"Situs LIKE '{num} {first_word}%'",
+                              fields=FIELDS, limit=100)
         result = match_features(feats, num, first_word)
         if result:
-            result["method"] = "s2_one_word"; return result
+            result["method"] = "s2_num_first_word"
+            return result
 
+    # Strategy 3: street number only
+    feats  = arcgis_query(PARCELS_URL,
+                          f"Situs LIKE '{num} %'",
+                          fields=FIELDS, limit=200)
+    result = match_features(feats, num, first_word if first_word else None)
+    if result:
+        result["method"] = "s3_num_only"
+        return result
+
+    # Strategy 4: zip code scan + number match
+    if zipcode and len(zipcode) >= 5:
+        zip5  = zipcode[:5]
+        feats = arcgis_query(PARCELS_URL,
+                             f"Zip = '{zip5}'",
+                             fields=FIELDS, limit=1000)
+        result = match_features(feats, num, None)
+        if result:
+            result["method"] = "s4_zip_scan"
+            return result
+
+    # Strategy 5: alternate words in street name
     for word in words[1:]:
         if len(word) < 4:
             continue
-        feats  = arcgis_query(PARCELS_URL, f"Situs LIKE '%{word}%'",
-                              fields="Situs,Owner,AddrLn1,AddrCity,Zip", limit=200)
+        feats  = arcgis_query(PARCELS_URL,
+                              f"Situs LIKE '{num} %{word}%'",
+                              fields=FIELDS, limit=100)
         result = match_features(feats, num, word)
         if result:
-            result["method"] = "s3_alt_word"; return result
-
-    if zipcode and len(zipcode) >= 5:
-        zip5  = zipcode[:5]
-        feats = arcgis_query(PARCELS_URL, f"Zip = '{zip5}'",
-                             fields="Situs,Owner,AddrLn1,AddrCity,Zip", limit=1000)
-        result = match_features(feats, num, None)
-        if result:
-            result["method"] = "s4_zip_match"; return result
-
-    if len(num) >= 5:
-        feats = arcgis_query(PARCELS_URL, f"Situs LIKE '%{num}%'",
-                             fields="Situs,Owner,AddrLn1,AddrCity,Zip", limit=50)
-        result = match_features(feats, num, None)
-        if result:
-            result["method"] = "s5_num_only"; return result
+            result["method"] = "s5_alt_word"
+            return result
 
     return {}
 
 
 def enrich_owners(records):
-    """Run parcel lookup for any record still missing an owner."""
+    """Run ArcGIS parcel lookup for every record missing an owner."""
     missing = [r for r in records if not r.get("owner")]
     log.info(f"Owner enrichment: {len(missing)} records need lookup")
     found = 0
@@ -627,7 +586,10 @@ def enrich_owners(records):
             found += 1
             if found <= 10 or found % 25 == 0:
                 log.info(f"  [{i+1}/{len(missing)}] {addr} -> {result['owner']} [{result.get('method','')}]")
-        time.sleep(0.15)
+        else:
+            log.debug(f"  [{i+1}/{len(missing)}] No match: {addr} (zip={zip_})")
+
+        time.sleep(0.2)
 
     log.info(f"Owner enrichment: {found}/{len(missing)} filled")
     return records
@@ -658,15 +620,13 @@ def score_record(rec):
     if rec.get("owner"):         s += 3
     if rec.get("type") == "TAX": s += 2
     if rec.get("absentee"):      s += 2
-    # Bonus for having sale date — means we know the auction date
     if rec.get("sale_date"):     s = min(s + 1, 10)
     return min(s, 10)
 
 
 def days_until_sale(sale_date_str):
-    """Return days until auction, or None if no sale date."""
     try:
-        sale = datetime.strptime(sale_date_str.strip(), "%m/%d/%Y")
+        sale  = datetime.strptime(sale_date_str.strip(), "%m/%d/%Y")
         delta = (sale - datetime.now()).days
         return max(delta, 0)
     except Exception:
@@ -676,31 +636,31 @@ def days_until_sale(sale_date_str):
 # ── DASHBOARD ─────────────────────────────────────────────────────────────────
 def build_dashboard(records):
     os.makedirs("dashboard", exist_ok=True)
-    # Remove internal scraper fields before saving
-    clean = []
-    for r in records:
-        rc = {k: v for k, v in r.items() if not k.startswith("_")}
-        clean.append(rc)
-
+    clean    = [{k: v for k, v in r.items() if not k.startswith("_")} for r in records]
     json_str = json.dumps(clean, separators=(",", ":"), ensure_ascii=True)
+
     with open("dashboard/records.json", "w", encoding="utf-8") as f:
         f.write(json_str)
+
     with open("dashboard/index.html", "w", encoding="utf-8") as f:
-        f.write('<!DOCTYPE html><html><head><meta charset="UTF-8"/>'
-                '<meta http-equiv="refresh" content="0;url=leads.html"/>'
-                '<title>Redirecting...</title></head>'
-                '<body><script>window.location.href="leads.html";</script></body></html>')
+        f.write(
+            '<!DOCTYPE html><html><head><meta charset="UTF-8"/>'
+            '<meta http-equiv="refresh" content="0;url=leads.html"/>'
+            '<title>Redirecting...</title></head>'
+            '<body><script>window.location.href="leads.html";</script></body></html>'
+        )
+
     log.info(f"Dashboard: {len(clean)} records, {os.path.getsize('dashboard/records.json'):,} bytes")
 
 
 # ── MAIN ──────────────────────────────────────────────────────────────────────
 if __name__ == "__main__":
-    os.makedirs("data", exist_ok=True)
+    os.makedirs("data",      exist_ok=True)
     os.makedirs("dashboard", exist_ok=True)
 
     log.info("=" * 60)
-    log.info("Bexar County Lead Scraper v26.0 (Hybrid)")
-    log.info(f"Primary:   PublicSearch.us (last 7 days)")
+    log.info("Bexar County Lead Scraper v27.0 (Hybrid)")
+    log.info(f"Primary:   PublicSearch.us (last 14 days)")
     log.info(f"Secondary: ArcGIS weekly backfill = {IS_SUNDAY}")
     log.info("=" * 60)
 
@@ -716,12 +676,10 @@ if __name__ == "__main__":
         log.info(f"ArcGIS backfill added {len(arcgis_records)} records")
 
     # ── Step 3: Merge new + backfill + previous ───────────────────────────────
-    # Mark existing records as not new
     for r in prev_records:
         r["is_new"] = False
     all_records = new_records + arcgis_records + prev_records
 
-    # Deduplicate by doc_number (new takes priority over existing)
     seen = {}
     for r in all_records:
         doc = r.get("doc_number", "")
@@ -730,7 +688,7 @@ if __name__ == "__main__":
     records = list(seen.values())
     log.info(f"After dedup: {len(records)} total records")
 
-    # ── Step 4: Enrich missing owners ─────────────────────────────────────────
+    # ── Step 4: Enrich missing owners via ArcGIS parcel lookup ───────────────
     records = enrich_owners(records)
 
     # ── Step 5: Detect duplicates ─────────────────────────────────────────────
@@ -739,21 +697,20 @@ if __name__ == "__main__":
     # ── Step 6: Flag + score ──────────────────────────────────────────────────
     for r in records:
         r["flags"] = []
-        if r["type"] == "TAX":              r["flags"].append("TAX FORE")
-        if r.get("absentee"):               r["flags"].append("ABSENTEE")
-        if r.get("duplicate"):              r["flags"].append("DUPLICATE")
-        if r.get("is_new"):                 r["flags"].append("NEW")
-        if not r.get("owner"):              r["flags"].append("NO OWNER")
-        if r.get("sale_date"):              r["flags"].append("HAS SALE DATE")
-        d = days_until_sale(r.get("sale_date",""))
-        if d is not None and d <= 30:       r["flags"].append("AUCTION SOON")
-        if d is not None and d <= 14:       r["flags"].append("URGENT")
-        r["score"] = score_record(r)
+        if r["type"] == "TAX":                          r["flags"].append("TAX FORE")
+        if r.get("absentee"):                           r["flags"].append("ABSENTEE")
+        if r.get("duplicate"):                          r["flags"].append("DUPLICATE")
+        if r.get("is_new"):                             r["flags"].append("NEW")
+        if not r.get("owner"):                          r["flags"].append("NO OWNER")
+        if r.get("sale_date"):                          r["flags"].append("HAS SALE DATE")
+        d = days_until_sale(r.get("sale_date", ""))
+        if d is not None and d <= 30:                   r["flags"].append("AUCTION SOON")
+        if d is not None and d <= 14:                   r["flags"].append("URGENT")
+        r["score"]           = score_record(r)
         r["days_until_sale"] = d
 
-    # Sort: urgent first, then score, then days until sale
     def sort_key(r):
-        d = r.get("days_until_sale")
+        d       = r.get("days_until_sale")
         urgency = 0 if (d is not None and d <= 14) else (1 if (d is not None and d <= 30) else 2)
         return (urgency, -r["score"], d if d is not None else 9999)
 
@@ -763,12 +720,12 @@ if __name__ == "__main__":
     named    = sum(1 for r in records if r.get("owner"))
     absentee = sum(1 for r in records if r.get("absentee"))
     new_ct   = sum(1 for r in records if r.get("is_new"))
-    urgent   = sum(1 for r in records if "URGENT" in r.get("flags",[]))
-    soon     = sum(1 for r in records if "AUCTION SOON" in r.get("flags",[]))
+    urgent   = sum(1 for r in records if "URGENT"       in r.get("flags", []))
+    soon     = sum(1 for r in records if "AUCTION SOON" in r.get("flags", []))
     has_date = sum(1 for r in records if r.get("sale_date"))
 
     log.info(f"Final: {len(records)} total | {named} named | {absentee} absentee")
-    log.info(f"       {new_ct} new | {has_date} with sale date | {soon} auction ≤30d | {urgent} URGENT ≤14d")
+    log.info(f"       {new_ct} new | {has_date} with sale date | {soon} auction <=30d | {urgent} URGENT <=14d")
 
     # ── Step 8: Save ──────────────────────────────────────────────────────────
     with open("data/records.json", "w", encoding="utf-8") as f:
