@@ -1,23 +1,19 @@
 """
-Bexar County Motivated Seller Lead Scraper v27.4
+Bexar County Motivated Seller Lead Scraper v27.5
 HYBRID SCRAPER:
   Primary:   bexar.tx.publicsearch.us  (Selenium, runs 3x daily)
-             - Single date window (today back 90 days)
-             - Skips rows older than 90 days inline during scraping
-             - Stops pagination as soon as a full page of old rows is seen
-             - 180s flat timeout on every page (no scaling)
-             - Added &sort=desc to URL to match browser behavior
+             - 14-day chunks covering 90-day window (keeps React fast)
+             - Inline row-level date skip (old rows discarded immediately)
+             - 180s timeout per page
+             - &sort=desc in URL
   Secondary: ArcGIS GIS layer (urllib, runs weekly on Sunday)
-             - Backfill only — fills gaps missed by primary
 
-  Owner enrichment: 5-strategy ArcGIS parcel lookup for missing owners
+  Owner enrichment: 5-strategy ArcGIS parcel lookup
 
-  Fixes v27.4:
-    - Skip old rows during scraping (don't rely on post-filter to drop them)
-    - Early-exit pagination when consecutive pages are all-old
-    - 180s flat timeout (was 75s scaling — too short for deep pages)
-    - Added &sort=desc to search URL to match browser sort behavior
-    - Simplified back to single URL window (chunking not needed once old rows skipped)
+  v27.5 fixes:
+    - Combined v27.3 chunking (fast page loads) + v27.4 inline date filtering
+    - Chunks ensure React table renders; inline skip ensures old rows never stored
+    - Filter kept as safety net but should drop 0 (inline skip handles it)
 """
 
 import json
@@ -47,13 +43,14 @@ LAYERS = [
     {"index": 1, "type": "TAX", "label": "Tax Foreclosure"},
 ]
 
-RUN_TIMESTAMP  = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-TODAY          = datetime.now(timezone.utc)
-TODAY_NAIVE    = datetime.now()
-IS_SUNDAY      = TODAY.weekday() == 6
-KEEP_DAYS      = 90
-CUTOFF_DATE    = TODAY_NAIVE - timedelta(days=KEEP_DAYS)
-PAGE_TIMEOUT   = 180  # Fixed generous timeout for all pages
+RUN_TIMESTAMP = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+TODAY         = datetime.now(timezone.utc)
+TODAY_NAIVE   = datetime.now()
+IS_SUNDAY     = TODAY.weekday() == 6
+KEEP_DAYS     = 90
+CHUNK_DAYS    = 14
+PAGE_TIMEOUT  = 180
+CUTOFF_DATE   = TODAY_NAIVE - timedelta(days=KEEP_DAYS)
 
 
 # ── HELPERS ───────────────────────────────────────────────────────────────────
@@ -61,7 +58,7 @@ def fetch_json(url, retries=3):
     for attempt in range(retries):
         try:
             req = urllib.request.Request(
-                url, headers={"User-Agent": "BexarScraper/27.4", "Accept": "application/json"})
+                url, headers={"User-Agent": "BexarScraper/27.5", "Accept": "application/json"})
             with urllib.request.urlopen(req, timeout=25) as r:
                 return json.loads(r.read().decode("utf-8", errors="replace"))
         except Exception as e:
@@ -73,7 +70,6 @@ def fetch_json(url, retries=3):
 
 
 def arcgis_query(layer_url, where, fields="*", limit=200):
-    """Query ArcGIS with pagination to handle exceededTransferLimit."""
     all_features = []
     offset = 0
     while True:
@@ -88,12 +84,10 @@ def arcgis_query(layer_url, where, fields="*", limit=200):
             })
             data = fetch_json(f"{layer_url}/query?{params}")
             if not data or "error" in data:
-                log.debug(f"ArcGIS error: {data.get('error') if data else 'empty'}")
                 break
             batch = data.get("features", [])
             all_features.extend(batch)
-            exceeded = data.get("exceededTransferLimit", False)
-            if not exceeded or len(batch) < limit:
+            if not data.get("exceededTransferLimit", False) or len(batch) < limit:
                 break
             offset += len(batch)
         except Exception as e:
@@ -118,7 +112,7 @@ def load_known_docs():
     try:
         req = urllib.request.Request(
             PAGES_RECORDS + "?v=" + str(int(time.time())),
-            headers={"User-Agent": "BexarScraper/27.4", "Accept": "application/json"})
+            headers={"User-Agent": "BexarScraper/27.5", "Accept": "application/json"})
         with urllib.request.urlopen(req, timeout=15) as r:
             prev = json.loads(r.read().decode("utf-8", errors="replace"))
             docs = {str(rec.get("doc_number", "")) for rec in prev if rec.get("doc_number")}
@@ -130,42 +124,32 @@ def load_known_docs():
 
 
 def parse_recorded_date(date_str):
-    """Parse recorded date string like '4/23/2026' into a datetime."""
     try:
         return datetime.strptime(date_str.strip(), "%m/%d/%Y")
     except Exception:
         return None
 
 
-# ── RECORD FILTER ─────────────────────────────────────────────────────────────
+# ── RECORD FILTER (safety net) ────────────────────────────────────────────────
 def should_keep(rec):
-    """
-    Keep if: future sale date (live auction) OR filed within 90 days.
-    Drop if: completely empty OR older than 90 days with no live auction.
-    """
     if not rec.get("address") and not rec.get("owner") and not rec.get("sale_date"):
         return False
-
     sale_date_str = rec.get("sale_date", "")
     if sale_date_str:
         try:
-            sale_dt = datetime.strptime(sale_date_str.strip(), "%m/%d/%Y")
-            if sale_dt >= TODAY_NAIVE:
+            if datetime.strptime(sale_date_str.strip(), "%m/%d/%Y") >= TODAY_NAIVE:
                 return True
         except Exception:
             pass
-
     date_filed = rec.get("date_filed", "")
     if date_filed:
         try:
             parts = date_filed.strip().split("/")
             if len(parts) == 2:
-                month, year = int(parts[0]), int(parts[1])
-                filed_dt = datetime(year, month, 1)
+                filed_dt = datetime(int(parts[1]), int(parts[0]), 1)
                 return filed_dt >= CUTOFF_DATE
         except Exception:
             pass
-
     return True
 
 
@@ -194,27 +178,19 @@ def get_driver():
         return webdriver.Chrome(options=opts)
 
 
-# ── PUBLICSEARCH SCRAPER ──────────────────────────────────────────────────────
-def scrape_publicsearch(known_docs, keep_days=90):
-    """
-    Scrape publicsearch for the last keep_days days.
-    - Skips rows older than keep_days inline during scraping
-    - Stops pagination when a full page has no rows within keep_days
-    - Uses 180s flat timeout on every page
-    - Added &sort=desc to match browser sort behavior
-    """
+# ── SINGLE CHUNK SCRAPER ──────────────────────────────────────────────────────
+def scrape_chunk(driver, known_docs, start_dt, end_dt):
     from selenium.webdriver.common.by import By
     from selenium.webdriver.support.ui import WebDriverWait
     from selenium.webdriver.support import expected_conditions as EC
 
-    start_date = (TODAY - timedelta(days=keep_days)).strftime("%Y%m%d")
-    end_date   = (TODAY + timedelta(days=1)).strftime("%Y%m%d")
+    start_str = start_dt.strftime("%Y%m%d")
+    end_str   = end_dt.strftime("%Y%m%d")
 
-    # Match exact browser URL format including &sort=desc
     search_url = (
         f"{PUBLICSEARCH_BASE}/results"
         f"?department=FC"
-        f"&instrumentDateRange={start_date}%2C{end_date}"
+        f"&instrumentDateRange={start_str}%2C{end_str}"
         f"&keywordSearch=false"
         f"&limit=50"
         f"&offset=0"
@@ -223,141 +199,168 @@ def scrape_publicsearch(known_docs, keep_days=90):
         f"&sortDir=desc"
     )
 
-    log.info(f"PublicSearch: scraping last {keep_days} days ({start_date} to {end_date})")
-    log.info(f"  Timeout: {PAGE_TIMEOUT}s per page | Skipping rows older than {CUTOFF_DATE.strftime('%Y-%m-%d')}")
-
-    driver  = None
+    wait    = WebDriverWait(driver, PAGE_TIMEOUT)
     records = []
+    page    = 0
+    offset  = 0
+
+    while True:
+        url = search_url.replace("offset=0", f"offset={offset}")
+        log.info(f"    [{start_str}-{end_str}] Page {page+1} (offset={offset})")
+        driver.get(url)
+
+        try:
+            wait.until(EC.presence_of_element_located(
+                (By.CSS_SELECTOR, "td.col-3")))
+            time.sleep(2)
+        except Exception as e:
+            log.info(f"    Timeout page {page+1}: {e}")
+            try:
+                log.info(f"    Title: {driver.title}")
+            except Exception:
+                pass
+            try:
+                time.sleep(10)
+                if not driver.find_elements(By.CSS_SELECTOR, "td.col-3"):
+                    log.info("    No results after retry — stopping chunk")
+                    break
+            except Exception:
+                break
+
+        rows = driver.find_elements(By.CSS_SELECTOR, "table tbody tr")
+        if not rows:
+            col3s = driver.find_elements(By.CSS_SELECTOR, "td.col-3")
+            rows  = []
+            for cell in col3s:
+                try:
+                    rows.append(cell.find_element(By.XPATH, ".."))
+                except Exception:
+                    pass
+        if not rows:
+            log.info("    No rows — stopping chunk")
+            break
+
+        page_new   = 0
+        page_old   = 0
+        page_known = 0
+
+        for row in rows:
+            try:
+                def get_col(row, cls):
+                    try:
+                        return row.find_element(
+                            By.CSS_SELECTOR, f"td.{cls}").text.strip()
+                    except Exception:
+                        return ""
+
+                doc_type_text = get_col(row, "col-3")
+                recorded_date = get_col(row, "col-4")
+                sale_date     = get_col(row, "col-5")
+                doc_number    = get_col(row, "col-6")
+                address       = get_col(row, "col-8")
+
+                doc_number = doc_number.strip()
+                address    = address.replace("\n", " ").replace(",", " ").strip()
+                sale_date  = sale_date.strip() if sale_date.strip() not in ("N/A", "") else ""
+
+                if not doc_number:
+                    continue
+
+                # ── Inline date filter: skip rows older than cutoff ───────────
+                rec_date = parse_recorded_date(recorded_date)
+                if rec_date and rec_date < CUTOFF_DATE:
+                    page_old += 1
+                    continue
+
+                if doc_number in known_docs:
+                    page_known += 1
+                    continue
+
+                rec_type       = "TAX" if "TAX" in doc_type_text.upper() else "NOF"
+                city, zip_code = parse_city_zip(address)
+                month, year    = parse_month_year(recorded_date)
+
+                rec = {
+                    "type":        rec_type,
+                    "address":     clean_address(address),
+                    "owner":       "",
+                    "mail_addr":   "",
+                    "absentee":    False,
+                    "duplicate":   False,
+                    "is_new":      True,
+                    "doc_number":  doc_number,
+                    "year":        year,
+                    "month":       month,
+                    "city":        city,
+                    "zip":         zip_code,
+                    "school_dist": "",
+                    "date_filed":  f"{month}/{year}".strip("/"),
+                    "sale_date":   sale_date,
+                    "run_ts":      RUN_TIMESTAMP,
+                    "flags":       [],
+                    "source":      "publicsearch",
+                }
+                records.append(rec)
+                known_docs.add(doc_number)
+                page_new += 1
+
+            except Exception as e:
+                log.debug(f"    Row parse error: {e}")
+
+        log.info(f"    Page {page+1}: {page_new} new | {page_known} known | {page_old} old")
+
+        # Stop if entire page was old rows
+        if page_old > 0 and page_old == len(rows):
+            log.info("    Full page of old rows — stopping chunk")
+            break
+
+        if len(rows) < 50:
+            break  # Last page
+
+        # Stop if nothing new and past first page
+        if page_new == 0 and page_known == 0 and page > 0:
+            break
+
+        offset += 50
+        page   += 1
+        time.sleep(1.5)
+
+    return records
+
+
+# ── PUBLICSEARCH SCRAPER (chunked) ────────────────────────────────────────────
+def scrape_publicsearch(known_docs):
+    """
+    Scrape in CHUNK_DAYS sliding windows covering KEEP_DAYS total.
+    Most recent chunk first. Single driver reused across all chunks.
+    """
+    chunks    = []
+    chunk_end = TODAY_NAIVE + timedelta(days=1)
+    cutoff    = TODAY_NAIVE - timedelta(days=KEEP_DAYS)
+
+    while chunk_end > cutoff:
+        chunk_start = max(chunk_end - timedelta(days=CHUNK_DAYS), cutoff)
+        chunks.append((chunk_start, chunk_end))
+        chunk_end = chunk_start
+
+    log.info(f"PublicSearch: {len(chunks)} x {CHUNK_DAYS}d chunks = {KEEP_DAYS}d | "
+             f"timeout={PAGE_TIMEOUT}s | cutoff={CUTOFF_DATE.strftime('%Y-%m-%d')}")
+
+    all_records = []
+    driver      = None
 
     try:
         driver = get_driver()
-        wait   = WebDriverWait(driver, PAGE_TIMEOUT)
-        page   = 0
-        offset = 0
 
-        while True:
-            url = search_url.replace("offset=0", f"offset={offset}")
-            log.info(f"  Loading page {page+1} (offset={offset})")
-            driver.get(url)
-
-            try:
-                wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "td.col-3")))
-                time.sleep(3)
-            except Exception as wait_err:
-                log.info(f"  Page {page+1} timed out: {wait_err}")
-                try:
-                    log.info(f"  Title: {driver.title}")
-                    log.info(f"  Source preview: {driver.page_source[:200]}")
-                except Exception:
-                    pass
-                try:
-                    time.sleep(15)
-                    els = driver.find_elements(By.CSS_SELECTOR, "td.col-3")
-                    if not els:
-                        log.info("  No results after retry — stopping")
-                        break
-                except Exception:
-                    break
-
-            rows = driver.find_elements(By.CSS_SELECTOR, "table tbody tr")
-            if not rows:
-                col3_cells = driver.find_elements(By.CSS_SELECTOR, "td.col-3")
-                rows = []
-                for cell in col3_cells:
-                    try:
-                        rows.append(cell.find_element(By.XPATH, ".."))
-                    except Exception:
-                        pass
-            if not rows:
-                log.info("  No rows found — stopping")
-                break
-
-            col3s = driver.find_elements(By.CSS_SELECTOR, "td.col-3")
-            first_sample = col3s[0].text[:30] if col3s else ""
-            log.info(f"  Page {page+1}: {len(rows)} rows | first: {first_sample}")
-
-            page_new      = 0
-            page_old      = 0
-            page_known    = 0
-
-            for row in rows:
-                try:
-                    def get_col(row, col_class):
-                        try:
-                            el = row.find_element(By.CSS_SELECTOR, f"td.{col_class}")
-                            return el.text.strip()
-                        except Exception:
-                            return ""
-
-                    doc_type_text = get_col(row, "col-3")
-                    recorded_date = get_col(row, "col-4")
-                    sale_date     = get_col(row, "col-5")
-                    doc_number    = get_col(row, "col-6")
-                    address       = get_col(row, "col-8")
-
-                    doc_number = doc_number.strip()
-                    address    = address.replace("\n", " ").replace(",", " ").strip()
-                    sale_date  = sale_date.strip() if sale_date.strip() not in ("N/A", "") else ""
-
-                    if not doc_number:
-                        continue
-
-                    # Skip rows older than cutoff — inline filter
-                    rec_date = parse_recorded_date(recorded_date)
-                    if rec_date and rec_date < CUTOFF_DATE:
-                        page_old += 1
-                        continue
-
-                    if doc_number in known_docs:
-                        page_known += 1
-                        continue
-
-                    rec_type       = "TAX" if "TAX" in doc_type_text.upper() else "NOF"
-                    city, zip_code = parse_city_zip(address)
-                    month, year    = parse_month_year(recorded_date)
-
-                    rec = {
-                        "type":        rec_type,
-                        "address":     clean_address(address),
-                        "owner":       "",
-                        "mail_addr":   "",
-                        "absentee":    False,
-                        "duplicate":   False,
-                        "is_new":      True,
-                        "doc_number":  doc_number,
-                        "year":        year,
-                        "month":       month,
-                        "city":        city,
-                        "zip":         zip_code,
-                        "school_dist": "",
-                        "date_filed":  f"{month}/{year}".strip("/"),
-                        "sale_date":   sale_date,
-                        "run_ts":      RUN_TIMESTAMP,
-                        "flags":       [],
-                        "source":      "publicsearch",
-                    }
-                    records.append(rec)
-                    known_docs.add(doc_number)
-                    page_new += 1
-
-                except Exception as e:
-                    log.debug(f"  Row parse error: {e}")
-                    continue
-
-            log.info(f"  Page {page+1}: {page_new} new | {page_known} known | {page_old} old/skipped")
-
-            # Stop if entire page was old records — we've gone past the cutoff
-            if page_old == len(rows):
-                log.info("  Full page of old records — stopping pagination")
-                break
-
-            if len(rows) < 50:
-                log.info("  Last page reached")
-                break
-
-            offset += 50
-            page   += 1
-            time.sleep(2)
+        for i, (cs, ce) in enumerate(chunks):
+            log.info(f"Chunk {i+1}/{len(chunks)}: "
+                     f"{cs.strftime('%Y-%m-%d')} → {ce.strftime('%Y-%m-%d')}")
+            chunk_recs = scrape_chunk(driver, known_docs, cs, ce)
+            all_records.extend(chunk_recs)
+            log.info(f"  Chunk {i+1} done: {len(chunk_recs)} new "
+                     f"(total so far: {len(all_records)})")
+            if i < len(chunks) - 1:
+                time.sleep(2)
 
     except Exception as e:
         log.error(f"PublicSearch scrape error: {e}")
@@ -368,8 +371,8 @@ def scrape_publicsearch(known_docs, keep_days=90):
             except Exception:
                 pass
 
-    log.info(f"PublicSearch: {len(records)} new records scraped")
-    return records
+    log.info(f"PublicSearch: {len(all_records)} total new records")
+    return all_records
 
 
 # ── ADDRESS PARSING ───────────────────────────────────────────────────────────
@@ -386,15 +389,15 @@ def parse_city_zip(raw):
     zip_code = ""
     if len(parts) >= 4:
         city = parts[1].strip().upper()
-        zip_match = re.search(r'\b(\d{5})\b', parts[3])
-        zip_code = zip_match.group(1) if zip_match else parts[3].strip()
+        m    = re.search(r'\b(\d{5})\b', parts[3])
+        zip_code = m.group(1) if m else parts[3].strip()
     elif len(parts) == 3:
         city = parts[1].strip().upper()
-        zip_match = re.search(r'\b(\d{5})\b', parts[2])
-        zip_code = zip_match.group(1) if zip_match else ""
+        m    = re.search(r'\b(\d{5})\b', parts[2])
+        zip_code = m.group(1) if m else ""
     else:
-        zip_match = re.search(r'\b(\d{5})\b', raw)
-        zip_code = zip_match.group(1) if zip_match else ""
+        m = re.search(r'\b(\d{5})\b', raw)
+        zip_code = m.group(1) if m else ""
     return city, zip_code
 
 
@@ -403,7 +406,7 @@ def parse_month_year(date_str):
         parts = date_str.strip().split("/")
         if len(parts) >= 3:
             return parts[0], parts[2]
-        elif len(parts) == 2:
+        if len(parts) == 2:
             return parts[0], parts[1]
     except Exception:
         pass
@@ -419,8 +422,7 @@ def fetch_arcgis_backfill(known_docs):
         idx       = layer["index"]
         layer_url = f"{FORECLOSURE_BASE}/{idx}"
         log.info(f"  Layer {idx} ({layer['label']})...")
-        features = []
-        offset   = 0
+        features, offset = [], 0
 
         while True:
             try:
@@ -434,12 +436,12 @@ def fetch_arcgis_backfill(known_docs):
                 data  = fetch_json(f"{layer_url}/query?{params}")
                 batch = data.get("features", [])
                 features.extend(batch)
-                log.info(f"    offset={offset}: {len(batch)} (total: {len(features)})")
+                log.info(f"    offset={offset}: {len(batch)} (total={len(features)})")
                 if len(batch) < 1000:
                     break
                 offset += len(batch)
             except Exception as e:
-                log.error(f"Layer {idx} query error: {e}")
+                log.error(f"Layer {idx} error: {e}")
                 break
 
         for feat in features:
@@ -447,10 +449,8 @@ def fetch_arcgis_backfill(known_docs):
             month = pick(a, "MONTH", "MO", default="")
             year  = pick(a, "YEAR",  "YR", default="")
             doc   = pick(a, "DOC_NUMBER", "DOCNUM", "DOC_NUM")
-
             if doc in known_docs:
                 continue
-
             raw.append({
                 "type":        layer["type"],
                 "address":     pick(a, "ADDRESS", "SITUS_ADD", "ADDR"),
@@ -484,38 +484,25 @@ def parse_address_parts(address):
     parts = address.strip().upper().split()
     if not parts or not parts[0].isdigit():
         return None
-
     num  = parts[0]
-    rest = parts[1:] if len(parts) > 1 else []
-
+    rest = parts[1:]
     SUFFIXES = {
-        "ST", "AVE", "DR", "RD", "LN", "CT", "CIR", "BLVD", "WAY", "PL",
-        "TRL", "PKWY", "HWY", "LOOP", "PASS", "CV", "PT", "HLS", "TRAIL",
-        "GROVE", "RIDGE", "CREEK", "LAKE", "PARK", "GLEN", "RUN", "XING",
-        "STREET", "AVENUE", "DRIVE", "ROAD", "LANE", "COURT", "CIRCLE",
-        "BOULEVARD", "PARKWAY", "HIGHWAY",
+        "ST","AVE","DR","RD","LN","CT","CIR","BLVD","WAY","PL","TRL","PKWY",
+        "HWY","LOOP","PASS","CV","PT","HLS","TRAIL","GROVE","RIDGE","CREEK",
+        "LAKE","PARK","GLEN","RUN","XING","STREET","AVENUE","DRIVE","ROAD",
+        "LANE","COURT","CIRCLE","BOULEVARD","PARKWAY","HIGHWAY",
     }
-
     words  = rest[:]
     suffix = ""
     if words and words[-1] in SUFFIXES:
-        suffix = words[-1]
-        words  = words[:-1]
-
-    return {
-        "num":    num,
-        "street": " ".join(rest),
-        "words":  words,
-        "suffix": suffix,
-        "full":   address.strip().upper(),
-    }
+        suffix = words.pop()
+    return {"num": num, "street": " ".join(rest), "words": words,
+            "suffix": suffix, "full": address.strip().upper()}
 
 
 def match_features(feats, num, required_word=None):
-    """Confirmed field names: Situs, Owner, AddrLn1, AddrCity, Zip"""
     for feat in feats:
-        a = feat.get("attributes", {})
-
+        a       = feat.get("attributes", {})
         owner   = str(a.get("Owner",    "") or "").strip()
         situs   = str(a.get("Situs",    "") or "").strip()
         addr1   = str(a.get("AddrLn1",  "") or "").strip()
@@ -524,26 +511,17 @@ def match_features(feats, num, required_word=None):
 
         if not owner or owner.upper() in ("NULL", "NONE", ""):
             continue
-
         situs_norm = normalize(situs)
-
         if not situs_norm.startswith(num + " "):
             continue
-
         if required_word and required_word not in situs_norm:
             continue
 
         mail_addr = ""
         if addr1 and addr1.upper() not in ("NULL", "NONE", ""):
             mail_addr = f"{addr1} {city} {zipcode}".strip()
-
         absentee = bool(mail_addr) and not normalize(mail_addr).startswith(num + " ")
-
-        return {
-            "owner":     owner.upper(),
-            "mail_addr": mail_addr,
-            "absentee":  absentee,
-        }
+        return {"owner": owner.upper(), "mail_addr": mail_addr, "absentee": absentee}
     return None
 
 
@@ -551,59 +529,41 @@ def lookup_owner(address, zipcode=""):
     parsed = parse_address_parts(address)
     if not parsed:
         return {}
-
     num        = parsed["num"]
     words      = parsed["words"]
     first_word = words[0] if words else ""
     FIELDS     = "Situs,Owner,AddrLn1,AddrCity,Zip"
 
     if len(words) >= 2:
-        w1, w2 = words[0], words[1]
-        feats  = arcgis_query(PARCELS_URL,
-                              f"Situs LIKE '{num} {w1} {w2}%'",
-                              fields=FIELDS, limit=50)
-        result = match_features(feats, num, first_word)
-        if result:
-            result["method"] = "s1_two_word"
-            return result
+        r = match_features(
+            arcgis_query(PARCELS_URL, f"Situs LIKE '{num} {words[0]} {words[1]}%'",
+                         fields=FIELDS, limit=50), num, first_word)
+        if r: r["method"] = "s1_two_word"; return r
 
     if first_word and len(first_word) >= 3:
-        feats  = arcgis_query(PARCELS_URL,
-                              f"Situs LIKE '{num} {first_word}%'",
-                              fields=FIELDS, limit=100)
-        result = match_features(feats, num, first_word)
-        if result:
-            result["method"] = "s2_num_first_word"
-            return result
+        r = match_features(
+            arcgis_query(PARCELS_URL, f"Situs LIKE '{num} {first_word}%'",
+                         fields=FIELDS, limit=100), num, first_word)
+        if r: r["method"] = "s2_first_word"; return r
 
-    feats  = arcgis_query(PARCELS_URL,
-                          f"Situs LIKE '{num} %'",
-                          fields=FIELDS, limit=200)
-    result = match_features(feats, num, first_word if first_word else None)
-    if result:
-        result["method"] = "s3_num_only"
-        return result
+    r = match_features(
+        arcgis_query(PARCELS_URL, f"Situs LIKE '{num} %'",
+                     fields=FIELDS, limit=200), num, first_word or None)
+    if r: r["method"] = "s3_num_only"; return r
 
     if zipcode and len(zipcode) >= 5:
-        zip5  = zipcode[:5]
-        feats = arcgis_query(PARCELS_URL,
-                             f"Zip = '{zip5}'",
-                             fields=FIELDS, limit=1000)
-        result = match_features(feats, num, None)
-        if result:
-            result["method"] = "s4_zip_scan"
-            return result
+        r = match_features(
+            arcgis_query(PARCELS_URL, f"Zip = '{zipcode[:5]}'",
+                         fields=FIELDS, limit=1000), num, None)
+        if r: r["method"] = "s4_zip_scan"; return r
 
     for word in words[1:]:
         if len(word) < 4:
             continue
-        feats  = arcgis_query(PARCELS_URL,
-                              f"Situs LIKE '{num} %{word}%'",
-                              fields=FIELDS, limit=100)
-        result = match_features(feats, num, word)
-        if result:
-            result["method"] = "s5_alt_word"
-            return result
+        r = match_features(
+            arcgis_query(PARCELS_URL, f"Situs LIKE '{num} %{word}%'",
+                         fields=FIELDS, limit=100), num, word)
+        if r: r["method"] = "s5_alt_word"; return r
 
     return {}
 
@@ -612,13 +572,11 @@ def enrich_owners(records):
     missing = [r for r in records if not r.get("owner")]
     log.info(f"Owner enrichment: {len(missing)} records need lookup")
     found = 0
-
     for i, rec in enumerate(missing):
         addr = rec.get("address", "")
         zip_ = rec.get("zip", "")
         if not addr:
             continue
-
         result = lookup_owner(addr, zip_)
         if result and result.get("owner"):
             rec["owner"]     = result["owner"]
@@ -626,12 +584,11 @@ def enrich_owners(records):
             rec["absentee"]  = result.get("absentee", False)
             found += 1
             if found <= 10 or found % 25 == 0:
-                log.info(f"  [{i+1}/{len(missing)}] {addr} -> {result['owner']} [{result.get('method','')}]")
+                log.info(f"  [{i+1}/{len(missing)}] {addr} -> {result['owner']} "
+                         f"[{result.get('method','')}]")
         else:
-            log.debug(f"  [{i+1}/{len(missing)}] No match: {addr} (zip={zip_})")
-
+            log.debug(f"  [{i+1}/{len(missing)}] No match: {addr}")
         time.sleep(0.2)
-
     log.info(f"Owner enrichment: {found}/{len(missing)} filled")
     return records
 
@@ -639,7 +596,7 @@ def enrich_owners(records):
 # ── DUPLICATE DETECTION ───────────────────────────────────────────────────────
 def detect_duplicates(records):
     from collections import Counter
-    owner_counts = Counter(
+    counts = Counter(
         r["owner"].upper().strip()
         for r in records
         if r.get("owner") and r["owner"].upper().strip() not in ("", "NULL")
@@ -647,7 +604,7 @@ def detect_duplicates(records):
     dupes = 0
     for r in records:
         key = (r.get("owner") or "").upper().strip()
-        if key and owner_counts[key] > 1:
+        if key and counts[key] > 1:
             r["duplicate"] = True
             dupes += 1
     log.info(f"Duplicate owners flagged: {dupes}")
@@ -667,8 +624,7 @@ def score_record(rec):
 
 def days_until_sale(sale_date_str):
     try:
-        sale  = datetime.strptime(sale_date_str.strip(), "%m/%d/%Y")
-        delta = (sale - datetime.now()).days
+        delta = (datetime.strptime(sale_date_str.strip(), "%m/%d/%Y") - datetime.now()).days
         return max(delta, 0)
     except Exception:
         return None
@@ -679,18 +635,13 @@ def build_dashboard(records):
     os.makedirs("dashboard", exist_ok=True)
     clean    = [{k: v for k, v in r.items() if not k.startswith("_")} for r in records]
     json_str = json.dumps(clean, separators=(",", ":"), ensure_ascii=True)
-
     with open("dashboard/records.json", "w", encoding="utf-8") as f:
         f.write(json_str)
-
     with open("dashboard/index.html", "w", encoding="utf-8") as f:
-        f.write(
-            '<!DOCTYPE html><html><head><meta charset="UTF-8"/>'
-            '<meta http-equiv="refresh" content="0;url=leads.html"/>'
-            '<title>Redirecting...</title></head>'
-            '<body><script>window.location.href="leads.html";</script></body></html>'
-        )
-
+        f.write('<!DOCTYPE html><html><head><meta charset="UTF-8"/>'
+                '<meta http-equiv="refresh" content="0;url=leads.html"/>'
+                '<title>Redirecting...</title></head>'
+                '<body><script>window.location.href="leads.html";</script></body></html>')
     log.info(f"Dashboard: {len(clean)} records, "
              f"{os.path.getsize('dashboard/records.json'):,} bytes")
 
@@ -701,17 +652,16 @@ if __name__ == "__main__":
     os.makedirs("dashboard", exist_ok=True)
 
     log.info("=" * 60)
-    log.info("Bexar County Lead Scraper v27.4 (Hybrid)")
-    log.info(f"Primary:   PublicSearch.us ({KEEP_DAYS}d window, {PAGE_TIMEOUT}s timeout)")
+    log.info("Bexar County Lead Scraper v27.5 (Hybrid)")
+    log.info(f"Primary:   PublicSearch.us ({KEEP_DAYS}d window, {CHUNK_DAYS}d chunks, {PAGE_TIMEOUT}s timeout)")
     log.info(f"Secondary: ArcGIS weekly backfill = {IS_SUNDAY}")
-    log.info(f"Filter:    {KEEP_DAYS}-day cutoff ({CUTOFF_DATE.strftime('%Y-%m-%d')}) "
-             f"| live auctions always kept")
+    log.info(f"Filter:    {KEEP_DAYS}-day cutoff ({CUTOFF_DATE.strftime('%Y-%m-%d')}) | live auctions always kept")
     log.info("=" * 60)
 
     known_docs, prev_records = load_known_docs()
 
-    # ── Step 1: PublicSearch scrape ───────────────────────────────────────────
-    new_records = scrape_publicsearch(known_docs, keep_days=KEEP_DAYS)
+    # ── Step 1: PublicSearch chunked scrape ───────────────────────────────────
+    new_records = scrape_publicsearch(known_docs)
 
     # ── Step 2: ArcGIS weekly backfill (Sundays only) ────────────────────────
     arcgis_records = []
@@ -719,54 +669,51 @@ if __name__ == "__main__":
         arcgis_records = fetch_arcgis_backfill(known_docs)
         log.info(f"ArcGIS backfill added {len(arcgis_records)} records")
 
-    # ── Step 3: Merge new + backfill + previous ───────────────────────────────
+    # ── Step 3: Merge ─────────────────────────────────────────────────────────
     for r in prev_records:
         r["is_new"] = False
-    all_records = new_records + arcgis_records + prev_records
-
     seen = {}
-    for r in all_records:
+    for r in new_records + arcgis_records + prev_records:
         doc = r.get("doc_number", "")
         if doc and doc not in seen:
             seen[doc] = r
     records = list(seen.values())
     log.info(f"After dedup: {len(records)} total records")
 
-    # ── Step 4: Apply 90-day filter ───────────────────────────────────────────
-    before_filter = len(records)
+    # ── Step 4: 90-day filter (safety net) ───────────────────────────────────
+    before = len(records)
     records = [r for r in records if should_keep(r)]
-    dropped = before_filter - len(records)
-    log.info(f"After {KEEP_DAYS}-day filter: {len(records)} records kept, {dropped} dropped")
+    log.info(f"After filter: {len(records)} kept, {before - len(records)} dropped")
 
     # ── Step 5: Rebuild known_docs from filtered set ──────────────────────────
     known_docs = {str(r.get("doc_number", "")) for r in records if r.get("doc_number")}
     log.info(f"known_docs rebuilt: {len(known_docs)} active doc numbers")
 
-    # ── Step 6: Enrich missing owners ─────────────────────────────────────────
+    # ── Step 6: Owner enrichment ──────────────────────────────────────────────
     records = enrich_owners(records)
 
-    # ── Step 7: Detect duplicates ─────────────────────────────────────────────
+    # ── Step 7: Duplicate detection ───────────────────────────────────────────
     records = detect_duplicates(records)
 
     # ── Step 8: Flag + score ──────────────────────────────────────────────────
     for r in records:
         r["flags"] = []
-        if r["type"] == "TAX":                          r["flags"].append("TAX FORE")
-        if r.get("absentee"):                           r["flags"].append("ABSENTEE")
-        if r.get("duplicate"):                          r["flags"].append("DUPLICATE")
-        if r.get("is_new"):                             r["flags"].append("NEW")
-        if not r.get("owner"):                          r["flags"].append("NO OWNER")
-        if r.get("sale_date"):                          r["flags"].append("HAS SALE DATE")
+        if r["type"] == "TAX":              r["flags"].append("TAX FORE")
+        if r.get("absentee"):               r["flags"].append("ABSENTEE")
+        if r.get("duplicate"):              r["flags"].append("DUPLICATE")
+        if r.get("is_new"):                 r["flags"].append("NEW")
+        if not r.get("owner"):              r["flags"].append("NO OWNER")
+        if r.get("sale_date"):              r["flags"].append("HAS SALE DATE")
         d = days_until_sale(r.get("sale_date", ""))
-        if d is not None and d <= 30:                   r["flags"].append("AUCTION SOON")
-        if d is not None and d <= 14:                   r["flags"].append("URGENT")
+        if d is not None and d <= 30:       r["flags"].append("AUCTION SOON")
+        if d is not None and d <= 14:       r["flags"].append("URGENT")
         r["score"]           = score_record(r)
         r["days_until_sale"] = d
 
     def sort_key(r):
-        d       = r.get("days_until_sale")
-        urgency = 0 if (d is not None and d <= 14) else (1 if (d is not None and d <= 30) else 2)
-        return (urgency, -r["score"], d if d is not None else 9999)
+        d = r.get("days_until_sale")
+        u = 0 if (d is not None and d <= 14) else (1 if (d is not None and d <= 30) else 2)
+        return (u, -r["score"], d if d is not None else 9999)
 
     records.sort(key=sort_key)
 
@@ -785,7 +732,6 @@ if __name__ == "__main__":
     # ── Step 10: Save ─────────────────────────────────────────────────────────
     with open("data/records.json", "w", encoding="utf-8") as f:
         json.dump(records, f, indent=2)
-
     build_dashboard(records)
     log.info("Done.")
 
