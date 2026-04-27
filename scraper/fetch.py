@@ -160,7 +160,7 @@ def scrape_publicsearch(known_docs, days_back=7):
 
     try:
         driver = get_driver()
-        wait   = WebDriverWait(driver, 30)
+        wait   = WebDriverWait(driver, 60)
 
         page   = 0
         offset = 0
@@ -170,21 +170,48 @@ def scrape_publicsearch(known_docs, days_back=7):
             log.info(f"  Loading page {page+1} (offset={offset}): {url}")
             driver.get(url)
 
-            # Wait for results table to load
+            # Wait for results table to load — wait for col-3 cells (doc type column)
             try:
-                wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "table tbody tr, .result-row, [data-testid='result-row']")))
-                time.sleep(2)  # Extra wait for full render
-            except Exception:
-                log.info("  No results found or page timed out")
-                break
+                wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "td.col-3")))
+                time.sleep(3)  # Extra wait for full render
+            except Exception as wait_err:
+                log.info(f"  Page timed out waiting for results: {wait_err}")
+                # Log page title and partial source for debugging
+                try:
+                    log.info(f"  Page title: {driver.title}")
+                    src = driver.page_source[:500]
+                    log.info(f"  Page source preview: {src}")
+                except Exception:
+                    pass
+                # Try one more time with longer wait
+                try:
+                    time.sleep(15)
+                    els = driver.find_elements(By.CSS_SELECTOR, "td.col-3")
+                    if not els:
+                        # Try alternate selector
+                        els2 = driver.find_elements(By.CSS_SELECTOR, "table tbody tr")
+                        log.info(f"  Alternate selector found {len(els2)} rows")
+                        if not els2:
+                            log.info("  Confirmed no results — stopping pagination")
+                            break
+                except Exception:
+                    break
 
-            # Try multiple selectors for result rows
+            # Get rows — find all tr elements that contain col-3 cells
             rows = driver.find_elements(By.CSS_SELECTOR, "table tbody tr")
             if not rows:
-                rows = driver.find_elements(By.CSS_SELECTOR, "[class*='result'][class*='row'], [class*='ResultRow']")
+                # Fallback: find parent tr of any col-3 cell
+                col3_cells = driver.find_elements(By.CSS_SELECTOR, "td.col-3")
+                rows = []
+                for cell in col3_cells:
+                    try:
+                        rows.append(cell.find_element(By.XPATH, ".."))
+                    except Exception:
+                        pass
             if not rows:
-                log.info("  No rows found on this page")
+                log.info("  No rows found on this page — stopping")
                 break
+            log.info(f"  Found {len(rows)} rows, first col-3 sample: {driver.find_elements(By.CSS_SELECTOR, 'td.col-3')[0].text[:30] if driver.find_elements(By.CSS_SELECTOR, 'td.col-3') else 'none'}")
 
             log.info(f"  Found {len(rows)} rows on page {page+1}")
             page_new = 0
