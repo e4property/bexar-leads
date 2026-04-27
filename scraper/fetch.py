@@ -30,10 +30,6 @@ LAYERS = [
     {"index": 1, "type": "TAX", "label": "Tax Foreclosure"},
 ]
 
-GHL_API_KEY     = os.environ.get("GHL_API_KEY", "")
-GHL_LOCATION_ID = os.environ.get("GHL_LOCATION_ID", "UAOJlgeerLu3GChP9jDJ")
-GHL_API_BASE    = "https://services.leadconnectorhq.com"
-
 RUN_TIMESTAMP = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
@@ -122,7 +118,6 @@ def parse_address(address):
 
 
 def match_features(feats, num, first_word=None):
-    """Match features by house number, optionally also checking street word."""
     for feat in feats:
         a       = feat["attributes"]
         owner   = str(a.get("Owner")    or "").strip()
@@ -138,7 +133,6 @@ def match_features(feats, num, first_word=None):
         if not situs_norm.startswith(num + " "):
             continue
 
-        # If first_word provided, it must appear in situs
         if first_word and first_word not in situs_norm:
             continue
 
@@ -149,14 +143,6 @@ def match_features(feats, num, first_word=None):
 
 
 def lookup_owner(address, zipcode=""):
-    """
-    5-strategy owner lookup:
-    S1: Two-word street search + house number filter
-    S2: One-word street search + house number filter
-    S3: Alternate words in street name
-    S4: ZIP code + house number (no street name needed)
-    S5: House number only - broad search, strict number match
-    """
     parsed = parse_address(address)
     if not parsed:
         return {}
@@ -165,7 +151,6 @@ def lookup_owner(address, zipcode=""):
     words      = parsed["words"]
     first_word = words[0] if words else ""
 
-    # Strategy 1: Two-word street search
     if len(words) >= 2:
         feats  = arcgis_query(PARCELS_URL, f"Situs LIKE '%{words[0]} {words[1]}%'",
                               fields="Situs,Owner,AddrLn1,AddrCity,Zip", limit=200)
@@ -173,7 +158,6 @@ def lookup_owner(address, zipcode=""):
         if result:
             result["method"] = "s1_two_word"; return result
 
-    # Strategy 2: One-word street search
     if first_word and len(first_word) >= 3:
         feats  = arcgis_query(PARCELS_URL, f"Situs LIKE '%{first_word}%'",
                               fields="Situs,Owner,AddrLn1,AddrCity,Zip", limit=200)
@@ -181,7 +165,6 @@ def lookup_owner(address, zipcode=""):
         if result:
             result["method"] = "s2_one_word"; return result
 
-    # Strategy 3: Alternate words in street name
     for word in words[1:]:
         if len(word) < 4:
             continue
@@ -191,18 +174,14 @@ def lookup_owner(address, zipcode=""):
         if result:
             result["method"] = "s3_alt_word"; return result
 
-    # Strategy 4: ZIP code filter + house number
-    # Query parcels where Zip matches and Situs starts with our number
     if zipcode and len(zipcode) >= 5:
         zip5 = zipcode[:5]
         feats = arcgis_query(PARCELS_URL, f"Zip = '{zip5}'",
                              fields="Situs,Owner,AddrLn1,AddrCity,Zip", limit=1000)
-        result = match_features(feats, num, None)  # No street word check
+        result = match_features(feats, num, None)
         if result:
             result["method"] = "s4_zip_match"; return result
 
-    # Strategy 5: Broad house number search - no street name filter at all
-    # Only use for longer/unique house numbers (5+ digits) to avoid false matches
     if len(num) >= 5:
         feats = arcgis_query(PARCELS_URL, f"Situs LIKE '%{num}%'",
                              fields="Situs,Owner,AddrLn1,AddrCity,Zip", limit=50)
@@ -334,122 +313,6 @@ def score_record(rec):
     return min(s, 10)
 
 
-def ghl_req(method, endpoint, payload=None):
-    try:
-        import requests
-    except ImportError:
-        return None
-    url = f"{GHL_API_BASE}{endpoint}"
-    h = {
-        "Authorization": f"Bearer {GHL_API_KEY}",
-        "Content-Type":  "application/json",
-        "Accept":        "application/json",
-        "Version":       "2021-07-28",
-        "User-Agent":    "Mozilla/5.0 Chrome/120.0.0.0",
-        "Origin":        "https://app.justjarvis.com",
-        "Referer":       "https://app.justjarvis.com/",
-    }
-    try:
-        resp = requests.get(url, headers=h, timeout=20) if method == "GET" \
-               else requests.post(url, headers=h, json=payload, timeout=20) \
-               if method == "POST" \
-               else requests.put(url, headers=h, json=payload, timeout=20)
-        if resp.status_code in (200, 201): return resp.json()
-        log.warning(f"GHL {resp.status_code}: {resp.text[:150]}")
-        return {"_error": resp.status_code}
-    except Exception as e:
-        return {"_error": str(e)}
-
-
-def build_contact_payload(rec, location_id):
-    owner = rec.get("owner", "").strip()
-    parts = owner.split()
-    first = parts[0].title() if parts else owner
-    last  = " ".join(parts[1:]).title() if len(parts) > 1 else ""
-    doc   = rec.get("doc_number", "")
-    tags  = ["bexar-lead", rec["type"], f"doc-{doc}"]
-    if rec.get("absentee"):      tags += ["absentee-owner", "high-priority"]
-    if rec.get("duplicate"):     tags.append("duplicate-owner")
-    if rec.get("score", 0) >= 7: tags.append("hot-lead")
-    if rec.get("is_new"):        tags.append("new-lead")
-    lt = "Tax Foreclosure" if rec["type"] == "TAX" else "Mortgage Foreclosure"
-    return {
-        "locationId": location_id,
-        "firstName":  first,
-        "lastName":   last,
-        "name":       owner.title(),
-        "address1":   rec.get("address", ""),
-        "city":       rec.get("city", "San Antonio"),
-        "state":      "TX",
-        "country":    "US",
-        "postalCode": rec.get("zip", ""),
-        "tags":       tags,
-        "source":     "Bexar County Scraper",
-        "customFields": [
-            {"key": "lead_type",        "field_value": lt},
-            {"key": "doc_number",       "field_value": doc},
-            {"key": "date_filed",       "field_value": rec.get("date_filed", "")},
-            {"key": "score",            "field_value": str(rec.get("score", 0))},
-            {"key": "property_address", "field_value": rec.get("address", "")},
-            {"key": "school_district",  "field_value": rec.get("school_dist", "")},
-            {"key": "absentee_owner",   "field_value": "Yes" if rec.get("absentee") else "No"},
-            {"key": "mailing_address",  "field_value": rec.get("mail_addr", "")},
-            {"key": "duplicate_owner",  "field_value": "Yes" if rec.get("duplicate") else "No"},
-        ],
-    }
-
-
-def push_ghl(records):
-    if not GHL_API_KEY:
-        log.warning("GHL_API_KEY not set"); return
-
-    named = [r for r in records if r.get("owner")]
-    log.info(f"GHL: {len(named)} named leads to upsert")
-
-    test = ghl_req("GET", f"/contacts/?locationId={GHL_LOCATION_ID}&limit=1")
-    if not test or "_error" in test:
-        log.error("GHL auth failed"); return
-    log.info(f"GHL auth OK - {test.get('total','?')} existing contacts")
-
-    created = updated = errors = 0
-
-    for i, rec in enumerate(sorted(named, key=lambda r: -r.get("score", 0))):
-        doc     = rec.get("doc_number", "")
-        owner   = rec.get("owner", "").strip()
-        payload = build_contact_payload(rec, GHL_LOCATION_ID)
-
-        existing_id = None
-        if doc:
-            r = ghl_req("GET", f"/contacts/?locationId={GHL_LOCATION_ID}&query={urllib.parse.quote(doc)}&limit=5")
-            if r and not r.get("_error"):
-                for c in r.get("contacts", []):
-                    if f"doc-{doc}" in (c.get("tags") or []):
-                        existing_id = c.get("id")
-                        break
-
-        if existing_id:
-            update_payload = {k: v for k, v in payload.items() if k != "locationId"}
-            result = ghl_req("PUT", f"/contacts/{existing_id}", update_payload)
-            if result and not result.get("_error"):
-                updated += 1
-                if updated <= 5 or updated % 50 == 0:
-                    log.info(f"  ~ [{i+1}] UPDATED {owner} - {rec.get('address')}")
-            else:
-                errors += 1
-        else:
-            result = ghl_req("POST", "/contacts/", payload)
-            if result and result.get("contact"):
-                created += 1
-                ab  = " ABSENTEE" if rec.get("absentee") else ""
-                log.info(f"  + [{i+1}]{ab} CREATED {owner} - {rec.get('address')}")
-            else:
-                errors += 1
-
-        time.sleep(0.15)
-
-    log.info(f"GHL done - Created:{created} | Updated:{updated} | Errors:{errors}")
-
-
 def build_dashboard(records):
     os.makedirs("dashboard", exist_ok=True)
     json_str = json.dumps(records, separators=(",", ":"), ensure_ascii=True)
@@ -499,5 +362,4 @@ if __name__ == "__main__":
         json.dump(records, f, indent=2)
 
     build_dashboard(records)
-    push_ghl(records)
-
+    # GHL push removed - contacts now created only via dashboard when phone number is entered
