@@ -952,9 +952,9 @@ async function pushGHL(lead, phone) {
       ]
     };
 
-    const res = await fetch('https://rest.gohighlevel.com/v1/contacts/', {
+    const res = await fetch('https://services.leadconnectorhq.com/contacts/', {
       method:'POST',
-      headers:{'Authorization':'Bearer '+S.ghlApiKey,'Content-Type':'application/json'},
+      headers:{'Authorization':'Bearer '+S.ghlApiKey,'Content-Type':'application/json','Version':'2021-07-28'},
       body:JSON.stringify(body)
     });
     const data = await res.json();
@@ -967,9 +967,9 @@ async function updateGHLTag(contactId, dispo) {
   const tagMap = {contacted:'dispo_contacted',responded:'dispo_responded',deal:'dispo_deal',dead:'dispo_dead'};
   const tag = tagMap[dispo]; if(!tag) return;
   try {
-    await fetch(`https://rest.gohighlevel.com/v1/contacts/${contactId}/tags/`,{
+    await fetch(`https://services.leadconnectorhq.com/contacts/${contactId}/tags/`,{
       method:'POST',
-      headers:{'Authorization':'Bearer '+S.ghlApiKey,'Content-Type':'application/json'},
+      headers:{'Authorization':'Bearer '+S.ghlApiKey,'Content-Type':'application/json','Version':'2021-07-28'},
       body:JSON.stringify({tags:[tag]})
     });
   } catch(e){}
