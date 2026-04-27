@@ -191,25 +191,31 @@ def scrape_publicsearch(known_docs, days_back=7):
 
             for row in rows:
                 try:
-                    cells = row.find_elements(By.TAG_NAME, "td")
-                    if len(cells) < 4:
-                        continue
+                    # Use class-based selectors — confirmed column mapping:
+                    # col-0=checkbox, col-1=dropdown, col-2=dropdown,
+                    # col-3=doc_type, col-4=recorded_date, col-5=sale_date,
+                    # col-6=doc_number, col-7=remarks, col-8=address
+                    def get_col(row, col_class):
+                        try:
+                            el = row.find_element(By.CSS_SELECTOR, f"td.{col_class}")
+                            return el.text.strip()
+                        except Exception:
+                            return ""
 
-                    # Extract visible cell data
-                    cell_texts = [c.text.strip() for c in cells]
-
-                    # Find doc type, recorded date, sale date, doc number, address
-                    # Column order: DOC TYPE | RECORDED DATE | SALE DATE | DOC NUMBER | REMARKS | PROPERTY ADDRESS
-                    doc_type_text = cell_texts[0] if len(cell_texts) > 0 else ""
-                    recorded_date = cell_texts[1] if len(cell_texts) > 1 else ""
-                    sale_date     = cell_texts[2] if len(cell_texts) > 2 else ""
-                    doc_number    = cell_texts[3] if len(cell_texts) > 3 else ""
-                    address       = cell_texts[5] if len(cell_texts) > 5 else (cell_texts[4] if len(cell_texts) > 4 else "")
+                    doc_type_text = get_col(row, "col-3")
+                    recorded_date = get_col(row, "col-4")
+                    sale_date     = get_col(row, "col-5")
+                    doc_number    = get_col(row, "col-6")
+                    address       = get_col(row, "col-8")
 
                     # Clean up
                     doc_number = doc_number.strip()
-                    address    = address.replace("\n", " ").strip()
-                    sale_date  = sale_date.strip() if sale_date.strip() != "N/A" else ""
+                    address    = address.replace("\n", " ").replace(",", " ").strip()
+                    sale_date  = sale_date.strip() if sale_date.strip() not in ("N/A", "") else ""
+
+                    # Log first few for debugging
+                    if not doc_type_text and not doc_number:
+                        continue
 
                     if not doc_number:
                         continue
@@ -365,35 +371,35 @@ def extract_grantor(page_source, driver):
 
 # ── ADDRESS PARSING ───────────────────────────────────────────────────────────
 def clean_address(raw):
-    """Extract just the street address from a full address string."""
+    """Extract just the street address — format: STREET, CITY, STATE, ZIP"""
     if not raw:
         return ""
-    # Remove city/state/zip suffixes
-    import re
-    # Pattern: ADDRESS CITY STATE ZIP or ADDRESS, CITY STATE ZIP
-    parts = re.split(r',\s*|\s{2,}', raw.strip())
-    if parts:
-        return parts[0].strip().upper()
-    return raw.strip().upper()
+    parts = [p.strip() for p in raw.split(",")]
+    return parts[0].strip().upper() if parts else raw.strip().upper()
 
 
 def parse_city_zip(raw):
-    """Extract city and zip from address string like '9610 NINAS CT SAN ANTONIO TEXAS 78254'"""
+    """Extract city and zip — format: STREET, CITY, STATE, ZIP"""
     import re
-    zip_match = re.search(r'\b(\d{5})\b', raw)
-    zip_code  = zip_match.group(1) if zip_match else ""
+    parts = [p.strip() for p in raw.split(",")]
+    # parts[0]=street, parts[1]=city, parts[2]=state, parts[3]=zip (sometimes combined)
+    city = ""
+    zip_code = ""
 
-    # City is usually before TEXAS/TX and after the street
-    city_match = re.search(r'\b([A-Z\s]+?)\s+(?:TEXAS|TX)\b', raw.upper())
-    if city_match:
-        # Take last word(s) of city match
-        city_parts = city_match.group(1).strip().split()
-        # Skip likely street words at start
-        city = " ".join(city_parts[-2:]) if len(city_parts) > 2 else " ".join(city_parts)
+    if len(parts) >= 4:
+        city = parts[1].strip().upper()
+        zip_match = re.search(r'\b(\d{5})\b', parts[3])
+        zip_code = zip_match.group(1) if zip_match else parts[3].strip()
+    elif len(parts) == 3:
+        city = parts[1].strip().upper()
+        zip_match = re.search(r'\b(\d{5})\b', parts[2])
+        zip_code = zip_match.group(1) if zip_match else ""
     else:
-        city = ""
+        # Fallback: scan for zip
+        zip_match = re.search(r'\b(\d{5})\b', raw)
+        zip_code = zip_match.group(1) if zip_match else ""
 
-    return city.strip(), zip_code
+    return city, zip_code
 
 
 def parse_month_year(date_str):
@@ -674,7 +680,7 @@ if __name__ == "__main__":
     known_docs, prev_records = load_known_docs()
 
     # ── Step 1: PublicSearch primary scrape ──────────────────────────────────
-    new_records = scrape_publicsearch(known_docs, days_back=7)
+    new_records = scrape_publicsearch(known_docs, days_back=14)
 
     # ── Step 2: ArcGIS weekly backfill (Sundays only) ────────────────────────
     arcgis_records = []
