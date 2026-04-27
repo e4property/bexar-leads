@@ -1,5 +1,5 @@
 """
-Bexar County Motivated Seller Lead Scraper v27.0
+Bexar County Motivated Seller Lead Scraper v27.1
 HYBRID SCRAPER:
   Primary:   bexar.tx.publicsearch.us  (Selenium, runs 3x daily)
              - Real-time courthouse filings
@@ -10,11 +10,11 @@ HYBRID SCRAPER:
              - Absentee owner detection via parcel mailing address
 
   Owner enrichment: 5-strategy ArcGIS parcel lookup for any record missing owner
-  Fixes v27.0:
-    - Removed dead detail-page grantor extraction (publicsearch has no party data)
-    - Fixed ArcGIS owner lookup: proper field quoting, pagination, transfer limit handling
-    - Dynamic Selenium timeout: scales per page (75s page1 -> 150s max)
-    - Removed selenium driver from enrich step (no longer needed)
+
+  Filter logic (v27.1):
+    KEEP if filed within 90 days
+    KEEP if sale_date is in the future (auction still live)
+    DROP if older than 90 days AND no future sale date AND no address
 """
 
 import json
@@ -44,9 +44,11 @@ LAYERS = [
     {"index": 1, "type": "TAX", "label": "Tax Foreclosure"},
 ]
 
-RUN_TIMESTAMP = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-TODAY         = datetime.now(timezone.utc)
-IS_SUNDAY     = TODAY.weekday() == 6
+RUN_TIMESTAMP  = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+TODAY          = datetime.now(timezone.utc)
+TODAY_NAIVE    = datetime.now()
+IS_SUNDAY      = TODAY.weekday() == 6
+CUTOFF_DATE    = TODAY_NAIVE - timedelta(days=90)  # 90-day rolling window
 
 
 # ── HELPERS ───────────────────────────────────────────────────────────────────
@@ -54,7 +56,7 @@ def fetch_json(url, retries=3):
     for attempt in range(retries):
         try:
             req = urllib.request.Request(
-                url, headers={"User-Agent": "BexarScraper/27.0", "Accept": "application/json"})
+                url, headers={"User-Agent": "BexarScraper/27.1", "Accept": "application/json"})
             with urllib.request.urlopen(req, timeout=25) as r:
                 return json.loads(r.read().decode("utf-8", errors="replace"))
         except Exception as e:
@@ -66,10 +68,7 @@ def fetch_json(url, retries=3):
 
 
 def arcgis_query(layer_url, where, fields="*", limit=200):
-    """
-    Query ArcGIS with pagination to handle exceededTransferLimit.
-    Returns all matching features across pages.
-    """
+    """Query ArcGIS with pagination to handle exceededTransferLimit."""
     all_features = []
     offset = 0
     while True:
@@ -114,7 +113,7 @@ def load_known_docs():
     try:
         req = urllib.request.Request(
             PAGES_RECORDS + "?v=" + str(int(time.time())),
-            headers={"User-Agent": "BexarScraper/27.0", "Accept": "application/json"})
+            headers={"User-Agent": "BexarScraper/27.1", "Accept": "application/json"})
         with urllib.request.urlopen(req, timeout=15) as r:
             prev = json.loads(r.read().decode("utf-8", errors="replace"))
             docs = {str(rec.get("doc_number", "")) for rec in prev if rec.get("doc_number")}
@@ -123,6 +122,50 @@ def load_known_docs():
     except Exception as e:
         log.info(f"No previous records found (first run?): {e}")
         return set(), []
+
+
+# ── RECORD FILTER ─────────────────────────────────────────────────────────────
+def should_keep(rec):
+    """
+    Keep a record if ANY of the following are true:
+      1. Filed within the last 90 days
+      2. Has a future sale date (auction still live)
+    Drop if:
+      - Older than 90 days AND no future sale date
+      - Also drop if no address AND no owner AND no sale date (pure junk)
+    """
+    # Always drop if completely empty (no address, no owner, no sale date)
+    if not rec.get("address") and not rec.get("owner") and not rec.get("sale_date"):
+        return False
+
+    # Check if sale date is in the future
+    sale_date_str = rec.get("sale_date", "")
+    if sale_date_str:
+        try:
+            sale_dt = datetime.strptime(sale_date_str.strip(), "%m/%d/%Y")
+            if sale_dt >= TODAY_NAIVE:
+                return True  # Live auction — always keep
+        except Exception:
+            pass
+
+    # Check filed date against 90-day cutoff
+    # date_filed format: "M/YYYY" e.g. "4/2026"
+    date_filed = rec.get("date_filed", "")
+    if date_filed:
+        try:
+            parts = date_filed.strip().split("/")
+            if len(parts) == 2:
+                month, year = int(parts[0]), int(parts[1])
+                filed_dt = datetime(year, month, 1)
+                if filed_dt >= CUTOFF_DATE:
+                    return True  # Filed within 90 days — keep
+                else:
+                    return False  # Too old, no live auction
+        except Exception:
+            pass
+
+    # If we can't parse the date, keep it (benefit of the doubt)
+    return True
 
 
 # ── SELENIUM SETUP ────────────────────────────────────────────────────────────
@@ -154,8 +197,7 @@ def get_driver():
 def scrape_publicsearch(known_docs, days_back=14):
     """
     Scrape bexar.tx.publicsearch.us for foreclosure filings.
-    Owner enrichment is done later via ArcGIS parcel lookup —
-    detail pages on publicsearch have no party data for foreclosure docs.
+    Owner enrichment done later via ArcGIS parcel lookup.
     """
     from selenium.webdriver.common.by import By
     from selenium.webdriver.support.ui import WebDriverWait
@@ -204,7 +246,6 @@ def scrape_publicsearch(known_docs, days_back=14):
                     log.info(f"  Page source preview: {driver.page_source[:300]}")
                 except Exception:
                     pass
-                # One extra attempt with additional wait
                 try:
                     time.sleep(15)
                     els = driver.find_elements(By.CSS_SELECTOR, "td.col-3")
@@ -263,9 +304,9 @@ def scrape_publicsearch(known_docs, days_back=14):
                     if doc_number in known_docs:
                         continue
 
-                    rec_type         = "TAX" if "TAX" in doc_type_text.upper() else "NOF"
-                    city, zip_code   = parse_city_zip(address)
-                    month, year      = parse_month_year(recorded_date)
+                    rec_type       = "TAX" if "TAX" in doc_type_text.upper() else "NOF"
+                    city, zip_code = parse_city_zip(address)
+                    month, year    = parse_month_year(recorded_date)
 
                     rec = {
                         "type":        rec_type,
@@ -459,8 +500,8 @@ def parse_address_parts(address):
 
 def match_features(feats, num, required_word=None):
     """
-    Find the best matching parcel from ArcGIS features.
-    Confirmed field names from live API: Situs, Owner, AddrLn1, AddrCity, Zip
+    Find best matching parcel from ArcGIS features.
+    Confirmed field names: Situs, Owner, AddrLn1, AddrCity, Zip
     """
     for feat in feats:
         a = feat.get("attributes", {})
@@ -497,10 +538,7 @@ def match_features(feats, num, required_word=None):
 
 
 def lookup_owner(address, zipcode=""):
-    """
-    5-strategy ArcGIS parcel lookup.
-    Confirmed fields from live API: Situs, Owner, AddrLn1, AddrCity, Zip
-    """
+    """5-strategy ArcGIS parcel lookup."""
     parsed = parse_address_parts(address)
     if not parsed:
         return {}
@@ -659,9 +697,10 @@ if __name__ == "__main__":
     os.makedirs("dashboard", exist_ok=True)
 
     log.info("=" * 60)
-    log.info("Bexar County Lead Scraper v27.0 (Hybrid)")
+    log.info("Bexar County Lead Scraper v27.1 (Hybrid)")
     log.info(f"Primary:   PublicSearch.us (last 14 days)")
     log.info(f"Secondary: ArcGIS weekly backfill = {IS_SUNDAY}")
+    log.info(f"Filter:    90-day cutoff ({CUTOFF_DATE.strftime('%Y-%m-%d')}) | live auctions always kept")
     log.info("=" * 60)
 
     known_docs, prev_records = load_known_docs()
@@ -680,6 +719,7 @@ if __name__ == "__main__":
         r["is_new"] = False
     all_records = new_records + arcgis_records + prev_records
 
+    # Deduplicate by doc_number
     seen = {}
     for r in all_records:
         doc = r.get("doc_number", "")
@@ -688,13 +728,19 @@ if __name__ == "__main__":
     records = list(seen.values())
     log.info(f"After dedup: {len(records)} total records")
 
-    # ── Step 4: Enrich missing owners via ArcGIS parcel lookup ───────────────
+    # ── Step 4: Apply 90-day filter ───────────────────────────────────────────
+    before_filter = len(records)
+    records = [r for r in records if should_keep(r)]
+    dropped = before_filter - len(records)
+    log.info(f"After 90-day filter: {len(records)} records kept, {dropped} dropped")
+
+    # ── Step 5: Enrich missing owners via ArcGIS parcel lookup ───────────────
     records = enrich_owners(records)
 
-    # ── Step 5: Detect duplicates ─────────────────────────────────────────────
+    # ── Step 6: Detect duplicates ─────────────────────────────────────────────
     records = detect_duplicates(records)
 
-    # ── Step 6: Flag + score ──────────────────────────────────────────────────
+    # ── Step 7: Flag + score ──────────────────────────────────────────────────
     for r in records:
         r["flags"] = []
         if r["type"] == "TAX":                          r["flags"].append("TAX FORE")
@@ -716,7 +762,7 @@ if __name__ == "__main__":
 
     records.sort(key=sort_key)
 
-    # ── Step 7: Summary ───────────────────────────────────────────────────────
+    # ── Step 8: Summary ───────────────────────────────────────────────────────
     named    = sum(1 for r in records if r.get("owner"))
     absentee = sum(1 for r in records if r.get("absentee"))
     new_ct   = sum(1 for r in records if r.get("is_new"))
@@ -727,7 +773,7 @@ if __name__ == "__main__":
     log.info(f"Final: {len(records)} total | {named} named | {absentee} absentee")
     log.info(f"       {new_ct} new | {has_date} with sale date | {soon} auction <=30d | {urgent} URGENT <=14d")
 
-    # ── Step 8: Save ──────────────────────────────────────────────────────────
+    # ── Step 9: Save ──────────────────────────────────────────────────────────
     with open("data/records.json", "w", encoding="utf-8") as f:
         json.dump(records, f, indent=2)
 
