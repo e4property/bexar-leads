@@ -8137,7 +8137,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "NOTICE OF FORECLOSE",
     "year": "",
     "month": "",
@@ -8148,11 +8148,9 @@
     "sale_date": "",
     "run_ts": "2026-04-27T17:27:24Z",
     "flags": [
-      "NEW",
       "NO OWNER"
     ],
     "source": "publicsearch",
-    "_detail_link": "",
     "score": 3,
     "days_until_sale": null
   },
@@ -8163,7 +8161,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "VOID FC",
     "year": "",
     "month": "",
@@ -8174,11 +8172,9 @@
     "sale_date": "",
     "run_ts": "2026-04-27T17:27:24Z",
     "flags": [
-      "NEW",
       "NO OWNER"
     ],
     "source": "publicsearch",
-    "_detail_link": "",
     "score": 3,
     "days_until_sale": null
   },
