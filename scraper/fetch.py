@@ -1,19 +1,20 @@
 """
-Bexar County Motivated Seller Lead Scraper v27.5
+Bexar County Motivated Seller Lead Scraper v27.6
 HYBRID SCRAPER:
   Primary:   bexar.tx.publicsearch.us  (Selenium, runs 3x daily)
              - 14-day chunks covering 90-day window (keeps React fast)
              - Inline row-level date skip (old rows discarded immediately)
              - 180s timeout per page
              - &sort=desc in URL
+             - STOP pagination immediately if page_new == 0 (nothing new = done)
   Secondary: ArcGIS GIS layer (urllib, runs weekly on Sunday)
 
   Owner enrichment: 5-strategy ArcGIS parcel lookup
 
-  v27.5 fixes:
-    - Combined v27.3 chunking (fast page loads) + v27.4 inline date filtering
-    - Chunks ensure React table renders; inline skip ensures old rows never stored
-    - Filter kept as safety net but should drop 0 (inline skip handles it)
+  v27.6 fix:
+    - Pagination now stops as soon as a page yields 0 new records
+    - Previous logic required BOTH new==0 AND known==0, causing infinite
+      pagination through hundreds of already-known pages
 """
 
 import json
@@ -58,7 +59,7 @@ def fetch_json(url, retries=3):
     for attempt in range(retries):
         try:
             req = urllib.request.Request(
-                url, headers={"User-Agent": "BexarScraper/27.5", "Accept": "application/json"})
+                url, headers={"User-Agent": "BexarScraper/27.6", "Accept": "application/json"})
             with urllib.request.urlopen(req, timeout=25) as r:
                 return json.loads(r.read().decode("utf-8", errors="replace"))
         except Exception as e:
@@ -112,7 +113,7 @@ def load_known_docs():
     try:
         req = urllib.request.Request(
             PAGES_RECORDS + "?v=" + str(int(time.time())),
-            headers={"User-Agent": "BexarScraper/27.5", "Accept": "application/json"})
+            headers={"User-Agent": "BexarScraper/27.6", "Accept": "application/json"})
         with urllib.request.urlopen(req, timeout=15) as r:
             prev = json.loads(r.read().decode("utf-8", errors="replace"))
             docs = {str(rec.get("doc_number", "")) for rec in prev if rec.get("doc_number")}
@@ -214,18 +215,8 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
                 (By.CSS_SELECTOR, "td.col-3")))
             time.sleep(2)
         except Exception as e:
-            log.info(f"    Timeout page {page+1}: {e}")
-            try:
-                log.info(f"    Title: {driver.title}")
-            except Exception:
-                pass
-            try:
-                time.sleep(10)
-                if not driver.find_elements(By.CSS_SELECTOR, "td.col-3"):
-                    log.info("    No results after retry — stopping chunk")
-                    break
-            except Exception:
-                break
+            log.info(f"    Timeout page {page+1} — stopping chunk")
+            break  # Timeout = no results = stop this chunk immediately
 
         rows = driver.find_elements(By.CSS_SELECTOR, "table tbody tr")
         if not rows:
@@ -266,7 +257,7 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
                 if not doc_number:
                     continue
 
-                # ── Inline date filter: skip rows older than cutoff ───────────
+                # Inline date filter — skip rows older than cutoff
                 rec_date = parse_recorded_date(recorded_date)
                 if rec_date and rec_date < CUTOFF_DATE:
                     page_old += 1
@@ -309,16 +300,19 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
 
         log.info(f"    Page {page+1}: {page_new} new | {page_known} known | {page_old} old")
 
-        # Stop if entire page was old rows
+        # ── STOP CONDITIONS ───────────────────────────────────────────────────
+        # 1. Nothing new on this page — all caught up, stop immediately
+        if page_new == 0:
+            log.info("    No new records — stopping chunk")
+            break
+
+        # 2. Full page of old rows — past the cutoff date
         if page_old > 0 and page_old == len(rows):
             log.info("    Full page of old rows — stopping chunk")
             break
 
+        # 3. Last page (less than 50 rows)
         if len(rows) < 50:
-            break  # Last page
-
-        # Stop if nothing new and past first page
-        if page_new == 0 and page_known == 0 and page > 0:
             break
 
         offset += 50
@@ -330,10 +324,6 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
 
 # ── PUBLICSEARCH SCRAPER (chunked) ────────────────────────────────────────────
 def scrape_publicsearch(known_docs):
-    """
-    Scrape in CHUNK_DAYS sliding windows covering KEEP_DAYS total.
-    Most recent chunk first. Single driver reused across all chunks.
-    """
     chunks    = []
     chunk_end = TODAY_NAIVE + timedelta(days=1)
     cutoff    = TODAY_NAIVE - timedelta(days=KEEP_DAYS)
@@ -652,7 +642,7 @@ if __name__ == "__main__":
     os.makedirs("dashboard", exist_ok=True)
 
     log.info("=" * 60)
-    log.info("Bexar County Lead Scraper v27.5 (Hybrid)")
+    log.info("Bexar County Lead Scraper v27.6 (Hybrid)")
     log.info(f"Primary:   PublicSearch.us ({KEEP_DAYS}d window, {CHUNK_DAYS}d chunks, {PAGE_TIMEOUT}s timeout)")
     log.info(f"Secondary: ArcGIS weekly backfill = {IS_SUNDAY}")
     log.info(f"Filter:    {KEEP_DAYS}-day cutoff ({CUTOFF_DATE.strftime('%Y-%m-%d')}) | live auctions always kept")
@@ -681,7 +671,7 @@ if __name__ == "__main__":
     log.info(f"After dedup: {len(records)} total records")
 
     # ── Step 4: 90-day filter (safety net) ───────────────────────────────────
-    before = len(records)
+    before  = len(records)
     records = [r for r in records if should_keep(r)]
     log.info(f"After filter: {len(records)} kept, {before - len(records)} dropped")
 
