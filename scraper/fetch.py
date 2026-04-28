@@ -1,22 +1,22 @@
 """
-Bexar County Motivated Seller Lead Scraper v27.8
+Bexar County Motivated Seller Lead Scraper v27.9
 HYBRID SCRAPER:
   Primary:   bexar.tx.publicsearch.us  (Selenium, runs 3x daily)
-             - 14-day chunks covering 90-day window
+             - 7-day chunks covering 90-day window (was 14-day — too slow)
              - Inline row-level date skip
              - 180s timeout per page
              - Stops pagination after page 2+ with no new records
+             - known_docs loaded from local records.json only
   Secondary: ArcGIS GIS layer (urllib, runs weekly on Sunday)
 
   Owner enrichment: 5-strategy ArcGIS parcel lookup
+    - Added INFO logging on first failed lookup to diagnose 0/N filled issue
 
-  v27.8 fixes:
-    - known_docs NO LONGER updated inside scrape_chunk — docs are never
-      marked "known" until they survive the filter and get saved to disk
-    - known_docs loaded from saved dashboard/records.json (exact match to
-      what's actually in the dashboard) instead of GitHub Pages URL
-    - Eliminates phantom "known" entries that block re-scraping of docs
-      that were scraped but then filtered out in a previous run
+  v27.9 fixes:
+    - CHUNK_DAYS reduced 14 → 7 (page 2 timeout was caused by too many
+      filings in a 14-day window; 7-day chunks keep React render fast)
+    - Owner enrichment now logs first failed address + ArcGIS response
+      to diagnose why 0/18 fills keeps happening
 """
 
 import json
@@ -51,7 +51,7 @@ TODAY         = datetime.now(timezone.utc)
 TODAY_NAIVE   = datetime.now()
 IS_SUNDAY     = TODAY.weekday() == 6
 KEEP_DAYS     = 90
-CHUNK_DAYS    = 14
+CHUNK_DAYS    = 7    # Reduced from 14 — keeps React table fast on all pages
 PAGE_TIMEOUT  = 180
 CUTOFF_DATE   = TODAY_NAIVE - timedelta(days=KEEP_DAYS)
 
@@ -61,7 +61,7 @@ def fetch_json(url, retries=3):
     for attempt in range(retries):
         try:
             req = urllib.request.Request(
-                url, headers={"User-Agent": "BexarScraper/27.8", "Accept": "application/json"})
+                url, headers={"User-Agent": "BexarScraper/27.9", "Accept": "application/json"})
             with urllib.request.urlopen(req, timeout=25) as r:
                 return json.loads(r.read().decode("utf-8", errors="replace"))
         except Exception as e:
@@ -112,13 +112,7 @@ def normalize(s):
 
 
 def load_known_docs():
-    """
-    Load known doc numbers from the saved dashboard records.json on disk.
-    This ensures known_docs exactly matches what's actually in the dashboard —
-    no phantom entries from docs that were scraped but later filtered out.
-    Falls back to GitHub Pages if local file doesn't exist yet.
-    """
-    # Try local file first (exact match to dashboard)
+    """Load from local records.json — exact match to dashboard."""
     local_path = "dashboard/records.json"
     if os.path.exists(local_path):
         try:
@@ -130,11 +124,10 @@ def load_known_docs():
         except Exception as e:
             log.info(f"Local records.json read error: {e} — falling back to GitHub Pages")
 
-    # Fallback: GitHub Pages
     try:
         req = urllib.request.Request(
             PAGES_RECORDS + "?v=" + str(int(time.time())),
-            headers={"User-Agent": "BexarScraper/27.8", "Accept": "application/json"})
+            headers={"User-Agent": "BexarScraper/27.9", "Accept": "application/json"})
         with urllib.request.urlopen(req, timeout=15) as r:
             prev = json.load(r)
         docs = {str(rec.get("doc_number", "")) for rec in prev if rec.get("doc_number")}
@@ -202,11 +195,6 @@ def get_driver():
 
 # ── SINGLE CHUNK SCRAPER ──────────────────────────────────────────────────────
 def scrape_chunk(driver, known_docs, start_dt, end_dt):
-    """
-    Scrape one date-range chunk. Returns list of new records.
-    NOTE: Does NOT update known_docs — that happens only after filter/save.
-    Dedup in main handles any cross-chunk duplicates within the same run.
-    """
     from selenium.webdriver.common.by import By
     from selenium.webdriver.support.ui import WebDriverWait
     from selenium.webdriver.support import expected_conditions as EC
@@ -283,13 +271,11 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
                 if not doc_number:
                     continue
 
-                # Inline date filter
                 rec_date = parse_recorded_date(recorded_date)
                 if rec_date and rec_date < CUTOFF_DATE:
                     page_old += 1
                     continue
 
-                # Skip if already saved to dashboard
                 if doc_number in known_docs:
                     page_known += 1
                     continue
@@ -319,7 +305,6 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
                     "source":      "publicsearch",
                 }
                 records.append(rec)
-                # NOTE: NOT adding to known_docs here — only saved records are "known"
                 page_new += 1
 
             except Exception as e:
@@ -327,17 +312,14 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
 
         log.info(f"    Page {page+1}: {page_new} new | {page_known} known | {page_old} old")
 
-        # Stop after page 2+ with no new records
         if page_new == 0 and page > 0:
             log.info("    No new records — stopping chunk")
             break
 
-        # Full page of old rows
         if page_old > 0 and page_old == len(rows):
             log.info("    Full page of old rows — stopping chunk")
             break
 
-        # Last page
         if len(rows) < 50:
             break
 
@@ -541,9 +523,11 @@ def match_features(feats, num, required_word=None):
     return None
 
 
-def lookup_owner(address, zipcode=""):
+def lookup_owner(address, zipcode="", debug=False):
     parsed = parse_address_parts(address)
     if not parsed:
+        if debug:
+            log.info(f"  DEBUG: Could not parse address parts for: {address}")
         return {}
     num        = parsed["num"]
     words      = parsed["words"]
@@ -551,34 +535,48 @@ def lookup_owner(address, zipcode=""):
     FIELDS     = "Situs,Owner,AddrLn1,AddrCity,Zip"
 
     if len(words) >= 2:
-        r = match_features(
-            arcgis_query(PARCELS_URL, f"Situs LIKE '{num} {words[0]} {words[1]}%'",
-                         fields=FIELDS, limit=50), num, first_word)
+        feats = arcgis_query(PARCELS_URL, f"Situs LIKE '{num} {words[0]} {words[1]}%'",
+                             fields=FIELDS, limit=50)
+        if debug:
+            log.info(f"  DEBUG s1: query=Situs LIKE '{num} {words[0]} {words[1]}%' → {len(feats)} features")
+        r = match_features(feats, num, first_word)
         if r: r["method"] = "s1_two_word"; return r
 
     if first_word and len(first_word) >= 3:
-        r = match_features(
-            arcgis_query(PARCELS_URL, f"Situs LIKE '{num} {first_word}%'",
-                         fields=FIELDS, limit=100), num, first_word)
+        feats = arcgis_query(PARCELS_URL, f"Situs LIKE '{num} {first_word}%'",
+                             fields=FIELDS, limit=100)
+        if debug:
+            log.info(f"  DEBUG s2: query=Situs LIKE '{num} {first_word}%' → {len(feats)} features")
+            if feats:
+                sample = feats[0].get("attributes", {})
+                log.info(f"  DEBUG s2 sample: Situs={sample.get('Situs','')} Owner={sample.get('Owner','')}")
+        r = match_features(feats, num, first_word)
         if r: r["method"] = "s2_first_word"; return r
 
-    r = match_features(
-        arcgis_query(PARCELS_URL, f"Situs LIKE '{num} %'",
-                     fields=FIELDS, limit=200), num, first_word or None)
+    feats = arcgis_query(PARCELS_URL, f"Situs LIKE '{num} %'",
+                         fields=FIELDS, limit=200)
+    if debug:
+        log.info(f"  DEBUG s3: query=Situs LIKE '{num} %' → {len(feats)} features")
+        if feats:
+            sample = feats[0].get("attributes", {})
+            log.info(f"  DEBUG s3 sample: Situs={sample.get('Situs','')} Owner={sample.get('Owner','')}")
+    r = match_features(feats, num, first_word or None)
     if r: r["method"] = "s3_num_only"; return r
 
     if zipcode and len(zipcode) >= 5:
-        r = match_features(
-            arcgis_query(PARCELS_URL, f"Zip = '{zipcode[:5]}'",
-                         fields=FIELDS, limit=1000), num, None)
+        feats = arcgis_query(PARCELS_URL, f"Zip = '{zipcode[:5]}'",
+                             fields=FIELDS, limit=1000)
+        if debug:
+            log.info(f"  DEBUG s4: query=Zip='{zipcode[:5]}' → {len(feats)} features")
+        r = match_features(feats, num, None)
         if r: r["method"] = "s4_zip_scan"; return r
 
     for word in words[1:]:
         if len(word) < 4:
             continue
-        r = match_features(
-            arcgis_query(PARCELS_URL, f"Situs LIKE '{num} %{word}%'",
-                         fields=FIELDS, limit=100), num, word)
+        feats = arcgis_query(PARCELS_URL, f"Situs LIKE '{num} %{word}%'",
+                             fields=FIELDS, limit=100)
+        r = match_features(feats, num, word)
         if r: r["method"] = "s5_alt_word"; return r
 
     return {}
@@ -587,24 +585,35 @@ def lookup_owner(address, zipcode=""):
 def enrich_owners(records):
     missing = [r for r in records if not r.get("owner")]
     log.info(f"Owner enrichment: {len(missing)} records need lookup")
-    found = 0
+    found   = 0
+    debug_done = False  # Log debug for first failed record only
+
     for i, rec in enumerate(missing):
         addr = rec.get("address", "")
         zip_ = rec.get("zip", "")
         if not addr:
             continue
-        result = lookup_owner(addr, zip_)
+
+        # Debug first record to diagnose 0/N issue
+        do_debug = not debug_done
+        result = lookup_owner(addr, zip_, debug=do_debug)
+
         if result and result.get("owner"):
             rec["owner"]     = result["owner"]
             rec["mail_addr"] = result.get("mail_addr", "")
             rec["absentee"]  = result.get("absentee", False)
             found += 1
+            debug_done = True
             if found <= 10 or found % 25 == 0:
                 log.info(f"  [{i+1}/{len(missing)}] {addr} -> {result['owner']} "
                          f"[{result.get('method','')}]")
         else:
+            if do_debug:
+                log.info(f"  DEBUG: No match for addr={addr} zip={zip_}")
+                debug_done = True
             log.debug(f"  [{i+1}/{len(missing)}] No match: {addr}")
         time.sleep(0.2)
+
     log.info(f"Owner enrichment: {found}/{len(missing)} filled")
     return records
 
@@ -668,13 +677,12 @@ if __name__ == "__main__":
     os.makedirs("dashboard", exist_ok=True)
 
     log.info("=" * 60)
-    log.info("Bexar County Lead Scraper v27.8 (Hybrid)")
+    log.info("Bexar County Lead Scraper v27.9 (Hybrid)")
     log.info(f"Primary:   PublicSearch.us ({KEEP_DAYS}d window, {CHUNK_DAYS}d chunks, {PAGE_TIMEOUT}s timeout)")
     log.info(f"Secondary: ArcGIS weekly backfill = {IS_SUNDAY}")
     log.info(f"Filter:    {KEEP_DAYS}-day cutoff ({CUTOFF_DATE.strftime('%Y-%m-%d')}) | live auctions always kept")
     log.info("=" * 60)
 
-    # known_docs loaded from saved dashboard — exact match to what's in the dashboard
     known_docs, prev_records = load_known_docs()
 
     # ── Step 1: PublicSearch chunked scrape ───────────────────────────────────
