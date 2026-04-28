@@ -1,20 +1,20 @@
 """
-Bexar County Motivated Seller Lead Scraper v27.6
+Bexar County Motivated Seller Lead Scraper v27.7
 HYBRID SCRAPER:
   Primary:   bexar.tx.publicsearch.us  (Selenium, runs 3x daily)
              - 14-day chunks covering 90-day window (keeps React fast)
              - Inline row-level date skip (old rows discarded immediately)
              - 180s timeout per page
              - &sort=desc in URL
-             - STOP pagination immediately if page_new == 0 (nothing new = done)
+             - Stop pagination only after page 2+ with no new records
   Secondary: ArcGIS GIS layer (urllib, runs weekly on Sunday)
 
   Owner enrichment: 5-strategy ArcGIS parcel lookup
 
-  v27.6 fix:
-    - Pagination now stops as soon as a page yields 0 new records
-    - Previous logic required BOTH new==0 AND known==0, causing infinite
-      pagination through hundreds of already-known pages
+  v27.7 fix:
+    - Stop condition changed from `page_new == 0` to `page_new == 0 and page > 0`
+    - Always loads at least 2 pages per chunk before giving up
+    - Prevents missing leads when page 1 is all-known but new docs exist on page 2+
 """
 
 import json
@@ -59,7 +59,7 @@ def fetch_json(url, retries=3):
     for attempt in range(retries):
         try:
             req = urllib.request.Request(
-                url, headers={"User-Agent": "BexarScraper/27.6", "Accept": "application/json"})
+                url, headers={"User-Agent": "BexarScraper/27.7", "Accept": "application/json"})
             with urllib.request.urlopen(req, timeout=25) as r:
                 return json.loads(r.read().decode("utf-8", errors="replace"))
         except Exception as e:
@@ -113,7 +113,7 @@ def load_known_docs():
     try:
         req = urllib.request.Request(
             PAGES_RECORDS + "?v=" + str(int(time.time())),
-            headers={"User-Agent": "BexarScraper/27.6", "Accept": "application/json"})
+            headers={"User-Agent": "BexarScraper/27.7", "Accept": "application/json"})
         with urllib.request.urlopen(req, timeout=15) as r:
             prev = json.loads(r.read().decode("utf-8", errors="replace"))
             docs = {str(rec.get("doc_number", "")) for rec in prev if rec.get("doc_number")}
@@ -216,7 +216,7 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
             time.sleep(2)
         except Exception as e:
             log.info(f"    Timeout page {page+1} — stopping chunk")
-            break  # Timeout = no results = stop this chunk immediately
+            break
 
         rows = driver.find_elements(By.CSS_SELECTOR, "table tbody tr")
         if not rows:
@@ -301,17 +301,18 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
         log.info(f"    Page {page+1}: {page_new} new | {page_known} known | {page_old} old")
 
         # ── STOP CONDITIONS ───────────────────────────────────────────────────
-        # 1. Nothing new on this page — all caught up, stop immediately
-        if page_new == 0:
+        # Stop only after page 2+ with no new records — ensures we always
+        # look at least 2 pages deep before giving up on a chunk
+        if page_new == 0 and page > 0:
             log.info("    No new records — stopping chunk")
             break
 
-        # 2. Full page of old rows — past the cutoff date
+        # Full page of old rows — past the cutoff date
         if page_old > 0 and page_old == len(rows):
             log.info("    Full page of old rows — stopping chunk")
             break
 
-        # 3. Last page (less than 50 rows)
+        # Last page
         if len(rows) < 50:
             break
 
@@ -642,7 +643,7 @@ if __name__ == "__main__":
     os.makedirs("dashboard", exist_ok=True)
 
     log.info("=" * 60)
-    log.info("Bexar County Lead Scraper v27.6 (Hybrid)")
+    log.info("Bexar County Lead Scraper v27.7 (Hybrid)")
     log.info(f"Primary:   PublicSearch.us ({KEEP_DAYS}d window, {CHUNK_DAYS}d chunks, {PAGE_TIMEOUT}s timeout)")
     log.info(f"Secondary: ArcGIS weekly backfill = {IS_SUNDAY}")
     log.info(f"Filter:    {KEEP_DAYS}-day cutoff ({CUTOFF_DATE.strftime('%Y-%m-%d')}) | live auctions always kept")
