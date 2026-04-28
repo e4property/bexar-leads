@@ -939,6 +939,31 @@
   },
   {
     "type": "NOF",
+    "address": "5563 LANDERS FARM",
+    "owner": "WOODWARD-CHANEY JENNIFER M",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260600150",
+    "year": "2026",
+    "month": "4",
+    "city": "SAN ANTONIO",
+    "zip": "78228",
+    "school_dist": "",
+    "date_filed": "4/2026",
+    "sale_date": "06/02/2026",
+    "run_ts": "2026-04-28T20:54:19Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "score": 7,
+    "days_until_sale": 34
+  },
+  {
+    "type": "NOF",
     "address": "12830 TERRACE HOLW",
     "owner": "STECHER DANIEL LEE &  CHELSEA ALLYN",
     "mail_addr": "",
