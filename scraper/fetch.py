@@ -1,22 +1,22 @@
 """
-Bexar County Motivated Seller Lead Scraper v27.9
+Bexar County Motivated Seller Lead Scraper v28.0
 HYBRID SCRAPER:
   Primary:   bexar.tx.publicsearch.us  (Selenium, runs 3x daily)
-             - 7-day chunks covering 90-day window (was 14-day — too slow)
+             - 7-day chunks covering 90-day window
              - Inline row-level date skip
              - 180s timeout per page
              - Stops pagination after page 2+ with no new records
-             - known_docs loaded from local records.json only
   Secondary: ArcGIS GIS layer (urllib, runs weekly on Sunday)
 
   Owner enrichment: 5-strategy ArcGIS parcel lookup
-    - Added INFO logging on first failed lookup to diagnose 0/N filled issue
 
-  v27.9 fixes:
-    - CHUNK_DAYS reduced 14 → 7 (page 2 timeout was caused by too many
-      filings in a 14-day window; 7-day chunks keep React render fast)
-    - Owner enrichment now logs first failed address + ArcGIS response
-      to diagnose why 0/18 fills keeps happening
+  v28.0 fixes:
+    - known_docs loaded ONLY from GitHub Pages (not local file)
+    - Local dashboard/records.json on the runner is the COMMITTED version
+      which contains doc numbers that were previously scraped — loading it
+      caused those docs to be treated as "known" even when not in dashboard
+    - GitHub Pages reflects what was actually deployed/visible to users
+    - Records with address="N/A" skipped in owner enrichment (no-op anyway)
 """
 
 import json
@@ -51,7 +51,7 @@ TODAY         = datetime.now(timezone.utc)
 TODAY_NAIVE   = datetime.now()
 IS_SUNDAY     = TODAY.weekday() == 6
 KEEP_DAYS     = 90
-CHUNK_DAYS    = 7    # Reduced from 14 — keeps React table fast on all pages
+CHUNK_DAYS    = 7
 PAGE_TIMEOUT  = 180
 CUTOFF_DATE   = TODAY_NAIVE - timedelta(days=KEEP_DAYS)
 
@@ -61,7 +61,7 @@ def fetch_json(url, retries=3):
     for attempt in range(retries):
         try:
             req = urllib.request.Request(
-                url, headers={"User-Agent": "BexarScraper/27.9", "Accept": "application/json"})
+                url, headers={"User-Agent": "BexarScraper/28.0", "Accept": "application/json"})
             with urllib.request.urlopen(req, timeout=25) as r:
                 return json.loads(r.read().decode("utf-8", errors="replace"))
         except Exception as e:
@@ -112,24 +112,22 @@ def normalize(s):
 
 
 def load_known_docs():
-    """Load from local records.json — exact match to dashboard."""
-    local_path = "dashboard/records.json"
-    if os.path.exists(local_path):
-        try:
-            with open(local_path, "r", encoding="utf-8") as f:
-                prev = json.load(f)
-            docs = {str(rec.get("doc_number", "")) for rec in prev if rec.get("doc_number")}
-            log.info(f"Loaded {len(docs)} known doc numbers from local records.json")
-            return docs, prev
-        except Exception as e:
-            log.info(f"Local records.json read error: {e} — falling back to GitHub Pages")
-
+    """
+    Load known docs from GitHub Pages ONLY — this reflects exactly what
+    has been deployed and is visible in the dashboard. The local
+    dashboard/records.json is the committed version and may contain
+    doc numbers from records that were scraped but not yet deployed,
+    causing them to be incorrectly treated as "known".
+    """
+    url = PAGES_RECORDS + "?nocache=" + str(int(time.time()))
     try:
         req = urllib.request.Request(
-            PAGES_RECORDS + "?v=" + str(int(time.time())),
-            headers={"User-Agent": "BexarScraper/27.9", "Accept": "application/json"})
-        with urllib.request.urlopen(req, timeout=15) as r:
-            prev = json.load(r)
+            url,
+            headers={"User-Agent": "BexarScraper/28.0",
+                     "Accept": "application/json",
+                     "Cache-Control": "no-cache"})
+        with urllib.request.urlopen(req, timeout=20) as r:
+            prev = json.loads(r.read().decode("utf-8", errors="replace"))
         docs = {str(rec.get("doc_number", "")) for rec in prev if rec.get("doc_number")}
         log.info(f"Loaded {len(docs)} known doc numbers from GitHub Pages")
         return docs, prev
@@ -149,6 +147,10 @@ def parse_recorded_date(date_str):
 def should_keep(rec):
     if not rec.get("address") and not rec.get("owner") and not rec.get("sale_date"):
         return False
+    if rec.get("address", "").strip().upper() in ("N/A", "NA", ""):
+        # Only drop if also no owner and no sale date
+        if not rec.get("owner") and not rec.get("sale_date"):
+            return False
     sale_date_str = rec.get("sale_date", "")
     if sale_date_str:
         try:
@@ -523,11 +525,9 @@ def match_features(feats, num, required_word=None):
     return None
 
 
-def lookup_owner(address, zipcode="", debug=False):
+def lookup_owner(address, zipcode=""):
     parsed = parse_address_parts(address)
     if not parsed:
-        if debug:
-            log.info(f"  DEBUG: Could not parse address parts for: {address}")
         return {}
     num        = parsed["num"]
     words      = parsed["words"]
@@ -535,85 +535,61 @@ def lookup_owner(address, zipcode="", debug=False):
     FIELDS     = "Situs,Owner,AddrLn1,AddrCity,Zip"
 
     if len(words) >= 2:
-        feats = arcgis_query(PARCELS_URL, f"Situs LIKE '{num} {words[0]} {words[1]}%'",
-                             fields=FIELDS, limit=50)
-        if debug:
-            log.info(f"  DEBUG s1: query=Situs LIKE '{num} {words[0]} {words[1]}%' → {len(feats)} features")
-        r = match_features(feats, num, first_word)
+        r = match_features(
+            arcgis_query(PARCELS_URL, f"Situs LIKE '{num} {words[0]} {words[1]}%'",
+                         fields=FIELDS, limit=50), num, first_word)
         if r: r["method"] = "s1_two_word"; return r
 
     if first_word and len(first_word) >= 3:
-        feats = arcgis_query(PARCELS_URL, f"Situs LIKE '{num} {first_word}%'",
-                             fields=FIELDS, limit=100)
-        if debug:
-            log.info(f"  DEBUG s2: query=Situs LIKE '{num} {first_word}%' → {len(feats)} features")
-            if feats:
-                sample = feats[0].get("attributes", {})
-                log.info(f"  DEBUG s2 sample: Situs={sample.get('Situs','')} Owner={sample.get('Owner','')}")
-        r = match_features(feats, num, first_word)
+        r = match_features(
+            arcgis_query(PARCELS_URL, f"Situs LIKE '{num} {first_word}%'",
+                         fields=FIELDS, limit=100), num, first_word)
         if r: r["method"] = "s2_first_word"; return r
 
-    feats = arcgis_query(PARCELS_URL, f"Situs LIKE '{num} %'",
-                         fields=FIELDS, limit=200)
-    if debug:
-        log.info(f"  DEBUG s3: query=Situs LIKE '{num} %' → {len(feats)} features")
-        if feats:
-            sample = feats[0].get("attributes", {})
-            log.info(f"  DEBUG s3 sample: Situs={sample.get('Situs','')} Owner={sample.get('Owner','')}")
-    r = match_features(feats, num, first_word or None)
+    r = match_features(
+        arcgis_query(PARCELS_URL, f"Situs LIKE '{num} %'",
+                     fields=FIELDS, limit=200), num, first_word or None)
     if r: r["method"] = "s3_num_only"; return r
 
     if zipcode and len(zipcode) >= 5:
-        feats = arcgis_query(PARCELS_URL, f"Zip = '{zipcode[:5]}'",
-                             fields=FIELDS, limit=1000)
-        if debug:
-            log.info(f"  DEBUG s4: query=Zip='{zipcode[:5]}' → {len(feats)} features")
-        r = match_features(feats, num, None)
+        r = match_features(
+            arcgis_query(PARCELS_URL, f"Zip = '{zipcode[:5]}'",
+                         fields=FIELDS, limit=1000), num, None)
         if r: r["method"] = "s4_zip_scan"; return r
 
     for word in words[1:]:
         if len(word) < 4:
             continue
-        feats = arcgis_query(PARCELS_URL, f"Situs LIKE '{num} %{word}%'",
-                             fields=FIELDS, limit=100)
-        r = match_features(feats, num, word)
+        r = match_features(
+            arcgis_query(PARCELS_URL, f"Situs LIKE '{num} %{word}%'",
+                         fields=FIELDS, limit=100), num, word)
         if r: r["method"] = "s5_alt_word"; return r
 
     return {}
 
 
 def enrich_owners(records):
-    missing = [r for r in records if not r.get("owner")]
+    # Skip records with no real address
+    missing = [r for r in records
+               if not r.get("owner")
+               and r.get("address", "").strip().upper() not in ("", "N/A", "NA")]
     log.info(f"Owner enrichment: {len(missing)} records need lookup")
-    found   = 0
-    debug_done = False  # Log debug for first failed record only
-
+    found = 0
     for i, rec in enumerate(missing):
         addr = rec.get("address", "")
         zip_ = rec.get("zip", "")
-        if not addr:
-            continue
-
-        # Debug first record to diagnose 0/N issue
-        do_debug = not debug_done
-        result = lookup_owner(addr, zip_, debug=do_debug)
-
+        result = lookup_owner(addr, zip_)
         if result and result.get("owner"):
             rec["owner"]     = result["owner"]
             rec["mail_addr"] = result.get("mail_addr", "")
             rec["absentee"]  = result.get("absentee", False)
             found += 1
-            debug_done = True
             if found <= 10 or found % 25 == 0:
                 log.info(f"  [{i+1}/{len(missing)}] {addr} -> {result['owner']} "
                          f"[{result.get('method','')}]")
         else:
-            if do_debug:
-                log.info(f"  DEBUG: No match for addr={addr} zip={zip_}")
-                debug_done = True
             log.debug(f"  [{i+1}/{len(missing)}] No match: {addr}")
         time.sleep(0.2)
-
     log.info(f"Owner enrichment: {found}/{len(missing)} filled")
     return records
 
@@ -677,12 +653,13 @@ if __name__ == "__main__":
     os.makedirs("dashboard", exist_ok=True)
 
     log.info("=" * 60)
-    log.info("Bexar County Lead Scraper v27.9 (Hybrid)")
+    log.info("Bexar County Lead Scraper v28.0 (Hybrid)")
     log.info(f"Primary:   PublicSearch.us ({KEEP_DAYS}d window, {CHUNK_DAYS}d chunks, {PAGE_TIMEOUT}s timeout)")
     log.info(f"Secondary: ArcGIS weekly backfill = {IS_SUNDAY}")
     log.info(f"Filter:    {KEEP_DAYS}-day cutoff ({CUTOFF_DATE.strftime('%Y-%m-%d')}) | live auctions always kept")
     log.info("=" * 60)
 
+    # Load known docs from deployed GitHub Pages only
     known_docs, prev_records = load_known_docs()
 
     # ── Step 1: PublicSearch chunked scrape ───────────────────────────────────
