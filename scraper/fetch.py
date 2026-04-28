@@ -1,22 +1,24 @@
 """
-Bexar County Motivated Seller Lead Scraper v28.0
+Bexar County Motivated Seller Lead Scraper v28.1
 HYBRID SCRAPER:
   Primary:   bexar.tx.publicsearch.us  (Selenium, runs 3x daily)
              - 7-day chunks covering 90-day window
              - Inline row-level date skip
              - 180s timeout per page
              - Stops pagination after page 2+ with no new records
+             - known_docs loaded from GitHub Pages only
   Secondary: ArcGIS GIS layer (urllib, runs weekly on Sunday)
 
   Owner enrichment: 5-strategy ArcGIS parcel lookup
 
-  v28.0 fixes:
-    - known_docs loaded ONLY from GitHub Pages (not local file)
-    - Local dashboard/records.json on the runner is the COMMITTED version
-      which contains doc numbers that were previously scraped — loading it
-      caused those docs to be treated as "known" even when not in dashboard
-    - GitHub Pages reflects what was actually deployed/visible to users
-    - Records with address="N/A" skipped in owner enrichment (no-op anyway)
+  v28.1 fix:
+    - clean_address() now correctly handles publicsearch no-comma format
+      e.g. "7733 CHAMPION CREEK  SAN ANTONIO  TEXAS  78253"
+      was returning full string; now returns just "7733 CHAMPION CREEK"
+    - parse_city_zip() also handles no-comma format — extracts city and zip
+      correctly from double-space-separated fields
+    - This fixes: missing leads in dashboard, failed ArcGIS owner lookups,
+      and incorrect address display
 """
 
 import json
@@ -61,7 +63,7 @@ def fetch_json(url, retries=3):
     for attempt in range(retries):
         try:
             req = urllib.request.Request(
-                url, headers={"User-Agent": "BexarScraper/28.0", "Accept": "application/json"})
+                url, headers={"User-Agent": "BexarScraper/28.1", "Accept": "application/json"})
             with urllib.request.urlopen(req, timeout=25) as r:
                 return json.loads(r.read().decode("utf-8", errors="replace"))
         except Exception as e:
@@ -112,18 +114,12 @@ def normalize(s):
 
 
 def load_known_docs():
-    """
-    Load known docs from GitHub Pages ONLY — this reflects exactly what
-    has been deployed and is visible in the dashboard. The local
-    dashboard/records.json is the committed version and may contain
-    doc numbers from records that were scraped but not yet deployed,
-    causing them to be incorrectly treated as "known".
-    """
+    """Load from GitHub Pages — reflects exactly what's deployed."""
     url = PAGES_RECORDS + "?nocache=" + str(int(time.time()))
     try:
         req = urllib.request.Request(
             url,
-            headers={"User-Agent": "BexarScraper/28.0",
+            headers={"User-Agent": "BexarScraper/28.1",
                      "Accept": "application/json",
                      "Cache-Control": "no-cache"})
         with urllib.request.urlopen(req, timeout=20) as r:
@@ -145,12 +141,11 @@ def parse_recorded_date(date_str):
 
 # ── RECORD FILTER ─────────────────────────────────────────────────────────────
 def should_keep(rec):
-    if not rec.get("address") and not rec.get("owner") and not rec.get("sale_date"):
+    addr = rec.get("address", "").strip().upper()
+    if not addr and not rec.get("owner") and not rec.get("sale_date"):
         return False
-    if rec.get("address", "").strip().upper() in ("N/A", "NA", ""):
-        # Only drop if also no owner and no sale date
-        if not rec.get("owner") and not rec.get("sale_date"):
-            return False
+    if addr in ("N/A", "NA") and not rec.get("owner") and not rec.get("sale_date"):
+        return False
     sale_date_str = rec.get("sale_date", "")
     if sale_date_str:
         try:
@@ -264,11 +259,10 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
                 recorded_date = get_col(row, "col-4")
                 sale_date     = get_col(row, "col-5")
                 doc_number    = get_col(row, "col-6")
-                address       = get_col(row, "col-8")
+                address_raw   = get_col(row, "col-8")
 
-                doc_number = doc_number.strip()
-                address    = address.replace("\n", " ").replace(",", " ").strip()
-                sale_date  = sale_date.strip() if sale_date.strip() not in ("N/A", "") else ""
+                doc_number  = doc_number.strip()
+                sale_date   = sale_date.strip() if sale_date.strip() not in ("N/A", "") else ""
 
                 if not doc_number:
                     continue
@@ -283,12 +277,13 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
                     continue
 
                 rec_type       = "TAX" if "TAX" in doc_type_text.upper() else "NOF"
-                city, zip_code = parse_city_zip(address)
+                address        = clean_address(address_raw)
+                city, zip_code = parse_city_zip(address_raw)
                 month, year    = parse_month_year(recorded_date)
 
                 rec = {
                     "type":        rec_type,
-                    "address":     clean_address(address),
+                    "address":     address,
                     "owner":       "",
                     "mail_addr":   "",
                     "absentee":    False,
@@ -377,27 +372,58 @@ def scrape_publicsearch(known_docs):
 
 # ── ADDRESS PARSING ───────────────────────────────────────────────────────────
 def clean_address(raw):
+    """
+    Extract street address only.
+    Handles two formats:
+      1. Comma format:    "8602 LEDGESIDE, SAN ANTONIO, TX, 78251"
+      2. No-comma format: "8602 LEDGESIDE  SAN ANTONIO  TEXAS  78251"
+    """
     if not raw:
         return ""
-    parts = [p.strip() for p in raw.split(",")]
-    return parts[0].strip().upper() if parts else raw.strip().upper()
+    raw = raw.strip()
+
+    if "," in raw:
+        # Comma format — take first segment
+        parts = [p.strip() for p in raw.split(",")]
+        return parts[0].strip().upper()
+
+    # No-comma format — strip zip, state, then split on double spaces
+    upper = raw.upper()
+    upper = re.sub(r'\s+\d{5}(-\d{4})?\s*$', '', upper).strip()  # remove zip
+    upper = re.sub(r'\s+[A-Z]{2,}\s*$', '', upper).strip()        # remove state
+    parts = re.split(r'\s{2,}', upper)                             # split on 2+ spaces
+    return parts[0].strip() if parts else upper
 
 
 def parse_city_zip(raw):
-    parts    = [p.strip() for p in raw.split(",")]
-    city     = ""
-    zip_code = ""
-    if len(parts) >= 4:
-        city = parts[1].strip().upper()
-        m    = re.search(r'\b(\d{5})\b', parts[3])
-        zip_code = m.group(1) if m else parts[3].strip()
-    elif len(parts) == 3:
-        city = parts[1].strip().upper()
-        m    = re.search(r'\b(\d{5})\b', parts[2])
-        zip_code = m.group(1) if m else ""
-    else:
-        m = re.search(r'\b(\d{5})\b', raw)
-        zip_code = m.group(1) if m else ""
+    """
+    Extract city and zip from address string.
+    Handles comma and no-comma (publicsearch) formats.
+    """
+    if not raw:
+        return "", ""
+    raw = raw.strip()
+
+    if "," in raw:
+        parts = [p.strip() for p in raw.split(",")]
+        city     = ""
+        zip_code = ""
+        if len(parts) >= 4:
+            city = parts[1].strip().upper()
+            m    = re.search(r'\b(\d{5})\b', parts[3])
+            zip_code = m.group(1) if m else parts[3].strip()
+        elif len(parts) == 3:
+            city = parts[1].strip().upper()
+            m    = re.search(r'\b(\d{5})\b', parts[2])
+            zip_code = m.group(1) if m else ""
+        return city, zip_code
+
+    # No-comma format: "NUMBER STREET  CITY  STATE  ZIP"
+    upper    = raw.upper()
+    zip_m    = re.search(r'\b(\d{5})\b', upper)
+    zip_code = zip_m.group(1) if zip_m else ""
+    parts    = re.split(r'\s{2,}', upper)
+    city     = parts[1].strip() if len(parts) >= 2 else ""
     return city, zip_code
 
 
@@ -569,7 +595,6 @@ def lookup_owner(address, zipcode=""):
 
 
 def enrich_owners(records):
-    # Skip records with no real address
     missing = [r for r in records
                if not r.get("owner")
                and r.get("address", "").strip().upper() not in ("", "N/A", "NA")]
@@ -653,13 +678,12 @@ if __name__ == "__main__":
     os.makedirs("dashboard", exist_ok=True)
 
     log.info("=" * 60)
-    log.info("Bexar County Lead Scraper v28.0 (Hybrid)")
+    log.info("Bexar County Lead Scraper v28.1 (Hybrid)")
     log.info(f"Primary:   PublicSearch.us ({KEEP_DAYS}d window, {CHUNK_DAYS}d chunks, {PAGE_TIMEOUT}s timeout)")
     log.info(f"Secondary: ArcGIS weekly backfill = {IS_SUNDAY}")
     log.info(f"Filter:    {KEEP_DAYS}-day cutoff ({CUTOFF_DATE.strftime('%Y-%m-%d')}) | live auctions always kept")
     log.info("=" * 60)
 
-    # Load known docs from deployed GitHub Pages only
     known_docs, prev_records = load_known_docs()
 
     # ── Step 1: PublicSearch chunked scrape ───────────────────────────────────
