@@ -1,20 +1,22 @@
 """
-Bexar County Motivated Seller Lead Scraper v27.7
+Bexar County Motivated Seller Lead Scraper v27.8
 HYBRID SCRAPER:
   Primary:   bexar.tx.publicsearch.us  (Selenium, runs 3x daily)
-             - 14-day chunks covering 90-day window (keeps React fast)
-             - Inline row-level date skip (old rows discarded immediately)
+             - 14-day chunks covering 90-day window
+             - Inline row-level date skip
              - 180s timeout per page
-             - &sort=desc in URL
-             - Stop pagination only after page 2+ with no new records
+             - Stops pagination after page 2+ with no new records
   Secondary: ArcGIS GIS layer (urllib, runs weekly on Sunday)
 
   Owner enrichment: 5-strategy ArcGIS parcel lookup
 
-  v27.7 fix:
-    - Stop condition changed from `page_new == 0` to `page_new == 0 and page > 0`
-    - Always loads at least 2 pages per chunk before giving up
-    - Prevents missing leads when page 1 is all-known but new docs exist on page 2+
+  v27.8 fixes:
+    - known_docs NO LONGER updated inside scrape_chunk — docs are never
+      marked "known" until they survive the filter and get saved to disk
+    - known_docs loaded from saved dashboard/records.json (exact match to
+      what's actually in the dashboard) instead of GitHub Pages URL
+    - Eliminates phantom "known" entries that block re-scraping of docs
+      that were scraped but then filtered out in a previous run
 """
 
 import json
@@ -59,7 +61,7 @@ def fetch_json(url, retries=3):
     for attempt in range(retries):
         try:
             req = urllib.request.Request(
-                url, headers={"User-Agent": "BexarScraper/27.7", "Accept": "application/json"})
+                url, headers={"User-Agent": "BexarScraper/27.8", "Accept": "application/json"})
             with urllib.request.urlopen(req, timeout=25) as r:
                 return json.loads(r.read().decode("utf-8", errors="replace"))
         except Exception as e:
@@ -110,15 +112,34 @@ def normalize(s):
 
 
 def load_known_docs():
+    """
+    Load known doc numbers from the saved dashboard records.json on disk.
+    This ensures known_docs exactly matches what's actually in the dashboard —
+    no phantom entries from docs that were scraped but later filtered out.
+    Falls back to GitHub Pages if local file doesn't exist yet.
+    """
+    # Try local file first (exact match to dashboard)
+    local_path = "dashboard/records.json"
+    if os.path.exists(local_path):
+        try:
+            with open(local_path, "r", encoding="utf-8") as f:
+                prev = json.load(f)
+            docs = {str(rec.get("doc_number", "")) for rec in prev if rec.get("doc_number")}
+            log.info(f"Loaded {len(docs)} known doc numbers from local records.json")
+            return docs, prev
+        except Exception as e:
+            log.info(f"Local records.json read error: {e} — falling back to GitHub Pages")
+
+    # Fallback: GitHub Pages
     try:
         req = urllib.request.Request(
             PAGES_RECORDS + "?v=" + str(int(time.time())),
-            headers={"User-Agent": "BexarScraper/27.7", "Accept": "application/json"})
+            headers={"User-Agent": "BexarScraper/27.8", "Accept": "application/json"})
         with urllib.request.urlopen(req, timeout=15) as r:
-            prev = json.loads(r.read().decode("utf-8", errors="replace"))
-            docs = {str(rec.get("doc_number", "")) for rec in prev if rec.get("doc_number")}
-            log.info(f"Loaded {len(docs)} known doc numbers from previous run")
-            return docs, prev
+            prev = json.load(r)
+        docs = {str(rec.get("doc_number", "")) for rec in prev if rec.get("doc_number")}
+        log.info(f"Loaded {len(docs)} known doc numbers from GitHub Pages")
+        return docs, prev
     except Exception as e:
         log.info(f"No previous records found (first run?): {e}")
         return set(), []
@@ -131,7 +152,7 @@ def parse_recorded_date(date_str):
         return None
 
 
-# ── RECORD FILTER (safety net) ────────────────────────────────────────────────
+# ── RECORD FILTER ─────────────────────────────────────────────────────────────
 def should_keep(rec):
     if not rec.get("address") and not rec.get("owner") and not rec.get("sale_date"):
         return False
@@ -181,6 +202,11 @@ def get_driver():
 
 # ── SINGLE CHUNK SCRAPER ──────────────────────────────────────────────────────
 def scrape_chunk(driver, known_docs, start_dt, end_dt):
+    """
+    Scrape one date-range chunk. Returns list of new records.
+    NOTE: Does NOT update known_docs — that happens only after filter/save.
+    Dedup in main handles any cross-chunk duplicates within the same run.
+    """
     from selenium.webdriver.common.by import By
     from selenium.webdriver.support.ui import WebDriverWait
     from selenium.webdriver.support import expected_conditions as EC
@@ -214,7 +240,7 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
             wait.until(EC.presence_of_element_located(
                 (By.CSS_SELECTOR, "td.col-3")))
             time.sleep(2)
-        except Exception as e:
+        except Exception:
             log.info(f"    Timeout page {page+1} — stopping chunk")
             break
 
@@ -257,12 +283,13 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
                 if not doc_number:
                     continue
 
-                # Inline date filter — skip rows older than cutoff
+                # Inline date filter
                 rec_date = parse_recorded_date(recorded_date)
                 if rec_date and rec_date < CUTOFF_DATE:
                     page_old += 1
                     continue
 
+                # Skip if already saved to dashboard
                 if doc_number in known_docs:
                     page_known += 1
                     continue
@@ -292,7 +319,7 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
                     "source":      "publicsearch",
                 }
                 records.append(rec)
-                known_docs.add(doc_number)
+                # NOTE: NOT adding to known_docs here — only saved records are "known"
                 page_new += 1
 
             except Exception as e:
@@ -300,14 +327,12 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
 
         log.info(f"    Page {page+1}: {page_new} new | {page_known} known | {page_old} old")
 
-        # ── STOP CONDITIONS ───────────────────────────────────────────────────
-        # Stop only after page 2+ with no new records — ensures we always
-        # look at least 2 pages deep before giving up on a chunk
+        # Stop after page 2+ with no new records
         if page_new == 0 and page > 0:
             log.info("    No new records — stopping chunk")
             break
 
-        # Full page of old rows — past the cutoff date
+        # Full page of old rows
         if page_old > 0 and page_old == len(rows):
             log.info("    Full page of old rows — stopping chunk")
             break
@@ -643,12 +668,13 @@ if __name__ == "__main__":
     os.makedirs("dashboard", exist_ok=True)
 
     log.info("=" * 60)
-    log.info("Bexar County Lead Scraper v27.7 (Hybrid)")
+    log.info("Bexar County Lead Scraper v27.8 (Hybrid)")
     log.info(f"Primary:   PublicSearch.us ({KEEP_DAYS}d window, {CHUNK_DAYS}d chunks, {PAGE_TIMEOUT}s timeout)")
     log.info(f"Secondary: ArcGIS weekly backfill = {IS_SUNDAY}")
     log.info(f"Filter:    {KEEP_DAYS}-day cutoff ({CUTOFF_DATE.strftime('%Y-%m-%d')}) | live auctions always kept")
     log.info("=" * 60)
 
+    # known_docs loaded from saved dashboard — exact match to what's in the dashboard
     known_docs, prev_records = load_known_docs()
 
     # ── Step 1: PublicSearch chunked scrape ───────────────────────────────────
@@ -671,22 +697,18 @@ if __name__ == "__main__":
     records = list(seen.values())
     log.info(f"After dedup: {len(records)} total records")
 
-    # ── Step 4: 90-day filter (safety net) ───────────────────────────────────
+    # ── Step 4: 90-day filter ─────────────────────────────────────────────────
     before  = len(records)
     records = [r for r in records if should_keep(r)]
     log.info(f"After filter: {len(records)} kept, {before - len(records)} dropped")
 
-    # ── Step 5: Rebuild known_docs from filtered set ──────────────────────────
-    known_docs = {str(r.get("doc_number", "")) for r in records if r.get("doc_number")}
-    log.info(f"known_docs rebuilt: {len(known_docs)} active doc numbers")
-
-    # ── Step 6: Owner enrichment ──────────────────────────────────────────────
+    # ── Step 5: Owner enrichment ──────────────────────────────────────────────
     records = enrich_owners(records)
 
-    # ── Step 7: Duplicate detection ───────────────────────────────────────────
+    # ── Step 6: Duplicate detection ───────────────────────────────────────────
     records = detect_duplicates(records)
 
-    # ── Step 8: Flag + score ──────────────────────────────────────────────────
+    # ── Step 7: Flag + score ──────────────────────────────────────────────────
     for r in records:
         r["flags"] = []
         if r["type"] == "TAX":              r["flags"].append("TAX FORE")
@@ -708,7 +730,7 @@ if __name__ == "__main__":
 
     records.sort(key=sort_key)
 
-    # ── Step 9: Summary ───────────────────────────────────────────────────────
+    # ── Step 8: Summary ───────────────────────────────────────────────────────
     named    = sum(1 for r in records if r.get("owner"))
     absentee = sum(1 for r in records if r.get("absentee"))
     new_ct   = sum(1 for r in records if r.get("is_new"))
@@ -720,7 +742,7 @@ if __name__ == "__main__":
     log.info(f"       {new_ct} new | {has_date} with sale date | "
              f"{soon} auction <=30d | {urgent} URGENT <=14d")
 
-    # ── Step 10: Save ─────────────────────────────────────────────────────────
+    # ── Step 9: Save ──────────────────────────────────────────────────────────
     with open("data/records.json", "w", encoding="utf-8") as f:
         json.dump(records, f, indent=2)
     build_dashboard(records)
