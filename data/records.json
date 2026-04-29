@@ -944,7 +944,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600151",
     "year": "2026",
     "month": "4",
@@ -955,7 +955,6 @@
     "sale_date": "06/02/2026",
     "run_ts": "2026-04-29T00:08:24Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
