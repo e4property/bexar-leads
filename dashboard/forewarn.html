@@ -744,14 +744,12 @@ function buildPriorityList(records) {
   const cleaned = records.filter(r => {
     if (!isIndividual(r.owner)) return false;
     if (r.flags && r.flags.includes('NO OWNER')) return false;
-    // Deduplicate by address+owner
     const key = r.address + '|' + r.owner;
     if (seen.has(key)) return false;
     seen.add(key);
     return true;
   });
 
-  // Sort: score desc, absentee first, TAX FORE first, newest first
   cleaned.sort((a, b) => {
     if (b.score !== a.score) return b.score - a.score;
     const aAbs = a.absentee ? 1 : 0, bAbs = b.absentee ? 1 : 0;
@@ -769,17 +767,12 @@ function buildPriorityList(records) {
 // ═══════════════════════════════════════════════════════
 function parseName(owner) {
   if (!owner) return { first: '', last: '' };
-  // Remove trailing & and extra parts
   let clean = owner.replace(/\s*&\s*$/, '').trim();
-  // If has & take first person
   if (clean.includes('&')) clean = clean.split('&')[0].trim();
-  // Remove suffixes
   clean = clean.replace(/\b(JR|SR|II|III|IV|EST OF|C\/T|ETAL)\b/gi, '').trim();
   const parts = clean.split(/\s+/).filter(Boolean);
   if (parts.length === 0) return { first: '', last: '' };
   if (parts.length === 1) return { first: parts[0], last: '' };
-  // Standard: LAST FIRST or LAST FIRST MIDDLE
-  // For search: first = everything after last word, last = first word
   const last = parts[0];
   const first = parts.slice(1).join(' ');
   return { first: toTitle(first), last: toTitle(last) };
@@ -791,11 +784,8 @@ function toTitle(s) {
 
 function getSearchCity(record) {
   if (record.absentee && record.mail_addr) {
-    // mail_addr format: "ADDRESS CITY STATE ZIP" or "CITY STATE ZIP"
     const parts = record.mail_addr.trim().split(/\s+/);
-    // city is usually second to last before state/zip
     if (parts.length >= 2) {
-      // Find the city — look for a word that's all letters
       for (let i = parts.length - 1; i >= 0; i--) {
         if (/^[A-Z]+$/.test(parts[i]) && parts[i].length > 2) return toTitle(parts[i]);
       }
@@ -869,7 +859,6 @@ function renderCard(lead, idx) {
   const isSkipped = ls.skipped && !isSearched;
   const dispo = ls.dispo || 'new';
 
-  // Badges
   const badges = [];
   if (lead.absentee) badges.push(`<span class="badge badge-absentee">Absentee</span>`);
   if (lead.type === 'TAX') badges.push(`<span class="badge badge-tax">Tax Fore</span>`);
@@ -878,13 +867,11 @@ function renderCard(lead, idx) {
   const scoreClass = lead.score >= 8 ? 'high' : '';
   badges.push(`<span class="badge badge-score ${scoreClass}">Score ${lead.score}</span>`);
 
-  // Card class
   let cardClass = 'lead-card';
   if (isSearched) cardClass += ' searched';
   if (isSkipped) cardClass += ' skipped';
   if (dispo !== 'new') cardClass += ` dispo-${dispo}`;
 
-  // Action area
   let actionHtml;
   if (isSearched) {
     actionHtml = `
@@ -962,7 +949,6 @@ async function savePhone(doc) {
   const lead = priorityLeads.find(l => l.doc_number === doc);
   if (!lead) return;
 
-  // Update state
   if (!state.leads[doc]) state.leads[doc] = {};
   state.leads[doc].phone = phone;
   state.leads[doc].searchedAt = Date.now();
@@ -972,7 +958,6 @@ async function savePhone(doc) {
   saveState();
   updateBudget();
 
-  // Push to GHL
   if (state.ghlApiKey && state.ghlLocationId) {
     await pushToGHL(lead, phone);
   }
@@ -1002,7 +987,6 @@ function setDispo(doc, dispo) {
   if (!state.leads[doc]) state.leads[doc] = {};
   state.leads[doc].dispo = dispo;
   saveState();
-  // Update GHL tag if configured
   if (state.ghlApiKey && state.leads[doc]?.ghlContactId) {
     updateGHLDispo(state.leads[doc].ghlContactId, dispo);
   }
@@ -1022,7 +1006,9 @@ function setFilter(filter, btn) {
 async function pushToGHL(lead, phone) {
   try {
     const { first, last } = parseName(lead.owner);
-    const tags = ['bexar_lead', 'forewarn_searched'];
+
+    // ── TAGS ── bexar-contacted triggers the outreach workflow
+    const tags = ['bexar_lead', 'forewarn_searched', 'bexar-contacted'];
     if (lead.absentee) tags.push('absentee');
     if (lead.type === 'TAX') tags.push('tax_foreclosure');
     if (lead.is_new) tags.push('new_lead');
