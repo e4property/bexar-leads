@@ -532,7 +532,7 @@ let S = {
   recordsUrl: REC_URL_DEFAULT,
   weekStart: sundayTs(),
   used: 0,
-  leads: {} // doc_number → {phone,dispo,notes,skipped,searchedAt,ghlId}
+  leads: {}
 };
 
 let allLeads = [];
@@ -658,7 +658,6 @@ function filterLeads() {
   searchQ = document.getElementById('search-input').value.toLowerCase().trim();
   let list = [...allLeads];
 
-  // Tab
   if(currentTab==='priority') {
     list = buildPriority(list);
   } else if(currentTab==='pipeline') {
@@ -668,7 +667,6 @@ function filterLeads() {
     });
   }
 
-  // Chip
   if(currentChip==='absentee') list = list.filter(l=>l.absentee);
   else if(currentChip==='tax') list = list.filter(l=>l.type==='TAX');
   else if(currentChip==='nof') list = list.filter(l=>l.type==='NOF');
@@ -676,7 +674,6 @@ function filterLeads() {
   else if(currentChip==='s10') list = list.filter(l=>l.score>=10);
   else if(currentChip==='unsearched') list = list.filter(l=>!LS(l.doc_number).phone && !LS(l.doc_number).skipped);
 
-  // Search
   if(searchQ) list = list.filter(l =>
     (l.owner||'').toLowerCase().includes(searchQ) ||
     (l.address||'').toLowerCase().includes(searchQ) ||
@@ -751,7 +748,7 @@ function selectLead(doc) {
   selectedDoc = doc;
   const lead = allLeads.find(l=>l.doc_number===doc);
   if(!lead) return;
-  renderList(); // re-render to highlight
+  renderList();
   populateDetail(lead);
 }
 
@@ -765,13 +762,11 @@ function populateDetail(lead) {
   document.getElementById('detail-panel').style.display = 'flex';
   document.getElementById('detail-panel').style.flexDirection = 'column';
 
-  // Header
   document.getElementById('d-name').textContent = lead.owner || '—';
   document.getElementById('d-addr').textContent = `${lead.address}, ${lead.city} TX ${lead.zip}`;
   document.getElementById('d-meta').textContent =
     `Doc: ${lead.doc_number} · Filed: ${lead.date_filed} · ${lead.school_dist||''}`;
 
-  // Badges
   const badges = [];
   if(lead.absentee) badges.push(`<span class="badge b-abs">Absentee</span>`);
   if(lead.type==='TAX') badges.push(`<span class="badge b-tax">Tax Foreclosure</span>`);
@@ -781,19 +776,16 @@ function populateDetail(lead) {
   badges.push(`<span class="badge" style="background:var(--surface2);border:1px solid var(--border2);color:var(--muted);font-family:'IBM Plex Mono',monospace">Score ${lead.score}</span>`);
   document.getElementById('d-badges').innerHTML = badges.join('');
 
-  // Search fields
   document.getElementById('sf-first').textContent = first || '—';
   document.getElementById('sf-last').textContent = last || '—';
   document.getElementById('sf-city').textContent = city || '—';
   document.getElementById('sf-zip').textContent = zip || '—';
 
-  // Click to copy on fields
   ['sf-first','sf-last','sf-city','sf-zip'].forEach(id => {
     const el = document.getElementById(id);
     el.onclick = () => { navigator.clipboard.writeText(el.textContent); toast('Copied: '+el.textContent); };
   });
 
-  // Phone
   if(ls.phone) {
     document.getElementById('phone-saved-area').style.display = 'block';
     document.getElementById('phone-entry-area').style.display = 'none';
@@ -806,16 +798,10 @@ function populateDetail(lead) {
     document.getElementById('phone-input').value = '';
   }
 
-  // Dispo
   renderDispoTrack(lead.doc_number, ls.dispo||'new');
-
-  // Notes
   document.getElementById('notes-area').value = ls.notes || '';
-
-  // Timeline
   renderTimeline(lead, ls);
 
-  // Lead info
   document.getElementById('lead-info-grid').innerHTML = `
     Type: ${lead.type} · Score: ${lead.score}<br>
     Filed: ${lead.date_filed}<br>
@@ -825,7 +811,6 @@ function populateDetail(lead) {
     Mail addr: ${lead.mail_addr||'—'}
   `;
 
-  // Pipeline overview (always fresh)
   updateStats();
 }
 
@@ -928,12 +913,14 @@ function openGHL() {
 }
 
 // ═══════════════════════════════════════════
-//  GHL
+//  GHL — FIXED: v1 endpoint + bexar-contacted tag
 // ═══════════════════════════════════════════
 async function pushGHL(lead, phone) {
   try {
     const {first,last} = parseName(lead.owner);
-    const tags = ['bexar_lead','forewarn_searched'];
+
+    // bexar-contacted triggers the Bexar - Initial Outreach workflow
+    const tags = ['bexar_lead','forewarn_searched','bexar-contacted'];
     if(lead.absentee) tags.push('absentee');
     if(lead.type==='TAX') tags.push('tax_foreclosure');
     if(lead.is_new) tags.push('new_lead');
@@ -952,14 +939,15 @@ async function pushGHL(lead, phone) {
       ]
     };
 
-    const res = await fetch('https://services.leadconnectorhq.com/contacts/', {
+    const res = await fetch('https://rest.gohighlevel.com/v1/contacts/', {
       method:'POST',
-      headers:{'Authorization':'Bearer '+S.ghlApiKey,'Content-Type':'application/json','Version':'2021-07-28'},
+      headers:{'Authorization':'Bearer '+S.ghlApiKey,'Content-Type':'application/json'},
       body:JSON.stringify(body)
     });
     const data = await res.json();
     const id = data.contact?.id || data.id;
     if(id) { S.leads[lead.doc_number].ghlId=id; saveState(); setGhlDot(true); }
+    else { setGhlDot(false); }
   } catch(e) { setGhlDot(false); }
 }
 
@@ -967,9 +955,9 @@ async function updateGHLTag(contactId, dispo) {
   const tagMap = {contacted:'dispo_contacted',responded:'dispo_responded',deal:'dispo_deal',dead:'dispo_dead'};
   const tag = tagMap[dispo]; if(!tag) return;
   try {
-    await fetch(`https://services.leadconnectorhq.com/contacts/${contactId}/tags/`,{
+    await fetch(`https://rest.gohighlevel.com/v1/contacts/${contactId}/tags/`,{
       method:'POST',
-      headers:{'Authorization':'Bearer '+S.ghlApiKey,'Content-Type':'application/json','Version':'2021-07-28'},
+      headers:{'Authorization':'Bearer '+S.ghlApiKey,'Content-Type':'application/json'},
       body:JSON.stringify({tags:[tag]})
     });
   } catch(e){}
@@ -1005,8 +993,7 @@ function updateStats() {
   const searched = Object.values(S.leads).filter(l=>l.phone).length;
   const deals = Object.values(S.leads).filter(l=>l.dispo==='deal').length;
 
-  const ids = e=>{ const el=document.getElementById(e); return el; };
-  const set = (id,v) => { const el=ids(id); if(el) el.textContent=v; };
+  const set = (id,v) => { const el=document.getElementById(id); if(el) el.textContent=v; };
   set('ov-total',total); set('ov-absentee',abs); set('ov-tax',tax);
   set('ov-new',nw); set('ov-searched',searched); set('ov-deals',deals);
 
