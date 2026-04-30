@@ -1,8 +1,7 @@
 name: Scrape & Enrich Leads
 on:
   schedule:
-    - cron: '0 13 * * *'
-    - cron: '0 17 * * *'
+    - cron: '0 15 * * *'
     - cron: '0 21 * * *'
   workflow_dispatch:
 permissions:
@@ -69,4 +68,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
