@@ -28,12 +28,9 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;overflow:hidden}
 body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-size:14px;display:flex;flex-direction:column}
-
-/* ── TOP BAR ── */
 .topbar{height:56px;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 20px;gap:16px;flex-shrink:0;z-index:100}
 .logo{font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;color:var(--accent);letter-spacing:0.08em;white-space:nowrap}
 .logo em{color:var(--muted);font-style:normal}
-
 .stat-pills{display:flex;gap:8px;margin-left:4px}
 .pill{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:4px 10px;font-family:'IBM Plex Mono',monospace;font-size:11px;display:flex;align-items:center;gap:6px;white-space:nowrap}
 .pill-num{font-size:14px;font-weight:600}
@@ -42,91 +39,61 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-s
 .pill-num.gold{color:var(--gold)}
 .pill-num.red{color:var(--red)}
 .pill-label{color:var(--muted)}
-
 .topbar-right{display:flex;gap:8px;margin-left:auto;align-items:center}
 .ghl-badge{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted);font-family:'IBM Plex Mono',monospace}
 .ghl-dot{width:7px;height:7px;border-radius:50%;background:var(--dim);flex-shrink:0}
 .ghl-dot.ok{background:var(--accent);box-shadow:0 0 6px var(--accent)}
 .ghl-dot.err{background:var(--red)}
-
 .btn{padding:6px 14px;border-radius:6px;border:1px solid var(--border2);background:var(--surface2);color:var(--text);font-family:'Syne',sans-serif;font-size:12px;cursor:pointer;transition:all .15s;white-space:nowrap}
 .btn:hover{background:var(--border);border-color:var(--border2)}
 .btn.accent{background:var(--accent);color:#000;border-color:var(--accent);font-weight:700}
 .btn.accent:hover{background:#00e8ad}
 .btn.fw{background:var(--purple);color:#fff;border-color:var(--purple);font-weight:700}
 .btn.fw:hover{background:#b08aff}
-
-/* ── LAYOUT ── */
 .layout{display:flex;flex:1;overflow:hidden}
-
-/* ── LEFT PANEL ── */
 .left-panel{width:340px;flex-shrink:0;display:flex;flex-direction:column;border-right:1px solid var(--border);background:var(--bg2)}
-
-/* ── VIEW TABS ── */
 .view-tabs{display:flex;border-bottom:1px solid var(--border);background:var(--bg)}
 .vtab{flex:1;padding:10px 8px;text-align:center;font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:all .15s}
 .vtab.active{color:var(--text);border-bottom-color:var(--accent);background:var(--bg2)}
 .vtab:hover:not(.active){color:var(--text)}
-
-/* ── SEARCH + FILTERS ── */
 .search-bar{padding:10px 12px;border-bottom:1px solid var(--border)}
 .search-input{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:7px 12px;color:var(--text);font-family:'Syne',sans-serif;font-size:13px;outline:none;transition:border-color .15s}
 .search-input:focus{border-color:var(--accent2)}
 .search-input::placeholder{color:var(--dim)}
-
 .filter-chips{padding:8px 12px;display:flex;gap:5px;flex-wrap:wrap;border-bottom:1px solid var(--border)}
 .chip{padding:3px 9px;border-radius:20px;border:1px solid var(--border2);background:transparent;color:var(--muted);font-size:10px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;transition:all .15s;font-family:'Syne',sans-serif}
 .chip:hover{border-color:var(--accent);color:var(--accent)}
 .chip.active{background:var(--accent);border-color:var(--accent);color:#000}
-.chip.active-blue{background:var(--accent2);border-color:var(--accent2);color:#fff}
-.chip.active-gold{background:var(--gold);border-color:var(--gold);color:#000}
-.chip.active-red{background:var(--red);border-color:var(--red);color:#fff}
-.chip.active-purple{background:var(--purple);border-color:var(--purple);color:#fff}
-
-/* ── LEAD LIST ── */
 .lead-list{flex:1;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
 .lead-list::-webkit-scrollbar{width:4px}
-.lead-list::-webkit-scrollbar-track{background:transparent}
 .lead-list::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
-
 .lead-item{padding:10px 12px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .1s;position:relative}
 .lead-item:hover{background:var(--surface)}
 .lead-item.active{background:var(--surface);border-left:3px solid var(--accent)}
-.lead-item.active-blue{background:var(--surface);border-left:3px solid var(--accent2)}
-.lead-item.active-gold{background:var(--surface);border-left:3px solid var(--gold)}
 .lead-item.dispo-contacted{border-left:3px solid var(--accent2)}
 .lead-item.dispo-responded{border-left:3px solid var(--accent)}
 .lead-item.dispo-deal{border-left:3px solid var(--gold)}
 .lead-item.dispo-dead{opacity:0.35}
 .lead-item.searched{opacity:0.6}
-
 .li-top{display:flex;align-items:center;gap:6px;margin-bottom:4px}
 .li-rank{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);min-width:22px}
 .li-name{font-size:13px;font-weight:600;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .li-score{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);background:var(--surface2);border:1px solid var(--border);padding:1px 5px;border-radius:3px}
 .li-score.s10{color:var(--accent);border-color:rgba(0,200,150,.3)}
 .li-score.s8{color:var(--accent2);border-color:rgba(59,139,255,.3)}
-
 .li-addr{font-size:11px;color:var(--muted);margin-bottom:5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-
 .li-badges{display:flex;gap:4px;flex-wrap:wrap}
 .badge{display:inline-flex;align-items:center;padding:1px 6px;border-radius:3px;font-size:9px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;white-space:nowrap}
 .b-abs{background:rgba(255,71,87,.12);color:#ff6b7a;border:1px solid rgba(255,71,87,.25)}
 .b-tax{background:rgba(240,165,0,.12);color:#f0c040;border:1px solid rgba(240,165,0,.25)}
 .b-nof{background:rgba(59,139,255,.1);color:#6aa3ff;border:1px solid rgba(59,139,255,.2)}
 .b-new{background:rgba(82,214,138,.1);color:#52d68a;border:1px solid rgba(82,214,138,.2)}
-.b-dup{background:rgba(77,90,122,.15);color:var(--muted);border:1px solid var(--border)}
 .b-phone{background:rgba(0,200,150,.1);color:var(--accent);border:1px solid rgba(0,200,150,.2)}
 .b-dispo{background:rgba(155,114,255,.12);color:#b899ff;border:1px solid rgba(155,114,255,.25)}
-
-/* ── RIGHT PANEL ── */
 .right-panel{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--bg)}
-
 .empty-state{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--dim);gap:12px}
 .empty-icon{font-size:48px;opacity:.3}
 .empty-text{font-size:13px;color:var(--muted);text-align:center;line-height:1.8}
-
-/* ── DETAIL PANEL ── */
 .detail{flex:1;display:flex;flex-direction:column;overflow:hidden}
 .detail-header{padding:20px 24px 16px;border-bottom:1px solid var(--border);flex-shrink:0}
 .dh-top{display:flex;align-items:flex-start;gap:12px;margin-bottom:8px}
@@ -134,16 +101,12 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-s
 .dh-badges{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
 .dh-addr{font-size:13px;color:var(--muted);margin-bottom:4px}
 .dh-meta{font-size:12px;color:var(--dim);font-family:'IBM Plex Mono',monospace}
-
 .detail-body{flex:1;overflow-y:auto;display:grid;grid-template-columns:1fr 1fr;gap:0;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
 .detail-body::-webkit-scrollbar{width:4px}
 .detail-body::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
-
-/* ── FOREWARN SECTION ── */
 .fw-section{padding:20px 24px;border-right:1px solid var(--border);border-bottom:1px solid var(--border)}
 .section-title{font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;display:flex;align-items:center;gap:8px}
 .section-title::after{content:'';flex:1;height:1px;background:var(--border)}
-
 .fw-budget{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px 14px;margin-bottom:14px}
 .fw-b-item{text-align:center}
 .fw-b-num{font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:600;line-height:1}
@@ -153,7 +116,6 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-s
 .fw-b-label{font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:.08em;margin-top:2px}
 .fw-b-sep{color:var(--border2);font-size:18px}
 .fw-reset{font-size:10px;color:var(--dim);margin-left:auto;font-family:'IBM Plex Mono',monospace;text-align:right;line-height:1.5}
-
 .search-fields{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px;margin-bottom:12px}
 .sf-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
 .sf-row:last-child{margin-bottom:0}
@@ -161,26 +123,18 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-s
 .sf-label{font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.07em;font-family:'IBM Plex Mono',monospace}
 .sf-val{font-size:13px;font-weight:600;color:var(--text);background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:5px 8px;user-select:all;cursor:pointer;transition:border-color .15s}
 .sf-val:hover{border-color:var(--accent2)}
-
 .phone-row{display:flex;gap:8px;margin-bottom:10px}
 .phone-input{flex:1;background:var(--bg);border:1px solid var(--border2);border-radius:6px;padding:9px 12px;color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:13px;outline:none;transition:border-color .15s}
 .phone-input:focus{border-color:var(--accent)}
 .phone-input::placeholder{color:var(--dim);font-family:'Syne',sans-serif;font-size:12px}
-
 .btn-save{padding:9px 16px;background:var(--accent);color:#000;border:none;border-radius:6px;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;cursor:pointer;transition:all .15s;white-space:nowrap}
 .btn-save:hover{background:#00e8ad}
-.btn-save:disabled{background:var(--dim);color:var(--muted);cursor:not-allowed}
-
 .phone-saved{background:rgba(0,200,150,.08);border:1px solid rgba(0,200,150,.2);border-radius:8px;padding:12px;margin-bottom:10px}
 .ps-num{font-family:'IBM Plex Mono',monospace;font-size:16px;color:var(--accent);font-weight:600;margin-bottom:4px}
 .ps-meta{font-size:11px;color:var(--muted)}
-
 .btn-clear{padding:5px 10px;background:transparent;border:1px solid var(--border2);color:var(--muted);border-radius:5px;font-size:11px;cursor:pointer;transition:all .15s;font-family:'Syne',sans-serif}
 .btn-clear:hover{border-color:var(--red);color:var(--red)}
-
-/* ── DISPO SECTION ── */
 .dispo-section{padding:20px 24px;border-bottom:1px solid var(--border)}
-
 .dispo-track{display:flex;gap:6px;margin-bottom:14px}
 .dispo-btn{flex:1;padding:8px 4px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--dim);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;cursor:pointer;transition:all .15s;text-align:center;font-family:'Syne',sans-serif}
 .dispo-btn:hover{border-color:var(--border2);color:var(--muted)}
@@ -189,19 +143,14 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-s
 .dispo-btn.d-responded.active{background:rgba(0,200,150,.12);border-color:var(--accent);color:var(--accent)}
 .dispo-btn.d-deal.active{background:rgba(240,165,0,.15);border-color:var(--gold);color:var(--gold)}
 .dispo-btn.d-dead.active{background:rgba(60,20,20,.4);border-color:var(--dim);color:var(--dim)}
-
 .notes-area{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:10px 12px;color:var(--text);font-family:'Syne',sans-serif;font-size:12px;resize:none;outline:none;transition:border-color .15s;line-height:1.6}
 .notes-area:focus{border-color:var(--accent2)}
 .notes-area::placeholder{color:var(--dim)}
-
-/* ── STATS SECTION ── */
 .stats-section{padding:20px 24px;border-right:1px solid var(--border)}
-
 .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
 .stat-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px}
 .sc-num{font-family:'IBM Plex Mono',monospace;font-size:20px;font-weight:600;line-height:1;margin-bottom:4px}
 .sc-label{font-size:11px;color:var(--muted)}
-
 .pipeline-bar{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px}
 .pb-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
 .pb-track{height:8px;background:var(--bg);border-radius:4px;overflow:hidden;display:flex;gap:1px;margin-bottom:6px}
@@ -209,8 +158,6 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-s
 .pb-legend{display:flex;gap:10px;flex-wrap:wrap}
 .pb-item{display:flex;align-items:center;gap:4px;font-size:10px;color:var(--muted)}
 .pb-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
-
-/* ── TIMELINE SECTION ── */
 .timeline-section{padding:20px 24px}
 .tl-item{display:flex;gap:10px;margin-bottom:12px;font-size:12px}
 .tl-dot{width:8px;height:8px;border-radius:50%;background:var(--dim);flex-shrink:0;margin-top:3px}
@@ -220,24 +167,16 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-s
 .tl-content{flex:1;color:var(--muted);line-height:1.5}
 .tl-content strong{color:var(--text)}
 .tl-time{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);white-space:nowrap;margin-top:2px}
-
-/* ── PROGRESS BAR ── */
 .progress-strip{height:2px;background:var(--border);flex-shrink:0}
 .progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .4s ease}
-
-/* ── LOADING ── */
 .loading{padding:40px;text-align:center;color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:12px}
 .ld{display:inline-block;animation:blink 1.2s infinite}
 .ld:nth-child(2){animation-delay:.2s}
 .ld:nth-child(3){animation-delay:.4s}
 @keyframes blink{0%,80%,100%{opacity:0}40%{opacity:1}}
-
-/* ── TOAST ── */
 #toast{position:fixed;bottom:20px;right:20px;background:var(--surface2);border:1px solid var(--accent);border-radius:8px;padding:10px 16px;font-size:12px;color:var(--accent);z-index:9999;transform:translateY(60px);opacity:0;transition:all .25s;max-width:280px;font-family:'IBM Plex Mono',monospace}
 #toast.show{transform:translateY(0);opacity:1}
 #toast.err{border-color:var(--red);color:var(--red)}
-
-/* ── MODAL ── */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:500;align-items:center;justify-content:center}
 .modal-overlay.open{display:flex}
 .modal{background:var(--surface);border:1px solid var(--border2);border-radius:12px;padding:24px;width:420px;max-width:92vw}
@@ -246,10 +185,8 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-s
 .modal input{width:100%;background:var(--bg);border:1px solid var(--border2);border-radius:6px;padding:8px 12px;color:var(--text);font-size:13px;outline:none;font-family:'IBM Plex Mono',monospace}
 .modal input:focus{border-color:var(--accent)}
 .modal-actions{display:flex;gap:8px;margin-top:18px;justify-content:flex-end}
-
-/* ── FW PANEL (forewarn mode) ── */
 .fw-panel{flex:1;display:flex;flex-direction:column;background:var(--bg);overflow-y:auto}
-.fw-header{padding:20px 24px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:16px}
+.fw-header{padding:20px 24px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:16px;flex-wrap:wrap}
 .fw-title{font-size:18px;font-weight:700}
 .fw-queue{padding:16px}
 .fw-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:8px;display:grid;grid-template-columns:28px 1fr auto;gap:0;overflow:hidden;transition:border-color .2s}
@@ -282,7 +219,6 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-s
 .fw-d-btn.d-deal.active{background:rgba(240,165,0,.15);border-color:var(--gold);color:var(--gold)}
 .fw-d-btn.d-dead.active{background:rgba(60,20,20,.4);border-color:var(--dim);color:var(--dim)}
 .fw-saved-phone{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--accent);font-weight:600;margin-bottom:4px}
-
 @media(max-width:900px){
   .layout{flex-direction:column}
   .left-panel{width:100%;height:280px}
@@ -291,8 +227,6 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-s
 </style>
 </head>
 <body>
-
-<!-- TOP BAR -->
 <div class="topbar">
   <div class="logo">BEXAR<em>·</em>LEADS</div>
   <div class="stat-pills">
@@ -307,14 +241,8 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-s
     <button class="btn fw" onclick="switchView('forewarn')">📞 ForeWarn</button>
   </div>
 </div>
-
-<!-- PROGRESS STRIP -->
 <div class="progress-strip"><div class="progress-fill" id="prog-fill" style="width:0%"></div></div>
-
-<!-- LAYOUT -->
 <div class="layout">
-
-  <!-- LEFT PANEL -->
   <div class="left-panel">
     <div class="view-tabs">
       <div class="vtab active" id="tab-all" onclick="setTab('all')">All</div>
@@ -324,21 +252,19 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-s
     <div class="search-bar">
       <input class="search-input" id="search-input" placeholder="Search name, address, zip…" oninput="filterLeads()">
     </div>
-    <div class="filter-chips" id="filter-chips">
-      <span class="chip active" data-f="all" onclick="setChip('all',this)">All</span>
-      <span class="chip" data-f="absentee" onclick="setChip('absentee',this)">Absentee</span>
-      <span class="chip" data-f="tax" onclick="setChip('tax',this)">Tax</span>
-      <span class="chip" data-f="nof" onclick="setChip('nof',this)">NOF</span>
-      <span class="chip" data-f="new" onclick="setChip('new',this)">New</span>
-      <span class="chip" data-f="s10" onclick="setChip('s10',this)">Score 10</span>
-      <span class="chip" data-f="unsearched" onclick="setChip('unsearched',this)">Unsearched</span>
+    <div class="filter-chips">
+      <span class="chip active" onclick="setChip('all',this)">All</span>
+      <span class="chip" onclick="setChip('absentee',this)">Absentee</span>
+      <span class="chip" onclick="setChip('tax',this)">Tax</span>
+      <span class="chip" onclick="setChip('nof',this)">NOF</span>
+      <span class="chip" onclick="setChip('new',this)">New</span>
+      <span class="chip" onclick="setChip('s10',this)">Score 10</span>
+      <span class="chip" onclick="setChip('unsearched',this)">Unsearched</span>
     </div>
     <div class="lead-list" id="lead-list">
       <div class="loading">Loading leads<span class="ld">.</span><span class="ld">.</span><span class="ld">.</span></div>
     </div>
   </div>
-
-  <!-- RIGHT PANEL: LEADS VIEW -->
   <div class="right-panel" id="leads-view">
     <div class="empty-state" id="empty-state">
       <div class="empty-icon">⚡</div>
@@ -346,60 +272,32 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-s
     </div>
     <div class="detail" id="detail-panel" style="display:none">
       <div class="detail-header">
-        <div class="dh-top">
-          <div class="dh-name" id="d-name"></div>
-        </div>
+        <div class="dh-top"><div class="dh-name" id="d-name"></div></div>
         <div class="dh-badges" id="d-badges"></div>
         <div class="dh-addr" id="d-addr"></div>
         <div class="dh-meta" id="d-meta"></div>
       </div>
       <div class="detail-body">
-
-        <!-- FOREWARN COLUMN -->
         <div class="fw-section">
           <div class="section-title">📞 ForeWarn Search</div>
-
           <div class="fw-budget">
-            <div class="fw-b-item">
-              <div class="fw-b-num used" id="fw-used">0</div>
-              <div class="fw-b-label">Used</div>
-            </div>
+            <div class="fw-b-item"><div class="fw-b-num used" id="fw-used">0</div><div class="fw-b-label">Used</div></div>
             <div class="fw-b-sep">|</div>
-            <div class="fw-b-item">
-              <div class="fw-b-num tot">100</div>
-              <div class="fw-b-label">Budget</div>
-            </div>
+            <div class="fw-b-item"><div class="fw-b-num tot">100</div><div class="fw-b-label">Budget</div></div>
             <div class="fw-b-sep">|</div>
-            <div class="fw-b-item">
-              <div class="fw-b-num left" id="fw-left">100</div>
-              <div class="fw-b-label">Left</div>
-            </div>
+            <div class="fw-b-item"><div class="fw-b-num left" id="fw-left">100</div><div class="fw-b-label">Left</div></div>
             <div class="fw-reset" id="fw-reset-info">Resets<br>Sunday</div>
           </div>
-
           <div class="search-fields">
             <div class="sf-row">
-              <div class="sf-field">
-                <div class="sf-label">First</div>
-                <div class="sf-val" id="sf-first" title="Click to copy">—</div>
-              </div>
-              <div class="sf-field">
-                <div class="sf-label">Last</div>
-                <div class="sf-val" id="sf-last" title="Click to copy">—</div>
-              </div>
+              <div class="sf-field"><div class="sf-label">First</div><div class="sf-val" id="sf-first">—</div></div>
+              <div class="sf-field"><div class="sf-label">Last</div><div class="sf-val" id="sf-last">—</div></div>
             </div>
             <div class="sf-row">
-              <div class="sf-field">
-                <div class="sf-label">City</div>
-                <div class="sf-val" id="sf-city" title="Click to copy">—</div>
-              </div>
-              <div class="sf-field">
-                <div class="sf-label">ZIP</div>
-                <div class="sf-val" id="sf-zip" title="Click to copy">—</div>
-              </div>
+              <div class="sf-field"><div class="sf-label">City</div><div class="sf-val" id="sf-city">—</div></div>
+              <div class="sf-field"><div class="sf-label">ZIP</div><div class="sf-val" id="sf-zip">—</div></div>
             </div>
           </div>
-
           <div id="phone-saved-area" style="display:none">
             <div class="phone-saved">
               <div class="ps-num" id="saved-phone-display"></div>
@@ -407,21 +305,17 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-s
             </div>
             <button class="btn-clear" onclick="clearPhone()">✕ Clear phone</button>
           </div>
-
           <div id="phone-entry-area">
             <div class="phone-row">
-              <input class="phone-input" id="phone-input" type="tel" placeholder="Enter phone from ForeWarn…"
-                onkeydown="if(event.key==='Enter')savePhone()">
-              <button class="btn-save" id="btn-save" onclick="savePhone()">Save</button>
+              <input class="phone-input" id="phone-input" type="tel" placeholder="Enter phone from ForeWarn…" onkeydown="if(event.key==='Enter')savePhone()">
+              <button class="btn-save" onclick="savePhone()">Save</button>
             </div>
             <div style="display:flex;gap:8px">
               <button class="btn" style="flex:1;font-size:11px" onclick="skipLead()">Skip</button>
-              <a id="fw-open-link" href="https://app.forewarn.com" target="_blank" class="btn accent" style="flex:1;font-size:11px;text-align:center;text-decoration:none">Open ForeWarn ↗</a>
+              <a href="https://app.forewarn.com" target="_blank" class="btn accent" style="flex:1;font-size:11px;text-align:center;text-decoration:none">Open ForeWarn ↗</a>
             </div>
           </div>
         </div>
-
-        <!-- DISPO COLUMN -->
         <div class="dispo-section">
           <div class="section-title">Pipeline Disposition</div>
           <div class="dispo-track" id="dispo-track"></div>
@@ -432,8 +326,6 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-s
             <button class="btn" style="flex:1;font-size:11px" onclick="copyAddress()">Copy Address</button>
           </div>
         </div>
-
-        <!-- STATS COLUMN -->
         <div class="stats-section">
           <div class="section-title">Pipeline Overview</div>
           <div class="stat-grid">
@@ -460,20 +352,15 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-s
             </div>
           </div>
         </div>
-
-        <!-- TIMELINE COLUMN -->
         <div class="timeline-section">
           <div class="section-title">Activity</div>
           <div id="timeline"></div>
           <div class="section-title" style="margin-top:16px">Lead Info</div>
           <div id="lead-info-grid" style="font-size:12px;color:var(--muted);line-height:2;font-family:'IBM Plex Mono',monospace"></div>
         </div>
-
       </div>
     </div>
   </div>
-
-  <!-- RIGHT PANEL: FOREWARN VIEW -->
   <div class="fw-panel" id="fw-view" style="display:none">
     <div class="fw-header">
       <div class="fw-title">📞 ForeWarn Queue</div>
@@ -482,32 +369,27 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-s
         <div class="fw-b-sep">|</div>
         <div class="fw-b-item"><div class="fw-b-num left" id="fw2-left">100</div><div class="fw-b-label">Left</div></div>
       </div>
-      <div style="margin-left:auto;display:flex;gap:8px">
+      <div style="margin-left:auto;display:flex;gap:8px;flex-wrap:wrap">
         <div class="filter-chips" style="padding:0;border:none">
-          <span class="chip active" data-q="all" onclick="setQueueFilter('all',this)">All</span>
-          <span class="chip" data-q="unsearched" onclick="setQueueFilter('unsearched',this)">Unsearched</span>
-          <span class="chip" data-q="deal" onclick="setQueueFilter('deal',this)">🔥 Deals</span>
+          <span class="chip active" onclick="setQueueFilter('all',this)">All</span>
+          <span class="chip" onclick="setQueueFilter('unsearched',this)">Unsearched</span>
+          <span class="chip" onclick="setQueueFilter('deal',this)">🔥 Deals</span>
         </div>
         <button class="btn" onclick="switchView('leads')">← Back</button>
-        <button class="btn danger" onclick="confirmReset()" style="border-color:var(--red);color:var(--red)">Reset Week</button>
+        <button class="btn" onclick="confirmReset()" style="border-color:var(--red);color:var(--red)">Reset Week</button>
       </div>
     </div>
     <div class="fw-queue" id="fw-queue">
       <div class="loading">Loading queue<span class="ld">.</span><span class="ld">.</span><span class="ld">.</span></div>
     </div>
   </div>
-
 </div>
-
-<!-- TOAST -->
 <div id="toast"></div>
-
-<!-- SETTINGS MODAL -->
 <div class="modal-overlay" id="settings-modal">
   <div class="modal">
     <h3>⚙ Settings</h3>
-    <label>GHL API Key</label>
-    <input type="password" id="set-apikey" placeholder="eyJhbGci…">
+    <label>GHL API Key (Private Integration)</label>
+    <input type="password" id="set-apikey" placeholder="pit-…">
     <label>GHL Location ID</label>
     <input type="text" id="set-locid" placeholder="UAOJlgeerLu3GChP9jDJ">
     <label>Records JSON URL</label>
@@ -520,181 +402,93 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-s
 </div>
 
 <script>
-// ═══════════════════════════════════════════
-//  STATE
-// ═══════════════════════════════════════════
 const SK = 'bl_state_v4';
 const REC_URL_DEFAULT = 'https://e4property.github.io/bexar-leads/records.json';
 
-let S = {
-  ghlApiKey: '',
-  ghlLocationId: 'UAOJlgeerLu3GChP9jDJ',
-  recordsUrl: REC_URL_DEFAULT,
-  weekStart: sundayTs(),
-  used: 0,
-  leads: {}
-};
+let S = { ghlApiKey:'', ghlLocationId:'UAOJlgeerLu3GChP9jDJ', recordsUrl:REC_URL_DEFAULT, weekStart:sundayTs(), used:0, leads:{} };
+let allLeads=[], filteredLeads=[], selectedDoc=null;
+let currentTab='all', currentChip='all', currentView='leads', queueFilter='all', searchQ='';
 
-let allLeads = [];
-let filteredLeads = [];
-let selectedDoc = null;
-let currentTab = 'all';
-let currentChip = 'all';
-let currentView = 'leads';
-let queueFilter = 'all';
-let searchQ = '';
-
-// ═══════════════════════════════════════════
-//  INIT
-// ═══════════════════════════════════════════
-function init() {
-  loadState();
-  checkWeekReset();
-  updateBudgetUI();
-  updateResetInfo();
-  updateGhlUI();
-  fetchLeads();
-}
+function init() { loadState(); checkWeekReset(); updateBudgetUI(); updateResetInfo(); updateGhlUI(); fetchLeads(); }
 
 function sundayTs() {
-  const n = new Date(), d = new Date(n);
-  d.setDate(n.getDate() - n.getDay());
-  d.setHours(0,0,0,0);
-  return d.getTime();
+  const n=new Date(), d=new Date(n); d.setDate(n.getDate()-n.getDay()); d.setHours(0,0,0,0); return d.getTime();
 }
-
-function loadState() {
-  try { const s = localStorage.getItem(SK); if(s) S = {...S,...JSON.parse(s)}; } catch(e){}
-}
-function saveState() { localStorage.setItem(SK, JSON.stringify(S)); }
+function loadState() { try { const s=localStorage.getItem(SK); if(s) S={...S,...JSON.parse(s)}; } catch(e){} }
+function saveState() { localStorage.setItem(SK,JSON.stringify(S)); }
 
 function checkWeekReset() {
-  if (S.weekStart < sundayTs()) {
-    S.weekStart = sundayTs(); S.used = 0; saveState();
-    toast('Week reset — 100 searches available!');
-  }
+  if(S.weekStart<sundayTs()) { S.weekStart=sundayTs(); S.used=0; saveState(); toast('Week reset — 100 searches available!'); }
 }
 
 function updateBudgetUI() {
-  const left = Math.max(0, 100 - S.used);
-  ['fw-used','fw2-used'].forEach(id => { const el=document.getElementById(id); if(el) el.textContent=S.used; });
-  ['fw-left','fw2-left'].forEach(id => { const el=document.getElementById(id); if(el) el.textContent=left; });
-  document.getElementById('prog-fill').style.width = S.used + '%';
+  const left=Math.max(0,100-S.used);
+  ['fw-used','fw2-used'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=S.used;});
+  ['fw-left','fw2-left'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=left;});
+  document.getElementById('prog-fill').style.width=S.used+'%';
 }
 
 function updateResetInfo() {
-  const next = new Date(S.weekStart + 7*24*60*60*1000);
-  const diff = next - new Date();
-  const days = Math.floor(diff/(1000*60*60*24));
-  const hrs = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
-  const el = document.getElementById('fw-reset-info');
-  if(el) el.innerHTML = `Resets in<br>${days}d ${hrs}h`;
+  const next=new Date(S.weekStart+7*24*60*60*1000), diff=next-new Date();
+  const days=Math.floor(diff/(1000*60*60*24)), hrs=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+  const el=document.getElementById('fw-reset-info'); if(el) el.innerHTML=`Resets in<br>${days}d ${hrs}h`;
 }
 
-// ═══════════════════════════════════════════
-//  DATA
-// ═══════════════════════════════════════════
 async function fetchLeads() {
   try {
-    const url = (S.recordsUrl || REC_URL_DEFAULT) + '?t=' + Date.now();
-    const res = await fetch(url);
+    const res=await fetch((S.recordsUrl||REC_URL_DEFAULT)+'?t='+Date.now());
     if(!res.ok) throw new Error('HTTP '+res.status);
-    allLeads = await res.json();
-    filterLeads();
-    updateStats();
-    updateTopStats();
-  } catch(e) {
-    document.getElementById('lead-list').innerHTML =
-      `<div class="loading" style="color:var(--red)">⚠ ${e.message}<br><small style="color:var(--dim)">Check Settings</small></div>`;
-  }
+    allLeads=await res.json(); filterLeads(); updateStats(); updateTopStats();
+  } catch(e) { document.getElementById('lead-list').innerHTML=`<div class="loading" style="color:var(--red)">⚠ ${e.message}</div>`; }
 }
 
-// ═══════════════════════════════════════════
-//  NAME / SEARCH FIELD PARSING
-// ═══════════════════════════════════════════
 function parseName(owner) {
   if(!owner||!owner.trim()) return {first:'',last:''};
-  let c = owner.replace(/\s*&\s*$/,'').trim();
-  if(c.includes('&')) c = c.split('&')[0].trim();
-  c = c.replace(/\b(JR|SR|II|III|IV|V|EST OF|C\/T|ETAL|C\/O)\b/gi,'').replace(/\s+/g,' ').trim();
-  const p = c.split(/\s+/).filter(Boolean);
+  let c=owner.replace(/\s*&\s*$/,'').trim();
+  if(c.includes('&')) c=c.split('&')[0].trim();
+  c=c.replace(/\b(JR|SR|II|III|IV|V|EST OF|C\/T|ETAL|C\/O)\b/gi,'').replace(/\s+/g,' ').trim();
+  const p=c.split(/\s+/).filter(Boolean);
   if(!p.length) return {first:'',last:''};
   if(p.length===1) return {first:toTitle(p[0]),last:''};
   return {first:toTitle(p.slice(1).join(' ')),last:toTitle(p[0])};
 }
-
 function toTitle(s) { return s.toLowerCase().replace(/\b\w/g,c=>c.toUpperCase()); }
-
 function getCity(r) {
-  if(r.absentee && r.mail_addr) {
-    const p = r.mail_addr.trim().split(/\s+/);
-    for(let i=p.length-2;i>=0;i--) { if(/^[A-Z]{2,}$/.test(p[i])) return toTitle(p[i]); }
-  }
+  if(r.absentee&&r.mail_addr){const p=r.mail_addr.trim().split(/\s+/);for(let i=p.length-2;i>=0;i--){if(/^[A-Z]{2,}$/.test(p[i]))return toTitle(p[i]);}}
   return toTitle(r.city||'');
 }
-
 function getZip(r) {
-  if(r.absentee && r.mail_addr) {
-    const p = r.mail_addr.trim().split(/\s+/);
-    const last = p[p.length-1];
-    if(/^\d{5}$/.test(last)) return last;
-  }
+  if(r.absentee&&r.mail_addr){const p=r.mail_addr.trim().split(/\s+/),last=p[p.length-1];if(/^\d{5}$/.test(last))return last;}
   return r.zip||'';
 }
-
 function isIndividual(owner) {
   if(!owner||!owner.trim()) return false;
-  const skip = ['LLC','INC','CORP','TRUST','ASSOCIATION','CONDOMINIUM','PROPERTIES',
-    'INVESTMENTS','GROUP','HOLDINGS','PARTNERS','ESTATES','ASSETS','CAPITAL',
-    'FUND','REALTY','REAL ESTATE','LAND TRUST','HOA'];
-  const u = owner.toUpperCase();
-  return !skip.some(s=>u.includes(s));
+  const skip=['LLC','INC','CORP','TRUST','ASSOCIATION','CONDOMINIUM','PROPERTIES','INVESTMENTS','GROUP','HOLDINGS','PARTNERS','ESTATES','ASSETS','CAPITAL','FUND','REALTY','REAL ESTATE','LAND TRUST','HOA'];
+  return !skip.some(s=>owner.toUpperCase().includes(s));
 }
 
-// ═══════════════════════════════════════════
-//  FILTERING + RENDERING LIST
-// ═══════════════════════════════════════════
 function filterLeads() {
-  searchQ = document.getElementById('search-input').value.toLowerCase().trim();
-  let list = [...allLeads];
-
-  if(currentTab==='priority') {
-    list = buildPriority(list);
-  } else if(currentTab==='pipeline') {
-    list = list.filter(l => {
-      const ls = LS(l.doc_number);
-      return ls.phone || ls.dispo !== 'new';
-    });
-  }
-
-  if(currentChip==='absentee') list = list.filter(l=>l.absentee);
-  else if(currentChip==='tax') list = list.filter(l=>l.type==='TAX');
-  else if(currentChip==='nof') list = list.filter(l=>l.type==='NOF');
-  else if(currentChip==='new') list = list.filter(l=>l.is_new);
-  else if(currentChip==='s10') list = list.filter(l=>l.score>=10);
-  else if(currentChip==='unsearched') list = list.filter(l=>!LS(l.doc_number).phone && !LS(l.doc_number).skipped);
-
-  if(searchQ) list = list.filter(l =>
-    (l.owner||'').toLowerCase().includes(searchQ) ||
-    (l.address||'').toLowerCase().includes(searchQ) ||
-    (l.zip||'').includes(searchQ) ||
-    (l.city||'').toLowerCase().includes(searchQ)
-  );
-
-  filteredLeads = list;
-  renderList();
+  searchQ=document.getElementById('search-input').value.toLowerCase().trim();
+  let list=[...allLeads];
+  if(currentTab==='priority') list=buildPriority(list);
+  else if(currentTab==='pipeline') list=list.filter(l=>{const ls=LS(l.doc_number);return ls.phone||ls.dispo!=='new';});
+  if(currentChip==='absentee') list=list.filter(l=>l.absentee);
+  else if(currentChip==='tax') list=list.filter(l=>l.type==='TAX');
+  else if(currentChip==='nof') list=list.filter(l=>l.type==='NOF');
+  else if(currentChip==='new') list=list.filter(l=>l.is_new);
+  else if(currentChip==='s10') list=list.filter(l=>l.score>=10);
+  else if(currentChip==='unsearched') list=list.filter(l=>!LS(l.doc_number).phone&&!LS(l.doc_number).skipped);
+  if(searchQ) list=list.filter(l=>(l.owner||'').toLowerCase().includes(searchQ)||(l.address||'').toLowerCase().includes(searchQ)||(l.zip||'').includes(searchQ)||(l.city||'').toLowerCase().includes(searchQ));
+  filteredLeads=list; renderList();
 }
 
 function buildPriority(list) {
-  const seen = new Set();
-  return list.filter(r => {
+  const seen=new Set();
+  return list.filter(r=>{
     if(!isIndividual(r.owner)) return false;
-    if(r.flags && r.flags.includes('NO OWNER')) return false;
-    const k = r.address+'|'+r.owner;
-    if(seen.has(k)) return false;
-    seen.add(k);
-    return true;
-  }).sort((a,b) => {
+    if(r.flags&&r.flags.includes('NO OWNER')) return false;
+    const k=r.address+'|'+r.owner; if(seen.has(k)) return false; seen.add(k); return true;
+  }).sort((a,b)=>{
     if(b.score!==a.score) return b.score-a.score;
     if(b.absentee!==a.absentee) return b.absentee?1:-1;
     if((b.type==='TAX')!==(a.type==='TAX')) return b.type==='TAX'?1:-1;
@@ -702,349 +496,265 @@ function buildPriority(list) {
   }).slice(0,100);
 }
 
-function LS(doc) { return S.leads[doc] || {phone:'',dispo:'new',notes:'',skipped:false}; }
+function LS(doc) { return S.leads[doc]||{phone:'',dispo:'new',notes:'',skipped:false}; }
 
 function renderList() {
-  const el = document.getElementById('lead-list');
-  if(!filteredLeads.length) { el.innerHTML='<div class="loading" style="color:var(--dim)">No leads match</div>'; return; }
-  el.innerHTML = filteredLeads.map((l,i) => renderItem(l,i)).join('');
+  const el=document.getElementById('lead-list');
+  if(!filteredLeads.length){el.innerHTML='<div class="loading" style="color:var(--dim)">No leads match</div>';return;}
+  el.innerHTML=filteredLeads.map((l,i)=>renderItem(l,i)).join('');
 }
 
-function renderItem(lead, idx) {
-  const ls = LS(lead.doc_number);
-  const isSelected = lead.doc_number === selectedDoc;
-  const dispo = ls.dispo || 'new';
-
-  let cardClass = 'lead-item';
-  if(isSelected) cardClass += ' active';
-  if(ls.phone && !isSelected) cardClass += ' searched';
-  if(dispo!=='new' && !isSelected) cardClass += ` dispo-${dispo}`;
-
-  const badges = [];
-  if(lead.absentee) badges.push(`<span class="badge b-abs">Abs</span>`);
-  if(lead.type==='TAX') badges.push(`<span class="badge b-tax">Tax</span>`);
-  else badges.push(`<span class="badge b-nof">NOF</span>`);
-  if(lead.is_new) badges.push(`<span class="badge b-new">New</span>`);
-  if(ls.phone) badges.push(`<span class="badge b-phone">📞</span>`);
-  if(dispo!=='new') badges.push(`<span class="badge b-dispo">${dispo}</span>`);
-
-  const scoreClass = lead.score>=10?'s10':lead.score>=8?'s8':'';
-
-  return `<div class="${cardClass}" onclick="selectLead('${lead.doc_number}')">
-    <div class="li-top">
-      <span class="li-rank">${idx+1}</span>
-      <span class="li-name">${lead.owner||'—'}</span>
-      <span class="li-score ${scoreClass}">${lead.score}</span>
-    </div>
+function renderItem(lead,idx) {
+  const ls=LS(lead.doc_number), isSelected=lead.doc_number===selectedDoc, dispo=ls.dispo||'new';
+  let cc='lead-item';
+  if(isSelected) cc+=' active';
+  if(ls.phone&&!isSelected) cc+=' searched';
+  if(dispo!=='new'&&!isSelected) cc+=` dispo-${dispo}`;
+  const b=[];
+  if(lead.absentee) b.push(`<span class="badge b-abs">Abs</span>`);
+  if(lead.type==='TAX') b.push(`<span class="badge b-tax">Tax</span>`);
+  else b.push(`<span class="badge b-nof">NOF</span>`);
+  if(lead.is_new) b.push(`<span class="badge b-new">New</span>`);
+  if(ls.phone) b.push(`<span class="badge b-phone">📞</span>`);
+  if(dispo!=='new') b.push(`<span class="badge b-dispo">${dispo}</span>`);
+  const sc=lead.score>=10?'s10':lead.score>=8?'s8':'';
+  return `<div class="${cc}" onclick="selectLead('${lead.doc_number}')">
+    <div class="li-top"><span class="li-rank">${idx+1}</span><span class="li-name">${lead.owner||'—'}</span><span class="li-score ${sc}">${lead.score}</span></div>
     <div class="li-addr">${lead.address}, ${lead.city} ${lead.zip}</div>
-    <div class="li-badges">${badges.join('')}</div>
+    <div class="li-badges">${b.join('')}</div>
   </div>`;
 }
 
-// ═══════════════════════════════════════════
-//  SELECT LEAD
-// ═══════════════════════════════════════════
 function selectLead(doc) {
-  selectedDoc = doc;
-  const lead = allLeads.find(l=>l.doc_number===doc);
+  selectedDoc=doc;
+  const lead=allLeads.find(l=>l.doc_number===doc);
   if(!lead) return;
-  renderList();
-  populateDetail(lead);
+  renderList(); populateDetail(lead);
 }
 
 function populateDetail(lead) {
-  const ls = LS(lead.doc_number);
-  const {first,last} = parseName(lead.owner);
-  const city = getCity(lead);
-  const zip = getZip(lead);
-
-  document.getElementById('empty-state').style.display = 'none';
-  document.getElementById('detail-panel').style.display = 'flex';
-  document.getElementById('detail-panel').style.flexDirection = 'column';
-
-  document.getElementById('d-name').textContent = lead.owner || '—';
-  document.getElementById('d-addr').textContent = `${lead.address}, ${lead.city} TX ${lead.zip}`;
-  document.getElementById('d-meta').textContent =
-    `Doc: ${lead.doc_number} · Filed: ${lead.date_filed} · ${lead.school_dist||''}`;
-
-  const badges = [];
-  if(lead.absentee) badges.push(`<span class="badge b-abs">Absentee</span>`);
-  if(lead.type==='TAX') badges.push(`<span class="badge b-tax">Tax Foreclosure</span>`);
-  else badges.push(`<span class="badge b-nof">NOF</span>`);
-  if(lead.is_new) badges.push(`<span class="badge b-new">New This Run</span>`);
-  if(lead.duplicate) badges.push(`<span class="badge b-dup">Duplicate</span>`);
-  badges.push(`<span class="badge" style="background:var(--surface2);border:1px solid var(--border2);color:var(--muted);font-family:'IBM Plex Mono',monospace">Score ${lead.score}</span>`);
-  document.getElementById('d-badges').innerHTML = badges.join('');
-
-  document.getElementById('sf-first').textContent = first || '—';
-  document.getElementById('sf-last').textContent = last || '—';
-  document.getElementById('sf-city').textContent = city || '—';
-  document.getElementById('sf-zip').textContent = zip || '—';
-
-  ['sf-first','sf-last','sf-city','sf-zip'].forEach(id => {
-    const el = document.getElementById(id);
-    el.onclick = () => { navigator.clipboard.writeText(el.textContent); toast('Copied: '+el.textContent); };
+  const ls=LS(lead.doc_number), {first,last}=parseName(lead.owner), city=getCity(lead), zip=getZip(lead);
+  document.getElementById('empty-state').style.display='none';
+  document.getElementById('detail-panel').style.display='flex';
+  document.getElementById('detail-panel').style.flexDirection='column';
+  document.getElementById('d-name').textContent=lead.owner||'—';
+  document.getElementById('d-addr').textContent=`${lead.address}, ${lead.city} TX ${lead.zip}`;
+  document.getElementById('d-meta').textContent=`Doc: ${lead.doc_number} · Filed: ${lead.date_filed} · ${lead.school_dist||''}`;
+  const b=[];
+  if(lead.absentee) b.push(`<span class="badge b-abs">Absentee</span>`);
+  if(lead.type==='TAX') b.push(`<span class="badge b-tax">Tax Foreclosure</span>`);
+  else b.push(`<span class="badge b-nof">NOF</span>`);
+  if(lead.is_new) b.push(`<span class="badge b-new">New This Run</span>`);
+  b.push(`<span class="badge" style="background:var(--surface2);border:1px solid var(--border2);color:var(--muted);font-family:'IBM Plex Mono',monospace">Score ${lead.score}</span>`);
+  document.getElementById('d-badges').innerHTML=b.join('');
+  ['sf-first','sf-last','sf-city','sf-zip'].forEach((id,i)=>{
+    const vals=[first,last,city,zip], el=document.getElementById(id);
+    el.textContent=vals[i]||'—';
+    el.onclick=()=>{navigator.clipboard.writeText(el.textContent);toast('Copied: '+el.textContent);};
   });
-
   if(ls.phone) {
-    document.getElementById('phone-saved-area').style.display = 'block';
-    document.getElementById('phone-entry-area').style.display = 'none';
-    document.getElementById('saved-phone-display').textContent = '📞 ' + ls.phone;
-    document.getElementById('saved-phone-meta').textContent =
-      ls.searchedAt ? 'Searched ' + new Date(ls.searchedAt).toLocaleDateString() : 'Searched';
+    document.getElementById('phone-saved-area').style.display='block';
+    document.getElementById('phone-entry-area').style.display='none';
+    document.getElementById('saved-phone-display').textContent='📞 '+ls.phone;
+    document.getElementById('saved-phone-meta').textContent=ls.searchedAt?'Searched '+new Date(ls.searchedAt).toLocaleDateString():'Searched';
   } else {
-    document.getElementById('phone-saved-area').style.display = 'none';
-    document.getElementById('phone-entry-area').style.display = 'block';
-    document.getElementById('phone-input').value = '';
+    document.getElementById('phone-saved-area').style.display='none';
+    document.getElementById('phone-entry-area').style.display='block';
+    document.getElementById('phone-input').value='';
   }
-
-  renderDispoTrack(lead.doc_number, ls.dispo||'new');
-  document.getElementById('notes-area').value = ls.notes || '';
-  renderTimeline(lead, ls);
-
-  document.getElementById('lead-info-grid').innerHTML = `
-    Type: ${lead.type} · Score: ${lead.score}<br>
-    Filed: ${lead.date_filed}<br>
-    City: ${lead.city} · ZIP: ${lead.zip}<br>
-    School: ${lead.school_dist||'—'}<br>
-    Absentee: ${lead.absentee?'Yes':'No'}<br>
-    Mail addr: ${lead.mail_addr||'—'}
-  `;
-
+  renderDispoTrack(lead.doc_number,ls.dispo||'new');
+  document.getElementById('notes-area').value=ls.notes||'';
+  renderTimeline(lead,ls);
+  document.getElementById('lead-info-grid').innerHTML=`Type: ${lead.type} · Score: ${lead.score}<br>Filed: ${lead.date_filed}<br>City: ${lead.city} · ZIP: ${lead.zip}<br>School: ${lead.school_dist||'—'}<br>Absentee: ${lead.absentee?'Yes':'No'}<br>Mail addr: ${lead.mail_addr||'—'}`;
   updateStats();
 }
 
-function renderDispoTrack(doc, current) {
-  const stages = ['new','contacted','responded','deal','dead'];
-  const labels = {new:'New',contacted:'Contacted',responded:'Responded',deal:'🔥 Deal',dead:'Dead'};
-  document.getElementById('dispo-track').innerHTML = stages.map(s =>
+function renderDispoTrack(doc,current) {
+  const stages=['new','contacted','responded','deal','dead'];
+  const labels={new:'New',contacted:'Contacted',responded:'Responded',deal:'🔥 Deal',dead:'Dead'};
+  document.getElementById('dispo-track').innerHTML=stages.map(s=>
     `<button class="dispo-btn d-${s} ${current===s?'active':''}" onclick="setDispo('${doc}','${s}')">${labels[s]}</button>`
   ).join('');
 }
 
-function renderTimeline(lead, ls) {
-  const events = [];
-  events.push({dot:'info',text:`<strong>Lead filed</strong> in Bexar County`,time:lead.date_filed});
-  if(lead.is_new) events.push({dot:'ok',text:`<strong>New</strong> this scraper run`,time:'Latest run'});
-  if(ls.phone) events.push({dot:'ok',text:`<strong>ForeWarn searched</strong> — ${ls.phone}`,time:ls.searchedAt?new Date(ls.searchedAt).toLocaleDateString():''});
-  if(ls.dispo && ls.dispo!=='new') events.push({dot:'warn',text:`Dispo set to <strong>${ls.dispo}</strong>`,time:''});
-  if(ls.notes) events.push({dot:'info',text:`Notes added`,time:''});
-
-  document.getElementById('timeline').innerHTML = events.reverse().map(e =>
+function renderTimeline(lead,ls) {
+  const ev=[];
+  ev.push({dot:'info',text:`<strong>Lead filed</strong> in Bexar County`,time:lead.date_filed});
+  if(lead.is_new) ev.push({dot:'ok',text:`<strong>New</strong> this scraper run`,time:'Latest run'});
+  if(ls.phone) ev.push({dot:'ok',text:`<strong>ForeWarn searched</strong> — ${ls.phone}`,time:ls.searchedAt?new Date(ls.searchedAt).toLocaleDateString():''});
+  if(ls.dispo&&ls.dispo!=='new') ev.push({dot:'warn',text:`Dispo → <strong>${ls.dispo}</strong>`,time:''});
+  document.getElementById('timeline').innerHTML=ev.reverse().map(e=>
     `<div class="tl-item"><div class="tl-dot ${e.dot}"></div><div><div class="tl-content">${e.text}</div><div class="tl-time">${e.time}</div></div></div>`
-  ).join('') || '<div style="color:var(--dim);font-size:12px">No activity yet</div>';
+  ).join('')||'<div style="color:var(--dim);font-size:12px">No activity yet</div>';
 }
 
-// ═══════════════════════════════════════════
-//  ACTIONS
-// ═══════════════════════════════════════════
 async function savePhone() {
-  if(S.used >= 100) { toast('Weekly budget exhausted — resets Sunday midnight',true); return; }
-  const phone = document.getElementById('phone-input').value.trim();
-  if(!phone) { toast('Enter a phone number first',true); return; }
-  const lead = allLeads.find(l=>l.doc_number===selectedDoc);
+  if(S.used>=100){toast('Weekly budget exhausted',true);return;}
+  const phone=document.getElementById('phone-input').value.trim();
+  if(!phone){toast('Enter a phone number first',true);return;}
+  const lead=allLeads.find(l=>l.doc_number===selectedDoc);
   if(!lead) return;
-
-  if(!S.leads[selectedDoc]) S.leads[selectedDoc] = {};
-  S.leads[selectedDoc].phone = phone;
-  S.leads[selectedDoc].searchedAt = Date.now();
-  S.leads[selectedDoc].dispo = S.leads[selectedDoc].dispo || 'new';
-  S.leads[selectedDoc].skipped = false;
-  S.used++;
-  saveState();
-  updateBudgetUI();
-
-  if(S.ghlApiKey) await pushGHL(lead, phone);
-
-  populateDetail(lead);
-  filterLeads();
-  updateTopStats();
+  if(!S.leads[selectedDoc]) S.leads[selectedDoc]={};
+  S.leads[selectedDoc].phone=phone; S.leads[selectedDoc].searchedAt=Date.now();
+  S.leads[selectedDoc].dispo=S.leads[selectedDoc].dispo||'new'; S.leads[selectedDoc].skipped=false;
+  S.used++; saveState(); updateBudgetUI();
+  if(S.ghlApiKey) await pushGHL(lead,phone);
+  populateDetail(lead); filterLeads(); updateTopStats();
   toast(`✓ Saved · ${Math.max(0,100-S.used)} searches left`);
 }
 
 function clearPhone() {
   if(!confirm('Clear phone? Will not refund weekly count.')) return;
-  if(S.leads[selectedDoc]) { S.leads[selectedDoc].phone=''; S.leads[selectedDoc].searchedAt=null; saveState(); }
-  const lead = allLeads.find(l=>l.doc_number===selectedDoc);
-  if(lead) populateDetail(lead);
-  filterLeads();
+  if(S.leads[selectedDoc]){S.leads[selectedDoc].phone='';S.leads[selectedDoc].searchedAt=null;saveState();}
+  const lead=allLeads.find(l=>l.doc_number===selectedDoc); if(lead) populateDetail(lead); filterLeads();
 }
 
 function skipLead() {
   if(!S.leads[selectedDoc]) S.leads[selectedDoc]={};
-  S.leads[selectedDoc].skipped = !S.leads[selectedDoc].skipped;
-  saveState();
-  filterLeads();
-  toast('Skipped');
+  S.leads[selectedDoc].skipped=!S.leads[selectedDoc].skipped; saveState(); filterLeads(); toast('Skipped');
 }
 
-function setDispo(doc, dispo) {
+function setDispo(doc,dispo) {
   if(!S.leads[doc]) S.leads[doc]={};
-  S.leads[doc].dispo = dispo;
-  saveState();
-  renderDispoTrack(doc, dispo);
-  renderList();
-  updateStats();
-  if(S.ghlApiKey && S.leads[doc]?.ghlId) updateGHLTag(S.leads[doc].ghlId, dispo);
+  S.leads[doc].dispo=dispo; saveState(); renderDispoTrack(doc,dispo); renderList(); updateStats();
+  if(S.ghlApiKey&&S.leads[doc]?.ghlId) updateGHLTag(S.leads[doc].ghlId,dispo);
   toast(`Dispo → ${dispo}`);
 }
 
 function saveNotes() {
   if(!selectedDoc) return;
   if(!S.leads[selectedDoc]) S.leads[selectedDoc]={};
-  S.leads[selectedDoc].notes = document.getElementById('notes-area').value;
-  saveState();
+  S.leads[selectedDoc].notes=document.getElementById('notes-area').value; saveState();
 }
 
 function copyAddress() {
-  const lead = allLeads.find(l=>l.doc_number===selectedDoc);
+  const lead=allLeads.find(l=>l.doc_number===selectedDoc);
   if(!lead) return;
-  navigator.clipboard.writeText(`${lead.address}, ${lead.city} TX ${lead.zip}`);
-  toast('Address copied');
+  navigator.clipboard.writeText(`${lead.address}, ${lead.city} TX ${lead.zip}`); toast('Address copied');
 }
 
 function openGHL() {
-  const ls = LS(selectedDoc);
-  if(ls.ghlId) {
-    window.open(`https://app.gohighlevel.com/contacts/${ls.ghlId}`, '_blank');
-  } else {
-    window.open('https://app.gohighlevel.com', '_blank');
-  }
+  const ls=LS(selectedDoc);
+  window.open(ls.ghlId?`https://app.gohighlevel.com/contacts/${ls.ghlId}`:'https://app.gohighlevel.com','_blank');
 }
 
 // ═══════════════════════════════════════════
-//  GHL — FIXED: v1 endpoint + bexar-contacted tag
+//  GHL v2 API — correct endpoint + headers + body
 // ═══════════════════════════════════════════
 async function pushGHL(lead, phone) {
   try {
     const {first,last} = parseName(lead.owner);
-
-    // bexar-contacted triggers the Bexar - Initial Outreach workflow
     const tags = ['bexar_lead','forewarn_searched','bexar-contacted'];
     if(lead.absentee) tags.push('absentee');
     if(lead.type==='TAX') tags.push('tax_foreclosure');
     if(lead.is_new) tags.push('new_lead');
 
     const body = {
-      locationId: S.ghlLocationId,
-      firstName: first, lastName: last, phone,
-      address1: lead.address, city: lead.city, state: 'TX', postalCode: lead.zip,
-      tags,
-      customFields: [
-        {key:'lead_score',field_value:String(lead.score)},
-        {key:'lead_type',field_value:lead.type},
-        {key:'doc_number',field_value:lead.doc_number},
-        {key:'school_district',field_value:lead.school_dist||''},
-        {key:'date_filed',field_value:lead.date_filed||''}
-      ]
+      firstName: first,
+      lastName: last,
+      phone: phone,
+      address1: lead.address,
+      city: lead.city,
+      state: 'TX',
+      postalCode: lead.zip,
+      tags: tags,
+      source: 'bexar-leads-dashboard'
     };
 
-    const res = await fetch('https://rest.gohighlevel.com/v1/contacts/', {
-      method:'POST',
-      headers:{'Authorization':'Bearer '+S.ghlApiKey,'Content-Type':'application/json'},
-      body:JSON.stringify(body)
+    const res = await fetch('https://services.leadconnectorhq.com/contacts/', {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + S.ghlApiKey,
+        'Content-Type': 'application/json',
+        'Version': '2021-07-28'
+      },
+      body: JSON.stringify(body)
     });
+
     const data = await res.json();
+    console.log('GHL v2 response:', res.status, data);
+
     const id = data.contact?.id || data.id;
-    if(id) { S.leads[lead.doc_number].ghlId=id; saveState(); setGhlDot(true); }
-    else { setGhlDot(false); }
-  } catch(e) { setGhlDot(false); }
+    if(id) {
+      S.leads[lead.doc_number].ghlId = id;
+      saveState();
+      setGhlDot(true);
+    } else {
+      console.error('GHL error body:', data);
+      setGhlDot(false);
+    }
+  } catch(e) {
+    console.error('GHL fetch error:', e);
+    setGhlDot(false);
+  }
 }
 
 async function updateGHLTag(contactId, dispo) {
-  const tagMap = {contacted:'dispo_contacted',responded:'dispo_responded',deal:'dispo_deal',dead:'dispo_dead'};
-  const tag = tagMap[dispo]; if(!tag) return;
+  const tagMap={contacted:'dispo_contacted',responded:'dispo_responded',deal:'dispo_deal',dead:'dispo_dead'};
+  const tag=tagMap[dispo]; if(!tag) return;
   try {
-    await fetch(`https://rest.gohighlevel.com/v1/contacts/${contactId}/tags/`,{
+    await fetch(`https://services.leadconnectorhq.com/contacts/${contactId}/tags/`,{
       method:'POST',
-      headers:{'Authorization':'Bearer '+S.ghlApiKey,'Content-Type':'application/json'},
+      headers:{'Authorization':'Bearer '+S.ghlApiKey,'Content-Type':'application/json','Version':'2021-07-28'},
       body:JSON.stringify({tags:[tag]})
     });
   } catch(e){}
 }
 
 function setGhlDot(ok) {
-  const dot = document.getElementById('ghl-dot');
-  const txt = document.getElementById('ghl-txt');
+  const dot=document.getElementById('ghl-dot'), txt=document.getElementById('ghl-txt');
   if(ok===null){dot.className='ghl-dot';txt.textContent='GHL';}
   else if(ok){dot.className='ghl-dot ok';txt.textContent='GHL ✓';}
   else{dot.className='ghl-dot err';txt.textContent='GHL ✗';}
 }
-function updateGhlUI(){ setGhlDot(S.ghlApiKey ? null : null); }
+function updateGhlUI(){setGhlDot(S.ghlApiKey?null:null);}
 
-// ═══════════════════════════════════════════
-//  STATS
-// ═══════════════════════════════════════════
 function updateTopStats() {
-  const named = allLeads.filter(l=>l.owner&&l.owner.trim()).length;
-  const searched = Object.values(S.leads).filter(l=>l.phone).length;
-  const deals = Object.values(S.leads).filter(l=>l.dispo==='deal').length;
-  document.getElementById('st-total').textContent = allLeads.length;
-  document.getElementById('st-named').textContent = named;
-  document.getElementById('st-searched').textContent = searched;
-  document.getElementById('st-deals').textContent = deals;
+  const named=allLeads.filter(l=>l.owner&&l.owner.trim()).length;
+  const searched=Object.values(S.leads).filter(l=>l.phone).length;
+  const deals=Object.values(S.leads).filter(l=>l.dispo==='deal').length;
+  document.getElementById('st-total').textContent=allLeads.length;
+  document.getElementById('st-named').textContent=named;
+  document.getElementById('st-searched').textContent=searched;
+  document.getElementById('st-deals').textContent=deals;
 }
 
 function updateStats() {
-  const total = allLeads.length;
-  const abs = allLeads.filter(l=>l.absentee).length;
-  const tax = allLeads.filter(l=>l.type==='TAX').length;
-  const nw = allLeads.filter(l=>l.is_new).length;
-  const searched = Object.values(S.leads).filter(l=>l.phone).length;
-  const deals = Object.values(S.leads).filter(l=>l.dispo==='deal').length;
-
-  const set = (id,v) => { const el=document.getElementById(id); if(el) el.textContent=v; };
-  set('ov-total',total); set('ov-absentee',abs); set('ov-tax',tax);
-  set('ov-new',nw); set('ov-searched',searched); set('ov-deals',deals);
-
-  const ls = Object.values(S.leads);
-  const cont = ls.filter(l=>l.dispo==='contacted').length;
-  const resp = ls.filter(l=>l.dispo==='responded').length;
-  const deal = ls.filter(l=>l.dispo==='deal').length;
-  const dead = ls.filter(l=>l.dispo==='dead').length;
-  const tot = Math.max(searched,1);
-
-  const pct = n => Math.round(n/tot*100)+'%';
-  const seg = (id,n) => { const el=document.getElementById(id); if(el) el.style.width=pct(n); };
-  seg('pb-contacted',cont); seg('pb-responded',resp); seg('pb-deal',deal); seg('pb-dead',dead);
-
-  set('pb-l-cont',cont+' contacted'); set('pb-l-resp',resp+' responded');
-  set('pb-l-deal',deal+' deals'); set('pb-l-dead',dead+' dead');
+  const total=allLeads.length, abs=allLeads.filter(l=>l.absentee).length;
+  const tax=allLeads.filter(l=>l.type==='TAX').length, nw=allLeads.filter(l=>l.is_new).length;
+  const searched=Object.values(S.leads).filter(l=>l.phone).length;
+  const deals=Object.values(S.leads).filter(l=>l.dispo==='deal').length;
+  const set=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v;};
+  set('ov-total',total);set('ov-absentee',abs);set('ov-tax',tax);
+  set('ov-new',nw);set('ov-searched',searched);set('ov-deals',deals);
+  const ls=Object.values(S.leads);
+  const cont=ls.filter(l=>l.dispo==='contacted').length, resp=ls.filter(l=>l.dispo==='responded').length;
+  const deal=ls.filter(l=>l.dispo==='deal').length, dead=ls.filter(l=>l.dispo==='dead').length;
+  const tot=Math.max(searched,1), pct=n=>Math.round(n/tot*100)+'%';
+  const seg=(id,n)=>{const el=document.getElementById(id);if(el)el.style.width=pct(n);};
+  seg('pb-contacted',cont);seg('pb-responded',resp);seg('pb-deal',deal);seg('pb-dead',dead);
+  set('pb-l-cont',cont+' contacted');set('pb-l-resp',resp+' responded');
+  set('pb-l-deal',deal+' deals');set('pb-l-dead',dead+' dead');
 }
 
-// ═══════════════════════════════════════════
-//  FOREWARN QUEUE VIEW
-// ═══════════════════════════════════════════
 function renderFWQueue() {
-  let list = buildPriority([...allLeads]);
-  if(queueFilter==='unsearched') list = list.filter(l=>!LS(l.doc_number).phone&&!LS(l.doc_number).skipped);
-  if(queueFilter==='deal') list = list.filter(l=>LS(l.doc_number).dispo==='deal');
-
-  const el = document.getElementById('fw-queue');
+  let list=buildPriority([...allLeads]);
+  if(queueFilter==='unsearched') list=list.filter(l=>!LS(l.doc_number).phone&&!LS(l.doc_number).skipped);
+  if(queueFilter==='deal') list=list.filter(l=>LS(l.doc_number).dispo==='deal');
+  const el=document.getElementById('fw-queue');
   if(!list.length){el.innerHTML='<div class="loading" style="color:var(--dim)">No leads in queue</div>';return;}
-  el.innerHTML = list.map((lead,i)=>renderFWCard(lead,i)).join('');
+  el.innerHTML=list.map((lead,i)=>renderFWCard(lead,i)).join('');
 }
 
-function renderFWCard(lead, idx) {
-  const ls = LS(lead.doc_number);
-  const {first,last} = parseName(lead.owner);
-  const city = getCity(lead);
-  const zip = getZip(lead);
-  const doc = lead.doc_number;
-  const dispo = ls.dispo||'new';
-
-  const badges = [];
-  if(lead.absentee) badges.push(`<span class="badge b-abs">Abs</span>`);
-  if(lead.type==='TAX') badges.push(`<span class="badge b-tax">Tax</span>`);
-  else badges.push(`<span class="badge b-nof">NOF</span>`);
-  badges.push(`<span class="badge" style="color:var(--muted);border:1px solid var(--border)">Score ${lead.score}</span>`);
-
-  const actionArea = ls.phone ? `
+function renderFWCard(lead,idx) {
+  const ls=LS(lead.doc_number), {first,last}=parseName(lead.owner);
+  const city=getCity(lead), zip=getZip(lead), doc=lead.doc_number, dispo=ls.dispo||'new';
+  const actionArea=ls.phone?`
     <div class="fw-saved-phone">📞 ${ls.phone}</div>
     <div style="font-size:10px;color:var(--muted);margin-bottom:6px">${ls.searchedAt?new Date(ls.searchedAt).toLocaleDateString():''}</div>
     ${renderFWDispoButtons(doc,dispo)}
     <button class="fw-btn-skip" onclick="fwClear('${doc}')" style="margin-top:4px;width:100%;font-size:10px">✕ Clear</button>
-  ` : `
+  `:`
     <input class="fw-phone-input" id="fwp_${doc}" type="tel" placeholder="Enter phone…" onkeydown="if(event.key==='Enter')fwSave('${doc}')">
     <div class="fw-action-row" style="margin-top:5px">
       <button class="fw-btn-save" onclick="fwSave('${doc}')">✓ Save</button>
@@ -1052,7 +762,6 @@ function renderFWCard(lead, idx) {
     </div>
     ${renderFWDispoButtons(doc,dispo)}
   `;
-
   return `<div class="fw-card ${ls.phone?'done':''} ${ls.skipped&&!ls.phone?'skipped':''}" id="fwcard_${doc}">
     <div class="fw-card-num">${idx+1}</div>
     <div class="fw-card-body">
@@ -1069,9 +778,9 @@ function renderFWCard(lead, idx) {
   </div>`;
 }
 
-function renderFWDispoButtons(doc, current) {
-  const stages = ['new','contacted','responded','deal','dead'];
-  const labels = {new:'New',contacted:'Contacted',responded:'Responded',deal:'🔥',dead:'Dead'};
+function renderFWDispoButtons(doc,current) {
+  const stages=['new','contacted','responded','deal','dead'];
+  const labels={new:'New',contacted:'Contacted',responded:'Responded',deal:'🔥',dead:'Dead'};
   return `<div class="fw-dispo-row">${stages.map(s=>
     `<button class="fw-d-btn d-${s} ${current===s?'active':''}" onclick="fwDispo('${doc}','${s}')">${labels[s]}</button>`
   ).join('')}</div>`;
@@ -1079,110 +788,65 @@ function renderFWDispoButtons(doc, current) {
 
 async function fwSave(doc) {
   if(S.used>=100){toast('Budget exhausted',true);return;}
-  const input = document.getElementById('fwp_'+doc);
-  const phone = input?input.value.trim():'';
+  const input=document.getElementById('fwp_'+doc), phone=input?input.value.trim():'';
   if(!phone){toast('Enter phone first',true);return;}
-  const lead = allLeads.find(l=>l.doc_number===doc);
-  if(!lead) return;
+  const lead=allLeads.find(l=>l.doc_number===doc); if(!lead) return;
   if(!S.leads[doc]) S.leads[doc]={};
   S.leads[doc].phone=phone; S.leads[doc].searchedAt=Date.now();
   S.leads[doc].dispo=S.leads[doc].dispo||'new'; S.leads[doc].skipped=false;
-  S.used++;
-  saveState(); updateBudgetUI();
+  S.used++; saveState(); updateBudgetUI();
   if(S.ghlApiKey) await pushGHL(lead,phone);
   renderFWQueue(); updateTopStats();
   toast(`✓ Saved · ${Math.max(0,100-S.used)} left`);
 }
 
-function fwSkip(doc) {
-  if(!S.leads[doc]) S.leads[doc]={};
-  S.leads[doc].skipped=!S.leads[doc].skipped;
-  saveState(); renderFWQueue();
-}
+function fwSkip(doc){if(!S.leads[doc])S.leads[doc]={};S.leads[doc].skipped=!S.leads[doc].skipped;saveState();renderFWQueue();}
+function fwClear(doc){if(!confirm('Clear phone?'))return;if(S.leads[doc]){S.leads[doc].phone='';S.leads[doc].searchedAt=null;}saveState();renderFWQueue();}
+function fwDispo(doc,dispo){if(!S.leads[doc])S.leads[doc]={};S.leads[doc].dispo=dispo;saveState();renderFWQueue();updateStats();if(S.ghlApiKey&&S.leads[doc]?.ghlId)updateGHLTag(S.leads[doc].ghlId,dispo);}
 
-function fwClear(doc) {
-  if(!confirm('Clear phone?')) return;
-  if(S.leads[doc]){S.leads[doc].phone='';S.leads[doc].searchedAt=null;}
-  saveState(); renderFWQueue();
-}
-
-function fwDispo(doc,dispo) {
-  if(!S.leads[doc]) S.leads[doc]={};
-  S.leads[doc].dispo=dispo; saveState(); renderFWQueue(); updateStats();
-  if(S.ghlApiKey&&S.leads[doc]?.ghlId) updateGHLTag(S.leads[doc].ghlId,dispo);
-}
-
-// ═══════════════════════════════════════════
-//  VIEW / TAB / CHIP SWITCHING
-// ═══════════════════════════════════════════
 function switchView(view) {
-  currentView = view;
-  document.getElementById('leads-view').style.display = view==='leads'?'flex':'none';
-  document.getElementById('fw-view').style.display = view==='forewarn'?'flex':'none';
+  currentView=view;
+  document.getElementById('leads-view').style.display=view==='leads'?'flex':'none';
+  document.getElementById('fw-view').style.display=view==='forewarn'?'flex':'none';
   if(view==='forewarn') renderFWQueue();
 }
-
 function setTab(tab) {
-  currentTab = tab;
-  ['all','priority','pipeline'].forEach(t => {
-    document.getElementById('tab-'+t).classList.toggle('active', t===tab);
-  });
+  currentTab=tab;
+  ['all','priority','pipeline'].forEach(t=>document.getElementById('tab-'+t).classList.toggle('active',t===tab));
   filterLeads();
 }
-
-function setChip(f, el) {
-  currentChip = f;
+function setChip(f,el) {
+  currentChip=f;
   document.querySelectorAll('.filter-chips .chip').forEach(c=>c.className='chip');
-  el.classList.add('active');
-  filterLeads();
+  el.classList.add('active'); filterLeads();
 }
-
-function setQueueFilter(f, el) {
-  queueFilter = f;
+function setQueueFilter(f,el) {
+  queueFilter=f;
   document.querySelectorAll('#fw-view .chip').forEach(c=>c.className='chip');
-  el.classList.add('active');
-  renderFWQueue();
+  el.classList.add('active'); renderFWQueue();
 }
-
 function confirmReset() {
-  if(confirm('Reset weekly count to 0?')) {
-    S.used=0; S.weekStart=sundayTs(); saveState(); updateBudgetUI();
-    toast('Week reset — 100 searches available!');
-    renderFWQueue();
-  }
+  if(confirm('Reset weekly count to 0?')){S.used=0;S.weekStart=sundayTs();saveState();updateBudgetUI();toast('Week reset!');renderFWQueue();}
 }
-
-// ═══════════════════════════════════════════
-//  SETTINGS
-// ═══════════════════════════════════════════
 function openSettings() {
-  document.getElementById('set-apikey').value = S.ghlApiKey||'';
-  document.getElementById('set-locid').value = S.ghlLocationId||'UAOJlgeerLu3GChP9jDJ';
-  document.getElementById('set-url').value = S.recordsUrl||REC_URL_DEFAULT;
+  document.getElementById('set-apikey').value=S.ghlApiKey||'';
+  document.getElementById('set-locid').value=S.ghlLocationId||'UAOJlgeerLu3GChP9jDJ';
+  document.getElementById('set-url').value=S.recordsUrl||REC_URL_DEFAULT;
   document.getElementById('settings-modal').classList.add('open');
 }
-function closeSettings() { document.getElementById('settings-modal').classList.remove('open'); }
-function saveSettings() {
-  S.ghlApiKey = document.getElementById('set-apikey').value.trim();
-  S.ghlLocationId = document.getElementById('set-locid').value.trim();
-  S.recordsUrl = document.getElementById('set-url').value.trim()||REC_URL_DEFAULT;
-  saveState(); closeSettings(); updateGhlUI();
-  toast('Settings saved'); fetchLeads();
+function closeSettings(){document.getElementById('settings-modal').classList.remove('open');}
+function saveSettings(){
+  S.ghlApiKey=document.getElementById('set-apikey').value.trim();
+  S.ghlLocationId=document.getElementById('set-locid').value.trim();
+  S.recordsUrl=document.getElementById('set-url').value.trim()||REC_URL_DEFAULT;
+  saveState();closeSettings();updateGhlUI();toast('Settings saved');fetchLeads();
 }
-
-// ═══════════════════════════════════════════
-//  TOAST
-// ═══════════════════════════════════════════
 let toastTimer;
-function toast(msg, err=false) {
+function toast(msg,err=false){
   const el=document.getElementById('toast');
-  el.textContent=msg; el.className='show'+(err?' err':'');
-  clearTimeout(toastTimer); toastTimer=setTimeout(()=>el.className='',3000);
+  el.textContent=msg;el.className='show'+(err?' err':'');
+  clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.className='',3000);
 }
-
-// ═══════════════════════════════════════════
-//  GO
-// ═══════════════════════════════════════════
 init();
 </script>
 </body>
