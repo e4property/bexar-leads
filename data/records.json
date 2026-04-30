@@ -54,7 +54,7 @@
     "mail_addr": "HACKWORTH SARINA NERYS SAINT HEDWIG 78152",
     "absentee": true,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600159",
     "year": "2026",
     "month": "4",
@@ -66,7 +66,6 @@
     "run_ts": "2026-04-30T17:52:51Z",
     "flags": [
       "ABSENTEE",
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -80,7 +79,7 @@
     "mail_addr": "JULIA M VALENCIA SAN ANTONIO 78237",
     "absentee": true,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600160",
     "year": "2026",
     "month": "4",
@@ -92,7 +91,6 @@
     "run_ts": "2026-04-30T17:52:51Z",
     "flags": [
       "ABSENTEE",
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -996,7 +994,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600164",
     "year": "2026",
     "month": "4",
@@ -1007,7 +1005,6 @@
     "sale_date": "06/02/2026",
     "run_ts": "2026-04-30T17:52:51Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -1021,7 +1018,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600165",
     "year": "2026",
     "month": "4",
@@ -1033,7 +1030,6 @@
     "run_ts": "2026-04-30T17:52:51Z",
     "flags": [
       "DUPLICATE",
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -1047,7 +1043,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600166",
     "year": "2026",
     "month": "4",
@@ -1058,7 +1054,6 @@
     "sale_date": "06/02/2026",
     "run_ts": "2026-04-30T17:52:51Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -1072,7 +1067,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600158",
     "year": "2026",
     "month": "4",
@@ -1083,7 +1078,6 @@
     "sale_date": "06/02/2026",
     "run_ts": "2026-04-30T17:52:51Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -1097,7 +1091,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600161",
     "year": "2026",
     "month": "4",
@@ -1109,7 +1103,6 @@
     "run_ts": "2026-04-30T17:52:51Z",
     "flags": [
       "DUPLICATE",
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -1123,7 +1116,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600152",
     "year": "2026",
     "month": "4",
@@ -1134,7 +1127,6 @@
     "sale_date": "06/02/2026",
     "run_ts": "2026-04-30T17:52:51Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -1148,7 +1140,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600153",
     "year": "2026",
     "month": "4",
@@ -1159,7 +1151,6 @@
     "sale_date": "06/02/2026",
     "run_ts": "2026-04-30T17:52:51Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -1173,7 +1164,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600154",
     "year": "2026",
     "month": "4",
@@ -1184,7 +1175,6 @@
     "sale_date": "06/02/2026",
     "run_ts": "2026-04-30T17:52:51Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -5137,7 +5127,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600167",
     "year": "2026",
     "month": "4",
@@ -5148,7 +5138,6 @@
     "sale_date": "07/07/2026",
     "run_ts": "2026-04-30T17:52:51Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -5162,7 +5151,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600168",
     "year": "2026",
     "month": "4",
@@ -5173,7 +5162,6 @@
     "sale_date": "07/07/2026",
     "run_ts": "2026-04-30T17:52:51Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -5187,7 +5175,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600163",
     "year": "2026",
     "month": "4",
@@ -5198,7 +5186,6 @@
     "sale_date": "07/07/2026",
     "run_ts": "2026-04-30T17:52:51Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -5212,7 +5199,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600162",
     "year": "2026",
     "month": "4",
@@ -5223,7 +5210,6 @@
     "sale_date": "07/07/2026",
     "run_ts": "2026-04-30T17:52:51Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -5237,7 +5223,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600155",
     "year": "2026",
     "month": "4",
@@ -5248,7 +5234,6 @@
     "sale_date": "07/07/2026",
     "run_ts": "2026-04-30T17:52:51Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -5262,7 +5247,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600157",
     "year": "2026",
     "month": "4",
@@ -5273,7 +5258,6 @@
     "sale_date": "07/07/2026",
     "run_ts": "2026-04-30T17:52:51Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -5287,7 +5271,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600156",
     "year": "2026",
     "month": "4",
@@ -5298,7 +5282,6 @@
     "sale_date": "07/07/2026",
     "run_ts": "2026-04-30T17:52:51Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
