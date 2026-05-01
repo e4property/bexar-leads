@@ -763,7 +763,7 @@ function buildPriorityList(records) {
 }
 
 // ═══════════════════════════════════════════════════════
-//  NAME PARSING
+//  NAME PARSING — FIX: first name only (no middle names)
 // ═══════════════════════════════════════════════════════
 function parseName(owner) {
   if (!owner) return { first: '', last: '' };
@@ -774,7 +774,7 @@ function parseName(owner) {
   if (parts.length === 0) return { first: '', last: '' };
   if (parts.length === 1) return { first: parts[0], last: '' };
   const last = parts[0];
-  const first = parts.slice(1).join(' ');
+  const first = parts[1] || ''; // ← FIXED: first word only, no middle names
   return { first: toTitle(first), last: toTitle(last) };
 }
 
@@ -1007,7 +1007,6 @@ async function pushToGHL(lead, phone) {
   try {
     const { first, last } = parseName(lead.owner);
 
-    // ── TAGS ── bexar-contacted triggers the outreach workflow
     const tags = ['bexar_lead', 'forewarn_searched', 'bexar-contacted'];
     if (lead.absentee) tags.push('absentee');
     if (lead.type === 'TAX') tags.push('tax_foreclosure');
