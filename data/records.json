@@ -54,7 +54,7 @@
     "mail_addr": "LISA CATHERINE SAN ANTONIO 78233",
     "absentee": true,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600169",
     "year": "2026",
     "month": "4",
@@ -66,7 +66,6 @@
     "run_ts": "2026-05-01T18:15:09Z",
     "flags": [
       "ABSENTEE",
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -80,7 +79,7 @@
     "mail_addr": "KNUDSON-DACANAY DENALI KOBAYASHI SAN ANTONIO 78254",
     "absentee": true,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600171",
     "year": "2026",
     "month": "4",
@@ -92,7 +91,6 @@
     "run_ts": "2026-05-01T18:15:09Z",
     "flags": [
       "ABSENTEE",
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -306,7 +304,7 @@
     "mail_addr": "& MARTINEZ SUSAN SAN ANTONIO 78213",
     "absentee": true,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600186",
     "year": "2026",
     "month": "4",
@@ -318,7 +316,6 @@
     "run_ts": "2026-05-01T18:15:09Z",
     "flags": [
       "ABSENTEE",
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -332,7 +329,7 @@
     "mail_addr": "TREVINO LEON & MELVA SAN ANTONIO 78245",
     "absentee": true,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600182",
     "year": "2026",
     "month": "4",
@@ -344,7 +341,6 @@
     "run_ts": "2026-05-01T18:15:09Z",
     "flags": [
       "ABSENTEE",
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -1098,7 +1094,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600202",
     "year": "2026",
     "month": "4",
@@ -1109,7 +1105,6 @@
     "sale_date": "06/02/2026",
     "run_ts": "2026-05-01T18:15:09Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -1123,7 +1118,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600190",
     "year": "2026",
     "month": "4",
@@ -1135,7 +1130,6 @@
     "run_ts": "2026-05-01T18:15:09Z",
     "flags": [
       "DUPLICATE",
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -1149,7 +1143,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600188",
     "year": "2026",
     "month": "4",
@@ -1160,7 +1154,6 @@
     "sale_date": "06/02/2026",
     "run_ts": "2026-05-01T18:15:09Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -1174,7 +1167,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600197",
     "year": "2026",
     "month": "4",
@@ -1185,7 +1178,6 @@
     "sale_date": "06/02/2026",
     "run_ts": "2026-05-01T18:15:09Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -1199,7 +1191,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600195",
     "year": "2026",
     "month": "4",
@@ -1210,7 +1202,6 @@
     "sale_date": "06/02/2026",
     "run_ts": "2026-05-01T18:15:09Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -1224,7 +1215,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600193",
     "year": "2026",
     "month": "4",
@@ -1235,7 +1226,6 @@
     "sale_date": "06/02/2026",
     "run_ts": "2026-05-01T18:15:09Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -1249,7 +1239,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600200",
     "year": "2026",
     "month": "4",
@@ -1260,7 +1250,6 @@
     "sale_date": "06/02/2026",
     "run_ts": "2026-05-01T18:15:09Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -1274,7 +1263,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600194",
     "year": "2026",
     "month": "4",
@@ -1285,7 +1274,6 @@
     "sale_date": "06/02/2026",
     "run_ts": "2026-05-01T18:15:09Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -1299,7 +1287,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600199",
     "year": "2026",
     "month": "4",
@@ -1310,7 +1298,6 @@
     "sale_date": "06/02/2026",
     "run_ts": "2026-05-01T18:15:09Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -1324,7 +1311,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600201",
     "year": "2026",
     "month": "4",
@@ -1335,7 +1322,6 @@
     "sale_date": "06/02/2026",
     "run_ts": "2026-05-01T18:15:09Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -1349,7 +1335,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600191",
     "year": "2026",
     "month": "4",
@@ -1360,7 +1346,6 @@
     "sale_date": "06/02/2026",
     "run_ts": "2026-05-01T18:15:09Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -1374,7 +1359,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600187",
     "year": "2026",
     "month": "4",
@@ -1385,7 +1370,6 @@
     "sale_date": "06/02/2026",
     "run_ts": "2026-05-01T18:15:09Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -1399,7 +1383,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600192",
     "year": "2026",
     "month": "4",
@@ -1410,7 +1394,6 @@
     "sale_date": "06/02/2026",
     "run_ts": "2026-05-01T18:15:09Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -1424,7 +1407,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600198",
     "year": "2026",
     "month": "4",
@@ -1435,7 +1418,6 @@
     "sale_date": "06/02/2026",
     "run_ts": "2026-05-01T18:15:09Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -1449,7 +1431,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600196",
     "year": "2026",
     "month": "4",
@@ -1460,7 +1442,6 @@
     "sale_date": "06/02/2026",
     "run_ts": "2026-05-01T18:15:09Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -1474,7 +1455,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600189",
     "year": "2026",
     "month": "4",
@@ -1486,7 +1467,6 @@
     "run_ts": "2026-05-01T18:15:09Z",
     "flags": [
       "DUPLICATE",
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -1500,7 +1480,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600179",
     "year": "2026",
     "month": "4",
@@ -1511,7 +1491,6 @@
     "sale_date": "06/02/2026",
     "run_ts": "2026-05-01T18:15:09Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -1525,7 +1504,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600176",
     "year": "2026",
     "month": "4",
@@ -1536,7 +1515,6 @@
     "sale_date": "06/02/2026",
     "run_ts": "2026-05-01T18:15:09Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -1550,7 +1528,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600181",
     "year": "2026",
     "month": "4",
@@ -1561,7 +1539,6 @@
     "sale_date": "06/02/2026",
     "run_ts": "2026-05-01T18:15:09Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -1575,7 +1552,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600172",
     "year": "2026",
     "month": "4",
@@ -1586,7 +1563,6 @@
     "sale_date": "06/02/2026",
     "run_ts": "2026-05-01T18:15:09Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -1600,7 +1576,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600177",
     "year": "2026",
     "month": "4",
@@ -1611,7 +1587,6 @@
     "sale_date": "06/02/2026",
     "run_ts": "2026-05-01T18:15:09Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -1625,7 +1600,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600174",
     "year": "2026",
     "month": "4",
@@ -1636,7 +1611,6 @@
     "sale_date": "06/02/2026",
     "run_ts": "2026-05-01T18:15:09Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -1650,7 +1624,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600173",
     "year": "2026",
     "month": "4",
@@ -1661,7 +1635,6 @@
     "sale_date": "06/02/2026",
     "run_ts": "2026-05-01T18:15:09Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -5808,7 +5781,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600205",
     "year": "2026",
     "month": "5",
@@ -5819,7 +5792,6 @@
     "sale_date": "07/07/2026",
     "run_ts": "2026-05-01T18:15:09Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -5833,7 +5805,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600204",
     "year": "2026",
     "month": "4",
@@ -5844,7 +5816,6 @@
     "sale_date": "07/07/2026",
     "run_ts": "2026-05-01T18:15:09Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -5858,7 +5829,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600203",
     "year": "2026",
     "month": "4",
@@ -5869,7 +5840,6 @@
     "sale_date": "07/07/2026",
     "run_ts": "2026-05-01T18:15:09Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -5883,7 +5853,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600184",
     "year": "2026",
     "month": "4",
@@ -5894,7 +5864,6 @@
     "sale_date": "07/07/2026",
     "run_ts": "2026-05-01T18:15:09Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -5908,7 +5877,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600185",
     "year": "2026",
     "month": "4",
@@ -5919,7 +5888,6 @@
     "sale_date": "07/07/2026",
     "run_ts": "2026-05-01T18:15:09Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -5933,7 +5901,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600175",
     "year": "2026",
     "month": "4",
@@ -5944,7 +5912,6 @@
     "sale_date": "07/07/2026",
     "run_ts": "2026-05-01T18:15:09Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -5958,7 +5925,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600180",
     "year": "2026",
     "month": "4",
@@ -5969,7 +5936,6 @@
     "sale_date": "07/07/2026",
     "run_ts": "2026-05-01T18:15:09Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -5983,7 +5949,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600178",
     "year": "2026",
     "month": "4",
@@ -5994,7 +5960,6 @@
     "sale_date": "07/07/2026",
     "run_ts": "2026-05-01T18:15:09Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -6008,7 +5973,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600183",
     "year": "2026",
     "month": "4",
@@ -6019,7 +5984,6 @@
     "sale_date": "07/07/2026",
     "run_ts": "2026-05-01T18:15:09Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -6033,7 +5997,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600170",
     "year": "2026",
     "month": "4",
@@ -6044,7 +6008,6 @@
     "sale_date": "07/07/2026",
     "run_ts": "2026-05-01T18:15:09Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -15318,6 +15281,32 @@
     "flags": [],
     "score": 6,
     "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "PECAN VALLEY DR",
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260600206",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78223",
+    "school_dist": "",
+    "date_filed": "5/2026",
+    "sale_date": "06/02/2026",
+    "run_ts": "2026-05-01T23:39:01Z",
+    "flags": [
+      "NEW",
+      "NO OWNER",
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "score": 4,
+    "days_until_sale": 31
   },
   {
     "type": "NOF",
