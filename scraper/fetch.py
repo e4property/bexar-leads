@@ -518,16 +518,13 @@ def fetch_code_enforcement(known_docs):
     log.info("Code Enforcement: starting fetch...")
 
     cat_codes  = list(CE_CATEGORIES.keys())
-    cat_sql    = ", ".join(f"'{c}'" for c in cat_codes)
     cutoff_ms  = int(CUTOFF_DATE.timestamp() * 1000)
 
-    # ArcGIS epoch-ms date filter — no DATE keyword, just raw integer comparison
-    # Department filter removed — field value may vary; Category filter is sufficient
-    where = (
-        f"Category IN ({cat_sql}) "
-        f"AND OpenedDateTime >= {cutoff_ms} "
-        f"AND OpenedDateTime IS NOT NULL"
-    )
+    # Use OR chain — ArcGIS IN clause rejects long lists with code 400
+    # Category field is case-sensitive; log the query for debugging
+    cat_or = " OR ".join(f"Category = '{c}'" for c in cat_codes)
+    where  = f"({cat_or}) AND OpenedDateTime >= {cutoff_ms}"
+    log.info(f"  CE where (first 150): {where[:150]}")
 
     query_url = f"{CODE_ENFORCE_URL}/query"
     out_fields = "CaseID,Category,ReasonName,TypeName,ObjectDescription,CaseStatus,OpenedDateTime,CouncilDistrict"
