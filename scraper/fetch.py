@@ -521,10 +521,12 @@ def fetch_code_enforcement(known_docs):
     cat_sql    = ", ".join(f"'{c}'" for c in cat_codes)
     cutoff_ms  = int(CUTOFF_DATE.timestamp() * 1000)
 
+    # ArcGIS epoch-ms date filter — no DATE keyword, just raw integer comparison
+    # Department filter removed — field value may vary; Category filter is sufficient
     where = (
-        f"Department = 'Code Enforcement' "
-        f"AND Category IN ({cat_sql}) "
-        f"AND OpenedDateTime >= {cutoff_ms}"
+        f"Category IN ({cat_sql}) "
+        f"AND OpenedDateTime >= {cutoff_ms} "
+        f"AND OpenedDateTime IS NOT NULL"
     )
 
     query_url = f"{CODE_ENFORCE_URL}/query"
