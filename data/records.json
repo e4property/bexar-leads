@@ -7740,7 +7740,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "CE-Step 1",
     "year": "",
     "month": "",
@@ -7752,7 +7752,6 @@
     "run_ts": "2026-05-03T22:42:47Z",
     "flags": [
       "CODE ENFORCE",
-      "NEW",
       "NO OWNER",
       "ABSENTEE PROP"
     ],
@@ -7775,7 +7774,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "CE-Step 2",
     "year": "",
     "month": "",
@@ -7787,7 +7786,6 @@
     "run_ts": "2026-05-03T22:42:47Z",
     "flags": [
       "CODE ENFORCE",
-      "NEW",
       "NO OWNER",
       "ABSENTEE PROP"
     ],
@@ -7810,7 +7808,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "CE-Category Code:",
     "year": "",
     "month": "",
@@ -7822,7 +7820,6 @@
     "run_ts": "2026-05-03T22:42:47Z",
     "flags": [
       "CODE ENFORCE",
-      "NEW",
       "NO OWNER",
       "ABSENTEE PROP"
     ],
