@@ -19,6 +19,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python 3.11
         uses: actions/setup-python@v5
@@ -39,10 +41,23 @@ jobs:
         run: mkdir -p data dashboard
 
       - name: Run scraper
+        id: scraper
         env:
           GHL_API_KEY: ${{ secrets.GHL_API_KEY }}
           GHL_LOCATION_ID: ${{ secrets.GHL_LOCATION_ID }}
-        run: python scraper/fetch.py
+        run: |
+          python scraper/fetch.py 2>&1 | tee /tmp/scraper.log
+          # Parse summary counts from log for notification
+          NEW_TOTAL=$(grep -oP '(?<=total new records\: )\d+|(?<=new records\: )\d+' /tmp/scraper.log | tail -1 || echo "0")
+          CE_COUNT=$(grep -oP '(?<=Code Enforcement added )\d+' /tmp/scraper.log | tail -1 || echo "0")
+          FORE_COUNT=$(grep -oP '(?<=PublicSearch\: )\d+(?= total)' /tmp/scraper.log | tail -1 || echo "0")
+          DANG_COUNT=$(grep -oP '(?<=dangerous premises\: )\d+' /tmp/scraper.log | tail -1 || echo "0")
+          FINAL_TOTAL=$(grep -oP '(?<=Final\: )\d+(?= total)' /tmp/scraper.log | tail -1 || echo "0")
+          echo "new_total=$NEW_TOTAL" >> $GITHUB_OUTPUT
+          echo "ce_count=$CE_COUNT" >> $GITHUB_OUTPUT
+          echo "fore_count=$FORE_COUNT" >> $GITHUB_OUTPUT
+          echo "dang_count=$DANG_COUNT" >> $GITHUB_OUTPUT
+          echo "final_total=$FINAL_TOTAL" >> $GITHUB_OUTPUT
 
       - name: Show summary
         run: python3 scraper/summary.py
@@ -56,9 +71,14 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          # Pull latest remote state before committing to avoid stale push rejection
+          git fetch origin main
+          git stash || true
+          git rebase origin/main || true
+          git stash pop || true
           git add data/records.json dashboard/records.json
           git diff --cached --quiet || git commit -m "chore: update leads $(date -u +'%Y-%m-%d %H:%M UTC')"
-          git push origin main --force-with-lease
+          git push origin main
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
@@ -68,3 +88,37 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Notify via GHL SMS
+        if: always()
+        env:
+          GHL_API_KEY: ${{ secrets.GHL_API_KEY }}
+          GHL_LOCATION_ID: ${{ secrets.GHL_LOCATION_ID }}
+          NOTIFY_PHONE: ${{ secrets.NOTIFY_PHONE }}
+        run: |
+          NEW=${{ steps.scraper.outputs.new_total || '0' }}
+          CE=${{ steps.scraper.outputs.ce_count || '0' }}
+          FORE=${{ steps.scraper.outputs.fore_count || '0' }}
+          DANG=${{ steps.scraper.outputs.dang_count || '0' }}
+          TOTAL=${{ steps.scraper.outputs.final_total || '0' }}
+
+          if [ "$NEW" -gt "0" ] 2>/dev/null || [ "$CE" -gt "0" ] 2>/dev/null; then
+            MSG="Bexar Leads: ${NEW} new this run (${FORE} foreclosure, ${CE} code enforcement)"
+            if [ "$DANG" -gt "0" ] 2>/dev/null; then
+              MSG="${MSG}. ${DANG} DANGEROUS PREMISES"
+            fi
+            MSG="${MSG}. ${TOTAL} total in dashboard. Check leads now."
+          else
+            MSG="Bexar Leads scrape done — no new leads this run. ${TOTAL} total on file."
+          fi
+
+          curl -s -X POST "https://services.leadconnectorhq.com/conversations/messages" \
+            -H "Authorization: Bearer ${GHL_API_KEY}" \
+            -H "Content-Type: application/json" \
+            -H "Version: 2021-07-28" \
+            -d "{
+              \"type\": \"SMS\",
+              \"locationId\": \"${GHL_LOCATION_ID}\",
+              \"contactPhone\": \"${NOTIFY_PHONE}\",
+              \"message\": \"${MSG}\"
+            }" || echo "SMS notify failed — non-blocking"
