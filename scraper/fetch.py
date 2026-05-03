@@ -1,5 +1,5 @@
 """
-Bexar County Motivated Seller Lead Scraper v28.2
+Bexar County Motivated Seller Lead Scraper v28.3
 HYBRID SCRAPER:
   Primary:   bexar.tx.publicsearch.us  (Selenium, runs 3x daily)
              - 7-day chunks covering 90-day window
@@ -110,7 +110,7 @@ def fetch_json(url, retries=3):
     for attempt in range(retries):
         try:
             req = urllib.request.Request(
-                url, headers={"User-Agent": "BexarScraper/28.2", "Accept": "application/json"})
+                url, headers={"User-Agent": "BexarScraper/28.3", "Accept": "application/json"})
             with urllib.request.urlopen(req, timeout=25) as r:
                 return json.loads(r.read().decode("utf-8", errors="replace"))
         except Exception as e:
@@ -166,7 +166,7 @@ def load_known_docs():
     try:
         req = urllib.request.Request(
             url,
-            headers={"User-Agent": "BexarScraper/28.2",
+            headers={"User-Agent": "BexarScraper/28.3",
                      "Accept": "application/json",
                      "Cache-Control": "no-cache"})
         with urllib.request.urlopen(req, timeout=20) as r:
@@ -506,128 +506,214 @@ def parse_month_year(date_str):
 # ── CODE ENFORCEMENT SCRAPER ──────────────────────────────────────────────────
 def fetch_code_enforcement(known_docs):
     """
-    Query SA 311 ArcGIS FeatureServer for distressed-property violation
-    categories within the 90-day window. Returns list of lead records
-    formatted identically to foreclosure records for unified pipeline.
+    Scrape SA webapp1.sanantonio.gov/CodeComplaintStatus using Selenium.
+    Submits the form for each target category with a 90-day date range,
+    parses the results table, returns lead records identical in shape to
+    foreclosure records for unified pipeline processing.
 
-    Endpoint: services.arcgis.com/g1fRTDLeMgspWrYp/.../311_All_Service_Calls/FeatureServer/0
-    Key fields: Category, CaseID, OpenedDateTime (epoch ms), CaseStatus,
-                ObjectDescription (address), Department, ReasonName, TypeName
-    Page size: 2000 (server max)
+    v28.3: Switched from ArcGIS FeatureServer (403 blocked) to Selenium
+    web form scraping of the public CodeComplaintStatus portal.
     """
-    log.info("Code Enforcement: starting fetch...")
+    from selenium.webdriver.common.by import By
+    from selenium.webdriver.support.ui import WebDriverWait, Select
+    from selenium.webdriver.support import expected_conditions as EC
 
-    cat_codes  = list(CE_CATEGORIES.keys())
-    cutoff_ms  = int(CUTOFF_DATE.timestamp() * 1000)
+    CE_URL    = "https://webapp1.sanantonio.gov/CodeComplaintStatus"
+    start_str = CUTOFF_DATE.strftime("%m/%d/%Y")
+    end_str   = TODAY_NAIVE.strftime("%m/%d/%Y")
 
-    # Use OR chain — ArcGIS IN clause rejects long lists with code 400
-    # Category field is case-sensitive; log the query for debugging
-    cat_or = " OR ".join(f"Category = '{c}'" for c in cat_codes)
-    where  = f"({cat_or}) AND OpenedDateTime >= {cutoff_ms}"
-    log.info(f"  CE where (first 150): {where[:150]}")
-
-    query_url = f"{CODE_ENFORCE_URL}/query"
-    out_fields = "CaseID,Category,ReasonName,TypeName,ObjectDescription,CaseStatus,OpenedDateTime,CouncilDistrict"
+    log.info(f"Code Enforcement: Selenium scrape | {len(CE_CATEGORIES)} categories | {start_str} to {end_str}")
 
     new_leads = []
-    offset    = 0
-    page_size = 2000
-    page      = 0
+    driver    = None
 
-    while True:
-        params = urllib.parse.urlencode({
-            "where":             where,
-            "outFields":         out_fields,
-            "orderByFields":     "OpenedDateTime DESC",
-            "returnGeometry":    "false",
-            "resultOffset":      offset,
-            "resultRecordCount": page_size,
-            "f":                 "json",
-        })
-        data = fetch_json(f"{query_url}?{params}")
+    try:
+        driver = get_driver()
+        wait   = WebDriverWait(driver, 60)
 
-        if not data or "error" in data:
-            err = data.get("error", {}) if data else {}
-            log.warning(f"Code Enforcement query error: {err}")
-            break
+        for cat_code, cat_label in CE_CATEGORIES.items():
+            try:
+                log.info(f"  CE [{cat_code}] {cat_label}...")
+                driver.get(CE_URL)
 
-        features = data.get("features", [])
-        log.info(f"  CE page {page+1} (offset={offset}): {len(features)} features")
+                # Wait for page to load
+                wait.until(EC.presence_of_element_located((By.TAG_NAME, "select")))
+                time.sleep(1.5)
 
-        for feat in features:
-            a = feat.get("attributes", {})
+                # Select category from dropdown
+                try:
+                    selects = driver.find_elements(By.TAG_NAME, "select")
+                    cat_select = None
+                    for s in selects:
+                        opts = s.find_elements(By.TAG_NAME, "option")
+                        for o in opts:
+                            if cat_code in (o.get_attribute("value") or ""):
+                                cat_select = s
+                                break
+                        if cat_select:
+                            break
+                    if not cat_select:
+                        log.warning(f"  CE [{cat_code}] select not found — skip")
+                        continue
+                    sel = Select(cat_select)
+                    sel.deselect_all()
+                    sel.select_by_value(cat_code)
+                except Exception as e:
+                    log.warning(f"  CE [{cat_code}] select error: {e}")
+                    continue
 
-            case_id  = a.get("CaseID")
-            if not case_id:
+                # Fill start and end dates
+                date_inputs = driver.find_elements(By.CSS_SELECTOR, "input[type='text']")
+                filled = 0
+                for inp in date_inputs:
+                    placeholder = (inp.get_attribute("placeholder") or "").lower()
+                    name        = (inp.get_attribute("name") or "").lower()
+                    iid         = (inp.get_attribute("id") or "").lower()
+                    is_start = any(x in placeholder+name+iid for x in ["start", "from", "begin"])
+                    is_end   = any(x in placeholder+name+iid for x in ["end", "to"])
+                    if is_start and filled == 0:
+                        inp.clear(); inp.send_keys(start_str); filled += 1
+                    elif is_end and filled <= 1:
+                        inp.clear(); inp.send_keys(end_str); filled += 1
+                    if filled >= 2:
+                        break
+
+                # If we couldn't identify by name, try by order (start=first, end=second)
+                if filled < 2 and len(date_inputs) >= 2:
+                    date_inputs[0].clear(); date_inputs[0].send_keys(start_str)
+                    date_inputs[1].clear(); date_inputs[1].send_keys(end_str)
+
+                # Submit the form
+                try:
+                    submit = driver.find_element(By.CSS_SELECTOR, "input[type='submit'], button[type='submit']")
+                    submit.click()
+                except Exception:
+                    try:
+                        driver.find_element(By.CSS_SELECTOR, "form").submit()
+                    except Exception as e:
+                        log.warning(f"  CE [{cat_code}] submit failed: {e}")
+                        continue
+
+                # Wait for results table
+                time.sleep(3)
+                try:
+                    wait.until(lambda d: len(d.find_elements(By.CSS_SELECTOR, "table tr")) > 1
+                               or "No records" in d.page_source
+                               or "no complaint" in d.page_source.lower())
+                except Exception:
+                    pass
+
+                page_source = driver.page_source
+                if "no records" in page_source.lower() or "no complaint" in page_source.lower():
+                    log.info(f"  CE [{cat_code}] no results")
+                    continue
+
+                # Parse results table
+                rows = driver.find_elements(By.CSS_SELECTOR, "table tr")
+                if len(rows) <= 1:
+                    log.info(f"  CE [{cat_code}] no result rows")
+                    continue
+
+                # Detect column positions from header row
+                headers = []
+                header_row = rows[0]
+                for th in header_row.find_elements(By.CSS_SELECTOR, "th, td"):
+                    headers.append(th.text.strip().lower())
+                log.info(f"  CE [{cat_code}] headers: {headers}")
+
+                def col_idx(keywords):
+                    for kw in keywords:
+                        for i, h in enumerate(headers):
+                            if kw in h:
+                                return i
+                    return None
+
+                idx_case   = col_idx(["case", "complaint", "number"])
+                idx_addr   = col_idx(["address", "location", "street"])
+                idx_status = col_idx(["status"])
+                idx_date   = col_idx(["date", "opened", "reported"])
+
+                cat_new = 0
+                for row in rows[1:]:
+                    try:
+                        cells = row.find_elements(By.CSS_SELECTOR, "td")
+                        if not cells:
+                            continue
+
+                        def cell(i):
+                            if i is None or i >= len(cells):
+                                return ""
+                            return cells[i].text.strip()
+
+                        case_id  = cell(idx_case)  or cell(0)
+                        addr_raw = cell(idx_addr)  or cell(1)
+                        status   = cell(idx_status) or ""
+                        opened   = cell(idx_date)  or ""
+
+                        if not addr_raw or not case_id:
+                            continue
+
+                        doc_key = f"CE-{case_id}"
+                        if doc_key in known_docs:
+                            continue
+
+                        address        = clean_address(addr_raw)
+                        city, zip_code = parse_city_zip(addr_raw)
+                        month, year    = parse_month_year(opened) if opened else ("", "")
+
+                        if not address or address.upper() in ("", "N/A", "NA"):
+                            continue
+
+                        rec = {
+                            "type":        "CE",
+                            "address":     address,
+                            "owner":       "",
+                            "mail_addr":   "",
+                            "absentee":    False,
+                            "duplicate":   False,
+                            "is_new":      True,
+                            "doc_number":  doc_key,
+                            "year":        year,
+                            "month":       month,
+                            "city":        city,
+                            "zip":         zip_code,
+                            "school_dist": "",
+                            "date_filed":  f"{month}/{year}".strip("/"),
+                            "sale_date":   "",
+                            "run_ts":      RUN_TIMESTAMP,
+                            "flags":       [],
+                            "source":      "code_enforcement",
+                            "ce_case_id":  str(case_id),
+                            "ce_category": cat_code,
+                            "ce_reason":   cat_label,
+                            "ce_type":     "",
+                            "ce_status":   status,
+                            "opened_date": opened,
+                            "ce_district": "",
+                            "ce_cat_label": cat_label,
+                        }
+                        new_leads.append(rec)
+                        known_docs.add(doc_key)
+                        cat_new += 1
+
+                    except Exception as e:
+                        log.debug(f"  CE row parse error: {e}")
+
+                log.info(f"  CE [{cat_code}] {cat_new} new records")
+                time.sleep(1)
+
+            except Exception as e:
+                log.warning(f"  CE [{cat_code}] error: {e}")
                 continue
 
-            doc_key = f"CE-{case_id}"
-            if doc_key in known_docs:
-                continue
-
-            category    = (a.get("Category") or "").strip().upper()
-            reason      = (a.get("ReasonName") or "").strip()
-            type_name   = (a.get("TypeName") or "").strip()
-            addr_raw    = (a.get("ObjectDescription") or "").strip()
-            status      = (a.get("CaseStatus") or "").strip()
-            opened_ms   = a.get("OpenedDateTime")
-            district    = a.get("CouncilDistrict", "")
-
-            # Parse address — ObjectDescription format: "123 MAIN ST, SAN ANTONIO, TX 78201"
-            address        = clean_address(addr_raw)
-            city, zip_code = parse_city_zip(addr_raw)
-            opened_str     = ms_to_date_str(opened_ms)
-
-            if not address or address.upper() in ("", "N/A", "NA", "UNKNOWN"):
-                log.debug(f"  CE skip: no address for CaseID {case_id}")
-                continue
-
-            month, year = ("", "")
-            if opened_str:
-                month, year = parse_month_year(opened_str)
-
-            # CE-specific category label for flags
-            cat_label = CE_CATEGORIES.get(category, category)
-
-            rec = {
-                "type":        "CE",
-                "address":     address,
-                "owner":       "",
-                "mail_addr":   "",
-                "absentee":    False,
-                "duplicate":   False,
-                "is_new":      True,
-                "doc_number":  doc_key,
-                "year":        year,
-                "month":       month,
-                "city":        city,
-                "zip":         zip_code,
-                "school_dist": "",
-                "date_filed":  f"{month}/{year}".strip("/"),
-                "sale_date":   "",
-                "run_ts":      RUN_TIMESTAMP,
-                "flags":       [],
-                "source":      "code_enforcement",
-                # CE-specific fields
-                "ce_case_id":    str(case_id),
-                "ce_category":   category,
-                "ce_reason":     reason,
-                "ce_type":       type_name,
-                "ce_status":     status,
-                "opened_date":   opened_str,
-                "ce_district":   str(district) if district else "",
-                "ce_cat_label":  cat_label,
-            }
-
-            new_leads.append(rec)
-            known_docs.add(doc_key)
-
-        if len(features) < page_size:
-            break
-
-        offset += page_size
-        page   += 1
-        time.sleep(0.5)
+    except Exception as e:
+        log.error(f"Code Enforcement scrape error: {e}")
+    finally:
+        if driver:
+            try:
+                driver.quit()
+            except Exception:
+                pass
 
     # Summary by category
     by_cat = {}
@@ -888,7 +974,7 @@ if __name__ == "__main__":
     os.makedirs("dashboard", exist_ok=True)
 
     log.info("=" * 60)
-    log.info("Bexar County Lead Scraper v28.2 (Hybrid)")
+    log.info("Bexar County Lead Scraper v28.3 (Hybrid)")
     log.info(f"Primary:   PublicSearch.us ({KEEP_DAYS}d window, {CHUNK_DAYS}d chunks, {PAGE_TIMEOUT}s timeout)")
     log.info(f"Secondary: ArcGIS weekly backfill = {IS_SUNDAY}")
     log.info(f"Tertiary:  Code Enforcement 311 ({len(CE_CATEGORIES)} categories, {KEEP_DAYS}d window)")
