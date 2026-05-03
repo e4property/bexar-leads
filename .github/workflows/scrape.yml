@@ -47,17 +47,14 @@ jobs:
           GHL_LOCATION_ID: ${{ secrets.GHL_LOCATION_ID }}
         run: |
           python scraper/fetch.py 2>&1 | tee /tmp/scraper.log
-          # Parse summary counts from log for notification
-          NEW_TOTAL=$(grep -oP '(?<=total new records\: )\d+|(?<=new records\: )\d+' /tmp/scraper.log | tail -1 || echo "0")
+          NEW_TOTAL=$(grep -oP '(?<=PublicSearch: )\d+(?= total new)' /tmp/scraper.log | tail -1 || echo "0")
           CE_COUNT=$(grep -oP '(?<=Code Enforcement added )\d+' /tmp/scraper.log | tail -1 || echo "0")
-          FORE_COUNT=$(grep -oP '(?<=PublicSearch\: )\d+(?= total)' /tmp/scraper.log | tail -1 || echo "0")
-          DANG_COUNT=$(grep -oP '(?<=dangerous premises\: )\d+' /tmp/scraper.log | tail -1 || echo "0")
-          FINAL_TOTAL=$(grep -oP '(?<=Final\: )\d+(?= total)' /tmp/scraper.log | tail -1 || echo "0")
-          echo "new_total=$NEW_TOTAL" >> $GITHUB_OUTPUT
-          echo "ce_count=$CE_COUNT" >> $GITHUB_OUTPUT
-          echo "fore_count=$FORE_COUNT" >> $GITHUB_OUTPUT
-          echo "dang_count=$DANG_COUNT" >> $GITHUB_OUTPUT
-          echo "final_total=$FINAL_TOTAL" >> $GITHUB_OUTPUT
+          DANG_COUNT=$(grep -oP '(?<=dangerous premises: )\d+' /tmp/scraper.log | tail -1 || echo "0")
+          FINAL_TOTAL=$(grep -oP '(?<=Final: )\d+(?= total)' /tmp/scraper.log | tail -1 || echo "0")
+          echo "new_total=${NEW_TOTAL:-0}" >> $GITHUB_OUTPUT
+          echo "ce_count=${CE_COUNT:-0}" >> $GITHUB_OUTPUT
+          echo "dang_count=${DANG_COUNT:-0}" >> $GITHUB_OUTPUT
+          echo "final_total=${FINAL_TOTAL:-0}" >> $GITHUB_OUTPUT
 
       - name: Show summary
         run: python3 scraper/summary.py
@@ -71,7 +68,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          # Pull latest remote state before committing to avoid stale push rejection
           git fetch origin main
           git stash || true
           git rebase origin/main || true
@@ -96,29 +92,27 @@ jobs:
           GHL_LOCATION_ID: ${{ secrets.GHL_LOCATION_ID }}
           NOTIFY_PHONE: ${{ secrets.NOTIFY_PHONE }}
         run: |
-          NEW=${{ steps.scraper.outputs.new_total || '0' }}
-          CE=${{ steps.scraper.outputs.ce_count || '0' }}
-          FORE=${{ steps.scraper.outputs.fore_count || '0' }}
-          DANG=${{ steps.scraper.outputs.dang_count || '0' }}
-          TOTAL=${{ steps.scraper.outputs.final_total || '0' }}
+          NEW="${{ steps.scraper.outputs.new_total }}"
+          CE="${{ steps.scraper.outputs.ce_count }}"
+          DANG="${{ steps.scraper.outputs.dang_count }}"
+          TOTAL="${{ steps.scraper.outputs.final_total }}"
+          NEW=${NEW:-0}; CE=${CE:-0}; DANG=${DANG:-0}; TOTAL=${TOTAL:-0}
 
-          if [ "$NEW" -gt "0" ] 2>/dev/null || [ "$CE" -gt "0" ] 2>/dev/null; then
-            MSG="Bexar Leads: ${NEW} new this run (${FORE} foreclosure, ${CE} code enforcement)"
-            if [ "$DANG" -gt "0" ] 2>/dev/null; then
-              MSG="${MSG}. ${DANG} DANGEROUS PREMISES"
-            fi
-            MSG="${MSG}. ${TOTAL} total in dashboard. Check leads now."
+          if [ "$NEW" -gt "0" ] || [ "$CE" -gt "0" ]; then
+            MSG="Bexar Leads: ${NEW} new foreclosure, ${CE} code enforce"
+            if [ "$DANG" -gt "0" ]; then MSG="${MSG} !! ${DANG} DANGEROUS PREMISES"; fi
+            MSG="${MSG}. ${TOTAL} total. Check dash."
           else
-            MSG="Bexar Leads scrape done — no new leads this run. ${TOTAL} total on file."
+            MSG="Bexar scrape done. No new leads. ${TOTAL} on file."
           fi
 
-          curl -s -X POST "https://services.leadconnectorhq.com/conversations/messages" \
-            -H "Authorization: Bearer ${GHL_API_KEY}" \
+          PAYLOAD=$(python3 -c "import json,sys; print(json.dumps({'type':'SMS','locationId':'$GHL_LOCATION_ID','toNumber':'$NOTIFY_PHONE','message':MSG}))" 2>/dev/null) || \
+          PAYLOAD="{\"type\":\"SMS\",\"locationId\":\"$GHL_LOCATION_ID\",\"toNumber\":\"$NOTIFY_PHONE\",\"message\":\"$MSG\"}"
+
+          RESP=$(curl -s -w "\n%{http_code}" \
+            -X POST "https://services.leadconnectorhq.com/conversations/messages/outbound" \
+            -H "Authorization: Bearer $GHL_API_KEY" \
             -H "Content-Type: application/json" \
             -H "Version: 2021-07-28" \
-            -d "{
-              \"type\": \"SMS\",
-              \"locationId\": \"${GHL_LOCATION_ID}\",
-              \"contactPhone\": \"${NOTIFY_PHONE}\",
-              \"message\": \"${MSG}\"
-            }" || echo "SMS notify failed — non-blocking"
+            -d "$PAYLOAD") || true
+          echo "SMS response: $RESP"
