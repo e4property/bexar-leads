@@ -24,6 +24,7 @@
   --orange: #ff6b35;
   --purple: #9b72ff;
   --new: #52d68a;
+  --ce: #ff6b35;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;overflow:hidden}
@@ -38,6 +39,7 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-s
 .pill-num.blue{color:var(--accent2)}
 .pill-num.gold{color:var(--gold)}
 .pill-num.red{color:var(--red)}
+.pill-num.orange{color:var(--orange)}
 .pill-label{color:var(--muted)}
 .topbar-right{display:flex;gap:8px;margin-left:auto;align-items:center}
 .ghl-badge{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted);font-family:'IBM Plex Mono',monospace}
@@ -64,12 +66,14 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-s
 .chip{padding:3px 9px;border-radius:20px;border:1px solid var(--border2);background:transparent;color:var(--muted);font-size:10px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;transition:all .15s;font-family:'Syne',sans-serif}
 .chip:hover{border-color:var(--accent);color:var(--accent)}
 .chip.active{background:var(--accent);border-color:var(--accent);color:#000}
+.chip.ce-chip.active{background:var(--ce);border-color:var(--ce);color:#fff}
 .lead-list{flex:1;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
 .lead-list::-webkit-scrollbar{width:4px}
 .lead-list::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
 .lead-item{padding:10px 12px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .1s;position:relative}
 .lead-item:hover{background:var(--surface)}
 .lead-item.active{background:var(--surface);border-left:3px solid var(--accent)}
+.lead-item.ce-item.active{border-left-color:var(--ce)}
 .lead-item.dispo-contacted{border-left:3px solid var(--accent2)}
 .lead-item.dispo-responded{border-left:3px solid var(--accent)}
 .lead-item.dispo-deal{border-left:3px solid var(--gold)}
@@ -87,15 +91,21 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-s
 .b-abs{background:rgba(255,71,87,.12);color:#ff6b7a;border:1px solid rgba(255,71,87,.25)}
 .b-tax{background:rgba(240,165,0,.12);color:#f0c040;border:1px solid rgba(240,165,0,.25)}
 .b-nof{background:rgba(59,139,255,.1);color:#6aa3ff;border:1px solid rgba(59,139,255,.2)}
+.b-ce{background:rgba(255,107,53,.15);color:#ff8c5a;border:1px solid rgba(255,107,53,.3)}
+.b-ce-dang{background:rgba(255,71,87,.2);color:#ff4757;border:1px solid rgba(255,71,87,.4)}
+.b-ce-vac{background:rgba(155,114,255,.15);color:#b899ff;border:1px solid rgba(155,114,255,.3)}
+.b-ce-abs{background:rgba(240,165,0,.15);color:#f0c040;border:1px solid rgba(240,165,0,.3)}
 .b-new{background:rgba(82,214,138,.1);color:#52d68a;border:1px solid rgba(82,214,138,.2)}
 .b-phone{background:rgba(0,200,150,.1);color:var(--accent);border:1px solid rgba(0,200,150,.2)}
 .b-dispo{background:rgba(155,114,255,.12);color:#b899ff;border:1px solid rgba(155,114,255,.25)}
+.b-open{background:rgba(255,71,87,.12);color:#ff6b7a;border:1px solid rgba(255,71,87,.25)}
 .right-panel{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--bg)}
 .empty-state{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--dim);gap:12px}
 .empty-icon{font-size:48px;opacity:.3}
 .empty-text{font-size:13px;color:var(--muted);text-align:center;line-height:1.8}
 .detail{flex:1;display:flex;flex-direction:column;overflow:hidden}
 .detail-header{padding:20px 24px 16px;border-bottom:1px solid var(--border);flex-shrink:0}
+.detail-header.ce-header{border-top:3px solid var(--ce)}
 .dh-top{display:flex;align-items:flex-start;gap:12px;margin-bottom:8px}
 .dh-name{font-size:22px;font-weight:700;line-height:1.2;flex:1}
 .dh-badges{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
@@ -164,9 +174,20 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-s
 .tl-dot.ok{background:var(--accent)}
 .tl-dot.info{background:var(--accent2)}
 .tl-dot.warn{background:var(--gold)}
+.tl-dot.ce{background:var(--ce)}
 .tl-content{flex:1;color:var(--muted);line-height:1.5}
 .tl-content strong{color:var(--text)}
 .tl-time{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);white-space:nowrap;margin-top:2px}
+/* CE info box */
+.ce-info-box{background:rgba(255,107,53,.07);border:1px solid rgba(255,107,53,.25);border-radius:8px;padding:12px;margin-bottom:14px}
+.ce-info-title{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ce);margin-bottom:10px}
+.ce-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.ce-info-field{display:flex;flex-direction:column;gap:2px}
+.ce-info-label{font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:.07em;font-family:'IBM Plex Mono',monospace}
+.ce-info-val{font-size:12px;font-weight:600;color:var(--text)}
+.ce-info-val.open{color:var(--red)}
+.ce-info-val.closed{color:var(--muted)}
+.ce-info-val.pending{color:var(--gold)}
 .progress-strip{height:2px;background:var(--border);flex-shrink:0}
 .progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .4s ease}
 .loading{padding:40px;text-align:center;color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:12px}
@@ -193,6 +214,7 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-s
 .fw-card:hover{border-color:var(--border2)}
 .fw-card.done{opacity:.5}
 .fw-card.skipped{opacity:.3}
+.fw-card.ce-card{border-left:3px solid var(--ce)}
 .fw-card-num{display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--dim)}
 .fw-card-body{padding:0 14px}
 .fw-card-name{font-weight:700;font-size:13px;margin-bottom:4px}
@@ -232,6 +254,7 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-s
   <div class="stat-pills">
     <div class="pill"><span class="pill-num green" id="st-total">—</span><span class="pill-label">total</span></div>
     <div class="pill"><span class="pill-num blue" id="st-named">—</span><span class="pill-label">named</span></div>
+    <div class="pill"><span class="pill-num orange" id="st-ce">—</span><span class="pill-label">CE</span></div>
     <div class="pill"><span class="pill-num gold" id="st-searched">—</span><span class="pill-label">searched</span></div>
     <div class="pill"><span class="pill-num red" id="st-deals">—</span><span class="pill-label">🔥 deals</span></div>
   </div>
@@ -257,6 +280,9 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-s
       <span class="chip" onclick="setChip('absentee',this)">Absentee</span>
       <span class="chip" onclick="setChip('tax',this)">Tax</span>
       <span class="chip" onclick="setChip('nof',this)">NOF</span>
+      <span class="chip ce-chip" onclick="setChip('ce',this)">⚠ Code Enf</span>
+      <span class="chip ce-chip" onclick="setChip('ce-dang',this)">🔴 Dangerous</span>
+      <span class="chip ce-chip" onclick="setChip('ce-open',this)">Open Viol</span>
       <span class="chip" onclick="setChip('new',this)">New</span>
       <span class="chip" onclick="setChip('s10',this)">Score 10</span>
       <span class="chip" onclick="setChip('unsearched',this)">Unsearched</span>
@@ -271,7 +297,7 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-s
       <div class="empty-text">Select a lead to view details<br>and run ForeWarn search</div>
     </div>
     <div class="detail" id="detail-panel" style="display:none">
-      <div class="detail-header">
+      <div class="detail-header" id="detail-header">
         <div class="dh-top"><div class="dh-name" id="d-name"></div></div>
         <div class="dh-badges" id="d-badges"></div>
         <div class="dh-addr" id="d-addr"></div>
@@ -287,6 +313,18 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-s
             <div class="fw-b-sep">|</div>
             <div class="fw-b-item"><div class="fw-b-num left" id="fw-left">100</div><div class="fw-b-label">Left</div></div>
             <div class="fw-reset" id="fw-reset-info">Resets<br>Sunday</div>
+          </div>
+          <!-- CE info box — shown for CE leads only -->
+          <div class="ce-info-box" id="ce-info-box" style="display:none">
+            <div class="ce-info-title">⚠ Code Enforcement Violation</div>
+            <div class="ce-info-grid">
+              <div class="ce-info-field"><div class="ce-info-label">Category</div><div class="ce-info-val" id="ce-category">—</div></div>
+              <div class="ce-info-field"><div class="ce-info-label">Status</div><div class="ce-info-val" id="ce-status">—</div></div>
+              <div class="ce-info-field"><div class="ce-info-label">Violation</div><div class="ce-info-val" id="ce-reason">—</div></div>
+              <div class="ce-info-field"><div class="ce-info-label">Opened</div><div class="ce-info-val" id="ce-opened">—</div></div>
+              <div class="ce-info-field"><div class="ce-info-label">Type</div><div class="ce-info-val" id="ce-type">—</div></div>
+              <div class="ce-info-field"><div class="ce-info-label">District</div><div class="ce-info-val" id="ce-district">—</div></div>
+            </div>
           </div>
           <div class="search-fields">
             <div class="sf-row">
@@ -308,7 +346,7 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-s
           <div id="phone-entry-area">
             <div class="phone-row">
               <input class="phone-input" id="phone-input" type="tel" placeholder="Enter phone from ForeWarn…" onkeydown="if(event.key==='Enter')savePhone()">
-              <button class="btn-save" onclick="savePhone()">Save</button>
+              <button class="btn-save" onclick="savePhone()">Save & Push GHL</button>
             </div>
             <div style="display:flex;gap:8px">
               <button class="btn" style="flex:1;font-size:11px" onclick="skipLead()">Skip</button>
@@ -332,9 +370,11 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-s
             <div class="stat-card"><div class="sc-num" style="color:var(--accent)" id="ov-total">—</div><div class="sc-label">Total leads</div></div>
             <div class="stat-card"><div class="sc-num" style="color:var(--accent2)" id="ov-absentee">—</div><div class="sc-label">Absentee</div></div>
             <div class="stat-card"><div class="sc-num" style="color:var(--gold)" id="ov-tax">—</div><div class="sc-label">Tax Fore</div></div>
+            <div class="stat-card"><div class="sc-num" style="color:var(--ce)" id="ov-ce">—</div><div class="sc-label">Code Enforce</div></div>
             <div class="stat-card"><div class="sc-num" style="color:var(--new)" id="ov-new">—</div><div class="sc-label">New this run</div></div>
             <div class="stat-card"><div class="sc-num" style="color:var(--orange)" id="ov-searched">—</div><div class="sc-label">FW Searched</div></div>
             <div class="stat-card"><div class="sc-num" style="color:var(--red)" id="ov-deals">—</div><div class="sc-label">🔥 Deals</div></div>
+            <div class="stat-card"><div class="sc-num" style="color:var(--red)" id="ov-dangerous">—</div><div class="sc-label">Dangerous Prem</div></div>
           </div>
           <div class="pipeline-bar">
             <div class="pb-label">Dispo breakdown</div>
@@ -373,6 +413,7 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-s
         <div class="filter-chips" style="padding:0;border:none">
           <span class="chip active" onclick="setQueueFilter('all',this)">All</span>
           <span class="chip" onclick="setQueueFilter('unsearched',this)">Unsearched</span>
+          <span class="chip ce-chip" onclick="setQueueFilter('ce',this)">⚠ Code Enf</span>
           <span class="chip" onclick="setQueueFilter('deal',this)">🔥 Deals</span>
         </div>
         <button class="btn" onclick="switchView('leads')">← Back</button>
@@ -442,6 +483,8 @@ async function fetchLeads() {
   } catch(e) { document.getElementById('lead-list').innerHTML=`<div class="loading" style="color:var(--red)">⚠ ${e.message}</div>`; }
 }
 
+function isCE(lead) { return lead.source==='code_enforcement' || lead.type==='CE'; }
+
 function parseName(owner) {
   if(!owner||!owner.trim()) return {first:'',last:''};
   let c=owner.replace(/\s*&\s*$/,'').trim();
@@ -472,19 +515,37 @@ function filterLeads() {
   let list=[...allLeads];
   if(currentTab==='priority') list=buildPriority(list);
   else if(currentTab==='pipeline') list=list.filter(l=>{const ls=LS(l.doc_number);return ls.phone||ls.dispo!=='new';});
-  if(currentChip==='absentee') list=list.filter(l=>l.absentee);
-  else if(currentChip==='tax') list=list.filter(l=>l.type==='TAX');
-  else if(currentChip==='nof') list=list.filter(l=>l.type==='NOF');
-  else if(currentChip==='new') list=list.filter(l=>l.is_new);
-  else if(currentChip==='s10') list=list.filter(l=>l.score>=10);
+  // chip filters
+  if(currentChip==='absentee')   list=list.filter(l=>l.absentee);
+  else if(currentChip==='tax')   list=list.filter(l=>l.type==='TAX');
+  else if(currentChip==='nof')   list=list.filter(l=>l.type==='NOF');
+  else if(currentChip==='ce')    list=list.filter(l=>isCE(l));
+  else if(currentChip==='ce-dang') list=list.filter(l=>l.flags&&l.flags.includes('DANGEROUS PREMISES'));
+  else if(currentChip==='ce-open') list=list.filter(l=>l.flags&&l.flags.includes('OPEN VIOLATION'));
+  else if(currentChip==='new')   list=list.filter(l=>l.is_new);
+  else if(currentChip==='s10')   list=list.filter(l=>l.score>=10);
   else if(currentChip==='unsearched') list=list.filter(l=>!LS(l.doc_number).phone&&!LS(l.doc_number).skipped);
-  if(searchQ) list=list.filter(l=>(l.owner||'').toLowerCase().includes(searchQ)||(l.address||'').toLowerCase().includes(searchQ)||(l.zip||'').includes(searchQ)||(l.city||'').toLowerCase().includes(searchQ));
+  if(searchQ) list=list.filter(l=>
+    (l.owner||'').toLowerCase().includes(searchQ)||
+    (l.address||'').toLowerCase().includes(searchQ)||
+    (l.zip||'').includes(searchQ)||
+    (l.city||'').toLowerCase().includes(searchQ)||
+    (l.ce_reason||'').toLowerCase().includes(searchQ)||
+    (l.ce_cat_label||'').toLowerCase().includes(searchQ)
+  );
   filteredLeads=list; renderList();
 }
 
 function buildPriority(list) {
+  // Priority tab: include both foreclosures (individual owner) and ALL CE leads
   const seen=new Set();
   return list.filter(r=>{
+    if(isCE(r)) {
+      // CE leads: include if has address; de-dup by address+category
+      if(!r.address) return false;
+      const k=(r.address+'|'+r.ce_category).toUpperCase();
+      if(seen.has(k)) return false; seen.add(k); return true;
+    }
     if(!isIndividual(r.owner)) return false;
     if(r.flags&&r.flags.includes('NO OWNER')) return false;
     const k=r.address+'|'+r.owner; if(seen.has(k)) return false; seen.add(k); return true;
@@ -493,7 +554,7 @@ function buildPriority(list) {
     if(b.absentee!==a.absentee) return b.absentee?1:-1;
     if((b.type==='TAX')!==(a.type==='TAX')) return b.type==='TAX'?1:-1;
     return (b.run_ts||'').localeCompare(a.run_ts||'');
-  }).slice(0,100);
+  }).slice(0,150);
 }
 
 function LS(doc) { return S.leads[doc]||{phone:'',dispo:'new',notes:'',skipped:false}; }
@@ -506,21 +567,33 @@ function renderList() {
 
 function renderItem(lead,idx) {
   const ls=LS(lead.doc_number), isSelected=lead.doc_number===selectedDoc, dispo=ls.dispo||'new';
+  const ce=isCE(lead);
   let cc='lead-item';
+  if(ce) cc+=' ce-item';
   if(isSelected) cc+=' active';
   if(ls.phone&&!isSelected) cc+=' searched';
   if(dispo!=='new'&&!isSelected) cc+=` dispo-${dispo}`;
   const b=[];
-  if(lead.absentee) b.push(`<span class="badge b-abs">Abs</span>`);
-  if(lead.type==='TAX') b.push(`<span class="badge b-tax">Tax</span>`);
-  else b.push(`<span class="badge b-nof">NOF</span>`);
+  if(ce) {
+    b.push(`<span class="badge b-ce">⚠ CE</span>`);
+    if(lead.flags&&lead.flags.includes('DANGEROUS PREMISES')) b.push(`<span class="badge b-ce-dang">🔴 Dangerous</span>`);
+    if(lead.flags&&lead.flags.includes('ABSENTEE PROP'))      b.push(`<span class="badge b-ce-abs">Absentee</span>`);
+    if(lead.flags&&lead.flags.includes('VACANT STRUCT'))       b.push(`<span class="badge b-ce-vac">Vacant</span>`);
+    if(lead.flags&&lead.flags.includes('OPEN VIOLATION'))      b.push(`<span class="badge b-open">Open</span>`);
+  } else {
+    if(lead.absentee) b.push(`<span class="badge b-abs">Abs</span>`);
+    if(lead.type==='TAX') b.push(`<span class="badge b-tax">Tax</span>`);
+    else b.push(`<span class="badge b-nof">NOF</span>`);
+  }
   if(lead.is_new) b.push(`<span class="badge b-new">New</span>`);
   if(ls.phone) b.push(`<span class="badge b-phone">📞</span>`);
   if(dispo!=='new') b.push(`<span class="badge b-dispo">${dispo}</span>`);
   const sc=lead.score>=10?'s10':lead.score>=8?'s8':'';
+  // For CE leads without owner, show violation label as name
+  const displayName = ce && !lead.owner ? (lead.ce_cat_label||lead.ce_reason||'Code Violation') : (lead.owner||'—');
   return `<div class="${cc}" onclick="selectLead('${lead.doc_number}')">
-    <div class="li-top"><span class="li-rank">${idx+1}</span><span class="li-name">${lead.owner||'—'}</span><span class="li-score ${sc}">${lead.score}</span></div>
-    <div class="li-addr">${lead.address}, ${lead.city} ${lead.zip}</div>
+    <div class="li-top"><span class="li-rank">${idx+1}</span><span class="li-name">${displayName}</span><span class="li-score ${sc}">${lead.score}</span></div>
+    <div class="li-addr">${lead.address}${lead.city?' · '+lead.city:''}${lead.zip?' '+lead.zip:''}</div>
     <div class="li-badges">${b.join('')}</div>
   </div>`;
 }
@@ -534,24 +607,69 @@ function selectLead(doc) {
 
 function populateDetail(lead) {
   const ls=LS(lead.doc_number), {first,last}=parseName(lead.owner), city=getCity(lead), zip=getZip(lead);
+  const ce=isCE(lead);
   document.getElementById('empty-state').style.display='none';
   document.getElementById('detail-panel').style.display='flex';
   document.getElementById('detail-panel').style.flexDirection='column';
-  document.getElementById('d-name').textContent=lead.owner||'—';
-  document.getElementById('d-addr').textContent=`${lead.address}, ${lead.city} TX ${lead.zip}`;
-  document.getElementById('d-meta').textContent=`Doc: ${lead.doc_number} · Filed: ${lead.date_filed} · ${lead.school_dist||''}`;
+
+  // Header CE highlight
+  const hdr=document.getElementById('detail-header');
+  hdr.className=ce?'detail-header ce-header':'detail-header';
+
+  // Name — CE leads without owner show violation label
+  const displayName = ce && !lead.owner
+    ? (lead.ce_cat_label||lead.ce_reason||'Code Enforcement Violation')
+    : (lead.owner||'—');
+  document.getElementById('d-name').textContent=displayName;
+  document.getElementById('d-addr').textContent=`${lead.address}${lead.city?', '+lead.city:''} TX ${lead.zip}`;
+
+  if(ce) {
+    document.getElementById('d-meta').textContent=`Case: ${lead.ce_case_id||lead.doc_number} · Opened: ${lead.opened_date||'—'} · District ${lead.ce_district||'—'}`;
+  } else {
+    document.getElementById('d-meta').textContent=`Doc: ${lead.doc_number} · Filed: ${lead.date_filed} · ${lead.school_dist||''}`;
+  }
+
+  // Badges
   const b=[];
-  if(lead.absentee) b.push(`<span class="badge b-abs">Absentee</span>`);
-  if(lead.type==='TAX') b.push(`<span class="badge b-tax">Tax Foreclosure</span>`);
-  else b.push(`<span class="badge b-nof">NOF</span>`);
-  if(lead.is_new) b.push(`<span class="badge b-new">New This Run</span>`);
-  b.push(`<span class="badge" style="background:var(--surface2);border:1px solid var(--border2);color:var(--muted);font-family:'IBM Plex Mono',monospace">Score ${lead.score}</span>`);
+  if(ce) {
+    b.push(`<span class="badge b-ce" style="font-size:11px;padding:3px 8px">⚠ Code Enforcement</span>`);
+    if(lead.flags&&lead.flags.includes('DANGEROUS PREMISES')) b.push(`<span class="badge b-ce-dang" style="font-size:11px;padding:3px 8px">🔴 Dangerous Premises</span>`);
+    if(lead.flags&&lead.flags.includes('ABSENTEE PROP'))      b.push(`<span class="badge b-ce-abs" style="font-size:11px;padding:3px 8px">Absentee</span>`);
+    if(lead.flags&&lead.flags.includes('VACANT STRUCT'))       b.push(`<span class="badge b-ce-vac" style="font-size:11px;padding:3px 8px">Vacant Structure</span>`);
+    if(lead.flags&&lead.flags.includes('MIN HOUSING'))         b.push(`<span class="badge b-tax" style="font-size:11px;padding:3px 8px">Min Housing</span>`);
+    if(lead.flags&&lead.flags.includes('OPEN VIOLATION'))      b.push(`<span class="badge b-open" style="font-size:11px;padding:3px 8px">Open Violation</span>`);
+  } else {
+    if(lead.absentee) b.push(`<span class="badge b-abs" style="font-size:11px;padding:3px 8px">Absentee</span>`);
+    if(lead.type==='TAX') b.push(`<span class="badge b-tax" style="font-size:11px;padding:3px 8px">Tax Foreclosure</span>`);
+    else b.push(`<span class="badge b-nof" style="font-size:11px;padding:3px 8px">NOF</span>`);
+  }
+  if(lead.is_new) b.push(`<span class="badge b-new" style="font-size:11px;padding:3px 8px">New This Run</span>`);
+  b.push(`<span class="badge" style="background:var(--surface2);border:1px solid var(--border2);color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:11px;padding:3px 8px">Score ${lead.score}</span>`);
   document.getElementById('d-badges').innerHTML=b.join('');
+
+  // CE info box
+  const ceBox=document.getElementById('ce-info-box');
+  if(ce) {
+    ceBox.style.display='block';
+    document.getElementById('ce-category').textContent=(lead.ce_category||'—')+' · '+(lead.ce_cat_label||'');
+    const statusEl=document.getElementById('ce-status');
+    statusEl.textContent=lead.ce_status||'—';
+    statusEl.className='ce-info-val '+(lead.ce_status||'').toLowerCase();
+    document.getElementById('ce-reason').textContent=lead.ce_reason||'—';
+    document.getElementById('ce-opened').textContent=lead.opened_date||'—';
+    document.getElementById('ce-type').textContent=lead.ce_type||'—';
+    document.getElementById('ce-district').textContent=lead.ce_district?'District '+lead.ce_district:'—';
+  } else {
+    ceBox.style.display='none';
+  }
+
+  // ForeWarn search fields
   ['sf-first','sf-last','sf-city','sf-zip'].forEach((id,i)=>{
     const vals=[first,last,city,zip], el=document.getElementById(id);
     el.textContent=vals[i]||'—';
     el.onclick=()=>{navigator.clipboard.writeText(el.textContent);toast('Copied: '+el.textContent);};
   });
+
   if(ls.phone) {
     document.getElementById('phone-saved-area').style.display='block';
     document.getElementById('phone-entry-area').style.display='none';
@@ -565,7 +683,29 @@ function populateDetail(lead) {
   renderDispoTrack(lead.doc_number,ls.dispo||'new');
   document.getElementById('notes-area').value=ls.notes||'';
   renderTimeline(lead,ls);
-  document.getElementById('lead-info-grid').innerHTML=`Type: ${lead.type} · Score: ${lead.score}<br>Filed: ${lead.date_filed}<br>City: ${lead.city} · ZIP: ${lead.zip}<br>School: ${lead.school_dist||'—'}<br>Absentee: ${lead.absentee?'Yes':'No'}<br>Mail addr: ${lead.mail_addr||'—'}`;
+
+  // Lead info grid
+  if(ce) {
+    document.getElementById('lead-info-grid').innerHTML=
+      `Source: Code Enforcement<br>`+
+      `Category: ${lead.ce_category||'—'} — ${lead.ce_cat_label||''}<br>`+
+      `Violation: ${lead.ce_reason||'—'}<br>`+
+      `Status: ${lead.ce_status||'—'}<br>`+
+      `Opened: ${lead.opened_date||'—'}<br>`+
+      `City: ${lead.city} · ZIP: ${lead.zip}<br>`+
+      `Council District: ${lead.ce_district||'—'}<br>`+
+      `Owner (parcel): ${lead.owner||'Not found'}<br>`+
+      `Absentee: ${lead.absentee?'Yes':'No'}<br>`+
+      `Mail addr: ${lead.mail_addr||'—'}`;
+  } else {
+    document.getElementById('lead-info-grid').innerHTML=
+      `Type: ${lead.type} · Score: ${lead.score}<br>`+
+      `Filed: ${lead.date_filed}<br>`+
+      `City: ${lead.city} · ZIP: ${lead.zip}<br>`+
+      `School: ${lead.school_dist||'—'}<br>`+
+      `Absentee: ${lead.absentee?'Yes':'No'}<br>`+
+      `Mail addr: ${lead.mail_addr||'—'}`;
+  }
   updateStats();
 }
 
@@ -578,8 +718,13 @@ function renderDispoTrack(doc,current) {
 }
 
 function renderTimeline(lead,ls) {
-  const ev=[];
-  ev.push({dot:'info',text:`<strong>Lead filed</strong> in Bexar County`,time:lead.date_filed});
+  const ev=[], ce=isCE(lead);
+  if(ce) {
+    ev.push({dot:'ce',text:`<strong>Code violation opened</strong> — ${lead.ce_cat_label||lead.ce_category}`,time:lead.opened_date||''});
+    if(lead.ce_status&&lead.ce_status.toUpperCase()==='OPEN') ev.push({dot:'warn',text:`Violation still <strong>OPEN</strong>`,time:'Current'});
+  } else {
+    ev.push({dot:'info',text:`<strong>Lead filed</strong> in Bexar County`,time:lead.date_filed});
+  }
   if(lead.is_new) ev.push({dot:'ok',text:`<strong>New</strong> this scraper run`,time:'Latest run'});
   if(ls.phone) ev.push({dot:'ok',text:`<strong>ForeWarn searched</strong> — ${ls.phone}`,time:ls.searchedAt?new Date(ls.searchedAt).toLocaleDateString():''});
   if(ls.dispo&&ls.dispo!=='new') ev.push({dot:'warn',text:`Dispo → <strong>${ls.dispo}</strong>`,time:''});
@@ -638,28 +783,53 @@ function openGHL() {
   window.open(ls.ghlId?`https://app.gohighlevel.com/contacts/${ls.ghlId}`:'https://app.gohighlevel.com','_blank');
 }
 
-// ═══════════════════════════════════════════
-//  GHL v2 API — correct endpoint + headers + body
-// ═══════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════════
+//  GHL v2 — unified push for foreclosure + CE leads
+//  CE leads get tagged so they enter the same outreach workflow
+// ═══════════════════════════════════════════════════════════════
 async function pushGHL(lead, phone) {
   try {
     const {first,last} = parseName(lead.owner);
+    const ce = isCE(lead);
     const tags = ['bexar_lead','forewarn_searched','bexar-contacted'];
-    if(lead.absentee) tags.push('absentee');
-    if(lead.type==='TAX') tags.push('tax_foreclosure');
-    if(lead.is_new) tags.push('new_lead');
+
+    if(ce) {
+      tags.push('code_enforcement');
+      tags.push('bexar_ce_lead');
+      const flags = lead.flags||[];
+      if(flags.includes('DANGEROUS PREMISES')) tags.push('ce_dangerous');
+      if(flags.includes('ABSENTEE PROP'))      tags.push('ce_absentee');
+      if(flags.includes('VACANT STRUCT'))       tags.push('ce_vacant');
+      if(flags.includes('MIN HOUSING'))         tags.push('ce_min_housing');
+      if(flags.includes('OPEN VIOLATION'))      tags.push('ce_open_violation');
+      if(lead.is_new)                           tags.push('new_lead');
+    } else {
+      if(lead.absentee)      tags.push('absentee');
+      if(lead.type==='TAX')  tags.push('tax_foreclosure');
+      if(lead.is_new)        tags.push('new_lead');
+    }
+
+    // Custom fields for CE context visible in GHL contact record
+    const customFields = ce ? [
+      {key:'ce_category',    field_value: lead.ce_category||''},
+      {key:'ce_violation',   field_value: lead.ce_cat_label||lead.ce_reason||''},
+      {key:'ce_status',      field_value: lead.ce_status||''},
+      {key:'ce_opened_date', field_value: lead.opened_date||''},
+      {key:'ce_case_id',     field_value: lead.ce_case_id||''},
+    ] : [];
 
     const body = {
-      firstName: first,
-      lastName: last,
-      phone: phone,
-      address1: lead.address,
-      city: lead.city,
-      state: 'TX',
-      postalCode: lead.zip,
-      tags: tags,
-      locationId: S.ghlLocationId,
-      source: 'bexar-leads-dashboard'
+      firstName:   first || (ce ? 'CE' : ''),
+      lastName:    last  || (ce ? (lead.ce_cat_label||'Violation') : ''),
+      phone:       phone,
+      address1:    lead.address,
+      city:        lead.city,
+      state:       'TX',
+      postalCode:  lead.zip,
+      tags:        tags,
+      locationId:  S.ghlLocationId,
+      source:      ce ? 'bexar-ce-dashboard' : 'bexar-leads-dashboard',
+      ...(customFields.length ? {customFields} : {})
     };
 
     const res = await fetch('https://services.leadconnectorhq.com/contacts/', {
@@ -673,15 +843,13 @@ async function pushGHL(lead, phone) {
     });
 
     const data = await res.json();
-    console.log('GHL v2 response:', res.status, data);
-
     const id = data.contact?.id || data.id;
     if(id) {
       S.leads[lead.doc_number].ghlId = id;
       saveState();
       setGhlDot(true);
     } else {
-      console.error('GHL error body:', data);
+      console.error('GHL error:', data);
       setGhlDot(false);
     }
   } catch(e) {
@@ -708,40 +876,48 @@ function setGhlDot(ok) {
   else if(ok){dot.className='ghl-dot ok';txt.textContent='GHL ✓';}
   else{dot.className='ghl-dot err';txt.textContent='GHL ✗';}
 }
-function updateGhlUI(){setGhlDot(S.ghlApiKey?null:null);}
+function updateGhlUI(){setGhlDot(null);}
 
 function updateTopStats() {
   const named=allLeads.filter(l=>l.owner&&l.owner.trim()).length;
+  const ce=allLeads.filter(l=>isCE(l)).length;
   const searched=Object.values(S.leads).filter(l=>l.phone).length;
   const deals=Object.values(S.leads).filter(l=>l.dispo==='deal').length;
   document.getElementById('st-total').textContent=allLeads.length;
   document.getElementById('st-named').textContent=named;
+  document.getElementById('st-ce').textContent=ce;
   document.getElementById('st-searched').textContent=searched;
   document.getElementById('st-deals').textContent=deals;
 }
 
 function updateStats() {
-  const total=allLeads.length, abs=allLeads.filter(l=>l.absentee).length;
-  const tax=allLeads.filter(l=>l.type==='TAX').length, nw=allLeads.filter(l=>l.is_new).length;
+  const total=allLeads.length;
+  const abs=allLeads.filter(l=>l.absentee).length;
+  const tax=allLeads.filter(l=>l.type==='TAX').length;
+  const ce=allLeads.filter(l=>isCE(l)).length;
+  const dangerous=allLeads.filter(l=>l.flags&&l.flags.includes('DANGEROUS PREMISES')).length;
+  const nw=allLeads.filter(l=>l.is_new).length;
   const searched=Object.values(S.leads).filter(l=>l.phone).length;
   const deals=Object.values(S.leads).filter(l=>l.dispo==='deal').length;
   const set=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v;};
-  set('ov-total',total);set('ov-absentee',abs);set('ov-tax',tax);
-  set('ov-new',nw);set('ov-searched',searched);set('ov-deals',deals);
+  set('ov-total',total); set('ov-absentee',abs); set('ov-tax',tax);
+  set('ov-ce',ce); set('ov-dangerous',dangerous);
+  set('ov-new',nw); set('ov-searched',searched); set('ov-deals',deals);
   const ls=Object.values(S.leads);
   const cont=ls.filter(l=>l.dispo==='contacted').length, resp=ls.filter(l=>l.dispo==='responded').length;
   const deal=ls.filter(l=>l.dispo==='deal').length, dead=ls.filter(l=>l.dispo==='dead').length;
   const tot=Math.max(searched,1), pct=n=>Math.round(n/tot*100)+'%';
   const seg=(id,n)=>{const el=document.getElementById(id);if(el)el.style.width=pct(n);};
-  seg('pb-contacted',cont);seg('pb-responded',resp);seg('pb-deal',deal);seg('pb-dead',dead);
-  set('pb-l-cont',cont+' contacted');set('pb-l-resp',resp+' responded');
-  set('pb-l-deal',deal+' deals');set('pb-l-dead',dead+' dead');
+  seg('pb-contacted',cont); seg('pb-responded',resp); seg('pb-deal',deal); seg('pb-dead',dead);
+  set('pb-l-cont',cont+' contacted'); set('pb-l-resp',resp+' responded');
+  set('pb-l-deal',deal+' deals'); set('pb-l-dead',dead+' dead');
 }
 
 function renderFWQueue() {
   let list=buildPriority([...allLeads]);
   if(queueFilter==='unsearched') list=list.filter(l=>!LS(l.doc_number).phone&&!LS(l.doc_number).skipped);
-  if(queueFilter==='deal') list=list.filter(l=>LS(l.doc_number).dispo==='deal');
+  if(queueFilter==='ce')         list=list.filter(l=>isCE(l));
+  if(queueFilter==='deal')       list=list.filter(l=>LS(l.doc_number).dispo==='deal');
   const el=document.getElementById('fw-queue');
   if(!list.length){el.innerHTML='<div class="loading" style="color:var(--dim)">No leads in queue</div>';return;}
   el.innerHTML=list.map((lead,i)=>renderFWCard(lead,i)).join('');
@@ -750,6 +926,8 @@ function renderFWQueue() {
 function renderFWCard(lead,idx) {
   const ls=LS(lead.doc_number), {first,last}=parseName(lead.owner);
   const city=getCity(lead), zip=getZip(lead), doc=lead.doc_number, dispo=ls.dispo||'new';
+  const ce=isCE(lead);
+  const displayName = ce && !lead.owner ? (lead.ce_cat_label||lead.ce_reason||'Code Violation') : lead.owner;
   const actionArea=ls.phone?`
     <div class="fw-saved-phone">📞 ${ls.phone}</div>
     <div style="font-size:10px;color:var(--muted);margin-bottom:6px">${ls.searchedAt?new Date(ls.searchedAt).toLocaleDateString():''}</div>
@@ -758,21 +936,26 @@ function renderFWCard(lead,idx) {
   `:`
     <input class="fw-phone-input" id="fwp_${doc}" type="tel" placeholder="Enter phone…" onkeydown="if(event.key==='Enter')fwSave('${doc}')">
     <div class="fw-action-row" style="margin-top:5px">
-      <button class="fw-btn-save" onclick="fwSave('${doc}')">✓ Save</button>
+      <button class="fw-btn-save" onclick="fwSave('${doc}')">✓ Save & GHL</button>
       <button class="fw-btn-skip" onclick="fwSkip('${doc}')">Skip</button>
     </div>
     ${renderFWDispoButtons(doc,dispo)}
   `;
-  return `<div class="fw-card ${ls.phone?'done':''} ${ls.skipped&&!ls.phone?'skipped':''}" id="fwcard_${doc}">
+  // CE subtitle line
+  const subtitle = ce
+    ? `<div style="font-size:10px;color:var(--ce);margin-bottom:4px">⚠ ${lead.ce_cat_label||lead.ce_category} · ${lead.ce_status||''} · ${lead.opened_date||''}</div>`
+    : '';
+  return `<div class="fw-card ${ls.phone?'done':''} ${ls.skipped&&!ls.phone?'skipped':''} ${ce?'ce-card':''}" id="fwcard_${doc}">
     <div class="fw-card-num">${idx+1}</div>
     <div class="fw-card-body">
-      <div class="fw-card-name">${lead.owner}</div>
-      <div class="fw-card-addr">${lead.address}, ${lead.city} TX ${lead.zip}</div>
+      <div class="fw-card-name">${displayName}</div>
+      ${subtitle}
+      <div class="fw-card-addr">${lead.address}${lead.city?', '+lead.city:''} TX ${lead.zip}</div>
       <div class="fw-fields">
-        <div class="fwf-item"><span class="fwf-label">First:</span><span class="fwf-val">${first}</span></div>
-        <div class="fwf-item"><span class="fwf-label">Last:</span><span class="fwf-val">${last}</span></div>
-        <div class="fwf-item"><span class="fwf-label">City:</span><span class="fwf-val">${city}</span></div>
-        <div class="fwf-item"><span class="fwf-label">ZIP:</span><span class="fwf-val">${zip}</span></div>
+        <div class="fwf-item"><span class="fwf-label">First:</span><span class="fwf-val">${first||'—'}</span></div>
+        <div class="fwf-item"><span class="fwf-label">Last:</span><span class="fwf-val">${last||'—'}</span></div>
+        <div class="fwf-item"><span class="fwf-label">City:</span><span class="fwf-val">${city||'—'}</span></div>
+        <div class="fwf-item"><span class="fwf-label">ZIP:</span><span class="fwf-val">${zip||'—'}</span></div>
       </div>
     </div>
     <div class="fw-card-actions">${actionArea}</div>
@@ -818,12 +1001,12 @@ function setTab(tab) {
 }
 function setChip(f,el) {
   currentChip=f;
-  document.querySelectorAll('.filter-chips .chip').forEach(c=>c.className='chip');
+  document.querySelectorAll('.filter-chips .chip').forEach(c=>c.className=c.classList.contains('ce-chip')?'chip ce-chip':'chip');
   el.classList.add('active'); filterLeads();
 }
 function setQueueFilter(f,el) {
   queueFilter=f;
-  document.querySelectorAll('#fw-view .chip').forEach(c=>c.className='chip');
+  document.querySelectorAll('#fw-view .chip').forEach(c=>c.className=c.classList.contains('ce-chip')?'chip ce-chip':'chip');
   el.classList.add('active'); renderFWQueue();
 }
 function confirmReset() {
