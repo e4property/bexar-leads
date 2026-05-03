@@ -986,3 +986,4 @@ if __name__ == "__main__":
         json.dump(records, f, indent=2)
     build_dashboard(records)
     log.info("Done.")
+
