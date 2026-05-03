@@ -1,5 +1,5 @@
 """
-Bexar County Motivated Seller Lead Scraper v28.1
+Bexar County Motivated Seller Lead Scraper v28.2
 HYBRID SCRAPER:
   Primary:   bexar.tx.publicsearch.us  (Selenium, runs 3x daily)
              - 7-day chunks covering 90-day window
@@ -8,8 +8,23 @@ HYBRID SCRAPER:
              - Stops pagination after page 2+ with no new records
              - known_docs loaded from GitHub Pages only
   Secondary: ArcGIS GIS layer (urllib, runs weekly on Sunday)
+  Tertiary:  SA 311 Code Enforcement (ArcGIS FeatureServer, runs 3x daily)
+             - Filters to motivated-seller violation categories only
+             - Deduped by CaseID against known_docs
+             - Owner enrichment via Bexar parcel lookup
 
   Owner enrichment: 5-strategy ArcGIS parcel lookup
+
+  v28.2 additions:
+    - fetch_code_enforcement(): queries SA 311 FeatureServer for distressed-
+      property violation categories (absentee, minimum housing, dangerous
+      premises, vacant/unsecured structures)
+    - Code enforcement records flow through same owner enrichment, duplicate
+      detection, scoring, and dashboard pipeline as foreclosure records
+    - CE records keyed by "CE-{CaseID}" to avoid collision with doc numbers
+    - CE-specific flags: "CODE ENFORCE", "OPEN VIOLATION", "DANGEROUS PREMISES",
+      "ABSENTEE PROP", "VACANT STRUCT"
+    - score_record() updated to award points for CE source + open status
 
   v28.1 fix:
     - clean_address() now correctly handles publicsearch no-comma format
@@ -38,15 +53,47 @@ logging.basicConfig(
 log = logging.getLogger(__name__)
 
 # ── URLS ──────────────────────────────────────────────────────────────────────
-PUBLICSEARCH_BASE = "https://bexar.tx.publicsearch.us"
-FORECLOSURE_BASE  = "https://maps.bexar.org/arcgis/rest/services/CC/ForeclosuresProd/MapServer"
-PARCELS_URL       = "https://maps.bexar.org/arcgis/rest/services/Parcels/MapServer/0"
-PAGES_RECORDS     = "https://e4property.github.io/bexar-leads/records.json"
+PUBLICSEARCH_BASE  = "https://bexar.tx.publicsearch.us"
+FORECLOSURE_BASE   = "https://maps.bexar.org/arcgis/rest/services/CC/ForeclosuresProd/MapServer"
+PARCELS_URL        = "https://maps.bexar.org/arcgis/rest/services/Parcels/MapServer/0"
+PAGES_RECORDS      = "https://e4property.github.io/bexar-leads/records.json"
+CODE_ENFORCE_URL   = (
+    "https://services.arcgis.com/g1fRTDLeMgspWrYp/arcgis/rest"
+    "/services/311_All_Service_Calls/FeatureServer/0"
+)
 
 LAYERS = [
     {"index": 0, "type": "NOF", "label": "Mortgage Foreclosure"},
     {"index": 1, "type": "TAX", "label": "Tax Foreclosure"},
 ]
+
+# ── CODE ENFORCEMENT TARGET CATEGORIES ───────────────────────────────────────
+# Only categories with strong motivated-seller / distressed-property signal.
+# Grouped for logging clarity.
+CE_CATEGORIES = {
+    # Absentee / Minimum Housing
+    "AP1": "Absentee Property Assessment",
+    "M03": "Minimum Housing: Premises",
+    "M04": "Minimum Housing: Interior",
+    "M05": "Minimum Housing: Exterior",
+    # Dangerous Premises
+    "Z89": "Dangerous Premises: Cut & Clean",
+    "Z90": "Dangerous Premises: Secure Only",
+    "Z91": "Emergency: Main Structure",
+    "Z92": "Emergency: Accessory Structure",
+    "Z97": "Emergency: Main & Accessory",
+    "Z98": "Dangerous Premises: Clean & Secure",
+    "Z99": "BSB Ordered: All",
+    # Vacant / Unsecured Structures
+    "Z82": "Vacant Structure Unsecured",
+    "VCB": "Vacant Structure Inventory",
+    "H90": "Historic Bldg: No Permits/COA",
+}
+
+CE_DANGEROUS = {"Z89", "Z90", "Z91", "Z92", "Z97", "Z98", "Z99"}
+CE_VACANT    = {"Z82", "VCB", "H90"}
+CE_ABSENTEE  = {"AP1"}
+CE_MIN_HOUS  = {"M03", "M04", "M05"}
 
 RUN_TIMESTAMP = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 TODAY         = datetime.now(timezone.utc)
@@ -63,7 +110,7 @@ def fetch_json(url, retries=3):
     for attempt in range(retries):
         try:
             req = urllib.request.Request(
-                url, headers={"User-Agent": "BexarScraper/28.1", "Accept": "application/json"})
+                url, headers={"User-Agent": "BexarScraper/28.2", "Accept": "application/json"})
             with urllib.request.urlopen(req, timeout=25) as r:
                 return json.loads(r.read().decode("utf-8", errors="replace"))
         except Exception as e:
@@ -119,7 +166,7 @@ def load_known_docs():
     try:
         req = urllib.request.Request(
             url,
-            headers={"User-Agent": "BexarScraper/28.1",
+            headers={"User-Agent": "BexarScraper/28.2",
                      "Accept": "application/json",
                      "Cache-Control": "no-cache"})
         with urllib.request.urlopen(req, timeout=20) as r:
@@ -137,6 +184,16 @@ def parse_recorded_date(date_str):
         return datetime.strptime(date_str.strip(), "%m/%d/%Y")
     except Exception:
         return None
+
+
+def ms_to_date_str(ms):
+    """Convert ArcGIS epoch-ms timestamp to MM/DD/YYYY string."""
+    if not ms:
+        return ""
+    try:
+        return datetime.utcfromtimestamp(int(ms) / 1000).strftime("%m/%d/%Y")
+    except Exception:
+        return ""
 
 
 # ── RECORD FILTER ─────────────────────────────────────────────────────────────
@@ -162,6 +219,16 @@ def should_keep(rec):
                 return filed_dt >= CUTOFF_DATE
         except Exception:
             pass
+    # Code enforcement records: keep if opened within window
+    if rec.get("source") == "code_enforcement":
+        opened = rec.get("opened_date", "")
+        if opened:
+            try:
+                opened_dt = datetime.strptime(opened, "%m/%d/%Y")
+                return opened_dt >= CUTOFF_DATE
+            except Exception:
+                pass
+        return True  # keep if we can't parse date
     return True
 
 
@@ -383,15 +450,13 @@ def clean_address(raw):
     raw = raw.strip()
 
     if "," in raw:
-        # Comma format — take first segment
         parts = [p.strip() for p in raw.split(",")]
         return parts[0].strip().upper()
 
-    # No-comma format — strip zip, state, then split on double spaces
     upper = raw.upper()
-    upper = re.sub(r'\s+\d{5}(-\d{4})?\s*$', '', upper).strip()  # remove zip
-    upper = re.sub(r'\s+[A-Z]{2,}\s*$', '', upper).strip()        # remove state
-    parts = re.split(r'\s{2,}', upper)                             # split on 2+ spaces
+    upper = re.sub(r'\s+\d{5}(-\d{4})?\s*$', '', upper).strip()
+    upper = re.sub(r'\s+[A-Z]{2,}\s*$', '', upper).strip()
+    parts = re.split(r'\s{2,}', upper)
     return parts[0].strip() if parts else upper
 
 
@@ -418,7 +483,6 @@ def parse_city_zip(raw):
             zip_code = m.group(1) if m else ""
         return city, zip_code
 
-    # No-comma format: "NUMBER STREET  CITY  STATE  ZIP"
     upper    = raw.upper()
     zip_m    = re.search(r'\b(\d{5})\b', upper)
     zip_code = zip_m.group(1) if zip_m else ""
@@ -437,6 +501,145 @@ def parse_month_year(date_str):
     except Exception:
         pass
     return "", ""
+
+
+# ── CODE ENFORCEMENT SCRAPER ──────────────────────────────────────────────────
+def fetch_code_enforcement(known_docs):
+    """
+    Query SA 311 ArcGIS FeatureServer for distressed-property violation
+    categories within the 90-day window. Returns list of lead records
+    formatted identically to foreclosure records for unified pipeline.
+
+    Endpoint: services.arcgis.com/g1fRTDLeMgspWrYp/.../311_All_Service_Calls/FeatureServer/0
+    Key fields: Category, CaseID, OpenedDateTime (epoch ms), CaseStatus,
+                ObjectDescription (address), Department, ReasonName, TypeName
+    Page size: 2000 (server max)
+    """
+    log.info("Code Enforcement: starting fetch...")
+
+    cat_codes  = list(CE_CATEGORIES.keys())
+    cat_sql    = ", ".join(f"'{c}'" for c in cat_codes)
+    cutoff_ms  = int(CUTOFF_DATE.timestamp() * 1000)
+
+    where = (
+        f"Department = 'Code Enforcement' "
+        f"AND Category IN ({cat_sql}) "
+        f"AND OpenedDateTime >= {cutoff_ms}"
+    )
+
+    query_url = f"{CODE_ENFORCE_URL}/query"
+    out_fields = "CaseID,Category,ReasonName,TypeName,ObjectDescription,CaseStatus,OpenedDateTime,CouncilDistrict"
+
+    new_leads = []
+    offset    = 0
+    page_size = 2000
+    page      = 0
+
+    while True:
+        params = urllib.parse.urlencode({
+            "where":             where,
+            "outFields":         out_fields,
+            "orderByFields":     "OpenedDateTime DESC",
+            "returnGeometry":    "false",
+            "resultOffset":      offset,
+            "resultRecordCount": page_size,
+            "f":                 "json",
+        })
+        data = fetch_json(f"{query_url}?{params}")
+
+        if not data or "error" in data:
+            err = data.get("error", {}) if data else {}
+            log.warning(f"Code Enforcement query error: {err}")
+            break
+
+        features = data.get("features", [])
+        log.info(f"  CE page {page+1} (offset={offset}): {len(features)} features")
+
+        for feat in features:
+            a = feat.get("attributes", {})
+
+            case_id  = a.get("CaseID")
+            if not case_id:
+                continue
+
+            doc_key = f"CE-{case_id}"
+            if doc_key in known_docs:
+                continue
+
+            category    = (a.get("Category") or "").strip().upper()
+            reason      = (a.get("ReasonName") or "").strip()
+            type_name   = (a.get("TypeName") or "").strip()
+            addr_raw    = (a.get("ObjectDescription") or "").strip()
+            status      = (a.get("CaseStatus") or "").strip()
+            opened_ms   = a.get("OpenedDateTime")
+            district    = a.get("CouncilDistrict", "")
+
+            # Parse address — ObjectDescription format: "123 MAIN ST, SAN ANTONIO, TX 78201"
+            address        = clean_address(addr_raw)
+            city, zip_code = parse_city_zip(addr_raw)
+            opened_str     = ms_to_date_str(opened_ms)
+
+            if not address or address.upper() in ("", "N/A", "NA", "UNKNOWN"):
+                log.debug(f"  CE skip: no address for CaseID {case_id}")
+                continue
+
+            month, year = ("", "")
+            if opened_str:
+                month, year = parse_month_year(opened_str)
+
+            # CE-specific category label for flags
+            cat_label = CE_CATEGORIES.get(category, category)
+
+            rec = {
+                "type":        "CE",
+                "address":     address,
+                "owner":       "",
+                "mail_addr":   "",
+                "absentee":    False,
+                "duplicate":   False,
+                "is_new":      True,
+                "doc_number":  doc_key,
+                "year":        year,
+                "month":       month,
+                "city":        city,
+                "zip":         zip_code,
+                "school_dist": "",
+                "date_filed":  f"{month}/{year}".strip("/"),
+                "sale_date":   "",
+                "run_ts":      RUN_TIMESTAMP,
+                "flags":       [],
+                "source":      "code_enforcement",
+                # CE-specific fields
+                "ce_case_id":    str(case_id),
+                "ce_category":   category,
+                "ce_reason":     reason,
+                "ce_type":       type_name,
+                "ce_status":     status,
+                "opened_date":   opened_str,
+                "ce_district":   str(district) if district else "",
+                "ce_cat_label":  cat_label,
+            }
+
+            new_leads.append(rec)
+            known_docs.add(doc_key)
+
+        if len(features) < page_size:
+            break
+
+        offset += page_size
+        page   += 1
+        time.sleep(0.5)
+
+    # Summary by category
+    by_cat = {}
+    for r in new_leads:
+        cat = r.get("ce_category", "?")
+        by_cat[cat] = by_cat.get(cat, 0) + 1
+    for cat, count in sorted(by_cat.items(), key=lambda x: -x[1]):
+        log.info(f"  CE {cat} ({CE_CATEGORIES.get(cat, '?')}): {count}")
+
+    log.info(f"Code Enforcement: {len(new_leads)} new leads fetched")
+    return new_leads
 
 
 # ── ARCGIS BACKFILL (weekly) ──────────────────────────────────────────────────
@@ -640,11 +843,19 @@ def detect_duplicates(records):
 # ── SCORING ───────────────────────────────────────────────────────────────────
 def score_record(rec):
     s = 0
-    if rec.get("address"):       s += 3
-    if rec.get("owner"):         s += 3
-    if rec.get("type") == "TAX": s += 2
-    if rec.get("absentee"):      s += 2
-    if rec.get("sale_date"):     s = min(s + 1, 10)
+    if rec.get("address"):                   s += 3
+    if rec.get("owner"):                     s += 3
+    if rec.get("type") == "TAX":             s += 2
+    if rec.get("absentee"):                  s += 2
+    if rec.get("sale_date"):                 s = min(s + 1, 10)
+    # Code enforcement bonuses
+    if rec.get("source") == "code_enforcement":
+        s += 1  # base CE bonus
+        cat = rec.get("ce_category", "")
+        if cat in CE_DANGEROUS:              s += 2  # dangerous premises = high stress
+        if cat in CE_ABSENTEE:              s += 2  # absentee flagged by city
+        if rec.get("ce_status", "").upper() == "OPEN":
+            s += 1  # still unresolved = more pressure
     return min(s, 10)
 
 
@@ -678,9 +889,10 @@ if __name__ == "__main__":
     os.makedirs("dashboard", exist_ok=True)
 
     log.info("=" * 60)
-    log.info("Bexar County Lead Scraper v28.1 (Hybrid)")
+    log.info("Bexar County Lead Scraper v28.2 (Hybrid)")
     log.info(f"Primary:   PublicSearch.us ({KEEP_DAYS}d window, {CHUNK_DAYS}d chunks, {PAGE_TIMEOUT}s timeout)")
     log.info(f"Secondary: ArcGIS weekly backfill = {IS_SUNDAY}")
+    log.info(f"Tertiary:  Code Enforcement 311 ({len(CE_CATEGORIES)} categories, {KEEP_DAYS}d window)")
     log.info(f"Filter:    {KEEP_DAYS}-day cutoff ({CUTOFF_DATE.strftime('%Y-%m-%d')}) | live auctions always kept")
     log.info("=" * 60)
 
@@ -695,40 +907,54 @@ if __name__ == "__main__":
         arcgis_records = fetch_arcgis_backfill(known_docs)
         log.info(f"ArcGIS backfill added {len(arcgis_records)} records")
 
-    # ── Step 3: Merge ─────────────────────────────────────────────────────────
+    # ── Step 3: Code Enforcement (every run) ─────────────────────────────────
+    ce_records = fetch_code_enforcement(known_docs)
+    log.info(f"Code Enforcement added {len(ce_records)} records")
+
+    # ── Step 4: Merge ─────────────────────────────────────────────────────────
     for r in prev_records:
         r["is_new"] = False
     seen = {}
-    for r in new_records + arcgis_records + prev_records:
+    for r in new_records + arcgis_records + ce_records + prev_records:
         doc = r.get("doc_number", "")
         if doc and doc not in seen:
             seen[doc] = r
     records = list(seen.values())
     log.info(f"After dedup: {len(records)} total records")
 
-    # ── Step 4: 90-day filter ─────────────────────────────────────────────────
+    # ── Step 5: 90-day filter ─────────────────────────────────────────────────
     before  = len(records)
     records = [r for r in records if should_keep(r)]
     log.info(f"After filter: {len(records)} kept, {before - len(records)} dropped")
 
-    # ── Step 5: Owner enrichment ──────────────────────────────────────────────
+    # ── Step 6: Owner enrichment ──────────────────────────────────────────────
     records = enrich_owners(records)
 
-    # ── Step 6: Duplicate detection ───────────────────────────────────────────
+    # ── Step 7: Duplicate detection ───────────────────────────────────────────
     records = detect_duplicates(records)
 
-    # ── Step 7: Flag + score ──────────────────────────────────────────────────
+    # ── Step 8: Flag + score ──────────────────────────────────────────────────
     for r in records:
         r["flags"] = []
-        if r["type"] == "TAX":              r["flags"].append("TAX FORE")
-        if r.get("absentee"):               r["flags"].append("ABSENTEE")
-        if r.get("duplicate"):              r["flags"].append("DUPLICATE")
-        if r.get("is_new"):                 r["flags"].append("NEW")
-        if not r.get("owner"):              r["flags"].append("NO OWNER")
-        if r.get("sale_date"):              r["flags"].append("HAS SALE DATE")
+        if r["type"] == "TAX":                    r["flags"].append("TAX FORE")
+        if r["type"] == "CE":                     r["flags"].append("CODE ENFORCE")
+        if r.get("absentee"):                     r["flags"].append("ABSENTEE")
+        if r.get("duplicate"):                    r["flags"].append("DUPLICATE")
+        if r.get("is_new"):                       r["flags"].append("NEW")
+        if not r.get("owner"):                    r["flags"].append("NO OWNER")
+        if r.get("sale_date"):                    r["flags"].append("HAS SALE DATE")
         d = days_until_sale(r.get("sale_date", ""))
-        if d is not None and d <= 30:       r["flags"].append("AUCTION SOON")
-        if d is not None and d <= 14:       r["flags"].append("URGENT")
+        if d is not None and d <= 30:             r["flags"].append("AUCTION SOON")
+        if d is not None and d <= 14:             r["flags"].append("URGENT")
+        # CE-specific flags
+        if r.get("source") == "code_enforcement":
+            cat = r.get("ce_category", "")
+            if r.get("ce_status", "").upper() == "OPEN":
+                r["flags"].append("OPEN VIOLATION")
+            if cat in CE_DANGEROUS:               r["flags"].append("DANGEROUS PREMISES")
+            if cat in CE_ABSENTEE:               r["flags"].append("ABSENTEE PROP")
+            if cat in CE_VACANT:                  r["flags"].append("VACANT STRUCT")
+            if cat in CE_MIN_HOUS:                r["flags"].append("MIN HOUSING")
         r["score"]           = score_record(r)
         r["days_until_sale"] = d
 
@@ -739,21 +965,24 @@ if __name__ == "__main__":
 
     records.sort(key=sort_key)
 
-    # ── Step 8: Summary ───────────────────────────────────────────────────────
+    # ── Step 9: Summary ───────────────────────────────────────────────────────
     named    = sum(1 for r in records if r.get("owner"))
     absentee = sum(1 for r in records if r.get("absentee"))
     new_ct   = sum(1 for r in records if r.get("is_new"))
     urgent   = sum(1 for r in records if "URGENT"       in r.get("flags", []))
     soon     = sum(1 for r in records if "AUCTION SOON" in r.get("flags", []))
     has_date = sum(1 for r in records if r.get("sale_date"))
+    ce_ct    = sum(1 for r in records if r.get("source") == "code_enforcement")
+    ce_open  = sum(1 for r in records if "OPEN VIOLATION" in r.get("flags", []))
+    ce_dang  = sum(1 for r in records if "DANGEROUS PREMISES" in r.get("flags", []))
 
     log.info(f"Final: {len(records)} total | {named} named | {absentee} absentee")
     log.info(f"       {new_ct} new | {has_date} with sale date | "
              f"{soon} auction <=30d | {urgent} URGENT <=14d")
+    log.info(f"       CE: {ce_ct} total | {ce_open} open violations | {ce_dang} dangerous premises")
 
-    # ── Step 9: Save ──────────────────────────────────────────────────────────
+    # ── Step 10: Save ─────────────────────────────────────────────────────────
     with open("data/records.json", "w", encoding="utf-8") as f:
         json.dump(records, f, indent=2)
     build_dashboard(records)
     log.info("Done.")
-
