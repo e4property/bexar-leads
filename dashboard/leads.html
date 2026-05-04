@@ -97,7 +97,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 .layout{display:flex;flex:1;overflow:hidden}
 
 /* ── SIDEBAR ── */
-.sidebar{width:200px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow-y:auto;scrollbar-width:none}
+.sidebar{width:220px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow-y:auto;scrollbar-width:none}
 .sidebar::-webkit-scrollbar{display:none}
 .sb-header{padding:14px 14px 6px;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-family:'JetBrains Mono',monospace}
 .type-item{display:flex;align-items:center;gap:9px;padding:9px 14px;cursor:pointer;transition:all .12s;border-left:2px solid transparent;position:relative}
@@ -109,11 +109,10 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 .type-name{font-size:11px;font-weight:600;color:var(--text2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .type-item.active .type-name{color:var(--text)}
 .type-count{font-size:9px;color:var(--muted);font-family:'JetBrains Mono',monospace}
-.type-actions{display:flex;gap:3px;opacity:0;transition:opacity .12s}
-.type-item:hover .type-actions{opacity:1}
-.type-btn{width:20px;height:20px;border-radius:4px;border:1px solid var(--border);background:var(--bg3);color:var(--muted);font-size:9px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .12s}
-.type-btn:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
-.type-btn.push:hover{background:var(--teal);border-color:var(--teal);color:var(--bg)}
+.type-actions{display:flex;gap:4px;margin-left:auto;flex-shrink:0}
+.type-btn{height:22px;padding:0 8px;border-radius:4px;border:1px solid var(--border);background:var(--bg3);color:var(--muted);font-size:9px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .12s;white-space:nowrap;font-family:'JetBrains Mono',monospace;letter-spacing:.04em}
+.type-btn:hover{background:var(--accent);color:#fff;border-color:var(--accent);box-shadow:0 0 8px var(--glow-b)}
+.type-btn.push:hover{background:var(--teal);border-color:var(--teal);color:var(--bg);box-shadow:0 0 8px var(--glow-t)}
 .sb-divider{height:1px;background:var(--border);margin:6px 14px}
 .spin{display:inline-block;width:8px;height:8px;border:1.5px solid var(--accent);border-top-color:transparent;border-radius:50%;animation:spin .6s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -199,9 +198,10 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 .dh-meta{font-size:10px;color:var(--muted);font-family:'JetBrains Mono',monospace}
 
 /* ── DETAIL BODY (4-col grid) ── */
-.detail-body{flex:1;overflow-y:auto;display:grid;grid-template-columns:1fr 1fr 1fr 1fr;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
-.detail-body::-webkit-scrollbar{width:3px}
-.sec{padding:16px 18px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);overflow-y:auto}
+.detail-body{flex:1;overflow:hidden;display:grid;grid-template-columns:1fr 1fr 1fr 1fr}
+.sec{padding:16px 18px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:var(--dim) transparent;height:100%}
+.sec::-webkit-scrollbar{width:3px}
+.sec::-webkit-scrollbar-thumb{background:var(--dim);border-radius:2px}
 .sec:last-child{border-right:none}
 .sec-title{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace}
 .sec-title::after{content:'';flex:1;height:1px;background:var(--border)}
@@ -692,8 +692,8 @@ function renderTypeSidebar(){
       <div class="type-icon" style="background:${t.color}">${t.icon}</div>
       <div class="type-info"><div class="type-name">${t.label}</div><div class="type-count" id="tc-${t.id}">—</div></div>
       <div class="type-actions">
-        ${t.id!=='all'?`<button class="type-btn" title="Trigger scrape" onclick="triggerImport('${t.id}',event)">↓</button>`:''}
-        ${t.id!=='all'?`<button class="type-btn push" title="Push to GHL" onclick="pushTypeToGHL('${t.id}',event)">↑</button>`:''}
+        ${t.id!=='all'?`<button class="type-btn" title="Trigger scrape" onclick="triggerImport('${t.id}',event)">↓ Import</button>`:''}
+        ${t.id!=='all'?`<button class="type-btn push" title="Push to GHL" onclick="pushTypeToGHL('${t.id}',event)">↑ GHL</button>`:''}
       </div>
     </div>`).join('');
 }
@@ -813,6 +813,21 @@ function parseName(owner){
   const p=c.split(/\s+/).filter(Boolean);if(!p.length)return{first:'',last:''};if(p.length===1)return{first:toTitle(p[0]),last:''};
   return{first:toTitle(p.slice(1).join(' ')),last:toTitle(p[0])};
 }
+// Format date_filed (M/YYYY or MM/DD/YYYY or ISO) → readable full date
+function fmtDate(raw){
+  if(!raw)return'—';
+  raw=raw.trim();
+  // MM/DD/YYYY or M/D/YYYY
+  const mdy=raw.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+  if(mdy){const d=new Date(+mdy[3],+mdy[1]-1,+mdy[2]);return d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});}
+  // M/YYYY (no day)
+  const my=raw.match(/^(\d{1,2})\/(\d{4})$/);
+  if(my){const d=new Date(+my[2],+my[1]-1,1);return d.toLocaleDateString('en-US',{month:'short',year:'numeric'});}
+  // ISO YYYY-MM-DD
+  const iso=raw.match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if(iso){const d=new Date(+iso[1],+iso[2]-1,+iso[3]);return d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});}
+  return raw;
+}
 function toTitle(s){return s.toLowerCase().replace(/\b\w/g,c=>c.toUpperCase());}
 function getCity(r){if(r.absentee&&r.mail_addr){const p=r.mail_addr.trim().split(/\s+/);for(let i=p.length-2;i>=0;i--){if(/^[A-Z]{2,}$/.test(p[i]))return toTitle(p[i]);}}return toTitle(r.city||'');}
 function getZip(r){if(r.absentee&&r.mail_addr){const p=r.mail_addr.trim().split(/\s+/),last=p[p.length-1];if(/^\d{5}$/.test(last))return last;}return r.zip||'';}
@@ -828,7 +843,7 @@ function populateDetail(lead){
   const displayName=ce&&!lead.owner?(lead.ce_cat_label||'Code Enforcement'):(lead.owner||'—');
   document.getElementById('d-name').textContent=displayName;
   document.getElementById('d-addr').textContent=`${lead.address||''}${lead.city?', '+lead.city:''} TX ${lead.zip||''}`;
-  document.getElementById('d-meta').textContent=ce?`Case: ${lead.ce_case_id||lead.doc_number} · Opened: ${lead.opened_date||'—'} · District ${lead.ce_district||'—'}`:`Doc: ${lead.doc_number} · Filed: ${lead.date_filed||'—'}${lead.school_dist?' · '+lead.school_dist:''}`;
+  document.getElementById('d-meta').textContent=ce?`Case: ${lead.ce_case_id||lead.doc_number} · Opened: ${fmtDate(lead.opened_date)} · District ${lead.ce_district||'—'}`:`Doc: ${lead.doc_number} · Filed: ${fmtDate(lead.date_filed)}${lead.sale_date?' · Sale: '+fmtDate(lead.sale_date):''}${lead.school_dist?' · '+lead.school_dist:''}`;
 
   // Badges
   const b=[];
@@ -880,8 +895,8 @@ function populateDetail(lead){
 
   // Lead info
   let info='';
-  if(ce){info=`Source: Code Enforcement\nCategory: ${lead.ce_category||'—'} — ${lead.ce_cat_label||''}\nViolation: ${lead.ce_reason||'—'}\nStatus: ${lead.ce_status||'—'}\nOpened: ${lead.opened_date||'—'}\nCity: ${lead.city||'—'} · ZIP: ${lead.zip||'—'}\nOwner: ${lead.owner||'Not found'}`;}
-  else{info=`Type: ${lead.type} · Score: ${lead.score}\nFiled: ${lead.date_filed||'—'}\nCity: ${lead.city||'—'} · ZIP: ${lead.zip||'—'}\nAbsentee: ${lead.absentee?'Yes':'No'}\nMail: ${lead.mail_addr||'—'}`;if(lead.sale_date)info+=`\nSale Date: ${lead.sale_date}`;if(lead.appraised_value)info+=`\nAppraised: $${Number(lead.appraised_value).toLocaleString()}`;if(lead.annual_taxes)info+=`\nAnn Taxes: $${Number(lead.annual_taxes).toLocaleString()}/yr`;}
+  if(ce){info=`Source: Code Enforcement\nCategory: ${lead.ce_category||'—'} — ${lead.ce_cat_label||''}\nViolation: ${lead.ce_reason||'—'}\nStatus: ${lead.ce_status||'—'}\nOpened: ${fmtDate(lead.opened_date)}\nCity: ${lead.city||'—'} · ZIP: ${lead.zip||'—'}\nOwner: ${lead.owner||'Not found'}`;}
+  else{info=`Type: ${lead.type} · Score: ${lead.score}\nFiled: ${fmtDate(lead.date_filed)}\nCity: ${lead.city||'—'} · ZIP: ${lead.zip||'—'}\nAbsentee: ${lead.absentee?'Yes':'No'}\nMail: ${lead.mail_addr||'—'}`;if(lead.sale_date)info+=`\nSale Date: ${fmtDate(lead.sale_date)}`;if(lead.appraised_value)info+=`\nAppraised: $${Number(lead.appraised_value).toLocaleString()}`;if(lead.annual_taxes)info+=`\nAnn Taxes: $${Number(lead.annual_taxes).toLocaleString()}/yr`;}
   document.getElementById('lead-info-grid').textContent=info;
   updateStats();
 }
@@ -893,8 +908,8 @@ function renderDispoTrack(doc,current){
 
 function renderTimeline(lead,ls){
   const ev=[],ce=isCE(lead);
-  if(ce){ev.push({dot:'ce',text:`<strong>Code violation opened</strong> — ${lead.ce_cat_label||lead.ce_category||''}`,time:lead.opened_date||''});if((lead.ce_status||'').toUpperCase()==='OPEN')ev.push({dot:'warn',text:`Violation still <strong>OPEN</strong>`,time:'Current'});}
-  else{ev.push({dot:'info',text:`<strong>Lead filed</strong> in Bexar County`,time:lead.date_filed||''});if(lead.loan_amount)ev.push({dot:'info',text:`Loan: <strong>${lead.loan_amount}</strong>${lead.lender?' via '+lead.lender:''}`,time:lead.loan_date||''});if(lead.sale_date)ev.push({dot:'warn',text:`<strong>Auction scheduled</strong>`,time:lead.sale_date});}
+  if(ce){ev.push({dot:'ce',text:`<strong>Code violation opened</strong> — ${lead.ce_cat_label||lead.ce_category||''}`,time:fmtDate(lead.opened_date)});if((lead.ce_status||'').toUpperCase()==='OPEN')ev.push({dot:'warn',text:`Violation still <strong>OPEN</strong>`,time:'Current'});}
+  else{ev.push({dot:'info',text:`<strong>Lead filed</strong> in Bexar County`,time:fmtDate(lead.date_filed)});if(lead.loan_amount)ev.push({dot:'info',text:`Loan: <strong>${lead.loan_amount}</strong>${lead.lender?' via '+lead.lender:''}`,time:fmtDate(lead.loan_date)});if(lead.sale_date)ev.push({dot:'warn',text:`<strong>Auction scheduled</strong>`,time:fmtDate(lead.sale_date)});}
   if(lead.is_new)ev.push({dot:'ok',text:`<strong>New</strong> this scraper run`,time:'Latest'});
   if(ls.phone)ev.push({dot:'ok',text:`<strong>ForeWarn searched</strong> — ${ls.phone}`,time:ls.searchedAt?new Date(ls.searchedAt).toLocaleDateString():''});
   if(ls.dispo&&ls.dispo!=='new')ev.push({dot:'warn',text:`Dispo → <strong>${ls.dispo}</strong>`,time:''});
