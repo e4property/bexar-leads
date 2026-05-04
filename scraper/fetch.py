@@ -1,48 +1,23 @@
 """
-Bexar County Motivated Seller Lead Scraper v28.9
+Bexar County Motivated Seller Lead Scraper v28.10
 HYBRID SCRAPER:
   Primary:   bexar.tx.publicsearch.us  (Selenium, runs 3x daily)
-             - 7-day chunks covering 90-day window
-             - Inline row-level date skip
-             - 180s timeout per page
-             - Stops pagination after page 2+ with no new records
-             - known_docs loaded from GitHub Pages only
   Secondary: ArcGIS GIS layer (urllib, runs weekly on Sunday)
   Tertiary:  SA 311 Code Enforcement (ArcGIS FeatureServer, runs 3x daily)
-             - Filters to motivated-seller violation categories only
-             - Deduped by CaseID against known_docs
-             - Owner enrichment via Bexar parcel lookup
-
   Owner enrichment: 5-strategy ArcGIS parcel lookup
 
-  v28.9 change:
-    - DOC_FETCH_DAYS extended to 34 to backfill mortgage intel
-      (loan_amount, lender, loan_date, trustee) for leads from 4/30/2026 onward.
-    - Reverts to 6 after confirmed working.
+  v28.10 fixes:
+    - ps_doc_id: 3-strategy capture (href → attrs → click+URL) so doc fetch works
+    - BCAD owner enrichment: flexible field name matching (tries 5+ candidates
+      per field) + requests outFields=* + probes actual field names on first run
+    - fetch_doc_details: dual-strategy extraction (structured SUMMARY table
+      fields first, then full-text regex fallback) fixes blank mortgage intel
+    - DOC_FETCH_DAYS still 34 to backfill from 4/30/2026
 
-  v28.8 additions:
-    - fetch_doc_details(): reads PublicSearch NTS docs for loan_amount/lender/loan_date/trustee
-    - owner enrichment pulls appraised_value/annual_taxes from BCAD
-
-  v28.2 additions:
-    - fetch_code_enforcement(): queries SA 311 FeatureServer for distressed-
-      property violation categories (absentee, minimum housing, dangerous
-      premises, vacant/unsecured structures)
-    - Code enforcement records flow through same owner enrichment, duplicate
-      detection, scoring, and dashboard pipeline as foreclosure records
-    - CE records keyed by "CE-{CaseID}" to avoid collision with doc numbers
-    - CE-specific flags: "CODE ENFORCE", "OPEN VIOLATION", "DANGEROUS PREMISES",
-      "ABSENTEE PROP", "VACANT STRUCT"
-    - score_record() updated to award points for CE source + open status
-
-  v28.1 fix:
-    - clean_address() now correctly handles publicsearch no-comma format
-      e.g. "7733 CHAMPION CREEK  SAN ANTONIO  TEXAS  78253"
-      was returning full string; now returns just "7733 CHAMPION CREEK"
-    - parse_city_zip() also handles no-comma format — extracts city and zip
-      correctly from double-space-separated fields
-    - This fixes: missing leads in dashboard, failed ArcGIS owner lookups,
-      and incorrect address display
+  v28.9: DOC_FETCH_DAYS=34, re-enriches existing leads missing loan_amount
+  v28.8: fetch_doc_details(), BCAD appraised_value/annual_taxes
+  v28.2: Code enforcement 311 scraper
+  v28.1: Address parsing fixes for no-comma publicsearch format
 """
 
 import json
@@ -352,16 +327,48 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
                 city, zip_code = parse_city_zip(address_raw)
                 month, year    = parse_month_year(recorded_date)
 
+                import re as _re
                 ps_doc_id = ""
+                # S1: direct href link
                 try:
                     link = row.find_element(By.CSS_SELECTOR, "a[href*='/doc/']")
                     href = link.get_attribute("href") or ""
-                    import re as _re
                     m = _re.search(r"/doc/(\d+)", href)
                     if m:
                         ps_doc_id = m.group(1)
                 except Exception:
                     pass
+                # S2: scan all element attributes for doc id
+                if not ps_doc_id:
+                    try:
+                        for el in row.find_elements(By.CSS_SELECTOR, "a,button,[onclick]"):
+                            for attr in ["href","onclick","data-id","data-href"]:
+                                try:
+                                    val = el.get_attribute(attr) or ""
+                                    m = _re.search(r"/doc/(\d+)", val)
+                                    if m:
+                                        ps_doc_id = m.group(1)
+                                        break
+                                except Exception:
+                                    pass
+                            if ps_doc_id:
+                                break
+                    except Exception:
+                        pass
+                # S3: click row, read URL, come back
+                if not ps_doc_id:
+                    try:
+                        cur = driver.current_url
+                        row.click()
+                        time.sleep(2)
+                        m = _re.search(r"/doc/(\d+)", driver.current_url)
+                        if m:
+                            ps_doc_id = m.group(1)
+                        driver.get(cur)
+                        time.sleep(2)
+                    except Exception:
+                        pass
+                log.debug(f"    ps_doc_id [{doc_number}]: {ps_doc_id or 'NOT FOUND'}")
 
                 rec = {
                     "type":        rec_type,
@@ -766,66 +773,111 @@ def fetch_doc_details(records, driver):
 
         try:
             driver.get(url)
-            time.sleep(3)
+            time.sleep(4)
 
+            # Click SUMMARY tab
             try:
-                tabs = driver.find_elements(By.CSS_SELECTOR, ".tab, [role='tab'], .nav-link, button")
+                from selenium.webdriver.support import expected_conditions as EC
+                tabs = driver.find_elements(By.CSS_SELECTOR, ".tab-item, .tab, [role='tab'], .nav-link, button, a")
                 for tab in tabs:
-                    if "summary" in (tab.text or "").lower():
+                    txt = (tab.text or tab.get_attribute("textContent") or "").strip().lower()
+                    if txt == "summary" or txt.startswith("summar"):
                         tab.click()
-                        time.sleep(1.5)
+                        time.sleep(2)
                         break
             except Exception:
                 pass
 
-            page_text = driver.find_element(By.TAG_NAME, "body").text
-
             loan_amount = ""
-            m = _re.search(
-                r"(?:original|principal)\s+amount\s+of\s+\$([\d,]+(?:\.\d{2})?)",
-                page_text, _re.IGNORECASE)
-            if m:
-                loan_amount = "$" + m.group(1)
+            loan_date   = ""
+            lender      = ""
+            trustee     = ""
 
-            loan_date = ""
-            m = _re.search(
-                r"(?:deed of trust|note|lien)\s+dated\s+([A-Za-z]+ \d{1,2},\s*\d{4}|\d{1,2}/\d{1,2}/\d{4})",
-                page_text, _re.IGNORECASE)
-            if m:
-                loan_date = m.group(1).strip()
+            # ── Strategy A: read structured SUMMARY table fields ──────────────
+            # PublicSearch renders summary as labeled rows: "Original Mortgagee", etc.
+            try:
+                rows = driver.find_elements(By.CSS_SELECTOR, "table tr, .summary-row, .detail-row, dl dt, .field-label, .label")
+                for el in rows:
+                    label_text = (el.text or "").strip().lower()
+                    # Get sibling/next value cell
+                    try:
+                        sib = el.find_element(By.XPATH, "following-sibling::*[1]")
+                        val = (sib.text or "").strip()
+                    except Exception:
+                        val = ""
+                    if not val:
+                        try:
+                            parent = el.find_element(By.XPATH, "..")
+                            val = (parent.text or "").replace(el.text or "", "").strip()
+                        except Exception:
+                            pass
 
-            lender = ""
-            lender_labels = ["Original Mortgage", "Original Mortgagee", "Lender", "Beneficiary", "Mortgagee"]
-            lines = page_text.split("\n")
-            for i, line in enumerate(lines):
-                for lbl in lender_labels:
-                    if lbl.lower() in line.lower():
-                        val = line.split(":")[-1].strip() if ":" in line else ""
-                        if not val and i+1 < len(lines):
-                            val = lines[i+1].strip()
-                        if val:
+                    if any(x in label_text for x in ["original amount","loan amount","principal amount"]):
+                        m = _re.search(r"\$?([\d,]+(?:\.\d{2})?)", val)
+                        if m:
+                            loan_amount = "$" + m.group(1)
+                    elif any(x in label_text for x in ["mortgagee","beneficiary","lender","current beneficiary"]):
+                        if val and len(val) > 2:
                             lender = val
-                            break
-                if lender:
-                    break
-            if not lender:
-                m = _re.search(r"nominee for ([^,]+)", page_text, _re.IGNORECASE)
-                if m:
-                    lender = m.group(1).strip()
-
-            trustee = ""
-            trustee_labels = ["Original Trustee", "Substitute Trustee", "Trustee"]
-            for i, line in enumerate(lines):
-                for lbl in trustee_labels:
-                    if lbl.lower() in line.lower():
-                        val = line.split(":")[-1].strip() if ":" in line else ""
-                        if not val and i+1 < len(lines):
-                            val = lines[i+1].strip()
-                        if val:
+                    elif any(x in label_text for x in ["trustee","substitute trustee","original trustee"]):
+                        if val and len(val) > 2:
                             trustee = val
-                            break
-                if trustee:
-                    break
+                    elif any(x in label_text for x in ["deed of trust date","loan date","instrument date","dated"]):
+                        if val:
+                            loan_date = val
+            except Exception as e:
+                log.debug(f"  Summary table parse error: {e}")
+
+            # ── Strategy B: full page text regex on SUMMARY content ───────────
+            if not loan_amount or not lender:
+                try:
+                    # Focus on summary section only if possible
+                    try:
+                        summary_el = driver.find_element(By.CSS_SELECTOR, ".summary, #summary, [data-tab='summary'], .tab-content")
+                        page_text = summary_el.text
+                    except Exception:
+                        page_text = driver.find_element(By.TAG_NAME, "body").text
+
+                    lines = page_text.split("\n")
+
+                    if not loan_amount:
+                        m = _re.search(r"(?:original|principal)\s+(?:loan\s+)?amount[:\s]+\$?([\d,]+(?:\.\d{2})?)", page_text, _re.IGNORECASE)
+                        if not m:
+                            m = _re.search(r"\$\s*([\d,]{4,}(?:\.\d{2})?)", page_text)
+                        if m:
+                            loan_amount = "$" + m.group(1)
+
+                    if not loan_date:
+                        m = _re.search(r"(?:deed of trust|dot|note)[^\n]*dated\s+([A-Za-z]+ \d{1,2},\s*\d{4}|\d{1,2}/\d{1,2}/\d{4})", page_text, _re.IGNORECASE)
+                        if m:
+                            loan_date = m.group(1).strip()
+
+                    if not lender:
+                        for i, line in enumerate(lines):
+                            ll = line.lower()
+                            if any(x in ll for x in ["original mortgagee","beneficiary","current beneficiary","lender","mortgagee"]):
+                                val = line.split(":")[-1].strip() if ":" in line else ""
+                                if not val and i+1 < len(lines):
+                                    val = lines[i+1].strip()
+                                if val and len(val) > 3:
+                                    lender = val
+                                    break
+                        if not lender:
+                            m = _re.search(r"(?:nominee for|beneficiary[:\s]+)([A-Z][^\n,]+)", page_text, _re.IGNORECASE)
+                            if m:
+                                lender = m.group(1).strip()
+
+                    if not trustee:
+                        for i, line in enumerate(lines):
+                            if any(x in line.lower() for x in ["substitute trustee","original trustee","trustee:"]):
+                                val = line.split(":")[-1].strip() if ":" in line else ""
+                                if not val and i+1 < len(lines):
+                                    val = lines[i+1].strip()
+                                if val and len(val) > 3:
+                                    trustee = val
+                                    break
+                except Exception as e:
+                    log.debug(f"  Text parse error: {e}")
 
             rec["loan_amount"] = loan_amount
             rec["loan_date"]   = loan_date
@@ -833,7 +885,7 @@ def fetch_doc_details(records, driver):
             rec["trustee"]     = trustee
             fetched += 1
 
-            log.info(f"  → amount={loan_amount or '—'} | lender={lender[:40] if lender else '—'} | date={loan_date or '—'}")
+            log.info(f"  → amt={loan_amount or '—'} | lender={lender[:35] if lender else '—'} | date={loan_date or '—'}")
             time.sleep(1)
 
         except Exception as e:
@@ -867,15 +919,33 @@ def parse_address_parts(address):
 
 
 def match_features(feats, num, required_word=None):
+    # BCAD field name candidates — try multiple since field names vary by layer version
+    OWNER_FIELDS    = ["Owner","OWNER","owner","OwnerName","OWNER_NAME"]
+    SITUS_FIELDS    = ["Situs","SITUS","situs","SitusAddress","SITUS_ADDRESS","Address","ADDRESS"]
+    ADDR1_FIELDS    = ["AddrLn1","ADDR_LN1","MailAddr1","MAIL_ADDR1","MailAddress","MAIL_ADDRESS"]
+    CITY_FIELDS     = ["AddrCity","ADDR_CITY","MailCity","MAIL_CITY","City","CITY"]
+    ZIP_FIELDS      = ["Zip","ZIP","ZipCode","ZIPCODE","ZIP_CODE","MailZip","MAIL_ZIP"]
+    APPR_FIELDS     = ["AppraisedVal","APPRAISED_VAL","AppraisedValue","APPRAISED_VALUE","TotalAppr","TOTAL_APPR","TotalVal","TOTAL_VAL","MarketValue","MARKET_VALUE"]
+    TAX_FIELDS      = ["TaxAmt","TAX_AMT","TaxAmount","TAX_AMOUNT","TotalTax","TOTAL_TAX","AnnualTax","ANNUAL_TAX"]
+    LAND_FIELDS     = ["LandVal","LAND_VAL","LandValue","LAND_VALUE"]
+    IMPR_FIELDS     = ["ImprovVal","IMPROV_VAL","ImprovValue","IMPROV_VALUE","ImpVal","IMP_VAL"]
+
+    def get_field(a, candidates):
+        for c in candidates:
+            v = a.get(c)
+            if v is not None and str(v).strip() not in ("","None","null","<Null>","NULL","0"):
+                return str(v).strip()
+        return ""
+
     for feat in feats:
         a       = feat.get("attributes", {})
-        owner   = str(a.get("Owner",    "") or "").strip()
-        situs   = str(a.get("Situs",    "") or "").strip()
-        addr1   = str(a.get("AddrLn1",  "") or "").strip()
-        city    = str(a.get("AddrCity", "") or "").strip()
-        zipcode = str(a.get("Zip",      "") or "").strip()
+        owner   = get_field(a, OWNER_FIELDS)
+        situs   = get_field(a, SITUS_FIELDS)
+        addr1   = get_field(a, ADDR1_FIELDS)
+        city    = get_field(a, CITY_FIELDS)
+        zipcode = get_field(a, ZIP_FIELDS)
 
-        if not owner or owner.upper() in ("NULL", "NONE", ""):
+        if not owner:
             continue
         situs_norm = normalize(situs)
         if not situs_norm.startswith(num + " "):
@@ -884,23 +954,18 @@ def match_features(feats, num, required_word=None):
             continue
 
         mail_addr = ""
-        if addr1 and addr1.upper() not in ("NULL", "NONE", ""):
+        if addr1:
             mail_addr = f"{addr1} {city} {zipcode}".strip()
         absentee = bool(mail_addr) and not normalize(mail_addr).startswith(num + " ")
-
-        appraised = str(a.get("AppraisedVal", "") or a.get("Appraised", "") or "").strip()
-        land_val  = str(a.get("LandVal", "") or "").strip()
-        impr_val  = str(a.get("ImprovVal", "") or "").strip()
-        tax_amt   = str(a.get("TaxAmt", "") or a.get("TaxAmount", "") or "").strip()
 
         return {
             "owner":             owner.upper(),
             "mail_addr":         mail_addr,
             "absentee":          absentee,
-            "appraised_value":   appraised,
-            "land_value":        land_val,
-            "improvement_value": impr_val,
-            "annual_taxes":      tax_amt,
+            "appraised_value":   get_field(a, APPR_FIELDS),
+            "land_value":        get_field(a, LAND_FIELDS),
+            "improvement_value": get_field(a, IMPR_FIELDS),
+            "annual_taxes":      get_field(a, TAX_FIELDS),
         }
     return None
 
@@ -912,7 +977,8 @@ def lookup_owner(address, zipcode=""):
     num        = parsed["num"]
     words      = parsed["words"]
     first_word = words[0] if words else ""
-    FIELDS     = "Situs,Owner,AddrLn1,AddrCity,Zip,AppraisedVal,LandVal,ImprovVal,TaxAmt"
+    # Request all fields — let match_features handle name variations
+    FIELDS = "*"
 
     if len(words) >= 2:
         r = match_features(
@@ -954,6 +1020,16 @@ def enrich_owners(records):
                and r.get("address", "").strip().upper() not in ("", "N/A", "NA")]
     log.info(f"Owner enrichment: {len(missing)} records need lookup")
     found = 0
+
+    # ── Probe actual BCAD field names on first query ──────────────────────────
+    if missing:
+        try:
+            probe = fetch_json(f"{PARCELS_URL}/query?where=1%3D1&outFields=*&resultRecordCount=1&f=json")
+            feat0 = probe.get("features", [{}])[0]
+            actual_fields = list((feat0.get("attributes") or {}).keys())
+            log.info(f"BCAD actual fields: {actual_fields[:20]}")
+        except Exception as e:
+            log.debug(f"BCAD probe failed: {e}")
     for i, rec in enumerate(missing):
         addr = rec.get("address", "")
         zip_ = rec.get("zip", "")
@@ -1042,7 +1118,7 @@ if __name__ == "__main__":
     os.makedirs("dashboard", exist_ok=True)
 
     log.info("=" * 60)
-    log.info("Bexar County Lead Scraper v28.9 (Hybrid)")
+    log.info("Bexar County Lead Scraper v28.10 (Hybrid)")
     log.info(f"Primary:   PublicSearch.us ({KEEP_DAYS}d window, {CHUNK_DAYS}d chunks, {PAGE_TIMEOUT}s timeout)")
     log.info(f"Secondary: ArcGIS weekly backfill = {IS_SUNDAY}")
     log.info(f"Tertiary:  Code Enforcement 311 ({len(CE_CATEGORIES)} categories, {KEEP_DAYS}d window)")
