@@ -1,5 +1,5 @@
 """
-Bexar County Motivated Seller Lead Scraper v28.8
+Bexar County Motivated Seller Lead Scraper v28.9
 HYBRID SCRAPER:
   Primary:   bexar.tx.publicsearch.us  (Selenium, runs 3x daily)
              - 7-day chunks covering 90-day window
@@ -14,6 +14,15 @@ HYBRID SCRAPER:
              - Owner enrichment via Bexar parcel lookup
 
   Owner enrichment: 5-strategy ArcGIS parcel lookup
+
+  v28.9 change:
+    - DOC_FETCH_DAYS extended to 34 to backfill mortgage intel
+      (loan_amount, lender, loan_date, trustee) for leads from 4/30/2026 onward.
+    - Reverts to 6 after confirmed working.
+
+  v28.8 additions:
+    - fetch_doc_details(): reads PublicSearch NTS docs for loan_amount/lender/loan_date/trustee
+    - owner enrichment pulls appraised_value/annual_taxes from BCAD
 
   v28.2 additions:
     - fetch_code_enforcement(): queries SA 311 FeatureServer for distressed-
@@ -68,15 +77,11 @@ LAYERS = [
 ]
 
 # ── CODE ENFORCEMENT TARGET CATEGORIES ───────────────────────────────────────
-# Only categories with strong motivated-seller / distressed-property signal.
-# Grouped for logging clarity.
 CE_CATEGORIES = {
-    # Absentee / Minimum Housing
     "AP1": "Absentee Property Assessment",
     "M03": "Minimum Housing: Premises",
     "M04": "Minimum Housing: Interior",
     "M05": "Minimum Housing: Exterior",
-    # Dangerous Premises
     "Z89": "Dangerous Premises: Cut & Clean",
     "Z90": "Dangerous Premises: Secure Only",
     "Z91": "Emergency: Main Structure",
@@ -84,7 +89,6 @@ CE_CATEGORIES = {
     "Z97": "Emergency: Main & Accessory",
     "Z98": "Dangerous Premises: Clean & Secure",
     "Z99": "BSB Ordered: All",
-    # Vacant / Unsecured Structures
     "Z82": "Vacant Structure Unsecured",
     "VCB": "Vacant Structure Inventory",
     "H90": "Historic Bldg: No Permits/COA",
@@ -104,13 +108,16 @@ CHUNK_DAYS    = 7
 PAGE_TIMEOUT  = 180
 CUTOFF_DATE   = TODAY_NAIVE - timedelta(days=KEEP_DAYS)
 
+# ── v28.9: Extended to backfill mortgage intel from 4/30/2026 ─────────────────
+DOC_FETCH_DAYS = 34
+
 
 # ── HELPERS ───────────────────────────────────────────────────────────────────
 def fetch_json(url, retries=3):
     for attempt in range(retries):
         try:
             req = urllib.request.Request(
-                url, headers={"User-Agent": "BexarScraper/28.8", "Accept": "application/json"})
+                url, headers={"User-Agent": "BexarScraper/28.9", "Accept": "application/json"})
             with urllib.request.urlopen(req, timeout=25) as r:
                 return json.loads(r.read().decode("utf-8", errors="replace"))
         except Exception as e:
@@ -161,12 +168,11 @@ def normalize(s):
 
 
 def load_known_docs():
-    """Load from GitHub Pages — reflects exactly what's deployed."""
     url = PAGES_RECORDS + "?nocache=" + str(int(time.time()))
     try:
         req = urllib.request.Request(
             url,
-            headers={"User-Agent": "BexarScraper/28.8",
+            headers={"User-Agent": "BexarScraper/28.9",
                      "Accept": "application/json",
                      "Cache-Control": "no-cache"})
         with urllib.request.urlopen(req, timeout=20) as r:
@@ -187,7 +193,6 @@ def parse_recorded_date(date_str):
 
 
 def ms_to_date_str(ms):
-    """Convert ArcGIS epoch-ms timestamp to MM/DD/YYYY string."""
     if not ms:
         return ""
     try:
@@ -219,7 +224,6 @@ def should_keep(rec):
                 return filed_dt >= CUTOFF_DATE
         except Exception:
             pass
-    # Code enforcement records: keep if opened within window
     if rec.get("source") == "code_enforcement":
         opened = rec.get("opened_date", "")
         if opened:
@@ -228,7 +232,7 @@ def should_keep(rec):
                 return opened_dt >= CUTOFF_DATE
             except Exception:
                 pass
-        return True  # keep if we can't parse date
+        return True
     return True
 
 
@@ -348,7 +352,6 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
                 city, zip_code = parse_city_zip(address_raw)
                 month, year    = parse_month_year(recorded_date)
 
-                # Capture internal PublicSearch doc ID from row link
                 ps_doc_id = ""
                 try:
                     link = row.find_element(By.CSS_SELECTOR, "a[href*='/doc/']")
@@ -456,20 +459,12 @@ def scrape_publicsearch(known_docs):
 
 # ── ADDRESS PARSING ───────────────────────────────────────────────────────────
 def clean_address(raw):
-    """
-    Extract street address only.
-    Handles two formats:
-      1. Comma format:    "8602 LEDGESIDE, SAN ANTONIO, TX, 78251"
-      2. No-comma format: "8602 LEDGESIDE  SAN ANTONIO  TEXAS  78251"
-    """
     if not raw:
         return ""
     raw = raw.strip()
-
     if "," in raw:
         parts = [p.strip() for p in raw.split(",")]
         return parts[0].strip().upper()
-
     upper = raw.upper()
     upper = re.sub(r'\s+\d{5}(-\d{4})?\s*$', '', upper).strip()
     upper = re.sub(r'\s+[A-Z]{2,}\s*$', '', upper).strip()
@@ -478,14 +473,9 @@ def clean_address(raw):
 
 
 def parse_city_zip(raw):
-    """
-    Extract city and zip from address string.
-    Handles comma and no-comma (publicsearch) formats.
-    """
     if not raw:
         return "", ""
     raw = raw.strip()
-
     if "," in raw:
         parts = [p.strip() for p in raw.split(",")]
         city     = ""
@@ -499,7 +489,6 @@ def parse_city_zip(raw):
             m    = re.search(r'\b(\d{5})\b', parts[2])
             zip_code = m.group(1) if m else ""
         return city, zip_code
-
     upper    = raw.upper()
     zip_m    = re.search(r'\b(\d{5})\b', upper)
     zip_code = zip_m.group(1) if zip_m else ""
@@ -522,13 +511,6 @@ def parse_month_year(date_str):
 
 # ── CODE ENFORCEMENT SCRAPER ──────────────────────────────────────────────────
 def fetch_code_enforcement(known_docs):
-    """
-    Fetch SA code enforcement violations using Selenium to load ArcGIS
-    FeatureServer JSON in a real browser (bypasses 403).
-
-    v28.8: Query one category at a time to avoid 400 from long WHERE clause.
-    Each category gets its own paginated query. Driver reused across all.
-    """
     import json as _json
     import urllib.parse as _up
     from selenium.webdriver.common.by import By
@@ -551,7 +533,6 @@ def fetch_code_enforcement(known_docs):
         driver = get_driver()
 
         for cat_code, cat_label in CE_CATEGORIES.items():
-            # ArcGIS date filter — use timestamp string format
             cutoff_str = CUTOFF_DATE.strftime("%Y-%m-%d %H:%M:%S")
             where = "Category = '{}' AND OpenedDateTime >= timestamp '{}'".format(cat_code, cutoff_str)
             offset = 0
@@ -729,16 +710,16 @@ def fetch_arcgis_backfill(known_docs):
     return raw
 
 
-# ── DOCUMENT DETAIL FETCHER ──────────────────────────────────────────────────
-DOC_FETCH_DAYS = 3  # only fetch docs for leads filed within this many days
-
+# ── DOCUMENT DETAIL FETCHER ───────────────────────────────────────────────────
 def fetch_doc_details(records, driver):
     """
     For new leads filed within DOC_FETCH_DAYS, load the PublicSearch document
     page and extract mortgage details from the SUMMARY tab.
+    Fields: lender, loan_amount, loan_date, trustee
+    v28.9: DOC_FETCH_DAYS = 34 to backfill from 4/30/2026.
 
-    Fields extracted: lender, loan_amount, loan_date, trustee
-    URL pattern: bexar.tx.publicsearch.us/doc/{ps_doc_id}
+    KEY CHANGE: also re-enriches EXISTING leads (is_new=False) that are missing
+    loan_amount, so backfill works on the current 691 records too.
     """
     from selenium.webdriver.common.by import By
     from selenium.webdriver.support.ui import WebDriverWait
@@ -746,15 +727,16 @@ def fetch_doc_details(records, driver):
     import re as _re
 
     cutoff = TODAY_NAIVE - timedelta(days=DOC_FETCH_DAYS)
+
+    # Include both new AND existing leads missing loan data, within window
     candidates = [
         r for r in records
-        if r.get("is_new")
-        and r.get("ps_doc_id")
+        if r.get("ps_doc_id")
         and r.get("source") == "publicsearch"
         and r.get("type") in ("NOF", "TAX")
+        and not r.get("loan_amount")  # only those missing data
     ]
 
-    # Filter to recent by recorded date
     recent = []
     for r in candidates:
         date_filed = r.get("date_filed", "")
@@ -765,29 +747,27 @@ def fetch_doc_details(records, driver):
                 if filed_dt >= cutoff:
                     recent.append(r)
             else:
-                recent.append(r)  # include if date unclear
+                recent.append(r)
         except Exception:
             recent.append(r)
 
     if not recent:
-        log.info(f"Doc fetch: no new leads within {DOC_FETCH_DAYS} days — skipping")
+        log.info(f"Doc fetch: no leads within {DOC_FETCH_DAYS}d window missing loan data — skipping")
         return records
 
-    log.info(f"Doc fetch: fetching details for {len(recent)} new lead(s)...")
-    wait = WebDriverWait(driver, 30)
+    log.info(f"Doc fetch: enriching {len(recent)} leads with mortgage intel (window={DOC_FETCH_DAYS}d)...")
     fetched = 0
 
     for rec in recent:
         ps_id   = rec["ps_doc_id"]
         doc_num = rec["doc_number"]
         url     = f"{PUBLICSEARCH_BASE}/doc/{ps_id}"
-        log.info(f"  Doc [{doc_num}] id={ps_id} → {url}")
+        log.info(f"  Doc [{doc_num}] id={ps_id}")
 
         try:
             driver.get(url)
             time.sleep(3)
 
-            # Click Summary tab if present
             try:
                 tabs = driver.find_elements(By.CSS_SELECTOR, ".tab, [role='tab'], .nav-link, button")
                 for tab in tabs:
@@ -798,10 +778,8 @@ def fetch_doc_details(records, driver):
             except Exception:
                 pass
 
-            # Get all page text
             page_text = driver.find_element(By.TAG_NAME, "body").text
 
-            # Extract loan amount — "original amount of $XXX,XXX" or "principal amount of $XXX,XXX"
             loan_amount = ""
             m = _re.search(
                 r"(?:original|principal)\s+amount\s+of\s+\$([\d,]+(?:\.\d{2})?)",
@@ -809,7 +787,6 @@ def fetch_doc_details(records, driver):
             if m:
                 loan_amount = "$" + m.group(1)
 
-            # Extract original/loan date — "dated Month DD, YYYY" or "dated MM/DD/YYYY"
             loan_date = ""
             m = _re.search(
                 r"(?:deed of trust|note|lien)\s+dated\s+([A-Za-z]+ \d{1,2},\s*\d{4}|\d{1,2}/\d{1,2}/\d{4})",
@@ -817,7 +794,6 @@ def fetch_doc_details(records, driver):
             if m:
                 loan_date = m.group(1).strip()
 
-            # Extract lender — scan lines for label matches
             lender = ""
             lender_labels = ["Original Mortgage", "Original Mortgagee", "Lender", "Beneficiary", "Mortgagee"]
             lines = page_text.split("\n")
@@ -837,7 +813,6 @@ def fetch_doc_details(records, driver):
                 if m:
                     lender = m.group(1).strip()
 
-            # Extract trustee
             trustee = ""
             trustee_labels = ["Original Trustee", "Substitute Trustee", "Trustee"]
             for i, line in enumerate(lines):
@@ -858,7 +833,7 @@ def fetch_doc_details(records, driver):
             rec["trustee"]     = trustee
             fetched += 1
 
-            log.info(f"  → amount={loan_amount} | lender={lender[:40] if lender else '—'} | date={loan_date}")
+            log.info(f"  → amount={loan_amount or '—'} | lender={lender[:40] if lender else '—'} | date={loan_date or '—'}")
             time.sleep(1)
 
         except Exception as e:
@@ -913,20 +888,19 @@ def match_features(feats, num, required_word=None):
             mail_addr = f"{addr1} {city} {zipcode}".strip()
         absentee = bool(mail_addr) and not normalize(mail_addr).startswith(num + " ")
 
-        # Pull appraised value and tax data
         appraised = str(a.get("AppraisedVal", "") or a.get("Appraised", "") or "").strip()
         land_val  = str(a.get("LandVal", "") or "").strip()
         impr_val  = str(a.get("ImprovVal", "") or "").strip()
         tax_amt   = str(a.get("TaxAmt", "") or a.get("TaxAmount", "") or "").strip()
 
         return {
-            "owner":            owner.upper(),
-            "mail_addr":        mail_addr,
-            "absentee":         absentee,
-            "appraised_value":  appraised,
-            "land_value":       land_val,
+            "owner":             owner.upper(),
+            "mail_addr":         mail_addr,
+            "absentee":          absentee,
+            "appraised_value":   appraised,
+            "land_value":        land_val,
             "improvement_value": impr_val,
-            "annual_taxes":     tax_amt,
+            "annual_taxes":      tax_amt,
         }
     return None
 
@@ -985,12 +959,12 @@ def enrich_owners(records):
         zip_ = rec.get("zip", "")
         result = lookup_owner(addr, zip_)
         if result and result.get("owner"):
-            rec["owner"]            = result["owner"]
-            rec["mail_addr"]        = result.get("mail_addr", "")
-            rec["absentee"]         = result.get("absentee", False)
-            rec["appraised_value"]  = result.get("appraised_value", "")
-            rec["annual_taxes"]     = result.get("annual_taxes", "")
-            rec["land_value"]       = result.get("land_value", "")
+            rec["owner"]             = result["owner"]
+            rec["mail_addr"]         = result.get("mail_addr", "")
+            rec["absentee"]          = result.get("absentee", False)
+            rec["appraised_value"]   = result.get("appraised_value", "")
+            rec["annual_taxes"]      = result.get("annual_taxes", "")
+            rec["land_value"]        = result.get("land_value", "")
             found += 1
             if found <= 10 or found % 25 == 0:
                 log.info(f"  [{i+1}/{len(missing)}] {addr} -> {result['owner']} "
@@ -1028,14 +1002,13 @@ def score_record(rec):
     if rec.get("type") == "TAX":             s += 2
     if rec.get("absentee"):                  s += 2
     if rec.get("sale_date"):                 s = min(s + 1, 10)
-    # Code enforcement bonuses
     if rec.get("source") == "code_enforcement":
-        s += 1  # base CE bonus
+        s += 1
         cat = rec.get("ce_category", "")
-        if cat in CE_DANGEROUS:              s += 2  # dangerous premises = high stress
-        if cat in CE_ABSENTEE:              s += 2  # absentee flagged by city
+        if cat in CE_DANGEROUS:              s += 2
+        if cat in CE_ABSENTEE:              s += 2
         if rec.get("ce_status", "").upper() == "OPEN":
-            s += 1  # still unresolved = more pressure
+            s += 1
     return min(s, 10)
 
 
@@ -1069,10 +1042,11 @@ if __name__ == "__main__":
     os.makedirs("dashboard", exist_ok=True)
 
     log.info("=" * 60)
-    log.info("Bexar County Lead Scraper v28.8 (Hybrid)")
+    log.info("Bexar County Lead Scraper v28.9 (Hybrid)")
     log.info(f"Primary:   PublicSearch.us ({KEEP_DAYS}d window, {CHUNK_DAYS}d chunks, {PAGE_TIMEOUT}s timeout)")
     log.info(f"Secondary: ArcGIS weekly backfill = {IS_SUNDAY}")
     log.info(f"Tertiary:  Code Enforcement 311 ({len(CE_CATEGORIES)} categories, {KEEP_DAYS}d window)")
+    log.info(f"Doc fetch: backfill window = {DOC_FETCH_DAYS}d (covers 4/30/2026 onward)")
     log.info(f"Filter:    {KEEP_DAYS}-day cutoff ({CUTOFF_DATE.strftime('%Y-%m-%d')}) | live auctions always kept")
     log.info("=" * 60)
 
@@ -1081,20 +1055,23 @@ if __name__ == "__main__":
     # ── Step 1: PublicSearch chunked scrape ───────────────────────────────────
     new_records = scrape_publicsearch(known_docs)
 
-    # ── Step 1b: Document detail fetch for new leads ─────────────────────────
-    if new_records:
-        doc_driver = None
-        try:
-            doc_driver = get_driver()
-            new_records = fetch_doc_details(new_records, doc_driver)
-        except Exception as e:
-            log.warning(f"Doc fetch driver error: {e}")
-        finally:
-            if doc_driver:
-                try:
-                    doc_driver.quit()
-                except Exception:
-                    pass
+    # ── Step 1b: Doc detail fetch — new AND existing leads missing loan data ──
+    doc_driver = None
+    try:
+        doc_driver = get_driver()
+        # Pass full prev_records + new_records so backfill hits existing leads too
+        all_for_doc_fetch = new_records + prev_records
+        all_for_doc_fetch = fetch_doc_details(all_for_doc_fetch, doc_driver)
+        # Separate back out — prev_records were mutated in place
+        new_records = [r for r in all_for_doc_fetch if r.get("is_new")]
+    except Exception as e:
+        log.warning(f"Doc fetch driver error: {e}")
+    finally:
+        if doc_driver:
+            try:
+                doc_driver.quit()
+            except Exception:
+                pass
 
     # ── Step 2: ArcGIS weekly backfill (Sundays only) ────────────────────────
     arcgis_records = []
@@ -1141,7 +1118,6 @@ if __name__ == "__main__":
         d = days_until_sale(r.get("sale_date", ""))
         if d is not None and d <= 30:             r["flags"].append("AUCTION SOON")
         if d is not None and d <= 14:             r["flags"].append("URGENT")
-        # CE-specific flags
         if r.get("source") == "code_enforcement":
             cat = r.get("ce_category", "")
             if r.get("ce_status", "").upper() == "OPEN":
@@ -1170,15 +1146,16 @@ if __name__ == "__main__":
     ce_ct    = sum(1 for r in records if r.get("source") == "code_enforcement")
     ce_open  = sum(1 for r in records if "OPEN VIOLATION" in r.get("flags", []))
     ce_dang  = sum(1 for r in records if "DANGEROUS PREMISES" in r.get("flags", []))
+    enriched = sum(1 for r in records if r.get("loan_amount"))
 
     log.info(f"Final: {len(records)} total | {named} named | {absentee} absentee")
     log.info(f"       {new_ct} new | {has_date} with sale date | "
              f"{soon} auction <=30d | {urgent} URGENT <=14d")
     log.info(f"       CE: {ce_ct} total | {ce_open} open violations | {ce_dang} dangerous premises")
+    log.info(f"       Mortgage intel: {enriched} leads with loan_amount populated")
 
     # ── Step 10: Save ─────────────────────────────────────────────────────────
     with open("data/records.json", "w", encoding="utf-8") as f:
         json.dump(records, f, indent=2)
     build_dashboard(records)
     log.info("Done.")
-
