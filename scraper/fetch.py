@@ -1,5 +1,5 @@
 """
-Bexar County Motivated Seller Lead Scraper v28.4
+Bexar County Motivated Seller Lead Scraper v28.5
 HYBRID SCRAPER:
   Primary:   bexar.tx.publicsearch.us  (Selenium, runs 3x daily)
              - 7-day chunks covering 90-day window
@@ -110,7 +110,7 @@ def fetch_json(url, retries=3):
     for attempt in range(retries):
         try:
             req = urllib.request.Request(
-                url, headers={"User-Agent": "BexarScraper/28.4", "Accept": "application/json"})
+                url, headers={"User-Agent": "BexarScraper/28.5", "Accept": "application/json"})
             with urllib.request.urlopen(req, timeout=25) as r:
                 return json.loads(r.read().decode("utf-8", errors="replace"))
         except Exception as e:
@@ -166,7 +166,7 @@ def load_known_docs():
     try:
         req = urllib.request.Request(
             url,
-            headers={"User-Agent": "BexarScraper/28.4",
+            headers={"User-Agent": "BexarScraper/28.5",
                      "Accept": "application/json",
                      "Cache-Control": "no-cache"})
         with urllib.request.urlopen(req, timeout=20) as r:
@@ -506,29 +506,24 @@ def parse_month_year(date_str):
 # ── CODE ENFORCEMENT SCRAPER ──────────────────────────────────────────────────
 def fetch_code_enforcement(known_docs):
     """
-    Fetch SA code enforcement violations using Selenium to bypass 403 on
-    the ArcGIS FeatureServer (blocked outside browser context).
+    Fetch SA code enforcement violations using Selenium to load ArcGIS
+    FeatureServer JSON in a real browser (bypasses 403).
 
-    Strategy: open the ArcGIS query URL in Chrome, read the JSON response
-    from the page body. Paginate with resultOffset until all records fetched.
-
-    v28.4: Selenium browser fetch of ArcGIS FeatureServer JSON
+    v28.5: Query one category at a time to avoid 400 from long WHERE clause.
+    Each category gets its own paginated query. Driver reused across all.
     """
     import json as _json
+    import urllib.parse as _up
     from selenium.webdriver.common.by import By
     from selenium.webdriver.support.ui import WebDriverWait
-    from selenium.webdriver.support import expected_conditions as EC
 
     CE_QUERY_BASE = (
         "https://services.arcgis.com/g1fRTDLeMgspWrYp/arcgis/rest"
         "/services/311_All_Service_Calls/FeatureServer/0/query"
     )
-    OUT_FIELDS  = "CaseID,Category,ReasonName,TypeName,ObjectDescription,CaseStatus,OpenedDateTime,CouncilDistrict"
-    PAGE_SIZE   = 2000
-    cutoff_ms   = int(CUTOFF_DATE.timestamp() * 1000)
-    cat_codes   = list(CE_CATEGORIES.keys())
-    cat_or      = " OR ".join(f"Category = '{c}'" for c in cat_codes)
-    where       = f"({cat_or}) AND OpenedDateTime >= {cutoff_ms}"
+    OUT_FIELDS = "CaseID,Category,ReasonName,TypeName,ObjectDescription,CaseStatus,OpenedDateTime,CouncilDistrict"
+    PAGE_SIZE  = 2000
+    cutoff_ms  = int(CUTOFF_DATE.timestamp() * 1000)
 
     log.info(f"Code Enforcement: Selenium ArcGIS fetch | {len(CE_CATEGORIES)} categories | cutoff={CUTOFF_DATE.strftime('%Y-%m-%d')}")
 
@@ -537,107 +532,105 @@ def fetch_code_enforcement(known_docs):
 
     try:
         driver = get_driver()
-        wait   = WebDriverWait(driver, 60)
-        offset = 0
-        page   = 0
 
-        while True:
-            import urllib.parse as _up
-            params = _up.urlencode({
-                "where":             where,
-                "outFields":         OUT_FIELDS,
-                "orderByFields":     "OpenedDateTime DESC",
-                "returnGeometry":    "false",
-                "resultOffset":      offset,
-                "resultRecordCount": PAGE_SIZE,
-                "f":                 "json",
-            })
-            url = f"{CE_QUERY_BASE}?{params}"
-            log.info(f"  CE page {page+1} (offset={offset})...")
+        for cat_code, cat_label in CE_CATEGORIES.items():
+            where  = f"Category = '{cat_code}' AND OpenedDateTime >= {cutoff_ms}"
+            offset = 0
+            page   = 0
+            cat_new = 0
 
-            driver.get(url)
-            time.sleep(2)
+            while True:
+                params = _up.urlencode({
+                    "where":             where,
+                    "outFields":         OUT_FIELDS,
+                    "orderByFields":     "OpenedDateTime DESC",
+                    "returnGeometry":    "false",
+                    "resultOffset":      offset,
+                    "resultRecordCount": PAGE_SIZE,
+                    "f":                 "json",
+                })
+                url = f"{CE_QUERY_BASE}?{params}"
 
-            # Page body contains raw JSON
-            try:
-                body = driver.find_element(By.TAG_NAME, "body").text
-                data = _json.loads(body)
-            except Exception as e:
-                log.warning(f"  CE page {page+1} parse error: {e}")
-                break
+                try:
+                    driver.get(url)
+                    time.sleep(1.5)
+                    body = driver.find_element(By.TAG_NAME, "body").text
+                    data = _json.loads(body)
+                except Exception as e:
+                    log.warning(f"  CE [{cat_code}] page {page+1} error: {e}")
+                    break
 
-            if "error" in data:
-                log.warning(f"  CE query error: {data['error']}")
-                break
+                if "error" in data:
+                    log.warning(f"  CE [{cat_code}] query error: {data['error']}")
+                    break
 
-            features = data.get("features", [])
-            log.info(f"  CE page {page+1}: {len(features)} features")
+                features = data.get("features", [])
 
-            for feat in features:
-                a = feat.get("attributes", {})
-                case_id  = a.get("CaseID")
-                if not case_id:
-                    continue
+                for feat in features:
+                    a = feat.get("attributes", {})
+                    case_id = a.get("CaseID")
+                    if not case_id:
+                        continue
+                    doc_key = f"CE-{case_id}"
+                    if doc_key in known_docs:
+                        continue
 
-                doc_key = f"CE-{case_id}"
-                if doc_key in known_docs:
-                    continue
+                    category   = (a.get("Category")          or "").strip().upper()
+                    reason     = (a.get("ReasonName")        or "").strip()
+                    type_name  = (a.get("TypeName")          or "").strip()
+                    addr_raw   = (a.get("ObjectDescription") or "").strip()
+                    status     = (a.get("CaseStatus")        or "").strip()
+                    opened_ms  = a.get("OpenedDateTime")
+                    district   = a.get("CouncilDistrict", "")
 
-                category   = (a.get("Category")          or "").strip().upper()
-                reason     = (a.get("ReasonName")        or "").strip()
-                type_name  = (a.get("TypeName")          or "").strip()
-                addr_raw   = (a.get("ObjectDescription") or "").strip()
-                status     = (a.get("CaseStatus")        or "").strip()
-                opened_ms  = a.get("OpenedDateTime")
-                district   = a.get("CouncilDistrict", "")
+                    address        = clean_address(addr_raw)
+                    city, zip_code = parse_city_zip(addr_raw)
+                    opened_str     = ms_to_date_str(opened_ms)
+                    month, year    = parse_month_year(opened_str) if opened_str else ("", "")
 
-                address        = clean_address(addr_raw)
-                city, zip_code = parse_city_zip(addr_raw)
-                opened_str     = ms_to_date_str(opened_ms)
-                month, year    = parse_month_year(opened_str) if opened_str else ("", "")
+                    if not address or address.upper() in ("", "N/A", "NA", "UNKNOWN"):
+                        continue
 
-                if not address or address.upper() in ("", "N/A", "NA", "UNKNOWN"):
-                    continue
+                    rec = {
+                        "type":        "CE",
+                        "address":     address,
+                        "owner":       "",
+                        "mail_addr":   "",
+                        "absentee":    False,
+                        "duplicate":   False,
+                        "is_new":      True,
+                        "doc_number":  doc_key,
+                        "year":        year,
+                        "month":       month,
+                        "city":        city,
+                        "zip":         zip_code,
+                        "school_dist": "",
+                        "date_filed":  f"{month}/{year}".strip("/"),
+                        "sale_date":   "",
+                        "run_ts":      RUN_TIMESTAMP,
+                        "flags":       [],
+                        "source":      "code_enforcement",
+                        "ce_case_id":  str(case_id),
+                        "ce_category": category,
+                        "ce_reason":   reason,
+                        "ce_type":     type_name,
+                        "ce_status":   status,
+                        "opened_date": opened_str,
+                        "ce_district": str(district) if district else "",
+                        "ce_cat_label": cat_label,
+                    }
+                    new_leads.append(rec)
+                    known_docs.add(doc_key)
+                    cat_new += 1
 
-                cat_label = CE_CATEGORIES.get(category, category)
+                if len(features) < PAGE_SIZE:
+                    break
+                offset += PAGE_SIZE
+                page   += 1
+                time.sleep(0.3)
 
-                rec = {
-                    "type":        "CE",
-                    "address":     address,
-                    "owner":       "",
-                    "mail_addr":   "",
-                    "absentee":    False,
-                    "duplicate":   False,
-                    "is_new":      True,
-                    "doc_number":  doc_key,
-                    "year":        year,
-                    "month":       month,
-                    "city":        city,
-                    "zip":         zip_code,
-                    "school_dist": "",
-                    "date_filed":  f"{month}/{year}".strip("/"),
-                    "sale_date":   "",
-                    "run_ts":      RUN_TIMESTAMP,
-                    "flags":       [],
-                    "source":      "code_enforcement",
-                    "ce_case_id":  str(case_id),
-                    "ce_category": category,
-                    "ce_reason":   reason,
-                    "ce_type":     type_name,
-                    "ce_status":   status,
-                    "opened_date": opened_str,
-                    "ce_district": str(district) if district else "",
-                    "ce_cat_label": cat_label,
-                }
-                new_leads.append(rec)
-                known_docs.add(doc_key)
-
-            if len(features) < PAGE_SIZE:
-                break
-
-            offset += PAGE_SIZE
-            page   += 1
-            time.sleep(0.5)
+            if cat_new > 0:
+                log.info(f"  CE [{cat_code}] {cat_label}: {cat_new} new")
 
     except Exception as e:
         log.error(f"Code Enforcement scrape error: {e}")
@@ -648,15 +641,8 @@ def fetch_code_enforcement(known_docs):
             except Exception:
                 pass
 
-    # Summary by category
-    by_cat = {}
-    for r in new_leads:
-        cat = r.get("ce_category", "?")
-        by_cat[cat] = by_cat.get(cat, 0) + 1
-    for cat, count in sorted(by_cat.items(), key=lambda x: -x[1]):
-        log.info(f"  CE {cat} ({CE_CATEGORIES.get(cat, '?')}): {count}")
-
-    log.info(f"Code Enforcement: {len(new_leads)} new leads fetched")
+    total = len(new_leads)
+    log.info(f"Code Enforcement: {total} new leads fetched")
     return new_leads
 
 
@@ -907,7 +893,7 @@ if __name__ == "__main__":
     os.makedirs("dashboard", exist_ok=True)
 
     log.info("=" * 60)
-    log.info("Bexar County Lead Scraper v28.4 (Hybrid)")
+    log.info("Bexar County Lead Scraper v28.5 (Hybrid)")
     log.info(f"Primary:   PublicSearch.us ({KEEP_DAYS}d window, {CHUNK_DAYS}d chunks, {PAGE_TIMEOUT}s timeout)")
     log.info(f"Secondary: ArcGIS weekly backfill = {IS_SUNDAY}")
     log.info(f"Tertiary:  Code Enforcement 311 ({len(CE_CATEGORIES)} categories, {KEEP_DAYS}d window)")
