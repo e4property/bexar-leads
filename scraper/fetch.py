@@ -1,5 +1,5 @@
 """
-Bexar County Motivated Seller Lead Scraper v28.7
+Bexar County Motivated Seller Lead Scraper v28.8
 HYBRID SCRAPER:
   Primary:   bexar.tx.publicsearch.us  (Selenium, runs 3x daily)
              - 7-day chunks covering 90-day window
@@ -110,7 +110,7 @@ def fetch_json(url, retries=3):
     for attempt in range(retries):
         try:
             req = urllib.request.Request(
-                url, headers={"User-Agent": "BexarScraper/28.7", "Accept": "application/json"})
+                url, headers={"User-Agent": "BexarScraper/28.8", "Accept": "application/json"})
             with urllib.request.urlopen(req, timeout=25) as r:
                 return json.loads(r.read().decode("utf-8", errors="replace"))
         except Exception as e:
@@ -166,7 +166,7 @@ def load_known_docs():
     try:
         req = urllib.request.Request(
             url,
-            headers={"User-Agent": "BexarScraper/28.7",
+            headers={"User-Agent": "BexarScraper/28.8",
                      "Accept": "application/json",
                      "Cache-Control": "no-cache"})
         with urllib.request.urlopen(req, timeout=20) as r:
@@ -526,7 +526,7 @@ def fetch_code_enforcement(known_docs):
     Fetch SA code enforcement violations using Selenium to load ArcGIS
     FeatureServer JSON in a real browser (bypasses 403).
 
-    v28.7: Query one category at a time to avoid 400 from long WHERE clause.
+    v28.8: Query one category at a time to avoid 400 from long WHERE clause.
     Each category gets its own paginated query. Driver reused across all.
     """
     import json as _json
@@ -912,7 +912,22 @@ def match_features(feats, num, required_word=None):
         if addr1 and addr1.upper() not in ("NULL", "NONE", ""):
             mail_addr = f"{addr1} {city} {zipcode}".strip()
         absentee = bool(mail_addr) and not normalize(mail_addr).startswith(num + " ")
-        return {"owner": owner.upper(), "mail_addr": mail_addr, "absentee": absentee}
+
+        # Pull appraised value and tax data
+        appraised = str(a.get("AppraisedVal", "") or a.get("Appraised", "") or "").strip()
+        land_val  = str(a.get("LandVal", "") or "").strip()
+        impr_val  = str(a.get("ImprovVal", "") or "").strip()
+        tax_amt   = str(a.get("TaxAmt", "") or a.get("TaxAmount", "") or "").strip()
+
+        return {
+            "owner":            owner.upper(),
+            "mail_addr":        mail_addr,
+            "absentee":         absentee,
+            "appraised_value":  appraised,
+            "land_value":       land_val,
+            "improvement_value": impr_val,
+            "annual_taxes":     tax_amt,
+        }
     return None
 
 
@@ -923,7 +938,7 @@ def lookup_owner(address, zipcode=""):
     num        = parsed["num"]
     words      = parsed["words"]
     first_word = words[0] if words else ""
-    FIELDS     = "Situs,Owner,AddrLn1,AddrCity,Zip"
+    FIELDS     = "Situs,Owner,AddrLn1,AddrCity,Zip,AppraisedVal,LandVal,ImprovVal,TaxAmt"
 
     if len(words) >= 2:
         r = match_features(
@@ -970,9 +985,12 @@ def enrich_owners(records):
         zip_ = rec.get("zip", "")
         result = lookup_owner(addr, zip_)
         if result and result.get("owner"):
-            rec["owner"]     = result["owner"]
-            rec["mail_addr"] = result.get("mail_addr", "")
-            rec["absentee"]  = result.get("absentee", False)
+            rec["owner"]            = result["owner"]
+            rec["mail_addr"]        = result.get("mail_addr", "")
+            rec["absentee"]         = result.get("absentee", False)
+            rec["appraised_value"]  = result.get("appraised_value", "")
+            rec["annual_taxes"]     = result.get("annual_taxes", "")
+            rec["land_value"]       = result.get("land_value", "")
             found += 1
             if found <= 10 or found % 25 == 0:
                 log.info(f"  [{i+1}/{len(missing)}] {addr} -> {result['owner']} "
@@ -1051,7 +1069,7 @@ if __name__ == "__main__":
     os.makedirs("dashboard", exist_ok=True)
 
     log.info("=" * 60)
-    log.info("Bexar County Lead Scraper v28.7 (Hybrid)")
+    log.info("Bexar County Lead Scraper v28.8 (Hybrid)")
     log.info(f"Primary:   PublicSearch.us ({KEEP_DAYS}d window, {CHUNK_DAYS}d chunks, {PAGE_TIMEOUT}s timeout)")
     log.info(f"Secondary: ArcGIS weekly backfill = {IS_SUNDAY}")
     log.info(f"Tertiary:  Code Enforcement 311 ({len(CE_CATEGORIES)} categories, {KEEP_DAYS}d window)")
