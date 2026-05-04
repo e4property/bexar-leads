@@ -1018,3 +1018,528 @@ init();
 </script>
 </body>
 </html>
+</div>
+            <div class="bud-sep">|</div>
+            <div class="bud-item"><div class="bud-num left" id="fw-left">100</div><div class="bud-label">Left</div></div>
+            <div class="bud-reset" id="fw-reset-info">Resets<br>Sunday</div>
+          </div>
+
+          <!-- CE box -->
+          <div class="ce-box" id="ce-info-box" style="display:none">
+            <div class="ce-box-title">⚠ Code Enforcement Violation</div>
+            <div class="ce-grid">
+              <div class="ce-field"><div class="ce-label">Category</div><div class="ce-val" id="ce-category">—</div></div>
+              <div class="ce-field"><div class="ce-label">Status</div><div class="ce-val" id="ce-status">—</div></div>
+              <div class="ce-field"><div class="ce-label">Violation</div><div class="ce-val" id="ce-reason">—</div></div>
+              <div class="ce-field"><div class="ce-label">Opened</div><div class="ce-val" id="ce-opened">—</div></div>
+            </div>
+          </div>
+
+          <!-- ForeWarn fields -->
+          <div class="fw-fields">
+            <div class="fw-field"><div class="fw-label">First</div><div class="fw-val" id="sf-first">—</div></div>
+            <div class="fw-field"><div class="fw-label">Last</div><div class="fw-val" id="sf-last">—</div></div>
+            <div class="fw-field"><div class="fw-label">City</div><div class="fw-val" id="sf-city">—</div></div>
+            <div class="fw-field"><div class="fw-label">ZIP</div><div class="fw-val" id="sf-zip">—</div></div>
+          </div>
+
+          <!-- Phone -->
+          <div id="phone-saved-area" style="display:none">
+            <div class="phone-saved-row">
+              <div><div class="saved-num" id="saved-phone-display"></div><div class="saved-meta" id="saved-phone-meta"></div></div>
+              <button class="btn" style="margin-left:auto;font-size:10px" onclick="clearPhone()">Clear</button>
+            </div>
+          </div>
+          <div id="phone-entry-area">
+            <div class="phone-row">
+              <input class="phone-input" id="phone-input" type="tel" placeholder="Enter phone from ForeWarn…" onkeydown="if(event.key==='Enter')savePhone()">
+              <button class="btn-save-phone" onclick="savePhone()">Save → GHL</button>
+            </div>
+            <div class="action-row">
+              <button class="btn" style="flex:1;font-size:10px" onclick="skipLead()">Skip</button>
+              <button class="btn" style="flex:1;font-size:10px" onclick="copyAddress()">Copy Addr</button>
+              <button class="btn" style="flex:1;font-size:10px" onclick="openGHL()">GHL ↗</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Col 2: Disposition + Notes -->
+        <div class="sec">
+          <div class="sec-title">Pipeline</div>
+          <div class="dispo-track" id="dispo-track"></div>
+          <div class="sec-title" style="margin-top:12px">Notes</div>
+          <textarea class="notes-area" id="notes-area" rows="6" placeholder="Motivation, notes, follow-up…" onblur="saveNotes()"></textarea>
+          <div style="margin-top:8px;display:flex;gap:6px">
+            <button class="btn" style="flex:1;font-size:10px" onclick="openGHL()">Open in GHL ↗</button>
+            <button class="btn" style="flex:1;font-size:10px" onclick="copyAddress()">Copy Address</button>
+          </div>
+        </div>
+
+        <!-- Col 3: Mortgage + Financial -->
+        <div class="sec">
+          <div class="sec-title">🏦 Financial Intel</div>
+
+          <!-- Mortgage box -->
+          <div class="mortgage-box" id="mortgage-box">
+            <div class="mb-header">
+              <div>
+                <div class="mb-amount" id="m-amount">—</div>
+                <div class="mb-amount-label">Original Loan Amount</div>
+              </div>
+              <div style="text-align:right">
+                <div style="font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--gold)" id="m-appraised">—</div>
+                <div class="mb-amount-label">Appraised Value</div>
+              </div>
+            </div>
+            <div class="mb-grid">
+              <div class="mb-field"><div class="mb-label">Lender</div><div class="mb-val" id="m-lender">—</div></div>
+              <div class="mb-field"><div class="mb-label">Loan Date</div><div class="mb-val" id="m-date">—</div></div>
+              <div class="mb-field"><div class="mb-label">Annual Taxes</div><div class="mb-val" style="color:var(--red-l)" id="m-taxes">—</div></div>
+              <div class="mb-field"><div class="mb-label">Trustee</div><div class="mb-val" id="m-trustee">—</div></div>
+            </div>
+            <!-- Equity bar -->
+            <div class="equity-bar" id="equity-bar" style="display:none">
+              <div class="eq-label">
+                <span>Estimated Equity</span>
+                <span id="equity-label" style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--teal)">—</span>
+              </div>
+              <div class="eq-track"><div class="eq-fill" id="equity-fill" style="width:0%"></div></div>
+            </div>
+          </div>
+
+          <!-- Stats overview -->
+          <div class="sec-title">Overview</div>
+          <div class="stat-grid">
+            <div class="stat-card"><div class="sc-num" style="color:var(--accent-l)" id="ov-total">—</div><div class="sc-label">Total Leads</div></div>
+            <div class="stat-card"><div class="sc-num" style="color:var(--red-l)" id="ov-absentee">—</div><div class="sc-label">Absentee</div></div>
+            <div class="stat-card"><div class="sc-num" style="color:var(--gold)" id="ov-tax">—</div><div class="sc-label">Tax Fore</div></div>
+            <div class="stat-card"><div class="sc-num" style="color:var(--ce)" id="ov-ce">—</div><div class="sc-label">Code Enforce</div></div>
+            <div class="stat-card"><div class="sc-num" style="color:var(--new-g)" id="ov-new">—</div><div class="sc-label">New This Run</div></div>
+            <div class="stat-card"><div class="sc-num" style="color:var(--orange)" id="ov-searched">—</div><div class="sc-label">FW Searched</div></div>
+            <div class="stat-card"><div class="sc-num" style="color:var(--red-l)" id="ov-deals">—</div><div class="sc-label">🔥 Deals</div></div>
+            <div class="stat-card"><div class="sc-num" style="color:var(--red-l)" id="ov-urgent">—</div><div class="sc-label">Auction ≤14d</div></div>
+          </div>
+        </div>
+
+        <!-- Col 4: Activity + Lead Info -->
+        <div class="sec">
+          <div class="sec-title">Activity</div>
+          <div id="timeline"></div>
+          <div class="sec-title" style="margin-top:14px">Lead Info</div>
+          <div class="lead-info-box" id="lead-info-grid"></div>
+          <div style="margin-top:10px">
+            <div class="pipeline-wrap">
+              <div class="pb-label">Dispo Breakdown</div>
+              <div class="pb-track">
+                <div class="pb-seg" id="pb-contacted" style="background:var(--accent-l);width:0%"></div>
+                <div class="pb-seg" id="pb-responded" style="background:var(--teal);width:0%"></div>
+                <div class="pb-seg" id="pb-deal" style="background:var(--gold);width:0%"></div>
+                <div class="pb-seg" id="pb-dead" style="background:var(--dim);width:0%"></div>
+              </div>
+              <div class="pb-legend">
+                <div class="pb-item"><div class="pb-dot" style="background:var(--accent-l)"></div><span id="pb-l-cont">0 contacted</span></div>
+                <div class="pb-item"><div class="pb-dot" style="background:var(--teal)"></div><span id="pb-l-resp">0 responded</span></div>
+                <div class="pb-item"><div class="pb-dot" style="background:var(--gold)"></div><span id="pb-l-deal">0 deals</span></div>
+                <div class="pb-item"><div class="pb-dot" style="background:var(--dim)"></div><span id="pb-l-dead">0 dead</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<!-- Settings Modal -->
+<div class="modal-overlay" id="settings-modal">
+  <div class="modal">
+    <h3>⚙ Settings</h3>
+    <label>GHL API Key</label>
+    <input type="password" id="set-apikey" placeholder="pit-…">
+    <label>GHL Location ID</label>
+    <input type="text" id="set-locid" placeholder="UAOJlgeerLu3GChP9jDJ">
+    <label>Records JSON URL</label>
+    <input type="text" id="set-url" placeholder="https://e4property.github.io/bexar-leads/records.json">
+    <label>GitHub Token (Import buttons)</label>
+    <input type="password" id="set-ghtoken" placeholder="ghp_…">
+    <div class="modal-actions">
+      <button class="btn" onclick="closeSettings()">Cancel</button>
+      <button class="btn primary" onclick="saveSettings()">Save</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const SK='bl_v6', REC_URL_DEFAULT='https://e4property.github.io/bexar-leads/records.json';
+const GH_REPO='e4property/bexar-leads', GH_WORKFLOW='scrape.yml';
+
+let S={ghlApiKey:'',ghlLocationId:'UAOJlgeerLu3GChP9jDJ',recordsUrl:REC_URL_DEFAULT,weekStart:sundayTs(),used:0,leads:{},ghToken:''};
+let allLeads=[],filteredLeads=[],selectedDoc=null,selectedIdx=-1;
+let currentChip='all',currentSideFilter='all',searchQ='';
+
+const LEAD_TYPES=[
+  {id:'all',  label:'All Leads',       icon:'📋',color:'rgba(37,99,235,.12)',  filter:r=>true},
+  {id:'nof',  label:'NOF Foreclosure', icon:'🏠',color:'rgba(37,99,235,.12)',  filter:r=>r.type==='NOF'},
+  {id:'tax',  label:'Tax Foreclosure', icon:'⚖️', color:'rgba(245,158,11,.12)', filter:r=>r.type==='TAX'},
+  {id:'ce',   label:'Code Enforce',    icon:'⚠️', color:'rgba(249,115,22,.12)', filter:r=>isCE(r)},
+];
+
+function init(){loadState();checkWeekReset();updateBudgetUI();updateResetInfo();renderTypeSidebar();fetchLeads();setupKeys();}
+
+function sundayTs(){const n=new Date(),d=new Date(n);d.setDate(n.getDate()-n.getDay());d.setHours(0,0,0,0);return d.getTime();}
+function loadState(){try{const s=localStorage.getItem(SK);if(s)S={...S,...JSON.parse(s)};}catch(e){}}
+function saveState(){localStorage.setItem(SK,JSON.stringify(S));}
+function checkWeekReset(){if(S.weekStart<sundayTs()){S.weekStart=sundayTs();S.used=0;saveState();toast('Week reset — 100 searches available!');}}
+function updateBudgetUI(){const left=Math.max(0,100-S.used);const e1=document.getElementById('fw-used');if(e1)e1.textContent=S.used;const e2=document.getElementById('fw-left');if(e2)e2.textContent=left;}
+function updateResetInfo(){const next=new Date(S.weekStart+7*24*60*60*1000),diff=next-new Date();const days=Math.floor(diff/(1000*60*60*24)),hrs=Math.floor((diff%(1000*60*60*24))/(1000*60*60));const el=document.getElementById('fw-reset-info');if(el)el.innerHTML=`Resets in<br>${days}d ${hrs}h`;}
+
+// ── KEYBOARD SHORTCUTS ────────────────────────────────────────────────────
+function setupKeys(){
+  document.addEventListener('keydown',e=>{
+    if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA') return;
+    if(e.key==='j'||e.key==='ArrowDown'){e.preventDefault();navigateList(1);}
+    else if(e.key==='k'||e.key==='ArrowUp'){e.preventDefault();navigateList(-1);}
+    else if(e.key==='Enter'&&selectedIdx>=0){const l=filteredLeads[selectedIdx];if(l)selectLead(l.doc_number);}
+    else if(e.key==='p'){e.preventDefault();const pi=document.getElementById('phone-input');if(pi){pi.focus();pi.select();}}
+    else if(e.key==='c'){copyAddress();}
+    else if(e.key==='g'){openGHL();}
+  });
+}
+function navigateList(dir){
+  const newIdx=Math.max(0,Math.min(filteredLeads.length-1,selectedIdx+dir));
+  if(newIdx!==selectedIdx){selectedIdx=newIdx;const l=filteredLeads[newIdx];if(l){selectLead(l.doc_number);const items=document.querySelectorAll('.lead-item');if(items[newIdx])items[newIdx].scrollIntoView({block:'nearest'});}}
+}
+
+async function fetchLeads(){
+  try{
+    const res=await fetch((S.recordsUrl||REC_URL_DEFAULT)+'?t='+Date.now());
+    if(!res.ok)throw new Error('HTTP '+res.status);
+    allLeads=await res.json();
+    // Last update time
+    const ts=allLeads.find(l=>l.run_ts)?.run_ts;
+    if(ts){const d=new Date(ts);document.getElementById('last-update').textContent='Updated '+d.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});}
+    filterLeads();updateStats();updateTopStats();updateTypeCounts();renderHotLeads();showNewBanner();
+  }catch(e){document.getElementById('lead-list').innerHTML=`<div class="loading" style="color:var(--red-l)">⚠ ${e.message}</div>`;}
+}
+
+function isCE(l){return l.source==='code_enforcement'||l.type==='CE';}
+
+function showNewBanner(){
+  const newLeads=allLeads.filter(l=>l.is_new);
+  const banner=document.getElementById('new-banner');
+  if(newLeads.length>0){
+    document.getElementById('new-banner-text').textContent=`${newLeads.length} new lead${newLeads.length>1?'s':''} just scraped!`;
+    banner.classList.add('show');
+  }else{banner.classList.remove('show');}
+}
+function filterNewLeads(){setSideFilter('new',document.getElementById('sf-new'));document.getElementById('new-banner').classList.remove('show');}
+
+// ── HOT LEADS ─────────────────────────────────────────────────────────────
+function renderHotLeads(){
+  const urgent=allLeads.filter(l=>l.flags&&l.flags.includes('URGENT')).slice(0,3);
+  const soon=allLeads.filter(l=>l.flags&&l.flags.includes('AUCTION SOON')&&!l.flags.includes('URGENT')).slice(0,2);
+  const fresh=allLeads.filter(l=>l.is_new&&!l.flags?.includes('URGENT')&&!l.flags?.includes('AUCTION SOON')).slice(0,2);
+  const hot=[...urgent,...soon,...fresh].slice(0,6);
+  const row=document.getElementById('hot-leads-row');
+  const cards=document.getElementById('hot-cards');
+  if(!hot.length){row.style.display='none';return;}
+  row.style.display='block';
+  cards.innerHTML=hot.map(l=>{
+    const d=l.days_until_sale;
+    let cls='fresh',label='NEW LEAD',color='fresh';
+    if(d!=null&&d<=14){cls='urgent';label=`AUCTION ${d}d`;color='urgent';}
+    else if(d!=null&&d<=30){cls='soon';label=`AUCTION ${d}d`;color='soon';}
+    const amt=l.loan_amount?`<div class="hc-amt">${l.loan_amount}</div>`:'';
+    return `<div class="hot-card ${cls}" onclick="selectLead('${l.doc_number}')">
+      <div class="hc-countdown ${color}">${label}</div>
+      <div class="hc-name">${l.owner||l.ce_cat_label||'—'}</div>
+      <div class="hc-addr">${l.address||''}</div>
+      ${amt}
+    </div>`;
+  }).join('');
+}
+
+// ── TYPE SIDEBAR ──────────────────────────────────────────────────────────
+function renderTypeSidebar(){
+  document.getElementById('type-list').innerHTML=LEAD_TYPES.map(t=>`
+    <div class="type-item ${currentSideFilter===t.id?'active':''}" id="lt-${t.id}" onclick="setSideFilter('${t.id}',this)">
+      <div class="type-icon" style="background:${t.color}">${t.icon}</div>
+      <div class="type-info"><div class="type-name">${t.label}</div><div class="type-count" id="tc-${t.id}">—</div></div>
+      <div class="type-actions">
+        ${t.id!=='all'?`<button class="type-btn" title="Trigger scrape" onclick="triggerImport('${t.id}',event)">↓</button>`:''}
+        ${t.id!=='all'?`<button class="type-btn push" title="Push all to GHL" onclick="pushTypeToGHL('${t.id}',event)">↑</button>`:''}
+      </div>
+    </div>`).join('');
+}
+
+function updateTypeCounts(){
+  LEAD_TYPES.forEach(t=>{const el=document.getElementById('tc-'+t.id);if(el)el.textContent=allLeads.filter(t.filter).length+' leads';});
+  const fc={
+    absentee:allLeads.filter(l=>l.absentee).length,
+    urgent:allLeads.filter(l=>l.flags&&l.flags.includes('URGENT')).length,
+    soon:allLeads.filter(l=>l.flags&&l.flags.includes('AUCTION SOON')).length,
+    s10:allLeads.filter(l=>l.score>=10).length,
+    unsearched:allLeads.filter(l=>!LS(l.doc_number).phone&&!LS(l.doc_number).skipped).length,
+  };
+  Object.entries(fc).forEach(([k,v])=>{const el=document.getElementById('fc-'+k);if(el)el.textContent=v+' leads';});
+}
+
+function setSideFilter(id,el){
+  currentSideFilter=id;
+  document.querySelectorAll('.sidebar .type-item').forEach(i=>i.classList.remove('active'));
+  if(el)el.classList.add('active');
+  filterLeads();
+}
+
+// ── IMPORT ────────────────────────────────────────────────────────────────
+async function triggerImport(typeId,ev){
+  ev.stopPropagation();
+  if(!S.ghToken){toast('Add GitHub token in Settings first',true);openSettings();return;}
+  const btn=ev.currentTarget,orig=btn.innerHTML;
+  btn.innerHTML='<span class="spin"></span>';btn.disabled=true;
+  toast(`Triggering scrape…`);
+  try{
+    const res=await fetch(`https://api.github.com/repos/${GH_REPO}/actions/workflows/${GH_WORKFLOW}/dispatches`,{method:'POST',headers:{'Authorization':'Bearer '+S.ghToken,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28','Content-Type':'application/json'},body:JSON.stringify({ref:'main'})});
+    if(res.status===204){toast('✓ Scrape triggered! Refreshing in 12 min…');setTimeout(()=>fetchLeads(),720000);}
+    else{const d=await res.json();toast('Error: '+(d.message||res.status),true);}
+  }catch(e){toast('Failed: '+e.message,true);}
+  btn.innerHTML=orig;btn.disabled=false;
+}
+
+async function pushTypeToGHL(typeId,ev){
+  ev.stopPropagation();
+  if(!S.ghlApiKey){toast('Add GHL API key in Settings',true);openSettings();return;}
+  const type=LEAD_TYPES.find(t=>t.id===typeId);
+  const leads=allLeads.filter(type.filter).filter(l=>LS(l.doc_number).phone);
+  if(!leads.length){toast('No searched leads in this category',true);return;}
+  toast(`Pushing ${leads.length} leads to GHL…`);
+  for(const lead of leads){const ls=LS(lead.doc_number);if(ls.phone)await pushGHL(lead,ls.phone);}
+  toast(`✓ Pushed ${leads.length} leads to GHL`);
+}
+
+// ── FILTERING ─────────────────────────────────────────────────────────────
+function filterLeads(){
+  searchQ=document.getElementById('search-input').value.toLowerCase().trim();
+  let list=[...allLeads];
+  const sideType=LEAD_TYPES.find(t=>t.id===currentSideFilter);
+  if(sideType&&currentSideFilter!=='all')list=list.filter(sideType.filter);
+  if(currentSideFilter==='absentee')list=list.filter(l=>l.absentee);
+  else if(currentSideFilter==='urgent')list=list.filter(l=>l.flags&&l.flags.includes('URGENT'));
+  else if(currentSideFilter==='soon')list=list.filter(l=>l.flags&&l.flags.includes('AUCTION SOON'));
+  else if(currentSideFilter==='s10')list=list.filter(l=>l.score>=10);
+  else if(currentSideFilter==='unsearched')list=list.filter(l=>!LS(l.doc_number).phone&&!LS(l.doc_number).skipped);
+  else if(currentSideFilter==='new')list=list.filter(l=>l.is_new);
+  if(currentChip==='tax')list=list.filter(l=>l.type==='TAX');
+  else if(currentChip==='nof')list=list.filter(l=>l.type==='NOF');
+  else if(currentChip==='ce')list=list.filter(l=>isCE(l));
+  else if(currentChip==='ce-dang')list=list.filter(l=>l.flags&&l.flags.includes('DANGEROUS PREMISES'));
+  else if(currentChip==='new')list=list.filter(l=>l.is_new);
+  if(searchQ)list=list.filter(l=>(l.owner||'').toLowerCase().includes(searchQ)||(l.address||'').toLowerCase().includes(searchQ)||(l.zip||'').includes(searchQ)||(l.city||'').toLowerCase().includes(searchQ)||(l.ce_reason||'').toLowerCase().includes(searchQ));
+  filteredLeads=list;selectedIdx=-1;renderList();
+}
+
+function LS(doc){return S.leads[doc]||{phone:'',dispo:'new',notes:'',skipped:false};}
+
+function freshness(lead){
+  try{
+    const parts=(lead.date_filed||'').split('/');
+    if(parts.length===2){const dt=new Date(parseInt(parts[1]),parseInt(parts[0])-1,1);const days=Math.floor((Date.now()-dt)/(1000*60*60*24));if(days<=14)return{cls:'fresh-hot',label:days+'d old'};if(days<=45)return{cls:'fresh-warm',label:days+'d old'};return{cls:'fresh-cool',label:days+'d old'};}
+  }catch(e){}
+  return null;
+}
+
+function renderList(){
+  const el=document.getElementById('lead-list');
+  if(!filteredLeads.length){el.innerHTML='<div class="loading" style="color:var(--muted)">No leads match</div>';return;}
+  el.innerHTML=filteredLeads.map((l,i)=>renderItem(l,i)).join('');
+}
+
+function renderItem(lead,idx){
+  const ls=LS(lead.doc_number),isSelected=lead.doc_number===selectedDoc,dispo=ls.dispo||'new',ce=isCE(lead);
+  let cc='lead-item';if(ce)cc+=' ce-item';if(isSelected)cc+=' active';if(ls.phone&&!isSelected)cc+=' searched';if(dispo!=='new'&&!isSelected)cc+=` dispo-${dispo}`;
+  const b=[];
+  if(ce){b.push(`<span class="badge b-ce">⚠CE</span>`);if(lead.flags?.includes('DANGEROUS PREMISES'))b.push(`<span class="badge b-ce-dang">🔴DANG</span>`);if(lead.flags?.includes('OPEN VIOLATION'))b.push(`<span class="badge b-open">OPEN</span>`);}
+  else{if(lead.absentee)b.push(`<span class="badge b-abs">ABS</span>`);b.push(lead.type==='TAX'?`<span class="badge b-tax">TAX</span>`:`<span class="badge b-nof">NOF</span>`);}
+  if(lead.is_new)b.push(`<span class="badge b-new">NEW</span>`);
+  if(lead.flags?.includes('URGENT'))b.push(`<span class="badge b-urgent">🚨URGENT</span>`);
+  if(ls.phone)b.push(`<span class="badge b-phone">📞</span>`);
+  if(dispo!=='new')b.push(`<span class="badge b-dispo">${dispo}</span>`);
+  const sc=lead.score>=10?'s10':lead.score>=8?'s8':'';
+  const displayName=ce&&!lead.owner?(lead.ce_cat_label||'CE Violation'):(lead.owner||'—');
+  const fr=freshness(lead);
+  const d=lead.days_until_sale;
+  const saleTag=d!=null?`<span style="font-size:9px;color:${d<=14?'var(--red-l)':d<=30?'var(--gold)':'var(--muted)'};font-family:'JetBrains Mono',monospace">${d<=14?'🚨':'⏰'} ${d}d</span>`:'';
+  return `<div class="${cc}" onclick="selectLead('${lead.doc_number}')">
+    <div class="li-top"><span class="li-rank">${idx+1}</span><span class="li-name">${displayName}</span><span class="li-score ${sc}">${lead.score}</span></div>
+    <div class="li-meta"><span style="font-size:10px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1">${lead.address||''}${lead.zip?' '+lead.zip:''}</span>${saleTag}</div>
+    <div class="li-badges">${b.join('')}${fr?`<span class="li-freshness ${fr.cls}">${fr.label}</span>`:''}</div>
+  </div>`;
+}
+
+function selectLead(doc){
+  selectedDoc=doc;selectedIdx=filteredLeads.findIndex(l=>l.doc_number===doc);
+  const lead=allLeads.find(l=>l.doc_number===doc);if(!lead)return;
+  renderList();populateDetail(lead);
+}
+
+function parseName(owner){
+  if(!owner||!owner.trim())return{first:'',last:''};
+  let c=owner.replace(/\s*&\s*$/,'').trim();if(c.includes('&'))c=c.split('&')[0].trim();
+  c=c.replace(/\b(JR|SR|II|III|IV|V|EST OF|C\/T|ETAL|C\/O)\b/gi,'').replace(/\s+/g,' ').trim();
+  const p=c.split(/\s+/).filter(Boolean);if(!p.length)return{first:'',last:''};if(p.length===1)return{first:toTitle(p[0]),last:''};
+  return{first:toTitle(p.slice(1).join(' ')),last:toTitle(p[0])};
+}
+function toTitle(s){return s.toLowerCase().replace(/\b\w/g,c=>c.toUpperCase());}
+function getCity(r){if(r.absentee&&r.mail_addr){const p=r.mail_addr.trim().split(/\s+/);for(let i=p.length-2;i>=0;i--){if(/^[A-Z]{2,}$/.test(p[i]))return toTitle(p[i]);}}return toTitle(r.city||'');}
+function getZip(r){if(r.absentee&&r.mail_addr){const p=r.mail_addr.trim().split(/\s+/),last=p[p.length-1];if(/^\d{5}$/.test(last))return last;}return r.zip||'';}
+
+function populateDetail(lead){
+  const ls=LS(lead.doc_number),{first,last}=parseName(lead.owner),city=getCity(lead),zip=getZip(lead),ce=isCE(lead);
+  document.getElementById('empty-state').style.display='none';
+  document.getElementById('detail-panel').style.display='flex';
+  document.getElementById('detail-panel').style.flexDirection='column';
+
+  // Header class
+  const hdr=document.getElementById('detail-header');
+  hdr.className='detail-header '+(ce?'dh-ce':lead.type==='TAX'?'dh-tax':'dh-nof');
+
+  const displayName=ce&&!lead.owner?(lead.ce_cat_label||'Code Enforcement'):(lead.owner||'—');
+  document.getElementById('d-name').textContent=displayName;
+  document.getElementById('d-addr').textContent=`${lead.address||''}${lead.city?', '+lead.city:''} TX ${lead.zip||''}`;
+  document.getElementById('d-meta').textContent=ce?`Case: ${lead.ce_case_id||lead.doc_number} · Opened: ${lead.opened_date||'—'} · District ${lead.ce_district||'—'}`:`Doc: ${lead.doc_number} · Filed: ${lead.date_filed||'—'}${lead.school_dist?' · '+lead.school_dist:''}`;
+
+  // Auction countdown
+  const auc=document.getElementById('d-auction');
+  const d=lead.days_until_sale;
+  if(d!=null){auc.className='dh-auction '+(d<=14?'urgent':'soon');auc.textContent=(d<=14?'🚨 ':'⏰ ')+'AUCTION IN '+d+'d';}
+  else auc.textContent='';
+
+  // Badges
+  const b=[];
+  if(ce){b.push(`<span class="badge b-ce" style="padding:3px 8px;font-size:10px">⚠ Code Enforcement</span>`);if(lead.flags?.includes('DANGEROUS PREMISES'))b.push(`<span class="badge b-ce-dang" style="padding:3px 8px;font-size:10px">🔴 Dangerous</span>`);if(lead.flags?.includes('OPEN VIOLATION'))b.push(`<span class="badge b-open" style="padding:3px 8px;font-size:10px">Open Violation</span>`);}
+  else{if(lead.absentee)b.push(`<span class="badge b-abs" style="padding:3px 8px;font-size:10px">Absentee</span>`);b.push(lead.type==='TAX'?`<span class="badge b-tax" style="padding:3px 8px;font-size:10px">Tax Foreclosure</span>`:`<span class="badge b-nof" style="padding:3px 8px;font-size:10px">NOF</span>`);}
+  if(lead.is_new)b.push(`<span class="badge b-new" style="padding:3px 8px;font-size:10px">New</span>`);
+  if(d!=null&&d<=14)b.push(`<span class="badge b-urgent" style="padding:3px 8px;font-size:10px">🚨 URGENT</span>`);
+  b.push(`<span class="badge" style="background:var(--surface2);border:1px solid var(--border2);color:var(--muted);padding:3px 8px;font-size:10px;font-family:'JetBrains Mono',monospace">Score ${lead.score}</span>`);
+  document.getElementById('d-badges').innerHTML=b.join('');
+
+  // CE box
+  const ceBox=document.getElementById('ce-info-box');
+  if(ce){ceBox.style.display='block';document.getElementById('ce-category').textContent=(lead.ce_category||'—')+' · '+(lead.ce_cat_label||'');const st=document.getElementById('ce-status');st.textContent=lead.ce_status||'—';st.className='ce-val '+(lead.ce_status||'').toLowerCase();document.getElementById('ce-reason').textContent=lead.ce_reason||'—';document.getElementById('ce-opened').textContent=lead.opened_date||'—';}
+  else ceBox.style.display='none';
+
+  // Mortgage + financial intel
+  document.getElementById('m-amount').textContent=lead.loan_amount||'—';
+  document.getElementById('m-date').textContent=lead.loan_date||'—';
+  document.getElementById('m-lender').textContent=lead.lender||'—';
+  document.getElementById('m-trustee').textContent=lead.trustee||'—';
+  document.getElementById('m-appraised').textContent=lead.appraised_value?'$'+Number(lead.appraised_value).toLocaleString():'—';
+  document.getElementById('m-taxes').textContent=lead.annual_taxes?'$'+Number(lead.annual_taxes).toLocaleString()+'/yr':'—';
+
+  // Equity bar
+  const eqBar=document.getElementById('equity-bar');
+  if(lead.loan_amount&&lead.appraised_value){
+    const loan=parseFloat(lead.loan_amount.replace(/[$,]/g,''))||0;
+    const appr=parseFloat(lead.appraised_value)||0;
+    if(appr>0){
+      const equity=appr-loan;const pct=Math.max(0,Math.min(100,Math.round(equity/appr*100)));
+      eqBar.style.display='block';
+      document.getElementById('equity-label').textContent=(equity>=0?'$'+Math.abs(equity).toLocaleString()+' equity':'$'+Math.abs(equity).toLocaleString()+' underwater');
+      document.getElementById('equity-fill').style.width=pct+'%';
+      document.getElementById('equity-fill').style.background=equity>=0?'linear-gradient(90deg,var(--teal),var(--accent-l))':'linear-gradient(90deg,var(--red),var(--orange))';
+    }
+  }else eqBar.style.display='none';
+
+  // ForeWarn fields
+  ['sf-first','sf-last','sf-city','sf-zip'].forEach((id,i)=>{const vals=[first,last,city,zip];const el=document.getElementById(id);el.textContent=vals[i]||'—';el.onclick=()=>{navigator.clipboard.writeText(el.textContent);toast('Copied: '+el.textContent);};});
+
+  // Phone state
+  if(ls.phone){document.getElementById('phone-saved-area').style.display='block';document.getElementById('phone-entry-area').style.display='none';document.getElementById('saved-phone-display').textContent='📞 '+ls.phone;document.getElementById('saved-phone-meta').textContent=ls.searchedAt?'Searched '+new Date(ls.searchedAt).toLocaleDateString():'Searched';}
+  else{document.getElementById('phone-saved-area').style.display='none';document.getElementById('phone-entry-area').style.display='block';document.getElementById('phone-input').value='';}
+
+  renderDispoTrack(lead.doc_number,ls.dispo||'new');
+  document.getElementById('notes-area').value=ls.notes||'';
+  renderTimeline(lead,ls);
+
+  // Lead info
+  let info='';
+  if(ce){info=`Source: Code Enforcement\nCategory: ${lead.ce_category||'—'} — ${lead.ce_cat_label||''}\nViolation: ${lead.ce_reason||'—'}\nStatus: ${lead.ce_status||'—'}\nOpened: ${lead.opened_date||'—'}\nCity: ${lead.city||'—'} · ZIP: ${lead.zip||'—'}\nOwner: ${lead.owner||'Not found'}`;}
+  else{info=`Type: ${lead.type} · Score: ${lead.score}\nFiled: ${lead.date_filed||'—'}\nCity: ${lead.city||'—'} · ZIP: ${lead.zip||'—'}\nAbsentee: ${lead.absentee?'Yes':'No'}\nMail: ${lead.mail_addr||'—'}`;if(lead.sale_date)info+=`\nSale Date: ${lead.sale_date}`;if(lead.appraised_value)info+=`\nAppraised: $${Number(lead.appraised_value).toLocaleString()}`;if(lead.annual_taxes)info+=`\nAnn Taxes: $${Number(lead.annual_taxes).toLocaleString()}`;}
+  document.getElementById('lead-info-grid').textContent=info;
+  updateStats();
+}
+
+function renderDispoTrack(doc,current){
+  const stages=['new','contacted','responded','deal','dead'],labels={new:'New',contacted:'Contacted',responded:'Responded',deal:'🔥 Deal',dead:'Dead'};
+  document.getElementById('dispo-track').innerHTML=stages.map(s=>`<button class="dispo-btn d-${s} ${current===s?'active':''}" onclick="setDispo('${doc}','${s}')">${labels[s]}</button>`).join('');
+}
+
+function renderTimeline(lead,ls){
+  const ev=[],ce=isCE(lead);
+  if(ce){ev.push({dot:'ce',text:`<strong>Code violation opened</strong> — ${lead.ce_cat_label||lead.ce_category}`,time:lead.opened_date||''});if((lead.ce_status||'').toUpperCase()==='OPEN')ev.push({dot:'warn',text:`Violation still <strong>OPEN</strong>`,time:'Current'});}
+  else{ev.push({dot:'info',text:`<strong>Lead filed</strong> in Bexar County`,time:lead.date_filed||''});if(lead.loan_amount)ev.push({dot:'info',text:`Loan: <strong>${lead.loan_amount}</strong>${lead.lender?' via '+lead.lender:''}`,time:lead.loan_date||''});if(lead.sale_date)ev.push({dot:'warn',text:`<strong>Auction scheduled</strong>`,time:lead.sale_date});}
+  if(lead.is_new)ev.push({dot:'ok',text:`<strong>New</strong> this scraper run`,time:'Latest'});
+  if(ls.phone)ev.push({dot:'ok',text:`<strong>ForeWarn searched</strong> — ${ls.phone}`,time:ls.searchedAt?new Date(ls.searchedAt).toLocaleDateString():''});
+  if(ls.dispo&&ls.dispo!=='new')ev.push({dot:'warn',text:`Dispo → <strong>${ls.dispo}</strong>`,time:''});
+  document.getElementById('timeline').innerHTML=ev.reverse().map(e=>`<div class="tl-item"><div class="tl-dot ${e.dot}"></div><div><div class="tl-content">${e.text}</div><div class="tl-time">${e.time}</div></div></div>`).join('')||'<div style="color:var(--dim);font-size:11px">No activity yet</div>';
+}
+
+async function savePhone(){
+  if(S.used>=100){toast('Weekly budget exhausted',true);return;}
+  const phone=document.getElementById('phone-input').value.trim();
+  if(!phone){toast('Enter a phone number first',true);return;}
+  const lead=allLeads.find(l=>l.doc_number===selectedDoc);if(!lead)return;
+  if(!S.leads[selectedDoc])S.leads[selectedDoc]={};
+  S.leads[selectedDoc].phone=phone;S.leads[selectedDoc].searchedAt=Date.now();S.leads[selectedDoc].dispo=S.leads[selectedDoc].dispo||'new';S.leads[selectedDoc].skipped=false;
+  S.used++;saveState();updateBudgetUI();
+  if(S.ghlApiKey)await pushGHL(lead,phone);
+  populateDetail(lead);filterLeads();updateTopStats();updateTypeCounts();
+  toast(`✓ Saved · ${Math.max(0,100-S.used)} searches left`);
+}
+function clearPhone(){if(!confirm('Clear phone?'))return;if(S.leads[selectedDoc]){S.leads[selectedDoc].phone='';S.leads[selectedDoc].searchedAt=null;saveState();}const lead=allLeads.find(l=>l.doc_number===selectedDoc);if(lead)populateDetail(lead);filterLeads();}
+function skipLead(){if(!S.leads[selectedDoc])S.leads[selectedDoc]={};S.leads[selectedDoc].skipped=!S.leads[selectedDoc].skipped;saveState();filterLeads();toast('Skipped');}
+function setDispo(doc,dispo){if(!S.leads[doc])S.leads[doc]={};S.leads[doc].dispo=dispo;saveState();renderDispoTrack(doc,dispo);renderList();updateStats();if(S.ghlApiKey&&S.leads[doc]?.ghlId)updateGHLTag(S.leads[doc].ghlId,dispo);toast(`Dispo → ${dispo}`);}
+function saveNotes(){if(!selectedDoc)return;if(!S.leads[selectedDoc])S.leads[selectedDoc]={};S.leads[selectedDoc].notes=document.getElementById('notes-area').value;saveState();}
+function copyAddress(){const lead=allLeads.find(l=>l.doc_number===selectedDoc);if(!lead)return;navigator.clipboard.writeText(`${lead.address}, ${lead.city} TX ${lead.zip}`);toast('Address copied');}
+function openGHL(){const ls=LS(selectedDoc);window.open(ls.ghlId?`https://app.gohighlevel.com/contacts/${ls.ghlId}`:'https://app.gohighlevel.com','_blank');}
+
+async function pushGHL(lead,phone){
+  try{
+    const{first,last}=parseName(lead.owner),ce=isCE(lead);
+    const tags=['bexar_lead','forewarn_searched','bexar-contacted'];
+    if(ce){tags.push('code_enforcement','bexar_ce_lead');const fl=lead.flags||[];if(fl.includes('DANGEROUS PREMISES'))tags.push('ce_dangerous');if(fl.includes('OPEN VIOLATION'))tags.push('ce_open_violation');}
+    else{if(lead.absentee)tags.push('absentee');if(lead.type==='TAX')tags.push('tax_foreclosure');if(lead.is_new)tags.push('new_lead');}
+    const body={firstName:first||(ce?'CE':''),lastName:last||(ce?lead.ce_cat_label||'':''),phone,address1:lead.address,city:lead.city,state:'TX',postalCode:lead.zip,tags,locationId:S.ghlLocationId,source:ce?'bexar-ce':'bexar-leads'};
+    const res=await fetch('https://services.leadconnectorhq.com/contacts/',{method:'POST',headers:{'Authorization':'Bearer '+S.ghlApiKey,'Content-Type':'application/json','Version':'2021-07-28'},body:JSON.stringify(body)});
+    const data=await res.json();const id=data.contact?.id||data.id;
+    if(id){S.leads[lead.doc_number].ghlId=id;saveState();setGhlDot(true);}else{console.error('GHL:',data);setGhlDot(false);}
+  }catch(e){console.error(e);setGhlDot(false);}
+}
+async function updateGHLTag(contactId,dispo){const tagMap={contacted:'dispo_contacted',responded:'dispo_responded',deal:'dispo_deal',dead:'dispo_dead'};const tag=tagMap[dispo];if(!tag)return;try{await fetch(`https://services.leadconnectorhq.com/contacts/${contactId}/tags/`,{method:'POST',headers:{'Authorization':'Bearer '+S.ghlApiKey,'Content-Type':'application/json','Version':'2021-07-28'},body:JSON.stringify({tags:[tag]})});}catch(e){}}
+function setGhlDot(ok){const dot=document.getElementById('ghl-dot'),txt=document.getElementById('ghl-txt');if(ok===null){dot.className='ghl-dot';txt.textContent='GHL';}else if(ok){dot.className='ghl-dot ok';txt.textContent='GHL ✓';}else{dot.className='ghl-dot err';txt.textContent='GHL ✗';}}
+
+function updateTopStats(){const named=allLeads.filter(l=>l.owner&&l.owner.trim()).length,ce=allLeads.filter(l=>isCE(l)).length,searched=Object.values(S.leads).filter(l=>l.phone).length,deals=Object.values(S.leads).filter(l=>l.dispo==='deal').length;const set=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v;};set('st-total',allLeads.length);set('st-named',named);set('st-ce',ce);set('st-searched',searched);set('st-deals',deals);}
+function updateStats(){
+  const set=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v;};
+  set('ov-total',allLeads.length);set('ov-absentee',allLeads.filter(l=>l.absentee).length);set('ov-tax',allLeads.filter(l=>l.type==='TAX').length);set('ov-ce',allLeads.filter(l=>isCE(l)).length);set('ov-new',allLeads.filter(l=>l.is_new).length);set('ov-urgent',allLeads.filter(l=>l.flags&&l.flags.includes('URGENT')).length);set('ov-searched',Object.values(S.leads).filter(l=>l.phone).length);set('ov-deals',Object.values(S.leads).filter(l=>l.dispo==='deal').length);
+  const ls=Object.values(S.leads),cont=ls.filter(l=>l.dispo==='contacted').length,resp=ls.filter(l=>l.dispo==='responded').length,deal=ls.filter(l=>l.dispo==='deal').length,dead=ls.filter(l=>l.dispo==='dead').length;
+  const tot=Math.max(Object.values(S.leads).filter(l=>l.phone).length,1),pct=n=>Math.round(n/tot*100)+'%';
+  const seg=(id,n)=>{const el=document.getElementById(id);if(el)el.style.width=pct(n);};
+  seg('pb-contacted',cont);seg('pb-responded',resp);seg('pb-deal',deal);seg('pb-dead',dead);
+  set('pb-l-cont',cont+' contacted');set('pb-l-resp',resp+' responded');set('pb-l-deal',deal+' deals');set('pb-l-dead',dead+' dead');
+}
+
+function setChip(f,el){currentChip=f;document.querySelectorAll('.chip-row .chip').forEach(c=>c.classList.remove('active'));el.classList.add('active');filterLeads();}
+function openSettings(){document.getElementById('set-apikey').value=S.ghlApiKey||'';document.getElementById('set-locid').value=S.ghlLocationId||'UAOJlgeerLu3GChP9jDJ';document.getElementById('set-url').value=S.recordsUrl||REC_URL_DEFAULT;document.getElementById('set-ghtoken').value=S.ghToken||'';document.getElementById('settings-modal').classList.add('open');}
+function closeSettings(){document.getElementById('settings-modal').classList.remove('open');}
+function saveSettings(){S.ghlApiKey=document.getElementById('set-apikey').value.trim();S.ghlLocationId=document.getElementById('set-locid').value.trim();S.recordsUrl=document.getElementById('set-url').value.trim()||REC_URL_DEFAULT;S.ghToken=document.getElementById('set-ghtoken').value.trim();saveState();closeSettings();toast('Settings saved');fetchLeads();}
+
+let toastTimer;
+function toast(msg,err=false){const el=document.getElementById('toast');el.textContent=msg;el.className='show'+(err?' err':'');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.className='',3000);}
+
+init();
+</script>
+</body>
+</html>
