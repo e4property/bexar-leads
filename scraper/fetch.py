@@ -1,5 +1,5 @@
 """
-Bexar County Motivated Seller Lead Scraper v28.6
+Bexar County Motivated Seller Lead Scraper v28.7
 HYBRID SCRAPER:
   Primary:   bexar.tx.publicsearch.us  (Selenium, runs 3x daily)
              - 7-day chunks covering 90-day window
@@ -110,7 +110,7 @@ def fetch_json(url, retries=3):
     for attempt in range(retries):
         try:
             req = urllib.request.Request(
-                url, headers={"User-Agent": "BexarScraper/28.6", "Accept": "application/json"})
+                url, headers={"User-Agent": "BexarScraper/28.7", "Accept": "application/json"})
             with urllib.request.urlopen(req, timeout=25) as r:
                 return json.loads(r.read().decode("utf-8", errors="replace"))
         except Exception as e:
@@ -166,7 +166,7 @@ def load_known_docs():
     try:
         req = urllib.request.Request(
             url,
-            headers={"User-Agent": "BexarScraper/28.6",
+            headers={"User-Agent": "BexarScraper/28.7",
                      "Accept": "application/json",
                      "Cache-Control": "no-cache"})
         with urllib.request.urlopen(req, timeout=20) as r:
@@ -526,7 +526,7 @@ def fetch_code_enforcement(known_docs):
     Fetch SA code enforcement violations using Selenium to load ArcGIS
     FeatureServer JSON in a real browser (bypasses 403).
 
-    v28.6: Query one category at a time to avoid 400 from long WHERE clause.
+    v28.7: Query one category at a time to avoid 400 from long WHERE clause.
     Each category gets its own paginated query. Driver reused across all.
     """
     import json as _json
@@ -551,7 +551,9 @@ def fetch_code_enforcement(known_docs):
         driver = get_driver()
 
         for cat_code, cat_label in CE_CATEGORIES.items():
-            where  = f"Category = '{cat_code}' AND OpenedDateTime >= {cutoff_ms}"
+            # ArcGIS date filter — use timestamp string format
+            cutoff_str = CUTOFF_DATE.strftime("%Y-%m-%d %H:%M:%S")
+            where = "Category = '{}' AND OpenedDateTime >= timestamp '{}'".format(cat_code, cutoff_str)
             offset = 0
             page   = 0
             cat_new = 0
@@ -1049,7 +1051,7 @@ if __name__ == "__main__":
     os.makedirs("dashboard", exist_ok=True)
 
     log.info("=" * 60)
-    log.info("Bexar County Lead Scraper v28.6 (Hybrid)")
+    log.info("Bexar County Lead Scraper v28.7 (Hybrid)")
     log.info(f"Primary:   PublicSearch.us ({KEEP_DAYS}d window, {CHUNK_DAYS}d chunks, {PAGE_TIMEOUT}s timeout)")
     log.info(f"Secondary: ArcGIS weekly backfill = {IS_SUNDAY}")
     log.info(f"Tertiary:  Code Enforcement 311 ({len(CE_CATEGORIES)} categories, {KEEP_DAYS}d window)")
