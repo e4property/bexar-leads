@@ -1,5 +1,5 @@
 """
-Bexar County Motivated Seller Lead Scraper v28.5
+Bexar County Motivated Seller Lead Scraper v28.6
 HYBRID SCRAPER:
   Primary:   bexar.tx.publicsearch.us  (Selenium, runs 3x daily)
              - 7-day chunks covering 90-day window
@@ -110,7 +110,7 @@ def fetch_json(url, retries=3):
     for attempt in range(retries):
         try:
             req = urllib.request.Request(
-                url, headers={"User-Agent": "BexarScraper/28.5", "Accept": "application/json"})
+                url, headers={"User-Agent": "BexarScraper/28.6", "Accept": "application/json"})
             with urllib.request.urlopen(req, timeout=25) as r:
                 return json.loads(r.read().decode("utf-8", errors="replace"))
         except Exception as e:
@@ -166,7 +166,7 @@ def load_known_docs():
     try:
         req = urllib.request.Request(
             url,
-            headers={"User-Agent": "BexarScraper/28.5",
+            headers={"User-Agent": "BexarScraper/28.6",
                      "Accept": "application/json",
                      "Cache-Control": "no-cache"})
         with urllib.request.urlopen(req, timeout=20) as r:
@@ -348,6 +348,18 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
                 city, zip_code = parse_city_zip(address_raw)
                 month, year    = parse_month_year(recorded_date)
 
+                # Capture internal PublicSearch doc ID from row link
+                ps_doc_id = ""
+                try:
+                    link = row.find_element(By.CSS_SELECTOR, "a[href*='/doc/']")
+                    href = link.get_attribute("href") or ""
+                    import re as _re
+                    m = _re.search(r"/doc/(\d+)", href)
+                    if m:
+                        ps_doc_id = m.group(1)
+                except Exception:
+                    pass
+
                 rec = {
                     "type":        rec_type,
                     "address":     address,
@@ -357,6 +369,7 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
                     "duplicate":   False,
                     "is_new":      True,
                     "doc_number":  doc_number,
+                    "ps_doc_id":   ps_doc_id,
                     "year":        year,
                     "month":       month,
                     "city":        city,
@@ -367,6 +380,10 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
                     "run_ts":      RUN_TIMESTAMP,
                     "flags":       [],
                     "source":      "publicsearch",
+                    "lender":      "",
+                    "loan_amount": "",
+                    "loan_date":   "",
+                    "trustee":     "",
                 }
                 records.append(rec)
                 page_new += 1
@@ -509,7 +526,7 @@ def fetch_code_enforcement(known_docs):
     Fetch SA code enforcement violations using Selenium to load ArcGIS
     FeatureServer JSON in a real browser (bypasses 403).
 
-    v28.5: Query one category at a time to avoid 400 from long WHERE clause.
+    v28.6: Query one category at a time to avoid 400 from long WHERE clause.
     Each category gets its own paginated query. Driver reused across all.
     """
     import json as _json
@@ -710,6 +727,145 @@ def fetch_arcgis_backfill(known_docs):
     return raw
 
 
+# ── DOCUMENT DETAIL FETCHER ──────────────────────────────────────────────────
+DOC_FETCH_DAYS = 3  # only fetch docs for leads filed within this many days
+
+def fetch_doc_details(records, driver):
+    """
+    For new leads filed within DOC_FETCH_DAYS, load the PublicSearch document
+    page and extract mortgage details from the SUMMARY tab.
+
+    Fields extracted: lender, loan_amount, loan_date, trustee
+    URL pattern: bexar.tx.publicsearch.us/doc/{ps_doc_id}
+    """
+    from selenium.webdriver.common.by import By
+    from selenium.webdriver.support.ui import WebDriverWait
+    from selenium.webdriver.support import expected_conditions as EC
+    import re as _re
+
+    cutoff = TODAY_NAIVE - timedelta(days=DOC_FETCH_DAYS)
+    candidates = [
+        r for r in records
+        if r.get("is_new")
+        and r.get("ps_doc_id")
+        and r.get("source") == "publicsearch"
+        and r.get("type") in ("NOF", "TAX")
+    ]
+
+    # Filter to recent by recorded date
+    recent = []
+    for r in candidates:
+        date_filed = r.get("date_filed", "")
+        try:
+            parts = date_filed.split("/")
+            if len(parts) == 2:
+                filed_dt = datetime(int(parts[1]), int(parts[0]), 1)
+                if filed_dt >= cutoff:
+                    recent.append(r)
+            else:
+                recent.append(r)  # include if date unclear
+        except Exception:
+            recent.append(r)
+
+    if not recent:
+        log.info(f"Doc fetch: no new leads within {DOC_FETCH_DAYS} days — skipping")
+        return records
+
+    log.info(f"Doc fetch: fetching details for {len(recent)} new lead(s)...")
+    wait = WebDriverWait(driver, 30)
+    fetched = 0
+
+    for rec in recent:
+        ps_id   = rec["ps_doc_id"]
+        doc_num = rec["doc_number"]
+        url     = f"{PUBLICSEARCH_BASE}/doc/{ps_id}"
+        log.info(f"  Doc [{doc_num}] id={ps_id} → {url}")
+
+        try:
+            driver.get(url)
+            time.sleep(3)
+
+            # Click Summary tab if present
+            try:
+                tabs = driver.find_elements(By.CSS_SELECTOR, ".tab, [role='tab'], .nav-link, button")
+                for tab in tabs:
+                    if "summary" in (tab.text or "").lower():
+                        tab.click()
+                        time.sleep(1.5)
+                        break
+            except Exception:
+                pass
+
+            # Get all page text
+            page_text = driver.find_element(By.TAG_NAME, "body").text
+
+            # Extract loan amount — "original amount of $XXX,XXX" or "principal amount of $XXX,XXX"
+            loan_amount = ""
+            m = _re.search(
+                r"(?:original|principal)\s+amount\s+of\s+\$([\d,]+(?:\.\d{2})?)",
+                page_text, _re.IGNORECASE)
+            if m:
+                loan_amount = "$" + m.group(1)
+
+            # Extract original/loan date — "dated Month DD, YYYY" or "dated MM/DD/YYYY"
+            loan_date = ""
+            m = _re.search(
+                r"(?:deed of trust|note|lien)\s+dated\s+([A-Za-z]+ \d{1,2},\s*\d{4}|\d{1,2}/\d{1,2}/\d{4})",
+                page_text, _re.IGNORECASE)
+            if m:
+                loan_date = m.group(1).strip()
+
+            # Extract lender — scan lines for label matches
+            lender = ""
+            lender_labels = ["Original Mortgage", "Original Mortgagee", "Lender", "Beneficiary", "Mortgagee"]
+            lines = page_text.split("\n")
+            for i, line in enumerate(lines):
+                for lbl in lender_labels:
+                    if lbl.lower() in line.lower():
+                        val = line.split(":")[-1].strip() if ":" in line else ""
+                        if not val and i+1 < len(lines):
+                            val = lines[i+1].strip()
+                        if val:
+                            lender = val
+                            break
+                if lender:
+                    break
+            if not lender:
+                m = _re.search(r"nominee for ([^,]+)", page_text, _re.IGNORECASE)
+                if m:
+                    lender = m.group(1).strip()
+
+            # Extract trustee
+            trustee = ""
+            trustee_labels = ["Original Trustee", "Substitute Trustee", "Trustee"]
+            for i, line in enumerate(lines):
+                for lbl in trustee_labels:
+                    if lbl.lower() in line.lower():
+                        val = line.split(":")[-1].strip() if ":" in line else ""
+                        if not val and i+1 < len(lines):
+                            val = lines[i+1].strip()
+                        if val:
+                            trustee = val
+                            break
+                if trustee:
+                    break
+
+            rec["loan_amount"] = loan_amount
+            rec["loan_date"]   = loan_date
+            rec["lender"]      = lender
+            rec["trustee"]     = trustee
+            fetched += 1
+
+            log.info(f"  → amount={loan_amount} | lender={lender[:40] if lender else '—'} | date={loan_date}")
+            time.sleep(1)
+
+        except Exception as e:
+            log.warning(f"  Doc [{doc_num}] fetch error: {e}")
+
+    log.info(f"Doc fetch: {fetched}/{len(recent)} enriched")
+    return records
+
+
 # ── OWNER ENRICHMENT ──────────────────────────────────────────────────────────
 def parse_address_parts(address):
     if not address:
@@ -893,7 +1049,7 @@ if __name__ == "__main__":
     os.makedirs("dashboard", exist_ok=True)
 
     log.info("=" * 60)
-    log.info("Bexar County Lead Scraper v28.5 (Hybrid)")
+    log.info("Bexar County Lead Scraper v28.6 (Hybrid)")
     log.info(f"Primary:   PublicSearch.us ({KEEP_DAYS}d window, {CHUNK_DAYS}d chunks, {PAGE_TIMEOUT}s timeout)")
     log.info(f"Secondary: ArcGIS weekly backfill = {IS_SUNDAY}")
     log.info(f"Tertiary:  Code Enforcement 311 ({len(CE_CATEGORIES)} categories, {KEEP_DAYS}d window)")
@@ -904,6 +1060,21 @@ if __name__ == "__main__":
 
     # ── Step 1: PublicSearch chunked scrape ───────────────────────────────────
     new_records = scrape_publicsearch(known_docs)
+
+    # ── Step 1b: Document detail fetch for new leads ─────────────────────────
+    if new_records:
+        doc_driver = None
+        try:
+            doc_driver = get_driver()
+            new_records = fetch_doc_details(new_records, doc_driver)
+        except Exception as e:
+            log.warning(f"Doc fetch driver error: {e}")
+        finally:
+            if doc_driver:
+                try:
+                    doc_driver.quit()
+                except Exception:
+                    pass
 
     # ── Step 2: ArcGIS weekly backfill (Sundays only) ────────────────────────
     arcgis_records = []
