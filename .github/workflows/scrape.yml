@@ -51,10 +51,12 @@ jobs:
           CE_COUNT=$(grep -oP '(?<=Code Enforcement added )\d+' /tmp/scraper.log | tail -1 || echo "0")
           DANG_COUNT=$(grep -oP '(?<=dangerous premises: )\d+' /tmp/scraper.log | tail -1 || echo "0")
           FINAL_TOTAL=$(grep -oP '(?<=Final: )\d+(?= total)' /tmp/scraper.log | tail -1 || echo "0")
+          MORTGAGE_CT=$(grep -oP '(?<=Mortgage intel: )\d+' /tmp/scraper.log | tail -1 || echo "0")
           echo "new_total=${NEW_TOTAL:-0}" >> $GITHUB_OUTPUT
           echo "ce_count=${CE_COUNT:-0}" >> $GITHUB_OUTPUT
           echo "dang_count=${DANG_COUNT:-0}" >> $GITHUB_OUTPUT
           echo "final_total=${FINAL_TOTAL:-0}" >> $GITHUB_OUTPUT
+          echo "mortgage_ct=${MORTGAGE_CT:-0}" >> $GITHUB_OUTPUT
 
       - name: Show summary
         run: python3 scraper/summary.py
@@ -96,23 +98,60 @@ jobs:
           CE="${{ steps.scraper.outputs.ce_count }}"
           DANG="${{ steps.scraper.outputs.dang_count }}"
           TOTAL="${{ steps.scraper.outputs.final_total }}"
-          NEW=${NEW:-0}; CE=${CE:-0}; DANG=${DANG:-0}; TOTAL=${TOTAL:-0}
+          MORT="${{ steps.scraper.outputs.mortgage_ct }}"
+          NEW=${NEW:-0}; CE=${CE:-0}; DANG=${DANG:-0}; TOTAL=${TOTAL:-0}; MORT=${MORT:-0}
 
           if [ "$NEW" -gt "0" ] || [ "$CE" -gt "0" ]; then
             MSG="Bexar Leads: ${NEW} new foreclosure, ${CE} code enforce"
             if [ "$DANG" -gt "0" ]; then MSG="${MSG} !! ${DANG} DANGEROUS PREMISES"; fi
-            MSG="${MSG}. ${TOTAL} total. Check dash."
+            MSG="${MSG}. ${MORT} w/mortgage intel. ${TOTAL} total. Check dash."
           else
-            MSG="Bexar scrape done. No new leads. ${TOTAL} on file."
+            MSG="Bexar scrape done. No new leads. ${MORT} w/mortgage intel. ${TOTAL} on file."
           fi
 
-          PAYLOAD=$(python3 -c "import json,sys; print(json.dumps({'type':'SMS','locationId':'$GHL_LOCATION_ID','toNumber':'$NOTIFY_PHONE','message':MSG}))" 2>/dev/null) || \
-          PAYLOAD="{\"type\":\"SMS\",\"locationId\":\"$GHL_LOCATION_ID\",\"toNumber\":\"$NOTIFY_PHONE\",\"message\":\"$MSG\"}"
-
-          RESP=$(curl -s -w "\n%{http_code}" \
-            -X POST "https://services.leadconnectorhq.com/conversations/messages/outbound" \
+          # Step 1: look up contact by phone to get contactId
+          PHONE_ENCODED=$(python3 -c "import urllib.parse; print(urllib.parse.quote('$NOTIFY_PHONE'))")
+          CONTACT_RESP=$(curl -s \
+            "https://services.leadconnectorhq.com/contacts/?locationId=$GHL_LOCATION_ID&query=$PHONE_ENCODED" \
             -H "Authorization: Bearer $GHL_API_KEY" \
-            -H "Content-Type: application/json" \
-            -H "Version: 2021-07-28" \
-            -d "$PAYLOAD") || true
-          echo "SMS response: $RESP"
+            -H "Version: 2021-07-28") || true
+
+          CONTACT_ID=$(echo "$CONTACT_RESP" | python3 -c "
+          import json,sys
+          try:
+            d=json.load(sys.stdin)
+            contacts=d.get('contacts',d.get('data',[]))
+            if contacts: print(contacts[0].get('id',''))
+          except: pass
+          " 2>/dev/null || true)
+
+          if [ -n "$CONTACT_ID" ]; then
+            # Send via conversation using contactId
+            PAYLOAD=$(python3 -c "import json; print(json.dumps({
+              'type':'SMS',
+              'contactId':'$CONTACT_ID',
+              'message':'$MSG'
+            }))")
+            RESP=$(curl -s -w "\n%{http_code}" \
+              -X POST "https://services.leadconnectorhq.com/conversations/messages" \
+              -H "Authorization: Bearer $GHL_API_KEY" \
+              -H "Content-Type: application/json" \
+              -H "Version: 2021-07-28" \
+              -d "$PAYLOAD") || true
+            echo "SMS via contactId response: $RESP"
+          else
+            # Fallback: send directly by phone number
+            PAYLOAD=$(python3 -c "import json; print(json.dumps({
+              'type':'SMS',
+              'locationId':'$GHL_LOCATION_ID',
+              'toNumber':'$NOTIFY_PHONE',
+              'message':'$MSG'
+            }))")
+            RESP=$(curl -s -w "\n%{http_code}" \
+              -X POST "https://services.leadconnectorhq.com/conversations/messages/outbound" \
+              -H "Authorization: Bearer $GHL_API_KEY" \
+              -H "Content-Type: application/json" \
+              -H "Version: 2021-07-28" \
+              -d "$PAYLOAD") || true
+            echo "SMS fallback response: $RESP"
+          fi
