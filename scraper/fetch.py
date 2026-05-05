@@ -766,13 +766,15 @@ def fetch_doc_details(records, driver):
 
     cutoff = TODAY_NAIVE - timedelta(days=DOC_FETCH_DAYS)
 
-    # Candidates: any lead missing loan data within window — ps_doc_id resolved later
+    # Candidates: any NOF/TAX lead missing loan data within window
+    # Relax source check — older records may not have source field
     candidates = [
         r for r in records
-        if r.get("source") == "publicsearch"
-        and r.get("type") in ("NOF", "TAX")
+        if r.get("type") in ("NOF", "TAX")
         and not r.get("loan_amount")
+        and r.get("source", "publicsearch") == "publicsearch"
     ]
+    log.info(f"Doc fetch: {len(candidates)} candidates missing loan data")
 
     recent = []
     for r in candidates:
@@ -787,6 +789,10 @@ def fetch_doc_details(records, driver):
                 recent.append(r)
         except Exception:
             recent.append(r)
+
+    # Cap at 60 most recent to avoid 30+ min runs
+    recent = recent[:60]
+    log.info(f"Doc fetch: {len(recent)} within {DOC_FETCH_DAYS}d window (capped at 60)")
 
     if not recent:
         log.info(f"Doc fetch: no leads within {DOC_FETCH_DAYS}d window missing loan data — skipping")
@@ -1169,7 +1175,7 @@ if __name__ == "__main__":
     os.makedirs("dashboard", exist_ok=True)
 
     log.info("=" * 60)
-    log.info("Bexar County Lead Scraper v28.12 (Hybrid)")
+    log.info("Bexar County Lead Scraper v28.13 (Hybrid)")
     log.info(f"Primary:   PublicSearch.us ({KEEP_DAYS}d window, {CHUNK_DAYS}d chunks, {PAGE_TIMEOUT}s timeout)")
     log.info(f"Secondary: ArcGIS weekly backfill = {IS_SUNDAY}")
     log.info(f"Tertiary:  Code Enforcement 311 ({len(CE_CATEGORIES)} categories, {KEEP_DAYS}d window)")
@@ -1286,4 +1292,3 @@ if __name__ == "__main__":
         json.dump(records, f, indent=2)
     build_dashboard(records)
     log.info("Done.")
-
