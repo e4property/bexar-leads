@@ -1,15 +1,15 @@
 name: Scrape & Enrich Leads
 on:
   schedule:
-    - cron: '0 15 * * *'
-    - cron: '0 21 * * *'
+    - cron: '0 14 * * *'   # 9am CDT
+    - cron: '0 20 * * *'   # 3pm CDT
   workflow_dispatch:
 permissions:
   contents: write
   pages: write
   id-token: write
 concurrency:
-  group: pages
+  group: scrape-${{ github.run_id }}
   cancel-in-progress: false
 jobs:
   scrape-and-deploy:
