@@ -766,13 +766,12 @@ def fetch_doc_details(records, driver):
 
     cutoff = TODAY_NAIVE - timedelta(days=DOC_FETCH_DAYS)
 
-    # Include both new AND existing leads missing loan data, within window
+    # Candidates: any lead missing loan data within window — ps_doc_id resolved later
     candidates = [
         r for r in records
-        if r.get("ps_doc_id")
-        and r.get("source") == "publicsearch"
+        if r.get("source") == "publicsearch"
         and r.get("type") in ("NOF", "TAX")
-        and not r.get("loan_amount")  # only those missing data
+        and not r.get("loan_amount")
     ]
 
     recent = []
@@ -1095,11 +1094,10 @@ def enrich_owners(records):
             rec["annual_taxes"]      = result.get("annual_taxes", "")
             rec["land_value"]        = result.get("land_value", "")
             found += 1
-            if found <= 10 or found % 25 == 0:
-                log.info(f"  [{i+1}/{len(missing)}] {addr} -> {result['owner']} "
-                         f"[{result.get('method','')}]")
+            log.info(f"  [{i+1}/{len(missing)}] OK: {addr} -> {result['owner']} "
+                     f"[{result.get('method','')}] appr={result.get('appraised_value','—')}")
         else:
-            log.debug(f"  [{i+1}/{len(missing)}] No match: {addr}")
+            log.info(f"  [{i+1}/{len(missing)}] MISS: '{addr}' zip={zip_}")
         time.sleep(0.2)
     log.info(f"Owner enrichment: {found}/{len(missing)} filled")
     return records
@@ -1171,7 +1169,7 @@ if __name__ == "__main__":
     os.makedirs("dashboard", exist_ok=True)
 
     log.info("=" * 60)
-    log.info("Bexar County Lead Scraper v28.11 (Hybrid)")
+    log.info("Bexar County Lead Scraper v28.12 (Hybrid)")
     log.info(f"Primary:   PublicSearch.us ({KEEP_DAYS}d window, {CHUNK_DAYS}d chunks, {PAGE_TIMEOUT}s timeout)")
     log.info(f"Secondary: ArcGIS weekly backfill = {IS_SUNDAY}")
     log.info(f"Tertiary:  Code Enforcement 311 ({len(CE_CATEGORIES)} categories, {KEEP_DAYS}d window)")
