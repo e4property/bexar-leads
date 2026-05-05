@@ -721,33 +721,45 @@ def fetch_arcgis_backfill(known_docs):
 def lookup_ps_doc_id(doc_number, driver):
     """
     Look up PublicSearch internal doc ID by doc number.
-    Searches the results page filtered to exact doc number, reads the URL after clicking.
-    Returns ps_doc_id string or "".
+    Uses keyword search to find exact doc, reads internal ID from URL.
     """
     from selenium.webdriver.common.by import By
     import re as _re
     try:
+        # Use keyword search with exact doc number
         url = (f"{PUBLICSEARCH_BASE}/results?department=FC"
-               f"&docNumber={doc_number}&limit=10&offset=0")
+               f"&limit=10&offset=0&sort=desc&sortBy=recordedDate"
+               f"&docNumber={doc_number}")
         driver.get(url)
         time.sleep(3)
-        # Try to find a link with /doc/ in it
+
+        # Strategy 1: find any link with /doc/ and verify doc number nearby
         links = driver.find_elements(By.CSS_SELECTOR, "a[href*='/doc/']")
         for link in links:
             href = link.get_attribute("href") or ""
             m = _re.search(r"/doc/(\d+)", href)
             if m:
-                return m.group(1)
-        # Fallback: click first result row and read URL
-        rows = driver.find_elements(By.CSS_SELECTOR, "table tbody tr, .result-row")
-        if rows:
-            rows[0].click()
-            time.sleep(2)
-            m = _re.search(r"/doc/(\d+)", driver.current_url)
-            if m:
-                return m.group(1)
+                # Verify the row contains our doc number
+                try:
+                    row = link.find_element(By.XPATH, "ancestor::tr")
+                    if doc_number in (row.text or ""):
+                        return m.group(1)
+                except Exception:
+                    return m.group(1)  # take it if we can't verify
+
+        # Strategy 2: click first row, read URL, verify, come back
+        rows = driver.find_elements(By.CSS_SELECTOR, "table tbody tr")
+        for row in rows:
+            if doc_number in (row.text or ""):
+                row.click()
+                time.sleep(2)
+                m = _re.search(r"/doc/(\d+)", driver.current_url)
+                if m:
+                    return m.group(1)
+                break
+
     except Exception as e:
-        log.debug(f"  ps_doc_id lookup error for {doc_number}: {e}")
+        log.debug(f"  ps_doc_id lookup error [{doc_number}]: {e}")
     return ""
 def fetch_doc_details(records, driver):
     """
@@ -802,11 +814,18 @@ def fetch_doc_details(records, driver):
     missing_id = [r for r in recent if not r.get("ps_doc_id")]
     if missing_id:
         log.info(f"Doc fetch: resolving ps_doc_id for {len(missing_id)} leads...")
+        seen_ids = set()
         for r in missing_id:
             pid = lookup_ps_doc_id(r["doc_number"], driver)
             if pid:
+                if pid in seen_ids:
+                    log.warning(f"  DUPLICATE ID [{r['doc_number']}] → {pid} — skipping")
+                    continue
                 r["ps_doc_id"] = pid
+                seen_ids.add(pid)
                 log.info(f"  Resolved [{r['doc_number']}] → {pid}")
+            else:
+                log.info(f"  No ID found for [{r['doc_number']}]")
             time.sleep(1)
 
     # Re-filter to only those with a ps_doc_id now
@@ -1175,7 +1194,7 @@ if __name__ == "__main__":
     os.makedirs("dashboard", exist_ok=True)
 
     log.info("=" * 60)
-    log.info("Bexar County Lead Scraper v28.13 (Hybrid)")
+    log.info("Bexar County Lead Scraper v28.14 (Hybrid)")
     log.info(f"Primary:   PublicSearch.us ({KEEP_DAYS}d window, {CHUNK_DAYS}d chunks, {PAGE_TIMEOUT}s timeout)")
     log.info(f"Secondary: ArcGIS weekly backfill = {IS_SUNDAY}")
     log.info(f"Tertiary:  Code Enforcement 311 ({len(CE_CATEGORIES)} categories, {KEEP_DAYS}d window)")
