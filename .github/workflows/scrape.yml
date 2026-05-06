@@ -45,6 +45,8 @@ jobs:
         env:
           GHL_API_KEY: ${{ secrets.GHL_API_KEY }}
           GHL_LOCATION_ID: ${{ secrets.GHL_LOCATION_ID }}
+          CLERK_EMAIL: ${{ secrets.CLERK_EMAIL }}
+          CLERK_PASSWORD: ${{ secrets.CLERK_PASSWORD }}
         run: |
           python scraper/fetch.py 2>&1 | tee /tmp/scraper.log
           NEW_TOTAL=$(grep -oP '(?<=PublicSearch: )\d+(?= total new)' /tmp/scraper.log | tail -1 || echo "0")
