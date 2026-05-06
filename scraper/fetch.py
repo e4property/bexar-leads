@@ -718,6 +718,45 @@ def fetch_arcgis_backfill(known_docs):
     return raw
 
 
+def login_publicsearch(driver):
+    """Log in to PublicSearch using clerk credentials from environment."""
+    from selenium.webdriver.common.by import By
+    from selenium.webdriver.support.ui import WebDriverWait
+    from selenium.webdriver.support import expected_conditions as EC
+
+    email    = os.environ.get("CLERK_EMAIL", "")
+    password = os.environ.get("CLERK_PASSWORD", "")
+    if not email or not password:
+        log.warning("No CLERK_EMAIL/CLERK_PASSWORD — skipping login")
+        return False
+    try:
+        driver.set_page_load_timeout(20)
+        driver.get(f"{PUBLICSEARCH_BASE}/login")
+        time.sleep(3)
+        wait = WebDriverWait(driver, 15)
+        email_el = wait.until(EC.presence_of_element_located(
+            (By.CSS_SELECTOR, "input[type='email'],input[name='email'],input[id*='email']")))
+        email_el.clear()
+        email_el.send_keys(email)
+        pass_el = driver.find_element(
+            By.CSS_SELECTOR, "input[type='password'],input[name='password'],input[id*='pass']")
+        pass_el.clear()
+        pass_el.send_keys(password)
+        try:
+            driver.find_element(By.CSS_SELECTOR, "button[type='submit'],input[type='submit']").click()
+        except Exception:
+            pass_el.submit()
+        time.sleep(4)
+        if "login" not in driver.current_url.lower():
+            log.info(f"PublicSearch login OK — {driver.current_url}")
+            return True
+        log.warning("PublicSearch login failed — still on login page")
+        return False
+    except Exception as e:
+        log.warning(f"PublicSearch login error: {e}")
+        return False
+
+
 def lookup_ps_doc_id(doc_number, driver):
     """
     Look up PublicSearch internal doc ID by doc number.
@@ -726,7 +765,7 @@ def lookup_ps_doc_id(doc_number, driver):
     from selenium.webdriver.common.by import By
     import re as _re
     try:
-        # Use keyword search with exact doc number
+        driver.set_page_load_timeout(15)
         url = (f"{PUBLICSEARCH_BASE}/results?department=FC"
                f"&limit=10&offset=0&sort=desc&sortBy=recordedDate"
                f"&docNumber={doc_number}")
@@ -802,13 +841,16 @@ def fetch_doc_details(records, driver):
         except Exception:
             recent.append(r)
 
-    # Cap at 60 most recent to avoid 30+ min runs
-    recent = recent[:60]
-    log.info(f"Doc fetch: {len(recent)} within {DOC_FETCH_DAYS}d window (capped at 60)")
+    # Cap at 20 per run to avoid long runtimes
+    recent = recent[:20]
+    log.info(f"Doc fetch: {len(recent)} within {DOC_FETCH_DAYS}d window (capped at 20)")
 
     if not recent:
         log.info(f"Doc fetch: no leads within {DOC_FETCH_DAYS}d window missing loan data — skipping")
         return records
+
+    # ── Login to PublicSearch so doc pages return full text ───────────────────
+    login_publicsearch(driver)
 
     # ── Resolve missing ps_doc_ids via search ─────────────────────────────────
     missing_id = [r for r in recent if not r.get("ps_doc_id")]
@@ -844,8 +886,12 @@ def fetch_doc_details(records, driver):
         log.info(f"  Doc [{doc_num}] id={ps_id}")
 
         try:
+            driver.set_page_load_timeout(20)
             driver.get(url)
-            time.sleep(4)
+            time.sleep(3)
+        except Exception:
+            log.warning(f"  Doc [{doc_num}] page load timeout — skipping")
+            continue
 
             # Click SUMMARY tab
             try:
@@ -1194,7 +1240,7 @@ if __name__ == "__main__":
     os.makedirs("dashboard", exist_ok=True)
 
     log.info("=" * 60)
-    log.info("Bexar County Lead Scraper v28.14 (Hybrid)")
+    log.info("Bexar County Lead Scraper v28.15 (Hybrid)")
     log.info(f"Primary:   PublicSearch.us ({KEEP_DAYS}d window, {CHUNK_DAYS}d chunks, {PAGE_TIMEOUT}s timeout)")
     log.info(f"Secondary: ArcGIS weekly backfill = {IS_SUNDAY}")
     log.info(f"Tertiary:  Code Enforcement 311 ({len(CE_CATEGORIES)} categories, {KEEP_DAYS}d window)")
