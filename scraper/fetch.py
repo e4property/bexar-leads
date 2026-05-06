@@ -732,23 +732,74 @@ def login_publicsearch(driver):
     try:
         driver.set_page_load_timeout(20)
         driver.get(f"{PUBLICSEARCH_BASE}/login")
-        time.sleep(3)
-        wait = WebDriverWait(driver, 15)
-        email_el = wait.until(EC.presence_of_element_located(
-            (By.CSS_SELECTOR, "input[type='email'],input[name='email'],input[id*='email']")))
+        time.sleep(4)
+
+        # Log page title so we know what loaded
+        log.info(f"Login page title: {driver.title} | url: {driver.current_url}")
+
+        # Try all common input selectors
+        email_el = None
+        for sel in ["input[type='email']", "input[name='email']",
+                    "input[name='username']", "input[placeholder*='mail']",
+                    "input[placeholder*='ser']", "input:not([type='password']):not([type='hidden'])"]:
+            try:
+                els = driver.find_elements(By.CSS_SELECTOR, sel)
+                if els:
+                    email_el = els[0]
+                    log.info(f"  Found email field: {sel}")
+                    break
+            except Exception:
+                pass
+
+        if not email_el:
+            log.warning("  No email field found — logging page inputs")
+            for inp in driver.find_elements(By.CSS_SELECTOR, "input"):
+                log.info(f"    input type={inp.get_attribute('type')} name={inp.get_attribute('name')} id={inp.get_attribute('id')}")
+            return False
+
         email_el.clear()
         email_el.send_keys(email)
-        pass_el = driver.find_element(
-            By.CSS_SELECTOR, "input[type='password'],input[name='password'],input[id*='pass']")
+
+        pass_el = None
+        for sel in ["input[type='password']", "input[name='password']", "input[placeholder*='ass']"]:
+            try:
+                els = driver.find_elements(By.CSS_SELECTOR, sel)
+                if els:
+                    pass_el = els[0]
+                    break
+            except Exception:
+                pass
+
+        if not pass_el:
+            log.warning("  No password field found")
+            return False
+
         pass_el.clear()
         pass_el.send_keys(password)
-        try:
-            driver.find_element(By.CSS_SELECTOR, "button[type='submit'],input[type='submit']").click()
-        except Exception:
+
+        # Click submit
+        submitted = False
+        for sel in ["button[type='submit']", "input[type='submit']", "button.login", "button.submit", "button"]:
+            try:
+                btns = driver.find_elements(By.CSS_SELECTOR, sel)
+                for btn in btns:
+                    txt = (btn.text or "").lower()
+                    if any(x in txt for x in ["sign in","login","log in","submit",""]):
+                        btn.click()
+                        submitted = True
+                        break
+            except Exception:
+                pass
+            if submitted:
+                break
+
+        if not submitted:
             pass_el.submit()
+
         time.sleep(4)
+        log.info(f"Post-login url: {driver.current_url}")
         if "login" not in driver.current_url.lower():
-            log.info(f"PublicSearch login OK — {driver.current_url}")
+            log.info("PublicSearch login OK")
             return True
         log.warning("PublicSearch login failed — still on login page")
         return False
@@ -870,8 +921,15 @@ def fetch_doc_details(records, driver):
                 log.info(f"  No ID found for [{r['doc_number']}]")
             time.sleep(1)
 
-    # Re-filter to only those with a ps_doc_id now
-    recent = [r for r in recent if r.get("ps_doc_id")]
+    # Re-filter to only those with a ps_doc_id now — dedupe by ps_doc_id
+    seen = set()
+    deduped = []
+    for r in recent:
+        pid = r.get("ps_doc_id")
+        if pid and pid not in seen:
+            seen.add(pid)
+            deduped.append(r)
+    recent = deduped
     if not recent:
         log.info("Doc fetch: no ps_doc_ids resolved — skipping")
         return records
@@ -1240,7 +1298,7 @@ if __name__ == "__main__":
     os.makedirs("dashboard", exist_ok=True)
 
     log.info("=" * 60)
-    log.info("Bexar County Lead Scraper v28.15 (Hybrid)")
+    log.info("Bexar County Lead Scraper v28.16 (Hybrid)")
     log.info(f"Primary:   PublicSearch.us ({KEEP_DAYS}d window, {CHUNK_DAYS}d chunks, {PAGE_TIMEOUT}s timeout)")
     log.info(f"Secondary: ArcGIS weekly backfill = {IS_SUNDAY}")
     log.info(f"Tertiary:  Code Enforcement 311 ({len(CE_CATEGORIES)} categories, {KEEP_DAYS}d window)")
