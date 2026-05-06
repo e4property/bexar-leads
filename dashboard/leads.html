@@ -172,7 +172,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 .b-new{background:rgba(52,211,153,.1);color:var(--new-g);border:1px solid rgba(52,211,153,.2)}
 .b-phone{background:rgba(20,217,164,.08);color:var(--teal);border:1px solid rgba(20,217,164,.18)}
 .b-dispo{background:rgba(167,139,250,.08);color:var(--purple);border:1px solid rgba(167,139,250,.18)}
-.b-urgent{background:rgba(244,63,94,.12);color:var(--red);border:1px solid rgba(244,63,94,.25)}
+.b-ghl{background:rgba(20,217,164,.1);color:var(--teal);border:1px solid rgba(20,217,164,.25)}
 
 /* ── RIGHT PANEL ── */
 .right-panel{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--bg);min-height:0}
@@ -198,8 +198,8 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 .dh-meta{font-size:10px;color:var(--muted);font-family:'JetBrains Mono',monospace}
 
 /* ── DETAIL BODY (4-col grid) ── */
-.detail-body{flex:1;overflow:hidden;display:grid;grid-template-columns:1fr 1fr 1fr 1fr;min-height:0}
-.sec{padding:16px 18px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:var(--dim) transparent;min-height:0;max-height:100%}
+.detail-body{flex:1;overflow:hidden;display:grid;grid-template-columns:repeat(4,minmax(260px,1fr));min-height:0;overflow-x:auto}
+.sec{padding:16px 18px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:var(--dim) transparent;min-height:0}
 .sec::-webkit-scrollbar{width:4px}
 .sec::-webkit-scrollbar-thumb{background:var(--dim);border-radius:2px}
 .sec:last-child{border-right:none}
@@ -254,16 +254,16 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 .phone-saved-row{display:flex;align-items:center;gap:8px;background:rgba(20,217,164,.06);border:1px solid rgba(20,217,164,.18);border-radius:7px;padding:10px 12px;margin-bottom:8px}
 .saved-num{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--teal);font-weight:600}
 .saved-meta{font-size:10px;color:var(--muted);margin-top:1px}
-.phone-row{display:flex;gap:7px;margin-bottom:8px}
+.phone-row{display:flex;gap:7px;margin-bottom:8px;flex-wrap:wrap}
 .phone-input{flex:1;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:8px 10px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:12px;outline:none;transition:border-color .15s}
 .phone-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(59,130,246,.1)}
 .phone-input::placeholder{color:var(--muted);font-family:'Inter',sans-serif;font-size:11px}
 .btn-save-phone{padding:8px 14px;background:var(--accent);color:#fff;border:none;border-radius:6px;font-family:'Inter',sans-serif;font-weight:600;font-size:12px;cursor:pointer;transition:all .15s;white-space:nowrap}
 .btn-save-phone:hover{background:#2563eb;box-shadow:0 0 16px var(--glow-b)}
-.action-row{display:flex;gap:6px}
+.action-row{display:flex;gap:6px;flex-wrap:wrap}
 
 /* ── DISPO ── */
-.dispo-track{display:flex;gap:4px;margin-bottom:12px}
+.dispo-track{display:flex;gap:4px;margin-bottom:12px;flex-wrap:wrap}
 .dispo-btn{flex:1;padding:7px 3px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--dim);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;cursor:pointer;transition:all .12s;text-align:center;font-family:'JetBrains Mono',monospace}
 .dispo-btn:hover{border-color:var(--border2);color:var(--text2)}
 .dispo-btn.d-new.active{background:var(--bg3);border-color:var(--border2);color:var(--text2)}
@@ -598,6 +598,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
     <input type="password" id="set-ghtoken" placeholder="ghp_…">
     <div class="modal-actions">
       <button class="btn" onclick="closeSettings()">Cancel</button>
+      <button class="btn" id="btn-trigger-scrape" onclick="triggerScrapeFromSettings()" style="background:var(--bg3);border-color:var(--teal);color:var(--teal)">▶ Run Scrape</button>
       <button class="btn primary" onclick="saveSettings()">Save</button>
     </div>
   </div>
@@ -648,6 +649,22 @@ async function fetchLeads(){
     const res=await fetch((S.recordsUrl||REC_URL_DEFAULT)+'?t='+Date.now());
     if(!res.ok)throw new Error('HTTP '+res.status);
     allLeads=await res.json();
+    // Sync persisted fields from records.json into localStorage
+    for(const rec of allLeads) {
+      const doc = rec.doc_number;
+      if(!doc) continue;
+      const hasPersistedData = rec.dash_phone||rec.dash_dispo||rec.dash_notes||rec.ghl_pushed;
+      if(hasPersistedData) {
+        if(!S.leads[doc]) S.leads[doc]={};
+        if(rec.dash_phone && !S.leads[doc].phone) S.leads[doc].phone = rec.dash_phone;
+        if(rec.dash_dispo && S.leads[doc].dispo==='new') S.leads[doc].dispo = rec.dash_dispo;
+        if(rec.dash_notes && !S.leads[doc].notes) S.leads[doc].notes = rec.dash_notes;
+        if(rec.ghl_pushed) S.leads[doc].ghl_pushed = true;
+        if(rec.ghl_id && !S.leads[doc].ghlId) S.leads[doc].ghlId = rec.ghl_id;
+        if(rec.dash_searched_at && !S.leads[doc].searchedAt) S.leads[doc].searchedAt = new Date(rec.dash_searched_at).getTime();
+      }
+    }
+    saveState();
     const ts=allLeads.find(l=>l.run_ts)?.run_ts;
     if(ts){const d=new Date(ts);document.getElementById('last-update').textContent='Updated '+d.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});}
     filterLeads();updateStats();updateTopStats();updateTypeCounts();renderHotLeads();showNewBanner();
@@ -762,7 +779,21 @@ function filterLeads(){
   filteredLeads=list;selectedIdx=filteredLeads.findIndex(l=>l.doc_number===selectedDoc);renderList();
 }
 
-function LS(doc){return S.leads[doc]||{phone:'',dispo:'new',notes:'',skipped:false};}
+function LS(doc){
+  // Merge localStorage state with any persisted fields from records.json
+  const stored = S.leads[doc]||{phone:'',dispo:'new',notes:'',skipped:false};
+  const rec = allLeads.find(l=>l.doc_number===doc)||{};
+  return {
+    phone:      stored.phone      || rec.dash_phone      || '',
+    dispo:      stored.dispo      || rec.dash_dispo       || 'new',
+    notes:      stored.notes      || rec.dash_notes       || '',
+    skipped:    stored.skipped    || false,
+    searchedAt: stored.searchedAt || (rec.dash_searched_at ? new Date(rec.dash_searched_at).getTime() : null),
+    ghlId:      stored.ghlId      || rec.ghl_id           || '',
+    ghl_pushed: stored.ghl_pushed || rec.ghl_pushed       || false,
+    ghl_pushed_at: rec.ghl_pushed_at || null,
+  };
+}
 
 function freshness(lead){
   try{
@@ -786,6 +817,7 @@ function renderItem(lead,idx){
   else{if(lead.absentee)b.push(`<span class="badge b-abs">ABS</span>`);b.push(lead.type==='TAX'?`<span class="badge b-tax">TAX</span>`:`<span class="badge b-nof">NOF</span>`);}
   if(lead.is_new)b.push(`<span class="badge b-new">NEW</span>`);
   if(lead.flags?.includes('URGENT'))b.push(`<span class="badge b-urgent">🚨URG</span>`);
+  if(ls.ghl_pushed)b.push(`<span class="badge b-ghl">GHL✓</span>`);
   if(ls.phone)b.push(`<span class="badge b-phone">📞</span>`);
   if(dispo!=='new')b.push(`<span class="badge b-dispo">${dispo}</span>`);
   const sc=lead.score>=10?'s10':lead.score>=8?'s8':'';
@@ -912,8 +944,61 @@ function renderTimeline(lead,ls){
   else{ev.push({dot:'info',text:`<strong>Lead filed</strong> in Bexar County`,time:fmtDate(lead.date_filed)});if(lead.loan_amount)ev.push({dot:'info',text:`Loan: <strong>${lead.loan_amount}</strong>${lead.lender?' via '+lead.lender:''}`,time:fmtDate(lead.loan_date)});if(lead.sale_date)ev.push({dot:'warn',text:`<strong>Auction scheduled</strong>`,time:fmtDate(lead.sale_date)});}
   if(lead.is_new)ev.push({dot:'ok',text:`<strong>New</strong> this scraper run`,time:'Latest'});
   if(ls.phone)ev.push({dot:'ok',text:`<strong>ForeWarn searched</strong> — ${ls.phone}`,time:ls.searchedAt?new Date(ls.searchedAt).toLocaleDateString():''});
+  if(ls.ghl_pushed)ev.push({dot:'ok',text:`<strong>Pushed to GHL/Jarvis</strong>`,time:ls.ghl_pushed_at?new Date(ls.ghl_pushed_at).toLocaleDateString():''});
   if(ls.dispo&&ls.dispo!=='new')ev.push({dot:'warn',text:`Dispo → <strong>${ls.dispo}</strong>`,time:''});
   document.getElementById('timeline').innerHTML=ev.reverse().map(e=>`<div class="tl-item"><div class="tl-dot ${e.dot}"></div><div><div class="tl-content">${e.text}</div><div class="tl-time">${e.time}</div></div></div>`).join('')||'<div style="color:var(--dim);font-size:11px;font-family:JetBrains Mono,monospace">No activity yet</div>';
+}
+
+// ── GITHUB WRITE-BACK ─────────────────────────────────────────────────────────
+// Writes phone/dispo/notes/ghl_pushed back to records.json in the repo
+// so data persists across devices and browser clears.
+
+async function writeBackToRepo(doc_number, updates) {
+  if(!S.ghToken) return; // silently skip if no token
+  try {
+    const repoPath = 'dashboard/records.json';
+    const apiBase = `https://api.github.com/repos/${GH_REPO}/contents/${repoPath}`;
+
+    // Get current file SHA + content
+    const getRes = await fetch(apiBase, {
+      headers:{'Authorization':'Bearer '+S.ghToken,'Accept':'application/vnd.github+json'}
+    });
+    if(!getRes.ok) { console.warn('GH read failed:', getRes.status); return; }
+    const fileData = await getRes.json();
+    const sha = fileData.sha;
+    const currentJson = JSON.parse(atob(fileData.content.replace(/\n/g,'')));
+
+    // Apply updates to the matching record
+    let changed = false;
+    for(const rec of currentJson) {
+      if(rec.doc_number === doc_number) {
+        Object.assign(rec, updates);
+        changed = true;
+        break;
+      }
+    }
+    if(!changed) return;
+
+    // Write back
+    const newContent = btoa(unescape(encodeURIComponent(JSON.stringify(currentJson))));
+    const putRes = await fetch(apiBase, {
+      method: 'PUT',
+      headers:{'Authorization':'Bearer '+S.ghToken,'Accept':'application/vnd.github+json','Content-Type':'application/json'},
+      body: JSON.stringify({
+        message: `dash: update lead ${doc_number}`,
+        content: newContent,
+        sha: sha
+      })
+    });
+    if(putRes.ok) {
+      console.log(`Written back: ${doc_number}`, updates);
+    } else {
+      const err = await putRes.json();
+      console.warn('GH write failed:', err.message);
+    }
+  } catch(e) {
+    console.warn('writeBackToRepo error:', e);
+  }
 }
 
 async function savePhone(){
@@ -924,14 +1009,50 @@ async function savePhone(){
   if(!S.leads[selectedDoc])S.leads[selectedDoc]={};
   Object.assign(S.leads[selectedDoc],{phone,searchedAt:Date.now(),dispo:S.leads[selectedDoc].dispo||'new',skipped:false});
   S.used++;saveState();updateBudgetUI();
-  if(S.ghlApiKey)await pushGHL(lead,phone);
+  let ghlId = null;
+  if(S.ghlApiKey) ghlId = await pushGHL(lead,phone);
+  // Write back to repo
+  const updates = {
+    dash_phone: phone,
+    dash_searched_at: new Date().toISOString(),
+    dash_dispo: S.leads[selectedDoc].dispo||'new',
+    ghl_pushed: true,
+    ghl_pushed_at: new Date().toISOString()
+  };
+  if(ghlId) updates.ghl_id = ghlId;
+  writeBackToRepo(selectedDoc, updates); // fire and forget
   populateDetail(lead);filterLeads();updateTopStats();updateTypeCounts();
   toast(`✓ Saved · ${Math.max(0,100-S.used)} left`,'ok');
 }
-function clearPhone(){if(!confirm('Clear phone?'))return;if(S.leads[selectedDoc]){S.leads[selectedDoc].phone='';S.leads[selectedDoc].searchedAt=null;saveState();}const lead=allLeads.find(l=>l.doc_number===selectedDoc);if(lead)populateDetail(lead);filterLeads();}
-function skipLead(){if(!S.leads[selectedDoc])S.leads[selectedDoc]={};S.leads[selectedDoc].skipped=!S.leads[selectedDoc].skipped;saveState();filterLeads();toast('Skipped');}
-function setDispo(doc,dispo){if(!S.leads[doc])S.leads[doc]={};S.leads[doc].dispo=dispo;saveState();renderDispoTrack(doc,dispo);renderList();updateStats();if(S.ghlApiKey&&S.leads[doc]?.ghlId)updateGHLTag(S.leads[doc].ghlId,dispo);toast(`Dispo → ${dispo}`);}
-function saveNotes(){if(!selectedDoc)return;if(!S.leads[selectedDoc])S.leads[selectedDoc]={};S.leads[selectedDoc].notes=document.getElementById('notes-area').value;saveState();}
+
+function clearPhone(){
+  if(!confirm('Clear phone?'))return;
+  if(S.leads[selectedDoc]){S.leads[selectedDoc].phone='';S.leads[selectedDoc].searchedAt=null;saveState();}
+  writeBackToRepo(selectedDoc,{dash_phone:'',dash_searched_at:null});
+  const lead=allLeads.find(l=>l.doc_number===selectedDoc);if(lead)populateDetail(lead);filterLeads();
+}
+
+function skipLead(){
+  if(!S.leads[selectedDoc])S.leads[selectedDoc]={};
+  S.leads[selectedDoc].skipped=!S.leads[selectedDoc].skipped;saveState();filterLeads();toast('Skipped');
+}
+
+function setDispo(doc,dispo){
+  if(!S.leads[doc])S.leads[doc]={};
+  S.leads[doc].dispo=dispo;saveState();renderDispoTrack(doc,dispo);renderList();updateStats();
+  if(S.ghlApiKey&&S.leads[doc]?.ghlId)updateGHLTag(S.leads[doc].ghlId,dispo);
+  writeBackToRepo(doc,{dash_dispo:dispo,dash_dispo_at:new Date().toISOString()}); // fire and forget
+  toast(`Dispo → ${dispo}`);
+}
+
+function saveNotes(){
+  if(!selectedDoc)return;
+  if(!S.leads[selectedDoc])S.leads[selectedDoc]={};
+  const notes=document.getElementById('notes-area').value;
+  S.leads[selectedDoc].notes=notes;saveState();
+  writeBackToRepo(selectedDoc,{dash_notes:notes}); // fire and forget
+}
+
 function copyAddress(){const lead=allLeads.find(l=>l.doc_number===selectedDoc);if(!lead)return;navigator.clipboard.writeText(`${lead.address}, ${lead.city} TX ${lead.zip}`);toast('Address copied');}
 function openGHL(){const ls=LS(selectedDoc);window.open(ls.ghlId?`https://app.gohighlevel.com/contacts/${ls.ghlId}`:'https://app.gohighlevel.com','_blank');}
 
@@ -944,9 +1065,13 @@ async function pushGHL(lead,phone){
     const body={firstName:first||(ce?'CE':''),lastName:last||(ce?lead.ce_cat_label||'':''),phone,address1:lead.address,city:lead.city,state:'TX',postalCode:lead.zip,tags,locationId:S.ghlLocationId,source:ce?'bexar-ce':'bexar-leads'};
     const res=await fetch('https://services.leadconnectorhq.com/contacts/',{method:'POST',headers:{'Authorization':'Bearer '+S.ghlApiKey,'Content-Type':'application/json','Version':'2021-07-28'},body:JSON.stringify(body)});
     const data=await res.json(),id=data.contact?.id||data.id;
-    if(id){S.leads[lead.doc_number].ghlId=id;saveState();setGhlDot(true);}
-    else{console.error('GHL:',data);setGhlDot(false);}
-  }catch(e){console.error(e);setGhlDot(false);}
+    if(id){
+      S.leads[lead.doc_number].ghlId=id;
+      S.leads[lead.doc_number].ghl_pushed=true;
+      saveState();setGhlDot(true);
+      return id;
+    }else{console.error('GHL:',data);setGhlDot(false);return null;}
+  }catch(e){console.error(e);setGhlDot(false);return null;}
 }
 async function updateGHLTag(contactId,dispo){
   const tagMap={contacted:'dispo_contacted',responded:'dispo_responded',deal:'dispo_deal',dead:'dispo_dead'},tag=tagMap[dispo];if(!tag)return;
@@ -973,6 +1098,20 @@ function setChip(f,el){currentChip=f;document.querySelectorAll('.chip-row .chip'
 function openSettings(){document.getElementById('set-apikey').value=S.ghlApiKey||'';document.getElementById('set-locid').value=S.ghlLocationId||'UAOJlgeerLu3GChP9jDJ';document.getElementById('set-url').value=S.recordsUrl||REC_URL_DEFAULT;document.getElementById('set-ghtoken').value=S.ghToken||'';document.getElementById('settings-modal').classList.add('open');}
 function closeSettings(){document.getElementById('settings-modal').classList.remove('open');}
 function saveSettings(){S.ghlApiKey=document.getElementById('set-apikey').value.trim();S.ghlLocationId=document.getElementById('set-locid').value.trim();S.recordsUrl=document.getElementById('set-url').value.trim()||REC_URL_DEFAULT;S.ghToken=document.getElementById('set-ghtoken').value.trim();saveState();closeSettings();toast('Settings saved','ok');fetchLeads();}
+
+async function triggerScrapeFromSettings(){
+  if(!S.ghToken){toast('Save a GitHub token first',true);return;}
+  const btn=document.getElementById('btn-trigger-scrape');
+  btn.innerHTML='<span class="spin"></span> Running…';btn.disabled=true;
+  try{
+    const res=await fetch(`https://api.github.com/repos/${GH_REPO}/actions/workflows/${GH_WORKFLOW}/dispatches`,
+      {method:'POST',headers:{'Authorization':'Bearer '+S.ghToken,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28','Content-Type':'application/json'},
+      body:JSON.stringify({ref:'main'})});
+    if(res.status===204){toast('✓ Scrape triggered! Refresh in ~15 min','ok');}
+    else{const d=await res.json();toast('Error: '+(d.message||res.status),true);}
+  }catch(e){toast('Failed: '+e.message,true);}
+  btn.innerHTML='▶ Run Scrape';btn.disabled=false;
+}
 
 let toastTimer;
 function toast(msg,type=false){const el=document.getElementById('toast');el.textContent=msg;el.className='show'+(type===true?' err':type==='ok'?' ok':'');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.className='',3000);}
