@@ -175,11 +175,11 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 .b-urgent{background:rgba(244,63,94,.12);color:var(--red);border:1px solid rgba(244,63,94,.25)}
 
 /* ── RIGHT PANEL ── */
-.right-panel{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--bg)}
+.right-panel{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--bg);min-height:0}
 .empty-state{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--dim);gap:16px}
 .empty-icon{font-size:48px;opacity:.2}
 .empty-text{font-size:12px;color:var(--muted);text-align:center;line-height:2;font-family:'JetBrains Mono',monospace}
-.detail{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.detail{flex:1;display:flex;flex-direction:column;overflow:hidden;min-height:0}
 
 /* ── DETAIL HEADER ── */
 .detail-header{padding:16px 20px 12px;background:var(--surface);border-bottom:1px solid var(--border);flex-shrink:0;position:relative;overflow:hidden}
@@ -198,9 +198,9 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 .dh-meta{font-size:10px;color:var(--muted);font-family:'JetBrains Mono',monospace}
 
 /* ── DETAIL BODY (4-col grid) ── */
-.detail-body{flex:1;overflow:hidden;display:grid;grid-template-columns:1fr 1fr 1fr 1fr}
-.sec{padding:16px 18px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:var(--dim) transparent;height:100%}
-.sec::-webkit-scrollbar{width:3px}
+.detail-body{flex:1;overflow:hidden;display:grid;grid-template-columns:1fr 1fr 1fr 1fr;min-height:0}
+.sec{padding:16px 18px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:var(--dim) transparent;min-height:0;max-height:100%}
+.sec::-webkit-scrollbar{width:4px}
 .sec::-webkit-scrollbar-thumb{background:var(--dim);border-radius:2px}
 .sec:last-child{border-right:none}
 .sec-title{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace}
