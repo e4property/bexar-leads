@@ -266,7 +266,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600214",
     "ps_doc_id": "314757321",
     "year": "2026",
@@ -278,7 +278,6 @@
     "sale_date": "06/02/2026",
     "run_ts": "2026-05-06T04:23:36Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -6199,6 +6198,39 @@
     ],
     "score": 8,
     "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "3319 EDISON CRST",
+    "owner": "CARPENTER TREVA A",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260600212",
+    "ps_doc_id": "314757318",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78247",
+    "school_dist": "",
+    "date_filed": "5/2026",
+    "sale_date": "07/07/2026",
+    "run_ts": "2026-05-06T04:51:22Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "appraised_value": "259040.0",
+    "annual_taxes": "37360.0",
+    "land_value": "37360.0",
+    "score": 7,
+    "days_until_sale": 61
   },
   {
     "type": "NOF",
