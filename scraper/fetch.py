@@ -84,8 +84,9 @@ CHUNK_DAYS    = 7
 PAGE_TIMEOUT  = 180
 CUTOFF_DATE   = TODAY_NAIVE - timedelta(days=KEEP_DAYS)
 
-# ── v28.9: Extended to backfill mortgage intel from 4/30/2026 ─────────────────
-DOC_FETCH_DAYS = 34
+# ── Reverted to 6 days — PublicSearch blocks headless login, loan amounts
+# ── sourced from BCAD TotVal (appraised) instead. Re-enable when login solved.
+DOC_FETCH_DAYS = 6
 
 
 # ── HELPERS ───────────────────────────────────────────────────────────────────
@@ -914,8 +915,8 @@ def fetch_doc_details(records, driver):
         log.info(f"Doc fetch: no leads within {DOC_FETCH_DAYS}d window missing loan data — skipping")
         return records
 
-    # ── Login to PublicSearch so doc pages return full text ───────────────────
-    login_publicsearch(driver)
+    # No login needed — doc pages are publicly accessible without auth.
+    # Login page errors on server IPs but doc pages load fine.
 
     # ── Resolve missing ps_doc_ids via search ─────────────────────────────────
     missing_id = [r for r in recent if not r.get("ps_doc_id")]
@@ -965,126 +966,122 @@ def fetch_doc_details(records, driver):
             log.warning(f"  Doc [{doc_num}] page load timeout — skipping")
             continue
 
-            # Click SUMMARY tab
-            try:
-                from selenium.webdriver.support import expected_conditions as EC
-                tabs = driver.find_elements(By.CSS_SELECTOR, ".tab-item, .tab, [role='tab'], .nav-link, button, a")
-                for tab in tabs:
-                    txt = (tab.text or tab.get_attribute("textContent") or "").strip().lower()
-                    if txt == "summary" or txt.startswith("summar"):
-                        tab.click()
-                        time.sleep(2)
-                        break
-            except Exception:
-                pass
+        # Log first 200 chars of page so we can see what loaded
+        try:
+            preview = driver.find_element(By.TAG_NAME, "body").text[:300].replace("\n"," ")
+            log.info(f"  Page preview: {preview}")
+        except Exception:
+            pass
 
-            loan_amount = ""
-            loan_date   = ""
-            lender      = ""
-            trustee     = ""
+        # Click SUMMARY tab
+        try:
+            tabs = driver.find_elements(By.CSS_SELECTOR, ".tab-item, .tab, [role='tab'], .nav-link, button, a")
+            for tab in tabs:
+                txt = (tab.text or tab.get_attribute("textContent") or "").strip().lower()
+                if txt == "summary" or txt.startswith("summar"):
+                    tab.click()
+                    time.sleep(2)
+                    break
+        except Exception:
+            pass
 
-            # ── Strategy A: read structured SUMMARY table fields ──────────────
-            try:
-                rows = driver.find_elements(By.CSS_SELECTOR, "table tr, .summary-row, .detail-row, dl dt, .field-label, .label")
-                for el in rows:
-                    label_text = (el.text or "").strip().lower()
-                    try:
-                        sib = el.find_element(By.XPATH, "following-sibling::*[1]")
-                        val = (sib.text or "").strip()
-                    except Exception:
-                        val = ""
-                    if not val:
-                        try:
-                            parent = el.find_element(By.XPATH, "..")
-                            val = (parent.text or "").replace(el.text or "", "").strip()
-                        except Exception:
-                            pass
-                    if any(x in label_text for x in ["original amount","loan amount","principal amount"]):
-                        m = _re.search(r"\$?([\d,]+(?:\.\d{2})?)", val)
-                        if m:
-                            loan_amount = "$" + m.group(1)
-                    elif any(x in label_text for x in ["original beneficiary","mortgagee","beneficiary","lender"]):
-                        if val and len(val) > 2:
-                            lender = val
-                    elif any(x in label_text for x in ["trustor","trustee","substitute trustee"]):
-                        if val and len(val) > 2 and not trustee:
-                            trustee = val
-                    elif any(x in label_text for x in ["deed of trust","loan date","dated","instrument date"]):
-                        if val:
-                            loan_date = val
-            except Exception as e:
-                log.debug(f"  Summary table parse: {e}")
+        loan_amount = ""
+        loan_date   = ""
+        lender      = ""
+        trustee     = ""
 
-            # ── Strategy B: full body text — matches rendered HTML doc format ──
-            if not lender or not loan_date:
+        # ── Strategy A: read structured SUMMARY table fields ──────────────
+        try:
+            rows = driver.find_elements(By.CSS_SELECTOR, "table tr, .summary-row, .detail-row, dl dt, .field-label, .label")
+            for el in rows:
+                label_text = (el.text or "").strip().lower()
                 try:
-                    page_text = driver.find_element(By.TAG_NAME, "body").text
-                    lines = page_text.split("\n")
+                    sib = el.find_element(By.XPATH, "following-sibling::*[1]")
+                    val = (sib.text or "").strip()
+                except Exception:
+                    val = ""
+                if not val:
+                    try:
+                        parent = el.find_element(By.XPATH, "..")
+                        val = (parent.text or "").replace(el.text or "", "").strip()
+                    except Exception:
+                        pass
+                if any(x in label_text for x in ["original amount","loan amount","principal amount"]):
+                    m = _re.search(r"\$?([\d,]+(?:\.\d{2})?)", val)
+                    if m:
+                        loan_amount = "$" + m.group(1)
+                elif any(x in label_text for x in ["original beneficiary","mortgagee","beneficiary","lender"]):
+                    if val and len(val) > 2:
+                        lender = val
+                elif any(x in label_text for x in ["trustor","trustee","substitute trustee"]):
+                    if val and len(val) > 2 and not trustee:
+                        trustee = val
+                elif any(x in label_text for x in ["deed of trust","loan date","dated","instrument date"]):
+                    if val:
+                        loan_date = val
+        except Exception as e:
+            log.debug(f"  Summary table parse: {e}")
 
-                    # Deed of Trust date: "Deed of Trust is dated 1/18/2002"
-                    if not loan_date:
-                        m = _re.search(
-                            r"Deed of Trust is dated\s+(\d{1,2}/\d{1,2}/\d{4}|\w+ \d{1,2},\s*\d{4})",
-                            page_text, _re.IGNORECASE)
-                        if not m:
-                            m = _re.search(
-                                r"dated\s+(\d{1,2}/\d{1,2}/\d{4}|\w+ \d{1,2},\s*\d{4})",
-                                page_text, _re.IGNORECASE)
-                        if m:
-                            loan_date = m.group(1).strip()
+        # ── Strategy B: full body text ────────────────────────────────────
+        try:
+            page_text = driver.find_element(By.TAG_NAME, "body").text
+            lines = page_text.split("\n")
 
-                    # Original Beneficiary / nominee for — visible as rendered text
-                    if not lender:
-                        m = _re.search(
-                            r"nominee for\s+([A-Z][^\n,]{4,60}?)(?:\s*,|\s+AN\s|\s+ITS\s|\s+A\s)",
-                            page_text, _re.IGNORECASE)
-                        if m:
-                            lender = m.group(1).strip()
-                    if not lender:
-                        for i, line in enumerate(lines):
-                            ll = line.lower()
-                            if any(x in ll for x in ["original beneficiary","beneficiary:","mortgagee:"]):
-                                val = line.split(":")[-1].strip() if ":" in line else ""
-                                if not val and i+1 < len(lines):
-                                    val = lines[i+1].strip()
-                                if val and len(val) > 3:
-                                    lender = val
-                                    break
+            if not loan_date:
+                m = _re.search(
+                    r"Deed of Trust is dated\s+(\d{1,2}/\d{1,2}/\d{4}|\w+ \d{1,2},\s*\d{4})",
+                    page_text, _re.IGNORECASE)
+                if not m:
+                    m = _re.search(
+                        r"dated\s+(\d{1,2}/\d{1,2}/\d{4}|\w+ \d{1,2},\s*\d{4})",
+                        page_text, _re.IGNORECASE)
+                if m:
+                    loan_date = m.group(1).strip()
 
-                    # Current Beneficiary (servicer) as fallback lender
-                    if not lender:
-                        m = _re.search(r"Current\s+Beneficiary[:\s]+([A-Z][^\n]{4,60})", page_text)
-                        if m:
-                            lender = m.group(1).strip()
+            if not lender:
+                m = _re.search(
+                    r"nominee for\s+([A-Z][^\n,]{4,60}?)(?:\s*,|\s+AN\s|\s+ITS\s|\s+A\s)",
+                    page_text, _re.IGNORECASE)
+                if m:
+                    lender = m.group(1).strip()
+            if not lender:
+                for i, line in enumerate(lines):
+                    ll = line.lower()
+                    if any(x in ll for x in ["original beneficiary","beneficiary:","mortgagee:"]):
+                        val = line.split(":")[-1].strip() if ":" in line else ""
+                        if not val and i+1 < len(lines):
+                            val = lines[i+1].strip()
+                        if val and len(val) > 3:
+                            lender = val
+                            break
+            if not lender:
+                m = _re.search(r"Current\s+Beneficiary[:\s]+([A-Z][^\n]{4,60})", page_text)
+                if m:
+                    lender = m.group(1).strip()
 
-                    # Trustor names → use as owner cross-check / trustee field
-                    if not trustee:
-                        m = _re.search(r"Trustor[s]?\(?s?\)?[:\s]+([A-Z][^\n]{4,80})", page_text)
-                        if m:
-                            trustee = m.group(1).strip()
+            if not trustee:
+                m = _re.search(r"Trustor[s]?\(?s?\)?[:\s]+([A-Z][^\n]{4,80})", page_text)
+                if m:
+                    trustee = m.group(1).strip()
 
-                    # Loan amount — try page text (may be on page 2 image, so optional)
-                    if not loan_amount:
-                        m = _re.search(
-                            r"(?:original|principal)\s+(?:loan\s+)?amount[:\s]+\$?([\d,]+(?:\.\d{2})?)",
-                            page_text, _re.IGNORECASE)
-                        if m:
-                            loan_amount = "$" + m.group(1)
-
-                except Exception as e:
-                    log.debug(f"  Body text parse: {e}")
-
-            rec["loan_amount"] = loan_amount
-            rec["loan_date"]   = loan_date
-            rec["lender"]      = lender
-            rec["trustee"]     = trustee
-            fetched += 1
-
-            log.info(f"  → amt={loan_amount or '—'} | lender={lender[:35] if lender else '—'} | date={loan_date or '—'}")
-            time.sleep(1)
+            if not loan_amount:
+                m = _re.search(
+                    r"(?:original|principal)\s+(?:loan\s+)?amount[:\s]+\$?([\d,]+(?:\.\d{2})?)",
+                    page_text, _re.IGNORECASE)
+                if m:
+                    loan_amount = "$" + m.group(1)
 
         except Exception as e:
-            log.warning(f"  Doc [{doc_num}] fetch error: {e}")
+            log.debug(f"  Body text parse: {e}")
+
+        rec["loan_amount"] = loan_amount
+        rec["loan_date"]   = loan_date
+        rec["lender"]      = lender
+        rec["trustee"]     = trustee
+        fetched += 1
+
+        log.info(f"  → amt={loan_amount or '—'} | lender={lender[:35] if lender else '—'} | date={loan_date or '—'}")
+        time.sleep(1)
 
     log.info(f"Doc fetch: {fetched}/{len(recent)} enriched")
     return records
@@ -1312,7 +1309,7 @@ if __name__ == "__main__":
     os.makedirs("dashboard", exist_ok=True)
 
     log.info("=" * 60)
-    log.info("Bexar County Lead Scraper v28.17 (Hybrid)")
+    log.info("Bexar County Lead Scraper v28.19 (Hybrid)")
     log.info(f"Primary:   PublicSearch.us ({KEEP_DAYS}d window, {CHUNK_DAYS}d chunks, {PAGE_TIMEOUT}s timeout)")
     log.info(f"Secondary: ArcGIS weekly backfill = {IS_SUNDAY}")
     log.info(f"Tertiary:  Code Enforcement 311 ({len(CE_CATEGORIES)} categories, {KEEP_DAYS}d window)")
