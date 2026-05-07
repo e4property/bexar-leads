@@ -234,13 +234,18 @@ def main():
     # Filter to residential
     props = filter_properties(all_props)
 
-    # Load existing records to avoid duplicates
+    # Load existing records — MUST preserve all existing leads
     try:
-        existing = json.loads(RECORDS_PATH.read_text())
-        existing_docs = {r["doc_number"] for r in existing}
-    except Exception:
-        existing = []
-        existing_docs = set()
+        existing_text = RECORDS_PATH.read_text()
+        existing = json.loads(existing_text)
+        log.info(f"Loaded {len(existing)} existing records from {RECORDS_PATH}")
+    except Exception as e:
+        log.error(f"ABORT: Could not load {RECORDS_PATH}: {e}")
+        log.error("Will not write to records.json to avoid data loss")
+        return
+
+    existing_docs = {r["doc_number"] for r in existing}
+    log.info(f"Existing doc numbers: {len(existing_docs)}")
 
     checked = state.get("checked", {})
     new_leads = []
