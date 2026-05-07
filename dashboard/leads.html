@@ -168,6 +168,8 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 .b-nof{background:rgba(59,130,246,.08);color:var(--accent);border:1px solid rgba(59,130,246,.15)}
 .b-ce{background:rgba(251,146,60,.1);color:var(--ce);border:1px solid rgba(251,146,60,.2)}
 .b-ce-dang{background:rgba(244,63,94,.12);color:#ef4444;border:1px solid rgba(244,63,94,.25)}
+.b-vbp{background:rgba(168,85,247,.1);color:#a855f7;border:1px solid rgba(168,85,247,.25)}
+.b-stacked{background:rgba(20,217,164,.12);color:var(--teal);border:1px solid rgba(20,217,164,.3);font-weight:700}
 .b-open{background:rgba(244,63,94,.08);color:#f87171;border:1px solid rgba(244,63,94,.18)}
 .b-new{background:rgba(52,211,153,.1);color:var(--new-g);border:1px solid rgba(52,211,153,.2)}
 .b-phone{background:rgba(20,217,164,.08);color:var(--teal);border:1px solid rgba(20,217,164,.18)}
@@ -544,6 +546,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
               <div class="stat-card"><div class="sc-num" style="color:var(--red)" id="ov-absentee">—</div><div class="sc-label">Absentee</div></div>
               <div class="stat-card"><div class="sc-num" style="color:var(--gold)" id="ov-tax">—</div><div class="sc-label">Tax Fore</div></div>
               <div class="stat-card"><div class="sc-num" style="color:var(--ce)" id="ov-ce">—</div><div class="sc-label">Code Enforce</div></div>
+              <div class="stat-card"><div class="sc-num" style="color:#a855f7" id="ov-vbp">—</div><div class="sc-label">Vacant+CE</div></div>
               <div class="stat-card"><div class="sc-num" style="color:var(--new-g)" id="ov-new">—</div><div class="sc-label">New This Run</div></div>
               <div class="stat-card"><div class="sc-num" style="color:var(--orange)" id="ov-searched">—</div><div class="sc-label">FW Searched</div></div>
               <div class="stat-card"><div class="sc-num" style="color:var(--red)" id="ov-deals">—</div><div class="sc-label">🔥 Deals</div></div>
@@ -617,6 +620,7 @@ const LEAD_TYPES=[
   {id:'nof',  label:'NOF Foreclosure', icon:'🏠',color:'rgba(59,130,246,.1)',  filter:r=>r.type==='NOF'},
   {id:'tax',  label:'Tax Foreclosure', icon:'⚖️', color:'rgba(245,158,11,.1)', filter:r=>r.type==='TAX'},
   {id:'ce',   label:'Code Enforce',    icon:'⚠️', color:'rgba(251,146,60,.1)', filter:r=>isCE(r)},
+  {id:'vbp',  label:'Vacant+CE',       icon:'🏚️', color:'rgba(168,85,247,.1)', filter:r=>isVBP(r)},
 ];
 
 function init(){loadState();checkWeekReset();updateBudgetUI();updateResetInfo();renderTypeSidebar();fetchLeads();setupKeys();}
@@ -672,6 +676,7 @@ async function fetchLeads(){
 }
 
 function isCE(l){return l.source==='code_enforcement'||l.type==='CE';}
+function isVBP(l){return l.source==='vbp_ce'||l.type==='VBP';}
 
 function showNewBanner(){
   const newLeads=allLeads.filter(l=>l.is_new),banner=document.getElementById('new-banner');
@@ -810,10 +815,10 @@ function renderList(){
 }
 
 function renderItem(lead,idx){
-  const ls=LS(lead.doc_number),isSelected=lead.doc_number===selectedDoc,dispo=ls.dispo||'new',ce=isCE(lead);
+  const ls=LS(lead.doc_number),isSelected=lead.doc_number===selectedDoc,dispo=ls.dispo||'new',ce=isCE(lead),vbp=isVBP(lead);
   let cc='lead-item';if(ce)cc+=' ce-item';if(isSelected)cc+=' active';if(ls.phone&&!isSelected)cc+=' searched';if(dispo!=='new'&&!isSelected)cc+=` dispo-${dispo}`;
   const b=[];
-  if(ce){b.push(`<span class="badge b-ce">⚠CE</span>`);if(lead.flags?.includes('DANGEROUS PREMISES'))b.push(`<span class="badge b-ce-dang">🔴DANG</span>`);if(lead.flags?.includes('OPEN VIOLATION'))b.push(`<span class="badge b-open">OPEN</span>`);}
+  if(vbp){b.push(`<span class="badge b-vbp">🏚️VBP</span>`);if(lead.flags?.includes('STACKED'))b.push(`<span class="badge b-stacked">STACKED</span>`);if(lead.flags?.includes('DANGEROUS PREMISES'))b.push(`<span class="badge b-ce-dang">🔴DANG</span>`);}else if(ce){b.push(`<span class="badge b-ce">⚠CE</span>`);if(lead.flags?.includes('DANGEROUS PREMISES'))b.push(`<span class="badge b-ce-dang">🔴DANG</span>`);if(lead.flags?.includes('OPEN VIOLATION'))b.push(`<span class="badge b-open">OPEN</span>`);}
   else{if(lead.absentee)b.push(`<span class="badge b-abs">ABS</span>`);b.push(lead.type==='TAX'?`<span class="badge b-tax">TAX</span>`:`<span class="badge b-nof">NOF</span>`);}
   if(lead.is_new)b.push(`<span class="badge b-new">NEW</span>`);
   if(lead.flags?.includes('URGENT'))b.push(`<span class="badge b-urgent">🚨URG</span>`);
@@ -865,14 +870,14 @@ function getCity(r){if(r.absentee&&r.mail_addr){const p=r.mail_addr.trim().split
 function getZip(r){if(r.absentee&&r.mail_addr){const p=r.mail_addr.trim().split(/\s+/),last=p[p.length-1];if(/^\d{5}$/.test(last))return last;}return r.zip||'';}
 
 function populateDetail(lead){
-  const ls=LS(lead.doc_number),{first,last}=parseName(lead.owner),city=getCity(lead),zip=getZip(lead),ce=isCE(lead);
+  const ls=LS(lead.doc_number),{first,last}=parseName(lead.owner),city=getCity(lead),zip=getZip(lead),ce=isCE(lead),vbp=isVBP(lead);
   document.getElementById('empty-state').style.display='none';
   document.getElementById('detail-panel').style.display='flex';
   document.getElementById('detail-panel').style.flexDirection='column';
 
   const hdr=document.getElementById('detail-header');
   hdr.className='detail-header '+(ce?'dh-ce':lead.type==='TAX'?'dh-tax':'dh-nof');
-  const displayName=ce&&!lead.owner?(lead.ce_cat_label||'Code Enforcement'):(lead.owner||'—');
+  const displayName=vbp?(lead.owner||'Vacant Property'):ce&&!lead.owner?(lead.ce_cat_label||'Code Enforcement'):(lead.owner||'—');
   document.getElementById('d-name').textContent=displayName;
   document.getElementById('d-addr').textContent=`${lead.address||''}${lead.city?', '+lead.city:''} TX ${lead.zip||''}`;
   document.getElementById('d-meta').textContent=ce?`Case: ${lead.ce_case_id||lead.doc_number} · Opened: ${fmtDate(lead.opened_date)} · District ${lead.ce_district||'—'}`:`Doc: ${lead.doc_number} · Filed: ${fmtDate(lead.date_filed)}${lead.sale_date?' · Sale: '+fmtDate(lead.sale_date):''}${lead.school_dist?' · '+lead.school_dist:''}`;
@@ -1086,7 +1091,7 @@ function updateTopStats(){
 }
 function updateStats(){
   const set=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v;};
-  set('ov-total',allLeads.length);set('ov-absentee',allLeads.filter(l=>l.absentee).length);set('ov-tax',allLeads.filter(l=>l.type==='TAX').length);set('ov-ce',allLeads.filter(l=>isCE(l)).length);set('ov-new',allLeads.filter(l=>l.is_new).length);set('ov-urgent',allLeads.filter(l=>l.flags&&l.flags.includes('URGENT')).length);set('ov-searched',Object.values(S.leads).filter(l=>l.phone).length);set('ov-deals',Object.values(S.leads).filter(l=>l.dispo==='deal').length);
+  set('ov-total',allLeads.length);set('ov-absentee',allLeads.filter(l=>l.absentee).length);set('ov-tax',allLeads.filter(l=>l.type==='TAX').length);set('ov-ce',allLeads.filter(l=>isCE(l)).length);set('ov-vbp',allLeads.filter(l=>isVBP(l)).length);set('ov-new',allLeads.filter(l=>l.is_new).length);set('ov-urgent',allLeads.filter(l=>l.flags&&l.flags.includes('URGENT')).length);set('ov-searched',Object.values(S.leads).filter(l=>l.phone).length);set('ov-deals',Object.values(S.leads).filter(l=>l.dispo==='deal').length);
   const ls=Object.values(S.leads),cont=ls.filter(l=>l.dispo==='contacted').length,resp=ls.filter(l=>l.dispo==='responded').length,deal=ls.filter(l=>l.dispo==='deal').length,dead=ls.filter(l=>l.dispo==='dead').length;
   const tot=Math.max(Object.values(S.leads).filter(l=>l.phone).length,1),pct=n=>Math.round(n/tot*100)+'%';
   const seg=(id,n)=>{const el=document.getElementById(id);if(el)el.style.width=pct(n);};
