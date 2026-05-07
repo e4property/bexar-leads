@@ -266,7 +266,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600209",
     "ps_doc_id": "314757322",
     "year": "2026",
@@ -278,7 +278,6 @@
     "sale_date": "06/02/2026",
     "run_ts": "2026-05-07T02:34:50Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
