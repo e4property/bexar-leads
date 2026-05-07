@@ -1,0 +1,58 @@
+name: VBP + CE Cross-Reference
+on:
+  schedule:
+    - cron: '0 16 2 * *'   # 2nd of every month at 11am CDT
+  workflow_dispatch:        # manual trigger anytime
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: vbp-${{ github.run_id }}
+  cancel-in-progress: false
+jobs:
+  vbp-ce-scrape:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+    timeout-minutes: 120   # 2 hour max — 700 addresses × 0.5s = ~6 min + PDF parse
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install pdfplumber requests --break-system-packages -q
+
+      - name: Run VBP + CE scraper
+        id: vbp
+        run: |
+          python scraper/vbp_scraper.py 2>&1 | tee /tmp/vbp.log
+          STACKED=$(grep -oP '(?<=Added )\d+(?= stacked)' /tmp/vbp.log | tail -1 || echo "0")
+          echo "stacked=${STACKED:-0}" >> $GITHUB_OUTPUT
+
+      - name: Commit results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git stash || true
+          git rebase origin/main || true
+          git stash pop || true
+          git add dashboard/records.json data/vbp_state.json
+          git diff --cached --quiet || git commit -m "vbp: monthly CE cross-reference $(date -u +'%Y-%m-%d') — ${{ steps.vbp.outputs.stacked }} stacked leads"
+          git push origin main
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dashboard
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
