@@ -545,145 +545,143 @@ def fetch_code_enforcement(known_docs):
         "/311_All_Service_Calls/FeatureServer/0/query"
     )
     FIELDS = "CASEID,Category,ReasonName,TypeName,CaseStatus,OpenedDateTime,ObjectDescription,CouncilDistrict"
-    PAGE   = 1000
+    PAGE   = 2000
     cutoff_ms = int(CUTOFF_DATE.timestamp() * 1000)
 
-    # TypeNames confirmed from CSV that signal motivated seller
-    MOTIVATED = [
-        "Dangerous Premise BSB Processed",
-        "Property Structure Concerns(Structure Exterior)",
-        "Property Structure Concerns(Structure Interior)",
-        "Property Structure Concerns(Water/Sewer Leak)",
-        "Vacant/Overgrown Property",
-        "Structure Maintenance Multi-Tenant (Exterior)",
-        "Structure Maintenance Multi-Tenant (Interior)",
+    # Filter locally after fetching — TypeName keywords from confirmed CSV data
+    MOTIVATED_KEYWORDS = [
+        "dangerous premise", "property structure", "vacant", "structure maintenance",
+        "minimum housing", "substandard", "unsecured", "condemned",
     ]
 
-    log.info(f"Code Enforcement: ArcGIS urllib JSON | {len(MOTIVATED)} types | cutoff={CUTOFF_DATE.strftime('%Y-%m-%d')}")
+    log.info(f"Code Enforcement: ArcGIS urllib JSON | Category=Property Maintenance | cutoff={CUTOFF_DATE.strftime('%Y-%m-%d')}")
     new_leads = []
     skipped   = 0
 
-    for typename in MOTIVATED:
-        where = f"TypeName = '{typename}' AND OpenedDateTime >= {cutoff_ms}"
-        offset = 0
-        type_new = 0
+    # Single broad query — filter by Category and date only, no TypeName in SQL
+    where  = f"Category = 'Property Maintenance' AND OpenedDateTime >= {cutoff_ms}"
+    offset = 0
 
-        while True:
-            params = urllib.parse.urlencode({
-                "where":             where,
-                "outFields":         FIELDS,
-                "orderByFields":     "OpenedDateTime DESC",
-                "returnGeometry":    "false",
-                "resultOffset":      offset,
-                "resultRecordCount": PAGE,
-                "f":                 "json",
+    while True:
+        params = urllib.parse.urlencode({
+            "where":             where,
+            "outFields":         FIELDS,
+            "orderByFields":     "OpenedDateTime DESC",
+            "returnGeometry":    "false",
+            "resultOffset":      offset,
+            "resultRecordCount": PAGE,
+            "f":                 "json",
+        })
+        url = f"{CE_API}?{params}"
+
+        try:
+            req = urllib.request.Request(url, headers={
+                "User-Agent": "Mozilla/5.0 (compatible; BexarLeads/1.0)",
+                "Accept":     "application/json",
             })
-            url = f"{CE_API}?{params}"
+            with urllib.request.urlopen(req, timeout=30) as r:
+                data = _json.loads(r.read().decode("utf-8", errors="replace"))
+        except Exception as e:
+            log.warning(f"CE API fetch error: {e}")
+            break
 
-            try:
-                req = urllib.request.Request(url, headers={
-                    "User-Agent": "Mozilla/5.0 (compatible; BexarLeads/1.0)",
-                    "Accept": "application/json",
-                })
-                with urllib.request.urlopen(req, timeout=30) as r:
-                    data = _json.loads(r.read().decode("utf-8", errors="replace"))
-            except Exception as e:
-                log.warning(f"  CE [{typename[:30]}] error: {e}")
-                break
+        if "error" in data:
+            log.warning(f"CE API error: {data['error']}")
+            break
 
-            if "error" in data:
-                log.warning(f"  CE [{typename[:30]}] API error: {data['error']}")
-                break
+        features = data.get("features", [])
+        log.info(f"  CE page offset={offset}: {len(features)} records")
 
-            features = data.get("features", [])
-            for feat in features:
-                a = feat.get("attributes", {})
-                case_id  = a.get("CASEID") or a.get("CaseID")
-                if not case_id:
-                    skipped += 1
-                    continue
+        for feat in features:
+            a = feat.get("attributes", {})
+            case_id  = a.get("CASEID") or a.get("CaseID")
+            if not case_id:
+                skipped += 1
+                continue
 
-                ce_key = f"CE-{case_id}"
-                if ce_key in known_docs:
-                    skipped += 1
-                    continue
+            ce_key = f"CE-{case_id}"
+            if ce_key in known_docs:
+                skipped += 1
+                continue
 
-                addr_raw = (a.get("ObjectDescription") or "").strip()
-                status   = (a.get("CaseStatus") or "").strip()
-                reason   = (a.get("ReasonName") or "").strip()
-                district = str(a.get("CouncilDistrict") or "")
-                opened_ms_val = a.get("OpenedDateTime")
+            typename = (a.get("TypeName") or "").strip()
+            status   = (a.get("CaseStatus") or "").strip()
+            reason   = (a.get("ReasonName") or "").strip()
+            addr_raw = (a.get("ObjectDescription") or "").strip()
+            district = str(a.get("CouncilDistrict") or "")
+            opened_ms_val = a.get("OpenedDateTime")
 
-                # Parse address: "5679 EASTERLING, SAN ANTONIO, 78251"
-                addr_clean = addr_raw.strip().lstrip()
-                parts = [p.strip() for p in addr_clean.split(",")]
-                street  = parts[0].upper() if parts else ""
-                city    = parts[1].strip().upper() if len(parts) >= 2 else "SAN ANTONIO"
-                zipcode = ""
-                if len(parts) >= 3:
-                    zm = re.search(r"\b(\d{5})\b", parts[2])
-                    zipcode = zm.group(1) if zm else parts[2].strip()
+            # Local filter: motivated seller signal
+            tl = typename.lower()
+            if not any(kw in tl for kw in MOTIVATED_KEYWORDS):
+                skipped += 1
+                continue
 
-                if not street or not re.match(r"^\d+\s", street):
-                    skipped += 1
-                    continue
+            # Parse address
+            addr_clean = addr_raw.strip().lstrip()
+            parts  = [p.strip() for p in addr_clean.split(",")]
+            street  = parts[0].upper() if parts else ""
+            city    = parts[1].strip().upper() if len(parts) >= 2 else "SAN ANTONIO"
+            zipcode = ""
+            if len(parts) >= 3:
+                zm = re.search(r"\b(\d{5})\b", parts[2])
+                zipcode = zm.group(1) if zm else parts[2].strip()
 
-                opened_str = ms_to_date_str(opened_ms_val) if opened_ms_val else ""
-                month, year = parse_month_year(opened_str) if opened_str else ("", "")
+            if not street or not re.match(r"^\d+\s", street):
+                skipped += 1
+                continue
 
-                tl = typename.lower()
-                flags = ["CODE ENFORCE"]
-                if "dangerous" in tl: flags.append("DANGEROUS PREMISES")
-                if status.lower() == "open": flags.append("OPEN VIOLATION")
-                if "vacant" in tl or "unsecured" in tl: flags.append("VACANT STRUCT")
+            opened_str = ms_to_date_str(opened_ms_val) if opened_ms_val else ""
+            month, year = parse_month_year(opened_str) if opened_str else ("", "")
 
-                score = 3
-                if "DANGEROUS PREMISES" in flags: score += 3
-                if "OPEN VIOLATION"     in flags: score += 2
-                if "VACANT STRUCT"      in flags: score += 2
+            flags = ["CODE ENFORCE"]
+            if "dangerous" in tl:            flags.append("DANGEROUS PREMISES")
+            if status.lower() == "open":     flags.append("OPEN VIOLATION")
+            if "vacant" in tl:               flags.append("VACANT STRUCT")
 
-                lead = {
-                    "doc_number":    ce_key,
-                    "type":          "CE",
-                    "source":        "code_enforcement",
-                    "address":       street,
-                    "city":          city,
-                    "zip":           zipcode,
-                    "date_filed":    f"{month}/{year}".strip("/"),
-                    "sale_date":     "",
-                    "owner":         "",
-                    "mail_addr":     "",
-                    "absentee":      False,
-                    "duplicate":     False,
-                    "is_new":        True,
-                    "run_ts":        RUN_TIMESTAMP,
-                    "flags":         flags,
-                    "score":         score,
-                    "ce_case_id":    str(case_id),
-                    "ce_category":   "Property Maintenance",
-                    "ce_cat_label":  typename,
-                    "ce_status":     status,
-                    "ce_reason":     reason,
-                    "ce_district":   district,
-                    "opened_date":   opened_str,
-                    "loan_amount":   "",
-                    "loan_date":     "",
-                    "lender":        "",
-                    "trustee":       "",
-                    "appraised_value": "",
-                    "annual_taxes":  "",
-                    "ps_doc_id":     "",
-                }
-                new_leads.append(lead)
-                known_docs.add(ce_key)
-                type_new += 1
+            score = 3
+            if "DANGEROUS PREMISES" in flags: score += 3
+            if "OPEN VIOLATION"     in flags: score += 2
+            if "VACANT STRUCT"      in flags: score += 2
 
-            if len(features) < PAGE:
-                break
-            offset += PAGE
+            lead = {
+                "doc_number":      ce_key,
+                "type":            "CE",
+                "source":          "code_enforcement",
+                "address":         street,
+                "city":            city,
+                "zip":             zipcode,
+                "date_filed":      f"{month}/{year}".strip("/"),
+                "sale_date":       "",
+                "owner":           "",
+                "mail_addr":       "",
+                "absentee":        False,
+                "duplicate":       False,
+                "is_new":          True,
+                "run_ts":          RUN_TIMESTAMP,
+                "flags":           flags,
+                "score":           score,
+                "ce_case_id":      str(case_id),
+                "ce_category":     "Property Maintenance",
+                "ce_cat_label":    typename,
+                "ce_status":       status,
+                "ce_reason":       reason,
+                "ce_district":     district,
+                "opened_date":     opened_str,
+                "loan_amount":     "",
+                "loan_date":       "",
+                "lender":          "",
+                "trustee":         "",
+                "appraised_value": "",
+                "annual_taxes":    "",
+                "ps_doc_id":       "",
+            }
+            new_leads.append(lead)
+            known_docs.add(ce_key)
 
-        if type_new > 0:
-            log.info(f"  CE [{typename[:40]}]: {type_new} new")
+        if len(features) < PAGE:
+            break
+        offset += PAGE
 
     log.info(f"Code Enforcement: {len(new_leads)} new leads fetched ({skipped} skipped)")
     dangerous = sum(1 for l in new_leads if "DANGEROUS PREMISES" in l.get("flags", []))
@@ -1332,7 +1330,7 @@ if __name__ == "__main__":
     os.makedirs("dashboard", exist_ok=True)
 
     log.info("=" * 60)
-    log.info("Bexar County Lead Scraper v28.22 (Hybrid)")
+    log.info("Bexar County Lead Scraper v28.23 (Hybrid)")
     log.info(f"Primary:   PublicSearch.us ({KEEP_DAYS}d window, {CHUNK_DAYS}d chunks, {PAGE_TIMEOUT}s timeout)")
     log.info(f"Secondary: ArcGIS weekly backfill = {IS_SUNDAY}")
     log.info(f"Tertiary:  Code Enforcement 311 ({len(CE_CATEGORIES)} categories, {KEEP_DAYS}d window)")
