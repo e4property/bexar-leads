@@ -334,13 +334,19 @@ def main():
     log.info(f"VBP CE check complete: {ce_checked} queried | "
              f"{ce_found} stacked leads | {skipped} skipped")
 
-    # Save new leads to records.json
+    # Save new leads to records.json atomically
     if new_leads:
-        existing.extend(new_leads)
-        RECORDS_PATH.write_text(json.dumps(existing))
-        log.info(f"Added {len(new_leads)} stacked VBP+CE leads to records.json")
+        merged = existing + new_leads
+        # Validate JSON before writing
+        test = json.dumps(merged)
+        json.loads(test)  # will raise if invalid
+        # Write to temp first, then move
+        tmp = RECORDS_PATH.with_suffix('.tmp')
+        tmp.write_text(test)
+        tmp.replace(RECORDS_PATH)
+        log.info(f"Added {len(new_leads)} stacked VBP+CE leads → {len(merged)} total in records.json")
     else:
-        log.info("No new stacked leads found")
+        log.info("No new stacked leads found — records.json unchanged")
 
     # Update state
     state["last_vbp_count"] = vbp_count
