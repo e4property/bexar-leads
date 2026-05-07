@@ -29,6 +29,7 @@ import time
 import urllib.request
 import urllib.parse
 from datetime import datetime, timezone, timedelta
+from pathlib import Path
 
 logging.basicConfig(
     level=logging.INFO,
@@ -145,6 +146,18 @@ def normalize(s):
 
 
 def load_known_docs():
+    # Try local file first (when running in GitHub Actions, repo is checked out)
+    local_path = Path("dashboard/records.json")
+    if local_path.exists():
+        try:
+            prev = json.loads(local_path.read_text())
+            docs = {str(rec.get("doc_number", "")) for rec in prev if rec.get("doc_number")}
+            log.info(f"Loaded {len(docs)} known doc numbers from local records.json")
+            return docs, prev
+        except Exception as e:
+            log.warning(f"Local records.json load failed: {e}")
+
+    # Fall back to GitHub Pages URL
     url = PAGES_RECORDS + "?nocache=" + str(int(time.time()))
     try:
         req = urllib.request.Request(
@@ -1139,7 +1152,7 @@ def match_features(feats, num, required_word=None):
     CITY_FIELDS     = ["AddrCity","ADDR_CITY","MailCity","MAIL_CITY","City","CITY"]
     ZIP_FIELDS      = ["Zip","ZIP","ZipCode","ZIPCODE","ZIP_CODE","MailZip","MAIL_ZIP"]
     APPR_FIELDS     = ["TotVal","TOT_VAL","TotalVal","TOTAL_VAL","AppraisedVal","APPRAISED_VAL","AppraisedValue","APPRAISED_VALUE","MarketValue","MARKET_VALUE"]
-    TAX_FIELDS      = ["TaxAmt","TAX_AMT","TaxAmount","TAX_AMOUNT","TotalTax","TOTAL_TAX","AnnualTax","ANNUAL_TAX","LandVal","LAND_VAL"]
+    TAX_FIELDS      = ["TaxAmt","TAX_AMT","TaxAmount","TAX_AMOUNT","TotalTax","TOTAL_TAX","AnnualTax","ANNUAL_TAX"]
     LAND_FIELDS     = ["LandVal","LAND_VAL","LandValue","LAND_VALUE"]
     IMPR_FIELDS     = ["ImprovVal","IMPROV_VAL","ImprovValue","IMPROV_VALUE","ImpVal","IMP_VAL"]
 
@@ -1330,7 +1343,7 @@ if __name__ == "__main__":
     os.makedirs("dashboard", exist_ok=True)
 
     log.info("=" * 60)
-    log.info("Bexar County Lead Scraper v28.23 (Hybrid)")
+    log.info("Bexar County Lead Scraper v28.25 (Hybrid)")
     log.info(f"Primary:   PublicSearch.us ({KEEP_DAYS}d window, {CHUNK_DAYS}d chunks, {PAGE_TIMEOUT}s timeout)")
     log.info(f"Secondary: ArcGIS weekly backfill = {IS_SUNDAY}")
     log.info(f"Tertiary:  Code Enforcement 311 ({len(CE_CATEGORIES)} categories, {KEEP_DAYS}d window)")
