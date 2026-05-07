@@ -38,6 +38,7 @@ jobs:
           echo "stacked=${STACKED:-0}" >> $GITHUB_OUTPUT
 
       - name: Commit results
+        if: steps.vbp.outputs.stacked != '0'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -46,13 +47,15 @@ jobs:
           git rebase origin/main || true
           git stash pop || true
           git add dashboard/records.json data/vbp_state.json
-          git diff --cached --quiet || git commit -m "vbp: monthly CE cross-reference $(date -u +'%Y-%m-%d') — ${{ steps.vbp.outputs.stacked }} stacked leads"
+          git diff --cached --quiet || git commit -m "vbp: CE cross-reference $(date -u +'%Y-%m-%d') — ${{ steps.vbp.outputs.stacked }} stacked leads"
           git push origin main
 
       - name: Upload Pages artifact
+        if: steps.vbp.outputs.stacked != '0'
         uses: actions/upload-pages-artifact@v3
         with:
           path: dashboard
 
       - name: Deploy to GitHub Pages
+        if: steps.vbp.outputs.stacked != '0'
         uses: actions/deploy-pages@v4
