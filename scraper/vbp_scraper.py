@@ -227,8 +227,12 @@ def main():
         last_run_dt = datetime.fromisoformat(state["last_run"])
         days_since = (datetime.now() - last_run_dt).days
         if days_since < 25:
-            log.info(f"VBP unchanged ({vbp_count} props), last run {days_since}d ago — skipping")
-            return
+            log.info(f"VBP unchanged ({vbp_count} props), last run {days_since}d ago — skipping CE check")
+            log.info("Exiting without modifying records.json")
+            # DO NOT return here — just skip the CE check but don't touch records.json
+            # The workflow will deploy whatever records.json is currently in the repo
+            save_state(state)  # update checked_at only
+            return  # Safe now — we haven't touched records.json at all
         log.info(f"VBP unchanged but {days_since}d since last run — re-checking")
 
     # Filter to residential
