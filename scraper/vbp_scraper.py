@@ -262,19 +262,20 @@ def main():
         log.error("No properties from PDF — aborting")
         return
 
-    # Check if VBP list has changed
+    # Check if VBP list has changed or stacked leads are missing
     vbp_count = len(all_props)
-    if vbp_count == state.get("last_vbp_count") and state.get("last_run"):
+    already_stacked = sum(1 for r in existing if r.get("type") == "VBP")
+    if vbp_count == state.get("last_vbp_count") and state.get("last_run") and already_stacked > 0:
         last_run_dt = datetime.fromisoformat(state["last_run"])
         days_since = (datetime.now() - last_run_dt).days
         if days_since < 25:
-            log.info(f"VBP unchanged ({vbp_count} props), last run {days_since}d ago — skipping CE check")
+            log.info(f"VBP unchanged ({vbp_count} props), {already_stacked} stacked leads exist, last run {days_since}d ago — skipping CE check")
             log.info("Exiting without modifying records.json")
-            # DO NOT return here — just skip the CE check but don't touch records.json
-            # The workflow will deploy whatever records.json is currently in the repo
-            save_state(state)  # update checked_at only
-            return  # Safe now — we haven't touched records.json at all
+            save_state(state)
+            return
         log.info(f"VBP unchanged but {days_since}d since last run — re-checking")
+    elif already_stacked == 0:
+        log.info(f"No stacked leads found in records.json — forcing CE check")
 
     # Filter to residential
     props = filter_properties(all_props)
