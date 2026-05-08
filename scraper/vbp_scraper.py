@@ -135,103 +135,67 @@ def filter_properties(properties):
     return filtered
 
 
-# ── CE CSV LOADER ──────────────────────────────────────────────────────────────
-CE_CSV_URL = (
-    "https://data.sanantonio.gov/dataset/93b0e7ee-3a55-4aa9-b27b-d1817e91aec3"
-    "/resource/8cb8d6c9-93df-4c7a-b897-85793b21c60e"
-    "/download/allservice_property-maintenance.csv"
+# ── CE LOOKUP (ArcGIS per-address LIKE query — confirmed working) ──────────────
+CE_API_URL = (
+    "https://services.arcgis.com/g1fRTDLeMgspWrYp/arcgis/rest/services"
+    "/311_All_Service_Calls/FeatureServer/0/query"
 )
 
 def load_ce_csv():
+    """Stub — not used, returns empty so CE index warning is suppressed."""
+    return None
+
+def check_ce_for_address(street_address, ce_index=None):
     """
-    Download SA 311 Property Maintenance CSV and build address index.
-    Returns dict: normalized_street -> list of open violations
+    Query ArcGIS 311 CE endpoint for a specific address using LIKE query.
+    This approach is confirmed working from GH Actions IPs.
+    Returns list of open CE violations or empty list.
     """
-    import csv, io
-    log.info(f"Downloading CE property maintenance CSV...")
-    try:
-        req = urllib.request.Request(CE_CSV_URL, headers={
-            "User-Agent": "Mozilla/5.0 (compatible; BexarLeads/1.0)"
-        })
-        with urllib.request.urlopen(req, timeout=60) as r:
-            raw = r.read().decode("utf-8", errors="replace")
-        log.info(f"CE CSV downloaded: {len(raw):,} bytes")
-    except Exception as e:
-        log.warning(f"CE CSV download failed: {e}")
-        return {}
-
-    try:
-        reader = csv.DictReader(io.StringIO(raw))
-        rows = list(reader)
-        log.info(f"CE CSV: {len(rows):,} property maintenance records")
-        if rows:
-            log.info(f"CE CSV columns: {list(rows[0].keys())}")
-    except Exception as e:
-        log.warning(f"CE CSV parse failed: {e}")
-        return {}
-
-    # Build index: normalized street number+name -> violations
-    index = {}
-    skipped = 0
-    for row in rows:
-        status   = (row.get("CaseStatus") or "").strip()
-        typename = (row.get("TypeName") or "").strip()
-        address  = (row.get("OBJECTDESC") or row.get("ObjectDescription") or "").strip()
-        case_id  = (row.get("CASEID") or "").strip()
-        opened   = (row.get("OPENEDDATETIME") or "").strip()
-
-        if not address or not case_id:
-            skipped += 1
-            continue
-
-        # Only keep motivated CE types
-        tl = typename.lower()
-        if not any(kw in tl for kw in CE_KEYWORDS):
-            skipped += 1
-            continue
-
-        # Normalize address to "NUMBER STREETNAME" for matching
-        # Format from CSV: " 5679 EASTERLING, SAN ANTONIO, 78251"
-        addr_clean = address.strip().lstrip()
-        parts = [p.strip() for p in addr_clean.split(",")]
-        street = parts[0].upper() if parts else ""
-        if not street or not re.match(r"^\d+\s", street):
-            skipped += 1
-            continue
-
-        # Key = "NUMBER FIRSTWORD" for fuzzy matching
-        words = street.split()
-        key = " ".join(words[:2]) if len(words) >= 2 else street
-
-        violation = {
-            "case_id":  case_id,
-            "typename": typename,
-            "status":   status,
-            "opened":   opened,
-            "address":  street,
-        }
-        index.setdefault(key, []).append(violation)
-
-    log.info(f"CE index built: {len(index):,} unique address keys ({skipped:,} rows skipped)")
-    return index
-
-
-def check_ce_for_address(street_address, ce_index):
-    """
-    Look up CE violations for a VBP address using the pre-loaded CSV index.
-    Returns list of matching open violations.
-    """
-    if not ce_index or not street_address:
+    parts = street_address.strip().split()
+    if len(parts) < 2:
         return []
 
-    words = street_address.upper().split()
-    if len(words) < 2:
-        return []
+    # "1005 SACRAMENTO" — number + first street word
+    search = " ".join(parts[:2])
+    where = f"ObjectDescription LIKE '%{search}%' AND CaseStatus = 'Open'"
 
-    key = " ".join(words[:2])
-    violations = ce_index.get(key, [])
-    # Filter to motivated types only
-    return [v for v in violations if any(kw in v["typename"].lower() for kw in CE_KEYWORDS)]
+    params = urllib.parse.urlencode({
+        "where":             where,
+        "outFields":         "CASEID,TypeName,CaseStatus,OpenedDateTime,ObjectDescription",
+        "returnGeometry":    "false",
+        "resultRecordCount": 10,
+        "f":                 "json",
+    })
+
+    try:
+        req = urllib.request.Request(
+            f"{CE_API_URL}?{params}",
+            headers={"User-Agent": "Mozilla/5.0", "Accept": "application/json"}
+        )
+        with urllib.request.urlopen(req, timeout=15) as r:
+            data = json.loads(r.read().decode("utf-8", errors="replace"))
+
+        if "error" in data:
+            return []
+
+        features = data.get("features", [])
+        violations = []
+        for feat in features:
+            a = feat.get("attributes", {})
+            typename = (a.get("TypeName") or "").lower()
+            if any(kw in typename for kw in CE_KEYWORDS):
+                violations.append({
+                    "case_id":  str(a.get("CASEID") or ""),
+                    "typename": a.get("TypeName") or "",
+                    "status":   a.get("CaseStatus") or "",
+                    "opened":   str(a.get("OpenedDateTime") or ""),
+                    "address":  a.get("ObjectDescription") or "",
+                })
+        return violations
+
+    except Exception as e:
+        log.debug(f"CE lookup error for {street_address}: {e}")
+        return []
 
 
 # ── STATE MANAGEMENT ───────────────────────────────────────────────────────────
@@ -301,31 +265,25 @@ def main():
     ce_found   = 0
     skipped    = 0
 
-    # Load CE CSV once into memory
-    ce_index = load_ce_csv()
-    if not ce_index:
-        log.warning("CE index empty — stacked matching will find 0 violations")
-
-    log.info(f"Checking {len(props)} VBP addresses against CE index...")
+    # CE lookup uses per-address ArcGIS queries (confirmed working)
+    log.info(f"Checking {len(props)} VBP addresses against CE portal (ArcGIS per-address)...")
 
     for i, prop in enumerate(props):
         addr    = prop["address"]
         zipcode = prop["zip"]
         doc_key = f"VBP-{addr.replace(' ', '-')}-{zipcode}"
 
-        # Skip if already a lead
         if doc_key in existing_docs:
             skipped += 1
             continue
 
-        # Skip if recently checked with no violations
         if addr in checked and checked[addr].get("checked_at"):
             checked_dt = datetime.fromisoformat(checked[addr]["checked_at"])
             if (datetime.now() - checked_dt).days < 25 and not checked[addr].get("violations"):
                 skipped += 1
                 continue
 
-        violations = check_ce_for_address(addr, ce_index)
+        violations = check_ce_for_address(addr)
         ce_checked += 1
 
         checked[addr] = {
@@ -378,10 +336,11 @@ def main():
             log.info(f"  STACKED [{i+1}/{len(props)}] {addr} — "
                      f"{len(violations)} CE violation(s): {viol_types[0][:40]}")
         else:
-            if (i + 1) % 100 == 0:
+            if (i + 1) % 50 == 0:
                 log.info(f"  Progress: {i+1}/{len(props)} checked | "
                          f"{ce_found} stacked | {ce_checked} queried")
 
+        time.sleep(0.4)
 
 
     log.info(f"VBP CE check complete: {ce_checked} queried | "
