@@ -97,8 +97,8 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 .layout{display:flex;flex:1;overflow:hidden}
 
 /* ── SIDEBAR ── */
-.sidebar{width:220px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:var(--dim) transparent;height:100%;max-height:100vh}
-.sidebar::-webkit-scrollbar{width:4px}
+.sidebar{width:220px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow-y:scroll;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:var(--dim) transparent}
+.sidebar::-webkit-scrollbar{width:5px}
 .sidebar::-webkit-scrollbar-thumb{background:var(--dim);border-radius:2px}
 .sb-header{padding:14px 14px 6px;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-family:'JetBrains Mono',monospace}
 .type-item{display:flex;align-items:center;gap:9px;padding:9px 14px;cursor:pointer;transition:all .12s;border-left:2px solid transparent;position:relative}
@@ -782,6 +782,29 @@ function filterLeads(){
   else if(currentChip==='ce-dang')list=list.filter(l=>l.flags&&l.flags.includes('DANGEROUS PREMISES'));
   else if(currentChip==='new')list=list.filter(l=>l.is_new);
   if(searchQ)list=list.filter(l=>(l.owner||'').toLowerCase().includes(searchQ)||(l.address||'').toLowerCase().includes(searchQ)||(l.zip||'').includes(searchQ)||(l.city||'').toLowerCase().includes(searchQ)||(l.ce_reason||'').toLowerCase().includes(searchQ));
+
+  // ── Smart descending sort ─────────────────────────────────────────────────
+  const isVBPView = currentSideFilter==='vbp' || list.every(l=>isVBP(l));
+  list.sort((a,b)=>{
+    // VBP: sort by CE violation count desc, then dangerous premises first
+    if(isVBPView){
+      const adang=(a.flags||[]).includes('DANGEROUS PREMISES')?1:0;
+      const bdang=(b.flags||[]).includes('DANGEROUS PREMISES')?1:0;
+      if(bdang!==adang) return bdang-adang;
+      return (b.ce_count||0)-(a.ce_count||0);
+    }
+    // Everyone else: GHL pushed last, then by urgency/score
+    const aghl=LS(a.doc_number).ghl_pushed?1:0;
+    const bghl=LS(b.doc_number).ghl_pushed?1:0;
+    if(aghl!==bghl) return aghl-bghl; // unpushed first
+    // Auction urgency: fewer days = more urgent
+    const ad=a.days_until_sale??9999;
+    const bd=b.days_until_sale??9999;
+    if(ad!==bd) return ad-bd;
+    // Then score descending
+    return (b.score||0)-(a.score||0);
+  });
+
   filteredLeads=list;selectedIdx=filteredLeads.findIndex(l=>l.doc_number===selectedDoc);renderList();
 }
 
@@ -819,7 +842,7 @@ function renderItem(lead,idx){
   const ls=LS(lead.doc_number),isSelected=lead.doc_number===selectedDoc,dispo=ls.dispo||'new',ce=isCE(lead),vbp=isVBP(lead);
   let cc='lead-item';if(ce)cc+=' ce-item';if(isSelected)cc+=' active';if(ls.phone&&!isSelected)cc+=' searched';if(dispo!=='new'&&!isSelected)cc+=` dispo-${dispo}`;
   const b=[];
-  if(vbp){b.push(`<span class="badge b-vbp">🏚️VBP</span>`);if(lead.flags?.includes('STACKED'))b.push(`<span class="badge b-stacked">STACKED</span>`);if(lead.flags?.includes('DANGEROUS PREMISES'))b.push(`<span class="badge b-ce-dang">🔴DANG</span>`);}else if(ce){b.push(`<span class="badge b-ce">⚠CE</span>`);if(lead.flags?.includes('DANGEROUS PREMISES'))b.push(`<span class="badge b-ce-dang">🔴DANG</span>`);if(lead.flags?.includes('OPEN VIOLATION'))b.push(`<span class="badge b-open">OPEN</span>`);}
+  if(vbp){b.push(`<span class="badge b-vbp">🏚️VBP</span>`);if(lead.flags?.includes('STACKED'))b.push(`<span class="badge b-stacked">STACKED</span>`);if(lead.ce_count>1)b.push(`<span class="badge b-ce-dang">${lead.ce_count} CE</span>`);if(lead.flags?.includes('DANGEROUS PREMISES'))b.push(`<span class="badge b-ce-dang">🔴DANG</span>`);}else if(ce){b.push(`<span class="badge b-ce">⚠CE</span>`);if(lead.flags?.includes('DANGEROUS PREMISES'))b.push(`<span class="badge b-ce-dang">🔴DANG</span>`);if(lead.flags?.includes('OPEN VIOLATION'))b.push(`<span class="badge b-open">OPEN</span>`);}
   else{if(lead.absentee)b.push(`<span class="badge b-abs">ABS</span>`);b.push(lead.type==='TAX'?`<span class="badge b-tax">TAX</span>`:`<span class="badge b-nof">NOF</span>`);}
   if(lead.is_new)b.push(`<span class="badge b-new">NEW</span>`);
   if(lead.flags?.includes('URGENT'))b.push(`<span class="badge b-urgent">🚨URG</span>`);
