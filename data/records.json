@@ -1,12 +1,433 @@
 [
   {
     "type": "NOF",
+    "address": "10411 GREEN LAKE DR",
+    "owner": "OCHOA STEVEN &",
+    "mail_addr": "GRAHAM NICOLE L SAN ANTONIO 78223",
+    "absentee": true,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500095",
+    "ps_doc_id": "313164323",
+    "year": "2026",
+    "month": "3",
+    "city": "SAN ANTONIO",
+    "zip": "78223",
+    "school_dist": "",
+    "date_filed": "3/2026",
+    "sale_date": "05/05/2026",
+    "run_ts": "2026-05-07T23:15:10Z",
+    "flags": [
+      "ABSENTEE",
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON",
+      "URGENT"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "appraised_value": "200950.0",
+    "annual_taxes": "",
+    "land_value": "44870.0",
+    "score": 9,
+    "days_until_sale": 0
+  },
+  {
+    "type": "NOF",
+    "address": "4735 GUADALAJARA DR",
+    "owner": "ORTIZ IVAN RAMOS",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500351",
+    "ps_doc_id": "314384899",
+    "year": "2026",
+    "month": "4",
+    "city": "SAN ANTONIO",
+    "zip": "78233",
+    "school_dist": "",
+    "date_filed": "4/2026",
+    "sale_date": "05/05/2026",
+    "run_ts": "2026-05-07T23:15:10Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON",
+      "URGENT"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "appraised_value": "181580.0",
+    "annual_taxes": "",
+    "land_value": "57950.0",
+    "score": 7,
+    "days_until_sale": 0
+  },
+  {
+    "type": "NOF",
+    "address": "24 DONORE SQ",
+    "owner": "STENGER EARL MARTIN SR",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500304",
+    "ps_doc_id": "314371936",
+    "year": "2026",
+    "month": "4",
+    "city": "SAN ANTONIO",
+    "zip": "78229",
+    "school_dist": "",
+    "date_filed": "4/2026",
+    "sale_date": "05/05/2026",
+    "run_ts": "2026-05-07T23:15:10Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON",
+      "URGENT"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "appraised_value": "384900.0",
+    "annual_taxes": "",
+    "land_value": "70900.0",
+    "score": 7,
+    "days_until_sale": 0
+  },
+  {
+    "type": "NOF",
+    "address": "2107 EL JARDIN RD",
+    "owner": "HURTADO BEATRICE",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500200",
+    "ps_doc_id": "314328354",
+    "year": "2026",
+    "month": "4",
+    "city": "SAN ANTONIO",
+    "zip": "78237",
+    "school_dist": "",
+    "date_filed": "4/2026",
+    "sale_date": "05/05/2026",
+    "run_ts": "2026-05-07T23:15:10Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON",
+      "URGENT"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "appraised_value": "228000.0",
+    "annual_taxes": "",
+    "land_value": "49520.0",
+    "score": 7,
+    "days_until_sale": 0
+  },
+  {
+    "type": "NOF",
+    "address": "5115 FLIPPER DR",
+    "owner": "BAILEY CHARLES III",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500159",
+    "ps_doc_id": "314212555",
+    "year": "2026",
+    "month": "4",
+    "city": "SAN ANTONIO",
+    "zip": "78238",
+    "school_dist": "",
+    "date_filed": "4/2026",
+    "sale_date": "05/05/2026",
+    "run_ts": "2026-05-07T23:15:10Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON",
+      "URGENT"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "appraised_value": "217450.0",
+    "annual_taxes": "",
+    "land_value": "33740.0",
+    "score": 7,
+    "days_until_sale": 0
+  },
+  {
+    "type": "NOF",
+    "address": "4710 SWANN LN",
+    "owner": "NOLASCO LISA & DAVID",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260400408",
+    "ps_doc_id": "298154395",
+    "year": "2026",
+    "month": "3",
+    "city": "KIRBY",
+    "zip": "78219",
+    "school_dist": "",
+    "date_filed": "3/2026",
+    "sale_date": "04/07/2026",
+    "run_ts": "2026-05-07T23:15:10Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON",
+      "URGENT"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "appraised_value": "153050.0",
+    "annual_taxes": "",
+    "land_value": "34730.0",
+    "score": 7,
+    "days_until_sale": 0
+  },
+  {
+    "type": "NOF",
+    "address": "7817 HUNTER OAKS ST",
+    "owner": "HENDERSON MARILYN M",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260400364",
+    "ps_doc_id": "297952301",
+    "year": "2026",
+    "month": "3",
+    "city": "LIVE OAK",
+    "zip": "78233",
+    "school_dist": "",
+    "date_filed": "3/2026",
+    "sale_date": "04/07/2026",
+    "run_ts": "2026-05-07T23:15:10Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON",
+      "URGENT"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "appraised_value": "214490.0",
+    "annual_taxes": "",
+    "land_value": "58330.0",
+    "score": 7,
+    "days_until_sale": 0
+  },
+  {
+    "type": "NOF",
+    "address": "322 CANDY DR",
+    "owner": "GILLETTE AUBRY",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260400334",
+    "ps_doc_id": "297922629",
+    "year": "2026",
+    "month": "3",
+    "city": "CONVERSE",
+    "zip": "78109",
+    "school_dist": "",
+    "date_filed": "3/2026",
+    "sale_date": "04/07/2026",
+    "run_ts": "2026-05-07T23:15:10Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON",
+      "URGENT"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "appraised_value": "250350.0",
+    "annual_taxes": "",
+    "land_value": "48760.0",
+    "score": 7,
+    "days_until_sale": 0
+  },
+  {
+    "type": "NOF",
+    "address": "7246 GALAXY BRK",
+    "owner": "BOTT MARY KRIVAC & CARL",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260400262",
+    "ps_doc_id": "297905893",
+    "year": "2026",
+    "month": "3",
+    "city": "SAN ANTONIO",
+    "zip": "78252",
+    "school_dist": "",
+    "date_filed": "3/2026",
+    "sale_date": "04/07/2026",
+    "run_ts": "2026-05-07T23:15:10Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON",
+      "URGENT"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "appraised_value": "276420.0",
+    "annual_taxes": "",
+    "land_value": "68980.0",
+    "score": 7,
+    "days_until_sale": 0
+  },
+  {
+    "type": "NOF",
+    "address": "5126 GALAHAD DR",
+    "owner": "OLVEDA JOSHUA NATHANIEL & ANDRADE ROXANNE ROSE",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260400208",
+    "ps_doc_id": "297833382",
+    "year": "2026",
+    "month": "3",
+    "city": "SAN ANTONIO",
+    "zip": "78218",
+    "school_dist": "",
+    "date_filed": "3/2026",
+    "sale_date": "05/05/2026",
+    "run_ts": "2026-05-07T23:15:10Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON",
+      "URGENT"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "appraised_value": "199200.0",
+    "annual_taxes": "",
+    "land_value": "41130.0",
+    "score": 7,
+    "days_until_sale": 0
+  },
+  {
+    "type": "NOF",
+    "address": "2238 SW 19TH ST",
+    "owner": "LIMTIACO THADDEUS JAMES & GARCIA FRANIS ANN",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260400409",
+    "ps_doc_id": "298154407",
+    "year": "2026",
+    "month": "3",
+    "city": "SAN ANTONIO",
+    "zip": "78207",
+    "school_dist": "",
+    "date_filed": "3/2026",
+    "sale_date": "04/07/2026",
+    "run_ts": "2026-05-07T23:15:10Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON",
+      "URGENT"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "appraised_value": "97790.0",
+    "annual_taxes": "",
+    "land_value": "44030.0",
+    "score": 7,
+    "days_until_sale": 0
+  },
+  {
+    "type": "NOF",
+    "address": "11771 PADDLEBROOK",
+    "owner": "CONTRERAS RICARDO",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500053",
+    "ps_doc_id": "313153229",
+    "year": "2026",
+    "month": "3",
+    "city": "SAN ANTONIO",
+    "zip": "78253",
+    "school_dist": "",
+    "date_filed": "3/2026",
+    "sale_date": "05/05/2026",
+    "run_ts": "2026-05-07T23:15:10Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON",
+      "URGENT"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "appraised_value": "358540.0",
+    "annual_taxes": "",
+    "land_value": "51210.0",
+    "score": 7,
+    "days_until_sale": 0
+  },
+  {
+    "type": "NOF",
     "address": "1327 W RIDGEWOOD CT",
     "owner": "SAMANIEGO EDUARDO PAUL MORENO & FIGUEROA MARTHA THATIANA PERDOMO",
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500301",
     "ps_doc_id": "314371933",
     "year": "2026",
@@ -18,7 +439,6 @@
     "sale_date": "05/05/2026",
     "run_ts": "2026-05-07T19:57:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON",
       "URGENT"
@@ -41,7 +461,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500253",
     "ps_doc_id": "314340483",
     "year": "2026",
@@ -53,7 +473,6 @@
     "sale_date": "05/05/2026",
     "run_ts": "2026-05-07T19:57:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON",
       "URGENT"
@@ -76,7 +495,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500201",
     "ps_doc_id": "314330144",
     "year": "2026",
@@ -88,7 +507,6 @@
     "sale_date": "05/05/2026",
     "run_ts": "2026-05-07T19:57:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON",
       "URGENT"
@@ -111,7 +529,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500107",
     "ps_doc_id": "313164338",
     "year": "2026",
@@ -123,7 +541,6 @@
     "sale_date": "05/05/2026",
     "run_ts": "2026-05-07T19:57:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON",
       "URGENT"
@@ -146,7 +563,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500050",
     "ps_doc_id": "313153230",
     "year": "2026",
@@ -158,7 +575,6 @@
     "sale_date": "05/05/2026",
     "run_ts": "2026-05-07T19:57:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON",
       "URGENT"
@@ -181,7 +597,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260400406",
     "ps_doc_id": "298154392",
     "year": "2026",
@@ -193,7 +609,6 @@
     "sale_date": "05/05/2026",
     "run_ts": "2026-05-07T19:57:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON",
       "URGENT"
@@ -216,7 +631,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260400365",
     "ps_doc_id": "297952669",
     "year": "2026",
@@ -228,7 +643,6 @@
     "sale_date": "04/07/2026",
     "run_ts": "2026-05-07T19:57:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON",
       "URGENT"
@@ -650,7 +1064,7 @@
     "annual_taxes": "",
     "land_value": "38470.0",
     "score": 9,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -684,7 +1098,245 @@
     "annual_taxes": "",
     "land_value": "54350.0",
     "score": 9,
-    "days_until_sale": 25
+    "days_until_sale": 24
+  },
+  {
+    "type": "NOF",
+    "address": "7123 THRUSH VIEW LN",
+    "owner": "PROMENADE CONDOMINIUM",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260600220",
+    "ps_doc_id": "314784305",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78209",
+    "school_dist": "",
+    "date_filed": "5/2026",
+    "sale_date": "06/02/2026",
+    "run_ts": "2026-05-07T23:15:10Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "appraised_value": "2515470.0",
+    "annual_taxes": "",
+    "land_value": "2281220.0",
+    "score": 7,
+    "days_until_sale": 24
+  },
+  {
+    "type": "NOF",
+    "address": "3118 NANCY CAROLE WAY",
+    "owner": "BALLESTEROS GABRIEL & ELDA A",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260600100",
+    "ps_doc_id": "314516962",
+    "year": "2026",
+    "month": "4",
+    "city": "SAN ANTONIO",
+    "zip": "78223",
+    "school_dist": "",
+    "date_filed": "4/2026",
+    "sale_date": "06/02/2026",
+    "run_ts": "2026-05-07T23:15:10Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "appraised_value": "299570.0",
+    "annual_taxes": "",
+    "land_value": "63810.0",
+    "score": 7,
+    "days_until_sale": 24
+  },
+  {
+    "type": "NOF",
+    "address": "407 REDBUD TRACE",
+    "owner": "SLAUGHTER MICHAEL",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260600018",
+    "ps_doc_id": "314414076",
+    "year": "2026",
+    "month": "4",
+    "city": "SAN ANTONIO",
+    "zip": "78245",
+    "school_dist": "",
+    "date_filed": "4/2026",
+    "sale_date": "06/02/2026",
+    "run_ts": "2026-05-07T23:15:10Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "appraised_value": "362300.0",
+    "annual_taxes": "",
+    "land_value": "61850.0",
+    "score": 7,
+    "days_until_sale": 24
+  },
+  {
+    "type": "NOF",
+    "address": "411 DONALAN DR",
+    "owner": "RODRIGUEZ JEAN LUIS CARRASQUILLO & VANYELINE CARRASQUILLO",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500246",
+    "ps_doc_id": "314337010",
+    "year": "2026",
+    "month": "4",
+    "city": "CONVERSE",
+    "zip": "78109",
+    "school_dist": "",
+    "date_filed": "4/2026",
+    "sale_date": "06/02/2026",
+    "run_ts": "2026-05-07T23:15:10Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "appraised_value": "201420.0",
+    "annual_taxes": "",
+    "land_value": "48160.0",
+    "score": 7,
+    "days_until_sale": 24
+  },
+  {
+    "type": "NOF",
+    "address": "10914 DREAMLAND DR",
+    "owner": "REYES SUSIE & REYES CHRISTOPHER",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500347",
+    "ps_doc_id": "314384909",
+    "year": "2026",
+    "month": "4",
+    "city": "SAN ANTONIO",
+    "zip": "78230",
+    "school_dist": "",
+    "date_filed": "4/2026",
+    "sale_date": "06/02/2026",
+    "run_ts": "2026-05-07T23:15:10Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "appraised_value": "451880.0",
+    "annual_taxes": "",
+    "land_value": "80970.0",
+    "score": 7,
+    "days_until_sale": 24
+  },
+  {
+    "type": "NOF",
+    "address": "1927 SANDY CIRCLE",
+    "owner": "VEGA JASMINE",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500052",
+    "ps_doc_id": "313153227",
+    "year": "2026",
+    "month": "3",
+    "city": "SAN ANTONIO",
+    "zip": "78264",
+    "school_dist": "",
+    "date_filed": "3/2026",
+    "sale_date": "06/02/2026",
+    "run_ts": "2026-05-07T23:15:10Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "appraised_value": "254130.0",
+    "annual_taxes": "",
+    "land_value": "108580.0",
+    "score": 7,
+    "days_until_sale": 24
+  },
+  {
+    "type": "NOF",
+    "address": "8349 WINDWAY DR",
+    "owner": "IRWIN LOWERY LYNN",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500145",
+    "ps_doc_id": "314212545",
+    "year": "2026",
+    "month": "4",
+    "city": "WINDCREST",
+    "zip": "78239",
+    "school_dist": "",
+    "date_filed": "4/2026",
+    "sale_date": "06/02/2026",
+    "run_ts": "2026-05-07T23:15:10Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "appraised_value": "294650.0",
+    "annual_taxes": "",
+    "land_value": "55320.0",
+    "score": 7,
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -693,7 +1345,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600173",
     "ps_doc_id": "314704947",
     "year": "2026",
@@ -705,7 +1357,6 @@
     "sale_date": "06/02/2026",
     "run_ts": "2026-05-07T19:57:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -718,7 +1369,7 @@
     "annual_taxes": "",
     "land_value": "38450.0",
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -727,7 +1378,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600065",
     "ps_doc_id": "314516972",
     "year": "2026",
@@ -739,7 +1390,6 @@
     "sale_date": "06/02/2026",
     "run_ts": "2026-05-07T19:57:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -752,7 +1402,7 @@
     "annual_taxes": "",
     "land_value": "81570.0",
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -761,7 +1411,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500340",
     "ps_doc_id": "314384900",
     "year": "2026",
@@ -773,7 +1423,6 @@
     "sale_date": "06/02/2026",
     "run_ts": "2026-05-07T19:57:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -786,7 +1435,7 @@
     "annual_taxes": "",
     "land_value": "74250.0",
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -795,7 +1444,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500156",
     "ps_doc_id": "314212547",
     "year": "2026",
@@ -807,7 +1456,6 @@
     "sale_date": "06/02/2026",
     "run_ts": "2026-05-07T19:57:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -820,7 +1468,7 @@
     "annual_taxes": "",
     "land_value": "84360.0",
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -829,7 +1477,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600019",
     "ps_doc_id": "314414074",
     "year": "2026",
@@ -841,7 +1489,6 @@
     "sale_date": "06/02/2026",
     "run_ts": "2026-05-07T19:57:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -854,7 +1501,7 @@
     "annual_taxes": "",
     "land_value": "53640.0",
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -863,7 +1510,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500345",
     "ps_doc_id": "314384902",
     "year": "2026",
@@ -875,7 +1522,6 @@
     "sale_date": "06/02/2026",
     "run_ts": "2026-05-07T19:57:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -888,7 +1534,7 @@
     "annual_taxes": "",
     "land_value": "61330.0",
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -921,7 +1567,7 @@
     "annual_taxes": "",
     "land_value": "53250.0",
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -954,7 +1600,7 @@
     "annual_taxes": "",
     "land_value": "53610.0",
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -987,7 +1633,7 @@
     "annual_taxes": "",
     "land_value": "45860.0",
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -1020,7 +1666,7 @@
     "annual_taxes": "",
     "land_value": "49540.0",
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -1053,7 +1699,7 @@
     "annual_taxes": "",
     "land_value": "65790.0",
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -1086,7 +1732,7 @@
     "annual_taxes": "",
     "land_value": "56570.0",
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -1119,7 +1765,7 @@
     "annual_taxes": "",
     "land_value": "42480.0",
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -1152,7 +1798,7 @@
     "annual_taxes": "",
     "land_value": "68850.0",
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -1185,7 +1831,7 @@
     "annual_taxes": "",
     "land_value": "59910.0",
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -1218,7 +1864,7 @@
     "annual_taxes": "",
     "land_value": "51130.0",
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -1251,7 +1897,7 @@
     "annual_taxes": "",
     "land_value": "81410.0",
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -1284,7 +1930,7 @@
     "annual_taxes": "",
     "land_value": "44390.0",
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -1317,7 +1963,7 @@
     "annual_taxes": "",
     "land_value": "199420.0",
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -1350,7 +1996,7 @@
     "annual_taxes": "",
     "land_value": "115760.0",
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -1383,7 +2029,7 @@
     "annual_taxes": "",
     "land_value": "50490.0",
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -1416,7 +2062,7 @@
     "annual_taxes": "",
     "land_value": "46380.0",
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -1449,7 +2095,7 @@
     "annual_taxes": "57720.0",
     "land_value": "57720.0",
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -1482,7 +2128,7 @@
     "annual_taxes": "54610.0",
     "land_value": "54610.0",
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -1515,7 +2161,106 @@
     "annual_taxes": "66270.0",
     "land_value": "66270.0",
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
+  },
+  {
+    "type": "NOF",
+    "address": "9303 MOON SHINE",
+    "owner": "BARTON LOUIS & ELENA O",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260600271",
+    "ps_doc_id": "314802019",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78254",
+    "school_dist": "",
+    "date_filed": "5/2026",
+    "sale_date": "07/07/2026",
+    "run_ts": "2026-05-07T23:15:10Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "appraised_value": "381390.0",
+    "annual_taxes": "",
+    "land_value": "64170.0",
+    "score": 7,
+    "days_until_sale": 59
+  },
+  {
+    "type": "NOF",
+    "address": "12619 DESERT PALM",
+    "owner": "BURKETT NORMAN HUGH & RHONDA JEAN OSBURN",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260600183",
+    "ps_doc_id": "314704948",
+    "year": "2026",
+    "month": "4",
+    "city": "SAN ANTONIO",
+    "zip": "78253",
+    "school_dist": "",
+    "date_filed": "4/2026",
+    "sale_date": "07/07/2026",
+    "run_ts": "2026-05-07T23:15:10Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "appraised_value": "337000.0",
+    "annual_taxes": "",
+    "land_value": "77800.0",
+    "score": 7,
+    "days_until_sale": 59
+  },
+  {
+    "type": "NOF",
+    "address": "6722 TUPPER AVE",
+    "owner": "SAENZ GABRIEL",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260600101",
+    "ps_doc_id": "314517379",
+    "year": "2026",
+    "month": "4",
+    "city": "SAN ANTONIO",
+    "zip": "78221",
+    "school_dist": "",
+    "date_filed": "4/2026",
+    "sale_date": "07/07/2026",
+    "run_ts": "2026-05-07T23:15:10Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "appraised_value": "167860.0",
+    "annual_taxes": "",
+    "land_value": "50690.0",
+    "score": 7,
+    "days_until_sale": 59
   },
   {
     "type": "NOF",
@@ -1524,7 +2269,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600221",
     "ps_doc_id": "314789827",
     "year": "2026",
@@ -1536,7 +2281,6 @@
     "sale_date": "07/07/2026",
     "run_ts": "2026-05-07T19:57:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -1548,7 +2292,7 @@
     "annual_taxes": "",
     "land_value": "61490.0",
     "score": 7,
-    "days_until_sale": 60
+    "days_until_sale": 59
   },
   {
     "type": "NOF",
@@ -1557,7 +2301,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600104",
     "ps_doc_id": "314517365",
     "year": "2026",
@@ -1569,7 +2313,6 @@
     "sale_date": "07/07/2026",
     "run_ts": "2026-05-07T19:57:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -1581,7 +2324,7 @@
     "annual_taxes": "",
     "land_value": "82640.0",
     "score": 7,
-    "days_until_sale": 60
+    "days_until_sale": 59
   },
   {
     "type": "NOF",
@@ -1590,7 +2333,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600014",
     "ps_doc_id": "314414093",
     "year": "2026",
@@ -1602,7 +2345,6 @@
     "sale_date": "07/07/2026",
     "run_ts": "2026-05-07T19:57:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -1614,7 +2356,7 @@
     "annual_taxes": "",
     "land_value": "37040.0",
     "score": 7,
-    "days_until_sale": 60
+    "days_until_sale": 59
   },
   {
     "type": "NOF",
@@ -1646,7 +2388,7 @@
     "annual_taxes": "",
     "land_value": "64760.0",
     "score": 7,
-    "days_until_sale": 60
+    "days_until_sale": 59
   },
   {
     "type": "NOF",
@@ -1678,7 +2420,7 @@
     "annual_taxes": "",
     "land_value": "119680.0",
     "score": 7,
-    "days_until_sale": 60
+    "days_until_sale": 59
   },
   {
     "type": "NOF",
@@ -1710,7 +2452,7 @@
     "annual_taxes": "",
     "land_value": "76420.0",
     "score": 7,
-    "days_until_sale": 60
+    "days_until_sale": 59
   },
   {
     "type": "NOF",
@@ -1742,7 +2484,7 @@
     "annual_taxes": "",
     "land_value": "37360.0",
     "score": 7,
-    "days_until_sale": 60
+    "days_until_sale": 59
   },
   {
     "type": "NOF",
@@ -1774,7 +2516,7 @@
     "annual_taxes": "",
     "land_value": "44000.0",
     "score": 7,
-    "days_until_sale": 60
+    "days_until_sale": 59
   },
   {
     "type": "NOF",
@@ -1806,7 +2548,7 @@
     "annual_taxes": "",
     "land_value": "51260.0",
     "score": 7,
-    "days_until_sale": 60
+    "days_until_sale": 59
   },
   {
     "type": "NOF",
@@ -1838,7 +2580,7 @@
     "annual_taxes": "82530.0",
     "land_value": "82530.0",
     "score": 7,
-    "days_until_sale": 60
+    "days_until_sale": 59
   },
   {
     "type": "NOF",
@@ -1870,7 +2612,7 @@
     "annual_taxes": "48100.0",
     "land_value": "48100.0",
     "score": 7,
-    "days_until_sale": 60
+    "days_until_sale": 59
   },
   {
     "type": "NOF",
@@ -1902,7 +2644,7 @@
     "annual_taxes": "101070.0",
     "land_value": "101070.0",
     "score": 7,
-    "days_until_sale": 60
+    "days_until_sale": 59
   },
   {
     "type": "NOF",
@@ -1934,6 +2676,6 @@
     "annual_taxes": "54320.0",
     "land_value": "54320.0",
     "score": 7,
-    "days_until_sale": 60
+    "days_until_sale": 59
   }
 ]
