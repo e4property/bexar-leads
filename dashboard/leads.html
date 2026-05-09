@@ -97,9 +97,59 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 .layout{display:flex;flex:1;overflow:hidden}
 
 /* ── SIDEBAR ── */
-.sidebar{width:220px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow-y:scroll;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:var(--dim) transparent}
-.sidebar::-webkit-scrollbar{width:5px}
-.sidebar::-webkit-scrollbar-thumb{background:var(--dim);border-radius:2px}
+.sidebar{
+  width:220px;
+  flex-shrink:0;
+  background:var(--surface);
+  border-right:1px solid var(--border);
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  transition:width .2s ease;
+  position:relative;
+}
+.sidebar.collapsed{width:36px}
+
+/* scrollable inner area */
+.sidebar-inner{
+  flex:1 1 auto;
+  overflow-y:auto;
+  overflow-x:hidden;
+  min-height:0; /* critical for flex scroll to work */
+  scrollbar-width:thin;
+  scrollbar-color:var(--dim) transparent;
+}
+.sidebar-inner::-webkit-scrollbar{width:5px}
+.sidebar-inner::-webkit-scrollbar-track{background:transparent}
+.sidebar-inner::-webkit-scrollbar-thumb{background:var(--dim);border-radius:3px}
+.sidebar-inner::-webkit-scrollbar-thumb:hover{background:var(--muted)}
+
+/* collapse toggle pinned at bottom */
+.sidebar-toggle{
+  flex-shrink:0;
+  height:36px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  border-top:1px solid var(--border);
+  background:var(--surface);
+  color:var(--muted);
+  font-size:13px;
+  user-select:none;
+  transition:color .15s, background .15s;
+  font-family:'JetBrains Mono',monospace;
+}
+.sidebar-toggle:hover{color:var(--text);background:var(--bg3)}
+
+/* hide text labels when collapsed */
+.sidebar.collapsed .sb-header,
+.sidebar.collapsed .type-info,
+.sidebar.collapsed .type-actions,
+.sidebar.collapsed .sb-divider{display:none}
+.sidebar.collapsed .type-item{justify-content:center;padding:10px 4px}
+.sidebar.collapsed .type-icon{margin:0}
+
 .sb-header{padding:14px 14px 6px;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-family:'JetBrains Mono',monospace}
 .type-item{display:flex;align-items:center;gap:9px;padding:9px 14px;cursor:pointer;transition:all .12s;border-left:2px solid transparent;position:relative}
 .type-item:hover{background:var(--bg3)}
@@ -380,36 +430,46 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 <div class="layout">
 
   <!-- SIDEBAR -->
-  <div class="sidebar">
-    <div class="sb-header">Lead Sources</div>
-    <div id="type-list"></div>
-    <div class="sb-divider"></div>
-    <div class="sb-header">Quick Filters</div>
-    <div class="type-item" id="filter-absentee" onclick="setSideFilter('absentee',this)">
-      <div class="type-icon" style="background:rgba(244,63,94,.1)">🏚</div>
-      <div class="type-info"><div class="type-name">Absentee</div><div class="type-count" id="fc-absentee">—</div></div>
+  <div class="sidebar" id="sidebar">
+
+    <!-- scrollable content area -->
+    <div class="sidebar-inner" id="sidebar-inner">
+      <div class="sb-header">Lead Sources</div>
+      <div id="type-list"></div>
+      <div class="sb-divider"></div>
+      <div class="sb-header">Quick Filters</div>
+      <div class="type-item" id="filter-absentee" onclick="setSideFilter('absentee',this)">
+        <div class="type-icon" style="background:rgba(244,63,94,.1)">🏚</div>
+        <div class="type-info"><div class="type-name">Absentee</div><div class="type-count" id="fc-absentee">—</div></div>
+      </div>
+      <div class="type-item" id="filter-urgent" onclick="setSideFilter('urgent',this)">
+        <div class="type-icon" style="background:rgba(244,63,94,.1)">🚨</div>
+        <div class="type-info"><div class="type-name">Auction ≤14d</div><div class="type-count" id="fc-urgent">—</div></div>
+      </div>
+      <div class="type-item" id="filter-soon" onclick="setSideFilter('soon',this)">
+        <div class="type-icon" style="background:rgba(245,158,11,.1)">⏰</div>
+        <div class="type-info"><div class="type-name">Auction ≤30d</div><div class="type-count" id="fc-soon">—</div></div>
+      </div>
+      <div class="type-item" id="filter-new" onclick="setSideFilter('new',this)">
+        <div class="type-icon" style="background:rgba(52,211,153,.1)">✨</div>
+        <div class="type-info"><div class="type-name">New This Run</div><div class="type-count" id="fc-new">—</div></div>
+      </div>
+      <div class="type-item" id="filter-s10" onclick="setSideFilter('s10',this)">
+        <div class="type-icon" style="background:rgba(59,130,246,.1)">⭐</div>
+        <div class="type-info"><div class="type-name">Score 10</div><div class="type-count" id="fc-s10">—</div></div>
+      </div>
+      <div class="type-item" id="filter-unsearched" onclick="setSideFilter('unsearched',this)">
+        <div class="type-icon" style="background:rgba(167,139,250,.1)">🔍</div>
+        <div class="type-info"><div class="type-name">Unsearched</div><div class="type-count" id="fc-unsearched">—</div></div>
+      </div>
+    </div><!-- end sidebar-inner -->
+
+    <!-- collapse toggle pinned at bottom -->
+    <div class="sidebar-toggle" id="sidebar-toggle" onclick="toggleSidebar()">
+      <span id="toggle-icon">◀</span>
     </div>
-    <div class="type-item" id="filter-urgent" onclick="setSideFilter('urgent',this)">
-      <div class="type-icon" style="background:rgba(244,63,94,.1)">🚨</div>
-      <div class="type-info"><div class="type-name">Auction ≤14d</div><div class="type-count" id="fc-urgent">—</div></div>
-    </div>
-    <div class="type-item" id="filter-soon" onclick="setSideFilter('soon',this)">
-      <div class="type-icon" style="background:rgba(245,158,11,.1)">⏰</div>
-      <div class="type-info"><div class="type-name">Auction ≤30d</div><div class="type-count" id="fc-soon">—</div></div>
-    </div>
-    <div class="type-item" id="filter-new" onclick="setSideFilter('new',this)" id="sf-new">
-      <div class="type-icon" style="background:rgba(52,211,153,.1)">✨</div>
-      <div class="type-info"><div class="type-name">New This Run</div><div class="type-count" id="fc-new">—</div></div>
-    </div>
-    <div class="type-item" id="filter-s10" onclick="setSideFilter('s10',this)">
-      <div class="type-icon" style="background:rgba(59,130,246,.1)">⭐</div>
-      <div class="type-info"><div class="type-name">Score 10</div><div class="type-count" id="fc-s10">—</div></div>
-    </div>
-    <div class="type-item" id="filter-unsearched" onclick="setSideFilter('unsearched',this)">
-      <div class="type-icon" style="background:rgba(167,139,250,.1)">🔍</div>
-      <div class="type-info"><div class="type-name">Unsearched</div><div class="type-count" id="fc-unsearched">—</div></div>
-    </div>
-  </div>
+
+  </div><!-- end sidebar -->
 
   <!-- MAIN PANEL -->
   <div class="main-panel">
@@ -612,7 +672,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 const SK='bl_v6', REC_URL_DEFAULT='https://e4property.github.io/bexar-leads/records.json';
 const GH_REPO='e4property/bexar-leads', GH_WORKFLOW='scrape.yml';
 
-let S={ghlApiKey:'',ghlLocationId:'UAOJlgeerLu3GChP9jDJ',recordsUrl:REC_URL_DEFAULT,weekStart:sundayTs(),used:0,leads:{},ghToken:''};
+let S={ghlApiKey:'',ghlLocationId:'UAOJlgeerLu3GChP9jDJ',recordsUrl:REC_URL_DEFAULT,weekStart:sundayTs(),used:0,leads:{},ghToken:'',sidebarCollapsed:false};
 let allLeads=[],filteredLeads=[],selectedDoc=null,selectedIdx=-1;
 let currentChip='all',currentSideFilter='all',searchQ='';
 
@@ -624,7 +684,35 @@ const LEAD_TYPES=[
   {id:'vbp',  label:'Vacant+CE',       icon:'🏚️', color:'rgba(168,85,247,.1)', filter:r=>isVBP(r)},
 ];
 
-function init(){loadState();checkWeekReset();updateBudgetUI();updateResetInfo();renderTypeSidebar();fetchLeads();setupKeys();}
+function init(){
+  loadState();
+  checkWeekReset();
+  updateBudgetUI();
+  updateResetInfo();
+  renderTypeSidebar();
+  fetchLeads();
+  setupKeys();
+  // restore sidebar collapsed state
+  if(S.sidebarCollapsed) applySidebarCollapse(true);
+}
+
+function toggleSidebar(){
+  S.sidebarCollapsed = !S.sidebarCollapsed;
+  applySidebarCollapse(S.sidebarCollapsed);
+  saveState();
+}
+
+function applySidebarCollapse(collapsed){
+  const sb = document.getElementById('sidebar');
+  const icon = document.getElementById('toggle-icon');
+  if(collapsed){
+    sb.classList.add('collapsed');
+    icon.textContent = '▶';
+  } else {
+    sb.classList.remove('collapsed');
+    icon.textContent = '◀';
+  }
+}
 
 function sundayTs(){const n=new Date(),d=new Date(n);d.setDate(n.getDate()-n.getDay());d.setHours(0,0,0,0);return d.getTime();}
 function loadState(){try{const s=localStorage.getItem(SK);if(s)S={...S,...JSON.parse(s)};}catch(e){}}
@@ -654,19 +742,17 @@ async function fetchLeads(){
     const res=await fetch((S.recordsUrl||REC_URL_DEFAULT)+'?t='+Date.now());
     if(!res.ok)throw new Error('HTTP '+res.status);
     allLeads=await res.json();
-    // Sync persisted fields from records.json into localStorage
-    for(const rec of allLeads) {
-      const doc = rec.doc_number;
-      if(!doc) continue;
-      const hasPersistedData = rec.dash_phone||rec.dash_dispo||rec.dash_notes||rec.ghl_pushed;
-      if(hasPersistedData) {
-        if(!S.leads[doc]) S.leads[doc]={};
-        if(rec.dash_phone && !S.leads[doc].phone) S.leads[doc].phone = rec.dash_phone;
-        if(rec.dash_dispo && S.leads[doc].dispo==='new') S.leads[doc].dispo = rec.dash_dispo;
-        if(rec.dash_notes && !S.leads[doc].notes) S.leads[doc].notes = rec.dash_notes;
-        if(rec.ghl_pushed) S.leads[doc].ghl_pushed = true;
-        if(rec.ghl_id && !S.leads[doc].ghlId) S.leads[doc].ghlId = rec.ghl_id;
-        if(rec.dash_searched_at && !S.leads[doc].searchedAt) S.leads[doc].searchedAt = new Date(rec.dash_searched_at).getTime();
+    for(const rec of allLeads){
+      const doc=rec.doc_number;if(!doc)continue;
+      const hasPersistedData=rec.dash_phone||rec.dash_dispo||rec.dash_notes||rec.ghl_pushed;
+      if(hasPersistedData){
+        if(!S.leads[doc])S.leads[doc]={};
+        if(rec.dash_phone&&!S.leads[doc].phone)S.leads[doc].phone=rec.dash_phone;
+        if(rec.dash_dispo&&S.leads[doc].dispo==='new')S.leads[doc].dispo=rec.dash_dispo;
+        if(rec.dash_notes&&!S.leads[doc].notes)S.leads[doc].notes=rec.dash_notes;
+        if(rec.ghl_pushed)S.leads[doc].ghl_pushed=true;
+        if(rec.ghl_id&&!S.leads[doc].ghlId)S.leads[doc].ghlId=rec.ghl_id;
+        if(rec.dash_searched_at&&!S.leads[doc].searchedAt)S.leads[doc].searchedAt=new Date(rec.dash_searched_at).getTime();
       }
     }
     saveState();
@@ -783,44 +869,38 @@ function filterLeads(){
   else if(currentChip==='new')list=list.filter(l=>l.is_new);
   if(searchQ)list=list.filter(l=>(l.owner||'').toLowerCase().includes(searchQ)||(l.address||'').toLowerCase().includes(searchQ)||(l.zip||'').includes(searchQ)||(l.city||'').toLowerCase().includes(searchQ)||(l.ce_reason||'').toLowerCase().includes(searchQ));
 
-  // ── Smart descending sort ─────────────────────────────────────────────────
-  const isVBPView = currentSideFilter==='vbp' || list.every(l=>isVBP(l));
+  const isVBPView=currentSideFilter==='vbp'||list.every(l=>isVBP(l));
   list.sort((a,b)=>{
-    // VBP: sort by CE violation count desc, then dangerous premises first
     if(isVBPView){
       const adang=(a.flags||[]).includes('DANGEROUS PREMISES')?1:0;
       const bdang=(b.flags||[]).includes('DANGEROUS PREMISES')?1:0;
-      if(bdang!==adang) return bdang-adang;
-      return (b.ce_count||0)-(a.ce_count||0);
+      if(bdang!==adang)return bdang-adang;
+      return(b.ce_count||0)-(a.ce_count||0);
     }
-    // Everyone else: GHL pushed last, then by urgency/score
     const aghl=LS(a.doc_number).ghl_pushed?1:0;
     const bghl=LS(b.doc_number).ghl_pushed?1:0;
-    if(aghl!==bghl) return aghl-bghl; // unpushed first
-    // Auction urgency: fewer days = more urgent
+    if(aghl!==bghl)return aghl-bghl;
     const ad=a.days_until_sale??9999;
     const bd=b.days_until_sale??9999;
-    if(ad!==bd) return ad-bd;
-    // Then score descending
-    return (b.score||0)-(a.score||0);
+    if(ad!==bd)return ad-bd;
+    return(b.score||0)-(a.score||0);
   });
 
   filteredLeads=list;selectedIdx=filteredLeads.findIndex(l=>l.doc_number===selectedDoc);renderList();
 }
 
 function LS(doc){
-  // Merge localStorage state with any persisted fields from records.json
-  const stored = S.leads[doc]||{phone:'',dispo:'new',notes:'',skipped:false};
-  const rec = allLeads.find(l=>l.doc_number===doc)||{};
-  return {
-    phone:      stored.phone      || rec.dash_phone      || '',
-    dispo:      stored.dispo      || rec.dash_dispo       || 'new',
-    notes:      stored.notes      || rec.dash_notes       || '',
-    skipped:    stored.skipped    || false,
-    searchedAt: stored.searchedAt || (rec.dash_searched_at ? new Date(rec.dash_searched_at).getTime() : null),
-    ghlId:      stored.ghlId      || rec.ghl_id           || '',
-    ghl_pushed: stored.ghl_pushed || rec.ghl_pushed       || false,
-    ghl_pushed_at: rec.ghl_pushed_at || null,
+  const stored=S.leads[doc]||{phone:'',dispo:'new',notes:'',skipped:false};
+  const rec=allLeads.find(l=>l.doc_number===doc)||{};
+  return{
+    phone:stored.phone||rec.dash_phone||'',
+    dispo:stored.dispo||rec.dash_dispo||'new',
+    notes:stored.notes||rec.dash_notes||'',
+    skipped:stored.skipped||false,
+    searchedAt:stored.searchedAt||(rec.dash_searched_at?new Date(rec.dash_searched_at).getTime():null),
+    ghlId:stored.ghlId||rec.ghl_id||'',
+    ghl_pushed:stored.ghl_pushed||rec.ghl_pushed||false,
+    ghl_pushed_at:rec.ghl_pushed_at||null,
   };
 }
 
@@ -842,7 +922,8 @@ function renderItem(lead,idx){
   const ls=LS(lead.doc_number),isSelected=lead.doc_number===selectedDoc,dispo=ls.dispo||'new',ce=isCE(lead),vbp=isVBP(lead);
   let cc='lead-item';if(ce)cc+=' ce-item';if(isSelected)cc+=' active';if(ls.phone&&!isSelected)cc+=' searched';if(dispo!=='new'&&!isSelected)cc+=` dispo-${dispo}`;
   const b=[];
-  if(vbp){b.push(`<span class="badge b-vbp">🏚️VBP</span>`);if(lead.flags?.includes('STACKED'))b.push(`<span class="badge b-stacked">STACKED</span>`);if(lead.ce_count>1)b.push(`<span class="badge b-ce-dang">${lead.ce_count} CE</span>`);if(lead.flags?.includes('DANGEROUS PREMISES'))b.push(`<span class="badge b-ce-dang">🔴DANG</span>`);}else if(ce){b.push(`<span class="badge b-ce">⚠CE</span>`);if(lead.flags?.includes('DANGEROUS PREMISES'))b.push(`<span class="badge b-ce-dang">🔴DANG</span>`);if(lead.flags?.includes('OPEN VIOLATION'))b.push(`<span class="badge b-open">OPEN</span>`);}
+  if(vbp){b.push(`<span class="badge b-vbp">🏚️VBP</span>`);if(lead.flags?.includes('STACKED'))b.push(`<span class="badge b-stacked">STACKED</span>`);if(lead.ce_count>1)b.push(`<span class="badge b-ce-dang">${lead.ce_count} CE</span>`);if(lead.flags?.includes('DANGEROUS PREMISES'))b.push(`<span class="badge b-ce-dang">🔴DANG</span>`);}
+  else if(ce){b.push(`<span class="badge b-ce">⚠CE</span>`);if(lead.flags?.includes('DANGEROUS PREMISES'))b.push(`<span class="badge b-ce-dang">🔴DANG</span>`);if(lead.flags?.includes('OPEN VIOLATION'))b.push(`<span class="badge b-open">OPEN</span>`);}
   else{if(lead.absentee)b.push(`<span class="badge b-abs">ABS</span>`);b.push(lead.type==='TAX'?`<span class="badge b-tax">TAX</span>`:`<span class="badge b-nof">NOF</span>`);}
   if(lead.is_new)b.push(`<span class="badge b-new">NEW</span>`);
   if(lead.flags?.includes('URGENT'))b.push(`<span class="badge b-urgent">🚨URG</span>`);
@@ -854,7 +935,7 @@ function renderItem(lead,idx){
   const fr=freshness(lead);
   const d=lead.days_until_sale;
   const saleTag=d!=null?`<span style="font-size:9px;color:${d<=14?'var(--red)':d<=30?'var(--gold)':'var(--muted)'};font-family:'JetBrains Mono',monospace">${d<=14?'🚨':'⏰'}${d}d</span>`:'';
-  return `<div class="${cc}" onclick="selectLead('${lead.doc_number}')">
+  return`<div class="${cc}" onclick="selectLead('${lead.doc_number}')">
     <div class="li-top"><span class="li-rank">${idx+1}</span><span class="li-name">${displayName}</span><span class="li-score ${sc}">${lead.score}</span></div>
     <div class="li-meta"><span class="li-addr">${lead.address||''}${lead.zip?' '+lead.zip:''}</span>${saleTag}</div>
     <div class="li-badges">${b.join('')}${fr?`<span class="li-freshness ${fr.cls}">${fr.label}</span>`:''}</div>
@@ -874,17 +955,12 @@ function parseName(owner){
   const p=c.split(/\s+/).filter(Boolean);if(!p.length)return{first:'',last:''};if(p.length===1)return{first:toTitle(p[0]),last:''};
   return{first:toTitle(p.slice(1).join(' ')),last:toTitle(p[0])};
 }
-// Format date_filed (M/YYYY or MM/DD/YYYY or ISO) → readable full date
 function fmtDate(raw){
-  if(!raw)return'—';
-  raw=raw.trim();
-  // MM/DD/YYYY or M/D/YYYY
+  if(!raw)return'—';raw=raw.trim();
   const mdy=raw.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
   if(mdy){const d=new Date(+mdy[3],+mdy[1]-1,+mdy[2]);return d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});}
-  // M/YYYY (no day)
   const my=raw.match(/^(\d{1,2})\/(\d{4})$/);
   if(my){const d=new Date(+my[2],+my[1]-1,1);return d.toLocaleDateString('en-US',{month:'short',year:'numeric'});}
-  // ISO YYYY-MM-DD
   const iso=raw.match(/^(\d{4})-(\d{2})-(\d{2})/);
   if(iso){const d=new Date(+iso[1],+iso[2]-1,+iso[3]);return d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});}
   return raw;
@@ -906,7 +982,6 @@ function populateDetail(lead){
   document.getElementById('d-addr').textContent=`${lead.address||''}${lead.city?', '+lead.city:''} TX ${lead.zip||''}`;
   document.getElementById('d-meta').textContent=ce?`Case: ${lead.ce_case_id||lead.doc_number} · Opened: ${fmtDate(lead.opened_date)} · District ${lead.ce_district||'—'}`:`Doc: ${lead.doc_number} · Filed: ${fmtDate(lead.date_filed)}${lead.sale_date?' · Sale: '+fmtDate(lead.sale_date):''}${lead.school_dist?' · '+lead.school_dist:''}`;
 
-  // Badges
   const b=[];
   if(ce){b.push(`<span class="badge b-ce" style="padding:3px 8px;font-size:10px">⚠ Code Enforcement</span>`);if(lead.flags?.includes('DANGEROUS PREMISES'))b.push(`<span class="badge b-ce-dang" style="padding:3px 8px;font-size:10px">🔴 Dangerous</span>`);if(lead.flags?.includes('OPEN VIOLATION'))b.push(`<span class="badge b-open" style="padding:3px 8px;font-size:10px">Open Violation</span>`);}
   else{if(lead.absentee)b.push(`<span class="badge b-abs" style="padding:3px 8px;font-size:10px">Absentee</span>`);b.push(lead.type==='TAX'?`<span class="badge b-tax" style="padding:3px 8px;font-size:10px">Tax Foreclosure</span>`:`<span class="badge b-nof" style="padding:3px 8px;font-size:10px">NOF</span>`);}
@@ -917,12 +992,10 @@ function populateDetail(lead){
   b.push(`<span class="badge" style="background:var(--bg3);border:1px solid var(--border2);color:var(--muted);padding:3px 8px;font-size:10px;font-family:'JetBrains Mono',monospace">Score ${lead.score}</span>`);
   document.getElementById('d-badges').innerHTML=b.join('');
 
-  // CE box
   const ceBox=document.getElementById('ce-info-box');
   if(ce){ceBox.style.display='block';document.getElementById('ce-category').textContent=(lead.ce_category||'—')+' · '+(lead.ce_cat_label||'');const st=document.getElementById('ce-status');st.textContent=lead.ce_status||'—';st.className='ce-val '+(lead.ce_status||'').toLowerCase();document.getElementById('ce-reason').textContent=lead.ce_reason||'—';document.getElementById('ce-opened').textContent=lead.opened_date||'—';}
   else ceBox.style.display='none';
 
-  // Financial intel
   document.getElementById('m-amount').textContent=lead.loan_amount||'—';
   document.getElementById('m-date').textContent=lead.loan_date||'—';
   document.getElementById('m-lender').textContent=lead.lender||'—';
@@ -943,10 +1016,8 @@ function populateDetail(lead){
     }
   }else eqBar.style.display='none';
 
-  // FW fields
   ['sf-first','sf-last','sf-city','sf-zip'].forEach((id,i)=>{const vals=[first,last,city,zip];const el=document.getElementById(id);el.textContent=vals[i]||'—';el.onclick=()=>{navigator.clipboard.writeText(el.textContent);toast('Copied: '+el.textContent);};});
 
-  // Phone
   if(ls.phone){document.getElementById('phone-saved-area').style.display='block';document.getElementById('phone-entry-area').style.display='none';document.getElementById('saved-phone-display').textContent='📞 '+ls.phone;document.getElementById('saved-phone-meta').textContent=ls.searchedAt?'Searched '+new Date(ls.searchedAt).toLocaleDateString():'Searched';}
   else{document.getElementById('phone-saved-area').style.display='none';document.getElementById('phone-entry-area').style.display='block';document.getElementById('phone-input').value='';}
 
@@ -954,7 +1025,6 @@ function populateDetail(lead){
   document.getElementById('notes-area').value=ls.notes||'';
   renderTimeline(lead,ls);
 
-  // Lead info
   let info='';
   if(ce){info=`Source: Code Enforcement\nCategory: ${lead.ce_category||'—'} — ${lead.ce_cat_label||''}\nViolation: ${lead.ce_reason||'—'}\nStatus: ${lead.ce_status||'—'}\nOpened: ${fmtDate(lead.opened_date)}\nCity: ${lead.city||'—'} · ZIP: ${lead.zip||'—'}\nOwner: ${lead.owner||'Not found'}`;}
   else{info=`Type: ${lead.type} · Score: ${lead.score}\nFiled: ${fmtDate(lead.date_filed)}\nCity: ${lead.city||'—'} · ZIP: ${lead.zip||'—'}\nAbsentee: ${lead.absentee?'Yes':'No'}\nMail: ${lead.mail_addr||'—'}`;if(lead.sale_date)info+=`\nSale Date: ${fmtDate(lead.sale_date)}`;if(lead.appraised_value)info+=`\nAppraised: $${Number(lead.appraised_value).toLocaleString()}`;if(lead.annual_taxes)info+=`\nAnn Taxes: $${Number(lead.annual_taxes).toLocaleString()}/yr`;}
@@ -978,56 +1048,24 @@ function renderTimeline(lead,ls){
   document.getElementById('timeline').innerHTML=ev.reverse().map(e=>`<div class="tl-item"><div class="tl-dot ${e.dot}"></div><div><div class="tl-content">${e.text}</div><div class="tl-time">${e.time}</div></div></div>`).join('')||'<div style="color:var(--dim);font-size:11px;font-family:JetBrains Mono,monospace">No activity yet</div>';
 }
 
-// ── GITHUB WRITE-BACK ─────────────────────────────────────────────────────────
-// Writes phone/dispo/notes/ghl_pushed back to records.json in the repo
-// so data persists across devices and browser clears.
-
-async function writeBackToRepo(doc_number, updates) {
-  if(!S.ghToken) return; // silently skip if no token
-  try {
-    const repoPath = 'dashboard/records.json';
-    const apiBase = `https://api.github.com/repos/${GH_REPO}/contents/${repoPath}`;
-
-    // Get current file SHA + content
-    const getRes = await fetch(apiBase, {
-      headers:{'Authorization':'Bearer '+S.ghToken,'Accept':'application/vnd.github+json'}
-    });
-    if(!getRes.ok) { console.warn('GH read failed:', getRes.status); return; }
-    const fileData = await getRes.json();
-    const sha = fileData.sha;
-    const currentJson = JSON.parse(atob(fileData.content.replace(/\n/g,'')));
-
-    // Apply updates to the matching record
-    let changed = false;
-    for(const rec of currentJson) {
-      if(rec.doc_number === doc_number) {
-        Object.assign(rec, updates);
-        changed = true;
-        break;
-      }
-    }
-    if(!changed) return;
-
-    // Write back
-    const newContent = btoa(unescape(encodeURIComponent(JSON.stringify(currentJson))));
-    const putRes = await fetch(apiBase, {
-      method: 'PUT',
-      headers:{'Authorization':'Bearer '+S.ghToken,'Accept':'application/vnd.github+json','Content-Type':'application/json'},
-      body: JSON.stringify({
-        message: `dash: update lead ${doc_number}`,
-        content: newContent,
-        sha: sha
-      })
-    });
-    if(putRes.ok) {
-      console.log(`Written back: ${doc_number}`, updates);
-    } else {
-      const err = await putRes.json();
-      console.warn('GH write failed:', err.message);
-    }
-  } catch(e) {
-    console.warn('writeBackToRepo error:', e);
-  }
+async function writeBackToRepo(doc_number,updates){
+  if(!S.ghToken)return;
+  try{
+    const repoPath='dashboard/records.json';
+    const apiBase=`https://api.github.com/repos/${GH_REPO}/contents/${repoPath}`;
+    const getRes=await fetch(apiBase,{headers:{'Authorization':'Bearer '+S.ghToken,'Accept':'application/vnd.github+json'}});
+    if(!getRes.ok){console.warn('GH read failed:',getRes.status);return;}
+    const fileData=await getRes.json();
+    const sha=fileData.sha;
+    const currentJson=JSON.parse(atob(fileData.content.replace(/\n/g,'')));
+    let changed=false;
+    for(const rec of currentJson){if(rec.doc_number===doc_number){Object.assign(rec,updates);changed=true;break;}}
+    if(!changed)return;
+    const newContent=btoa(unescape(encodeURIComponent(JSON.stringify(currentJson))));
+    const putRes=await fetch(apiBase,{method:'PUT',headers:{'Authorization':'Bearer '+S.ghToken,'Accept':'application/vnd.github+json','Content-Type':'application/json'},body:JSON.stringify({message:`dash: update lead ${doc_number}`,content:newContent,sha:sha})});
+    if(putRes.ok){console.log(`Written back: ${doc_number}`,updates);}
+    else{const err=await putRes.json();console.warn('GH write failed:',err.message);}
+  }catch(e){console.warn('writeBackToRepo error:',e);}
 }
 
 async function savePhone(){
@@ -1038,18 +1076,11 @@ async function savePhone(){
   if(!S.leads[selectedDoc])S.leads[selectedDoc]={};
   Object.assign(S.leads[selectedDoc],{phone,searchedAt:Date.now(),dispo:S.leads[selectedDoc].dispo||'new',skipped:false});
   S.used++;saveState();updateBudgetUI();
-  let ghlId = null;
-  if(S.ghlApiKey) ghlId = await pushGHL(lead,phone);
-  // Write back to repo
-  const updates = {
-    dash_phone: phone,
-    dash_searched_at: new Date().toISOString(),
-    dash_dispo: S.leads[selectedDoc].dispo||'new',
-    ghl_pushed: true,
-    ghl_pushed_at: new Date().toISOString()
-  };
-  if(ghlId) updates.ghl_id = ghlId;
-  writeBackToRepo(selectedDoc, updates); // fire and forget
+  let ghlId=null;
+  if(S.ghlApiKey)ghlId=await pushGHL(lead,phone);
+  const updates={dash_phone:phone,dash_searched_at:new Date().toISOString(),dash_dispo:S.leads[selectedDoc].dispo||'new',ghl_pushed:true,ghl_pushed_at:new Date().toISOString()};
+  if(ghlId)updates.ghl_id=ghlId;
+  writeBackToRepo(selectedDoc,updates);
   populateDetail(lead);filterLeads();updateTopStats();updateTypeCounts();
   toast(`✓ Saved · ${Math.max(0,100-S.used)} left`,'ok');
 }
@@ -1070,7 +1101,7 @@ function setDispo(doc,dispo){
   if(!S.leads[doc])S.leads[doc]={};
   S.leads[doc].dispo=dispo;saveState();renderDispoTrack(doc,dispo);renderList();updateStats();
   if(S.ghlApiKey&&S.leads[doc]?.ghlId)updateGHLTag(S.leads[doc].ghlId,dispo);
-  writeBackToRepo(doc,{dash_dispo:dispo,dash_dispo_at:new Date().toISOString()}); // fire and forget
+  writeBackToRepo(doc,{dash_dispo:dispo,dash_dispo_at:new Date().toISOString()});
   toast(`Dispo → ${dispo}`);
 }
 
@@ -1079,7 +1110,7 @@ function saveNotes(){
   if(!S.leads[selectedDoc])S.leads[selectedDoc]={};
   const notes=document.getElementById('notes-area').value;
   S.leads[selectedDoc].notes=notes;saveState();
-  writeBackToRepo(selectedDoc,{dash_notes:notes}); // fire and forget
+  writeBackToRepo(selectedDoc,{dash_notes:notes});
 }
 
 function copyAddress(){const lead=allLeads.find(l=>l.doc_number===selectedDoc);if(!lead)return;navigator.clipboard.writeText(`${lead.address}, ${lead.city} TX ${lead.zip}`);toast('Address copied');}
@@ -1094,18 +1125,16 @@ async function pushGHL(lead,phone){
     const body={firstName:first||(ce?'CE':''),lastName:last||(ce?lead.ce_cat_label||'':''),phone,address1:lead.address,city:lead.city,state:'TX',postalCode:lead.zip,tags,locationId:S.ghlLocationId,source:ce?'bexar-ce':'bexar-leads'};
     const res=await fetch('https://services.leadconnectorhq.com/contacts/',{method:'POST',headers:{'Authorization':'Bearer '+S.ghlApiKey,'Content-Type':'application/json','Version':'2021-07-28'},body:JSON.stringify(body)});
     const data=await res.json(),id=data.contact?.id||data.id;
-    if(id){
-      S.leads[lead.doc_number].ghlId=id;
-      S.leads[lead.doc_number].ghl_pushed=true;
-      saveState();setGhlDot(true);
-      return id;
-    }else{console.error('GHL:',data);setGhlDot(false);return null;}
+    if(id){S.leads[lead.doc_number].ghlId=id;S.leads[lead.doc_number].ghl_pushed=true;saveState();setGhlDot(true);return id;}
+    else{console.error('GHL:',data);setGhlDot(false);return null;}
   }catch(e){console.error(e);setGhlDot(false);return null;}
 }
+
 async function updateGHLTag(contactId,dispo){
   const tagMap={contacted:'dispo_contacted',responded:'dispo_responded',deal:'dispo_deal',dead:'dispo_dead'},tag=tagMap[dispo];if(!tag)return;
   try{await fetch(`https://services.leadconnectorhq.com/contacts/${contactId}/tags/`,{method:'POST',headers:{'Authorization':'Bearer '+S.ghlApiKey,'Content-Type':'application/json','Version':'2021-07-28'},body:JSON.stringify({tags:[tag]})});}catch(e){}
 }
+
 function setGhlDot(ok){const dot=document.getElementById('ghl-dot'),txt=document.getElementById('ghl-txt');if(ok===null){dot.className='ghl-dot';txt.textContent='GHL';}else if(ok){dot.className='ghl-dot ok';txt.textContent='GHL ✓';}else{dot.className='ghl-dot err';txt.textContent='GHL ✗';}}
 
 function updateTopStats(){
@@ -1113,6 +1142,7 @@ function updateTopStats(){
   const set=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v;};
   set('st-total',allLeads.length);set('st-named',named);set('st-ce',ce);set('st-searched',searched);set('st-deals',deals);
 }
+
 function updateStats(){
   const set=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v;};
   set('ov-total',allLeads.length);set('ov-absentee',allLeads.filter(l=>l.absentee).length);set('ov-tax',allLeads.filter(l=>l.type==='TAX').length);set('ov-ce',allLeads.filter(l=>isCE(l)).length);set('ov-vbp',allLeads.filter(l=>isVBP(l)).length);set('ov-new',allLeads.filter(l=>l.is_new).length);set('ov-urgent',allLeads.filter(l=>l.flags&&l.flags.includes('URGENT')).length);set('ov-searched',Object.values(S.leads).filter(l=>l.phone).length);set('ov-deals',Object.values(S.leads).filter(l=>l.dispo==='deal').length);
@@ -1124,6 +1154,7 @@ function updateStats(){
 }
 
 function setChip(f,el){currentChip=f;document.querySelectorAll('.chip-row .chip').forEach(c=>c.classList.remove('active'));el.classList.add('active');filterLeads();}
+
 function openSettings(){document.getElementById('set-apikey').value=S.ghlApiKey||'';document.getElementById('set-locid').value=S.ghlLocationId||'UAOJlgeerLu3GChP9jDJ';document.getElementById('set-url').value=S.recordsUrl||REC_URL_DEFAULT;document.getElementById('set-ghtoken').value=S.ghToken||'';document.getElementById('settings-modal').classList.add('open');}
 function closeSettings(){document.getElementById('settings-modal').classList.remove('open');}
 function saveSettings(){S.ghlApiKey=document.getElementById('set-apikey').value.trim();S.ghlLocationId=document.getElementById('set-locid').value.trim();S.recordsUrl=document.getElementById('set-url').value.trim()||REC_URL_DEFAULT;S.ghToken=document.getElementById('set-ghtoken').value.trim();saveState();closeSettings();toast('Settings saved','ok');fetchLeads();}
