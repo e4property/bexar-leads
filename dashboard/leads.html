@@ -571,6 +571,9 @@ function toast(msg,type=false){const el=document.getElementById('toast');el.text
   makeResizer('resizer-left','left-panel',180,520);
 })();
 
+// Auto-refresh every 15 min
+setInterval(()=>fetchLeads(), 15 * 60 * 1000);
+
 init();
 </script>
 </body>
