@@ -80,7 +80,12 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 @keyframes spin{to{transform:rotate(360deg)}}
 
 .main-panel{display:flex;flex:1;overflow:hidden}
-.left-panel{width:290px;flex-shrink:0;display:flex;flex-direction:column;border-right:1px solid var(--border);background:var(--bg2);overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--dim) transparent}
+.left-panel{width:290px;flex-shrink:0;display:flex;flex-direction:column;border-right:1px solid var(--border);background:var(--bg2);overflow-y:auto;overflow-x:auto;scrollbar-width:auto;scrollbar-color:var(--dim) var(--bg3)}
+.left-panel::-webkit-scrollbar{width:5px;height:8px}
+.left-panel::-webkit-scrollbar-track{background:var(--bg3)}
+.left-panel::-webkit-scrollbar-thumb{background:var(--dim);border-radius:4px}
+.left-panel::-webkit-scrollbar-thumb:hover{background:var(--muted)}
+.left-panel::-webkit-scrollbar-corner{background:var(--bg3)}
 .search-bar{padding:10px}
 .search-wrap{position:relative}
 .search-input{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:8px 10px 8px 32px;color:var(--text);font-family:'Inter',sans-serif;font-size:12px;outline:none;transition:border-color .15s}
