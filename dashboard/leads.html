@@ -80,7 +80,9 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 @keyframes spin{to{transform:rotate(360deg)}}
 
 .main-panel{display:flex;flex:1;overflow:hidden}
-.left-panel{width:290px;flex-shrink:0;display:flex;flex-direction:column;border-right:1px solid var(--border);background:var(--bg2);overflow:hidden}
+.left-panel{width:290px;flex-shrink:0;display:flex;flex-direction:column;background:var(--bg2);overflow:hidden}
+.resizer{width:5px;flex-shrink:0;background:var(--border);cursor:col-resize;transition:background .15s;position:relative;z-index:10}
+.resizer:hover,.resizer.dragging{background:var(--accent);box-shadow:0 0 8px var(--glow-b)}
 .search-bar{padding:10px}
 .search-wrap{position:relative}
 .search-input{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:8px 10px 8px 32px;color:var(--text);font-family:'Inter',sans-serif;font-size:12px;outline:none;transition:border-color .15s}
@@ -92,13 +94,13 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 .chip:hover{border-color:var(--border2);color:var(--text2)}
 .chip.active{background:rgba(59,130,246,.15);border-color:rgba(59,130,246,.4);color:var(--accent)}
 .chip.ce-chip.active{background:rgba(251,146,60,.12);border-color:rgba(251,146,60,.35);color:var(--ce)}
-.lead-list{flex:1;overflow-y:auto;overflow-x:auto;scrollbar-width:auto;scrollbar-color:var(--dim) var(--bg3)}
-.lead-list::-webkit-scrollbar{width:3px;height:8px}
-.lead-list::-webkit-scrollbar-track{background:var(--bg3)}
-.lead-list::-webkit-scrollbar-thumb{background:var(--dim);border-radius:4px}
-.lead-list::-webkit-scrollbar-thumb:hover{background:var(--muted)}
-.lead-list::-webkit-scrollbar-corner{background:var(--bg3)}
-.lead-list-inner{min-width:400px}
+.lead-list{flex:1;overflow-y:scroll;overflow-x:scroll}
+.lead-list::-webkit-scrollbar{width:6px;height:8px}
+.lead-list::-webkit-scrollbar-track{background:#0d1525}
+.lead-list::-webkit-scrollbar-thumb{background:#2e4060;border-radius:4px}
+.lead-list::-webkit-scrollbar-thumb:hover{background:#5a7094}
+.lead-list::-webkit-scrollbar-corner{background:#0d1525}
+.lead-list-inner{min-width:400px;width:max-content}
 .lead-item{padding:10px 12px;border-bottom:1px solid var(--border);cursor:pointer;transition:all .1s;display:flex;flex-direction:column;gap:4px;border-left:2px solid transparent}
 .lead-item:hover{background:var(--surface)}
 .lead-item.active{background:var(--surface);border-left-color:var(--accent)}
@@ -313,7 +315,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
     </div>
   </div>
   <div class="main-panel">
-    <div class="left-panel">
+    <div class="left-panel" id="left-panel">
       <div class="search-bar">
         <div class="search-wrap">
           <span class="search-icon">🔎</span>
@@ -330,6 +332,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
       </div>
       <div class="lead-list" id="lead-list"><div class="loading">Loading<span class="ld">.</span><span class="ld">.</span><span class="ld">.</span></div></div>
     </div>
+    <div class="resizer" id="resizer-left"></div>
     <div class="right-panel" id="right-panel">
       <div class="empty-state" id="empty-state">
         <div class="empty-icon">⚡</div>
@@ -538,6 +541,30 @@ function saveSettings(){S.ghlApiKey=document.getElementById('set-apikey').value.
 async function triggerScrapeFromSettings(){if(!S.ghToken){toast('Save a GitHub token first',true);return;}const btn=document.getElementById('btn-trigger-scrape');btn.innerHTML='<span class="spin"></span> Running…';btn.disabled=true;try{const res=await fetch(`https://api.github.com/repos/${GH_REPO}/actions/workflows/${GH_WORKFLOW}/dispatches`,{method:'POST',headers:{'Authorization':'Bearer '+S.ghToken,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28','Content-Type':'application/json'},body:JSON.stringify({ref:'main'})});if(res.status===204)toast('✓ Scrape triggered! Refresh in ~15 min','ok');else{const d=await res.json();toast('Error: '+(d.message||res.status),true);}}catch(e){toast('Failed: '+e.message,true);}btn.innerHTML='▶ Run Scrape';btn.disabled=false;}
 let toastTimer;
 function toast(msg,type=false){const el=document.getElementById('toast');el.textContent=msg;el.className='show'+(type===true?' err':type==='ok'?' ok':'');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.className='',3000);}
+// Panel resizer
+(function(){
+  const resizer=document.getElementById('resizer-left');
+  const leftPanel=document.getElementById('left-panel');
+  if(!resizer||!leftPanel)return;
+  let dragging=false,startX=0,startW=0;
+  resizer.addEventListener('mousedown',e=>{
+    dragging=true;startX=e.clientX;startW=leftPanel.offsetWidth;
+    resizer.classList.add('dragging');
+    document.body.style.cursor='col-resize';
+    document.body.style.userSelect='none';
+  });
+  document.addEventListener('mousemove',e=>{
+    if(!dragging)return;
+    const newW=Math.max(180,Math.min(520,startW+(e.clientX-startX)));
+    leftPanel.style.width=newW+'px';
+  });
+  document.addEventListener('mouseup',()=>{
+    if(!dragging)return;
+    dragging=false;resizer.classList.remove('dragging');
+    document.body.style.cursor='';document.body.style.userSelect='';
+  });
+})();
+
 init();
 </script>
 </body>
