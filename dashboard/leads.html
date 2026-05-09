@@ -55,7 +55,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 .layout{display:flex;flex:1;overflow:hidden}
 
 /* SIDEBAR - simple vertical scroll, no collapse */
-.sidebar{width:220px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:var(--dim) transparent}
+.sidebar{width:220px;flex-shrink:0;background:var(--surface);display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:var(--dim) transparent}
 .sidebar::-webkit-scrollbar{width:5px}
 .sidebar::-webkit-scrollbar-track{background:transparent}
 .sidebar::-webkit-scrollbar-thumb{background:var(--dim);border-radius:3px}
@@ -284,7 +284,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 <div class="import-bar"><div class="import-fill" id="import-fill"></div></div>
 <div class="layout">
   <!-- SIDEBAR: scrolls vertically, no collapse button -->
-  <div class="sidebar">
+  <div class="sidebar" id="sidebar">
     <div class="sb-header">Lead Sources</div>
     <div id="type-list"></div>
     <div class="sb-divider"></div>
@@ -314,6 +314,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
       <div class="type-info"><div class="type-name">Unsearched</div><div class="type-count" id="fc-unsearched">—</div></div>
     </div>
   </div>
+  <div class="resizer" id="resizer-sidebar"></div>
   <div class="main-panel">
     <div class="left-panel" id="left-panel">
       <div class="search-bar">
@@ -541,28 +542,33 @@ function saveSettings(){S.ghlApiKey=document.getElementById('set-apikey').value.
 async function triggerScrapeFromSettings(){if(!S.ghToken){toast('Save a GitHub token first',true);return;}const btn=document.getElementById('btn-trigger-scrape');btn.innerHTML='<span class="spin"></span> Running…';btn.disabled=true;try{const res=await fetch(`https://api.github.com/repos/${GH_REPO}/actions/workflows/${GH_WORKFLOW}/dispatches`,{method:'POST',headers:{'Authorization':'Bearer '+S.ghToken,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28','Content-Type':'application/json'},body:JSON.stringify({ref:'main'})});if(res.status===204)toast('✓ Scrape triggered! Refresh in ~15 min','ok');else{const d=await res.json();toast('Error: '+(d.message||res.status),true);}}catch(e){toast('Failed: '+e.message,true);}btn.innerHTML='▶ Run Scrape';btn.disabled=false;}
 let toastTimer;
 function toast(msg,type=false){const el=document.getElementById('toast');el.textContent=msg;el.className='show'+(type===true?' err':type==='ok'?' ok':'');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.className='',3000);}
-// Panel resizer
+// Panel resizers
 (function(){
-  const resizer=document.getElementById('resizer-left');
-  const leftPanel=document.getElementById('left-panel');
-  if(!resizer||!leftPanel)return;
-  let dragging=false,startX=0,startW=0;
-  resizer.addEventListener('mousedown',e=>{
-    dragging=true;startX=e.clientX;startW=leftPanel.offsetWidth;
-    resizer.classList.add('dragging');
-    document.body.style.cursor='col-resize';
-    document.body.style.userSelect='none';
-  });
-  document.addEventListener('mousemove',e=>{
-    if(!dragging)return;
-    const newW=Math.max(180,Math.min(520,startW+(e.clientX-startX)));
-    leftPanel.style.width=newW+'px';
-  });
-  document.addEventListener('mouseup',()=>{
-    if(!dragging)return;
-    dragging=false;resizer.classList.remove('dragging');
-    document.body.style.cursor='';document.body.style.userSelect='';
-  });
+  function makeResizer(resizerId, panelId, min, max){
+    const resizer=document.getElementById(resizerId);
+    const panel=document.getElementById(panelId);
+    if(!resizer||!panel)return;
+    let dragging=false,startX=0,startW=0;
+    resizer.addEventListener('mousedown',e=>{
+      dragging=true;startX=e.clientX;startW=panel.offsetWidth;
+      resizer.classList.add('dragging');
+      document.body.style.cursor='col-resize';
+      document.body.style.userSelect='none';
+      e.preventDefault();
+    });
+    document.addEventListener('mousemove',e=>{
+      if(!dragging)return;
+      const newW=Math.max(min,Math.min(max,startW+(e.clientX-startX)));
+      panel.style.width=newW+'px';
+    });
+    document.addEventListener('mouseup',()=>{
+      if(!dragging)return;
+      dragging=false;resizer.classList.remove('dragging');
+      document.body.style.cursor='';document.body.style.userSelect='';
+    });
+  }
+  makeResizer('resizer-sidebar','sidebar',120,400);
+  makeResizer('resizer-left','left-panel',180,520);
 })();
 
 init();
