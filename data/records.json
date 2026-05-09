@@ -261,12 +261,47 @@
   },
   {
     "type": "NOF",
+    "address": "2821 GUADALUPE ST",
+    "owner": "ALAMSHAW INVESTMENTS LLC",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": true,
+    "is_new": true,
+    "doc_number": "20260600272",
+    "ps_doc_id": "314814913",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78207",
+    "school_dist": "",
+    "date_filed": "5/2026",
+    "sale_date": "06/02/2026",
+    "run_ts": "2026-05-09T17:23:05Z",
+    "flags": [
+      "DUPLICATE",
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "appraised_value": "1890000.0",
+    "annual_taxes": "",
+    "land_value": "308610.0",
+    "score": 7,
+    "days_until_sale": 23
+  },
+  {
+    "type": "NOF",
     "address": "819 CRAVENS AVE",
     "owner": "REGALADO RAUL",
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600273",
     "ps_doc_id": "314815522",
     "year": "2026",
@@ -278,7 +313,6 @@
     "sale_date": "06/02/2026",
     "run_ts": "2026-05-09T14:55:02Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -6539,7 +6573,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600223",
     "ps_doc_id": "314789821",
     "year": "2026",
@@ -6551,7 +6585,6 @@
     "sale_date": "07/07/2026",
     "run_ts": "2026-05-09T14:55:02Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -6572,7 +6605,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600226",
     "ps_doc_id": "314789824",
     "year": "2026",
@@ -6584,7 +6617,6 @@
     "sale_date": "07/07/2026",
     "run_ts": "2026-05-09T14:55:02Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -27473,7 +27505,7 @@
     "owner": "ALAMSHAW INVESTMENTS LLC",
     "mail_addr": "",
     "absentee": false,
-    "duplicate": false,
+    "duplicate": true,
     "is_new": false,
     "doc_number": "20260500295",
     "year": "2026",
@@ -27484,7 +27516,9 @@
     "date_filed": "5/2026",
     "run_ts": "2026-04-27T04:53:23Z",
     "sale_date": "",
-    "flags": [],
+    "flags": [
+      "DUPLICATE"
+    ],
     "score": 6,
     "days_until_sale": null
   },
