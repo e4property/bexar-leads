@@ -4,6 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bexar Leads — Command Center</title>
+<link rel="manifest" href="manifest.json">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Bexar Leads">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="theme-color" content="#0f1c2e">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Syne:wght@600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -570,6 +577,13 @@ function toast(msg,type=false){const el=document.getElementById('toast');el.text
   makeResizer('resizer-sidebar','sidebar',120,400);
   makeResizer('resizer-left','left-panel',180,520);
 })();
+
+// Register service worker for PWA
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.register('/bexar-leads/sw.js')
+    .then(r => console.log('SW registered:', r.scope))
+    .catch(e => console.log('SW failed:', e));
+}
 
 // Auto-refresh every 15 min
 setInterval(()=>fetchLeads(), 15 * 60 * 1000);
