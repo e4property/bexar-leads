@@ -334,7 +334,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600261",
     "ps_doc_id": "314796566",
     "year": "2026",
@@ -346,7 +346,6 @@
     "sale_date": "06/02/2026",
     "run_ts": "2026-05-10T14:57:03Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -6025,7 +6024,7 @@
     "mail_addr": "& AMBERG NORA SULLIVAN SAN ANTONIO 78240",
     "absentee": true,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500065",
     "year": "2026",
     "month": "5",
@@ -6036,8 +6035,7 @@
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
     "flags": [
-      "ABSENTEE",
-      "NEW"
+      "ABSENTEE"
     ],
     "source": "arcgis",
     "appraised_value": "373740.0",
@@ -6053,7 +6051,7 @@
     "mail_addr": "MARTHA V GARCIA SAN ANTONIO 78245",
     "absentee": true,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500130",
     "year": "2026",
     "month": "5",
@@ -6064,8 +6062,7 @@
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
     "flags": [
-      "ABSENTEE",
-      "NEW"
+      "ABSENTEE"
     ],
     "source": "arcgis",
     "appraised_value": "242180.0",
@@ -6081,7 +6078,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2015TA103055",
     "year": "2026",
     "month": "6",
@@ -6092,8 +6089,7 @@
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
     "flags": [
-      "TAX FORE",
-      "NEW"
+      "TAX FORE"
     ],
     "source": "arcgis",
     "appraised_value": "119530.0",
@@ -6109,7 +6105,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2017TA101415",
     "year": "2026",
     "month": "6",
@@ -6120,8 +6116,7 @@
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
     "flags": [
-      "TAX FORE",
-      "NEW"
+      "TAX FORE"
     ],
     "source": "arcgis",
     "appraised_value": "152510.0",
@@ -6137,7 +6132,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2018TA102181",
     "year": "2026",
     "month": "6",
@@ -6148,8 +6143,7 @@
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
     "flags": [
-      "TAX FORE",
-      "NEW"
+      "TAX FORE"
     ],
     "source": "arcgis",
     "appraised_value": "48230.0",
@@ -6165,7 +6159,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2022TA100856",
     "year": "2026",
     "month": "6",
@@ -6177,8 +6171,7 @@
     "run_ts": "2026-05-10T14:57:03Z",
     "flags": [
       "TAX FORE",
-      "DUPLICATE",
-      "NEW"
+      "DUPLICATE"
     ],
     "source": "arcgis",
     "appraised_value": "53510.0",
@@ -6194,7 +6187,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2022TA101085",
     "year": "2026",
     "month": "6",
@@ -6206,8 +6199,7 @@
     "run_ts": "2026-05-10T14:57:03Z",
     "flags": [
       "TAX FORE",
-      "DUPLICATE",
-      "NEW"
+      "DUPLICATE"
     ],
     "source": "arcgis",
     "appraised_value": "112250.0",
@@ -6223,7 +6215,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2022TA101136",
     "year": "2026",
     "month": "6",
@@ -6234,8 +6226,7 @@
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
     "flags": [
-      "TAX FORE",
-      "NEW"
+      "TAX FORE"
     ],
     "source": "arcgis",
     "appraised_value": "227450.0",
@@ -6251,7 +6242,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2022TA101941",
     "year": "2026",
     "month": "6",
@@ -6263,8 +6254,7 @@
     "run_ts": "2026-05-10T14:57:03Z",
     "flags": [
       "TAX FORE",
-      "DUPLICATE",
-      "NEW"
+      "DUPLICATE"
     ],
     "source": "arcgis",
     "appraised_value": "159880.0",
@@ -6280,7 +6270,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2023TA100662",
     "year": "2026",
     "month": "6",
@@ -6291,8 +6281,7 @@
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
     "flags": [
-      "TAX FORE",
-      "NEW"
+      "TAX FORE"
     ],
     "source": "arcgis",
     "appraised_value": "50000.0",
@@ -6308,7 +6297,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2024TA100778",
     "year": "2026",
     "month": "6",
@@ -6319,8 +6308,7 @@
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
     "flags": [
-      "TAX FORE",
-      "NEW"
+      "TAX FORE"
     ],
     "source": "arcgis",
     "appraised_value": "235540.0",
@@ -6336,7 +6324,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2025TA100175",
     "year": "2026",
     "month": "6",
@@ -6347,8 +6335,7 @@
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
     "flags": [
-      "TAX FORE",
-      "NEW"
+      "TAX FORE"
     ],
     "source": "arcgis",
     "appraised_value": "170410.0",
@@ -6364,7 +6351,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2021TA100476",
     "year": "2026",
     "month": "6",
@@ -6375,8 +6362,7 @@
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
     "flags": [
-      "TAX FORE",
-      "NEW"
+      "TAX FORE"
     ],
     "source": "arcgis",
     "appraised_value": "92430.0",
@@ -6392,7 +6378,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2022TA100894",
     "year": "2026",
     "month": "6",
@@ -6403,8 +6389,7 @@
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
     "flags": [
-      "TAX FORE",
-      "NEW"
+      "TAX FORE"
     ],
     "source": "arcgis",
     "appraised_value": "225430.0",
@@ -6420,7 +6405,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2013TA100023",
     "year": "2026",
     "month": "6",
@@ -6431,8 +6416,7 @@
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
     "flags": [
-      "TAX FORE",
-      "NEW"
+      "TAX FORE"
     ],
     "source": "arcgis",
     "appraised_value": "91670.0",
@@ -6448,7 +6432,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2011TA102021",
     "year": "2026",
     "month": "6",
@@ -6459,8 +6443,7 @@
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
     "flags": [
-      "TAX FORE",
-      "NEW"
+      "TAX FORE"
     ],
     "source": "arcgis",
     "appraised_value": "40530.0",
@@ -6476,7 +6459,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2014TA100941",
     "year": "2026",
     "month": "6",
@@ -6487,8 +6470,7 @@
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
     "flags": [
-      "TAX FORE",
-      "NEW"
+      "TAX FORE"
     ],
     "source": "arcgis",
     "appraised_value": "144110.0",
@@ -7211,6 +7193,39 @@
     ],
     "score": 8,
     "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "7659 MISSION LEDGE",
+    "owner": "DANIEL SUSAN MATTHEW",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260600253",
+    "ps_doc_id": "314790606",
+    "year": "2026",
+    "month": "5",
+    "city": "BOERNE",
+    "zip": "78015",
+    "school_dist": "",
+    "date_filed": "5/2026",
+    "sale_date": "07/07/2026",
+    "run_ts": "2026-05-10T20:41:18Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "appraised_value": "421340.0",
+    "annual_taxes": "",
+    "land_value": "82530.0",
+    "score": 7,
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -9363,7 +9378,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500030",
     "year": "2026",
     "month": "5",
@@ -9373,9 +9388,7 @@
     "date_filed": "5/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "472260.0",
     "annual_taxes": "",
@@ -9390,7 +9403,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500115",
     "year": "2026",
     "month": "5",
@@ -9400,9 +9413,7 @@
     "date_filed": "5/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "365720.0",
     "annual_taxes": "",
@@ -9417,7 +9428,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500089",
     "year": "2026",
     "month": "5",
@@ -9427,9 +9438,7 @@
     "date_filed": "5/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "201190.0",
     "annual_taxes": "",
@@ -9444,7 +9453,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500007",
     "year": "2026",
     "month": "5",
@@ -9454,9 +9463,7 @@
     "date_filed": "5/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "444620.0",
     "annual_taxes": "",
@@ -9471,7 +9478,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500011",
     "year": "2026",
     "month": "5",
@@ -9481,9 +9488,7 @@
     "date_filed": "5/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "320600.0",
     "annual_taxes": "",
@@ -9498,7 +9503,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500017",
     "year": "2026",
     "month": "5",
@@ -9509,8 +9514,7 @@
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
     "flags": [
-      "DUPLICATE",
-      "NEW"
+      "DUPLICATE"
     ],
     "source": "arcgis",
     "appraised_value": "553660.0",
@@ -9526,7 +9530,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500019",
     "year": "2026",
     "month": "5",
@@ -9536,9 +9540,7 @@
     "date_filed": "5/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "286000.0",
     "annual_taxes": "",
@@ -9553,7 +9555,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500020",
     "year": "2026",
     "month": "5",
@@ -9563,9 +9565,7 @@
     "date_filed": "5/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "238530.0",
     "annual_taxes": "",
@@ -9580,7 +9580,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500021",
     "year": "2026",
     "month": "5",
@@ -9590,9 +9590,7 @@
     "date_filed": "5/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "189850.0",
     "annual_taxes": "",
@@ -9607,7 +9605,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500027",
     "year": "2026",
     "month": "5",
@@ -9617,9 +9615,7 @@
     "date_filed": "5/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "281410.0",
     "annual_taxes": "",
@@ -9634,7 +9630,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500031",
     "year": "2026",
     "month": "5",
@@ -9644,9 +9640,7 @@
     "date_filed": "5/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "278540.0",
     "annual_taxes": "",
@@ -9661,7 +9655,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500043",
     "year": "2026",
     "month": "5",
@@ -9671,9 +9665,7 @@
     "date_filed": "5/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "155000.0",
     "annual_taxes": "",
@@ -9688,7 +9680,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500045",
     "year": "2026",
     "month": "5",
@@ -9698,9 +9690,7 @@
     "date_filed": "5/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "296120.0",
     "annual_taxes": "",
@@ -9715,7 +9705,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500047",
     "year": "2026",
     "month": "5",
@@ -9725,9 +9715,7 @@
     "date_filed": "5/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "272270.0",
     "annual_taxes": "",
@@ -9742,7 +9730,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500051",
     "year": "2026",
     "month": "5",
@@ -9752,9 +9740,7 @@
     "date_filed": "5/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "225110.0",
     "annual_taxes": "",
@@ -9769,7 +9755,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500052",
     "year": "2026",
     "month": "5",
@@ -9779,9 +9765,7 @@
     "date_filed": "5/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "254130.0",
     "annual_taxes": "",
@@ -9796,7 +9780,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500054",
     "year": "2026",
     "month": "5",
@@ -9806,9 +9790,7 @@
     "date_filed": "5/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "248180.0",
     "annual_taxes": "",
@@ -9823,7 +9805,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500055",
     "year": "2026",
     "month": "5",
@@ -9833,9 +9815,7 @@
     "date_filed": "5/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "220980.0",
     "annual_taxes": "",
@@ -9850,7 +9830,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500058",
     "year": "2026",
     "month": "5",
@@ -9860,9 +9840,7 @@
     "date_filed": "5/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "369880.0",
     "annual_taxes": "",
@@ -9877,7 +9855,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500060",
     "year": "2026",
     "month": "5",
@@ -9887,9 +9865,7 @@
     "date_filed": "5/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "285550.0",
     "annual_taxes": "",
@@ -9904,7 +9880,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500061",
     "year": "2026",
     "month": "5",
@@ -9914,9 +9890,7 @@
     "date_filed": "5/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "171210.0",
     "annual_taxes": "",
@@ -9931,7 +9905,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500062",
     "year": "2026",
     "month": "5",
@@ -9941,9 +9915,7 @@
     "date_filed": "5/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "310040.0",
     "annual_taxes": "",
@@ -9958,7 +9930,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500075",
     "year": "2026",
     "month": "5",
@@ -9968,9 +9940,7 @@
     "date_filed": "5/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "215930.0",
     "annual_taxes": "",
@@ -9985,7 +9955,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500078",
     "year": "2026",
     "month": "5",
@@ -9995,9 +9965,7 @@
     "date_filed": "5/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "191030.0",
     "annual_taxes": "",
@@ -10012,7 +9980,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500079",
     "year": "2026",
     "month": "5",
@@ -10022,9 +9990,7 @@
     "date_filed": "5/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "184310.0",
     "annual_taxes": "",
@@ -10039,7 +10005,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500080",
     "year": "2026",
     "month": "5",
@@ -10049,9 +10015,7 @@
     "date_filed": "5/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "560280.0",
     "annual_taxes": "",
@@ -10066,7 +10030,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500084",
     "year": "2026",
     "month": "5",
@@ -10076,9 +10040,7 @@
     "date_filed": "5/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "168920.0",
     "annual_taxes": "",
@@ -10093,7 +10055,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500088",
     "year": "2026",
     "month": "5",
@@ -10103,9 +10065,7 @@
     "date_filed": "5/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "144120.0",
     "annual_taxes": "",
@@ -10120,7 +10080,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500091",
     "year": "2026",
     "month": "5",
@@ -10130,9 +10090,7 @@
     "date_filed": "5/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "606050.0",
     "annual_taxes": "",
@@ -10147,7 +10105,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500094",
     "year": "2026",
     "month": "5",
@@ -10157,9 +10115,7 @@
     "date_filed": "5/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "310480.0",
     "annual_taxes": "",
@@ -10174,7 +10130,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500097",
     "year": "2026",
     "month": "5",
@@ -10184,9 +10140,7 @@
     "date_filed": "5/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "295180.0",
     "annual_taxes": "",
@@ -10201,7 +10155,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500098",
     "year": "2026",
     "month": "5",
@@ -10211,9 +10165,7 @@
     "date_filed": "5/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "257710.0",
     "annual_taxes": "",
@@ -10228,7 +10180,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500100",
     "year": "2026",
     "month": "5",
@@ -10238,9 +10190,7 @@
     "date_filed": "5/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "182060.0",
     "annual_taxes": "",
@@ -10255,7 +10205,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500114",
     "year": "2026",
     "month": "5",
@@ -10265,9 +10215,7 @@
     "date_filed": "5/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "233130.0",
     "annual_taxes": "",
@@ -10282,7 +10230,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500118",
     "year": "2026",
     "month": "5",
@@ -10292,9 +10240,7 @@
     "date_filed": "5/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "283760.0",
     "annual_taxes": "",
@@ -10309,7 +10255,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500124",
     "year": "2026",
     "month": "5",
@@ -10319,9 +10265,7 @@
     "date_filed": "5/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "262710.0",
     "annual_taxes": "",
@@ -10336,7 +10280,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500125",
     "year": "2026",
     "month": "5",
@@ -10346,9 +10290,7 @@
     "date_filed": "5/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "360120.0",
     "annual_taxes": "",
@@ -10363,7 +10305,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500126",
     "year": "2026",
     "month": "5",
@@ -10373,9 +10315,7 @@
     "date_filed": "5/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "259130.0",
     "annual_taxes": "",
@@ -10390,7 +10330,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500127",
     "year": "2026",
     "month": "5",
@@ -10400,9 +10340,7 @@
     "date_filed": "5/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "283310.0",
     "annual_taxes": "",
@@ -10417,7 +10355,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260400291",
     "year": "2026",
     "month": "4",
@@ -10427,9 +10365,7 @@
     "date_filed": "4/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "270000.0",
     "annual_taxes": "",
@@ -10444,7 +10380,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260400423",
     "year": "2026",
     "month": "4",
@@ -10454,9 +10390,7 @@
     "date_filed": "4/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "293410.0",
     "annual_taxes": "",
@@ -10471,7 +10405,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260400455",
     "year": "2026",
     "month": "4",
@@ -10481,9 +10415,7 @@
     "date_filed": "4/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "475360.0",
     "annual_taxes": "",
@@ -10498,7 +10430,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260400456",
     "year": "2026",
     "month": "4",
@@ -10508,9 +10440,7 @@
     "date_filed": "4/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "336410.0",
     "annual_taxes": "",
@@ -10525,7 +10455,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260400220",
     "year": "2026",
     "month": "4",
@@ -10535,9 +10465,7 @@
     "date_filed": "4/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "275280.0",
     "annual_taxes": "",
@@ -10552,7 +10480,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260400299",
     "year": "2026",
     "month": "4",
@@ -10562,9 +10490,7 @@
     "date_filed": "4/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "263500.0",
     "annual_taxes": "",
@@ -10579,7 +10505,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260400313",
     "year": "2026",
     "month": "4",
@@ -10589,9 +10515,7 @@
     "date_filed": "4/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "412350.0",
     "annual_taxes": "",
@@ -10606,7 +10530,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260400314",
     "year": "2026",
     "month": "4",
@@ -10616,9 +10540,7 @@
     "date_filed": "4/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "210800.0",
     "annual_taxes": "",
@@ -10633,7 +10555,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260400328",
     "year": "2026",
     "month": "4",
@@ -10643,9 +10565,7 @@
     "date_filed": "4/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "351620.0",
     "annual_taxes": "",
@@ -10660,7 +10580,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260400332",
     "year": "2026",
     "month": "4",
@@ -10670,9 +10590,7 @@
     "date_filed": "4/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "251070.0",
     "annual_taxes": "",
@@ -10687,7 +10605,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260400358",
     "year": "2026",
     "month": "4",
@@ -10697,9 +10615,7 @@
     "date_filed": "4/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "288810.0",
     "annual_taxes": "",
@@ -10714,7 +10630,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260400111",
     "year": "2026",
     "month": "4",
@@ -10724,9 +10640,7 @@
     "date_filed": "4/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "205310.0",
     "annual_taxes": "",
@@ -10741,7 +10655,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500083",
     "year": "2026",
     "month": "5",
@@ -10751,9 +10665,7 @@
     "date_filed": "5/2026",
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "228210.0",
     "annual_taxes": "",
@@ -29808,7 +29720,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260500117",
     "year": "2026",
     "month": "5",
@@ -29819,7 +29731,6 @@
     "sale_date": "",
     "run_ts": "2026-05-10T14:57:03Z",
     "flags": [
-      "NEW",
       "NO OWNER"
     ],
     "source": "arcgis",
