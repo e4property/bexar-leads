@@ -6,7 +6,7 @@
     "mail_addr": "SALDANA JACQUELINE SAN ANTONIO 78245",
     "absentee": true,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260600262",
     "ps_doc_id": "314796567",
     "year": "2026",
@@ -19,7 +19,6 @@
     "run_ts": "2026-05-09T20:38:30Z",
     "flags": [
       "ABSENTEE",
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -32,7 +31,7 @@
     "annual_taxes": "",
     "land_value": "47090.0",
     "score": 9,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -66,7 +65,7 @@
     "annual_taxes": "",
     "land_value": "822280.0",
     "score": 9,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -92,7 +91,7 @@
     ],
     "source": "publicsearch",
     "score": 9,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -118,7 +117,7 @@
     ],
     "source": "publicsearch",
     "score": 9,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -144,7 +143,7 @@
     ],
     "source": "publicsearch",
     "score": 9,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -170,7 +169,7 @@
     ],
     "source": "publicsearch",
     "score": 9,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -196,7 +195,7 @@
     ],
     "source": "publicsearch",
     "score": 9,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -222,7 +221,7 @@
     ],
     "source": "publicsearch",
     "score": 9,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -248,7 +247,7 @@
     ],
     "source": "publicsearch",
     "score": 9,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -274,7 +273,7 @@
     ],
     "source": "publicsearch",
     "score": 9,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -300,7 +299,7 @@
     ],
     "source": "publicsearch",
     "score": 9,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -326,7 +325,41 @@
     ],
     "source": "publicsearch",
     "score": 9,
-    "days_until_sale": 23
+    "days_until_sale": 22
+  },
+  {
+    "type": "NOF",
+    "address": "743 GULF",
+    "owner": "GARCIA AURELIO & MIRANDA WALTER",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260600261",
+    "ps_doc_id": "314796566",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78202",
+    "school_dist": "",
+    "date_filed": "5/2026",
+    "sale_date": "06/02/2026",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "appraised_value": "165530.0",
+    "annual_taxes": "",
+    "land_value": "84200.0",
+    "score": 7,
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -359,7 +392,7 @@
     "annual_taxes": "",
     "land_value": "44030.0",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -392,7 +425,7 @@
     "annual_taxes": "",
     "land_value": "1729000.0",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -426,7 +459,7 @@
     "annual_taxes": "",
     "land_value": "308610.0",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -459,7 +492,7 @@
     "annual_taxes": "",
     "land_value": "49840.0",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -493,7 +526,7 @@
     "annual_taxes": "",
     "land_value": "523120.0",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -526,7 +559,7 @@
     "annual_taxes": "",
     "land_value": "1818010.0",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -559,7 +592,7 @@
     "annual_taxes": "",
     "land_value": "237820.0",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -592,7 +625,7 @@
     "annual_taxes": "",
     "land_value": "53610.0",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -626,7 +659,7 @@
     "annual_taxes": "2281220.0",
     "land_value": "2281220.0",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -659,7 +692,7 @@
     "annual_taxes": "57720.0",
     "land_value": "57720.0",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -692,7 +725,7 @@
     "annual_taxes": "40890.0",
     "land_value": "40890.0",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -725,7 +758,7 @@
     "annual_taxes": "68850.0",
     "land_value": "68850.0",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -758,7 +791,7 @@
     "annual_taxes": "46380.0",
     "land_value": "46380.0",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -791,7 +824,7 @@
     "annual_taxes": "221000.0",
     "land_value": "221000.0",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -824,7 +857,7 @@
     "annual_taxes": "81520.0",
     "land_value": "81520.0",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -854,7 +887,7 @@
     "loan_date": "",
     "trustee": "",
     "score": 7,
-    "days_until_sale": 23,
+    "days_until_sale": 22,
     "appraised_value": "",
     "annual_taxes": "",
     "land_value": "21780.0"
@@ -882,7 +915,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -908,7 +941,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -933,7 +966,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -958,7 +991,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -983,7 +1016,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -1008,7 +1041,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -1033,7 +1066,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -1058,7 +1091,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -1083,7 +1116,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -1108,7 +1141,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -1133,7 +1166,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -1158,7 +1191,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -1183,7 +1216,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -1208,7 +1241,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -1233,7 +1266,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -1259,7 +1292,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -1284,7 +1317,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -1309,7 +1342,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -1334,7 +1367,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -1359,7 +1392,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -1384,7 +1417,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -1409,7 +1442,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -1434,7 +1467,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -1459,7 +1492,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -1485,7 +1518,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -1510,7 +1543,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -1535,7 +1568,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -1561,7 +1594,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -1586,7 +1619,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -1611,7 +1644,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -1636,7 +1669,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -1661,7 +1694,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -1686,7 +1719,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -1711,7 +1744,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -1736,7 +1769,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -1761,7 +1794,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -1786,7 +1819,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -1811,7 +1844,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -1836,7 +1869,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -1861,7 +1894,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -1886,7 +1919,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -1911,7 +1944,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -1936,7 +1969,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -1961,7 +1994,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -1986,7 +2019,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -2011,7 +2044,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -2036,7 +2069,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -2061,7 +2094,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -2086,7 +2119,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -2111,7 +2144,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -2136,7 +2169,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -2161,7 +2194,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -2186,7 +2219,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -2211,7 +2244,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -2236,7 +2269,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -2261,7 +2294,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -2286,7 +2319,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -2311,7 +2344,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -2336,7 +2369,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -2362,7 +2395,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -2387,7 +2420,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -2413,7 +2446,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -2438,7 +2471,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -2463,7 +2496,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -2488,7 +2521,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -2513,7 +2546,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -2538,7 +2571,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -2563,7 +2596,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -2588,7 +2621,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -2613,7 +2646,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -2638,7 +2671,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -2663,7 +2696,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -2688,7 +2721,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -2713,7 +2746,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -2738,7 +2771,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -2763,7 +2796,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -2788,7 +2821,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -2813,7 +2846,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -2838,7 +2871,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -2863,7 +2896,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -2888,7 +2921,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -2913,7 +2946,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -2939,7 +2972,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -2964,7 +2997,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -2989,7 +3022,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -3014,7 +3047,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -3039,7 +3072,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -3064,7 +3097,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -3089,7 +3122,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -3114,7 +3147,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -3139,7 +3172,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -3164,7 +3197,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -3189,7 +3222,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -3214,7 +3247,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -3239,7 +3272,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -3264,7 +3297,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -3289,7 +3322,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -3314,7 +3347,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -3339,7 +3372,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -3364,7 +3397,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -3389,7 +3422,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -3414,7 +3447,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -3439,7 +3472,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -3464,7 +3497,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -3489,7 +3522,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -3514,7 +3547,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -3539,7 +3572,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -3564,7 +3597,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -3589,7 +3622,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -3614,7 +3647,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -3639,7 +3672,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -3664,7 +3697,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -3689,7 +3722,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -3714,7 +3747,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -3739,7 +3772,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -3764,7 +3797,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -3789,7 +3822,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -3814,7 +3847,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -3839,7 +3872,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -3864,7 +3897,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -3889,7 +3922,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -3914,7 +3947,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -3939,7 +3972,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -3964,7 +3997,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -3989,7 +4022,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -4014,7 +4047,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -4039,7 +4072,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -4064,7 +4097,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -4089,7 +4122,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -4114,7 +4147,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -4139,7 +4172,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -4164,7 +4197,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -4189,7 +4222,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -4214,7 +4247,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -4239,7 +4272,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -4264,7 +4297,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -4289,7 +4322,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -4314,7 +4347,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -4339,7 +4372,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -4364,7 +4397,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -4389,7 +4422,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -4414,7 +4447,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -4439,7 +4472,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -4464,7 +4497,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -4489,7 +4522,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -4514,7 +4547,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -4539,7 +4572,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -4564,7 +4597,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -4589,7 +4622,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -4614,7 +4647,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -4639,7 +4672,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -4664,7 +4697,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -4689,7 +4722,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -4714,7 +4747,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -4739,7 +4772,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -4764,7 +4797,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -4789,7 +4822,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -4814,7 +4847,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -4839,7 +4872,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -4864,7 +4897,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -4889,7 +4922,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -4914,7 +4947,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -4939,7 +4972,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -4964,7 +4997,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -4989,7 +5022,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -5014,7 +5047,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -5039,7 +5072,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -5064,7 +5097,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -5089,7 +5122,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -5114,7 +5147,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -5139,7 +5172,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -5164,7 +5197,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -5189,7 +5222,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -5214,7 +5247,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -5239,7 +5272,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -5264,7 +5297,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -5289,7 +5322,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -5314,7 +5347,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -5339,7 +5372,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -5364,7 +5397,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -5389,7 +5422,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -5414,7 +5447,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -5439,7 +5472,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -5464,7 +5497,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -5489,7 +5522,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -5514,7 +5547,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -5539,7 +5572,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -5564,7 +5597,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -5589,7 +5622,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -5614,7 +5647,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -5639,7 +5672,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -5664,7 +5697,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -5689,7 +5722,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -5714,7 +5747,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -5739,7 +5772,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -5770,7 +5803,7 @@
     "loan_date": "",
     "trustee": "",
     "score": 4,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -5801,7 +5834,7 @@
     "loan_date": "",
     "trustee": "",
     "score": 4,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -5827,7 +5860,7 @@
     ],
     "source": "publicsearch",
     "score": 4,
-    "days_until_sale": 23
+    "days_until_sale": 22
   },
   {
     "type": "TAX",
@@ -5908,7 +5941,7 @@
     "annual_taxes": "3487930.0",
     "land_value": "3487930.0",
     "score": 9,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -5933,7 +5966,7 @@
     ],
     "source": "publicsearch",
     "score": 9,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -5958,7 +5991,7 @@
     ],
     "source": "publicsearch",
     "score": 9,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -5983,7 +6016,486 @@
     ],
     "source": "publicsearch",
     "score": 9,
-    "days_until_sale": 58
+    "days_until_sale": 57
+  },
+  {
+    "type": "NOF",
+    "address": "6611 SPOTTED TRAIL DR",
+    "owner": "DIXON TIMOTHY S",
+    "mail_addr": "& AMBERG NORA SULLIVAN SAN ANTONIO 78240",
+    "absentee": true,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500065",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78240",
+    "school_dist": "Northside ISD (Bexar)",
+    "date_filed": "5/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "ABSENTEE",
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "373740.0",
+    "annual_taxes": "",
+    "land_value": "116700.0",
+    "score": 8,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "10311 TIPPECANOE DRIVE",
+    "owner": "MEDINA ERIC E &",
+    "mail_addr": "MARTHA V GARCIA SAN ANTONIO 78245",
+    "absentee": true,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500130",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78245",
+    "school_dist": "Northside ISD (Bexar)",
+    "date_filed": "5/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "ABSENTEE",
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "242180.0",
+    "annual_taxes": "",
+    "land_value": "48150.0",
+    "score": 8,
+    "days_until_sale": null
+  },
+  {
+    "type": "TAX",
+    "address": "206 E WHITE",
+    "owner": "HENRY ADAM & RENTERIA HARMONY M",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "2015TA103055",
+    "year": "2026",
+    "month": "6",
+    "city": "SAN ANTONIO",
+    "zip": "78214",
+    "school_dist": "Harlandale ISD",
+    "date_filed": "6/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "TAX FORE",
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "119530.0",
+    "annual_taxes": "",
+    "land_value": "49990.0",
+    "score": 8,
+    "days_until_sale": null
+  },
+  {
+    "type": "TAX",
+    "address": "354 THOMPSON PL",
+    "owner": "PEREZ MARGARITA L",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "2017TA101415",
+    "year": "2026",
+    "month": "6",
+    "city": "SAN ANTONIO",
+    "zip": "78225",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "6/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "TAX FORE",
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "152510.0",
+    "annual_taxes": "",
+    "land_value": "40630.0",
+    "score": 8,
+    "days_until_sale": null
+  },
+  {
+    "type": "TAX",
+    "address": "1640 AMANDA ST",
+    "owner": "RODRIGUEZ MANUEL E",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "2018TA102181",
+    "year": "2026",
+    "month": "6",
+    "city": "SAN ANTONIO",
+    "zip": "78210",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "6/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "TAX FORE",
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "48230.0",
+    "annual_taxes": "",
+    "land_value": "48230.0",
+    "score": 8,
+    "days_until_sale": null
+  },
+  {
+    "type": "TAX",
+    "address": "439 BUCKINGHAM AVE",
+    "owner": "GARZA MARCELLO S",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": true,
+    "is_new": true,
+    "doc_number": "2022TA100856",
+    "year": "2026",
+    "month": "6",
+    "city": "SAN ANTONIO",
+    "zip": "78210",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "6/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "TAX FORE",
+      "DUPLICATE",
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "53510.0",
+    "annual_taxes": "",
+    "land_value": "53510.0",
+    "score": 8,
+    "days_until_sale": null
+  },
+  {
+    "type": "TAX",
+    "address": "814 S MESQUITE ST",
+    "owner": "GARZA MARCELLO S",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": true,
+    "is_new": true,
+    "doc_number": "2022TA101085",
+    "year": "2026",
+    "month": "6",
+    "city": "SAN ANTONIO",
+    "zip": "78203",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "6/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "TAX FORE",
+      "DUPLICATE",
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "112250.0",
+    "annual_taxes": "",
+    "land_value": "99330.0",
+    "score": 8,
+    "days_until_sale": null
+  },
+  {
+    "type": "TAX",
+    "address": "8618 GLEN BREEZE",
+    "owner": "HERNANDEZ JAVIER & MARIA CARMEN",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "2022TA101136",
+    "year": "2026",
+    "month": "6",
+    "city": "SAN ANTONIO",
+    "zip": "78239",
+    "school_dist": "Northeast ISD",
+    "date_filed": "6/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "TAX FORE",
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "227450.0",
+    "annual_taxes": "",
+    "land_value": "54110.0",
+    "score": 8,
+    "days_until_sale": null
+  },
+  {
+    "type": "TAX",
+    "address": "911 BURLESON",
+    "owner": "VILLARREAL ANTONIO M",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": true,
+    "is_new": true,
+    "doc_number": "2022TA101941",
+    "year": "2026",
+    "month": "6",
+    "city": "SAN ANTONIO",
+    "zip": "78202",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "6/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "TAX FORE",
+      "DUPLICATE",
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "159880.0",
+    "annual_taxes": "",
+    "land_value": "146680.0",
+    "score": 8,
+    "days_until_sale": null
+  },
+  {
+    "type": "TAX",
+    "address": "1111 VICKERS AVE #2",
+    "owner": "COLUMBIA HEIGHTS COMMUNITY TEMPLE",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "2023TA100662",
+    "year": "2026",
+    "month": "6",
+    "city": "SAN ANTONIO",
+    "zip": "78211",
+    "school_dist": "Harlandale ISD",
+    "date_filed": "6/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "TAX FORE",
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "50000.0",
+    "annual_taxes": "",
+    "land_value": "50000.0",
+    "score": 8,
+    "days_until_sale": null
+  },
+  {
+    "type": "TAX",
+    "address": "1665 E LOOP 1604",
+    "owner": "ARMIJO YEDID DAVID TRISTAN",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "2024TA100778",
+    "year": "2026",
+    "month": "6",
+    "city": "SAN ANTONIO",
+    "zip": "78221",
+    "school_dist": "Southside ISD",
+    "date_filed": "6/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "TAX FORE",
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "235540.0",
+    "annual_taxes": "",
+    "land_value": "235540.0",
+    "score": 8,
+    "days_until_sale": null
+  },
+  {
+    "type": "TAX",
+    "address": "807 TOPEKA BLVD",
+    "owner": "ROBLES DOLORES G",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "2025TA100175",
+    "year": "2026",
+    "month": "6",
+    "city": "SAN ANTONIO",
+    "zip": "78210",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "6/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "TAX FORE",
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "170410.0",
+    "annual_taxes": "",
+    "land_value": "53360.0",
+    "score": 8,
+    "days_until_sale": null
+  },
+  {
+    "type": "TAX",
+    "address": "7465 W LOOP 1604",
+    "owner": "ABUNDES RICARDO",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "2021TA100476",
+    "year": "2026",
+    "month": "6",
+    "city": "SOMERSET",
+    "zip": "78073",
+    "school_dist": "Somerset ISD",
+    "date_filed": "6/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "TAX FORE",
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "92430.0",
+    "annual_taxes": "",
+    "land_value": "92430.0",
+    "score": 8,
+    "days_until_sale": null
+  },
+  {
+    "type": "TAX",
+    "address": "25896 LIVE OAK RD",
+    "owner": "LIRA LARRY",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "2022TA100894",
+    "year": "2026",
+    "month": "6",
+    "city": "SAN ANTONIO",
+    "zip": "78264",
+    "school_dist": "Northside ISD (Bexar)",
+    "date_filed": "6/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "TAX FORE",
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "225430.0",
+    "annual_taxes": "",
+    "land_value": "82350.0",
+    "score": 8,
+    "days_until_sale": null
+  },
+  {
+    "type": "TAX",
+    "address": "155 YUCCA ST",
+    "owner": "RINCON SANTOS & ANASTACIA P",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "2013TA100023",
+    "year": "2026",
+    "month": "6",
+    "city": "SAN ANTONIO",
+    "zip": "78203",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "6/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "TAX FORE",
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "91670.0",
+    "annual_taxes": "",
+    "land_value": "61880.0",
+    "score": 8,
+    "days_until_sale": null
+  },
+  {
+    "type": "TAX",
+    "address": "419 MERRIMAC",
+    "owner": "VEGA FRANCISCO M & MARIBEL N",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "2011TA102021",
+    "year": "2026",
+    "month": "6",
+    "city": "SAN ANTONIO",
+    "zip": "78223",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "6/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "TAX FORE",
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "40530.0",
+    "annual_taxes": "",
+    "land_value": "40530.0",
+    "score": 8,
+    "days_until_sale": null
+  },
+  {
+    "type": "TAX",
+    "address": "407 MCKAY AVE",
+    "owner": "MOJICA MATIAS S",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "2014TA100941",
+    "year": "2026",
+    "month": "6",
+    "city": "SAN ANTONIO",
+    "zip": "78204",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "6/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "TAX FORE",
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "144110.0",
+    "annual_taxes": "",
+    "land_value": "63980.0",
+    "score": 8,
+    "days_until_sale": null
   },
   {
     "type": "NOF",
@@ -6730,7 +7242,7 @@
     "annual_taxes": "",
     "land_value": "85860.0",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -6762,7 +7274,7 @@
     "annual_taxes": "",
     "land_value": "62750.0",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -6794,7 +7306,7 @@
     "annual_taxes": "",
     "land_value": "50670.0",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -6826,7 +7338,7 @@
     "annual_taxes": "",
     "land_value": "47800.0",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -6858,7 +7370,7 @@
     "annual_taxes": "",
     "land_value": "82350.0",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -6890,7 +7402,7 @@
     "annual_taxes": "",
     "land_value": "43910.0",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -6922,7 +7434,7 @@
     "annual_taxes": "",
     "land_value": "54030.0",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -6954,7 +7466,7 @@
     "annual_taxes": "",
     "land_value": "52710.0",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -6986,7 +7498,7 @@
     "annual_taxes": "",
     "land_value": "67470.0",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -7018,7 +7530,7 @@
     "annual_taxes": "",
     "land_value": "64170.0",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -7050,7 +7562,7 @@
     "annual_taxes": "",
     "land_value": "61490.0",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -7082,7 +7594,7 @@
     "annual_taxes": "37360.0",
     "land_value": "37360.0",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -7111,7 +7623,7 @@
     "loan_date": "",
     "trustee": "",
     "score": 7,
-    "days_until_sale": 58,
+    "days_until_sale": 57,
     "appraised_value": "",
     "annual_taxes": "",
     "land_value": "54450.0"
@@ -7138,7 +7650,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -7162,7 +7674,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -7186,7 +7698,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -7210,7 +7722,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -7234,7 +7746,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -7258,7 +7770,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -7282,7 +7794,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -7306,7 +7818,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -7330,7 +7842,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -7354,7 +7866,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -7378,7 +7890,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -7402,7 +7914,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -7426,7 +7938,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -7450,7 +7962,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -7474,7 +7986,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -7498,7 +8010,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -7522,7 +8034,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -7546,7 +8058,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -7570,7 +8082,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -7594,7 +8106,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -7618,7 +8130,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -7642,7 +8154,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -7666,7 +8178,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -7690,7 +8202,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -7714,7 +8226,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -7738,7 +8250,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -7762,7 +8274,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -7786,7 +8298,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -7810,7 +8322,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -7834,7 +8346,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -7858,7 +8370,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -7882,7 +8394,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -7906,7 +8418,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -7930,7 +8442,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -7954,7 +8466,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -7978,7 +8490,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -8002,7 +8514,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -8026,7 +8538,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -8050,7 +8562,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -8074,7 +8586,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -8098,7 +8610,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -8122,7 +8634,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -8146,7 +8658,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -8170,7 +8682,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -8194,7 +8706,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -8218,7 +8730,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -8242,7 +8754,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -8266,7 +8778,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -8290,7 +8802,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -8314,7 +8826,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -8338,7 +8850,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -8362,7 +8874,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -8386,7 +8898,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -8410,7 +8922,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -8434,7 +8946,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -8458,7 +8970,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -8482,7 +8994,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -8506,7 +9018,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -8530,7 +9042,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -8554,7 +9066,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -8578,7 +9090,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -8602,7 +9114,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -8626,7 +9138,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -8650,7 +9162,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -8674,7 +9186,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -8698,7 +9210,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -8722,7 +9234,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -8746,7 +9258,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -8770,7 +9282,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -8794,7 +9306,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -8818,7 +9330,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 58
+    "days_until_sale": 57
   },
   {
     "type": "NOF",
@@ -8842,7 +9354,1412 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 86
+    "days_until_sale": 85
+  },
+  {
+    "type": "NOF",
+    "address": "7723 VALLE LOCAL",
+    "owner": "SNYDER CODY EVAN",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500030",
+    "year": "2026",
+    "month": "5",
+    "city": "BOERNE",
+    "zip": "78015",
+    "school_dist": "Boerne ISD",
+    "date_filed": "5/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "472260.0",
+    "annual_taxes": "",
+    "land_value": "67550.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "7719 PARAISO CIR",
+    "owner": "DYER ALLEN",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500115",
+    "year": "2026",
+    "month": "5",
+    "city": "BOERNE",
+    "zip": "78015",
+    "school_dist": "Boerne ISD",
+    "date_filed": "5/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "365720.0",
+    "annual_taxes": "",
+    "land_value": "80720.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "9743 CYLBURN PARK",
+    "owner": "SA REAL ESTATE PROPERTY INVESTMENTS & CHRIS SANCHEZ & ASSOCIATES LLC",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500089",
+    "year": "2026",
+    "month": "5",
+    "city": "CONVERSE",
+    "zip": "78109",
+    "school_dist": "Judson ISD",
+    "date_filed": "5/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "201190.0",
+    "annual_taxes": "",
+    "land_value": "59650.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "14306 HONDO KNOT",
+    "owner": "ARANZABAL CHRISTOPHER & GUZMAN MARLENE",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500007",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78254",
+    "school_dist": "Northside ISD (Bexar)",
+    "date_filed": "5/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "444620.0",
+    "annual_taxes": "",
+    "land_value": "74570.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "5323 5323 HICKORY PLACE",
+    "owner": "FIORENTINO YVETTE TAINA & NICHOLAS MARC",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500011",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78222",
+    "school_dist": "East Central ISD",
+    "date_filed": "5/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "320600.0",
+    "annual_taxes": "",
+    "land_value": "42000.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "2747 TRINITY VW",
+    "owner": "SOLORZANO MARTEL & MICHELLE M",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": true,
+    "is_new": true,
+    "doc_number": "20260500017",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78261",
+    "school_dist": "Comal ISD",
+    "date_filed": "5/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "DUPLICATE",
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "553660.0",
+    "annual_taxes": "",
+    "land_value": "97390.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "4102 CLIFF RUN",
+    "owner": "HO SANG & LIMTIAMRAT BUSARIN",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500019",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78222",
+    "school_dist": "East Central ISD",
+    "date_filed": "5/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "286000.0",
+    "annual_taxes": "",
+    "land_value": "83800.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "4235 SOUTHTON LAKE",
+    "owner": "MAMARIL DANNY BANGS & MAMARIL BIANCA CHEANEY",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500020",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78223",
+    "school_dist": "East Central ISD",
+    "date_filed": "5/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "238530.0",
+    "annual_taxes": "",
+    "land_value": "51550.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "506 BROOKVIEW DR",
+    "owner": "ESCOBEDO MELISSA FRANCES",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500021",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78213",
+    "school_dist": "Northeast ISD",
+    "date_filed": "5/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "189850.0",
+    "annual_taxes": "",
+    "land_value": "54470.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "806 PIEDMONT AVE",
+    "owner": "ESTRADA RUDOLPH ORTA",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500027",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78210",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "5/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "281410.0",
+    "annual_taxes": "",
+    "land_value": "107430.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "9210 RIDGE GROVE STREET",
+    "owner": "ESTRADA PEDRO & RUTH",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500031",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78250",
+    "school_dist": "Northside ISD (Bexar)",
+    "date_filed": "5/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "278540.0",
+    "annual_taxes": "",
+    "land_value": "52010.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "5911 LAKE FALLS DRIVE",
+    "owner": "LIMON VINCENT B",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500043",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78222",
+    "school_dist": "East Central ISD",
+    "date_filed": "5/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "155000.0",
+    "annual_taxes": "",
+    "land_value": "42480.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "14610 PRAIRIE CLOVER",
+    "owner": "CARON JACOB TYLER",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500045",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78253",
+    "school_dist": "Medina Valley ISD",
+    "date_filed": "5/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "296120.0",
+    "annual_taxes": "",
+    "land_value": "46090.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "7350 LONDON MILL",
+    "owner": "HERNANDEZ BRAULIA CELENE MACIAS",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500047",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78218",
+    "school_dist": "Northeast ISD",
+    "date_filed": "5/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "272270.0",
+    "annual_taxes": "",
+    "land_value": "48010.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "4407 SAFE HARBOR",
+    "owner": "TERRAZAS CARLOS",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500051",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78244",
+    "school_dist": "Judson ISD",
+    "date_filed": "5/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "225110.0",
+    "annual_taxes": "",
+    "land_value": "38230.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "1927 SANDY CIRCLE",
+    "owner": "VEGA JASMINE",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500052",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78264",
+    "school_dist": "Southside ISD",
+    "date_filed": "5/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "254130.0",
+    "annual_taxes": "",
+    "land_value": "108580.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "13926 WOOL PARK",
+    "owner": "DIAZ GILBERTO JR & DENISE",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500054",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78252",
+    "school_dist": "Medina Valley ISD",
+    "date_filed": "5/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "248180.0",
+    "annual_taxes": "",
+    "land_value": "55830.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "10002 KERSEY MILL",
+    "owner": "CORNELIUS JORDAN LEE",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500055",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78224",
+    "school_dist": "Southwest ISD",
+    "date_filed": "5/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "220980.0",
+    "annual_taxes": "",
+    "land_value": "32080.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "2614 RIVER POINTE",
+    "owner": "GARZA JR JAVIER ALONZO & MONICA",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500058",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78245",
+    "school_dist": "Medina Valley ISD",
+    "date_filed": "5/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "369880.0",
+    "annual_taxes": "",
+    "land_value": "46170.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "819 EIGHT IRON",
+    "owner": "JULIAN ABIMAEL",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500060",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78221",
+    "school_dist": "Southside ISD",
+    "date_filed": "5/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "285550.0",
+    "annual_taxes": "",
+    "land_value": "73620.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "2402 CLARA LN",
+    "owner": "PRYME HOME SOLUTIONS LLC",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500061",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78213",
+    "school_dist": "Northeast ISD",
+    "date_filed": "5/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "171210.0",
+    "annual_taxes": "",
+    "land_value": "53700.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "3535 OAKHORNE ST",
+    "owner": "FARQUHARSON RYAN O",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500062",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78247",
+    "school_dist": "Northeast ISD",
+    "date_filed": "5/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "310040.0",
+    "annual_taxes": "",
+    "land_value": "71240.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "7015 SATELLITE WAY",
+    "owner": "THORPE ASHLEE NICOLE",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500075",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78252",
+    "school_dist": "Southwest ISD",
+    "date_filed": "5/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "215930.0",
+    "annual_taxes": "",
+    "land_value": "32080.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "13706 HARVEST VALLEY",
+    "owner": "CRUZ LUIS ENRIQUE & LICON JOANNA",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500078",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78252",
+    "school_dist": "Medina Valley ISD",
+    "date_filed": "5/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "191030.0",
+    "annual_taxes": "",
+    "land_value": "57750.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "7202 SATELLITE WAY",
+    "owner": "MATA JENNIFER MARIE",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500079",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78252",
+    "school_dist": "Southwest ISD",
+    "date_filed": "5/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "184310.0",
+    "annual_taxes": "",
+    "land_value": "32080.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "851 CELESTIAL VIEW",
+    "owner": "BURRAGE JOE WALTON TYRONE JR",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500080",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78258",
+    "school_dist": "Northeast ISD",
+    "date_filed": "5/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "560280.0",
+    "annual_taxes": "",
+    "land_value": "106930.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "5631 GREEN HOUSE ST",
+    "owner": "SULLIVAN CLEMENTINE T",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500084",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78223",
+    "school_dist": "East Central ISD",
+    "date_filed": "5/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "168920.0",
+    "annual_taxes": "",
+    "land_value": "48830.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "723 MCDOUGAL AVE",
+    "owner": "MORIN MARCOS S & JUANITA P",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500088",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78223",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "5/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "144120.0",
+    "annual_taxes": "",
+    "land_value": "47880.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "14811 TAMARON PASS",
+    "owner": "CARDENAS DANIEL R &  CLAUDIA V",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500091",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78253",
+    "school_dist": "Northside ISD (Bexar)",
+    "date_filed": "5/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "606050.0",
+    "annual_taxes": "",
+    "land_value": "213140.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "6410 INGRAM RD",
+    "owner": "HUERTA HECTOR HUGO",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500094",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78238",
+    "school_dist": "Northside ISD (Bexar)",
+    "date_filed": "5/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "310480.0",
+    "annual_taxes": "",
+    "land_value": "56570.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "7502 ELEGANTE WAY",
+    "owner": "GONZALEZ FRANCISCO & ANGEL",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500097",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78266",
+    "school_dist": "Judson ISD",
+    "date_filed": "5/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "295180.0",
+    "annual_taxes": "",
+    "land_value": "58580.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "5126 ERICKSON BLF",
+    "owner": "SINGLETARY TIMOTHY R",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500098",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78247",
+    "school_dist": "Northeast ISD",
+    "date_filed": "5/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "257710.0",
+    "annual_taxes": "",
+    "land_value": "63240.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "7324 BOOKER BAY",
+    "owner": "BRYANT LAWANDA C",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500100",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78244",
+    "school_dist": "Judson ISD",
+    "date_filed": "5/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "182060.0",
+    "annual_taxes": "",
+    "land_value": "40520.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "110 NOTRE DAME DR",
+    "owner": "RIANO WILSON & JENNIFER",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500114",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78228",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "5/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "233130.0",
+    "annual_taxes": "",
+    "land_value": "53530.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "14434 STAGHORN GATE",
+    "owner": "CASTILLEJA EDUARDO & HINOJOSA KARINA MAGDALENA",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500118",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78233",
+    "school_dist": "Northeast ISD",
+    "date_filed": "5/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "283760.0",
+    "annual_taxes": "",
+    "land_value": "65070.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "4707 ASPEN VW",
+    "owner": "ROWE SANDRA A",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500124",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78217",
+    "school_dist": "Northeast ISD",
+    "date_filed": "5/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "262710.0",
+    "annual_taxes": "",
+    "land_value": "49880.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "2414 FACET OAK",
+    "owner": "SALAS MICHAEL RAY & VANESSA",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500125",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78232",
+    "school_dist": "Northeast ISD",
+    "date_filed": "5/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "360120.0",
+    "annual_taxes": "",
+    "land_value": "55700.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "5454 CHESTNUT VIEW DR",
+    "owner": "KELLY LORENZO & VERLEAN L",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500126",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78247",
+    "school_dist": "Northeast ISD",
+    "date_filed": "5/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "259130.0",
+    "annual_taxes": "",
+    "land_value": "50900.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "7830 BUR OAK WAY",
+    "owner": "BRAZIL KEVIN A",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500127",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78223",
+    "school_dist": "East Central ISD",
+    "date_filed": "5/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "283310.0",
+    "annual_taxes": "",
+    "land_value": "61190.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "8047 CANTURA MLS",
+    "owner": "SCHAAT KADEN JOEL & STANDIFIRD BARRY",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260400291",
+    "year": "2026",
+    "month": "4",
+    "city": "CONVERSE",
+    "zip": "78109",
+    "school_dist": "Judson ISD",
+    "date_filed": "4/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "270000.0",
+    "annual_taxes": "",
+    "land_value": "39290.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "2915 PEMBERTON POST",
+    "owner": "GUERRERO ASHLEY JUSTINE",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260400423",
+    "year": "2026",
+    "month": "4",
+    "city": "SAN ANTONIO",
+    "zip": "78245",
+    "school_dist": "Medina Valley ISD",
+    "date_filed": "4/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "293410.0",
+    "annual_taxes": "",
+    "land_value": "54920.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "19 PALO DURO CYN",
+    "owner": "RED DOOR FINANCIAL LLC",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260400455",
+    "year": "2026",
+    "month": "4",
+    "city": "SAN ANTONIO",
+    "zip": "78258",
+    "school_dist": "Northeast ISD",
+    "date_filed": "4/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "475360.0",
+    "annual_taxes": "",
+    "land_value": "92460.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "5006 TOPAZ BEND",
+    "owner": "STOVALL MICHAEL & VANESSA RENEE",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260400456",
+    "year": "2026",
+    "month": "4",
+    "city": "SAN ANTONIO",
+    "zip": "78222",
+    "school_dist": "East Central ISD",
+    "date_filed": "4/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "336410.0",
+    "annual_taxes": "",
+    "land_value": "44680.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "6427 MERLIN WAY",
+    "owner": "IVERA KARLA MICHELLE & GOMEZ JOSEPH MANUEL",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260400220",
+    "year": "2026",
+    "month": "4",
+    "city": "SAN ANTONIO",
+    "zip": "78233",
+    "school_dist": "Northeast ISD",
+    "date_filed": "4/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "275280.0",
+    "annual_taxes": "",
+    "land_value": "56710.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "6314 SLOANE CV",
+    "owner": "MAHMOOD FARIDA",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260400299",
+    "year": "2026",
+    "month": "4",
+    "city": "SAN ANTONIO",
+    "zip": "78222",
+    "school_dist": "East Central ISD",
+    "date_filed": "4/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "263500.0",
+    "annual_taxes": "",
+    "land_value": "55070.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "12222 OLD GAGE RANCH",
+    "owner": "VILLANUEVA ALAN JOAQUIN & GINA MARIE",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260400313",
+    "year": "2026",
+    "month": "4",
+    "city": "SAN ANTONIO",
+    "zip": "78245",
+    "school_dist": "Northside ISD (Bexar)",
+    "date_filed": "4/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "412350.0",
+    "annual_taxes": "",
+    "land_value": "57950.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "6259 POST ML",
+    "owner": "GONZALEZ ELIZABETH SOTO",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260400314",
+    "year": "2026",
+    "month": "4",
+    "city": "SAN ANTONIO",
+    "zip": "78244",
+    "school_dist": "Judson ISD",
+    "date_filed": "4/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "210800.0",
+    "annual_taxes": "",
+    "land_value": "65390.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "13566 AILEY KNOLL",
+    "owner": "LEE ARLINE JOMAT & CHRISTIAN WILLIAM",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260400328",
+    "year": "2026",
+    "month": "4",
+    "city": "SAN ANTONIO",
+    "zip": "78254",
+    "school_dist": "Northside ISD (Bexar)",
+    "date_filed": "4/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "351620.0",
+    "annual_taxes": "",
+    "land_value": "81230.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "6026 RED ROSE",
+    "owner": "CASTILLO JOSEMARIA R",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260400332",
+    "year": "2026",
+    "month": "4",
+    "city": "SAN ANTONIO",
+    "zip": "78244",
+    "school_dist": "Judson ISD",
+    "date_filed": "4/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "251070.0",
+    "annual_taxes": "",
+    "land_value": "54010.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "7407 BLUESTONE ROAD",
+    "owner": "GALAN JOHN",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260400358",
+    "year": "2026",
+    "month": "4",
+    "city": "SAN ANTONIO",
+    "zip": "78249",
+    "school_dist": "Northside ISD (Bexar)",
+    "date_filed": "4/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "288810.0",
+    "annual_taxes": "",
+    "land_value": "81410.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "2618 COLT DR",
+    "owner": "SANCHEZ ENRIQUE",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260400111",
+    "year": "2026",
+    "month": "4",
+    "city": "SAN ANTONIO",
+    "zip": "78227",
+    "school_dist": "Northside ISD (Bexar)",
+    "date_filed": "4/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "205310.0",
+    "annual_taxes": "",
+    "land_value": "40870.0",
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "12028 E US HWY 87",
+    "owner": "MEDINA ALFREDO",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500083",
+    "year": "2026",
+    "month": "5",
+    "city": "ADKINS",
+    "zip": "78101",
+    "school_dist": "East Central ISD",
+    "date_filed": "5/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "arcgis",
+    "appraised_value": "228210.0",
+    "annual_taxes": "",
+    "land_value": "83250.0",
+    "score": 6,
+    "days_until_sale": null
   },
   {
     "doc_number": "VBP-1005-SACRAMENTO-78201",
@@ -13005,10 +14922,12 @@
     "owner": "VILLARREAL ANTONIO M",
     "mail_addr": "",
     "absentee": false,
-    "duplicate": false,
+    "duplicate": true,
     "is_new": false,
     "run_ts": "2026-05-08T13:46:25",
-    "flags": [],
+    "flags": [
+      "DUPLICATE"
+    ],
     "score": 6,
     "sq_ft": 920,
     "is_sf": true,
@@ -24324,7 +26243,7 @@
     "owner": "SOLORZANO MARTEL & MICHELLE M",
     "mail_addr": "",
     "absentee": false,
-    "duplicate": false,
+    "duplicate": true,
     "is_new": false,
     "doc_number": "20260400159",
     "year": "2026",
@@ -24335,7 +26254,9 @@
     "date_filed": "4/2026",
     "run_ts": "2026-04-27T04:53:23Z",
     "sale_date": "",
-    "flags": [],
+    "flags": [
+      "DUPLICATE"
+    ],
     "score": 6,
     "days_until_sale": null
   },
@@ -27878,6 +29799,31 @@
     "sale_date": "",
     "flags": [],
     "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "2471 ARCHIMEDES DR",
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260500117",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78223",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "5/2026",
+    "sale_date": "",
+    "run_ts": "2026-05-10T14:57:03Z",
+    "flags": [
+      "NEW",
+      "NO OWNER"
+    ],
+    "source": "arcgis",
+    "score": 3,
     "days_until_sale": null
   },
   {
