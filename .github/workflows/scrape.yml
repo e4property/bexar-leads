@@ -72,13 +72,20 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git fetch origin main
-          git stash || true
-          git rebase origin/main || true
-          git stash pop || true
+
+          # Pull latest with rebase to avoid merge commits
+          git pull --rebase origin main
+
           git add data/records.json dashboard/records.json
           git diff --cached --quiet || git commit -m "chore: update leads $(date -u +'%Y-%m-%d %H:%M UTC')"
-          git push origin main
+
+          # Push with retry in case of race condition
+          for i in 1 2 3; do
+            git push origin main && break
+            echo "Push attempt $i failed, retrying..."
+            git pull --rebase origin main
+            sleep 5
+          done
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
@@ -90,70 +97,9 @@ jobs:
         uses: actions/deploy-pages@v4
 
       - name: Notify via GHL SMS
-        if: always()
+        if: false
         env:
           GHL_API_KEY: ${{ secrets.GHL_API_KEY }}
           GHL_LOCATION_ID: ${{ secrets.GHL_LOCATION_ID }}
           NOTIFY_PHONE: ${{ secrets.NOTIFY_PHONE }}
-        run: |
-          NEW="${{ steps.scraper.outputs.new_total }}"
-          CE="${{ steps.scraper.outputs.ce_count }}"
-          DANG="${{ steps.scraper.outputs.dang_count }}"
-          TOTAL="${{ steps.scraper.outputs.final_total }}"
-          MORT="${{ steps.scraper.outputs.mortgage_ct }}"
-          NEW=${NEW:-0}; CE=${CE:-0}; DANG=${DANG:-0}; TOTAL=${TOTAL:-0}; MORT=${MORT:-0}
-
-          if [ "$NEW" -gt "0" ] || [ "$CE" -gt "0" ]; then
-            MSG="Bexar Leads: ${NEW} new foreclosure, ${CE} code enforce"
-            if [ "$DANG" -gt "0" ]; then MSG="${MSG} !! ${DANG} DANGEROUS PREMISES"; fi
-            MSG="${MSG}. ${MORT} w/mortgage intel. ${TOTAL} total. Check dash."
-          else
-            MSG="Bexar scrape done. No new leads. ${MORT} w/mortgage intel. ${TOTAL} on file."
-          fi
-
-          # Step 1: look up contact by phone to get contactId
-          PHONE_ENCODED=$(python3 -c "import urllib.parse; print(urllib.parse.quote('$NOTIFY_PHONE'))")
-          CONTACT_RESP=$(curl -s \
-            "https://services.leadconnectorhq.com/contacts/?locationId=$GHL_LOCATION_ID&query=$PHONE_ENCODED" \
-            -H "Authorization: Bearer $GHL_API_KEY" \
-            -H "Version: 2021-07-28") || true
-
-          CONTACT_ID=$(echo "$CONTACT_RESP" | python3 -c "
-          import json,sys
-          try:
-            d=json.load(sys.stdin)
-            contacts=d.get('contacts',d.get('data',[]))
-            if contacts: print(contacts[0].get('id',''))
-          except: pass
-          " 2>/dev/null || true)
-
-          if [ -n "$CONTACT_ID" ]; then
-            # Send via conversation using contactId
-            PAYLOAD=$(python3 -c "import json; print(json.dumps({
-              'type':'SMS',
-              'contactId':'$CONTACT_ID',
-              'message':'$MSG'
-            }))")
-            RESP=$(curl -s -w "\n%{http_code}" \
-              -X POST "https://services.leadconnectorhq.com/conversations/messages" \
-              -H "Authorization: Bearer $GHL_API_KEY" \
-              -H "Content-Type: application/json" \
-              -H "Version: 2021-07-28" \
-              -d "$PAYLOAD") || true
-            echo "SMS via contactId response: $RESP"
-          else
-            # Fallback: send directly by phone number
-            PAYLOAD=$(python3 -c "import json; print(json.dumps({
-              'type':'SMS',
-              'locationId':'$GHL_LOCATION_ID',
-              'toNumber':'$NOTIFY_PHONE',
-              'message':'$MSG'
-            }))")
-            RESP=$(curl -s -w "\n%{http_code}" \
-              -X POST "https://services.leadconnectorhq.com/conversations/messages/outbound" \
-              -H "Authorization: Bearer $GHL_API_KEY" \
-              -H "Content-Type: application/json" \
-              -H "Version: 2021-07-28" \
-              -d "$PAYLOAD") || true
-            echo "SMS fallback response: $RESP"
-          fi
+        run: echo "SMS notify disabled"
