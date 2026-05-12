@@ -1,61 +1,44 @@
 name: Scrape and Deploy
-
 on:
   schedule:
     - cron: '0 15 * * *'
     - cron: '0 21 * * *'
   workflow_dispatch:
-
 permissions:
   contents: write
   pages: write
   id-token: write
-
 jobs:
   scrape-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
+          token: "${{ secrets.GITHUB_TOKEN }}"
+      - uses: actions/setup-python@v4
         with:
           python-version: '3.11'
-
-      - name: Install dependencies
-        run: pip install requests beautifulsoup4 lxml selenium
-
-      - name: Run scraper
-        run: python scraper/fetch.py
-
+      - run: pip install requests beautifulsoup4 lxml selenium
+      - run: python scraper/fetch.py
       - name: Commit records
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git stash --include-untracked
-          git pull --rebase origin main
-          git stash pop || true
-          git add data/records.json dashboard/records.json
-          git diff --cached --quiet || git commit -m "chore: update leads $(date -u +'%Y-%m-%d %H:%M UTC')"
-          for i in 1 2 3; do
-            git push origin main && break
-            echo "Push attempt $i failed, retrying..."
-            git pull --rebase origin main
-            sleep 5
+          git add dashboard/records.json data/records.json 2>/dev/null || true
+          git diff --cached --quiet && echo "No changes" && exit 0
+          git commit -m "chore: update leads $(date -u +'%Y-%m-%d %H:%M UTC')"
+          for i in 1 2 3 4 5; do
+            sleep $((RANDOM % 10 + 2))
+            git fetch origin main
+            git rebase -X theirs origin/main || git rebase --abort
+            git push origin main && echo "Push succeeded" && break
+            echo "Attempt $i failed, retrying..."
           done
-
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: dashboard/
-
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
-
+      - uses: actions/deploy-pages@v4
       - name: Notify via GHL SMS
         if: false
         run: echo "SMS notify parked"
