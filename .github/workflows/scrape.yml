@@ -6,6 +6,11 @@ on:
     - cron: '0 21 * * *'
   workflow_dispatch:
 
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
 jobs:
   scrape-and-deploy:
     runs-on: ubuntu-latest
