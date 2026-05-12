@@ -31,8 +31,9 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git checkout -- dashboard/records.json
+          git stash --include-untracked
           git pull --rebase origin main
+          git stash pop || true
           git add data/records.json dashboard/records.json
           git diff --cached --quiet || git commit -m "chore: update leads $(date -u +'%Y-%m-%d %H:%M UTC')"
           for i in 1 2 3; do
