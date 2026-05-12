@@ -1,24 +1,17 @@
 """
-Bexar County Motivated Seller Lead Scraper v28.20
+Bexar County Motivated Seller Lead Scraper v28.26
 HYBRID SCRAPER:
-  Primary:   bexar.tx.publicsearch.us  (Selenium, runs 3x daily)
+  Primary:   bexar.tx.publicsearch.us  (Selenium, runs 2x daily)
   Secondary: ArcGIS GIS layer (urllib, runs weekly on Sunday)
-  Tertiary:  SA 311 Code Enforcement (ArcGIS FeatureServer, runs 3x daily)
+  Tertiary:  SA 311 Code Enforcement (ArcGIS FeatureServer, runs 2x daily)
   Owner enrichment: 5-strategy ArcGIS parcel lookup
 
-  v28.11 fixes:
-    - TotVal used for appraised value (confirmed from BCAD field probe)
-    - lookup_ps_doc_id(): searches PublicSearch by doc number to resolve
-      internal ID for existing leads that were scraped before ps_doc_id existed
-    - fetch_doc_details: regex patterns updated to match actual rendered HTML
-      doc format (Deed of Trust dated, nominee for, Trustor, Current Beneficiary)
-    - Loan amount still page 2 scanned image — skipped; all other fields work
-
-  v28.10: ps_doc_id 3-strategy capture, flexible BCAD field matching
-  v28.9: DOC_FETCH_DAYS=34 backfill, re-enriches existing leads
-  v28.8: fetch_doc_details(), BCAD appraised_value/annual_taxes
-  v28.2: Code enforcement 311 scraper
-  v28.1: Address parsing fixes
+  v28.26 fixes:
+    - scrape_chunk: use JS innerText instead of .text to get full untruncated cell content
+    - scrape_chunk: retry on timeout (2 attempts per page before stopping chunk)
+    - scrape_chunk: positional td fallback if col-X class selector fails
+    - scrape_chunk: known_docs.add() per record to prevent cross-page duplicates
+    - scrape_chunk: stop condition tuned (48 rows threshold, 80% old rows)
 """
 
 import json
@@ -84,9 +77,6 @@ KEEP_DAYS     = 90
 CHUNK_DAYS    = 7
 PAGE_TIMEOUT  = 180
 CUTOFF_DATE   = TODAY_NAIVE - timedelta(days=KEEP_DAYS)
-
-# ── Reverted to 6 days — PublicSearch blocks headless login, loan amounts
-# ── sourced from BCAD TotVal (appraised) instead. Re-enable when login solved.
 DOC_FETCH_DAYS = 6
 
 
@@ -95,7 +85,7 @@ def fetch_json(url, retries=3):
     for attempt in range(retries):
         try:
             req = urllib.request.Request(
-                url, headers={"User-Agent": "BexarScraper/28.9", "Accept": "application/json"})
+                url, headers={"User-Agent": "BexarScraper/28.26", "Accept": "application/json"})
             with urllib.request.urlopen(req, timeout=25) as r:
                 return json.loads(r.read().decode("utf-8", errors="replace"))
         except Exception as e:
@@ -146,7 +136,6 @@ def normalize(s):
 
 
 def load_known_docs():
-    # Try local file first (when running in GitHub Actions, repo is checked out)
     local_path = Path("dashboard/records.json")
     if local_path.exists():
         try:
@@ -157,12 +146,11 @@ def load_known_docs():
         except Exception as e:
             log.warning(f"Local records.json load failed: {e}")
 
-    # Fall back to GitHub Pages URL
     url = PAGES_RECORDS + "?nocache=" + str(int(time.time()))
     try:
         req = urllib.request.Request(
             url,
-            headers={"User-Agent": "BexarScraper/28.9",
+            headers={"User-Agent": "BexarScraper/28.26",
                      "Accept": "application/json",
                      "Cache-Control": "no-cache"})
         with urllib.request.urlopen(req, timeout=20) as r:
@@ -238,7 +226,6 @@ def get_driver():
     opts.add_argument("--disable-gpu")
     opts.add_argument("--window-size=1920,1080")
     opts.add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36")
-    # Anti-detection
     opts.add_argument("--disable-blink-features=AutomationControlled")
     opts.add_experimental_option("excludeSwitches", ["enable-automation"])
     opts.add_experimental_option("useAutomationExtension", False)
@@ -253,7 +240,6 @@ def get_driver():
     except Exception:
         driver = webdriver.Chrome(options=opts)
 
-    # Patch navigator.webdriver to undefined
     driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
         "source": """
             Object.defineProperty(navigator, 'webdriver', {get: () => undefined});
@@ -269,7 +255,6 @@ def get_driver():
 def scrape_chunk(driver, known_docs, start_dt, end_dt):
     from selenium.webdriver.common.by import By
     from selenium.webdriver.support.ui import WebDriverWait
-    from selenium.webdriver.support import expected_conditions as EC
 
     start_str = start_dt.strftime("%Y%m%d")
     end_str   = end_dt.strftime("%Y%m%d")
@@ -286,7 +271,6 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
         f"&sortDir=desc"
     )
 
-    wait    = WebDriverWait(driver, PAGE_TIMEOUT)
     records = []
     page    = 0
     offset  = 0
@@ -294,17 +278,41 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
     while True:
         url = search_url.replace("offset=0", f"offset={offset}")
         log.info(f"    [{start_str}-{end_str}] Page {page+1} (offset={offset})")
-        driver.get(url)
 
-        try:
-            wait.until(EC.presence_of_element_located(
-                (By.CSS_SELECTOR, "td.col-3")))
-            time.sleep(2)
-        except Exception:
+        # Try loading page up to 2 times before giving up
+        loaded = False
+        for attempt in range(2):
+            try:
+                driver.set_page_load_timeout(PAGE_TIMEOUT)
+                driver.get(url)
+                try:
+                    WebDriverWait(driver, PAGE_TIMEOUT).until(
+                        lambda d: (
+                            d.find_elements(By.CSS_SELECTOR, "table tbody tr") or
+                            d.find_elements(By.CSS_SELECTOR, "td.col-3") or
+                            "no results" in d.page_source.lower()
+                        )
+                    )
+                    time.sleep(1.5)
+                    loaded = True
+                    break
+                except Exception:
+                    log.info(f"    Timeout attempt {attempt+1} — {'retrying' if attempt==0 else 'stopping chunk'}")
+                    if attempt == 0:
+                        time.sleep(5)
+            except Exception as e:
+                log.info(f"    Page load error attempt {attempt+1}: {e}")
+                if attempt == 0:
+                    time.sleep(5)
+
+        if not loaded:
             log.info(f"    Timeout page {page+1} — stopping chunk")
             break
 
+        # Get rows — try multiple selectors
         rows = driver.find_elements(By.CSS_SELECTOR, "table tbody tr")
+        if not rows:
+            rows = driver.find_elements(By.CSS_SELECTOR, "tr.a11y-table__row")
         if not rows:
             col3s = driver.find_elements(By.CSS_SELECTOR, "td.col-3")
             rows  = []
@@ -313,6 +321,7 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
                     rows.append(cell.find_element(By.XPATH, ".."))
                 except Exception:
                     pass
+
         if not rows:
             log.info("    No rows — stopping chunk")
             break
@@ -325,8 +334,11 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
             try:
                 def get_col(row, cls):
                     try:
-                        return row.find_element(
-                            By.CSS_SELECTOR, f"td.{cls}").text.strip()
+                        el = row.find_element(By.CSS_SELECTOR, f"td.{cls}")
+                        # JS innerText gets full untruncated text
+                        return driver.execute_script(
+                            "return arguments[0].innerText;", el
+                        ).strip()
                     except Exception:
                         return ""
 
@@ -336,8 +348,19 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
                 doc_number    = get_col(row, "col-6")
                 address_raw   = get_col(row, "col-8")
 
-                doc_number  = doc_number.strip()
-                sale_date   = sale_date.strip() if sale_date.strip() not in ("N/A", "") else ""
+                # Positional fallback if class selector misses
+                if not doc_number:
+                    tds = row.find_elements(By.TAG_NAME, "td")
+                    if len(tds) >= 6:
+                        doc_type_text = doc_type_text or tds[2].text.strip()
+                        recorded_date = recorded_date or tds[3].text.strip()
+                        sale_date     = sale_date or tds[4].text.strip()
+                        doc_number    = doc_number or tds[5].text.strip()
+                        if len(tds) >= 9:
+                            address_raw = address_raw or tds[8].text.strip()
+
+                doc_number = doc_number.strip()
+                sale_date  = sale_date.strip() if sale_date.strip() not in ("N/A", "") else ""
 
                 if not doc_number:
                     continue
@@ -358,7 +381,6 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
 
                 import re as _re
                 ps_doc_id = ""
-                # S1: direct href link
                 try:
                     link = row.find_element(By.CSS_SELECTOR, "a[href*='/doc/']")
                     href = link.get_attribute("href") or ""
@@ -367,11 +389,10 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
                         ps_doc_id = m.group(1)
                 except Exception:
                     pass
-                # S2: scan all element attributes for doc id
                 if not ps_doc_id:
                     try:
                         for el in row.find_elements(By.CSS_SELECTOR, "a,button,[onclick]"):
-                            for attr in ["href","onclick","data-id","data-href"]:
+                            for attr in ["href", "onclick", "data-id", "data-href"]:
                                 try:
                                     val = el.get_attribute(attr) or ""
                                     m = _re.search(r"/doc/(\d+)", val)
@@ -384,20 +405,6 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
                                 break
                     except Exception:
                         pass
-                # S3: click row, read URL, come back
-                if not ps_doc_id:
-                    try:
-                        cur = driver.current_url
-                        row.click()
-                        time.sleep(2)
-                        m = _re.search(r"/doc/(\d+)", driver.current_url)
-                        if m:
-                            ps_doc_id = m.group(1)
-                        driver.get(cur)
-                        time.sleep(2)
-                    except Exception:
-                        pass
-                log.debug(f"    ps_doc_id [{doc_number}]: {ps_doc_id or 'NOT FOUND'}")
 
                 rec = {
                     "type":        rec_type,
@@ -425,6 +432,7 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
                     "trustee":     "",
                 }
                 records.append(rec)
+                known_docs.add(doc_number)
                 page_new += 1
 
             except Exception as e:
@@ -432,20 +440,20 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
 
         log.info(f"    Page {page+1}: {page_new} new | {page_known} known | {page_old} old")
 
-        if page_new == 0 and page > 0:
-            log.info("    No new records — stopping chunk")
+        if page_new == 0 and page_known == 0 and page > 0:
+            log.info("    No new or known records — stopping chunk")
             break
 
-        if page_old > 0 and page_old == len(rows):
-            log.info("    Full page of old rows — stopping chunk")
+        if page_old > 0 and page_old >= len(rows) * 0.8:
+            log.info("    Mostly old rows — stopping chunk")
             break
 
-        if len(rows) < 50:
+        if len(rows) < 48:
             break
 
         offset += 50
         page   += 1
-        time.sleep(1.5)
+        time.sleep(2)
 
     return records
 
@@ -547,12 +555,6 @@ def parse_month_year(date_str):
 
 # ── CODE ENFORCEMENT SCRAPER ──────────────────────────────────────────────────
 def fetch_code_enforcement(known_docs):
-    """
-    Fetch CE leads from ArcGIS FeatureServer via direct urllib JSON queries.
-    No Selenium needed — pure HTTP JSON API, paginated by motivated TYPENAME.
-    """
-    import urllib.request, urllib.parse, json as _json
-
     CE_API = (
         "https://services.arcgis.com/g1fRTDLeMgspWrYp/arcgis/rest/services"
         "/311_All_Service_Calls/FeatureServer/0/query"
@@ -561,7 +563,6 @@ def fetch_code_enforcement(known_docs):
     PAGE   = 2000
     cutoff_ms = int(CUTOFF_DATE.timestamp() * 1000)
 
-    # Filter locally after fetching — TypeName keywords from confirmed CSV data
     MOTIVATED_KEYWORDS = [
         "dangerous premise", "property structure", "vacant", "structure maintenance",
         "minimum housing", "substandard", "unsecured", "condemned",
@@ -571,7 +572,6 @@ def fetch_code_enforcement(known_docs):
     new_leads = []
     skipped   = 0
 
-    # Single broad query — filter by Category and date only, no TypeName in SQL
     where  = f"Category = 'Property Maintenance' AND OpenedDateTime >= {cutoff_ms}"
     offset = 0
 
@@ -593,7 +593,7 @@ def fetch_code_enforcement(known_docs):
                 "Accept":     "application/json",
             })
             with urllib.request.urlopen(req, timeout=30) as r:
-                data = _json.loads(r.read().decode("utf-8", errors="replace"))
+                data = json.loads(r.read().decode("utf-8", errors="replace"))
         except Exception as e:
             log.warning(f"CE API fetch error: {e}")
             break
@@ -603,7 +603,6 @@ def fetch_code_enforcement(known_docs):
             break
 
         features = data.get("features", [])
-        log.info(f"  CE page offset={offset}: {len(features)} records")
 
         for feat in features:
             a = feat.get("attributes", {})
@@ -624,13 +623,11 @@ def fetch_code_enforcement(known_docs):
             district = str(a.get("CouncilDistrict") or "")
             opened_ms_val = a.get("OpenedDateTime")
 
-            # Local filter: motivated seller signal
             tl = typename.lower()
             if not any(kw in tl for kw in MOTIVATED_KEYWORDS):
                 skipped += 1
                 continue
 
-            # Parse address
             addr_clean = addr_raw.strip().lstrip()
             parts  = [p.strip() for p in addr_clean.split(",")]
             street  = parts[0].upper() if parts else ""
@@ -768,10 +765,7 @@ def fetch_arcgis_backfill(known_docs):
 
 
 def login_publicsearch(driver):
-    """Log in to PublicSearch using clerk credentials from environment."""
     from selenium.webdriver.common.by import By
-    from selenium.webdriver.support.ui import WebDriverWait
-    from selenium.webdriver.support import expected_conditions as EC
 
     email    = os.environ.get("CLERK_EMAIL", "")
     password = os.environ.get("CLERK_PASSWORD", "")
@@ -782,35 +776,28 @@ def login_publicsearch(driver):
         driver.set_page_load_timeout(20)
         driver.get(f"{PUBLICSEARCH_BASE}/login")
         time.sleep(4)
-
-        # Log page title so we know what loaded
         log.info(f"Login page title: {driver.title} | url: {driver.current_url}")
 
-        # Try all common input selectors
         email_el = None
         for sel in ["input[type='email']", "input[name='email']",
                     "input[name='username']", "input[placeholder*='mail']",
-                    "input[placeholder*='ser']", "input:not([type='password']):not([type='hidden'])"]:
+                    "input[placeholder*='ser']"]:
             try:
                 els = driver.find_elements(By.CSS_SELECTOR, sel)
                 if els:
                     email_el = els[0]
-                    log.info(f"  Found email field: {sel}")
                     break
             except Exception:
                 pass
 
         if not email_el:
-            log.warning("  No email field found — logging page inputs")
-            for inp in driver.find_elements(By.CSS_SELECTOR, "input"):
-                log.info(f"    input type={inp.get_attribute('type')} name={inp.get_attribute('name')} id={inp.get_attribute('id')}")
             return False
 
         email_el.clear()
         email_el.send_keys(email)
 
         pass_el = None
-        for sel in ["input[type='password']", "input[name='password']", "input[placeholder*='ass']"]:
+        for sel in ["input[type='password']", "input[name='password']"]:
             try:
                 els = driver.find_elements(By.CSS_SELECTOR, sel)
                 if els:
@@ -820,20 +807,18 @@ def login_publicsearch(driver):
                 pass
 
         if not pass_el:
-            log.warning("  No password field found")
             return False
 
         pass_el.clear()
         pass_el.send_keys(password)
 
-        # Click submit
         submitted = False
-        for sel in ["button[type='submit']", "input[type='submit']", "button.login", "button.submit", "button"]:
+        for sel in ["button[type='submit']", "input[type='submit']", "button"]:
             try:
                 btns = driver.find_elements(By.CSS_SELECTOR, sel)
                 for btn in btns:
                     txt = (btn.text or "").lower()
-                    if any(x in txt for x in ["sign in","login","log in","submit",""]):
+                    if any(x in txt for x in ["sign in", "login", "log in", "submit", ""]):
                         btn.click()
                         submitted = True
                         break
@@ -846,11 +831,9 @@ def login_publicsearch(driver):
             pass_el.submit()
 
         time.sleep(4)
-        log.info(f"Post-login url: {driver.current_url}")
         if "login" not in driver.current_url.lower():
             log.info("PublicSearch login OK")
             return True
-        log.warning("PublicSearch login failed — still on login page")
         return False
     except Exception as e:
         log.warning(f"PublicSearch login error: {e}")
@@ -858,10 +841,6 @@ def login_publicsearch(driver):
 
 
 def lookup_ps_doc_id(doc_number, driver):
-    """
-    Look up PublicSearch internal doc ID by doc number.
-    Uses keyword search to find exact doc, reads internal ID from URL.
-    """
     from selenium.webdriver.common.by import By
     import re as _re
     try:
@@ -872,21 +851,18 @@ def lookup_ps_doc_id(doc_number, driver):
         driver.get(url)
         time.sleep(3)
 
-        # Strategy 1: find any link with /doc/ and verify doc number nearby
         links = driver.find_elements(By.CSS_SELECTOR, "a[href*='/doc/']")
         for link in links:
             href = link.get_attribute("href") or ""
             m = _re.search(r"/doc/(\d+)", href)
             if m:
-                # Verify the row contains our doc number
                 try:
                     row = link.find_element(By.XPATH, "ancestor::tr")
                     if doc_number in (row.text or ""):
                         return m.group(1)
                 except Exception:
-                    return m.group(1)  # take it if we can't verify
+                    return m.group(1)
 
-        # Strategy 2: click first row, read URL, verify, come back
         rows = driver.find_elements(By.CSS_SELECTOR, "table tbody tr")
         for row in rows:
             if doc_number in (row.text or ""):
@@ -900,25 +876,14 @@ def lookup_ps_doc_id(doc_number, driver):
     except Exception as e:
         log.debug(f"  ps_doc_id lookup error [{doc_number}]: {e}")
     return ""
-def fetch_doc_details(records, driver):
-    """
-    For new leads filed within DOC_FETCH_DAYS, load the PublicSearch document
-    page and extract mortgage details from the SUMMARY tab.
-    Fields: lender, loan_amount, loan_date, trustee
-    v28.9: DOC_FETCH_DAYS = 34 to backfill from 4/30/2026.
 
-    KEY CHANGE: also re-enriches EXISTING leads (is_new=False) that are missing
-    loan_amount, so backfill works on the current 691 records too.
-    """
+
+def fetch_doc_details(records, driver):
     from selenium.webdriver.common.by import By
-    from selenium.webdriver.support.ui import WebDriverWait
-    from selenium.webdriver.support import expected_conditions as EC
     import re as _re
 
     cutoff = TODAY_NAIVE - timedelta(days=DOC_FETCH_DAYS)
 
-    # Candidates: any NOF/TAX lead missing loan data within window
-    # Relax source check — older records may not have source field
     candidates = [
         r for r in records
         if r.get("type") in ("NOF", "TAX")
@@ -941,7 +906,6 @@ def fetch_doc_details(records, driver):
         except Exception:
             recent.append(r)
 
-    # Cap at 20 per run to avoid long runtimes
     recent = recent[:20]
     log.info(f"Doc fetch: {len(recent)} within {DOC_FETCH_DAYS}d window (capped at 20)")
 
@@ -949,10 +913,6 @@ def fetch_doc_details(records, driver):
         log.info(f"Doc fetch: no leads within {DOC_FETCH_DAYS}d window missing loan data — skipping")
         return records
 
-    # No login needed — doc pages are publicly accessible without auth.
-    # Login page errors on server IPs but doc pages load fine.
-
-    # ── Resolve missing ps_doc_ids via search ─────────────────────────────────
     missing_id = [r for r in recent if not r.get("ps_doc_id")]
     if missing_id:
         log.info(f"Doc fetch: resolving ps_doc_id for {len(missing_id)} leads...")
@@ -970,7 +930,6 @@ def fetch_doc_details(records, driver):
                 log.info(f"  No ID found for [{r['doc_number']}]")
             time.sleep(1)
 
-    # Re-filter to only those with a ps_doc_id now — dedupe by ps_doc_id
     seen = set()
     deduped = []
     for r in recent:
@@ -983,7 +942,7 @@ def fetch_doc_details(records, driver):
         log.info("Doc fetch: no ps_doc_ids resolved — skipping")
         return records
 
-    log.info(f"Doc fetch: enriching {len(recent)} leads with mortgage intel (window={DOC_FETCH_DAYS}d)...")
+    log.info(f"Doc fetch: enriching {len(recent)} leads with mortgage intel...")
     fetched = 0
 
     for rec in recent:
@@ -1000,14 +959,6 @@ def fetch_doc_details(records, driver):
             log.warning(f"  Doc [{doc_num}] page load timeout — skipping")
             continue
 
-        # Log first 200 chars of page so we can see what loaded
-        try:
-            preview = driver.find_element(By.TAG_NAME, "body").text[:300].replace("\n"," ")
-            log.info(f"  Page preview: {preview}")
-        except Exception:
-            pass
-
-        # Click SUMMARY tab
         try:
             tabs = driver.find_elements(By.CSS_SELECTOR, ".tab-item, .tab, [role='tab'], .nav-link, button, a")
             for tab in tabs:
@@ -1024,39 +975,6 @@ def fetch_doc_details(records, driver):
         lender      = ""
         trustee     = ""
 
-        # ── Strategy A: read structured SUMMARY table fields ──────────────
-        try:
-            rows = driver.find_elements(By.CSS_SELECTOR, "table tr, .summary-row, .detail-row, dl dt, .field-label, .label")
-            for el in rows:
-                label_text = (el.text or "").strip().lower()
-                try:
-                    sib = el.find_element(By.XPATH, "following-sibling::*[1]")
-                    val = (sib.text or "").strip()
-                except Exception:
-                    val = ""
-                if not val:
-                    try:
-                        parent = el.find_element(By.XPATH, "..")
-                        val = (parent.text or "").replace(el.text or "", "").strip()
-                    except Exception:
-                        pass
-                if any(x in label_text for x in ["original amount","loan amount","principal amount"]):
-                    m = _re.search(r"\$?([\d,]+(?:\.\d{2})?)", val)
-                    if m:
-                        loan_amount = "$" + m.group(1)
-                elif any(x in label_text for x in ["original beneficiary","mortgagee","beneficiary","lender"]):
-                    if val and len(val) > 2:
-                        lender = val
-                elif any(x in label_text for x in ["trustor","trustee","substitute trustee"]):
-                    if val and len(val) > 2 and not trustee:
-                        trustee = val
-                elif any(x in label_text for x in ["deed of trust","loan date","dated","instrument date"]):
-                    if val:
-                        loan_date = val
-        except Exception as e:
-            log.debug(f"  Summary table parse: {e}")
-
-        # ── Strategy B: full body text ────────────────────────────────────
         try:
             page_text = driver.find_element(By.TAG_NAME, "body").text
             lines = page_text.split("\n")
@@ -1081,7 +999,7 @@ def fetch_doc_details(records, driver):
             if not lender:
                 for i, line in enumerate(lines):
                     ll = line.lower()
-                    if any(x in ll for x in ["original beneficiary","beneficiary:","mortgagee:"]):
+                    if any(x in ll for x in ["original beneficiary", "beneficiary:", "mortgagee:"]):
                         val = line.split(":")[-1].strip() if ":" in line else ""
                         if not val and i+1 < len(lines):
                             val = lines[i+1].strip()
@@ -1145,7 +1063,6 @@ def parse_address_parts(address):
 
 
 def match_features(feats, num, required_word=None):
-    # BCAD field name candidates — try multiple since field names vary by layer version
     OWNER_FIELDS    = ["Owner","OWNER","owner","OwnerName","OWNER_NAME"]
     SITUS_FIELDS    = ["Situs","SITUS","situs","SitusAddress","SITUS_ADDRESS","Address","ADDRESS"]
     ADDR1_FIELDS    = ["AddrLn1","ADDR_LN1","MailAddr1","MAIL_ADDR1","MailAddress","MAIL_ADDRESS"]
@@ -1203,7 +1120,6 @@ def lookup_owner(address, zipcode=""):
     num        = parsed["num"]
     words      = parsed["words"]
     first_word = words[0] if words else ""
-    # Request all fields — let match_features handle name variations
     FIELDS = "*"
 
     if len(words) >= 2:
@@ -1247,7 +1163,6 @@ def enrich_owners(records):
     log.info(f"Owner enrichment: {len(missing)} records need lookup")
     found = 0
 
-    # ── Probe actual BCAD field names on first query ──────────────────────────
     if missing:
         try:
             probe = fetch_json(f"{PARCELS_URL}/query?where=1%3D1&outFields=*&resultRecordCount=1&f=json")
@@ -1256,6 +1171,7 @@ def enrich_owners(records):
             log.info(f"BCAD actual fields: {actual_fields[:20]}")
         except Exception as e:
             log.debug(f"BCAD probe failed: {e}")
+
     for i, rec in enumerate(missing):
         addr = rec.get("address", "")
         zip_ = rec.get("zip", "")
@@ -1343,11 +1259,11 @@ if __name__ == "__main__":
     os.makedirs("dashboard", exist_ok=True)
 
     log.info("=" * 60)
-    log.info("Bexar County Lead Scraper v28.25 (Hybrid)")
+    log.info("Bexar County Lead Scraper v28.26 (Hybrid)")
     log.info(f"Primary:   PublicSearch.us ({KEEP_DAYS}d window, {CHUNK_DAYS}d chunks, {PAGE_TIMEOUT}s timeout)")
     log.info(f"Secondary: ArcGIS weekly backfill = {IS_SUNDAY}")
     log.info(f"Tertiary:  Code Enforcement 311 ({len(CE_CATEGORIES)} categories, {KEEP_DAYS}d window)")
-    log.info(f"Doc fetch: backfill window = {DOC_FETCH_DAYS}d (covers 4/30/2026 onward)")
+    log.info(f"Doc fetch: backfill window = {DOC_FETCH_DAYS}d")
     log.info(f"Filter:    {KEEP_DAYS}-day cutoff ({CUTOFF_DATE.strftime('%Y-%m-%d')}) | live auctions always kept")
     log.info("=" * 60)
 
@@ -1356,14 +1272,12 @@ if __name__ == "__main__":
     # ── Step 1: PublicSearch chunked scrape ───────────────────────────────────
     new_records = scrape_publicsearch(known_docs)
 
-    # ── Step 1b: Doc detail fetch — new AND existing leads missing loan data ──
+    # ── Step 1b: Doc detail fetch ─────────────────────────────────────────────
     doc_driver = None
     try:
         doc_driver = get_driver()
-        # Pass full prev_records + new_records so backfill hits existing leads too
         all_for_doc_fetch = new_records + prev_records
         all_for_doc_fetch = fetch_doc_details(all_for_doc_fetch, doc_driver)
-        # Separate back out — prev_records were mutated in place
         new_records = [r for r in all_for_doc_fetch if r.get("is_new")]
     except Exception as e:
         log.warning(f"Doc fetch driver error: {e}")
