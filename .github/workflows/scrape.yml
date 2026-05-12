@@ -1,85 +1,40 @@
-name: Scrape & Enrich Leads
+name: Scrape and Deploy
+
 on:
   schedule:
-    - cron: '0 14 * * *'   # 9am CDT
-    - cron: '0 20 * * *'   # 3pm CDT
+    - cron: '0 15 * * *'
+    - cron: '0 21 * * *'
   workflow_dispatch:
-permissions:
-  contents: write
-  pages: write
-  id-token: write
-concurrency:
-  group: scrape-${{ github.run_id }}
-  cancel-in-progress: false
+
 jobs:
   scrape-and-deploy:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Set up Python 3.11
-        uses: actions/setup-python@v5
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
           python-version: '3.11'
 
-      - name: Install Chrome
-        run: |
-          wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-          echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
-          sudo apt-get update -q
-          sudo apt-get install -y google-chrome-stable
-
-      - name: Install Python dependencies
-        run: pip install requests selenium webdriver-manager
-
-      - name: Create output directories
-        run: mkdir -p data dashboard
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4 lxml
 
       - name: Run scraper
-        id: scraper
-        env:
-          GHL_API_KEY: ${{ secrets.GHL_API_KEY }}
-          GHL_LOCATION_ID: ${{ secrets.GHL_LOCATION_ID }}
-          CLERK_EMAIL: ${{ secrets.CLERK_EMAIL }}
-          CLERK_PASSWORD: ${{ secrets.CLERK_PASSWORD }}
-        run: |
-          python scraper/fetch.py 2>&1 | tee /tmp/scraper.log
-          NEW_TOTAL=$(grep -oP '(?<=PublicSearch: )\d+(?= total new)' /tmp/scraper.log | tail -1 || echo "0")
-          CE_COUNT=$(grep -oP '(?<=Code Enforcement added )\d+' /tmp/scraper.log | tail -1 || echo "0")
-          DANG_COUNT=$(grep -oP '(?<=dangerous premises: )\d+' /tmp/scraper.log | tail -1 || echo "0")
-          FINAL_TOTAL=$(grep -oP '(?<=Final: )\d+(?= total)' /tmp/scraper.log | tail -1 || echo "0")
-          MORTGAGE_CT=$(grep -oP '(?<=Mortgage intel: )\d+' /tmp/scraper.log | tail -1 || echo "0")
-          echo "new_total=${NEW_TOTAL:-0}" >> $GITHUB_OUTPUT
-          echo "ce_count=${CE_COUNT:-0}" >> $GITHUB_OUTPUT
-          echo "dang_count=${DANG_COUNT:-0}" >> $GITHUB_OUTPUT
-          echo "final_total=${FINAL_TOTAL:-0}" >> $GITHUB_OUTPUT
-          echo "mortgage_ct=${MORTGAGE_CT:-0}" >> $GITHUB_OUTPUT
-
-      - name: Show summary
-        run: python3 scraper/summary.py
-
-      - name: Verify dashboard
-        run: |
-          ls -lh dashboard/
-          wc -c dashboard/records.json
+        run: python scraper/fetch.py
 
       - name: Commit records
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-
-          # Pull latest with rebase to avoid merge commits
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git checkout -- dashboard/records.json
           git pull --rebase origin main
-
           git add data/records.json dashboard/records.json
           git diff --cached --quiet || git commit -m "chore: update leads $(date -u +'%Y-%m-%d %H:%M UTC')"
-
-          # Push with retry in case of race condition
           for i in 1 2 3; do
             git push origin main && break
             echo "Push attempt $i failed, retrying..."
@@ -90,16 +45,11 @@ jobs:
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dashboard
+          path: dashboard/
 
       - name: Deploy to GitHub Pages
-        id: deployment
         uses: actions/deploy-pages@v4
 
       - name: Notify via GHL SMS
         if: false
-        env:
-          GHL_API_KEY: ${{ secrets.GHL_API_KEY }}
-          GHL_LOCATION_ID: ${{ secrets.GHL_LOCATION_ID }}
-          NOTIFY_PHONE: ${{ secrets.NOTIFY_PHONE }}
-        run: echo "SMS notify disabled"
+        run: echo "SMS notify parked"
