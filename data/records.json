@@ -16,7 +16,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "ABSENTEE",
       "NEW",
@@ -52,7 +52,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "ABSENTEE",
       "NEW",
@@ -88,7 +88,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "ABSENTEE",
       "NEW",
@@ -124,7 +124,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "ABSENTEE",
       "NEW",
@@ -160,7 +160,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "ABSENTEE",
       "NEW",
@@ -196,7 +196,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "ABSENTEE",
       "DUPLICATE",
@@ -233,7 +233,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "ABSENTEE",
       "NEW",
@@ -269,7 +269,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "ABSENTEE",
       "NEW",
@@ -305,7 +305,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "ABSENTEE",
       "NEW",
@@ -341,7 +341,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "ABSENTEE",
       "NEW",
@@ -377,7 +377,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -412,7 +412,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -447,7 +447,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -482,7 +482,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -497,6 +497,41 @@
     "appraised_value": "150330.0",
     "annual_taxes": "",
     "land_value": "55570.0",
+    "score": 7,
+    "days_until_sale": 0
+  },
+  {
+    "type": "NOF",
+    "address": "439 WARD AVE",
+    "owner": "GARCIA RUDOLPH S & JANIE H",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260400459",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "3",
+    "city": "SAN ANTONIO",
+    "zip": "78223",
+    "school_dist": "",
+    "date_filed": "3/2026",
+    "sale_date": "04/07/2026",
+    "run_ts": "2026-05-12T22:14:46Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON",
+      "URGENT"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "appraised_value": "160840.0",
+    "annual_taxes": "",
+    "land_value": "42410.0",
     "score": 7,
     "days_until_sale": 0
   },
@@ -517,7 +552,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -553,7 +588,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -588,7 +623,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -623,7 +658,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -658,7 +693,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -694,7 +729,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -730,7 +765,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -765,7 +800,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -800,7 +835,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -835,7 +870,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -871,7 +906,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -906,7 +941,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -941,7 +976,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -962,41 +997,6 @@
   },
   {
     "type": "NOF",
-    "address": "8142 ELKTREE PASS",
-    "owner": "WINTER BRIAN R & SANDRA L",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": true,
-    "doc_number": "20260400431",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "3",
-    "city": "SAN ANTONIO",
-    "zip": "78254",
-    "school_dist": "",
-    "date_filed": "3/2026",
-    "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
-    "flags": [
-      "NEW",
-      "HAS SALE DATE",
-      "AUCTION SOON",
-      "URGENT"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "appraised_value": "339620.0",
-    "annual_taxes": "",
-    "land_value": "62670.0",
-    "score": 7,
-    "days_until_sale": 0
-  },
-  {
-    "type": "NOF",
     "address": "715 SAMS DR",
     "owner": "VILLA ADRIAN NAVARRO",
     "mail_addr": "",
@@ -1012,7 +1012,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -1027,6 +1027,41 @@
     "appraised_value": "111980.0",
     "annual_taxes": "",
     "land_value": "61350.0",
+    "score": 7,
+    "days_until_sale": 0
+  },
+  {
+    "type": "NOF",
+    "address": "8142 ELKTREE PASS",
+    "owner": "WINTER BRIAN R & SANDRA L",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260400431",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "3",
+    "city": "SAN ANTONIO",
+    "zip": "78254",
+    "school_dist": "",
+    "date_filed": "3/2026",
+    "sale_date": "04/07/2026",
+    "run_ts": "2026-05-12T22:14:46Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON",
+      "URGENT"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "appraised_value": "339620.0",
+    "annual_taxes": "",
+    "land_value": "62670.0",
     "score": 7,
     "days_until_sale": 0
   },
@@ -1047,7 +1082,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -1082,7 +1117,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -1117,7 +1152,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -1152,7 +1187,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -1188,7 +1223,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -1224,7 +1259,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -1259,7 +1294,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -1274,6 +1309,41 @@
     "appraised_value": "404850.0",
     "annual_taxes": "",
     "land_value": "64050.0",
+    "score": 7,
+    "days_until_sale": 0
+  },
+  {
+    "type": "NOF",
+    "address": "4710 SWANN LN",
+    "owner": "NOLASCO LISA & DAVID",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260400408",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "3",
+    "city": "KIRBY",
+    "zip": "78219",
+    "school_dist": "",
+    "date_filed": "3/2026",
+    "sale_date": "04/07/2026",
+    "run_ts": "2026-05-12T22:14:46Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON",
+      "URGENT"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "appraised_value": "153050.0",
+    "annual_taxes": "",
+    "land_value": "34730.0",
     "score": 7,
     "days_until_sale": 0
   },
@@ -1294,7 +1364,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -1329,7 +1399,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -1344,41 +1414,6 @@
     "appraised_value": "97790.0",
     "annual_taxes": "",
     "land_value": "44030.0",
-    "score": 7,
-    "days_until_sale": 0
-  },
-  {
-    "type": "NOF",
-    "address": "4710 SWANN LN",
-    "owner": "NOLASCO LISA & DAVID",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": true,
-    "doc_number": "20260400408",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "3",
-    "city": "KIRBY",
-    "zip": "78219",
-    "school_dist": "",
-    "date_filed": "3/2026",
-    "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
-    "flags": [
-      "NEW",
-      "HAS SALE DATE",
-      "AUCTION SOON",
-      "URGENT"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "appraised_value": "153050.0",
-    "annual_taxes": "",
-    "land_value": "34730.0",
     "score": 7,
     "days_until_sale": 0
   },
@@ -1399,7 +1434,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -1420,6 +1455,42 @@
   },
   {
     "type": "NOF",
+    "address": "6010 HILLJE ST",
+    "owner": "GARRETT HILLARD & HILLARD DOMINIQUE & GARCIA ERIC",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": true,
+    "is_new": true,
+    "doc_number": "20260400416",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "3",
+    "city": "SAN ANTONIO",
+    "zip": "78223",
+    "school_dist": "",
+    "date_filed": "3/2026",
+    "sale_date": "04/07/2026",
+    "run_ts": "2026-05-12T22:14:46Z",
+    "flags": [
+      "DUPLICATE",
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON",
+      "URGENT"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "appraised_value": "260210.0",
+    "annual_taxes": "",
+    "land_value": "78190.0",
+    "score": 7,
+    "days_until_sale": 0
+  },
+  {
+    "type": "NOF",
     "address": "8560 NORIAS WHEEL",
     "owner": "DELUNA JESSE & DOAN HONG THUY THI",
     "mail_addr": "",
@@ -1435,7 +1506,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -1470,7 +1541,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -1505,7 +1576,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -1541,7 +1612,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -1577,7 +1648,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -1613,7 +1684,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -1648,7 +1719,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -1684,7 +1755,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -1720,7 +1791,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -1755,7 +1826,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -1790,7 +1861,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -1825,7 +1896,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -1860,7 +1931,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -1896,7 +1967,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -1931,7 +2002,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -1966,7 +2037,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -2001,7 +2072,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -2036,7 +2107,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -2072,7 +2143,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -2108,7 +2179,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -2144,7 +2215,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -2179,7 +2250,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -2214,7 +2285,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -2249,7 +2320,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -2284,7 +2355,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -2319,7 +2390,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -2354,7 +2425,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -2389,7 +2460,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -2424,7 +2495,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -2459,7 +2530,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -2494,7 +2565,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -2530,7 +2601,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -2565,7 +2636,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -2600,7 +2671,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -2635,7 +2706,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -2670,7 +2741,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -2705,7 +2776,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -2740,7 +2811,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -2775,7 +2846,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -2810,7 +2881,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -2845,7 +2916,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -2880,7 +2951,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -2915,7 +2986,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -2950,7 +3021,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -2985,7 +3056,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -3020,7 +3091,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -3055,7 +3126,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -3090,7 +3161,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -3125,7 +3196,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -3160,7 +3231,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -3195,7 +3266,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -3230,7 +3301,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -3266,7 +3337,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -3302,7 +3373,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -3338,7 +3409,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -3374,7 +3445,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -3410,7 +3481,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -3445,7 +3516,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -3480,7 +3551,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -3515,7 +3586,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -3551,7 +3622,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -3586,7 +3657,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -3621,7 +3692,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -3656,7 +3727,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -3691,7 +3762,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -3726,7 +3797,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -3761,7 +3832,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -3797,7 +3868,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -3832,7 +3903,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -3867,7 +3938,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -3902,7 +3973,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -3937,7 +4008,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -3972,7 +4043,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -4007,7 +4078,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -4042,7 +4113,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -4077,7 +4148,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -4112,7 +4183,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -4148,7 +4219,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -4183,7 +4254,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -4219,7 +4290,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -4254,7 +4325,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -4289,7 +4360,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -4324,7 +4395,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -4359,7 +4430,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -4395,7 +4466,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -4430,7 +4501,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -4465,7 +4536,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -4500,7 +4571,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -4535,7 +4606,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -4570,7 +4641,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -4606,7 +4677,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -4641,7 +4712,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -4676,7 +4747,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -4711,7 +4782,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -4746,7 +4817,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -4781,7 +4852,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -4816,7 +4887,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -4851,7 +4922,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -4886,7 +4957,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -4921,7 +4992,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -4956,7 +5027,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -4991,7 +5062,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -5026,7 +5097,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -5061,7 +5132,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -5096,7 +5167,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -5131,7 +5202,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -5167,7 +5238,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -5182,41 +5253,6 @@
     "appraised_value": "237470.0",
     "annual_taxes": "",
     "land_value": "30170.0",
-    "score": 7,
-    "days_until_sale": 0
-  },
-  {
-    "type": "NOF",
-    "address": "2709 COMMERCIAL AVE",
-    "owner": "ROSALES SANTIAGO & ALVAREZ DANIEL",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": true,
-    "doc_number": "20260400249",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "3",
-    "city": "SAN ANTONIO",
-    "zip": "78221",
-    "school_dist": "",
-    "date_filed": "3/2026",
-    "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
-    "flags": [
-      "NEW",
-      "HAS SALE DATE",
-      "AUCTION SOON",
-      "URGENT"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "appraised_value": "44980.0",
-    "annual_taxes": "",
-    "land_value": "44980.0",
     "score": 7,
     "days_until_sale": 0
   },
@@ -5237,7 +5273,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -5252,6 +5288,41 @@
     "appraised_value": "41470.0",
     "annual_taxes": "",
     "land_value": "41470.0",
+    "score": 7,
+    "days_until_sale": 0
+  },
+  {
+    "type": "NOF",
+    "address": "2709 COMMERCIAL AVE",
+    "owner": "ROSALES SANTIAGO & ALVAREZ DANIEL",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260400249",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "3",
+    "city": "SAN ANTONIO",
+    "zip": "78221",
+    "school_dist": "",
+    "date_filed": "3/2026",
+    "sale_date": "04/07/2026",
+    "run_ts": "2026-05-12T22:14:46Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON",
+      "URGENT"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "appraised_value": "44980.0",
+    "annual_taxes": "",
+    "land_value": "44980.0",
     "score": 7,
     "days_until_sale": 0
   },
@@ -5272,7 +5343,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -5307,7 +5378,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -5342,7 +5413,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -5377,7 +5448,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -5412,7 +5483,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -5447,7 +5518,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -5482,7 +5553,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -5518,7 +5589,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -5553,7 +5624,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -5589,7 +5660,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -5624,7 +5695,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -5659,7 +5730,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -5694,7 +5765,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -5729,7 +5800,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -5765,7 +5836,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -5800,7 +5871,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -5835,7 +5906,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -5870,7 +5941,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -5885,6 +5956,41 @@
     "appraised_value": "371880.0",
     "annual_taxes": "",
     "land_value": "53610.0",
+    "score": 7,
+    "days_until_sale": 0
+  },
+  {
+    "type": "NOF",
+    "address": "2049 RHESUS VIEW",
+    "owner": "RAMIREZ JEFFREY DELAROSA & BELINDA MARIE",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260400207",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "3",
+    "city": "SAN ANTONIO",
+    "zip": "78245",
+    "school_dist": "",
+    "date_filed": "3/2026",
+    "sale_date": "04/07/2026",
+    "run_ts": "2026-05-12T22:14:46Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON",
+      "URGENT"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "appraised_value": "310680.0",
+    "annual_taxes": "",
+    "land_value": "58710.0",
     "score": 7,
     "days_until_sale": 0
   },
@@ -5905,7 +6011,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -5940,7 +6046,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -5961,41 +6067,6 @@
   },
   {
     "type": "NOF",
-    "address": "2049 RHESUS VIEW",
-    "owner": "RAMIREZ JEFFREY DELAROSA & BELINDA MARIE",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": true,
-    "doc_number": "20260400207",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "3",
-    "city": "SAN ANTONIO",
-    "zip": "78245",
-    "school_dist": "",
-    "date_filed": "3/2026",
-    "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
-    "flags": [
-      "NEW",
-      "HAS SALE DATE",
-      "AUCTION SOON",
-      "URGENT"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "appraised_value": "310680.0",
-    "annual_taxes": "",
-    "land_value": "58710.0",
-    "score": 7,
-    "days_until_sale": 0
-  },
-  {
-    "type": "NOF",
     "address": "9511 DEERBROOK",
     "owner": "BLUESKY CONSTRUCTION AND REMODELING LLC",
     "mail_addr": "",
@@ -6011,7 +6082,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -6046,7 +6117,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -6081,7 +6152,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -6117,7 +6188,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -6152,7 +6223,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -6187,7 +6258,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -6222,7 +6293,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -6257,7 +6328,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -6293,7 +6364,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -6328,7 +6399,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -6363,7 +6434,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -6398,7 +6469,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -6434,7 +6505,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -6469,7 +6540,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -6505,7 +6576,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -6540,7 +6611,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -6575,7 +6646,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -6610,7 +6681,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -6645,7 +6716,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -6680,7 +6751,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -6695,77 +6766,6 @@
     "appraised_value": "61260.0",
     "annual_taxes": "",
     "land_value": "61260.0",
-    "score": 7,
-    "days_until_sale": 0
-  },
-  {
-    "type": "NOF",
-    "address": "439 WARD AVE",
-    "owner": "GARCIA RUDOLPH S & JANIE H",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": true,
-    "doc_number": "20260400459",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "3",
-    "city": "SAN ANTONIO",
-    "zip": "78223",
-    "school_dist": "",
-    "date_filed": "3/2026",
-    "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
-    "flags": [
-      "NEW",
-      "HAS SALE DATE",
-      "AUCTION SOON",
-      "URGENT"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "appraised_value": "160840.0",
-    "annual_taxes": "",
-    "land_value": "42410.0",
-    "score": 7,
-    "days_until_sale": 0
-  },
-  {
-    "type": "NOF",
-    "address": "6010 HILLJE ST",
-    "owner": "GARRETT HILLARD & HILLARD DOMINIQUE & GARCIA ERIC",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": true,
-    "is_new": true,
-    "doc_number": "20260400416",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "3",
-    "city": "SAN ANTONIO",
-    "zip": "78223",
-    "school_dist": "",
-    "date_filed": "3/2026",
-    "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
-    "flags": [
-      "DUPLICATE",
-      "NEW",
-      "HAS SALE DATE",
-      "AUCTION SOON",
-      "URGENT"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "appraised_value": "260210.0",
-    "annual_taxes": "",
-    "land_value": "78190.0",
     "score": 7,
     "days_until_sale": 0
   },
@@ -6786,73 +6786,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
-    "flags": [
-      "NEW",
-      "NO OWNER",
-      "HAS SALE DATE",
-      "AUCTION SOON",
-      "URGENT"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "score": 4,
-    "days_until_sale": 0
-  },
-  {
-    "type": "NOF",
-    "address": "CUERNAVACA ST",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": true,
-    "doc_number": "20260400181",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "3",
-    "city": "ATASCOSA",
-    "zip": "78002",
-    "school_dist": "",
-    "date_filed": "3/2026",
-    "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
-    "flags": [
-      "NEW",
-      "NO OWNER",
-      "HAS SALE DATE",
-      "AUCTION SOON",
-      "URGENT"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "score": 4,
-    "days_until_sale": 0
-  },
-  {
-    "type": "NOF",
-    "address": "LLANO ESTACADO DR",
-    "owner": "",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": true,
-    "doc_number": "20260400184",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "3",
-    "city": "ATASCOSA",
-    "zip": "78002",
-    "school_dist": "",
-    "date_filed": "3/2026",
-    "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "NO OWNER",
@@ -6885,7 +6819,73 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "04/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
+    "flags": [
+      "NEW",
+      "NO OWNER",
+      "HAS SALE DATE",
+      "AUCTION SOON",
+      "URGENT"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "score": 4,
+    "days_until_sale": 0
+  },
+  {
+    "type": "NOF",
+    "address": "LLANO ESTACADO DR",
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260400184",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "3",
+    "city": "ATASCOSA",
+    "zip": "78002",
+    "school_dist": "",
+    "date_filed": "3/2026",
+    "sale_date": "04/07/2026",
+    "run_ts": "2026-05-12T22:14:46Z",
+    "flags": [
+      "NEW",
+      "NO OWNER",
+      "HAS SALE DATE",
+      "AUCTION SOON",
+      "URGENT"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "score": 4,
+    "days_until_sale": 0
+  },
+  {
+    "type": "NOF",
+    "address": "CUERNAVACA ST",
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260400181",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "3",
+    "city": "ATASCOSA",
+    "zip": "78002",
+    "school_dist": "",
+    "date_filed": "3/2026",
+    "sale_date": "04/07/2026",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "NO OWNER",
@@ -6918,7 +6918,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "ABSENTEE",
       "NEW",
@@ -6953,7 +6953,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "ABSENTEE",
       "DUPLICATE",
@@ -6989,7 +6989,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "ABSENTEE",
       "NEW",
@@ -7024,7 +7024,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "ABSENTEE",
       "NEW",
@@ -7059,7 +7059,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "ABSENTEE",
       "NEW",
@@ -7094,7 +7094,7 @@
     "school_dist": "",
     "date_filed": "4/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "ABSENTEE",
       "NEW",
@@ -7129,7 +7129,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "ABSENTEE",
       "NEW",
@@ -7458,7 +7458,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -7493,7 +7493,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -7527,7 +7527,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -7562,7 +7562,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -7596,7 +7596,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -7630,7 +7630,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -7665,7 +7665,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -7700,7 +7700,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -7734,7 +7734,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -7769,7 +7769,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -7803,7 +7803,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -7837,7 +7837,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -7872,7 +7872,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -7907,7 +7907,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -7941,7 +7941,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -7955,40 +7955,6 @@
     "appraised_value": "411220.0",
     "annual_taxes": "",
     "land_value": "127460.0",
-    "score": 7,
-    "days_until_sale": 19
-  },
-  {
-    "type": "NOF",
-    "address": "618 SONNET DR",
-    "owner": "FORTUNE 2 COOKIES LLC & BRUTUS CHOUBERT",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": true,
-    "doc_number": "20260600391",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78216",
-    "school_dist": "",
-    "date_filed": "5/2026",
-    "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
-    "flags": [
-      "NEW",
-      "HAS SALE DATE",
-      "AUCTION SOON"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "appraised_value": "405190.0",
-    "annual_taxes": "",
-    "land_value": "72960.0",
     "score": 7,
     "days_until_sale": 19
   },
@@ -8009,7 +7975,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -8043,7 +8009,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -8057,6 +8023,40 @@
     "appraised_value": "301790.0",
     "annual_taxes": "",
     "land_value": "91060.0",
+    "score": 7,
+    "days_until_sale": 19
+  },
+  {
+    "type": "NOF",
+    "address": "618 SONNET DR",
+    "owner": "FORTUNE 2 COOKIES LLC & BRUTUS CHOUBERT",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260600391",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78216",
+    "school_dist": "",
+    "date_filed": "5/2026",
+    "sale_date": "06/02/2026",
+    "run_ts": "2026-05-12T22:14:46Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "appraised_value": "405190.0",
+    "annual_taxes": "",
+    "land_value": "72960.0",
     "score": 7,
     "days_until_sale": 19
   },
@@ -8077,7 +8077,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -8111,7 +8111,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -8125,40 +8125,6 @@
     "appraised_value": "505340.0",
     "annual_taxes": "",
     "land_value": "94650.0",
-    "score": 7,
-    "days_until_sale": 19
-  },
-  {
-    "type": "NOF",
-    "address": "5718 CYPRESS DAWN",
-    "owner": "KIRKWOOD MARKES E & ELEANOR L CARSON",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": true,
-    "doc_number": "20260600382",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78253",
-    "school_dist": "",
-    "date_filed": "5/2026",
-    "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
-    "flags": [
-      "NEW",
-      "HAS SALE DATE",
-      "AUCTION SOON"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "appraised_value": "382360.0",
-    "annual_taxes": "",
-    "land_value": "83850.0",
     "score": 7,
     "days_until_sale": 19
   },
@@ -8179,7 +8145,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -8193,6 +8159,40 @@
     "appraised_value": "458970.0",
     "annual_taxes": "",
     "land_value": "125750.0",
+    "score": 7,
+    "days_until_sale": 19
+  },
+  {
+    "type": "NOF",
+    "address": "5718 CYPRESS DAWN",
+    "owner": "KIRKWOOD MARKES E & ELEANOR L CARSON",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260600382",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78253",
+    "school_dist": "",
+    "date_filed": "5/2026",
+    "sale_date": "06/02/2026",
+    "run_ts": "2026-05-12T22:14:46Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "appraised_value": "382360.0",
+    "annual_taxes": "",
+    "land_value": "83850.0",
     "score": 7,
     "days_until_sale": 19
   },
@@ -8213,7 +8213,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -8248,7 +8248,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -8282,7 +8282,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -8316,7 +8316,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -8350,7 +8350,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -8384,7 +8384,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -8419,7 +8419,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -8453,7 +8453,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -8487,7 +8487,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -8521,7 +8521,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -8556,7 +8556,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -8590,7 +8590,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -8624,7 +8624,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -8658,7 +8658,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -8692,7 +8692,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -8726,7 +8726,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -8761,7 +8761,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -8796,7 +8796,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -8831,7 +8831,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -8846,41 +8846,6 @@
     "appraised_value": "167000.0",
     "annual_taxes": "",
     "land_value": "36600.0",
-    "score": 7,
-    "days_until_sale": 19
-  },
-  {
-    "type": "NOF",
-    "address": "6067 CASTLE QUEEN",
-    "owner": "MCKINNEY SOLUTIONS GROUP LLC",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": true,
-    "is_new": true,
-    "doc_number": "20260600352",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78218",
-    "school_dist": "",
-    "date_filed": "5/2026",
-    "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
-    "flags": [
-      "DUPLICATE",
-      "NEW",
-      "HAS SALE DATE",
-      "AUCTION SOON"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "appraised_value": "147000.0",
-    "annual_taxes": "",
-    "land_value": "58730.0",
     "score": 7,
     "days_until_sale": 19
   },
@@ -8901,7 +8866,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -8915,6 +8880,41 @@
     "appraised_value": "192000.0",
     "annual_taxes": "",
     "land_value": "44580.0",
+    "score": 7,
+    "days_until_sale": 19
+  },
+  {
+    "type": "NOF",
+    "address": "6067 CASTLE QUEEN",
+    "owner": "MCKINNEY SOLUTIONS GROUP LLC",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": true,
+    "is_new": true,
+    "doc_number": "20260600352",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78218",
+    "school_dist": "",
+    "date_filed": "5/2026",
+    "sale_date": "06/02/2026",
+    "run_ts": "2026-05-12T22:14:46Z",
+    "flags": [
+      "DUPLICATE",
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "appraised_value": "147000.0",
+    "annual_taxes": "",
+    "land_value": "58730.0",
     "score": 7,
     "days_until_sale": 19
   },
@@ -8935,7 +8935,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -8970,7 +8970,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -9005,7 +9005,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -9040,7 +9040,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -9074,7 +9074,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -9108,7 +9108,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -9142,7 +9142,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -9176,7 +9176,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -9210,7 +9210,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -9244,7 +9244,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -9278,7 +9278,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -9312,7 +9312,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -9346,7 +9346,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -9380,7 +9380,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -9414,7 +9414,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -9449,7 +9449,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -9483,7 +9483,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -9517,7 +9517,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -9551,7 +9551,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -9585,7 +9585,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -9620,7 +9620,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -9654,7 +9654,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -9688,7 +9688,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -9722,7 +9722,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -9756,7 +9756,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -9790,7 +9790,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -9824,7 +9824,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -9858,7 +9858,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -9892,7 +9892,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -9926,7 +9926,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -9960,7 +9960,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -9994,7 +9994,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -10029,7 +10029,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -10044,40 +10044,6 @@
     "appraised_value": "175940.0",
     "annual_taxes": "",
     "land_value": "44030.0",
-    "score": 7,
-    "days_until_sale": 19
-  },
-  {
-    "type": "NOF",
-    "address": "326 LINDA LOU DR",
-    "owner": "PENA JASON MORAN ETAL",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": true,
-    "doc_number": "20260600304",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78223",
-    "school_dist": "",
-    "date_filed": "5/2026",
-    "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
-    "flags": [
-      "NEW",
-      "HAS SALE DATE",
-      "AUCTION SOON"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "appraised_value": "136540.0",
-    "annual_taxes": "",
-    "land_value": "41130.0",
     "score": 7,
     "days_until_sale": 19
   },
@@ -10098,7 +10064,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -10117,22 +10083,22 @@
   },
   {
     "type": "NOF",
-    "address": "10006 TIGER BAY",
-    "owner": "ROBLEDO ERIC MAURICE & REYNA-BLAZQUEZ ALEJANDRA",
+    "address": "326 LINDA LOU DR",
+    "owner": "PENA JASON MORAN ETAL",
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
     "is_new": true,
-    "doc_number": "20260600289",
+    "doc_number": "20260600304",
     "ps_doc_id": "",
     "year": "2026",
     "month": "5",
     "city": "SAN ANTONIO",
-    "zip": "78251",
+    "zip": "78223",
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -10143,9 +10109,9 @@
     "loan_amount": "",
     "loan_date": "",
     "trustee": "",
-    "appraised_value": "310760.0",
+    "appraised_value": "136540.0",
     "annual_taxes": "",
-    "land_value": "53810.0",
+    "land_value": "41130.0",
     "score": 7,
     "days_until_sale": 19
   },
@@ -10166,7 +10132,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -10180,6 +10146,40 @@
     "appraised_value": "356190.0",
     "annual_taxes": "",
     "land_value": "59140.0",
+    "score": 7,
+    "days_until_sale": 19
+  },
+  {
+    "type": "NOF",
+    "address": "10006 TIGER BAY",
+    "owner": "ROBLEDO ERIC MAURICE & REYNA-BLAZQUEZ ALEJANDRA",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260600289",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78251",
+    "school_dist": "",
+    "date_filed": "5/2026",
+    "sale_date": "06/02/2026",
+    "run_ts": "2026-05-12T22:14:46Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "appraised_value": "310760.0",
+    "annual_taxes": "",
+    "land_value": "53810.0",
     "score": 7,
     "days_until_sale": 19
   },
@@ -10200,7 +10200,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -10234,7 +10234,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -10248,40 +10248,6 @@
     "appraised_value": "6000000.0",
     "annual_taxes": "",
     "land_value": "1968300.0",
-    "score": 7,
-    "days_until_sale": 19
-  },
-  {
-    "type": "NOF",
-    "address": "5031 LA HAYA ST",
-    "owner": "CABRERA JOSE L JR",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": true,
-    "doc_number": "20260600293",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78233",
-    "school_dist": "",
-    "date_filed": "5/2026",
-    "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
-    "flags": [
-      "NEW",
-      "HAS SALE DATE",
-      "AUCTION SOON"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "appraised_value": "172070.0",
-    "annual_taxes": "",
-    "land_value": "43340.0",
     "score": 7,
     "days_until_sale": 19
   },
@@ -10302,7 +10268,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -10337,7 +10303,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -10351,6 +10317,40 @@
     "appraised_value": "1990000.0",
     "annual_taxes": "",
     "land_value": "897230.0",
+    "score": 7,
+    "days_until_sale": 19
+  },
+  {
+    "type": "NOF",
+    "address": "5031 LA HAYA ST",
+    "owner": "CABRERA JOSE L JR",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260600293",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78233",
+    "school_dist": "",
+    "date_filed": "5/2026",
+    "sale_date": "06/02/2026",
+    "run_ts": "2026-05-12T22:14:46Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "appraised_value": "172070.0",
+    "annual_taxes": "",
+    "land_value": "43340.0",
     "score": 7,
     "days_until_sale": 19
   },
@@ -10371,7 +10371,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -10406,7 +10406,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -10441,7 +10441,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -10475,7 +10475,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -10509,7 +10509,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -10543,7 +10543,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -10577,7 +10577,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -10611,7 +10611,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -10645,7 +10645,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -10679,7 +10679,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -10713,7 +10713,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -10748,7 +10748,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -10782,7 +10782,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -10817,7 +10817,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -10851,7 +10851,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -10885,7 +10885,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -10919,7 +10919,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -10954,7 +10954,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -10988,7 +10988,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -11022,7 +11022,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -11056,7 +11056,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -11090,7 +11090,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -11124,7 +11124,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -11158,7 +11158,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -11192,7 +11192,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -11227,7 +11227,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -11261,7 +11261,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -11295,7 +11295,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -11329,7 +11329,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -11363,7 +11363,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -11397,7 +11397,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -11431,7 +11431,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -11465,7 +11465,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -11499,7 +11499,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -11533,7 +11533,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -11567,7 +11567,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -11602,7 +11602,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -11636,7 +11636,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -11670,7 +11670,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -11704,7 +11704,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -11738,7 +11738,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -11772,7 +11772,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -11806,7 +11806,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -11840,7 +11840,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -11874,7 +11874,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -11908,7 +11908,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -11942,7 +11942,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -11976,7 +11976,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -12010,7 +12010,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -12045,7 +12045,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -12079,7 +12079,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -12113,7 +12113,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -12147,7 +12147,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -12181,7 +12181,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -12215,7 +12215,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -12249,7 +12249,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -12283,7 +12283,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -12317,7 +12317,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -12351,7 +12351,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -12385,7 +12385,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -12420,7 +12420,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -12454,7 +12454,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -12488,7 +12488,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -12522,7 +12522,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -12556,7 +12556,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -12590,7 +12590,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -12624,7 +12624,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -12658,7 +12658,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -12692,7 +12692,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -12726,7 +12726,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -12760,7 +12760,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -12794,7 +12794,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -12828,7 +12828,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -12862,7 +12862,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -12896,7 +12896,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -12930,7 +12930,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -12964,7 +12964,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -12998,7 +12998,7 @@
     "school_dist": "",
     "date_filed": "2/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -18664,7 +18664,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "NO OWNER",
@@ -18696,7 +18696,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "NO OWNER",
@@ -18728,7 +18728,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "NO OWNER",
@@ -18760,7 +18760,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "NO OWNER",
@@ -18792,7 +18792,7 @@
     "school_dist": "",
     "date_filed": "3/2026",
     "sale_date": "06/02/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "NO OWNER",
@@ -18960,7 +18960,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "07/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "ABSENTEE",
       "NEW",
@@ -18994,7 +18994,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "07/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "ABSENTEE",
       "NEW",
@@ -19851,7 +19851,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "07/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
@@ -19884,7 +19884,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "07/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
@@ -19917,7 +19917,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "07/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
@@ -19950,7 +19950,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "07/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
@@ -19983,7 +19983,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "07/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
@@ -20016,7 +20016,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "07/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
@@ -20049,7 +20049,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "07/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
@@ -20082,7 +20082,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "07/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
@@ -20115,7 +20115,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "07/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
@@ -20148,7 +20148,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "07/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
@@ -20181,7 +20181,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "07/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
@@ -20214,7 +20214,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "07/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
@@ -20247,7 +20247,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "07/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
@@ -20280,7 +20280,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "07/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
@@ -20313,7 +20313,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "07/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
@@ -20346,7 +20346,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "07/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -20360,39 +20360,6 @@
     "appraised_value": "362160.0",
     "annual_taxes": "",
     "land_value": "85860.0",
-    "score": 7,
-    "days_until_sale": 54
-  },
-  {
-    "type": "NOF",
-    "address": "12930 RENLEY CREST",
-    "owner": "FITZGERALD CHRISTI A",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": true,
-    "doc_number": "20260600280",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "5",
-    "city": "SAN ANTONIO",
-    "zip": "78253",
-    "school_dist": "",
-    "date_filed": "5/2026",
-    "sale_date": "07/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
-    "flags": [
-      "NEW",
-      "HAS SALE DATE"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "appraised_value": "414230.0",
-    "annual_taxes": "",
-    "land_value": "66130.0",
     "score": 7,
     "days_until_sale": 54
   },
@@ -20413,7 +20380,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "07/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
@@ -20426,6 +20393,39 @@
     "appraised_value": "365000.0",
     "annual_taxes": "",
     "land_value": "48120.0",
+    "score": 7,
+    "days_until_sale": 54
+  },
+  {
+    "type": "NOF",
+    "address": "12930 RENLEY CREST",
+    "owner": "FITZGERALD CHRISTI A",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260600280",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "5",
+    "city": "SAN ANTONIO",
+    "zip": "78253",
+    "school_dist": "",
+    "date_filed": "5/2026",
+    "sale_date": "07/07/2026",
+    "run_ts": "2026-05-12T22:14:46Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "appraised_value": "414230.0",
+    "annual_taxes": "",
+    "land_value": "66130.0",
     "score": 7,
     "days_until_sale": 54
   },
@@ -20446,7 +20446,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "07/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -20480,7 +20480,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "07/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
@@ -20513,7 +20513,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "07/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
@@ -20546,7 +20546,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "07/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
@@ -20579,7 +20579,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "07/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -20613,7 +20613,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "07/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
@@ -20646,7 +20646,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "07/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
@@ -20679,7 +20679,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "07/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
@@ -20712,7 +20712,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "07/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
@@ -20745,7 +20745,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "07/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
@@ -20778,7 +20778,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "07/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
@@ -20811,7 +20811,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "07/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
@@ -20844,7 +20844,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "07/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
@@ -20877,7 +20877,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "07/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
@@ -20910,7 +20910,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "07/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
@@ -20943,7 +20943,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "07/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -20977,7 +20977,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "07/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
@@ -21010,7 +21010,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "07/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
@@ -21043,7 +21043,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "07/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
@@ -21076,7 +21076,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "07/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
@@ -21109,7 +21109,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "07/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
@@ -21142,7 +21142,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "07/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
@@ -21175,7 +21175,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "07/07/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
@@ -23174,7 +23174,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "08/04/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
@@ -23207,7 +23207,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "08/04/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -23241,7 +23241,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "08/04/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
@@ -23274,7 +23274,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "08/04/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
@@ -23307,7 +23307,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "08/04/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
@@ -23340,7 +23340,7 @@
     "school_dist": "",
     "date_filed": "5/2026",
     "sale_date": "08/04/2026",
-    "run_ts": "2026-05-12T22:08:08Z",
+    "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
