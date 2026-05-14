@@ -1,9 +1,12 @@
 """
-Bexar County VBP + CE Cross-Reference Scraper v1.0
+Bexar County VBP + CE Cross-Reference Scraper v1.1
 Downloads SA Vacant Building Program PDF monthly,
 filters to residential properties, then checks each address
 against the SA 311 CE ArcGIS endpoint for open violations.
 Results added to records.json as STACKED leads.
+
+v1.1 fix: stamps stacked:true on existing NOF records that match
+VBP addresses, even when CE check is skipped (VBP unchanged).
 
 Run: python scraper/vbp_scraper.py
 Schedule: Monthly (1st of month) via GitHub Actions
@@ -21,12 +24,10 @@ log = logging.getLogger(__name__)
 # ── CONFIG ─────────────────────────────────────────────────────────────────────
 VBP_PDF_URL = "https://docsonline.sanantonio.gov/DSDUploads/VBPInventory.pdf"
 RECORDS_PATH = Path("dashboard/records.json")
-STATE_PATH   = Path("data/vbp_state.json")  # tracks last run + checked addresses
+STATE_PATH   = Path("data/vbp_state.json")
 
-# Max sq ft for "small" residential — excludes large commercial/apartments
 MAX_SQ_FT = 6000
 
-# Owner keywords that indicate institutional/non-motivated owners — skip these
 SKIP_OWNERS = [
     "city of san antonio", "county of bexar", "housing authority",
     "school district", "isd", "university", "board of regents",
@@ -37,7 +38,6 @@ SKIP_OWNERS = [
     "esperanza peace", "centro sa", "ymca",
 ]
 
-# CE violation keywords that signal distressed/motivated
 CE_KEYWORDS = [
     "dangerous premise", "property structure", "vacant", "minimum housing",
     "substandard", "unsecured", "structure maintenance",
@@ -45,9 +45,9 @@ CE_KEYWORDS = [
 
 RUN_TIMESTAMP = datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
 
+
 # ── PDF PARSER ─────────────────────────────────────────────────────────────────
 def download_vbp_pdf():
-    """Download VBP PDF and extract text."""
     try:
         import pdfplumber
     except ImportError:
@@ -78,7 +78,6 @@ def download_vbp_pdf():
                 for row in table:
                     if not row or len(row) < 4:
                         continue
-                    # Skip header rows
                     if not row[0] or any(h in str(row[0]).lower() for h in
                                          ["address", "vacant building", "please"]):
                         continue
@@ -87,7 +86,6 @@ def download_vbp_pdf():
                         zipcode = str(row[1] or "").strip()
                         sq_ft   = str(row[2] or "").strip().replace(",", "")
                         is_sf   = str(row[3] or "").strip().lower()
-                        # Market listing and council district vary in position
                         owner   = str(row[-1] or "").strip() if len(row) >= 6 else ""
                         if len(row) >= 7:
                             owner = str(row[-1] or "").strip()
@@ -112,50 +110,32 @@ def download_vbp_pdf():
 
 
 def filter_properties(properties):
-    """Filter to motivated-seller residential properties."""
     filtered = []
     for p in properties:
         owner_lower = p["owner"].lower()
-
-        # Skip institutional owners
         if any(skip in owner_lower for skip in SKIP_OWNERS):
             continue
-
-        # Skip non-SF if large (commercial/large apartment)
         if not p["is_sf"] and p["sq_ft"] > MAX_SQ_FT:
             continue
-
-        # Skip if sq_ft is 0 and not SF (unknown commercial)
         if p["sq_ft"] == 0 and not p["is_sf"]:
             continue
-
         filtered.append(p)
 
     log.info(f"VBP filtered: {len(filtered)}/{len(properties)} residential properties")
     return filtered
 
 
-# ── CE LOOKUP (ArcGIS per-address LIKE query — confirmed working) ──────────────
+# ── CE LOOKUP ──────────────────────────────────────────────────────────────────
 CE_API_URL = (
     "https://services.arcgis.com/g1fRTDLeMgspWrYp/arcgis/rest/services"
     "/311_All_Service_Calls/FeatureServer/0/query"
 )
 
-def load_ce_csv():
-    """Stub — not used, returns empty so CE index warning is suppressed."""
-    return None
-
-def check_ce_for_address(street_address, ce_index=None):
-    """
-    Query ArcGIS 311 CE endpoint for a specific address using LIKE query.
-    This approach is confirmed working from GH Actions IPs.
-    Returns list of open CE violations or empty list.
-    """
+def check_ce_for_address(street_address):
     parts = street_address.strip().split()
     if len(parts) < 2:
         return []
 
-    # "1005 SACRAMENTO" — number + first street word
     search = " ".join(parts[:2])
     where = f"ObjectDescription LIKE '%{search}%' AND CaseStatus = 'Open'"
 
@@ -210,10 +190,44 @@ def save_state(state):
     STATE_PATH.write_text(json.dumps(state, indent=2))
 
 
+# ── STAMP HELPER ───────────────────────────────────────────────────────────────
+def stamp_stacked_on_nof_records(existing, vbp_addresses):
+    """
+    Stamp stacked:true on any existing NOF record whose address
+    matches a VBP address. Also ensures 'STACKED' appears in flags.
+    Returns count of records stamped.
+    """
+    stamped = 0
+    for r in existing:
+        addr_clean = r.get("address", "").upper().strip()
+        if addr_clean in vbp_addresses:
+            changed = False
+            if not r.get("stacked"):
+                r["stacked"] = True
+                changed = True
+            flags = r.get("flags") or []
+            if "STACKED" not in flags:
+                flags.append("STACKED")
+                r["flags"] = flags
+                changed = True
+            if changed:
+                stamped += 1
+    return stamped
+
+
+def write_records(records):
+    """Atomically write records.json."""
+    text = json.dumps(records)
+    json.loads(text)  # validate before writing
+    tmp = RECORDS_PATH.with_suffix('.tmp')
+    tmp.write_text(text)
+    tmp.replace(RECORDS_PATH)
+
+
 # ── MAIN ───────────────────────────────────────────────────────────────────────
 def main():
     log.info("=" * 60)
-    log.info("VBP + CE Cross-Reference Scraper v1.0")
+    log.info("VBP + CE Cross-Reference Scraper v1.1")
     log.info("=" * 60)
 
     state = load_state()
@@ -226,11 +240,9 @@ def main():
         log.error("No properties from PDF — aborting")
         return
 
-    # Check if VBP list has changed
     vbp_count = len(all_props)
-
-    # Filter to residential
     props = filter_properties(all_props)
+    vbp_addresses = {p["address"] for p in props}
 
     # Load existing records — MUST preserve all existing leads
     try:
@@ -245,27 +257,43 @@ def main():
     existing_docs = {r["doc_number"] for r in existing}
     log.info(f"Existing doc numbers: {len(existing_docs)}")
 
-    # Skip CE check if VBP unchanged AND stacked leads already exist
+    # Check if VBP list has changed
     already_stacked = sum(1 for r in existing if r.get("type") == "VBP")
+    skip_ce_check = False
+
     if vbp_count == state.get("last_vbp_count") and state.get("last_run") and already_stacked > 0:
         last_run_dt = datetime.fromisoformat(state["last_run"])
         days_since = (datetime.now() - last_run_dt).days
         if days_since < 25:
-            log.info(f"VBP unchanged ({vbp_count} props), {already_stacked} stacked leads exist, last run {days_since}d ago — skipping")
-            log.info("Exiting without modifying records.json")
-            save_state(state)
-            return
-        log.info(f"VBP unchanged but {days_since}d since last run — re-checking")
+            log.info(f"VBP unchanged ({vbp_count} props), {already_stacked} stacked leads exist, "
+                     f"last run {days_since}d ago — skipping CE check, stamping NOF records only")
+            skip_ce_check = True
+        else:
+            log.info(f"VBP unchanged but {days_since}d since last run — re-checking CE")
     elif already_stacked == 0:
-        log.info(f"No stacked leads in records.json — forcing CE check")
+        log.info("No VBP leads in records.json — forcing full CE check")
 
+    # ── ALWAYS stamp stacked:true on matching NOF records ─────────────────────
+    stamped = stamp_stacked_on_nof_records(existing, vbp_addresses)
+    log.info(f"Stamped stacked:true on {stamped} existing NOF records")
+
+    if skip_ce_check:
+        if stamped > 0:
+            write_records(existing)
+            log.info(f"records.json updated with {stamped} newly stamped NOF records")
+        else:
+            log.info("No new stamps needed — records.json unchanged")
+        save_state(state)
+        log.info("Done.")
+        return
+
+    # ── CE CHECK ───────────────────────────────────────────────────────────────
     checked = state.get("checked", {})
     new_leads = []
     ce_checked = 0
     ce_found   = 0
     skipped    = 0
 
-    # CE lookup uses per-address ArcGIS queries (confirmed working)
     log.info(f"Checking {len(props)} VBP addresses against CE portal (ArcGIS per-address)...")
 
     for i, prop in enumerate(props):
@@ -298,7 +326,7 @@ def main():
             if any("dangerous" in t.lower() for t in viol_types):
                 flags.append("DANGEROUS PREMISES")
 
-            score = 8  # High — vacant + CE violation
+            score = 8
             if "DANGEROUS PREMISES" in flags:
                 score += 2
 
@@ -316,6 +344,7 @@ def main():
                 "absentee":        False,
                 "duplicate":       False,
                 "is_new":          True,
+                "stacked":         True,
                 "run_ts":          RUN_TIMESTAMP,
                 "flags":           flags,
                 "score":           score,
@@ -342,23 +371,14 @@ def main():
 
         time.sleep(0.4)
 
-
     log.info(f"VBP CE check complete: {ce_checked} queried | "
              f"{ce_found} stacked leads | {skipped} skipped")
 
-    # Save new leads to records.json atomically
-    if new_leads:
-        merged = existing + new_leads
-        # Validate JSON before writing
-        test = json.dumps(merged)
-        json.loads(test)  # will raise if invalid
-        # Write to temp first, then move
-        tmp = RECORDS_PATH.with_suffix('.tmp')
-        tmp.write_text(test)
-        tmp.replace(RECORDS_PATH)
-        log.info(f"Added {len(new_leads)} stacked VBP+CE leads → {len(merged)} total in records.json")
-    else:
-        log.info("No new stacked leads found — records.json unchanged")
+    # Write records — existing already has stamps applied above
+    merged = existing + new_leads
+    write_records(merged)
+    log.info(f"records.json saved — {len(merged)} total records "
+             f"({stamped} NOF stamped, {len(new_leads)} new VBP leads added)")
 
     # Update state
     state["last_vbp_count"] = vbp_count
