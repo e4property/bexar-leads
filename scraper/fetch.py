@@ -1,14 +1,16 @@
 """
-Bexar County Motivated Seller Lead Scraper v28.27
+Bexar County Motivated Seller Lead Scraper v28.28
 HYBRID SCRAPER:
   Primary:   bexar.tx.publicsearch.us  (Selenium, runs 2x daily)
   Secondary: ArcGIS GIS layer (urllib, runs weekly on Sunday)
   Tertiary:  SA 311 Code Enforcement (ArcGIS FeatureServer, runs 2x daily)
   Owner enrichment: 5-strategy ArcGIS parcel lookup
 
-  v28.27 fixes:
+  v28.28 fixes:
+    - Merge step preserves VBP CE violation fields from prev_records
+      (ce_violations, ce_viol_types, ce_count, ce_cat_label, ce_status,
+       opened_date, ce_case_id) so vbp_scraper enrichment is never lost
     - Early exit: 2 consecutive pages with 0 new leads stops chunk immediately
-    - Cuts runtime from 90+ min back to 10-15 min
 """
 
 import json
@@ -1311,11 +1313,37 @@ if __name__ == "__main__":
     # ── Step 4: Merge ─────────────────────────────────────────────────────────
     for r in prev_records:
         r["is_new"] = False
+
+    # Build prev_records index for VBP CE field preservation
+    prev_by_doc = {r["doc_number"]: r for r in prev_records if r.get("doc_number")}
+
+    # VBP CE fields written by vbp_scraper — must never be lost on fetch.py runs
+    VBP_CE_FIELDS = [
+        "stacked", "ce_violations", "ce_viol_types", "ce_count",
+        "ce_cat_label", "ce_status", "opened_date", "ce_case_id",
+    ]
+
     seen = {}
     for r in new_records + arcgis_records + ce_records + prev_records:
         doc = r.get("doc_number", "")
-        if doc and doc not in seen:
+        if not doc:
+            continue
+        if doc not in seen:
             seen[doc] = r
+
+    # Preserve VBP CE fields from prev_records onto every VBP record
+    vbp_ce_preserved = 0
+    for doc, r in seen.items():
+        if r.get("type") == "VBP" and doc in prev_by_doc:
+            prev = prev_by_doc[doc]
+            for field in VBP_CE_FIELDS:
+                if prev.get(field) and not r.get(field):
+                    r[field] = prev[field]
+                    vbp_ce_preserved += 1
+
+    if vbp_ce_preserved:
+        log.info(f"Preserved {vbp_ce_preserved} VBP CE field values from prev_records")
+
     records = list(seen.values())
     log.info(f"After dedup: {len(records)} total records")
 
