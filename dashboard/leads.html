@@ -732,11 +732,11 @@ function populateDetail(lead){
   if(stacked||vbp||ce){
     ceBox.style.display='block';
     const violType=getVBPViolation(lead);
-    document.getElementById('ce-category').textContent=violType||(lead.ce_category||'—');
+    document.getElementById('ce-category').textContent=lead.ce_cat_label||violType||(lead.ce_category||'—');
     const st=document.getElementById('ce-status');
     st.textContent=lead.ce_status||'Active';
     st.className='ce-val open';
-    document.getElementById('ce-reason').textContent=lead.ce_reason||violType||'—';
+    document.getElementById('ce-reason').textContent=lead.ce_reason||(lead.ce_viol_types&&lead.ce_viol_types[0])||violType||'—';
     document.getElementById('ce-opened').textContent=lead.opened_date||lead.date_filed||'—';
   }else ceBox.style.display='none';
 
