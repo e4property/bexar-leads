@@ -1,17 +1,14 @@
 """
-Bexar County Motivated Seller Lead Scraper v28.26
+Bexar County Motivated Seller Lead Scraper v28.27
 HYBRID SCRAPER:
   Primary:   bexar.tx.publicsearch.us  (Selenium, runs 2x daily)
   Secondary: ArcGIS GIS layer (urllib, runs weekly on Sunday)
   Tertiary:  SA 311 Code Enforcement (ArcGIS FeatureServer, runs 2x daily)
   Owner enrichment: 5-strategy ArcGIS parcel lookup
 
-  v28.26 fixes:
-    - scrape_chunk: use JS innerText instead of .text to get full untruncated cell content
-    - scrape_chunk: retry on timeout (2 attempts per page before stopping chunk)
-    - scrape_chunk: positional td fallback if col-X class selector fails
-    - scrape_chunk: known_docs.add() per record to prevent cross-page duplicates
-    - scrape_chunk: stop condition tuned (48 rows threshold, 80% old rows)
+  v28.27 fixes:
+    - Early exit: 2 consecutive pages with 0 new leads stops chunk immediately
+    - Cuts runtime from 90+ min back to 10-15 min
 """
 
 import json
@@ -85,7 +82,7 @@ def fetch_json(url, retries=3):
     for attempt in range(retries):
         try:
             req = urllib.request.Request(
-                url, headers={"User-Agent": "BexarScraper/28.26", "Accept": "application/json"})
+                url, headers={"User-Agent": "BexarScraper/28.27", "Accept": "application/json"})
             with urllib.request.urlopen(req, timeout=25) as r:
                 return json.loads(r.read().decode("utf-8", errors="replace"))
         except Exception as e:
@@ -150,7 +147,7 @@ def load_known_docs():
     try:
         req = urllib.request.Request(
             url,
-            headers={"User-Agent": "BexarScraper/28.26",
+            headers={"User-Agent": "BexarScraper/28.27",
                      "Accept": "application/json",
                      "Cache-Control": "no-cache"})
         with urllib.request.urlopen(req, timeout=20) as r:
@@ -210,6 +207,8 @@ def should_keep(rec):
                 return opened_dt >= CUTOFF_DATE
             except Exception:
                 pass
+        return True
+    if rec.get("source") == "vbp_ce" or rec.get("type") == "VBP":
         return True
     return True
 
@@ -271,15 +270,15 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
         f"&sortDir=desc"
     )
 
-    records = []
-    page    = 0
-    offset  = 0
+    records    = []
+    page       = 0
+    offset     = 0
+    zero_new_streak = 0  # v28.27: track consecutive pages with 0 new leads
 
     while True:
         url = search_url.replace("offset=0", f"offset={offset}")
         log.info(f"    [{start_str}-{end_str}] Page {page+1} (offset={offset})")
 
-        # Try loading page up to 2 times before giving up
         loaded = False
         for attempt in range(2):
             try:
@@ -309,7 +308,6 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
             log.info(f"    Timeout page {page+1} — stopping chunk")
             break
 
-        # Get rows — try multiple selectors
         rows = driver.find_elements(By.CSS_SELECTOR, "table tbody tr")
         if not rows:
             rows = driver.find_elements(By.CSS_SELECTOR, "tr.a11y-table__row")
@@ -335,7 +333,6 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
                 def get_col(row, cls):
                     try:
                         el = row.find_element(By.CSS_SELECTOR, f"td.{cls}")
-                        # JS innerText gets full untruncated text
                         return driver.execute_script(
                             "return arguments[0].innerText;", el
                         ).strip()
@@ -348,7 +345,6 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
                 doc_number    = get_col(row, "col-6")
                 address_raw   = get_col(row, "col-8")
 
-                # Positional fallback if class selector misses
                 if not doc_number:
                     tds = row.find_elements(By.TAG_NAME, "td")
                     if len(tds) >= 6:
@@ -440,10 +436,24 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
 
         log.info(f"    Page {page+1}: {page_new} new | {page_known} known | {page_old} old")
 
+        # ── v28.27 early exit logic ───────────────────────────────────────────
+        # Exit immediately if nothing useful on this page and not first page
         if page_new == 0 and page_known == 0 and page > 0:
             log.info("    No new or known records — stopping chunk")
             break
 
+        # Track consecutive pages with 0 new leads — exit after 2 in a row
+        if page_new == 0:
+            zero_new_streak += 1
+        else:
+            zero_new_streak = 0
+
+        if zero_new_streak >= 2 and page > 1:
+            log.info(f"    2 consecutive pages with 0 new leads — stopping chunk early")
+            zero_new_streak = 0
+            break
+
+        # Exit if mostly old rows
         if page_old > 0 and page_old >= len(rows) * 0.8:
             log.info("    Mostly old rows — stopping chunk")
             break
@@ -1259,7 +1269,7 @@ if __name__ == "__main__":
     os.makedirs("dashboard", exist_ok=True)
 
     log.info("=" * 60)
-    log.info("Bexar County Lead Scraper v28.26 (Hybrid)")
+    log.info("Bexar County Lead Scraper v28.27 (Hybrid)")
     log.info(f"Primary:   PublicSearch.us ({KEEP_DAYS}d window, {CHUNK_DAYS}d chunks, {PAGE_TIMEOUT}s timeout)")
     log.info(f"Secondary: ArcGIS weekly backfill = {IS_SUNDAY}")
     log.info(f"Tertiary:  Code Enforcement 311 ({len(CE_CATEGORIES)} categories, {KEEP_DAYS}d window)")
@@ -1322,9 +1332,12 @@ if __name__ == "__main__":
 
     # ── Step 8: Flag + score ──────────────────────────────────────────────────
     for r in records:
+        # Preserve stacked flag set by vbp_scraper — never overwrite it
+        existing_stacked = r.get("stacked", False)
         r["flags"] = []
         if r["type"] == "TAX":                    r["flags"].append("TAX FORE")
         if r["type"] == "CE":                     r["flags"].append("CODE ENFORCE")
+        if r["type"] == "VBP" and existing_stacked: r["flags"].append("STACKED")
         if r.get("absentee"):                     r["flags"].append("ABSENTEE")
         if r.get("duplicate"):                    r["flags"].append("DUPLICATE")
         if r.get("is_new"):                       r["flags"].append("NEW")
@@ -1341,6 +1354,8 @@ if __name__ == "__main__":
             if cat in CE_ABSENTEE:               r["flags"].append("ABSENTEE PROP")
             if cat in CE_VACANT:                  r["flags"].append("VACANT STRUCT")
             if cat in CE_MIN_HOUS:                r["flags"].append("MIN HOUSING")
+        # Restore stacked flag
+        r["stacked"] = existing_stacked
         r["score"]           = score_record(r)
         r["days_until_sale"] = d
 
@@ -1362,11 +1377,13 @@ if __name__ == "__main__":
     ce_open  = sum(1 for r in records if "OPEN VIOLATION" in r.get("flags", []))
     ce_dang  = sum(1 for r in records if "DANGEROUS PREMISES" in r.get("flags", []))
     enriched = sum(1 for r in records if r.get("loan_amount"))
+    stacked  = sum(1 for r in records if r.get("stacked"))
 
     log.info(f"Final: {len(records)} total | {named} named | {absentee} absentee")
     log.info(f"       {new_ct} new | {has_date} with sale date | "
              f"{soon} auction <=30d | {urgent} URGENT <=14d")
     log.info(f"       CE: {ce_ct} total | {ce_open} open violations | {ce_dang} dangerous premises")
+    log.info(f"       VBP stacked: {stacked} confirmed VBP+CE leads")
     log.info(f"       Mortgage intel: {enriched} leads with loan_amount populated")
 
     # ── Step 10: Save ─────────────────────────────────────────────────────────
