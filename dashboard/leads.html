@@ -317,7 +317,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 </head>
 <body>
 <div class="topbar">
-  <div class="logo">BEXAR<span>·</span>LEADS<sub>v3.1</sub></div>
+ <div class="logo-wrap" style="position:relative"><div class="logo" id="county-logo" onclick="toggleCountySwitcher()" style="cursor:pointer;user-select:none">BEXAR<span>·</span>LEADS<sub>v3.1</sub> <span style="font-size:10px;color:var(--muted)">▾</span></div><div id="county-dropdown" style="display:none;position:absolute;top:38px;left:0;background:var(--surface);border:1px solid var(--border2);border-radius:var(--rl);min-width:220px;z-index:9999;box-shadow:var(--shadow-md);overflow:hidden"><div id="county-list"></div><div style="padding:8px 14px;border-top:1px solid var(--border)"><button onclick="openSettings();closeCountySwitcher()" style="font-size:11px;color:var(--blue);background:none;border:none;cursor:pointer;padding:0;font-family:'Inter',sans-serif">+ Manage counties</button></div></div></div> 
   <div class="stat-pills">
     <div class="pill"><b class="blue" id="st-total">—</b><span class="pill-lbl">total</span></div>
     <div class="pill"><b class="muted" id="st-named">—</b><span class="pill-lbl">named</span></div>
