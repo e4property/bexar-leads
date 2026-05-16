@@ -1,15 +1,15 @@
 """
-Bexar County Motivated Seller Lead Scraper v28.28
+Bexar County Motivated Seller Lead Scraper v28.29
 HYBRID SCRAPER:
   Primary:   bexar.tx.publicsearch.us  (Selenium, runs 2x daily)
   Secondary: ArcGIS GIS layer (urllib, runs weekly on Sunday)
-  Tertiary:  SA 311 Code Enforcement (ArcGIS FeatureServer, runs 2x daily)
   Owner enrichment: 5-strategy ArcGIS parcel lookup
 
-  v28.28 fixes:
+  v28.29 fixes:
+    - Removed fetch_code_enforcement step — bulk CE API returns 403 Forbidden
+      from GitHub Actions IPs; per-address CE lookup in vbp_scraper works fine
+    - CE Only leads will age out naturally via 90-day filter
     - Merge step preserves VBP CE violation fields from prev_records
-      (ce_violations, ce_viol_types, ce_count, ce_cat_label, ce_status,
-       opened_date, ce_case_id) so vbp_scraper enrichment is never lost
     - Early exit: 2 consecutive pages with 0 new leads stops chunk immediately
 """
 
@@ -1306,9 +1306,8 @@ if __name__ == "__main__":
         arcgis_records = fetch_arcgis_backfill(known_docs)
         log.info(f"ArcGIS backfill added {len(arcgis_records)} records")
 
-    # ── Step 3: Code Enforcement (every run) ─────────────────────────────────
-    ce_records = fetch_code_enforcement(known_docs)
-    log.info(f"Code Enforcement added {len(ce_records)} records")
+    # ── Step 3: Code Enforcement — disabled (bulk CE API blocked from GH Actions)
+    ce_records = []
 
     # ── Step 4: Merge ─────────────────────────────────────────────────────────
     for r in prev_records:
@@ -1401,16 +1400,12 @@ if __name__ == "__main__":
     urgent   = sum(1 for r in records if "URGENT"       in r.get("flags", []))
     soon     = sum(1 for r in records if "AUCTION SOON" in r.get("flags", []))
     has_date = sum(1 for r in records if r.get("sale_date"))
-    ce_ct    = sum(1 for r in records if r.get("source") == "code_enforcement")
-    ce_open  = sum(1 for r in records if "OPEN VIOLATION" in r.get("flags", []))
-    ce_dang  = sum(1 for r in records if "DANGEROUS PREMISES" in r.get("flags", []))
     enriched = sum(1 for r in records if r.get("loan_amount"))
     stacked  = sum(1 for r in records if r.get("stacked"))
 
     log.info(f"Final: {len(records)} total | {named} named | {absentee} absentee")
     log.info(f"       {new_ct} new | {has_date} with sale date | "
              f"{soon} auction <=30d | {urgent} URGENT <=14d")
-    log.info(f"       CE: {ce_ct} total | {ce_open} open violations | {ce_dang} dangerous premises")
     log.info(f"       VBP stacked: {stacked} confirmed VBP+CE leads")
     log.info(f"       Mortgage intel: {enriched} leads with loan_amount populated")
 
