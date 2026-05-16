@@ -1,13 +1,20 @@
 """
-Bexar County VBP + CE Cross-Reference Scraper v1.3 ONE-SHOT ENRICHMENT
-This version re-checks the 253 confirmed CE addresses and writes full
-violation details (case ID, type, status, opened date) onto existing
-VBP records in records.json.
+Bexar County VBP + CE Cross-Reference Scraper v1.4
+Downloads SA Vacant Building Program PDF monthly,
+filters to residential properties, then checks each address
+against the SA 311 CE ArcGIS endpoint for open violations.
+Adds appraised value lookup from Bexar CAD parcel layer.
 
-After this run confirms correct data in dashboard, replace with v1.2
-for normal monthly operation.
+v1.4 changes:
+  - Adds parcel lookup for appraised_value and land_value on VBP records
+  - Normal monthly logic restored (no one-shot enrichment)
+  - stacked:true ONLY on VBP records with confirmed CE violations
+  - NOF/TAX records never touched
+  - Cleans incorrectly stamped NOF records from v1.1
+  - Full CE detail written on stamp pass using confirmed addresses
 
 Run: python scraper/vbp_scraper.py
+Schedule: Monthly (2nd of month) via GitHub Actions
 """
 
 import os, re, json, time, logging, urllib.request, urllib.parse
@@ -19,9 +26,11 @@ logging.basicConfig(level=logging.INFO,
     datefmt='%Y-%m-%d %H:%M:%S')
 log = logging.getLogger(__name__)
 
+# ── CONFIG ─────────────────────────────────────────────────────────────────────
 VBP_PDF_URL  = "https://docsonline.sanantonio.gov/DSDUploads/VBPInventory.pdf"
 RECORDS_PATH = Path("dashboard/records.json")
 STATE_PATH   = Path("data/vbp_state.json")
+PARCELS_URL  = "https://maps.bexar.org/arcgis/rest/services/Parcels/MapServer/0"
 
 MAX_SQ_FT = 6000
 
@@ -43,10 +52,101 @@ CE_KEYWORDS = [
 RUN_TIMESTAMP = datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
 
 
+# ── PARCEL LOOKUP ──────────────────────────────────────────────────────────────
+def arcgis_query(layer_url, where, fields="*", limit=50):
+    try:
+        params = urllib.parse.urlencode({
+            "where":             where,
+            "outFields":         fields,
+            "returnGeometry":    "false",
+            "resultRecordCount": limit,
+            "f":                 "json",
+        })
+        req = urllib.request.Request(
+            f"{layer_url}/query?{params}",
+            headers={"User-Agent": "BexarVBP/1.4", "Accept": "application/json"}
+        )
+        with urllib.request.urlopen(req, timeout=15) as r:
+            data = json.loads(r.read().decode("utf-8", errors="replace"))
+        if "error" in data:
+            return []
+        return data.get("features", [])
+    except Exception as e:
+        log.debug(f"ArcGIS query error: {e}")
+        return []
+
+
+def get_field(attrs, candidates):
+    for c in candidates:
+        v = attrs.get(c)
+        if v is not None and str(v).strip() not in ("", "None", "null", "<Null>", "NULL", "0"):
+            return str(v).strip()
+    return ""
+
+
+def lookup_appraised_value(address):
+    """
+    Look up appraised value from Bexar CAD parcel layer for a VBP address.
+    Returns dict with appraised_value and land_value or empty dict.
+    """
+    parts = address.strip().upper().split()
+    if not parts or not parts[0].isdigit():
+        return {}
+
+    num        = parts[0]
+    words      = parts[1:]
+    first_word = words[0] if words else ""
+
+    APPR_FIELDS = ["TotVal", "TOT_VAL", "TotalVal", "TOTAL_VAL", "AppraisedVal",
+                   "APPRAISED_VAL", "AppraisedValue", "APPRAISED_VALUE", "MarketValue"]
+    LAND_FIELDS = ["LandVal", "LAND_VAL", "LandValue", "LAND_VALUE"]
+    SITUS_FIELDS = ["Situs", "SITUS", "SitusAddress", "SITUS_ADDRESS", "Address", "ADDRESS"]
+
+    def check_features(feats):
+        for feat in feats:
+            a = feat.get("attributes", {})
+            situs = get_field(a, SITUS_FIELDS)
+            situs_norm = " ".join(situs.upper().split())
+            if not situs_norm.startswith(num + " "):
+                continue
+            appr = get_field(a, APPR_FIELDS)
+            land = get_field(a, LAND_FIELDS)
+            if appr:
+                return {"appraised_value": appr, "land_value": land}
+        return {}
+
+    # Strategy 1: number + first two words
+    if len(words) >= 2:
+        feats = arcgis_query(PARCELS_URL,
+            f"Situs LIKE '{num} {words[0]} {words[1]}%'", limit=10)
+        result = check_features(feats)
+        if result:
+            return result
+
+    # Strategy 2: number + first word
+    if first_word and len(first_word) >= 3:
+        feats = arcgis_query(PARCELS_URL,
+            f"Situs LIKE '{num} {first_word}%'", limit=20)
+        result = check_features(feats)
+        if result:
+            return result
+
+    # Strategy 3: number only
+    feats = arcgis_query(PARCELS_URL,
+        f"Situs LIKE '{num} %'", limit=50)
+    result = check_features(feats)
+    if result:
+        return result
+
+    return {}
+
+
+# ── PDF PARSER ─────────────────────────────────────────────────────────────────
 def download_vbp_pdf():
     try:
         import pdfplumber
     except ImportError:
+        log.info("Installing pdfplumber...")
         os.system("pip install pdfplumber --break-system-packages -q")
         import pdfplumber
 
@@ -117,6 +217,7 @@ def filter_properties(properties):
     return filtered
 
 
+# ── CE LOOKUP ──────────────────────────────────────────────────────────────────
 CE_API_URL = (
     "https://services.arcgis.com/g1fRTDLeMgspWrYp/arcgis/rest/services"
     "/311_All_Service_Calls/FeatureServer/0/query"
@@ -153,7 +254,8 @@ def check_ce_for_address(street_address):
                 opened_str = ""
                 if opened_ms:
                     try:
-                        opened_str = datetime.utcfromtimestamp(int(opened_ms)/1000).strftime("%m/%d/%Y")
+                        opened_str = datetime.utcfromtimestamp(
+                            int(opened_ms)/1000).strftime("%m/%d/%Y")
                     except Exception:
                         pass
                 violations.append({
@@ -169,6 +271,7 @@ def check_ce_for_address(street_address):
         return []
 
 
+# ── STATE ──────────────────────────────────────────────────────────────────────
 def load_state():
     try:
         return json.loads(STATE_PATH.read_text())
@@ -187,46 +290,8 @@ def write_records(records):
     tmp.replace(RECORDS_PATH)
 
 
-def ms_to_date(ms):
-    if not ms:
-        return ""
-    try:
-        return datetime.utcfromtimestamp(int(ms)/1000).strftime("%m/%d/%Y")
-    except Exception:
-        return ""
-
-
-def main():
-    log.info("=" * 60)
-    log.info("VBP + CE Cross-Reference Scraper v1.3 — ONE-SHOT ENRICHMENT")
-    log.info("=" * 60)
-
-    state = load_state()
-    log.info(f"Last run: {state.get('last_run') or 'never (reset for enrichment)'} | "
-             f"Checked entries in state: {len(state.get('checked', {}))}")
-
-    # Download + parse PDF
-    all_props = download_vbp_pdf()
-    if not all_props:
-        log.error("No properties from PDF — aborting")
-        return
-
-    vbp_count = len(all_props)
-    props     = filter_properties(all_props)
-    vbp_addr_map = {p["address"]: p for p in props}
-
-    # Load existing records
-    try:
-        existing = json.loads(RECORDS_PATH.read_text())
-        log.info(f"Loaded {len(existing)} existing records from {RECORDS_PATH}")
-    except Exception as e:
-        log.error(f"ABORT: Could not load {RECORDS_PATH}: {e}")
-        return
-
-    existing_docs = {r["doc_number"] for r in existing}
-    log.info(f"Existing doc numbers: {len(existing_docs)}")
-
-    # Clean any incorrectly stamped NOF/TAX records
+# ── CLEAN NOF RECORDS ─────────────────────────────────────────────────────────
+def clean_nof_stacked_flags(existing):
     cleaned = 0
     for r in existing:
         if r.get("type") in ("NOF", "TAX"):
@@ -241,37 +306,183 @@ def main():
                 changed = True
             if changed:
                 cleaned += 1
+    return cleaned
+
+
+# ── STAMP + ENRICH EXISTING VBP RECORDS ───────────────────────────────────────
+def stamp_and_enrich_vbp_records(existing, confirmed_ce_addresses):
+    """
+    For VBP records with confirmed CE violations:
+    - Set stacked:true
+    - Fetch full CE violation details from API
+    - Fetch appraised value from BCAD parcel layer
+    Only touches VBP type records.
+    """
+    stamped  = 0
+    enriched = 0
+
+    for r in existing:
+        if r.get("type") != "VBP":
+            continue
+
+        addr_clean = r.get("address", "").upper().strip()
+        if addr_clean not in confirmed_ce_addresses:
+            continue
+
+        changed = False
+
+        # Stamp stacked
+        if not r.get("stacked"):
+            r["stacked"] = True
+            changed = True
+
+        flags = r.get("flags") or []
+        if "STACKED" not in flags:
+            flags.append("STACKED")
+            r["flags"] = flags
+            changed = True
+
+        # Fetch CE details if missing
+        if not r.get("ce_cat_label") and not r.get("ce_violations"):
+            violations = check_ce_for_address(addr_clean)
+            if violations:
+                viol_types = list({v["typename"] for v in violations})
+                first = violations[0]
+                is_dangerous = any("dangerous" in t.lower() for t in viol_types)
+                if is_dangerous and "DANGEROUS PREMISES" not in flags:
+                    flags.append("DANGEROUS PREMISES")
+                    r["flags"] = flags
+                r["ce_violations"] = violations
+                r["ce_viol_types"] = viol_types
+                r["ce_count"]      = len(violations)
+                r["ce_cat_label"]  = first["typename"]
+                r["ce_status"]     = first["status"]
+                r["opened_date"]   = first["opened"]
+                r["ce_case_id"]    = first["case_id"]
+                enriched += 1
+                time.sleep(0.4)
+
+        # Fetch appraised value if missing
+        if not r.get("appraised_value"):
+            parcel = lookup_appraised_value(addr_clean)
+            if parcel.get("appraised_value"):
+                r["appraised_value"] = parcel["appraised_value"]
+                r["land_value"]      = parcel.get("land_value", "")
+                changed = True
+            time.sleep(0.2)
+
+        if changed:
+            stamped += 1
+
+    return stamped, enriched
+
+
+# ── MAIN ───────────────────────────────────────────────────────────────────────
+def main():
+    log.info("=" * 60)
+    log.info("VBP + CE Cross-Reference Scraper v1.4")
+    log.info("=" * 60)
+
+    state = load_state()
+    log.info(f"Last run: {state.get('last_run') or 'never'} | "
+             f"Previously checked: {len(state.get('checked', {}))} addresses")
+
+    # Download + parse PDF
+    all_props = download_vbp_pdf()
+    if not all_props:
+        log.error("No properties from PDF — aborting")
+        return
+
+    vbp_count = len(all_props)
+    props     = filter_properties(all_props)
+
+    # Load existing records
+    try:
+        existing = json.loads(RECORDS_PATH.read_text())
+        log.info(f"Loaded {len(existing)} existing records from {RECORDS_PATH}")
+    except Exception as e:
+        log.error(f"ABORT: Could not load {RECORDS_PATH}: {e}")
+        return
+
+    existing_docs = {r["doc_number"] for r in existing}
+    log.info(f"Existing doc numbers: {len(existing_docs)}")
+
+    # Step 1: Clean incorrectly stamped NOF/TAX records
+    cleaned = clean_nof_stacked_flags(existing)
     log.info(f"Cleaned stacked flag from {cleaned} NOF/TAX records")
 
-    # Build index of existing VBP records by address for fast lookup
-    vbp_by_addr = {}
-    for r in existing:
-        if r.get("type") == "VBP":
-            vbp_by_addr[r.get("address", "").upper().strip()] = r
-
-    log.info(f"Existing VBP records indexed: {len(vbp_by_addr)}")
-
-    # CE check — only addresses NOT in state.checked (the 253 confirmed ones we cleared)
+    # Step 2: Build confirmed CE address set from vbp_state.json
     checked = state.get("checked", {})
-    new_leads    = []
-    enriched     = 0
-    ce_checked   = 0
-    ce_found     = 0
-    skipped      = 0
+    confirmed_ce_addresses = {
+        addr.upper().strip()
+        for addr, info in checked.items()
+        if info.get("violations") is True
+    }
+    log.info(f"Confirmed CE addresses from state: {len(confirmed_ce_addresses)}")
 
-    log.info(f"Starting CE enrichment check for {len(props)} VBP addresses...")
-    log.info(f"Addresses already in state (skip): {len(checked)}")
-    log.info(f"Addresses to re-check: {len(props) - len([p for p in props if p['address'] in checked])}")
+    # Step 3: Stamp + enrich existing VBP records
+    stamped, enriched = stamp_and_enrich_vbp_records(existing, confirmed_ce_addresses)
+    log.info(f"Stamped stacked:true on {stamped} existing VBP records")
+    log.info(f"CE details fetched for {enriched} VBP records")
+
+    # Step 4: Decide whether to run full CE check
+    vbp_missing_stacked = sum(
+        1 for r in existing
+        if r.get("type") == "VBP" and not r.get("stacked")
+    )
+    already_stacked_vbp = sum(
+        1 for r in existing
+        if r.get("type") == "VBP" and r.get("stacked")
+    )
+
+    skip_ce_check = False
+    if vbp_count == state.get("last_vbp_count") and state.get("last_run") and already_stacked_vbp > 0:
+        last_run_dt = datetime.fromisoformat(state["last_run"])
+        days_since  = (datetime.now() - last_run_dt).days
+        if days_since < 25 and vbp_missing_stacked == 0:
+            log.info(f"VBP unchanged ({vbp_count} props), {already_stacked_vbp} stacked, "
+                     f"last run {days_since}d ago — skipping CE check")
+            skip_ce_check = True
+        elif vbp_missing_stacked > 0:
+            log.info(f"{vbp_missing_stacked} VBP records missing stacked — running CE check")
+        else:
+            log.info(f"VBP unchanged but {days_since}d since last run — re-checking CE")
+    else:
+        log.info("Running full CE check")
+
+    if skip_ce_check:
+        if cleaned > 0 or stamped > 0 or enriched > 0:
+            write_records(existing)
+            log.info(f"records.json updated — {cleaned} NOF cleaned, "
+                     f"{stamped} VBP stamped, {enriched} CE enriched")
+        else:
+            log.info("No changes — records.json unchanged")
+        save_state(state)
+        log.info("Done.")
+        return
+
+    # Step 5: Full CE check for new VBP addresses
+    new_leads  = []
+    ce_checked = 0
+    ce_found   = 0
+    skipped    = 0
+
+    log.info(f"Checking {len(props)} VBP addresses against CE portal...")
 
     for i, prop in enumerate(props):
         addr    = prop["address"]
         zipcode = prop["zip"]
         doc_key = f"VBP-{addr.replace(' ', '-')}-{zipcode}"
 
-        # Skip if already in checked state (the false ones we kept)
-        if addr in checked:
+        if doc_key in existing_docs:
             skipped += 1
             continue
+
+        if addr in checked and checked[addr].get("checked_at"):
+            checked_dt = datetime.fromisoformat(checked[addr]["checked_at"])
+            if (datetime.now() - checked_dt).days < 25 and not checked[addr].get("violations"):
+                skipped += 1
+                continue
 
         violations = check_ce_for_address(addr)
         ce_checked += 1
@@ -282,100 +493,77 @@ def main():
         }
 
         if violations:
-            ce_found += 1
-            viol_types = list({v["typename"] for v in violations})
-            flags_base = ["VACANT STRUCT", "CODE ENFORCE", "STACKED"]
+            ce_found   += 1
+            viol_types  = list({v["typename"] for v in violations})
+            first       = violations[0]
             is_dangerous = any("dangerous" in t.lower() for t in viol_types)
+            flags = ["VACANT STRUCT", "CODE ENFORCE", "STACKED"]
             if is_dangerous:
-                flags_base.append("DANGEROUS PREMISES")
+                flags.append("DANGEROUS PREMISES")
 
             score = 8
             if is_dangerous:
                 score += 2
 
-            # First violation for display fields
-            first_viol = violations[0]
-            ce_cat_label = first_viol["typename"]
-            ce_status    = first_viol["status"]
-            opened_date  = first_viol["opened"]
+            # Lookup appraised value for new lead
+            parcel = lookup_appraised_value(addr)
 
-            if doc_key in existing_docs:
-                # Enrich existing VBP record in place
-                if addr in vbp_by_addr:
-                    r = vbp_by_addr[addr]
-                    r["stacked"]       = True
-                    r["ce_violations"] = violations
-                    r["ce_viol_types"] = viol_types
-                    r["ce_count"]      = len(violations)
-                    r["ce_cat_label"]  = ce_cat_label
-                    r["ce_status"]     = ce_status
-                    r["opened_date"]   = opened_date
-                    r["ce_case_id"]    = first_viol["case_id"]
-                    # Update flags
-                    existing_flags = r.get("flags") or []
-                    for f in flags_base:
-                        if f not in existing_flags:
-                            existing_flags.append(f)
-                    r["flags"] = existing_flags
-                    r["score"] = max(r.get("score", 0), score)
-                    enriched += 1
-                    log.info(f"  ENRICHED [{i+1}/{len(props)}] {addr} — "
-                             f"{len(violations)} violation(s): {ce_cat_label[:40]}")
-            else:
-                # New VBP lead not yet in records.json
-                lead = {
-                    "doc_number":      doc_key,
-                    "type":            "VBP",
-                    "source":          "vbp_ce",
-                    "address":         addr,
-                    "city":            "SAN ANTONIO",
-                    "zip":             zipcode,
-                    "date_filed":      RUN_TIMESTAMP[:7],
-                    "sale_date":       "",
-                    "owner":           prop["owner"],
-                    "mail_addr":       "",
-                    "absentee":        False,
-                    "duplicate":       False,
-                    "is_new":          True,
-                    "stacked":         True,
-                    "run_ts":          RUN_TIMESTAMP,
-                    "flags":           flags_base,
-                    "score":           score,
-                    "sq_ft":           prop["sq_ft"],
-                    "is_sf":           prop["is_sf"],
-                    "ce_violations":   violations,
-                    "ce_viol_types":   viol_types,
-                    "ce_count":        len(violations),
-                    "ce_cat_label":    ce_cat_label,
-                    "ce_status":       ce_status,
-                    "opened_date":     opened_date,
-                    "ce_case_id":      first_viol["case_id"],
-                    "loan_amount":     "",
-                    "loan_date":       "",
-                    "lender":          "",
-                    "trustee":         "",
-                    "appraised_value": "",
-                    "annual_taxes":    "",
-                    "ps_doc_id":       "",
-                }
-                new_leads.append(lead)
-                log.info(f"  NEW STACKED [{i+1}/{len(props)}] {addr} — "
-                         f"{len(violations)} violation(s): {ce_cat_label[:40]}")
+            lead = {
+                "doc_number":      doc_key,
+                "type":            "VBP",
+                "source":          "vbp_ce",
+                "address":         addr,
+                "city":            "SAN ANTONIO",
+                "zip":             zipcode,
+                "date_filed":      RUN_TIMESTAMP[:7],
+                "sale_date":       "",
+                "owner":           prop["owner"],
+                "mail_addr":       "",
+                "absentee":        False,
+                "duplicate":       False,
+                "is_new":          True,
+                "stacked":         True,
+                "run_ts":          RUN_TIMESTAMP,
+                "flags":           flags,
+                "score":           score,
+                "sq_ft":           prop["sq_ft"],
+                "is_sf":           prop["is_sf"],
+                "ce_violations":   violations,
+                "ce_viol_types":   viol_types,
+                "ce_count":        len(violations),
+                "ce_cat_label":    first["typename"],
+                "ce_status":       first["status"],
+                "opened_date":     first["opened"],
+                "ce_case_id":      first["case_id"],
+                "appraised_value": parcel.get("appraised_value", ""),
+                "land_value":      parcel.get("land_value", ""),
+                "loan_amount":     "",
+                "loan_date":       "",
+                "lender":          "",
+                "trustee":         "",
+                "annual_taxes":    "",
+                "ps_doc_id":       "",
+            }
+            new_leads.append(lead)
+            log.info(f"  STACKED [{i+1}/{len(props)}] {addr} — "
+                     f"{len(violations)} violation(s): {first['typename'][:40]}"
+                     f"{' appr=$'+parcel['appraised_value'] if parcel.get('appraised_value') else ''}")
         else:
             if (i + 1) % 50 == 0:
                 log.info(f"  Progress: {i+1}/{len(props)} | "
-                         f"{ce_found} found | {ce_checked} queried | {skipped} skipped")
+                         f"{ce_found} stacked | {ce_checked} queried | {skipped} skipped")
 
         time.sleep(0.4)
 
-    log.info(f"CE enrichment complete: {ce_checked} queried | "
-             f"{ce_found} with violations | {skipped} skipped (already clean) | "
-             f"{enriched} existing VBP records enriched | {len(new_leads)} new leads")
+    log.info(f"CE check complete: {ce_checked} queried | "
+             f"{ce_found} new stacked | {skipped} skipped")
 
     # Merge and write
     merged = existing + new_leads
     write_records(merged)
-    log.info(f"records.json saved — {len(merged)} total records")
+    log.info(f"records.json saved — {len(merged)} total | "
+             f"{cleaned} NOF cleaned | {stamped} VBP stamped | "
+             f"{enriched} CE enriched | {len(new_leads)} new VBP+CE leads added")
     log.info(f"Added {len(new_leads)} stacked VBP+CE leads")
 
     # Update state
@@ -384,7 +572,6 @@ def main():
     state["checked"]        = checked
     save_state(state)
 
-    log.info(f"Summary: cleaned={cleaned} enriched={enriched} new={len(new_leads)}")
     log.info("Done.")
 
 
