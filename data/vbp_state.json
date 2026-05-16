@@ -1,382 +1,353 @@
 {
-  "last_vbp_count": 1003,
+  "last_vbp_count": 0,
   "last_run": "",
   "checked": {
-    "1007 EDISON DR": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "1008 EDISON DR": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "1017 FULTON AVE": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "1021 CAPITOL AVE": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "1023 FULTON AVE": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "1045 W SUMMIT AVE": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "1111 HERMINE BLVD": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "1112 W AGARITA AVE": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "1115 W FRENCH PL": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "1130 W LYNWOOD AVE": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "1130 W MULBERRY AVE": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "114 ALEXANDER AVE": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "1143 W RUSSELL PL": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "1202 W FRENCH PL": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "1202 W MISTLETOE AVE": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "124 PRINCETON AVE": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "127 BEAL": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "1414 W ROSEWOOD AVE": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "1415 PASADENA": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "1510 W LULLWOOD AVE": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "1905 GRANT AVE": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "2109 FRESNO": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "221 GREENLAWN DR": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "2238 FRESNO": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "301 FREDERICKSBURG RD": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "301 VIENDO": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "303 FREDERICKSBURG RD": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "315 VIENDO": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "3667 FREDERICKSBURG RD": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "401 PRINCETON AVE": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "402 CULEBRA RD": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "414 UNIVERSITY AVE": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "702 TEXAS AVE": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "801 FREDERICKSBURG RD": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "822 TEXAS AVE": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "832 CINCINNATI AVE": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "934 FREDERICKSBURG RD": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "945 W LULLWOOD AVE": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "121 STARR": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "1113 S FLORES ST": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "114 E MAIN PLAZA": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "922 S LAREDO": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "103 MADISON": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "108 SOLEDAD ST": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "720 N ST MARYS": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "1102 N ELMENDORF ST": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "1246 LEAL ST": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "151 MICKLEJOHN ST": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "1510 LOMBRANO ST": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "167 MICKLEJOHN ST": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "2006 MORALES ST": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "2009 MORALES ST": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "2211 W SALINAS ST": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "2272 W POPLAR ST": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "2600 W MARTIN ST": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "2707 W MARTIN ST": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "312 N TRINITY ST": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "313 HENRY ST": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "630 ARBOR PL": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "107 DELAWARE ST": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "1100 S PRESA ST": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "116 CAMARGO ST": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "117 DEVINE ST": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "119 LOTUS AVE": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "1211 S ALAMO ST": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "1249 S SAINT MARYS ST": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "126 CAMARGO": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "127 LOTUS AVE": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "129 CALLAGHAN AVE": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "130 CAMARGO": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "132 CAMARGO ST": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "1419 S PRESA ST": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "1422 S SAINT MARYS ST": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "1628 S PRESA ST": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "1812 S PRESA ST": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "214 ADAMS ST": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "215 CEDAR ST": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "221 LEIGH ST": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "230 ADAMS ST": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "230 DEVINE ST": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "237 LOTUS AVE": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "301 LAVACA ST": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "315 LAVACA ST": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "319 BARRERA ST": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "321 LAVACA ST": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "326 GARFIELD ALY": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "413 WICKES ST": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "510 MISSION ST": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "510 STIEREN ST": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "511 STIEREN ST": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "517 STIEREN ST": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "635 MISSION ST": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "801 S PRESA ST": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    },
-    "833 E GUENTHER ST": {
-      "checked_at": "2026-05-07T13:56:11",
-      "violations": false
-    }
+    "1007 EDISON DR": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "1008 EDISON DR": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "1017 FULTON AVE": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "1021 CAPITOL AVE": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "1023 FULTON AVE": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "1045 W SUMMIT AVE": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "1111 HERMINE BLVD": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "1112 W AGARITA AVE": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "1115 W FRENCH PL": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "1130 W LYNWOOD AVE": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "1130 W MULBERRY AVE": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "114 ALEXANDER AVE": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "1143 W RUSSELL PL": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "1202 W FRENCH PL": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "1202 W MISTLETOE AVE": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "124 PRINCETON AVE": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "127 BEAL": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "1414 W ROSEWOOD AVE": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "1415 PASADENA": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "1510 W LULLWOOD AVE": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "1905 GRANT AVE": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "2109 FRESNO": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "221 GREENLAWN DR": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "2238 FRESNO": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "301 FREDERICKSBURG RD": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "301 VIENDO": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "303 FREDERICKSBURG RD": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "315 VIENDO": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "3667 FREDERICKSBURG RD": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "401 PRINCETON AVE": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "402 CULEBRA RD": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "414 UNIVERSITY AVE": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "702 TEXAS AVE": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "801 FREDERICKSBURG RD": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "822 TEXAS AVE": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "832 CINCINNATI AVE": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "934 FREDERICKSBURG RD": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "945 W LULLWOOD AVE": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "121 STARR": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "1113 S FLORES ST": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "114 E MAIN PLAZA": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "922 S LAREDO": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "103 MADISON": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "108 SOLEDAD ST": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "720 N ST MARYS": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "1102 N ELMENDORF ST": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "1246 LEAL ST": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "151 MICKLEJOHN ST": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "1510 LOMBRANO ST": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "167 MICKLEJOHN ST": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "2006 MORALES ST": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "2009 MORALES ST": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "2211 W SALINAS ST": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "2272 W POPLAR ST": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "2600 W MARTIN ST": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "2707 W MARTIN ST": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "312 N TRINITY ST": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "313 HENRY ST": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "630 ARBOR PL": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "107 DELAWARE ST": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "1100 S PRESA ST": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "116 CAMARGO ST": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "117 DEVINE ST": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "119 LOTUS AVE": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "1211 S ALAMO ST": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "1249 S SAINT MARYS ST": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "126 CAMARGO": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "127 LOTUS AVE": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "129 CALLAGHAN AVE": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "130 CAMARGO": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "132 CAMARGO ST": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "1419 S PRESA ST": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "1422 S SAINT MARYS ST": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "1628 S PRESA ST": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "1812 S PRESA ST": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "214 ADAMS ST": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "215 CEDAR ST": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "221 LEIGH ST": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "230 ADAMS ST": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "230 DEVINE ST": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "237 LOTUS AVE": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "301 LAVACA ST": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "315 LAVACA ST": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "319 BARRERA ST": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "321 LAVACA ST": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "326 GARFIELD ALY": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "413 WICKES ST": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "510 MISSION ST": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "510 STIEREN ST": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "511 STIEREN ST": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "517 STIEREN ST": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "635 MISSION ST": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "801 S PRESA ST": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "833 E GUENTHER ST": {"checked_at": "2026-05-07T13:56:11", "violations": false},
+    "1005 SACRAMENTO": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1040 FULTON AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1102 W RUSSELL PL": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1107 HERMINE BLVD": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1220 W CRAIG PL": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1311 FULTON AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1314 CLOWER": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1401 W RIDGEWOOD CT": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1515 W HILDEBRAND AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1523 FULTON AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1615 ALHAMBRA": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "202 NEWSON DR": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "202 S JOSEPHINE TOBIN DR": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "230 YALE AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "309 PRINCETON AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "410 CINCINNATI AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "607 CINCINNATI AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "903 W KINGS HWY": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "836 S LAREDO": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "103 W QUINCY ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "233 W TRAVIS ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "310 W COMMERCE ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "104 MONCLOVA ALY": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1124 PEREZ ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1523 AMESTOY ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "211 ALBERT ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "2214 W HOUSTON ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "411 LOMBRANO ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1506 S PRESA ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1702 S PRESA ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "164 EL MONTE BLVD": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "202 E LULLWOOD AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "206 E FREDERICKSBURG RD": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "210 W MAGNOLIA AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "215 W MARIPOSA DR": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "218 E PARK AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "224 W EVERGREEN ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "225 JOY ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "312 MARSHALL ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "314 W MAGNOLIA AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "354 E HUISACHE AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "3603 N MAIN AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "409 E MISTLETOE AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "415 E DEWEY PL": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "417 E EVERGREEN": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "422 E PARK AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "426 E CRAIG PL": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "431 W MISTLETOE AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "4319 HOWARD ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "502 W WILDWOOD": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "503 W WILDWOOD": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "511 W WOODLAWN AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "515 LOVERA BLVD": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "515 W HILDEBRAND AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "522 E EVERGREEN ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "610 W MULBERRY AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "637 E PARK AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "803 W ROSEWOOD AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "822 W HOLLYWOOD AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "823 W FRENCH PL": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "826 W ELSMERE PL": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "830 W ELSMERE PL": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "830 W GRAMERCY PL": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "907 E EUCLID AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "910 W ASHBY PL": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "920 W ASHBY PL": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "920 W RUSSELL PL": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "931 AGANIER AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "94 LEWIS ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "118 BERYL DR": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "114 UNION": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "920 DALLAS ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "215 AVE MARIA DR": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "7930 BLANCO RD": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1002 NOLAN ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1005 BURNET ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1022 E CROCKETT ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1022 SAINT JAMES": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "122 POTOMAC": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1225 BURNET ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1403 LAMAR": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1817 E HOUSTON ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1911 BURNET ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "400 N MONUMENTAL": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "520 NOLAN ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "533 NOLAN ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "612 DAWSON ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "625 DAWSON ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "637 E CROCKETT ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "706 GULF": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "716 SHERMAN": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "903 N OLIVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "908 BURLESON ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "911 BURLESON": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "127 FREDONIA ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1424 MONTANA": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1815 VIRGINIA BLVD": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1841 MONTANA": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "311 S MONUMENTAL ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "412 S HACKBERRY ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "417 S PINE ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "517 NEVADA ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "535 S PINE ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "608 S POLARIS ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "609 S POLARIS ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "618 S PINE ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "623 S PALMETTO AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "834 DAKOTA ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1404 N OLIVE ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1526 N NEW BRAUNFELS AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1802 N INTERSTATE 35": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1802 N NEW BRAUNFELS AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "207 E CARSON ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "222 BROOKS ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "418 CALHOUN ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "725 ROPER": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "807 E JOSEPHINE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "335 ELMHURST AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1118 N FLORES ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "119 E MAGNOLIA": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1307 DELAWARE ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1603 S HACKBERRY": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "163 ALHAVEN AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "201 ESSEX ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "650 PORTER ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "739 ESSEX ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "800 S PINE ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "811 PIEDMONT AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "535 E GRAYSON ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1202 MARSEILLES ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "511 YELLOW WOOD DR": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "826 PEGGY DR": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "127 FLATO": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "107 WEAVER ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "120 TALISMAN RD": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1701 MISSION RD": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "233 WEAVER ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "126 PARCHMAN": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "130 E HARDING BLVD": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "134 HANDLEY": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1434 E CHAVANEAUX RD": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1531 RADA": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "300 W PYRON AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "3118 MISSION RD": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "320 BARRETT AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "9207 ESPADA": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "222 W HARDING BLVD": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "335 W HARDING BLVD": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "443 SHRINE AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "6108 MACDONA ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1518 GOLIAD RD": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "447 HERMITAGE CT": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "202 YUMA ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "270 PROSPECT": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "2710 POLLOTE ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "9423 HINDI ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "123 DUMONT DR": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "108 DICKEY AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "110 E FEST ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "141 CUMBERLAND RD": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "200 E LUBBOCK": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "206 BIG FOOT": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "2125 S FLORES ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "215 E LUBBOCK": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "215 REHMANN ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "241 W FEST ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "246 OELKERS": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "2601 S FLORES ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "302 E FEST ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "342 SIMON": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "718 W BAYLOR": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "110 AZTEC ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "112 ARIZONA": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1122 S SAN MARCOS": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1225 SALTILLO ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "123 ARIZONA": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "124 JESUS ALY": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "126 MERIDA ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1306 W COMMERCE ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1328 RIVAS ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1331 MONTEZUMA ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1411 MORALES": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1611 ELVIRA ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1654 SW 19TH ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1716 MONTEREY ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1808 GUADALUPE ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1822 MONTEREY ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1912 SAN CARLOS ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1913 MONTEZUMA ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "2126 KECK": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "220 ANGELA ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "2214 POTOSI ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "2220 GUADALUPE ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "2331 W MARTIN ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "2427 SAUNDERS AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "3014 EL PASO ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "3039 W SALINAS ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "3103 W HOUSTON ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "314 N TRINITY ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "419 N SMITH ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "425 S BRAZOS ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "428 HAZEL ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "515 GOULD ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "714 S SAN JACINTO": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "806 S BRAZOS ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "806 S CALAVERAS": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "512 ROOSEVELT AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1402 W GERALD AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1426 W HARLAN AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1427 W HARLAN AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "210 HOSACK AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "874 W SOUTHCROSS BLVD": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "880 W SOUTHCROSS BLVD": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1909 MISSION RD": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "214 COTTONWOOD AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1410 DE SOTO ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "811 GREEN ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "103 QUERIDA AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "562 N SAN DARIO AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1023 CUPPLES RD": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1077 S SAN JOAQUIN AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1342 MENEFEE BLVD": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1611 S GENERAL MCMULLEN DR": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "610 ALTA SITA ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "7007 CASTLERIDGE ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "130 BEMIS DR": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "226 ESTRELLA ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "4242 NOGALES ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "4255 ELDRIDGE AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "623 SW 38TH ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "6201 VIVA MAX DR": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1415 TEXAS AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1808 W KINGS HWY": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "2054 W MULBERRY AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "2719 FREDERICKSBURG RD": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "344 MARY LOUISE DR": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "443 DONALDSON AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "705 ROUSE AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "102 COMFORT": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1238 HILLCREST DR": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1310 HILLCREST DR": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1323 HILLCREST DR": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "1346 DONALDSON AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "135 WINDSOR DR": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "210 MARQUETTE DR": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "2102 CINCINNATI AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "2423 W MISTLETOE AVE": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "3019 EAGLE RDG": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "331 LOY DR": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "5814 FARRAGUT DR": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "4446 HILTON HEAD ST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "4319 EAGLE NEST": {"checked_at": "2026-05-13T18:54:03", "violations": true},
+    "5127 LA POSITA ST": {"checked_at": "2026-05-13T18:54:03", "violations": true}
   }
 }
