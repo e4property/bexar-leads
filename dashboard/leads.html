@@ -530,7 +530,7 @@ const LEAD_TYPES=[
   {id:'ce',label:'CE Only',icon:'⚠️',bg:'rgba(234,88,12,.1)',filter:r=>isCEOnly(r)},
 ];
 
-function init(){loadState();checkWeekReset();updateBudgetUI();updateResetInfo();renderTypeSidebar();fetchLeads();setupKeys();}
+function init(){loadState();checkWeekReset();updateBudgetUI();updateResetInfo();renderTypeSidebar();initCountySwitcher();fetchLeads();setupKeys();}
 function sundayTs(){const n=new Date(),d=new Date(n);d.setDate(n.getDate()-n.getDay());d.setHours(0,0,0,0);return d.getTime();}
 function loadState(){try{const s=localStorage.getItem(SK);if(s)S={...S,...JSON.parse(s)};}catch(e){}}
 function saveState(){localStorage.setItem(SK,JSON.stringify(S));}
