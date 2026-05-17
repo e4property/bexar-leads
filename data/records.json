@@ -19639,7 +19639,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2015TA103055",
     "year": "2026",
     "month": "6",
@@ -19650,8 +19650,7 @@
     "sale_date": "",
     "run_ts": "2026-05-17T16:02:08Z",
     "flags": [
-      "TAX FORE",
-      "NEW"
+      "TAX FORE"
     ],
     "source": "arcgis",
     "appraised_value": "119530.0",
@@ -19668,7 +19667,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2017TA101415",
     "year": "2026",
     "month": "6",
@@ -19679,8 +19678,7 @@
     "sale_date": "",
     "run_ts": "2026-05-17T16:02:08Z",
     "flags": [
-      "TAX FORE",
-      "NEW"
+      "TAX FORE"
     ],
     "source": "arcgis",
     "appraised_value": "152510.0",
@@ -19697,7 +19695,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2018TA102181",
     "year": "2026",
     "month": "6",
@@ -19708,8 +19706,7 @@
     "sale_date": "",
     "run_ts": "2026-05-17T16:02:08Z",
     "flags": [
-      "TAX FORE",
-      "NEW"
+      "TAX FORE"
     ],
     "source": "arcgis",
     "appraised_value": "48230.0",
@@ -19726,7 +19723,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2022TA100856",
     "year": "2026",
     "month": "6",
@@ -19738,8 +19735,7 @@
     "run_ts": "2026-05-17T16:02:08Z",
     "flags": [
       "TAX FORE",
-      "DUPLICATE",
-      "NEW"
+      "DUPLICATE"
     ],
     "source": "arcgis",
     "appraised_value": "53510.0",
@@ -19756,7 +19752,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2022TA101085",
     "year": "2026",
     "month": "6",
@@ -19768,8 +19764,7 @@
     "run_ts": "2026-05-17T16:02:08Z",
     "flags": [
       "TAX FORE",
-      "DUPLICATE",
-      "NEW"
+      "DUPLICATE"
     ],
     "source": "arcgis",
     "appraised_value": "112250.0",
@@ -19786,7 +19781,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2022TA101136",
     "year": "2026",
     "month": "6",
@@ -19797,8 +19792,7 @@
     "sale_date": "",
     "run_ts": "2026-05-17T16:02:08Z",
     "flags": [
-      "TAX FORE",
-      "NEW"
+      "TAX FORE"
     ],
     "source": "arcgis",
     "appraised_value": "227450.0",
@@ -19815,7 +19809,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2022TA101941",
     "year": "2026",
     "month": "6",
@@ -19827,8 +19821,7 @@
     "run_ts": "2026-05-17T16:02:08Z",
     "flags": [
       "TAX FORE",
-      "DUPLICATE",
-      "NEW"
+      "DUPLICATE"
     ],
     "source": "arcgis",
     "appraised_value": "159880.0",
@@ -19845,7 +19838,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2023TA100662",
     "year": "2026",
     "month": "6",
@@ -19856,8 +19849,7 @@
     "sale_date": "",
     "run_ts": "2026-05-17T16:02:08Z",
     "flags": [
-      "TAX FORE",
-      "NEW"
+      "TAX FORE"
     ],
     "source": "arcgis",
     "appraised_value": "50000.0",
@@ -19874,7 +19866,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2024TA100778",
     "year": "2026",
     "month": "6",
@@ -19885,8 +19877,7 @@
     "sale_date": "",
     "run_ts": "2026-05-17T16:02:08Z",
     "flags": [
-      "TAX FORE",
-      "NEW"
+      "TAX FORE"
     ],
     "source": "arcgis",
     "appraised_value": "235540.0",
@@ -19903,7 +19894,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2025TA100175",
     "year": "2026",
     "month": "6",
@@ -19914,8 +19905,7 @@
     "sale_date": "",
     "run_ts": "2026-05-17T16:02:08Z",
     "flags": [
-      "TAX FORE",
-      "NEW"
+      "TAX FORE"
     ],
     "source": "arcgis",
     "appraised_value": "170410.0",
@@ -19932,7 +19922,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2021TA100476",
     "year": "2026",
     "month": "6",
@@ -19943,8 +19933,7 @@
     "sale_date": "",
     "run_ts": "2026-05-17T16:02:08Z",
     "flags": [
-      "TAX FORE",
-      "NEW"
+      "TAX FORE"
     ],
     "source": "arcgis",
     "appraised_value": "92430.0",
@@ -19961,7 +19950,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2022TA100894",
     "year": "2026",
     "month": "6",
@@ -19972,8 +19961,7 @@
     "sale_date": "",
     "run_ts": "2026-05-17T16:02:08Z",
     "flags": [
-      "TAX FORE",
-      "NEW"
+      "TAX FORE"
     ],
     "source": "arcgis",
     "appraised_value": "225430.0",
@@ -19990,7 +19978,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2013TA100023",
     "year": "2026",
     "month": "6",
@@ -20001,8 +19989,7 @@
     "sale_date": "",
     "run_ts": "2026-05-17T16:02:08Z",
     "flags": [
-      "TAX FORE",
-      "NEW"
+      "TAX FORE"
     ],
     "source": "arcgis",
     "appraised_value": "91670.0",
@@ -20019,7 +20006,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2011TA102021",
     "year": "2026",
     "month": "6",
@@ -20030,8 +20017,7 @@
     "sale_date": "",
     "run_ts": "2026-05-17T16:02:08Z",
     "flags": [
-      "TAX FORE",
-      "NEW"
+      "TAX FORE"
     ],
     "source": "arcgis",
     "appraised_value": "40530.0",
@@ -20048,7 +20034,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2014TA100941",
     "year": "2026",
     "month": "6",
@@ -20059,8 +20045,7 @@
     "sale_date": "",
     "run_ts": "2026-05-17T16:02:08Z",
     "flags": [
-      "TAX FORE",
-      "NEW"
+      "TAX FORE"
     ],
     "source": "arcgis",
     "appraised_value": "144110.0",
