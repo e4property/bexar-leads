@@ -1325,7 +1325,7 @@ if __name__ == "__main__":
     ]
 
     seen = {}
-    for r in new_records + arcgis_records + lp_records + ce_records + prev_records:
+    for r in new_records + arcgis_records + lp_records + ce_records + lp_records + ce_records + prev_records:
         doc = r.get("doc_number", "")
         if not doc:
             continue
