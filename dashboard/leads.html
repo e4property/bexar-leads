@@ -813,7 +813,7 @@ async function pushGHL(lead,phone){
     }else if(vbp){tags.push('bexar_vbp');}
     else if(ce){tags.push('bexar_ce');const fl=lead.flags||[];if(fl.includes('DANGEROUS PREMISES'))tags.push('ce_dangerous');if(fl.includes('OPEN VIOLATION'))tags.push('ce_open_violation');}
     else if(lp){tags.push('bexar_lp');}
-    else{if(lead.absentee)tags.push('absentee');if(lead.type==='TAX')tags.push('tax_foreclosure');if(lead.is_new)tags.push('new_lead');}
+    else{tags.push('bexar-contacted');if(lead.absentee)tags.push('absentee');if(lead.type==='TAX')tags.push('tax_foreclosure');if(lead.is_new)tags.push('new_lead');}
     const viol=stacked?getVBPViolation(lead):'';
     const notes=stacked?`Vacant property with ${lead.ce_count||1} code violation(s): ${viol}. Source: VBP+CE cross-reference.`:'';
     const body={firstName:first||(stacked?'Stacked':vbp?'VBP':ce?'CE':lp?'LP':''),lastName:last||(stacked?lead.address||'':vbp?lead.address||'':ce?lead.ce_cat_label||'':lp?lead.address||'':''),phone,address1:lead.address,city:lead.city,state:'TX',postalCode:lead.zip,tags,locationId:S.ghlLocationId,source:stacked?'bexar-stacked':vbp?'bexar-vbp':ce?'bexar-ce':lp?'bexar-lp':'bexar-leads',...(notes?{customField:{notes}}:{})};
