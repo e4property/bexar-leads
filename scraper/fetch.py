@@ -1304,7 +1304,7 @@ if __name__ == "__main__":
 
             
     lp_records = scrape_lis_pendens(known_docs, get_driver, RUN_TIMESTAMP); log.info(f"LP scrape: {len(lp_records)} new Lis Pendens records"); arcgis_records = []
-    __LP_PLACEHOLDER__ if IS_SUNDAY:
+    lp_records = scrape_lis_pendens(known_docs, get_driver, RUN_TIMESTAMP); log.info(f"LP scrape: {len(lp_records)} new Lis Pendens records"); arcgis_records = []     if IS_SUNDAY:
         arcgis_records = fetch_arcgis_backfill(known_docs)
         log.info(f"ArcGIS backfill added {len(arcgis_records)} records")
 
