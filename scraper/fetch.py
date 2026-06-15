@@ -1304,7 +1304,7 @@ if __name__ == "__main__":
 
             
     arcgis_records = []
-    if IS_SUNDAY:
+    __LP_PLACEHOLDER__ if IS_SUNDAY:
         arcgis_records = fetch_arcgis_backfill(known_docs)
         log.info(f"ArcGIS backfill added {len(arcgis_records)} records")
 
