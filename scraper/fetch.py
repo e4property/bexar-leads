@@ -1302,7 +1302,7 @@ if __name__ == "__main__":
             except Exception:
                 pass
 
-            # ── Step 1c: Lis Pendens early detection ─────────────────────────────────     lp_records = scrape_lis_pendens(known_docs)     log.info(f"LP scrape: {len(lp_records)} new Lis Pendens records")          # ── Step 1c: Lis Pendens early detection     lp_records = scrape_lis_pendens(known_docs, get_driver, RUN_TIMESTAMP)     log.info(f"LP scrape: {len(lp_records)} new Lis Pendens records")      # ── Step 2: ArcGIS weekly backfill (Sundays only) ────────────────────────
+            
     arcgis_records = []
     if IS_SUNDAY:
         arcgis_records = fetch_arcgis_backfill(known_docs)
