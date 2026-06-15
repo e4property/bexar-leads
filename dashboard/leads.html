@@ -194,6 +194,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 .b-dispo{background:var(--purple-bg);color:var(--purple-dk);border:1px solid var(--purple-mid)}
 .b-ghl{background:var(--teal-bg);color:var(--teal-dk);border:1px solid var(--teal-mid)}
 .b-jarvis{background:var(--teal-bg);color:var(--teal-dk);border:1px solid var(--teal-mid)}
+.b-lp{background:var(--red-bg);color:var(--red-dk);border:1px solid var(--red-mid)}
 
 /* RIGHT PANEL */
 .right-panel{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--bg);min-height:0}
@@ -209,6 +210,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 .dh-tax::before{background:linear-gradient(90deg,var(--amber),var(--orange))}
 .dh-ce::before{background:linear-gradient(90deg,var(--orange),var(--red))}
 .dh-vbp::before{background:linear-gradient(90deg,var(--purple),#7c3aed)}
+.dh-lp::before{background:linear-gradient(90deg,var(--red),var(--red-dk))}
 .dh-name{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;margin-bottom:4px;color:var(--text);letter-spacing:-.01em}
 .dh-addr{font-size:11px;color:var(--text2);margin-bottom:4px}
 .dh-meta{font-size:10px;color:var(--muted);font-family:'DM Mono',monospace;margin-bottom:7px}
@@ -360,6 +362,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
         <div class="ttab" onclick="setTypeTab('foreclosure',this)">Foreclosure <span class="tc" id="tt-fore">—</span></div>
         <div class="ttab vbp" onclick="setTypeTab('vbp',this)">VBP+CE <span class="tc" id="tt-vbp">—</span></div>
         <div class="ttab" onclick="setTypeTab('ce',this)">CE Only <span class="tc" id="tt-ce">—</span></div>
+        <div class="ttab" onclick="setTypeTab('lp',this)">Lis Pendens <span class="tc" id="tt-lp">—</span></div>
         <div class="ttab jarvis ttab-jarvis" onclick="setTypeTab('jarvis',this)">In Jarvis <span class="tc" id="tt-jarvis">—</span></div>
       </div>
       <div class="search-wrap" id="search-wrap">
@@ -528,6 +531,7 @@ const LEAD_TYPES=[
   {id:'tax',label:'Tax Foreclosure',icon:'⚖️',bg:'var(--amber-bg)',filter:r=>r.type==='TAX'},
   {id:'vbp',label:'VBP+CE',icon:'🏚️',bg:'var(--purple-bg)',filter:r=>isVBP(r)||isStacked(r)},
   {id:'ce',label:'CE Only',icon:'⚠️',bg:'rgba(234,88,12,.1)',filter:r=>isCEOnly(r)},
+  {id:'lp',label:'Lis Pendens',icon:'📜',bg:'var(--red-bg)',filter:r=>isLP(r)},
 ];
 
 function init(){loadState();checkWeekReset();updateBudgetUI();updateResetInfo();renderTypeSidebar();initCountySwitcher();fetchLeads();setupKeys();}
@@ -547,11 +551,13 @@ function isCE(l){return l.source==='code_enforcement'||l.type==='CE';}
 function isVBP(l){return l.source==='vbp_ce'||l.type==='VBP';}
 function isStacked(l){return l.source==='vbp_ce';}
 function isCEOnly(l){return isCE(l)&&!isVBP(l);}
+function isLP(l){return l.type==='LP';}
 function isForeclosure(l){return l.type==='NOF'||l.type==='TAX';}
 function getGHLTag(l){
   if(isStacked(l))return'bexar_stacked';
   if(isVBP(l)&&!isStacked(l))return'bexar_vbp';
   if(isCEOnly(l))return'bexar_ce';
+  if(isLP(l))return'bexar_lp';
   return'bexar_lead';
 }
 function getVBPViolation(l){return l.ce_cat_label||l.ce_reason||l.ce_category||''; }
@@ -583,6 +589,7 @@ function updateTypeCounts(){
   document.getElementById('tt-fore').textContent=allLeads.filter(isForeclosure).length;
   document.getElementById('tt-vbp').textContent=allLeads.filter(l=>isVBP(l)||isStacked(l)).length;
   document.getElementById('tt-ce').textContent=allLeads.filter(isCEOnly).length;
+  document.getElementById('tt-lp').textContent=allLeads.filter(isLP).length;
   document.getElementById('tt-jarvis').textContent=jarvisCount;
   const fc={absentee:allLeads.filter(l=>l.absentee).length,urgent:allLeads.filter(l=>l.flags&&l.flags.includes('URGENT')).length,soon:allLeads.filter(l=>l.flags&&l.flags.includes('AUCTION SOON')).length,new:allLeads.filter(l=>l.is_new).length,s10:allLeads.filter(l=>l.score>=10).length,unsearched:allLeads.filter(l=>!LS(l.doc_number).phone&&!LS(l.doc_number).skipped).length};
   Object.entries(fc).forEach(([k,v])=>{const el=document.getElementById('fc-'+k);if(el)el.textContent=v+' leads';});
@@ -595,7 +602,7 @@ function setTypeTab(id,el){
   if(el)el.classList.add('on');
   // Default sort for each tab
   if(id==='jarvis'){renderJarvisView();return;}
-  if(id==='vbp'||id==='ce')setSort('filed',document.getElementById('sort-filed'));
+  if(id==='vbp'||id==='ce'||id==='lp')setSort('filed',document.getElementById('sort-filed'));
   else if(id==='foreclosure')setSort('filed',document.getElementById('sort-filed'));
   document.getElementById('lead-list').style.display='';
   filterLeads();
@@ -615,7 +622,7 @@ function renderJarvisView(){
     const initials=(l.owner||'??').split(/\s+/).slice(0,2).map(w=>w[0]||'').join('').toUpperCase()||'??';
     const [bg,fg]=colors[i%colors.length];
     const tag=getGHLTag(l);
-    const tagCls=tag==='bexar_stacked'?'b-stacked':tag==='bexar_vbp'?'b-vbp':tag==='bexar_ce'?'b-ce':'b-nof';
+    const tagCls=tag==='bexar_stacked'?'b-stacked':tag==='bexar_vbp'?'b-vbp':tag==='bexar_ce'?'b-ce':tag==='bexar_lp'?'b-lp':'b-nof';
     const pushed=ls.searchedAt?new Date(ls.searchedAt).toLocaleDateString('en-US',{month:'short',day:'numeric'}):'';
     return`<div class="jarvis-item" onclick="selectLead('${l.doc_number}')"><div class="jarvis-avatar" style="background:${bg};color:${fg}">${initials}</div><div class="jarvis-info"><div class="jarvis-name">${l.owner||l.ce_cat_label||'—'}</div><div class="jarvis-meta">${l.address||''} · ${ls.phone||'no phone'}</div></div><div class="jarvis-right"><span class="badge ${tagCls}" style="padding:2px 6px">${tag.replace('bexar_','')}</span><span class="jarvis-date">${pushed}</span></div></div>`;
   }).join('')+'</div>';
@@ -636,6 +643,7 @@ function filterLeads(){
   if(currentTypeTab==='foreclosure')list=list.filter(isForeclosure);
   else if(currentTypeTab==='vbp')list=list.filter(l=>isVBP(l)||isStacked(l));
   else if(currentTypeTab==='ce')list=list.filter(isCEOnly);
+  else if(currentTypeTab==='lp')list=list.filter(isLP);
 
   // Sidebar filter
   const sideType=LEAD_TYPES.find(t=>t.id===currentSF);
@@ -668,7 +676,7 @@ function renderList(){const el=document.getElementById('lead-list');if(!filtered
 
 function renderItem(lead,idx){
   const ls=LS(lead.doc_number),isSel=lead.doc_number===selectedDoc,dispo=ls.dispo||'new';
-  const vbp=isVBP(lead),stacked=isStacked(lead),ce=isCEOnly(lead);
+  const vbp=isVBP(lead),stacked=isStacked(lead),ce=isCEOnly(lead),lp=isLP(lead);
   let cc='litem';
   if(isSel){cc+=' sel';if(stacked||vbp)cc+=' vbp-lead';else if(ce)cc+=' ce-lead';}
   if(ls.phone&&!isSel)cc+=' searched';
@@ -677,13 +685,14 @@ function renderItem(lead,idx){
   if(stacked){b.push(`<span class="badge b-stacked">STACKED</span>`);if(isVBPDangerous(lead))b.push(`<span class="badge b-dang">🔴DANG</span>`);}
   else if(vbp){b.push(`<span class="badge b-vbp">VBP</span>`);if(isVBPDangerous(lead))b.push(`<span class="badge b-dang">🔴DANG</span>`);}
   else if(ce){b.push(`<span class="badge b-ce">CE</span>`);if(lead.flags?.includes('DANGEROUS PREMISES'))b.push(`<span class="badge b-dang">🔴DANG</span>`);}
+  else if(lp){b.push(`<span class="badge b-lp">LP</span>`);}
   else{if(lead.absentee)b.push(`<span class="badge b-abs">ABS</span>`);b.push(lead.type==='TAX'?`<span class="badge b-tax">TAX</span>`:`<span class="badge b-nof">NOF</span>`);}
   if(lead.is_new)b.push(`<span class="badge b-new">NEW</span>`);
   if(ls.ghl_pushed)b.push(`<span class="badge b-ghl">GHL✓</span>`);
   if(ls.phone)b.push(`<span class="badge b-phone">📞</span>`);
   if(dispo!=='new')b.push(`<span class="badge b-dispo">${dispo}</span>`);
   const sc=lead.score>=10?'':lead.score>=8?'s8':'low';
-  const displayName=stacked?(lead.owner||'Vacant+CE Property'):vbp&&!lead.owner?'Vacant Property':ce&&!lead.owner?(lead.ce_cat_label||'CE Violation'):(lead.owner||'—');
+  const displayName=stacked?(lead.owner||'Vacant+CE Property'):vbp&&!lead.owner?'Vacant Property':ce&&!lead.owner?(lead.ce_cat_label||'CE Violation'):lp&&!lead.owner?'Lis Pendens':(lead.owner||'—');
   const violSubtitle=stacked?getVBPViolation(lead):'';
   const d=lead.days_until_sale;
   const dateCls=d!=null&&d<=14?'urg':d!=null&&d<=30?'soon':'ok';
@@ -704,13 +713,13 @@ function getZip(r){if(r.absentee&&r.mail_addr){const p=r.mail_addr.trim().split(
 
 function populateDetail(lead){
   const ls=LS(lead.doc_number),{first,last}=parseName(lead.owner),city=getCity(lead),zip=getZip(lead);
-  const vbp=isVBP(lead),stacked=isStacked(lead),ce=isCEOnly(lead);
+  const vbp=isVBP(lead),stacked=isStacked(lead),ce=isCEOnly(lead),lp=isLP(lead);
   document.getElementById('empty-state').style.display='none';
   document.getElementById('detail-panel').style.display='flex';
   document.getElementById('detail-panel').style.flexDirection='column';
   const hdr=document.getElementById('detail-hdr');
-  hdr.className='detail-hdr '+(stacked||vbp?'dh-vbp':ce?'dh-ce':lead.type==='TAX'?'dh-tax':'dh-nof');
-  const dName=stacked?(lead.owner||'Vacant+CE Property'):vbp?(lead.owner||'Vacant Property'):ce&&!lead.owner?(lead.ce_cat_label||'Code Enforcement'):(lead.owner||'—');
+  hdr.className='detail-hdr '+(stacked||vbp?'dh-vbp':ce?'dh-ce':lp?'dh-lp':lead.type==='TAX'?'dh-tax':'dh-nof');
+  const dName=stacked?(lead.owner||'Vacant+CE Property'):vbp?(lead.owner||'Vacant Property'):ce&&!lead.owner?(lead.ce_cat_label||'Code Enforcement'):lp&&!lead.owner?'Lis Pendens':(lead.owner||'—');
   document.getElementById('d-name').textContent=dName;
   document.getElementById('d-addr').textContent=`${lead.address||''}${lead.city?', '+lead.city:''} TX ${lead.zip||''}`;
   document.getElementById('d-meta').textContent=ce?`Case: ${lead.ce_case_id||lead.doc_number} · Opened: ${fmtDate(lead.opened_date)} · District ${lead.ce_district||'—'}`:`Doc: ${lead.doc_number} · Filed: ${fmtDate(lead.date_filed)}${lead.sale_date?' · Sale: '+fmtDate(lead.sale_date):''}${lead.school_dist?' · '+lead.school_dist:''}`;
@@ -718,6 +727,7 @@ function populateDetail(lead){
   if(stacked){b.push(`<span class="badge b-stacked" style="padding:2px 8px;font-size:10px">STACKED</span>`);if(isVBPDangerous(lead))b.push(`<span class="badge b-dang" style="padding:2px 8px;font-size:10px">🔴 Dangerous</span>`);}
   else if(vbp)b.push(`<span class="badge b-vbp" style="padding:2px 8px;font-size:10px">VBP</span>`);
   else if(ce){b.push(`<span class="badge b-ce" style="padding:2px 8px;font-size:10px">⚠ CE</span>`);if(lead.flags?.includes('DANGEROUS PREMISES'))b.push(`<span class="badge b-dang" style="padding:2px 8px;font-size:10px">🔴 Dangerous</span>`);}
+  else if(lp)b.push(`<span class="badge b-lp" style="padding:2px 8px;font-size:10px">📜 Lis Pendens</span>`);
   else{if(lead.absentee)b.push(`<span class="badge b-abs" style="padding:2px 8px;font-size:10px">Absentee</span>`);b.push(lead.type==='TAX'?`<span class="badge b-tax" style="padding:2px 8px;font-size:10px">Tax Fore</span>`:`<span class="badge b-nof" style="padding:2px 8px;font-size:10px">NOF</span>`);}
   if(lead.is_new)b.push(`<span class="badge b-new" style="padding:2px 8px;font-size:10px">New</span>`);
   if(ls.ghl_pushed)b.push(`<span class="badge b-jarvis" style="padding:2px 8px;font-size:10px">In Jarvis</span>`);
@@ -769,6 +779,7 @@ function populateDetail(lead){
   if(stacked){const viol=getVBPViolation(lead);const dang=isVBPDangerous(lead)?'YES — DANGEROUS PREMISE':'No';info=`Source: VBP + Code Enforcement (STACKED)\nAddress: ${lead.address||'—'}\nViolation: ${viol||'—'}\nDangerous: ${dang}\nStatus: ${lead.ce_status||'Active'}\nCE Count: ${lead.ce_count||1} violation(s)\nOpened: ${lead.opened_date||'—'}\nGHL Tag: bexar_stacked\nOwner: ${lead.owner||'Not found'}`;}
   else if(vbp){info=`Source: Vacant Building Program\nAddress: ${lead.address||'—'}\nGHL Tag: bexar_vbp\nOwner: ${lead.owner||'Not found'}`;}
   else if(ce){info=`Source: Code Enforcement\nCategory: ${lead.ce_category||'—'} — ${lead.ce_cat_label||''}\nViolation: ${lead.ce_reason||'—'}\nStatus: ${lead.ce_status||'—'}\nGHL Tag: bexar_ce\nOwner: ${lead.owner||'Not found'}`;}
+  else if(lp){info=`Source: Lis Pendens (PublicSearch RP)\nAddress: ${lead.address||'—'}\nFiled: ${fmtDate(lead.date_filed)}\nGHL Tag: bexar_lp\nOwner: ${lead.owner||'Not found'}\nNote: LP filings often precede formal foreclosure by weeks/months — early motivated seller signal.`;}
   else{info=`Type: ${lead.type} · Score: ${lead.score}\nFiled: ${fmtDate(lead.date_filed)}\nGHL Tag: bexar_lead\nAbsentee: ${lead.absentee?'Yes':'No'}\nMail: ${lead.mail_addr||'—'}`;if(lead.sale_date)info+=`\nSale Date: ${fmtDate(lead.sale_date)}`;if(appr)info+=`\nAppraised: $${appr.toLocaleString()}`;}
   document.getElementById('lead-info-grid').textContent=info;
   updateStats();
@@ -792,7 +803,7 @@ function openGHL(){const ls=LS(selectedDoc);window.open(ls.ghlId?`https://app.go
 async function pushGHL(lead,phone){
   try{
     const{first,last}=parseName(lead.owner);
-    const vbp=isVBP(lead),stacked=isStacked(lead),ce=isCEOnly(lead);
+    const vbp=isVBP(lead),stacked=isStacked(lead),ce=isCEOnly(lead),lp=isLP(lead);
     const ghlTag=getGHLTag(lead);
     const tags=['bexar_lead','forewarn_searched',ghlTag];
     if(stacked){
@@ -801,10 +812,11 @@ async function pushGHL(lead,phone){
       if((lead.ce_count||0)>1)tags.push('ce_multiple_violations');
     }else if(vbp){tags.push('bexar_vbp');}
     else if(ce){tags.push('bexar_ce');const fl=lead.flags||[];if(fl.includes('DANGEROUS PREMISES'))tags.push('ce_dangerous');if(fl.includes('OPEN VIOLATION'))tags.push('ce_open_violation');}
+    else if(lp){tags.push('bexar_lp');}
     else{if(lead.absentee)tags.push('absentee');if(lead.type==='TAX')tags.push('tax_foreclosure');if(lead.is_new)tags.push('new_lead');}
     const viol=stacked?getVBPViolation(lead):'';
     const notes=stacked?`Vacant property with ${lead.ce_count||1} code violation(s): ${viol}. Source: VBP+CE cross-reference.`:'';
-    const body={firstName:first||(stacked?'Stacked':vbp?'VBP':ce?'CE':''),lastName:last||(stacked?lead.address||'':vbp?lead.address||'':ce?lead.ce_cat_label||'':''),phone,address1:lead.address,city:lead.city,state:'TX',postalCode:lead.zip,tags,locationId:S.ghlLocationId,source:stacked?'bexar-stacked':vbp?'bexar-vbp':ce?'bexar-ce':'bexar-leads',...(notes?{customField:{notes}}:{})};
+    const body={firstName:first||(stacked?'Stacked':vbp?'VBP':ce?'CE':lp?'LP':''),lastName:last||(stacked?lead.address||'':vbp?lead.address||'':ce?lead.ce_cat_label||'':lp?lead.address||'':''),phone,address1:lead.address,city:lead.city,state:'TX',postalCode:lead.zip,tags,locationId:S.ghlLocationId,source:stacked?'bexar-stacked':vbp?'bexar-vbp':ce?'bexar-ce':lp?'bexar-lp':'bexar-leads',...(notes?{customField:{notes}}:{})};
     const res=await fetch('https://services.leadconnectorhq.com/contacts/',{method:'POST',headers:{'Authorization':'Bearer '+S.ghlApiKey,'Content-Type':'application/json','Version':'2021-07-28'},body:JSON.stringify(body)});
     const data=await res.json(),id=data.contact?.id||data.id;
     if(id){S.leads[lead.doc_number].ghlId=id;S.leads[lead.doc_number].ghl_pushed=true;saveState();setGhlDot(true);return id;}else{setGhlDot(false);return null;}
