@@ -1304,7 +1304,7 @@ if __name__ == "__main__":
 
     # ── Step 1c: Lis Pendens early detection ─────────────────────────────────
     lp_records = scrape_lis_pendens(known_docs, get_driver, RUN_TIMESTAMP)
-    log.info(f"LP scrape: {len(lp_records)} new Lis Pendens records")
+    log.info(f"LP scrape: {len(lp_records)} new Lis Pendens records"); appt_records = scrape_appointments(known_docs, get_driver, RUN_TIMESTAMP); log.info(f"Appointment scrape: {len(appt_records)} new pre-foreclosure records")
 
     # ── Step 2: ArcGIS weekly backfill (Sundays only) ────────────────────────
     arcgis_records = []
