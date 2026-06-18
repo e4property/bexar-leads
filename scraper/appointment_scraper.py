@@ -11,6 +11,13 @@ Records are treated identically to NOF leads:
 - Same Initial Outreach SMS workflow
 - Same owner enrichment via ArcGIS
 - Type: APPT
+
+v1.1 fix:
+  - Filter out lender/servicer/trustee entities from name extraction.
+    These docs list multiple parties (servicer, trustee firm, AND the
+    actual homeowner) -- the homeowner name was being overwritten by
+    the loan servicer name (e.g. "Lakeview Loan Servicing LLC").
+    Now skips known corporate/entity keywords and keeps personal names.
 """
 
 import logging
@@ -21,6 +28,30 @@ from datetime import datetime, timezone, timedelta
 log = logging.getLogger(__name__)
 
 PUBLICSEARCH_BASE = "https://bexar.tx.publicsearch.us"
+
+# Keywords that indicate a corporate/entity party (servicer, trustee firm,
+# bank, etc.) rather than the actual homeowner. Any name cell containing
+# these (case-insensitive) is skipped when looking for the homeowner.
+ENTITY_KEYWORDS = [
+    "LLC", "LLP", "L.L.C", "L.L.P", "INC", "CORP", "CORPORATION",
+    "LOAN SERVICING", "LOAN SERV", "MORTGAGE", "BANK", "N.A.", " NA ",
+    "TRUST", "TRUSTEE", "SERVICES", "SERVICING", "FINANCIAL",
+    "AUCTION.COM", "AUCTION COM", "BARRETT DAFFIN", "FRAPPIER",
+    "TURNER", "ENGEL", "ASSOCIATION", "FEDERAL", "SAVINGS",
+    "HOLDINGS", "CAPITAL", "FUNDING", "PARTNERS", "GROUP",
+    "COMPANY", " CO ", "ATTORNEY", "LAW FIRM", "LAW OFFICE",
+    "SUBSTITUTE TRUSTEE", "DEPARTMENT", "AGENCY", "SYSTEMS",
+    "FREDDIE MAC", "FANNIE MAE", "HUD", "VA LOAN", "USDA",
+]
+
+
+def is_entity_name(name):
+    """Return True if name appears to be a corporate/servicer entity
+    rather than a personal homeowner name."""
+    if not name:
+        return True
+    upper = name.upper()
+    return any(kw in upper for kw in ENTITY_KEYWORDS)
 
 
 def scrape_appointments(known_docs, get_driver_fn, run_timestamp):
@@ -52,7 +83,6 @@ def scrape_appointments(known_docs, get_driver_fn, run_timestamp):
         consecutive_empty = 0
 
         while True:
-            # Use keyword search for 'appointment' in RP department
             url = (
                 f"{PUBLICSEARCH_BASE}/results"
                 f"?department=RP"
@@ -87,22 +117,18 @@ def scrape_appointments(known_docs, get_driver_fn, run_timestamp):
 
             src = driver.page_source
 
-            # Check total results
             m = re.search(r"(\d[\d,]*)\s*of\s*(\d[\d,]*)\s*results?", src, re.IGNORECASE)
             if m:
                 log.info(f"Appointment results: {m.group(0)}")
 
-            # Check for no results
             if "no results" in src.lower() or "0 of 0" in src:
                 log.info(f"Appointment offset={offset} | no results — stopping")
                 break
 
             page_records = []
 
-            # Parse rows from page source
             rows = re.findall(r"<tr[^>]*>(.*?)</tr>", src, re.DOTALL | re.IGNORECASE)
             for row in rows:
-                # Skip header rows
                 if re.search(r"<th|thead|DOC.TYPE|RECORDED|GRANTOR|GRANTEE|LEGAL.DESC", row, re.IGNORECASE):
                     continue
 
@@ -112,23 +138,20 @@ def scrape_appointments(known_docs, get_driver_fn, run_timestamp):
                 if len(cells) < 3:
                     continue
 
-                # Extract doc number (9-12 digit number)
                 doc_num = next(
                     (c for c in cells if re.match(r"^\d{9,12}$", c.strip())), "")
                 if not doc_num or doc_num in known_docs:
                     continue
 
-                # Extract ps_doc_id from any href in the row
                 ps_doc_id = ""
                 href_matches = re.findall(r'/doc/(\d+)', row)
                 if href_matches:
                     ps_doc_id = href_matches[0]
 
-                # Extract dates
                 dates = [c for c in cells if re.match(r"^\d{1,2}/\d{1,2}/\d{4}$", c.strip())]
                 recorded_date = dates[0] if dates else ""
 
-                # Extract grantor (homeowner) — first meaningful name cell
+                # Build candidate name list (exclude dates, doc numbers, doc type)
                 name_candidates = [
                     c for c in cells
                     if len(c) > 4
@@ -140,29 +163,37 @@ def scrape_appointments(known_docs, get_driver_fn, run_timestamp):
                     and "APPOINTMENT" not in c.upper()
                 ]
 
-                grantor = name_candidates[0] if name_candidates else ""
+                # Find first candidate that is NOT a corporate/servicer entity —
+                # this is the actual homeowner (grantor)
+                grantor = ""
+                for cand in name_candidates:
+                    if not is_entity_name(cand):
+                        grantor = cand
+                        break
+                # Fallback: if every candidate looked like an entity, use the
+                # first one anyway (better than nothing) but flag it
+                used_fallback_entity = False
+                if not grantor and name_candidates:
+                    grantor = name_candidates[0]
+                    used_fallback_entity = True
 
                 # Try to get address from grid (Property Address column)
-                # Address pattern: starts with number + street
                 address_raw = next(
                     (c for c in cells
                      if re.match(r"^\d+\s+[A-Z]", c.upper())
                      and len(c) > 8
                      and "N/A" not in c.upper()), "")
 
-                # Parse month/year
                 month, year = "", ""
                 if recorded_date:
                     parts = recorded_date.split("/")
                     if len(parts) == 3:
                         month, year = parts[0], parts[2]
 
-                # Clean address
                 address = ""
                 city = ""
                 zip_code = ""
                 if address_raw:
-                    # Format: "323 SALZ WAY, SAN ANTONIO TX 78260" or just street
                     if "," in address_raw:
                         addr_parts = [p.strip() for p in address_raw.split(",")]
                         address = addr_parts[0].upper()
@@ -184,6 +215,7 @@ def scrape_appointments(known_docs, get_driver_fn, run_timestamp):
                     "source":          "publicsearch",
                     "county":          "bexar",
                     "owner":           grantor.title() if grantor else "",
+                    "owner_unverified": used_fallback_entity,
                     "address":         address,
                     "city":            city or "SAN ANTONIO",
                     "zip":             zip_code,
@@ -193,7 +225,7 @@ def scrape_appointments(known_docs, get_driver_fn, run_timestamp):
                     "sale_date":       "",
                     "is_new":          True,
                     "run_ts":          run_timestamp,
-                    "score":           7,    # high score — pre-NOF, early signal
+                    "score":           7,
                     "flags":           ["APPT", "PRE-FORE"],
                     "absentee":        False,
                     "duplicate":       False,
@@ -213,16 +245,20 @@ def scrape_appointments(known_docs, get_driver_fn, run_timestamp):
             log.info(f"Appointment offset={offset} | {len(page_records)} on page")
 
             # Second pass: click into Summary for records missing address
-            missing_addr = [r for r in page_records if not r["address"] and r["ps_doc_id"]]
-            if missing_addr:
-                log.info(f"Fetching address from Summary for {len(missing_addr)} records...")
-                for rec in missing_addr:
+            # OR missing a confirmed (non-entity) owner name
+            need_summary = [
+                r for r in page_records
+                if (not r["address"] or r.get("owner_unverified"))
+                and r["ps_doc_id"]
+            ]
+            if need_summary:
+                log.info(f"Fetching Summary detail for {len(need_summary)} records...")
+                for rec in need_summary:
                     try:
                         doc_url = f"{PUBLICSEARCH_BASE}/doc/{rec['ps_doc_id']}"
                         driver.get(doc_url)
                         time.sleep(2)
 
-                        # Click Summary tab if present
                         try:
                             tabs = driver.find_elements(By.CSS_SELECTOR, ".tab-item, [role='tab'], button, a")
                             for tab in tabs:
@@ -236,46 +272,63 @@ def scrape_appointments(known_docs, get_driver_fn, run_timestamp):
 
                         page_src = driver.page_source
 
-                        # Extract Property Address from Summary
-                        addr_match = re.search(
-                            r"Property Address.*?(\d+\s+[A-Z0-9][^\n<]{5,60}(?:SAN ANTONIO|TEXAS|TX)[^\n<]{0,20})",
-                            page_src, re.IGNORECASE | re.DOTALL)
-                        if addr_match:
-                            raw = re.sub(r"<[^>]+>", "", addr_match.group(1)).strip()
-                            if "," in raw:
-                                parts = [p.strip() for p in raw.split(",")]
-                                rec["address"] = parts[0].upper()
-                                if len(parts) >= 2:
-                                    zip_m = re.search(r"\b(\d{5})\b", parts[1])
-                                    if zip_m:
-                                        rec["zip"] = zip_m.group(1)
-                                    city_c = re.sub(r"\b(TX|TEXAS)\b", "", parts[1]).strip()
-                                    city_c = re.sub(r"\d{5}", "", city_c).strip()
-                                    if city_c:
-                                        rec["city"] = city_c.upper()
-                            else:
-                                rec["address"] = raw.upper()
-                            log.info(f"  Got address for {rec['doc_number']}: {rec['address']}")
+                        # Address
+                        if not rec["address"]:
+                            addr_match = re.search(
+                                r"Property Address.*?(\d+\s+[A-Z0-9][^\n<]{5,60}(?:SAN ANTONIO|TEXAS|TX)[^\n<]{0,20})",
+                                page_src, re.IGNORECASE | re.DOTALL)
+                            if addr_match:
+                                raw = re.sub(r"<[^>]+>", "", addr_match.group(1)).strip()
+                                if "," in raw:
+                                    parts = [p.strip() for p in raw.split(",")]
+                                    rec["address"] = parts[0].upper()
+                                    if len(parts) >= 2:
+                                        zip_m = re.search(r"\b(\d{5})\b", parts[1])
+                                        if zip_m:
+                                            rec["zip"] = zip_m.group(1)
+                                        city_c = re.sub(r"\b(TX|TEXAS)\b", "", parts[1]).strip()
+                                        city_c = re.sub(r"\d{5}", "", city_c).strip()
+                                        if city_c:
+                                            rec["city"] = city_c.upper()
+                                else:
+                                    rec["address"] = raw.upper()
+                                log.info(f"  Got address for {rec['doc_number']}: {rec['address']}")
 
-                        # Also try to get grantor if missing
-                        if not rec["owner"]:
-                            grantor_match = re.search(
-                                r"GRANTOR.*?<[^>]+>([A-Z][A-Z\s]+)</",
+                        # Owner — find all GRANTOR-tagged names in Summary, pick
+                        # first one that is NOT an entity
+                        if rec.get("owner_unverified") or not rec["owner"]:
+                            grantor_block = re.findall(
+                                r"([A-Z][A-Z\s\.\-']{3,50})\s*</[^>]+>\s*<[^>]*>\s*GRANTOR",
                                 page_src, re.IGNORECASE)
-                            if grantor_match:
-                                rec["owner"] = grantor_match.group(1).strip().title()
+                            # Fallback simpler pattern: lines followed by GRANTOR label
+                            if not grantor_block:
+                                grantor_block = re.findall(
+                                    r">([A-Z][A-Z\s\.\-']{3,50})<.*?GRANTOR",
+                                    page_src)
+
+                            found_personal = ""
+                            for cand in grantor_block:
+                                cand_clean = cand.strip()
+                                if not is_entity_name(cand_clean):
+                                    found_personal = cand_clean
+                                    break
+
+                            if found_personal:
+                                rec["owner"] = found_personal.title()
+                                rec["owner_unverified"] = False
+                                log.info(f"  Confirmed owner for {rec['doc_number']}: {rec['owner']}")
 
                         time.sleep(1)
                     except Exception as e:
                         log.debug(f"Summary fetch error for {rec.get('doc_number')}: {e}")
 
-            # Add valid records to output
+            # Clean up internal-only field before adding to output
             for rec in page_records:
+                rec.pop("owner_unverified", None)
                 if rec["doc_number"] not in known_docs:
                     known_docs.add(rec["doc_number"])
                     new_records.append(rec)
 
-            # Exit conditions
             if len(page_records) == 0:
                 consecutive_empty += 1
             else:
