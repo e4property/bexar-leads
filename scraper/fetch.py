@@ -21,7 +21,7 @@ import time
 import urllib.request
 import urllib.parse
 from datetime import datetime, timezone, timedelta
-from lp_scraper import scrape_lis_pendens
+from lp_scraper import scrape_lis_pendens from appointment_scraper import scrape_appointments
 
 from pathlib import Path
 
