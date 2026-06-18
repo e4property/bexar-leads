@@ -362,7 +362,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
         <div class="ttab" onclick="setTypeTab('foreclosure',this)">Foreclosure <span class="tc" id="tt-fore">—</span></div>
         <div class="ttab vbp" onclick="setTypeTab('vbp',this)">VBP+CE <span class="tc" id="tt-vbp">—</span></div>
         <div class="ttab" onclick="setTypeTab('ce',this)">CE Only <span class="tc" id="tt-ce">—</span></div>
-        <div class="ttab" onclick="setTypeTab('lp',this)">Lis Pendens <span class="tc" id="tt-lp">—</span></div>
+        <div class="ttab" onclick="setTypeTab('lp',this)">Lis Pendens <span class="tc" id="tt-lp">—</span></div>         <div class="ttab" onclick="setTypeTab('probate',this)">Probate <span class="tc" id="tt-probate">—</span></div>
         <div class="ttab jarvis ttab-jarvis" onclick="setTypeTab('jarvis',this)">In Jarvis <span class="tc" id="tt-jarvis">—</span></div>
       </div>
       <div class="search-wrap" id="search-wrap">
@@ -531,7 +531,7 @@ const LEAD_TYPES=[
   {id:'tax',label:'Tax Foreclosure',icon:'⚖️',bg:'var(--amber-bg)',filter:r=>r.type==='TAX'},
   {id:'vbp',label:'VBP+CE',icon:'🏚️',bg:'var(--purple-bg)',filter:r=>isVBP(r)||isStacked(r)},
   {id:'ce',label:'CE Only',icon:'⚠️',bg:'rgba(234,88,12,.1)',filter:r=>isCEOnly(r)},
-  {id:'lp',label:'Lis Pendens',icon:'📜',bg:'var(--red-bg)',filter:r=>isLP(r)},
+  {id:'lp',label:'Lis Pendens',icon:'📜',bg:'var(--red-bg)',filter:r=>isLP(r)},   {id:'probate',label:'Probate',icon:'⚖️',bg:'var(--amber-bg)',filter:r=>isProbate(r)},
 ];
 
 function init(){loadState();checkWeekReset();updateBudgetUI();updateResetInfo();renderTypeSidebar();initCountySwitcher();fetchLeads();setupKeys();}
@@ -551,7 +551,7 @@ function isCE(l){return l.source==='code_enforcement'||l.type==='CE';}
 function isVBP(l){return l.source==='vbp_ce'||l.type==='VBP';}
 function isStacked(l){return l.source==='vbp_ce';}
 function isCEOnly(l){return isCE(l)&&!isVBP(l);}
-function isLP(l){return l.type==='LP';}
+function isLP(l){return l.type==='LP';} function isProbate(l){return l.type==='PROBATE'||l.source==='probate';}
 function isForeclosure(l){return l.type==='NOF'||l.type==='TAX';}
 function getGHLTag(l){
   if(isStacked(l))return'bexar_stacked';
