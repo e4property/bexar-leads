@@ -589,7 +589,7 @@ function updateTypeCounts(){
   document.getElementById('tt-fore').textContent=allLeads.filter(isForeclosure).length;
   document.getElementById('tt-vbp').textContent=allLeads.filter(l=>isVBP(l)||isStacked(l)).length;
   document.getElementById('tt-ce').textContent=allLeads.filter(isCEOnly).length;
-  document.getElementById('tt-lp').textContent=allLeads.filter(isLP).length;
+  document.getElementById('tt-lp').textContent=allLeads.filter(isLP).length;   document.getElementById('tt-probate').textContent=allLeads.filter(isProbate).length;
   document.getElementById('tt-jarvis').textContent=jarvisCount;
   const fc={absentee:allLeads.filter(l=>l.absentee).length,urgent:allLeads.filter(l=>l.flags&&l.flags.includes('URGENT')).length,soon:allLeads.filter(l=>l.flags&&l.flags.includes('AUCTION SOON')).length,new:allLeads.filter(l=>l.is_new).length,s10:allLeads.filter(l=>l.score>=10).length,unsearched:allLeads.filter(l=>!LS(l.doc_number).phone&&!LS(l.doc_number).skipped).length};
   Object.entries(fc).forEach(([k,v])=>{const el=document.getElementById('fc-'+k);if(el)el.textContent=v+' leads';});
