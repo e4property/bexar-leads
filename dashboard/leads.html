@@ -362,7 +362,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
         <div class="ttab" onclick="setTypeTab('foreclosure',this)">Foreclosure <span class="tc" id="tt-fore">—</span></div>
         <div class="ttab vbp" onclick="setTypeTab('vbp',this)">VBP+CE <span class="tc" id="tt-vbp">—</span></div>
         <div class="ttab" onclick="setTypeTab('ce',this)">CE Only <span class="tc" id="tt-ce">—</span></div>
-        <div class="ttab" onclick="setTypeTab('lp',this)">Lis Pendens <span class="tc" id="tt-lp">—</span></div>         <div class="ttab" onclick="setTypeTab('probate',this)">Probate <span class="tc" id="tt-probate">—</span></div>
+        <div class="ttab" onclick="setTypeTab('lp',this)">Lis Pendens <span class="tc" id="tt-lp">—</span></div>         <div class="ttab" onclick="setTypeTab('probate',this)">Probate <span class="tc" id="tt-probate">—</span></div>         <div class="ttab" onclick="setTypeTab('appt',this)">Pre-Fore <span class="tc" id="tt-appt">—</span></div>
         <div class="ttab jarvis ttab-jarvis" onclick="setTypeTab('jarvis',this)">In Jarvis <span class="tc" id="tt-jarvis">—</span></div>
       </div>
       <div class="search-wrap" id="search-wrap">
@@ -531,7 +531,7 @@ const LEAD_TYPES=[
   {id:'tax',label:'Tax Foreclosure',icon:'⚖️',bg:'var(--amber-bg)',filter:r=>r.type==='TAX'},
   {id:'vbp',label:'VBP+CE',icon:'🏚️',bg:'var(--purple-bg)',filter:r=>isVBP(r)||isStacked(r)},
   {id:'ce',label:'CE Only',icon:'⚠️',bg:'rgba(234,88,12,.1)',filter:r=>isCEOnly(r)},
-  {id:'lp',label:'Lis Pendens',icon:'📜',bg:'var(--red-bg)',filter:r=>isLP(r)},   {id:'probate',label:'Probate',icon:'⚖️',bg:'var(--amber-bg)',filter:r=>isProbate(r)},
+  {id:'lp',label:'Lis Pendens',icon:'📜',bg:'var(--red-bg)',filter:r=>isLP(r)},   {id:'probate',label:'Probate',icon:'⚖️',bg:'var(--amber-bg)',filter:r=>isProbate(r)},   {id:'appt',label:'Pre-Fore',icon:'⚡',bg:'var(--red-bg)',filter:r=>isAppt(r)},
 ];
 
 function init(){loadState();checkWeekReset();updateBudgetUI();updateResetInfo();renderTypeSidebar();initCountySwitcher();fetchLeads();setupKeys();}
@@ -551,7 +551,7 @@ function isCE(l){return l.source==='code_enforcement'||l.type==='CE';}
 function isVBP(l){return l.source==='vbp_ce'||l.type==='VBP';}
 function isStacked(l){return l.source==='vbp_ce';}
 function isCEOnly(l){return isCE(l)&&!isVBP(l);}
-function isLP(l){return l.type==='LP';} function isProbate(l){return l.type==='PROBATE'||l.source==='probate';}
+function isLP(l){return l.type==='LP';} function isProbate(l){return l.type==='PROBATE'||l.source==='probate';} function isAppt(l){return l.type==='APPT';}
 function isForeclosure(l){return l.type==='NOF'||l.type==='TAX';}
 function getGHLTag(l){
   if(isStacked(l))return'bexar_stacked';
@@ -589,7 +589,7 @@ function updateTypeCounts(){
   document.getElementById('tt-fore').textContent=allLeads.filter(isForeclosure).length;
   document.getElementById('tt-vbp').textContent=allLeads.filter(l=>isVBP(l)||isStacked(l)).length;
   document.getElementById('tt-ce').textContent=allLeads.filter(isCEOnly).length;
-  document.getElementById('tt-lp').textContent=allLeads.filter(isLP).length;   document.getElementById('tt-probate').textContent=allLeads.filter(isProbate).length;
+  document.getElementById('tt-lp').textContent=allLeads.filter(isLP).length;   document.getElementById('tt-probate').textContent=allLeads.filter(isProbate).length;   document.getElementById('tt-appt').textContent=allLeads.filter(isAppt).length;
   document.getElementById('tt-jarvis').textContent=jarvisCount;
   const fc={absentee:allLeads.filter(l=>l.absentee).length,urgent:allLeads.filter(l=>l.flags&&l.flags.includes('URGENT')).length,soon:allLeads.filter(l=>l.flags&&l.flags.includes('AUCTION SOON')).length,new:allLeads.filter(l=>l.is_new).length,s10:allLeads.filter(l=>l.score>=10).length,unsearched:allLeads.filter(l=>!LS(l.doc_number).phone&&!LS(l.doc_number).skipped).length};
   Object.entries(fc).forEach(([k,v])=>{const el=document.getElementById('fc-'+k);if(el)el.textContent=v+' leads';});
@@ -643,7 +643,7 @@ function filterLeads(){
   if(currentTypeTab==='foreclosure')list=list.filter(isForeclosure);
   else if(currentTypeTab==='vbp')list=list.filter(l=>isVBP(l)||isStacked(l));
   else if(currentTypeTab==='ce')list=list.filter(isCEOnly);
-  else if(currentTypeTab==='lp')list=list.filter(isLP);   else if(currentTypeTab==='probate')list=list.filter(isProbate);
+  else if(currentTypeTab==='lp')list=list.filter(isLP);   else if(currentTypeTab==='probate')list=list.filter(isProbate);   else if(currentTypeTab==='appt')list=list.filter(isAppt);
 
   // Sidebar filter
   const sideType=LEAD_TYPES.find(t=>t.id===currentSF);
@@ -685,7 +685,7 @@ function renderItem(lead,idx){
   if(stacked){b.push(`<span class="badge b-stacked">STACKED</span>`);if(isVBPDangerous(lead))b.push(`<span class="badge b-dang">🔴DANG</span>`);}
   else if(vbp){b.push(`<span class="badge b-vbp">VBP</span>`);if(isVBPDangerous(lead))b.push(`<span class="badge b-dang">🔴DANG</span>`);}
   else if(ce){b.push(`<span class="badge b-ce">CE</span>`);if(lead.flags?.includes('DANGEROUS PREMISES'))b.push(`<span class="badge b-dang">🔴DANG</span>`);}
-  else if(lp){b.push(`<span class="badge b-lp">LP</span>`);}   else if(isProbate(lead)){b.push(`<span class="badge" style="background:var(--amber-bg);color:var(--amber-dk);border:1px solid var(--amber-mid)">PROBATE</span>`);}
+  else if(lp){b.push(`<span class="badge b-lp">LP</span>`);}   else if(isProbate(lead)){b.push(`<span class="badge" style="background:var(--amber-bg);color:var(--amber-dk);border:1px solid var(--amber-mid)">PROBATE</span>`);}   else if(isAppt(lead)){b.push(`<span class="badge" style="background:var(--red-bg);color:var(--red-dk);border:1px solid var(--red-mid)">⚡PRE-FORE</span>`);}
   else{if(lead.absentee)b.push(`<span class="badge b-abs">ABS</span>`);b.push(lead.type==='TAX'?`<span class="badge b-tax">TAX</span>`:`<span class="badge b-nof">NOF</span>`);}
   if(lead.is_new)b.push(`<span class="badge b-new">NEW</span>`);
   if(ls.ghl_pushed)b.push(`<span class="badge b-ghl">GHL✓</span>`);
