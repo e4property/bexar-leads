@@ -1,0 +1,77 @@
+name: Probate Scrape and Deploy
+on:
+  schedule:
+    - cron: '0 11 * * *'   # 6am CDT (11:00 UTC) daily
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: probate-${{ github.run_id }}
+  cancel-in-progress: false
+
+jobs:
+  probate-scrape:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests selenium webdriver-manager --break-system-packages -q
+
+      - name: Run probate scraper
+        id: probate
+        run: |
+          python scraper/run_probate.py 2>&1 | tee /tmp/probate.log
+          NEW=$(grep -oP '(?<=Probate scrape: )\d+(?= new)' /tmp/probate.log | tail -1 || echo "0")
+          echo "new_count=${NEW:-0}" >> $GITHUB_OUTPUT
+          echo "Summary: new=${NEW:-0}"
+
+      - name: Commit results
+        if: steps.probate.outputs.new_count != '0'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          for i in 1 2 3; do
+            git fetch origin main
+            git rebase origin/main && break
+            echo "Rebase attempt $i failed, retrying..."
+            git rebase --abort 2>/dev/null || true
+            sleep 3
+          done
+          git add dashboard/records.json
+          git diff --cached --quiet && echo "No changes" && exit 0
+          git commit -m "probate: $(date -u +'%Y-%m-%d') — ${{ steps.probate.outputs.new_count }} new records"
+          for i in 1 2 3; do
+            git push origin main && break
+            echo "Push attempt $i failed, retrying..."
+            git fetch origin main
+            git rebase origin/main
+            sleep 3
+          done
+
+      - name: Upload Pages artifact
+        if: steps.probate.outputs.new_count != '0'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dashboard
+
+      - name: Deploy to GitHub Pages
+        if: steps.probate.outputs.new_count != '0'
+        uses: actions/deploy-pages@v4
