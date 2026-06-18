@@ -643,7 +643,7 @@ function filterLeads(){
   if(currentTypeTab==='foreclosure')list=list.filter(isForeclosure);
   else if(currentTypeTab==='vbp')list=list.filter(l=>isVBP(l)||isStacked(l));
   else if(currentTypeTab==='ce')list=list.filter(isCEOnly);
-  else if(currentTypeTab==='lp')list=list.filter(isLP);
+  else if(currentTypeTab==='lp')list=list.filter(isLP);   else if(currentTypeTab==='probate')list=list.filter(isProbate);
 
   // Sidebar filter
   const sideType=LEAD_TYPES.find(t=>t.id===currentSF);
@@ -685,7 +685,7 @@ function renderItem(lead,idx){
   if(stacked){b.push(`<span class="badge b-stacked">STACKED</span>`);if(isVBPDangerous(lead))b.push(`<span class="badge b-dang">🔴DANG</span>`);}
   else if(vbp){b.push(`<span class="badge b-vbp">VBP</span>`);if(isVBPDangerous(lead))b.push(`<span class="badge b-dang">🔴DANG</span>`);}
   else if(ce){b.push(`<span class="badge b-ce">CE</span>`);if(lead.flags?.includes('DANGEROUS PREMISES'))b.push(`<span class="badge b-dang">🔴DANG</span>`);}
-  else if(lp){b.push(`<span class="badge b-lp">LP</span>`);}
+  else if(lp){b.push(`<span class="badge b-lp">LP</span>`);}   else if(isProbate(lead)){b.push(`<span class="badge" style="background:var(--amber-bg);color:var(--amber-dk);border:1px solid var(--amber-mid)">PROBATE</span>`);}
   else{if(lead.absentee)b.push(`<span class="badge b-abs">ABS</span>`);b.push(lead.type==='TAX'?`<span class="badge b-tax">TAX</span>`:`<span class="badge b-nof">NOF</span>`);}
   if(lead.is_new)b.push(`<span class="badge b-new">NEW</span>`);
   if(ls.ghl_pushed)b.push(`<span class="badge b-ghl">GHL✓</span>`);
