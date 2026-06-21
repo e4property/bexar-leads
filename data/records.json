@@ -33558,7 +33558,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260700146",
     "year": "2026",
     "month": "7",
@@ -33568,9 +33568,7 @@
     "date_filed": "7/2026",
     "sale_date": "",
     "run_ts": "2026-06-21T16:47:58Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "appraised_value": "214400.0",
     "annual_taxes": "",
