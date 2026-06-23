@@ -549,7 +549,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
                 <button class="act-btn" style="margin-left:auto;flex:none;padding:4px 10px" onclick="clearPhone()">Clear</button>
               </div>
             </div>
-            <div id="phone-entry-area">
+            <div id="phone-entry-area"><div id="tracerfy-hint" style="display:none;background:var(--blue-bg);border:1px solid var(--blue-mid);border-radius:6px;padding:7px 10px;margin-bottom:7px;font-family:'DM Mono',monospace;font-size:11px;color:var(--blue-dk);cursor:pointer" onclick="useTracerfyPhone()"></div>
               <input class="phone-input" id="phone-input" type="tel" placeholder="Enter phone from ForeWarn…" onkeydown="if(event.key==='Enter')savePhone()">
               <button class="save-btn" onclick="savePhone()">Save → GHL</button>
               <div class="act-row">
@@ -1021,7 +1021,7 @@ function populateDetail(lead){
   document.getElementById('m-trustee').textContent=lead.trustee||'—';
   document.getElementById('m-taxes').textContent=lead.annual_taxes?'$'+Number(lead.annual_taxes).toLocaleString()+'/yr':'—';
   ['sf-first','sf-last','sf-city','sf-zip'].forEach((id,i)=>{const vals=[first,last,city,zip];const el=document.getElementById(id);el.textContent=vals[i]||'—';el.onclick=()=>{navigator.clipboard.writeText(el.textContent);toast('Copied: '+el.textContent);};});
-  if(ls.phone){document.getElementById('phone-saved-area').style.display='block';document.getElementById('phone-entry-area').style.display='none';document.getElementById('saved-phone-display').textContent='📞 '+ls.phone;document.getElementById('saved-phone-meta').textContent=ls.searchedAt?'Searched '+new Date(ls.searchedAt).toLocaleDateString():'Searched';}else{document.getElementById('phone-saved-area').style.display='none';document.getElementById('phone-entry-area').style.display='block';document.getElementById('phone-input').value='';}
+  if(ls.phone){document.getElementById('phone-saved-area').style.display='block';document.getElementById('phone-entry-area').style.display='none';document.getElementById('saved-phone-display').textContent='📞 '+ls.phone;document.getElementById('saved-phone-meta').textContent=ls.searchedAt?'Searched '+new Date(ls.searchedAt).toLocaleDateString():'Searched';}else{document.getElementById('phone-saved-area').style.display='none';document.getElementById('phone-entry-area').style.display='block';document.getElementById('phone-input').value='';const th=document.getElementById('tracerfy-hint');if(th){if(lead.tracerfy_phone&&!lead.tracerfy_dnc){th.style.display='block';th.textContent='📱 Auto-traced: '+lead.tracerfy_phone+' — click to use';}else th.style.display='none';}}
   renderDispoTrack(lead.doc_number,ls.dispo||'new');
   document.getElementById('notes-area').value=ls.notes||'';
   renderTimeline(lead,ls);
@@ -1058,7 +1058,7 @@ async function savePhone(){
   setTimeout(()=>navNextUnworked(),600);
 }
 
-function clearPhone(){if(!confirm('Clear phone?'))return;if(S.leads[selectedDoc]){S.leads[selectedDoc].phone='';S.leads[selectedDoc].searchedAt=null;saveState();}writeBackToRepo(selectedDoc,{dash_phone:'',dash_searched_at:null});const lead=allLeads.find(l=>l.doc_number===selectedDoc);if(lead)populateDetail(lead);filterLeads();}
+function useTracerfyPhone(){const lead=allLeads.find(l=>l.doc_number===selectedDoc);if(!lead||!lead.tracerfy_phone)return;document.getElementById('phone-input').value=lead.tracerfy_phone;document.getElementById('phone-input').focus();toast('Tracerfy phone loaded — verify in ForeWarn then save');} function clearPhone(){if(!confirm('Clear phone?'))return;if(S.leads[selectedDoc]){S.leads[selectedDoc].phone='';S.leads[selectedDoc].searchedAt=null;saveState();}writeBackToRepo(selectedDoc,{dash_phone:'',dash_searched_at:null});const lead=allLeads.find(l=>l.doc_number===selectedDoc);if(lead)populateDetail(lead);filterLeads();}
 function skipLead(){if(!S.leads[selectedDoc])S.leads[selectedDoc]={};S.leads[selectedDoc].skipped=!S.leads[selectedDoc].skipped;saveState();filterLeads();toast('Skipped');setTimeout(()=>navNextUnworked(),300);}
 function setDispo(doc,dispo){if(!S.leads[doc])S.leads[doc]={};S.leads[doc].dispo=dispo;saveState();renderDispoTrack(doc,dispo);renderList();updateStats();if(S.ghlApiKey&&S.leads[doc]?.ghlId)updateGHLTag(S.leads[doc].ghlId,dispo);writeBackToRepo(doc,{dash_dispo:dispo});toast(`Dispo → ${dispo}`);}
 function saveNotes(){if(!selectedDoc)return;if(!S.leads[selectedDoc])S.leads[selectedDoc]={};const notes=document.getElementById('notes-area').value;S.leads[selectedDoc].notes=notes;saveState();writeBackToRepo(selectedDoc,{dash_notes:notes});}
