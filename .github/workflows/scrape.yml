@@ -4,23 +4,42 @@ on:
     - cron: '0 15 * * *'
     - cron: '0 20 * * *'
   workflow_dispatch:
+
 permissions:
   contents: write
   pages: write
   id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
 jobs:
   scrape-and-deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+    timeout-minutes: 90
+
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
           token: "${{ secrets.GITHUB_TOKEN }}"
-      - uses: actions/setup-python@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
         with:
           python-version: '3.11'
-      - run: pip install requests beautifulsoup4 lxml selenium
-      - run: python scraper/fetch.py
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4 lxml selenium
+
+      - name: Run python scraper/fetch.py
+        id: scrape
+        run: python scraper/fetch.py
+
       - name: Commit records
         run: |
           git config user.name "github-actions"
@@ -35,10 +54,13 @@ jobs:
             git push origin main && echo "Push succeeded" && break
             echo "Attempt $i failed, retrying..."
           done
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dashboard/
+
       - uses: actions/deploy-pages@v4
+
       - name: Notify via GHL SMS
-        if: steps.scrape.outputs.new_count != '0'
-        run: |           curl -s -X POST "https://services.leadconnectorhq.com/conversations/messages" \             -H "Authorization: Bearer ${{ secrets.GHL_API_KEY }}" \             -H "Content-Type: application/json" \             -H "Version: 2021-04-15" \             -d "{\"type\":\"SMS\",\"contactId\":\"${{ secrets.GHL_SELF_CONTACT_ID }}\",\"message\":\"⚡ ${{ steps.scrape.outputs.new_count }} new Bexar leads scraped — check your dashboard\"}"
+        if: false
+        run: echo "SMS notify parked"
