@@ -1,0 +1,76 @@
+name: Skip Trace New Leads
+on:
+  workflow_run:
+    workflows: ["Scrape and Deploy"]
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: skip-trace-${{ github.run_id }}
+  cancel-in-progress: false
+
+jobs:
+  skip-trace:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+    timeout-minutes: 30
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Run Tracerfy skip trace
+        id: trace
+        env:
+          TRACERFY_API_KEY: ${{ secrets.TRACERFY_API_KEY }}
+        run: |
+          python scraper/tracerfy_skip.py 2>&1 | tee /tmp/trace.log
+          TRACED=$(grep -oP '(?<=traced=)\d+' /tmp/trace.log | tail -1 || echo "0")
+          echo "traced=${TRACED:-0}" >> $GITHUB_OUTPUT
+          echo "Summary: traced=${TRACED:-0}"
+
+      - name: Commit results
+        if: steps.trace.outputs.traced != '0'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          for i in 1 2 3; do
+            git fetch origin main
+            git rebase -X theirs origin/main && break
+            git rebase --abort 2>/dev/null || true
+            sleep 3
+          done
+          git add dashboard/records.json
+          git diff --cached --quiet && echo "No changes" && exit 0
+          git commit -m "skip-trace: $(date -u +'%Y-%m-%d') — ${{ steps.trace.outputs.traced }} phones added"
+          for i in 1 2 3; do
+            git push origin main && break
+            git fetch origin main
+            git rebase -X theirs origin/main
+            sleep 3
+          done
+
+      - name: Upload Pages artifact
+        if: steps.trace.outputs.traced != '0'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dashboard
+
+      - name: Deploy to GitHub Pages
+        if: steps.trace.outputs.traced != '0'
+        uses: actions/deploy-pages@v4
