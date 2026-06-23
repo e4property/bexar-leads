@@ -716,7 +716,7 @@ async function fetchZestimate(address,zip){
   if(!S.ownApiKey)return null;
   try{
     const fullAddr=encodeURIComponent(`${address}, San Antonio, TX ${zip}`);
-    const res=await fetch(`https://arv-proxy.e4propertyinvestments.workers.dev/?address=${fullAddr}`,{headers:{'Accept':'application/json'/realtime-zillow-data/property-details-address?address=${fullAddr}`,{headers:{'x-api-key':S.ownApiKey,'Accept':'application/json'}});
+    const res=await fetch(`https://api.openwebninja.com/realtime-zillow-data/property-details-address?address=${fullAddr}`,{headers:{'x-api-key':S.ownApiKey,'Accept':'application/json'}});
     if(!res.ok)return null;
     const data=await res.json();
     return data.zestimate||data.zestimate_value||null;
