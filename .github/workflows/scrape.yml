@@ -40,5 +40,5 @@ jobs:
           path: dashboard/
       - uses: actions/deploy-pages@v4
       - name: Notify via GHL SMS
-        if: false
-        run: echo "SMS notify parked"
+        if: steps.scrape.outputs.new_count != '0'
+        run: |           curl -s -X POST "https://services.leadconnectorhq.com/conversations/messages" \             -H "Authorization: Bearer ${{ secrets.GHL_API_KEY }}" \             -H "Content-Type: application/json" \             -H "Version: 2021-04-15" \             -d "{\"type\":\"SMS\",\"contactId\":\"${{ secrets.GHL_SELF_CONTACT_ID }}\",\"message\":\"⚡ ${{ steps.scrape.outputs.new_count }} new Bexar leads scraped — check your dashboard\"}"
