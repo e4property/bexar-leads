@@ -1,15 +1,22 @@
 """
-Bexar County Motivated Seller Lead Scraper v28.30
+Bexar County Motivated Seller Lead Scraper v28.31
 HYBRID SCRAPER:
   Primary:   bexar.tx.publicsearch.us  (Selenium, runs 2x daily)
   Secondary: ArcGIS GIS layer (urllib, runs weekly on Sunday)
   Owner enrichment: 5-strategy ArcGIS parcel lookup
 
+  v28.31 changes:
+    - Store PropID from ArcGIS parcel layer on every enriched record
+    - fetch_deed_and_arv(): Selenium scrape of bexar.trueautomation.com for new leads only
+      * Deed History row 1 -> deed_date, tenure_years, tenure_score_bonus
+      * Values section -> last_sale_amt (ARV comp / equity signal)
+    - Capped at 30 leads/run, skips leads that already have deed_date
+    - Preserve prop_id, deed_date, last_sale_amt, tenure_years in merge step
+
   v28.30 changes:
-    - Tenure scoring: pull SaleDate from ArcGIS parcel layer
+    - Tenure scoring: pull SaleDate from ArcGIS parcel layer (no field found — superseded by v28.31)
     - Store sale_date_arcgis (last owner purchase date), tenure_years, tenure_score_bonus
     - score_record() adds tenure bonus: 15+yr=+25, 10-14yr=+15, 5-9yr=+5
-    - sale_date_arcgis/tenure_years/tenure_score_bonus passed to dashboard for display
 
   v28.29 fixes:
     - Removed fetch_code_enforcement step — bulk CE API returns 403 Forbidden
@@ -47,6 +54,9 @@ CODE_ENFORCE_URL   = (
     "https://services.arcgis.com/g1fRTDLeMgspWrYp/arcgis/rest"
     "/services/311_All_Service_Calls/FeatureServer/0"
 )
+
+BCAD_DETAIL_URL    = "https://bexar.trueautomation.com/clientdb/Property.aspx?cid=110&prop_id={prop_id}"
+DEED_FETCH_LIMIT   = 30   # max new leads to hit BCAD detail page per run
 
 LAYERS = [
     {"index": 0, "type": "NOF", "label": "Mortgage Foreclosure"},
@@ -480,6 +490,9 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
                     "sale_date_arcgis":    "",
                     "tenure_years":        None,
                     "tenure_score_bonus":  0,
+                    "prop_id":             "",
+                    "deed_date":           "",
+                    "last_sale_amt":       "",
                 }
                 records.append(rec)
                 known_docs.add(doc_number)
@@ -823,6 +836,9 @@ def fetch_arcgis_backfill(known_docs):
                 "sale_date_arcgis":   "",
                 "tenure_years":       None,
                 "tenure_score_bonus": 0,
+                "prop_id":            "",
+                "deed_date":          "",
+                "last_sale_amt":      "",
             })
             known_docs.add(doc)
 
@@ -1140,6 +1156,8 @@ def match_features(feats, num, required_word=None):
     IMPR_FIELDS     = ["ImprovVal","IMPROV_VAL","ImprovValue","IMPROV_VALUE","ImpVal","IMP_VAL"]
     # v28.30: SaleDate field candidates for tenure scoring
     SALE_DATE_FIELDS = ["SaleDate","SALE_DATE","saleDate","LastSaleDate","LAST_SALE_DATE","SaleDt","SALE_DT"]
+    # v28.31: PropID for BCAD detail page lookup
+    PROPID_FIELDS   = ["PropID","PROP_ID","PropId","prop_id","PropertyID","PROPERTY_ID","ParcelID","PARCEL_ID"]
 
     def get_field(a, candidates):
         for c in candidates:
@@ -1192,6 +1210,7 @@ def match_features(feats, num, required_word=None):
             "sale_date_arcgis":   sale_date_arcgis,
             "tenure_years":       tenure_years,
             "tenure_score_bonus": tenure_bonus(tenure_years),
+            "prop_id":            get_field(a, PROPID_FIELDS),
         }
     return None
 
@@ -1270,6 +1289,9 @@ def enrich_owners(records):
             rec["sale_date_arcgis"]   = result.get("sale_date_arcgis", "")
             rec["tenure_years"]       = result.get("tenure_years", None)
             rec["tenure_score_bonus"] = result.get("tenure_score_bonus", 0)
+            # v28.31: PropID for BCAD detail page
+            if result.get("prop_id"):
+                rec["prop_id"] = result["prop_id"]
             found += 1
             tenure_info = ""
             if rec["tenure_years"] is not None:
@@ -1280,6 +1302,145 @@ def enrich_owners(records):
             log.info(f"  [{i+1}/{len(missing)}] MISS: '{addr}' zip={zip_}")
         time.sleep(0.2)
     log.info(f"Owner enrichment: {found}/{len(missing)} filled")
+    return records
+
+
+# ── BCAD DEED HISTORY + ARV (new leads only) ─────────────────────────────────
+def fetch_deed_and_arv(records, driver):
+    """
+    For new leads that have a prop_id and no deed_date yet:
+    Hit bexar.trueautomation.com property detail page, parse:
+      - Deed History row 1 -> deed_date, tenure_years, tenure_score_bonus
+      - Values section     -> last_sale_amt (ARV comp)
+    Capped at DEED_FETCH_LIMIT leads per run to keep runtime under 5 min.
+    """
+    from selenium.webdriver.common.by import By
+    import re as _re
+
+    candidates = [
+        r for r in records
+        if r.get("is_new")
+        and r.get("prop_id")
+        and not r.get("deed_date")
+        and r.get("type") in ("NOF", "TAX", "LP", "PRE_FORE")
+    ]
+    candidates = candidates[:DEED_FETCH_LIMIT]
+
+    if not candidates:
+        log.info("BCAD deed+ARV: no eligible new leads with prop_id — skipping")
+        return records
+
+    log.info(f"BCAD deed+ARV: {len(candidates)} new leads to enrich")
+    fetched = 0
+    errors  = 0
+
+    for rec in candidates:
+        prop_id = rec["prop_id"]
+        addr    = rec.get("address", "")
+        url     = BCAD_DETAIL_URL.format(prop_id=prop_id)
+        log.info(f"  BCAD [{prop_id}] {addr}")
+
+        try:
+            driver.set_page_load_timeout(25)
+            driver.get(url)
+            time.sleep(3)
+        except Exception as e:
+            log.warning(f"  BCAD [{prop_id}] load timeout: {e}")
+            errors += 1
+            continue
+
+        deed_date     = ""
+        tenure_yrs    = None
+        last_sale_amt = ""
+
+        try:
+            body = driver.find_element(By.TAG_NAME, "body").text
+            lines = [l.strip() for l in body.split("\n") if l.strip()]
+
+            # ── Deed History: find header then grab first data row ────────────
+            # Page text has "Deed History" section with rows like:
+            # "9/13/2017  RES  Rescind of previous deed  MULTIMADERAS USA LLC  GUERRERO..."
+            # We scan for date pattern MM/DD/YYYY after the Deed History heading
+            in_deed_section = False
+            for line in lines:
+                if "deed history" in line.lower():
+                    in_deed_section = True
+                    continue
+                if in_deed_section:
+                    # Look for a line starting with a date MM/DD/YYYY
+                    m = _re.match(r"^(\d{1,2}/\d{1,2}/\d{4})\b", line)
+                    if m:
+                        deed_date = m.group(1)
+                        break
+                    # Stop if we hit another section header
+                    if line.isupper() and len(line) > 10:
+                        break
+
+            # ── Values section: last sale amount ─────────────────────────────
+            # Look for patterns like "Sale Price: $142,500" or "Prior Sales Price $142,500"
+            # or a line containing dollar amount near "sale" keyword
+            for i, line in enumerate(lines):
+                ll = line.lower()
+                if any(x in ll for x in ["sale price", "prior sale", "sales price", "deed amount", "consideration"]):
+                    # Try to find dollar amount on same line or next line
+                    amt_m = _re.search(r"\$?([\d,]+(?:\.\d{2})?)", line)
+                    if not amt_m and i + 1 < len(lines):
+                        amt_m = _re.search(r"\$?([\d,]+(?:\.\d{2})?)", lines[i + 1])
+                    if amt_m:
+                        raw_amt = amt_m.group(1).replace(",", "")
+                        try:
+                            if float(raw_amt) > 1000:  # filter out noise like page numbers
+                                last_sale_amt = "$" + amt_m.group(1)
+                                break
+                        except Exception:
+                            pass
+
+            # ── Also try table cells via Selenium if text parse missed ────────
+            if not deed_date:
+                try:
+                    # Find "Deed History" section table rows
+                    tables = driver.find_elements(By.CSS_SELECTOR, "table")
+                    for tbl in tables:
+                        tbl_text = (tbl.text or "").lower()
+                        if "deed" in tbl_text and ("date" in tbl_text or "/" in tbl_text):
+                            rows = tbl.find_elements(By.CSS_SELECTOR, "tr")
+                            for row in rows[1:]:  # skip header row
+                                cells = row.find_elements(By.TAG_NAME, "td")
+                                if cells:
+                                    cell_text = cells[0].text.strip()
+                                    m = _re.match(r"^(\d{1,2}/\d{1,2}/\d{4})\b", cell_text)
+                                    if m:
+                                        deed_date = m.group(1)
+                                        break
+                            if deed_date:
+                                break
+                except Exception:
+                    pass
+
+        except Exception as e:
+            log.debug(f"  BCAD [{prop_id}] parse error: {e}")
+            errors += 1
+            continue
+
+        # ── Calculate tenure from deed_date ───────────────────────────────────
+        if deed_date:
+            try:
+                deed_dt  = datetime.strptime(deed_date.strip(), "%m/%d/%Y")
+                tenure_yrs = max((TODAY_NAIVE - deed_dt).days // 365, 0)
+            except Exception:
+                tenure_yrs = None
+
+        rec["deed_date"]          = deed_date
+        rec["last_sale_amt"]      = last_sale_amt
+        rec["tenure_years"]       = tenure_yrs
+        rec["tenure_score_bonus"] = tenure_bonus(tenure_yrs)
+        fetched += 1
+
+        log.info(f"  → deed={deed_date or '—'} tenure={tenure_yrs}yr "
+                 f"last_sale={last_sale_amt or '—'} bonus=+{tenure_bonus(tenure_yrs)}")
+        time.sleep(1.5)
+
+    log.info(f"BCAD deed+ARV: {fetched} enriched, {errors} errors out of {len(candidates)} candidates")
     return records
 
 
@@ -1351,12 +1512,13 @@ if __name__ == "__main__":
     os.makedirs("dashboard", exist_ok=True)
 
     log.info("=" * 60)
-    log.info("Bexar County Lead Scraper v28.30 (Hybrid)")
+    log.info("Bexar County Lead Scraper v28.31 (Hybrid)")
     log.info(f"Primary:   PublicSearch.us ({KEEP_DAYS}d window, {CHUNK_DAYS}d chunks, {PAGE_TIMEOUT}s timeout)")
     log.info(f"Secondary: ArcGIS weekly backfill = {IS_SUNDAY}")
     log.info(f"Tertiary:  Code Enforcement 311 ({len(CE_CATEGORIES)} categories, {KEEP_DAYS}d window)")
     log.info(f"Doc fetch: backfill window = {DOC_FETCH_DAYS}d")
     log.info(f"Tenure:    scoring active — 15+yr=+25pts, 10-14yr=+15pts, 5-9yr=+5pts")
+    log.info(f"BCAD:      deed history + ARV via trueautomation.com (new leads only, cap={DEED_FETCH_LIMIT})")
     log.info(f"Filter:    {KEEP_DAYS}-day cutoff ({CUTOFF_DATE.strftime('%Y-%m-%d')}) | live auctions always kept")
     log.info("=" * 60)
 
@@ -1408,7 +1570,9 @@ if __name__ == "__main__":
     ]
 
     # v28.30: tenure fields to preserve from prev_records if already enriched
-    TENURE_FIELDS = ["sale_date_arcgis", "tenure_years", "tenure_score_bonus"]
+    # v28.31: also preserve prop_id, deed_date, last_sale_amt
+    TENURE_FIELDS = ["sale_date_arcgis", "tenure_years", "tenure_score_bonus",
+                     "prop_id", "deed_date", "last_sale_amt"]
 
     seen = {}
     for r in new_records + arcgis_records + lp_records + ce_records + prev_records:
@@ -1451,6 +1615,24 @@ if __name__ == "__main__":
     # ── Step 6: Owner enrichment ──────────────────────────────────────────────
     records = enrich_owners(records)
 
+    # ── Step 6b: BCAD deed history + ARV (new leads with prop_id only) ───────
+    bcad_driver = None
+    try:
+        new_with_prop = [r for r in records if r.get("is_new") and r.get("prop_id") and not r.get("deed_date")]
+        if new_with_prop:
+            bcad_driver = get_driver()
+            records = fetch_deed_and_arv(records, bcad_driver)
+        else:
+            log.info("BCAD deed+ARV: no new leads with prop_id to enrich")
+    except Exception as e:
+        log.warning(f"BCAD deed+ARV driver error: {e}")
+    finally:
+        if bcad_driver:
+            try:
+                bcad_driver.quit()
+            except Exception:
+                pass
+
     # ── Step 7: Duplicate detection ───────────────────────────────────────────
     records = detect_duplicates(records)
 
@@ -1477,7 +1659,7 @@ if __name__ == "__main__":
             if cat in CE_ABSENTEE:               r["flags"].append("ABSENTEE PROP")
             if cat in CE_VACANT:                  r["flags"].append("VACANT STRUCT")
             if cat in CE_MIN_HOUS:                r["flags"].append("MIN HOUSING")
-        # v28.30: LONG HELD flag for 10+ year owners
+        # v28.30/31: LONG HELD flag — tenure_years set by deed_date (v28.31) or ArcGIS (v28.30)
         if (r.get("tenure_years") or 0) >= 10:   r["flags"].append("LONG HELD")
         r["stacked"]           = existing_stacked
         r["score"]             = score_record(r)
@@ -1501,13 +1683,17 @@ if __name__ == "__main__":
     stacked     = sum(1 for r in records if r.get("stacked"))
     long_held   = sum(1 for r in records if "LONG HELD"    in r.get("flags", []))
     with_tenure = sum(1 for r in records if r.get("tenure_years") is not None)
+    with_deed   = sum(1 for r in records if r.get("deed_date"))
+    with_arv    = sum(1 for r in records if r.get("last_sale_amt"))
+    with_propid = sum(1 for r in records if r.get("prop_id"))
 
     log.info(f"Final: {len(records)} total | {named} named | {absentee} absentee")
     log.info(f"       {new_ct} new | {has_date} with sale date | "
              f"{soon} auction <=30d | {urgent} URGENT <=14d")
     log.info(f"       VBP stacked: {stacked} confirmed VBP+CE leads")
     log.info(f"       Mortgage intel: {enriched} leads with loan_amount populated")
-    log.info(f"       Tenure: {with_tenure} leads with sale date | {long_held} LONG HELD (10+ yr)")
+    log.info(f"       Tenure: {with_tenure} with tenure | {long_held} LONG HELD (10+ yr) | {with_deed} deed dates")
+    log.info(f"       BCAD: {with_propid} with prop_id | {with_arv} with last_sale_amt (ARV comp)")
 
     # ── Step 10: Save ─────────────────────────────────────────────────────────
     with open("data/records.json", "w", encoding="utf-8") as f:
