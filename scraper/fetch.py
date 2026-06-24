@@ -1354,6 +1354,50 @@ def fetch_deed_and_arv(records, driver):
         last_sale_amt = ""
 
         try:
+            from selenium.webdriver.support.ui import WebDriverWait
+            from selenium.webdriver.support import expected_conditions as EC
+
+            # ── Click open "Deed History" accordion if collapsed ──────────────
+            # trueautomation uses clickable header rows to expand sections
+            try:
+                headers = driver.find_elements(By.CSS_SELECTOR,
+                    "tr.sectionHeader, tr[onclick], td.sectionHeader, div.sectionHeader, "
+                    "h3, h4, .accordion-header, [data-toggle], td[style*='cursor']")
+                for hdr in headers:
+                    txt = (hdr.text or "").lower()
+                    if "deed" in txt:
+                        driver.execute_script("arguments[0].click();", hdr)
+                        time.sleep(2)
+                        log.info(f"  BCAD [{prop_id}] clicked deed history header")
+                        break
+            except Exception:
+                pass
+
+            # ── Also try clicking "Values" section for last_sale_amt ──────────
+            try:
+                headers2 = driver.find_elements(By.CSS_SELECTOR,
+                    "tr.sectionHeader, tr[onclick], td.sectionHeader, div.sectionHeader, "
+                    "h3, h4, .accordion-header, [data-toggle], td[style*='cursor']")
+                for hdr in headers2:
+                    txt = (hdr.text or "").lower()
+                    if "value" in txt or "sale" in txt:
+                        driver.execute_script("arguments[0].click();", hdr)
+                        time.sleep(1)
+                        break
+            except Exception:
+                pass
+
+            # ── Wait for a date pattern to appear in any table cell ───────────
+            try:
+                WebDriverWait(driver, 8).until(
+                    lambda d: any(
+                        _re.search(r"\d{1,2}/\d{1,2}/\d{4}", cell.text or "")
+                        for cell in d.find_elements(By.CSS_SELECTOR, "td")
+                    )
+                )
+            except Exception:
+                pass  # proceed with whatever rendered
+
             body = driver.find_element(By.TAG_NAME, "body").text
             lines = [l.strip() for l in body.split("\n") if l.strip()]
 
@@ -1398,22 +1442,44 @@ def fetch_deed_and_arv(records, driver):
             # ── Also try table cells via Selenium if text parse missed ────────
             if not deed_date:
                 try:
-                    # Find "Deed History" section table rows
-                    tables = driver.find_elements(By.CSS_SELECTOR, "table")
-                    for tbl in tables:
-                        tbl_text = (tbl.text or "").lower()
-                        if "deed" in tbl_text and ("date" in tbl_text or "/" in tbl_text):
-                            rows = tbl.find_elements(By.CSS_SELECTOR, "tr")
-                            for row in rows[1:]:  # skip header row
-                                cells = row.find_elements(By.TAG_NAME, "td")
-                                if cells:
-                                    cell_text = cells[0].text.strip()
-                                    m = _re.match(r"^(\d{1,2}/\d{1,2}/\d{4})\b", cell_text)
-                                    if m:
-                                        deed_date = m.group(1)
-                                        break
-                            if deed_date:
+                    # Scan ALL table cells for date pattern — deed history rows
+                    # have dates in first cell. Find the section by scanning for
+                    # a date after any row that mentions "deed"
+                    all_cells = driver.find_elements(By.CSS_SELECTOR, "td")
+                    found_deed_section = False
+                    for cell in all_cells:
+                        txt = (cell.text or "").strip()
+                        if "deed" in txt.lower() and len(txt) < 60:
+                            found_deed_section = True
+                            continue
+                        if found_deed_section:
+                            m = _re.match(r"^(\d{1,2}/\d{1,2}/\d{4})\b", txt)
+                            if m:
+                                deed_date = m.group(1)
+                                log.info(f"  BCAD [{prop_id}] found deed date via cell scan")
                                 break
+                            # Reset if we've moved too far without finding a date
+                            if len(txt) > 5 and not _re.search(r"\d", txt):
+                                found_deed_section = False
+                except Exception as ce:
+                    log.debug(f"  BCAD [{prop_id}] cell scan error: {ce}")
+
+            # ── Last resort: scan ALL cells for any date ──────────────────────
+            if not deed_date:
+                try:
+                    all_rows = driver.find_elements(By.CSS_SELECTOR, "table tr")
+                    for row in all_rows:
+                        row_txt = (row.text or "").lower()
+                        if "deed" not in row_txt and "sale" not in row_txt:
+                            continue
+                        cells = row.find_elements(By.TAG_NAME, "td")
+                        for cell in cells:
+                            m = _re.match(r"^(\d{1,2}/\d{1,2}/\d{4})\b", (cell.text or "").strip())
+                            if m:
+                                deed_date = m.group(1)
+                                break
+                        if deed_date:
+                            break
                 except Exception:
                     pass
 
