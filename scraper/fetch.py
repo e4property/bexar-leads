@@ -1,9 +1,15 @@
 """
-Bexar County Motivated Seller Lead Scraper v28.29
+Bexar County Motivated Seller Lead Scraper v28.30
 HYBRID SCRAPER:
   Primary:   bexar.tx.publicsearch.us  (Selenium, runs 2x daily)
   Secondary: ArcGIS GIS layer (urllib, runs weekly on Sunday)
   Owner enrichment: 5-strategy ArcGIS parcel lookup
+
+  v28.30 changes:
+    - Tenure scoring: pull SaleDate from ArcGIS parcel layer
+    - Store sale_date_arcgis (last owner purchase date), tenure_years, tenure_score_bonus
+    - score_record() adds tenure bonus: 15+yr=+25, 10-14yr=+15, 5-9yr=+5
+    - sale_date_arcgis/tenure_years/tenure_score_bonus passed to dashboard for display
 
   v28.29 fixes:
     - Removed fetch_code_enforcement step — bulk CE API returns 403 Forbidden
@@ -86,7 +92,7 @@ def fetch_json(url, retries=3):
     for attempt in range(retries):
         try:
             req = urllib.request.Request(
-                url, headers={"User-Agent": "BexarScraper/28.27", "Accept": "application/json"})
+                url, headers={"User-Agent": "BexarScraper/28.30", "Accept": "application/json"})
             with urllib.request.urlopen(req, timeout=25) as r:
                 return json.loads(r.read().decode("utf-8", errors="replace"))
         except Exception as e:
@@ -151,7 +157,7 @@ def load_known_docs():
     try:
         req = urllib.request.Request(
             url,
-            headers={"User-Agent": "BexarScraper/28.27",
+            headers={"User-Agent": "BexarScraper/28.30",
                      "Accept": "application/json",
                      "Cache-Control": "no-cache"})
         with urllib.request.urlopen(req, timeout=20) as r:
@@ -178,6 +184,47 @@ def ms_to_date_str(ms):
         return datetime.utcfromtimestamp(int(ms) / 1000).strftime("%m/%d/%Y")
     except Exception:
         return ""
+
+
+# ── TENURE HELPERS ────────────────────────────────────────────────────────────
+def parse_arcgis_sale_date(raw_val):
+    """
+    ArcGIS SaleDate can come back as epoch ms (int) or a date string.
+    Returns (date_str "MM/DD/YYYY", tenure_years int) or ("", None).
+    """
+    if not raw_val:
+        return "", None
+    # Epoch milliseconds
+    if isinstance(raw_val, (int, float)) and raw_val > 1_000_000:
+        try:
+            dt = datetime.utcfromtimestamp(int(raw_val) / 1000)
+            years = (TODAY_NAIVE - dt).days // 365
+            return dt.strftime("%m/%d/%Y"), max(years, 0)
+        except Exception:
+            return "", None
+    # String date
+    raw_str = str(raw_val).strip()
+    for fmt in ("%m/%d/%Y", "%Y-%m-%d", "%Y%m%d"):
+        try:
+            dt = datetime.strptime(raw_str, fmt)
+            years = (TODAY_NAIVE - dt).days // 365
+            return dt.strftime("%m/%d/%Y"), max(years, 0)
+        except Exception:
+            continue
+    return "", None
+
+
+def tenure_bonus(tenure_years):
+    """Return score bonus based on years of ownership."""
+    if tenure_years is None:
+        return 0
+    if tenure_years >= 15:
+        return 25
+    if tenure_years >= 10:
+        return 15
+    if tenure_years >= 5:
+        return 5
+    return 0
 
 
 # ── RECORD FILTER ─────────────────────────────────────────────────────────────
@@ -277,7 +324,7 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
     records    = []
     page       = 0
     offset     = 0
-    zero_new_streak = 0  # v28.27: track consecutive pages with 0 new leads
+    zero_new_streak = 0
 
     while True:
         url = search_url.replace("offset=0", f"offset={offset}")
@@ -407,29 +454,32 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
                         pass
 
                 rec = {
-                    "type":        rec_type,
-                    "address":     address,
-                    "owner":       "",
-                    "mail_addr":   "",
-                    "absentee":    False,
-                    "duplicate":   False,
-                    "is_new":      True,
-                    "doc_number":  doc_number,
-                    "ps_doc_id":   ps_doc_id,
-                    "year":        year,
-                    "month":       month,
-                    "city":        city,
-                    "zip":         zip_code,
-                    "school_dist": "",
-                    "date_filed":  f"{month}/{year}".strip("/"),
-                    "sale_date":   sale_date,
-                    "run_ts":      RUN_TIMESTAMP,
-                    "flags":       [],
-                    "source":      "publicsearch",
-                    "lender":      "",
-                    "loan_amount": "",
-                    "loan_date":   "",
-                    "trustee":     "",
+                    "type":                rec_type,
+                    "address":             address,
+                    "owner":               "",
+                    "mail_addr":           "",
+                    "absentee":            False,
+                    "duplicate":           False,
+                    "is_new":              True,
+                    "doc_number":          doc_number,
+                    "ps_doc_id":           ps_doc_id,
+                    "year":                year,
+                    "month":               month,
+                    "city":                city,
+                    "zip":                 zip_code,
+                    "school_dist":         "",
+                    "date_filed":          f"{month}/{year}".strip("/"),
+                    "sale_date":           sale_date,
+                    "run_ts":              RUN_TIMESTAMP,
+                    "flags":               [],
+                    "source":              "publicsearch",
+                    "lender":              "",
+                    "loan_amount":         "",
+                    "loan_date":           "",
+                    "trustee":             "",
+                    "sale_date_arcgis":    "",
+                    "tenure_years":        None,
+                    "tenure_score_bonus":  0,
                 }
                 records.append(rec)
                 known_docs.add(doc_number)
@@ -440,13 +490,10 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
 
         log.info(f"    Page {page+1}: {page_new} new | {page_known} known | {page_old} old")
 
-        # ── v28.27 early exit logic ───────────────────────────────────────────
-        # Exit immediately if nothing useful on this page and not first page
         if page_new == 0 and page_known == 0 and page > 0:
             log.info("    No new or known records — stopping chunk")
             break
 
-        # Track consecutive pages with 0 new leads — exit after 2 in a row
         if page_new == 0:
             zero_new_streak += 1
         else:
@@ -457,7 +504,6 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
             zero_new_streak = 0
             break
 
-        # Exit if mostly old rows
         if page_old > 0 and page_old >= len(rows) * 0.8:
             log.info("    Mostly old rows — stopping chunk")
             break
@@ -669,36 +715,39 @@ def fetch_code_enforcement(known_docs):
             if "VACANT STRUCT"      in flags: score += 2
 
             lead = {
-                "doc_number":      ce_key,
-                "type":            "CE",
-                "source":          "code_enforcement",
-                "address":         street,
-                "city":            city,
-                "zip":             zipcode,
-                "date_filed":      f"{month}/{year}".strip("/"),
-                "sale_date":       "",
-                "owner":           "",
-                "mail_addr":       "",
-                "absentee":        False,
-                "duplicate":       False,
-                "is_new":          True,
-                "run_ts":          RUN_TIMESTAMP,
-                "flags":           flags,
-                "score":           score,
-                "ce_case_id":      str(case_id),
-                "ce_category":     "Property Maintenance",
-                "ce_cat_label":    typename,
-                "ce_status":       status,
-                "ce_reason":       reason,
-                "ce_district":     district,
-                "opened_date":     opened_str,
-                "loan_amount":     "",
-                "loan_date":       "",
-                "lender":          "",
-                "trustee":         "",
-                "appraised_value": "",
-                "annual_taxes":    "",
-                "ps_doc_id":       "",
+                "doc_number":         ce_key,
+                "type":               "CE",
+                "source":             "code_enforcement",
+                "address":            street,
+                "city":               city,
+                "zip":                zipcode,
+                "date_filed":         f"{month}/{year}".strip("/"),
+                "sale_date":          "",
+                "owner":              "",
+                "mail_addr":          "",
+                "absentee":           False,
+                "duplicate":          False,
+                "is_new":             True,
+                "run_ts":             RUN_TIMESTAMP,
+                "flags":              flags,
+                "score":              score,
+                "ce_case_id":         str(case_id),
+                "ce_category":        "Property Maintenance",
+                "ce_cat_label":       typename,
+                "ce_status":          status,
+                "ce_reason":          reason,
+                "ce_district":        district,
+                "opened_date":        opened_str,
+                "loan_amount":        "",
+                "loan_date":          "",
+                "lender":             "",
+                "trustee":            "",
+                "appraised_value":    "",
+                "annual_taxes":       "",
+                "ps_doc_id":          "",
+                "sale_date_arcgis":   "",
+                "tenure_years":       None,
+                "tenure_score_bonus": 0,
             }
             new_leads.append(lead)
             known_docs.add(ce_key)
@@ -753,24 +802,27 @@ def fetch_arcgis_backfill(known_docs):
             if doc in known_docs:
                 continue
             raw.append({
-                "type":        layer["type"],
-                "address":     pick(a, "ADDRESS", "SITUS_ADD", "ADDR"),
-                "owner":       "",
-                "mail_addr":   "",
-                "absentee":    False,
-                "duplicate":   False,
-                "is_new":      True,
-                "doc_number":  doc,
-                "year":        year,
-                "month":       month,
-                "city":        pick(a, "CITY", "MAIL_CITY", default=""),
-                "zip":         pick(a, "ZIP", "ZIPCODE", "ZIP_CODE", default=""),
-                "school_dist": pick(a, "SCHOOL_DIST", default=""),
-                "date_filed":  f"{month}/{year}".strip("/"),
-                "sale_date":   "",
-                "run_ts":      RUN_TIMESTAMP,
-                "flags":       [],
-                "source":      "arcgis",
+                "type":               layer["type"],
+                "address":            pick(a, "ADDRESS", "SITUS_ADD", "ADDR"),
+                "owner":              "",
+                "mail_addr":          "",
+                "absentee":           False,
+                "duplicate":          False,
+                "is_new":             True,
+                "doc_number":         doc,
+                "year":               year,
+                "month":              month,
+                "city":               pick(a, "CITY", "MAIL_CITY", default=""),
+                "zip":                pick(a, "ZIP", "ZIPCODE", "ZIP_CODE", default=""),
+                "school_dist":        pick(a, "SCHOOL_DIST", default=""),
+                "date_filed":         f"{month}/{year}".strip("/"),
+                "sale_date":          "",
+                "run_ts":             RUN_TIMESTAMP,
+                "flags":              [],
+                "source":             "arcgis",
+                "sale_date_arcgis":   "",
+                "tenure_years":       None,
+                "tenure_score_bonus": 0,
             })
             known_docs.add(doc)
 
@@ -1086,6 +1138,8 @@ def match_features(feats, num, required_word=None):
     TAX_FIELDS      = ["TaxAmt","TAX_AMT","TaxAmount","TAX_AMOUNT","TotalTax","TOTAL_TAX","AnnualTax","ANNUAL_TAX"]
     LAND_FIELDS     = ["LandVal","LAND_VAL","LandValue","LAND_VALUE"]
     IMPR_FIELDS     = ["ImprovVal","IMPROV_VAL","ImprovValue","IMPROV_VALUE","ImpVal","IMP_VAL"]
+    # v28.30: SaleDate field candidates for tenure scoring
+    SALE_DATE_FIELDS = ["SaleDate","SALE_DATE","saleDate","LastSaleDate","LAST_SALE_DATE","SaleDt","SALE_DT"]
 
     def get_field(a, candidates):
         for c in candidates:
@@ -1093,6 +1147,14 @@ def match_features(feats, num, required_word=None):
             if v is not None and str(v).strip() not in ("","None","null","<Null>","NULL","0"):
                 return str(v).strip()
         return ""
+
+    def get_raw(a, candidates):
+        """Return raw value (including 0 / epoch int) for date fields."""
+        for c in candidates:
+            v = a.get(c)
+            if v is not None and str(v).strip() not in ("","None","null","<Null>","NULL"):
+                return v
+        return None
 
     for feat in feats:
         a       = feat.get("attributes", {})
@@ -1115,14 +1177,21 @@ def match_features(feats, num, required_word=None):
             mail_addr = f"{addr1} {city} {zipcode}".strip()
         absentee = bool(mail_addr) and not normalize(mail_addr).startswith(num + " ")
 
+        # v28.30: parse SaleDate for tenure scoring
+        raw_sale_date = get_raw(a, SALE_DATE_FIELDS)
+        sale_date_arcgis, tenure_years = parse_arcgis_sale_date(raw_sale_date)
+
         return {
-            "owner":             owner.upper(),
-            "mail_addr":         mail_addr,
-            "absentee":          absentee,
-            "appraised_value":   get_field(a, APPR_FIELDS),
-            "land_value":        get_field(a, LAND_FIELDS),
-            "improvement_value": get_field(a, IMPR_FIELDS),
-            "annual_taxes":      get_field(a, TAX_FIELDS),
+            "owner":              owner.upper(),
+            "mail_addr":          mail_addr,
+            "absentee":           absentee,
+            "appraised_value":    get_field(a, APPR_FIELDS),
+            "land_value":         get_field(a, LAND_FIELDS),
+            "improvement_value":  get_field(a, IMPR_FIELDS),
+            "annual_taxes":       get_field(a, TAX_FIELDS),
+            "sale_date_arcgis":   sale_date_arcgis,
+            "tenure_years":       tenure_years,
+            "tenure_score_bonus": tenure_bonus(tenure_years),
         }
     return None
 
@@ -1191,15 +1260,22 @@ def enrich_owners(records):
         zip_ = rec.get("zip", "")
         result = lookup_owner(addr, zip_)
         if result and result.get("owner"):
-            rec["owner"]             = result["owner"]
-            rec["mail_addr"]         = result.get("mail_addr", "")
-            rec["absentee"]          = result.get("absentee", False)
-            rec["appraised_value"]   = result.get("appraised_value", "")
-            rec["annual_taxes"]      = result.get("annual_taxes", "")
-            rec["land_value"]        = result.get("land_value", "")
+            rec["owner"]              = result["owner"]
+            rec["mail_addr"]          = result.get("mail_addr", "")
+            rec["absentee"]           = result.get("absentee", False)
+            rec["appraised_value"]    = result.get("appraised_value", "")
+            rec["annual_taxes"]       = result.get("annual_taxes", "")
+            rec["land_value"]         = result.get("land_value", "")
+            # v28.30: tenure fields from ArcGIS parcel
+            rec["sale_date_arcgis"]   = result.get("sale_date_arcgis", "")
+            rec["tenure_years"]       = result.get("tenure_years", None)
+            rec["tenure_score_bonus"] = result.get("tenure_score_bonus", 0)
             found += 1
+            tenure_info = ""
+            if rec["tenure_years"] is not None:
+                tenure_info = f" tenure={rec['tenure_years']}yr(+{rec['tenure_score_bonus']})"
             log.info(f"  [{i+1}/{len(missing)}] OK: {addr} -> {result['owner']} "
-                     f"[{result.get('method','')}] appr={result.get('appraised_value','—')}")
+                     f"[{result.get('method','')}] appr={result.get('appraised_value','—')}{tenure_info}")
         else:
             log.info(f"  [{i+1}/{len(missing)}] MISS: '{addr}' zip={zip_}")
         time.sleep(0.2)
@@ -1240,7 +1316,9 @@ def score_record(rec):
         if cat in CE_ABSENTEE:              s += 2
         if rec.get("ce_status", "").upper() == "OPEN":
             s += 1
-    return min(s, 10)
+    # v28.30: tenure bonus — long-held = high motivation signal
+    s += rec.get("tenure_score_bonus", 0)
+    return s
 
 
 def days_until_sale(sale_date_str):
@@ -1273,11 +1351,12 @@ if __name__ == "__main__":
     os.makedirs("dashboard", exist_ok=True)
 
     log.info("=" * 60)
-    log.info("Bexar County Lead Scraper v28.27 (Hybrid)")
+    log.info("Bexar County Lead Scraper v28.30 (Hybrid)")
     log.info(f"Primary:   PublicSearch.us ({KEEP_DAYS}d window, {CHUNK_DAYS}d chunks, {PAGE_TIMEOUT}s timeout)")
     log.info(f"Secondary: ArcGIS weekly backfill = {IS_SUNDAY}")
     log.info(f"Tertiary:  Code Enforcement 311 ({len(CE_CATEGORIES)} categories, {KEEP_DAYS}d window)")
     log.info(f"Doc fetch: backfill window = {DOC_FETCH_DAYS}d")
+    log.info(f"Tenure:    scoring active — 15+yr=+25pts, 10-14yr=+15pts, 5-9yr=+5pts")
     log.info(f"Filter:    {KEEP_DAYS}-day cutoff ({CUTOFF_DATE.strftime('%Y-%m-%d')}) | live auctions always kept")
     log.info("=" * 60)
 
@@ -1328,6 +1407,9 @@ if __name__ == "__main__":
         "ce_cat_label", "ce_status", "opened_date", "ce_case_id",
     ]
 
+    # v28.30: tenure fields to preserve from prev_records if already enriched
+    TENURE_FIELDS = ["sale_date_arcgis", "tenure_years", "tenure_score_bonus"]
+
     seen = {}
     for r in new_records + arcgis_records + lp_records + ce_records + prev_records:
         doc = r.get("doc_number", "")
@@ -1336,18 +1418,27 @@ if __name__ == "__main__":
         if doc not in seen:
             seen[doc] = r
 
-    # Preserve VBP CE fields from prev_records onto every VBP record
+    # Preserve VBP CE fields and tenure fields from prev_records
     vbp_ce_preserved = 0
+    tenure_preserved = 0
     for doc, r in seen.items():
-        if r.get("type") == "VBP" and doc in prev_by_doc:
+        if doc in prev_by_doc:
             prev = prev_by_doc[doc]
-            for field in VBP_CE_FIELDS:
-                if prev.get(field) and not r.get(field):
+            if r.get("type") == "VBP":
+                for field in VBP_CE_FIELDS:
+                    if prev.get(field) and not r.get(field):
+                        r[field] = prev[field]
+                        vbp_ce_preserved += 1
+            # Preserve tenure data on any record type if already resolved
+            for field in TENURE_FIELDS:
+                if prev.get(field) is not None and prev.get(field) != "" and not r.get(field):
                     r[field] = prev[field]
-                    vbp_ce_preserved += 1
+                    tenure_preserved += 1
 
     if vbp_ce_preserved:
         log.info(f"Preserved {vbp_ce_preserved} VBP CE field values from prev_records")
+    if tenure_preserved:
+        log.info(f"Preserved {tenure_preserved} tenure field values from prev_records")
 
     records = list(seen.values())
     log.info(f"After dedup: {len(records)} total records")
@@ -1365,7 +1456,6 @@ if __name__ == "__main__":
 
     # ── Step 8: Flag + score ──────────────────────────────────────────────────
     for r in records:
-        # Preserve stacked flag set by vbp_scraper — never overwrite it
         existing_stacked = r.get("stacked", False)
         r["flags"] = []
         if r["type"] == "TAX":                    r["flags"].append("TAX FORE")
@@ -1387,10 +1477,11 @@ if __name__ == "__main__":
             if cat in CE_ABSENTEE:               r["flags"].append("ABSENTEE PROP")
             if cat in CE_VACANT:                  r["flags"].append("VACANT STRUCT")
             if cat in CE_MIN_HOUS:                r["flags"].append("MIN HOUSING")
-        # Restore stacked flag
-        r["stacked"] = existing_stacked
-        r["score"]           = score_record(r)
-        r["days_until_sale"] = d
+        # v28.30: LONG HELD flag for 10+ year owners
+        if (r.get("tenure_years") or 0) >= 10:   r["flags"].append("LONG HELD")
+        r["stacked"]           = existing_stacked
+        r["score"]             = score_record(r)
+        r["days_until_sale"]   = d
 
     def sort_key(r):
         d = r.get("days_until_sale")
@@ -1400,20 +1491,23 @@ if __name__ == "__main__":
     records.sort(key=sort_key)
 
     # ── Step 9: Summary ───────────────────────────────────────────────────────
-    named    = sum(1 for r in records if r.get("owner"))
-    absentee = sum(1 for r in records if r.get("absentee"))
-    new_ct   = sum(1 for r in records if r.get("is_new"))
-    urgent   = sum(1 for r in records if "URGENT"       in r.get("flags", []))
-    soon     = sum(1 for r in records if "AUCTION SOON" in r.get("flags", []))
-    has_date = sum(1 for r in records if r.get("sale_date"))
-    enriched = sum(1 for r in records if r.get("loan_amount"))
-    stacked  = sum(1 for r in records if r.get("stacked"))
+    named       = sum(1 for r in records if r.get("owner"))
+    absentee    = sum(1 for r in records if r.get("absentee"))
+    new_ct      = sum(1 for r in records if r.get("is_new"))
+    urgent      = sum(1 for r in records if "URGENT"       in r.get("flags", []))
+    soon        = sum(1 for r in records if "AUCTION SOON" in r.get("flags", []))
+    has_date    = sum(1 for r in records if r.get("sale_date"))
+    enriched    = sum(1 for r in records if r.get("loan_amount"))
+    stacked     = sum(1 for r in records if r.get("stacked"))
+    long_held   = sum(1 for r in records if "LONG HELD"    in r.get("flags", []))
+    with_tenure = sum(1 for r in records if r.get("tenure_years") is not None)
 
     log.info(f"Final: {len(records)} total | {named} named | {absentee} absentee")
     log.info(f"       {new_ct} new | {has_date} with sale date | "
              f"{soon} auction <=30d | {urgent} URGENT <=14d")
     log.info(f"       VBP stacked: {stacked} confirmed VBP+CE leads")
     log.info(f"       Mortgage intel: {enriched} leads with loan_amount populated")
+    log.info(f"       Tenure: {with_tenure} leads with sale date | {long_held} LONG HELD (10+ yr)")
 
     # ── Step 10: Save ─────────────────────────────────────────────────────────
     with open("data/records.json", "w", encoding="utf-8") as f:
