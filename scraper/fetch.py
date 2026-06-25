@@ -1,5 +1,5 @@
 """
-Bexar County Motivated Seller Lead Scraper v28.33
+Bexar County Motivated Seller Lead Scraper v28.34
 HYBRID SCRAPER:
   Primary:   bexar.tx.publicsearch.us  (Selenium, runs 2x daily)
   Secondary: ArcGIS GIS layer (urllib, runs weekly on Sunday)
@@ -1553,8 +1553,10 @@ def score_record(rec):
         if cat in CE_ABSENTEE:              s += 2
         if rec.get("ce_status", "").upper() == "OPEN":
             s += 1
+    # v28.34: tenure bonus capped so total never exceeds 10
+    # prevents old leads from being resurfaced with inflated scores
     s += rec.get("tenure_score_bonus", 0)
-    return s
+    return min(s, 10)
 
 
 def days_until_sale(sale_date_str):
@@ -1587,7 +1589,7 @@ if __name__ == "__main__":
     os.makedirs("dashboard", exist_ok=True)
 
     log.info("=" * 60)
-    log.info("Bexar County Lead Scraper v28.33 (Hybrid)")
+    log.info("Bexar County Lead Scraper v28.34 (Hybrid)")
     log.info(f"Primary:   PublicSearch.us ({KEEP_DAYS}d window, {CHUNK_DAYS}d chunks, {PAGE_TIMEOUT}s timeout)")
     log.info(f"Secondary: ArcGIS weekly backfill = {IS_SUNDAY}")
     log.info(f"Tertiary:  Code Enforcement 311 ({len(CE_CATEGORIES)} categories, {KEEP_DAYS}d window)")
