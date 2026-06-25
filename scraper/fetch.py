@@ -1,5 +1,5 @@
 """
-Bexar County Motivated Seller Lead Scraper v28.32
+Bexar County Motivated Seller Lead Scraper v28.33
 HYBRID SCRAPER:
   Primary:   bexar.tx.publicsearch.us  (Selenium, runs 2x daily)
   Secondary: ArcGIS GIS layer (urllib, runs weekly on Sunday)
@@ -1303,17 +1303,16 @@ def enrich_owners(records):
 # ── BCAD DEED HISTORY + ARV ───────────────────────────────────────────────────
 def fetch_deed_and_arv(records, driver):
     """
-    v28.32: backfill-eligible (prop_id set, no deed_date) — not just is_new.
-    Fixes accordion click on trueautomation.com using JS targeting
-    tr[onclick]/td[onclick] — the actual trueautomation.com mechanism.
-    3-strategy fallback: JS click -> Selenium element click -> table scan.
-    Explicit 10s wait for date pattern after accordion click.
+    v28.33: Fix for trueautomation.com structure.
+    KEY FINDING: accordion sections use div.titleBar / div.details pattern.
+    Deed history is ALREADY EXPANDED on page load (opened="true").
+    No clicking needed — read #deedHistoryDetails table directly.
+    Also reads #valuesDetails for last sale amount.
     """
     from selenium.webdriver.common.by import By
     from selenium.webdriver.support.ui import WebDriverWait
     import re as _re
 
-    # v28.32: changed from is_new-only to any record with prop_id and no deed_date
     candidates = [
         r for r in records
         if r.get("prop_id")
@@ -1326,7 +1325,7 @@ def fetch_deed_and_arv(records, driver):
         log.info("BCAD deed+ARV: no eligible leads with prop_id — skipping")
         return records
 
-    log.info(f"BCAD deed+ARV: {len(candidates)} leads to enrich (backfill-eligible)")
+    log.info(f"BCAD deed+ARV: {len(candidates)} leads to enrich (v28.33 — direct read)")
     fetched = 0
     errors  = 0
 
@@ -1339,7 +1338,7 @@ def fetch_deed_and_arv(records, driver):
         try:
             driver.set_page_load_timeout(30)
             driver.get(url)
-            time.sleep(4)
+            time.sleep(3)
         except Exception as e:
             log.warning(f"  BCAD [{prop_id}] load timeout: {e}")
             errors += 1
@@ -1350,159 +1349,158 @@ def fetch_deed_and_arv(records, driver):
         last_sale_amt = ""
 
         try:
-            # ── Click ALL clickable tr/td rows that mention deed or value ─────
-            # trueautomation uses tr rows with onclick= to expand sections.
-            clicked_deed  = False
-            clicked_value = False
-
-            js_click_by_text = """
-                var els = document.querySelectorAll('tr[onclick], td[onclick], tr[style*="cursor"], td[style*="cursor"]');
-                var clicked = [];
-                for (var i = 0; i < els.length; i++) {
-                    var txt = (els[i].innerText || els[i].textContent || '').toLowerCase();
-                    if (txt.indexOf('deed') !== -1 && clicked.indexOf('deed') === -1) {
-                        els[i].click();
-                        clicked.push('deed');
-                    }
-                    if ((txt.indexOf('value') !== -1 || txt.indexOf('sale') !== -1) && clicked.indexOf('value') === -1) {
-                        els[i].click();
-                        clicked.push('value');
-                    }
-                }
-                return clicked;
-            """
+            # ── Ensure deed history section is visible ────────────────────────
+            # div#deedHistory is the titleBar; div#deedHistoryDetails is content.
+            # Page loads with it expanded (opened="true") but click it just in case.
             try:
-                clicked = driver.execute_script(js_click_by_text)
-                log.info(f"  BCAD [{prop_id}] JS clicked: {clicked}")
-                if clicked:
-                    time.sleep(3)
-                    clicked_deed  = "deed"  in (clicked or [])
-                    clicked_value = "value" in (clicked or [])
-            except Exception as js_e:
-                log.debug(f"  BCAD [{prop_id}] JS click error: {js_e}")
-
-            # Fallback: direct Selenium click on any element whose text contains "deed"
-            if not clicked_deed:
+                hdr = driver.find_element(By.CSS_SELECTOR, "div#deedHistory")
+                opened = (hdr.get_attribute("opened") or "").lower()
+                if opened != "true":
+                    driver.execute_script("arguments[0].click();", hdr)
+                    time.sleep(2)
+                    log.info(f"  BCAD [{prop_id}] clicked deedHistory titleBar")
+                else:
+                    log.info(f"  BCAD [{prop_id}] deedHistory already open")
+            except Exception:
+                # Try by class if id not found
                 try:
-                    all_els = driver.find_elements(By.CSS_SELECTOR, "tr, td, div, span, h3, h4")
-                    for el in all_els:
-                        txt = (el.text or "").lower()
-                        if "deed" in txt and len(txt) < 80:
-                            try:
-                                driver.execute_script("arguments[0].click();", el)
-                                time.sleep(2)
-                                clicked_deed = True
-                                log.info(f"  BCAD [{prop_id}] fallback clicked deed element")
-                                break
-                            except Exception:
-                                continue
+                    hdrs = driver.find_elements(By.CSS_SELECTOR, "div.titleBar")
+                    for hdr in hdrs:
+                        if "deed" in (hdr.text or "").lower():
+                            driver.execute_script("arguments[0].click();", hdr)
+                            time.sleep(2)
+                            log.info(f"  BCAD [{prop_id}] clicked deed titleBar by class")
+                            break
                 except Exception:
                     pass
 
-            # Wait for date pattern to appear anywhere in page
+            # ── Also open Values section for last_sale_amt ────────────────────
             try:
-                WebDriverWait(driver, 10).until(
-                    lambda d: bool(_re.search(
-                        r"\d{1,2}/\d{1,2}/\d{4}",
-                        d.find_element(By.TAG_NAME, "body").text
-                    ))
+                val_hdrs = driver.find_elements(By.CSS_SELECTOR, "div.titleBar")
+                for hdr in val_hdrs:
+                    txt = (hdr.text or "").lower()
+                    if "value" in txt and "deed" not in txt:
+                        opened = (hdr.get_attribute("opened") or "").lower()
+                        if opened != "true":
+                            driver.execute_script("arguments[0].click();", hdr)
+                            time.sleep(1)
+                        break
+            except Exception:
+                pass
+
+            # Wait for deed history details to be visible
+            try:
+                WebDriverWait(driver, 8).until(
+                    lambda d: d.find_element(
+                        By.CSS_SELECTOR, "div#deedHistoryDetails"
+                    ).is_displayed()
                 )
             except Exception:
-                log.info(f"  BCAD [{prop_id}] no date pattern appeared after wait")
+                pass
 
-            body  = driver.find_element(By.TAG_NAME, "body").text
-            lines = [l.strip() for l in body.split("\n") if l.strip()]
-
-            # Strategy 1: find "Deed History" heading then grab first date line
-            in_deed = False
-            for line in lines:
-                ll = line.lower()
-                if "deed history" in ll:
-                    in_deed = True
-                    continue
-                if in_deed:
-                    m = _re.match(r"^(\d{1,2}/\d{1,2}/\d{4})\b", line)
-                    if m:
-                        deed_date = m.group(1)
-                        log.info(f"  BCAD [{prop_id}] deed date from text: {deed_date}")
-                        break
-                    if line.isupper() and len(line) > 10:
-                        break
-
-            # Strategy 2: scan table rows for deed section then first date cell
-            if not deed_date:
-                try:
-                    rows = driver.find_elements(By.CSS_SELECTOR, "table tr")
-                    deed_section = False
-                    for row in rows:
-                        rtxt  = (row.text or "").strip()
-                        rtxtl = rtxt.lower()
-                        if "deed history" in rtxtl:
-                            deed_section = True
-                            continue
-                        if deed_section:
-                            cells = row.find_elements(By.TAG_NAME, "td")
-                            for cell in cells:
-                                m = _re.match(r"^(\d{1,2}/\d{1,2}/\d{4})\b",
-                                              (cell.text or "").strip())
-                                if m:
-                                    deed_date = m.group(1)
-                                    log.info(f"  BCAD [{prop_id}] deed date from table row: {deed_date}")
-                                    break
-                            if deed_date:
-                                break
-                            if rtxt.isupper() and len(rtxt) > 10 and len(cells) <= 1:
-                                break
-                except Exception as te:
-                    log.debug(f"  BCAD [{prop_id}] table scan error: {te}")
-
-            # Strategy 3: scan all td elements after a "deed" cell
-            if not deed_date:
-                try:
-                    all_cells = driver.find_elements(By.CSS_SELECTOR, "td")
-                    deed_flag = False
-                    for cell in all_cells:
+            # ── Read deed history table ───────────────────────────────────────
+            # Structure: div#deedHistoryDetails > table > tbody > tr
+            # First data row columns: #, Deed Date, Type, Description, Grantor, Grantee...
+            try:
+                deed_section = driver.find_element(
+                    By.CSS_SELECTOR, "div#deedHistoryDetails"
+                )
+                rows = deed_section.find_elements(By.CSS_SELECTOR, "table tbody tr")
+                for row in rows:
+                    cells = row.find_elements(By.TAG_NAME, "td")
+                    if len(cells) < 2:
+                        continue
+                    for cell in cells:
                         ctxt = (cell.text or "").strip()
-                        if "deed" in ctxt.lower() and len(ctxt) < 60:
-                            deed_flag = True
+                        m = _re.match(r"^(\d{1,2}/\d{1,2}/\d{4})$", ctxt)
+                        if m:
+                            deed_date = m.group(1)
+                            log.info(f"  BCAD [{prop_id}] deed date from #deedHistoryDetails: {deed_date}")
+                            break
+                    if deed_date:
+                        break
+            except Exception as de:
+                log.debug(f"  BCAD [{prop_id}] deedHistoryDetails read error: {de}")
+
+            # Fallback: scan all tables if #deedHistoryDetails not found
+            if not deed_date:
+                try:
+                    body_text = driver.find_element(By.TAG_NAME, "body").text
+                    lines = [l.strip() for l in body_text.split("\n") if l.strip()]
+                    in_deed = False
+                    for line in lines:
+                        if "deed history" in line.lower():
+                            in_deed = True
                             continue
-                        if deed_flag:
-                            m = _re.match(r"^(\d{1,2}/\d{1,2}/\d{4})\b", ctxt)
+                        if in_deed:
+                            m = _re.match(r"^(\d{1,2}/\d{1,2}/\d{4})$", line)
                             if m:
                                 deed_date = m.group(1)
-                                log.info(f"  BCAD [{prop_id}] deed date from cell scan: {deed_date}")
+                                log.info(f"  BCAD [{prop_id}] deed date from body text: {deed_date}")
                                 break
-                            if len(ctxt) > 5 and not _re.search(r"\d{1,2}/\d{1,2}/\d{4}", ctxt):
-                                deed_flag = False
+                            if line.isupper() and len(line) > 15:
+                                break
                 except Exception:
                     pass
 
-            # Parse last sale amount
-            sale_keywords = [
-                "sale price", "prior sale", "sales price",
-                "deed amount", "consideration", "purchase price",
-            ]
-            for i, line in enumerate(lines):
-                ll = line.lower()
-                if any(kw in ll for kw in sale_keywords):
-                    amt_m = _re.search(r"\$?([\d,]{4,}(?:\.\d{2})?)", line)
-                    if not amt_m and i + 1 < len(lines):
-                        amt_m = _re.search(r"\$?([\d,]{4,}(?:\.\d{2})?)", lines[i + 1])
-                    if amt_m:
-                        raw_amt = amt_m.group(1).replace(",", "")
-                        try:
-                            if float(raw_amt) > 5000:
-                                last_sale_amt = "$" + amt_m.group(1)
-                                break
-                        except Exception:
-                            pass
+            # ── Read values / last sale amount ────────────────────────────────
+            try:
+                # Try #valuesDetails section first
+                val_sections = driver.find_elements(
+                    By.CSS_SELECTOR,
+                    "div#valuesDetails, div#priorSalesDetails, div[id*='sale'], div[id*='value']"
+                )
+                sale_keywords = [
+                    "sale price", "prior sale", "sales price",
+                    "deed amount", "consideration", "purchase price",
+                ]
+                for section in val_sections:
+                    txt = (section.text or "").lower()
+                    if any(kw in txt for kw in sale_keywords):
+                        amt_m = _re.search(r"\$?([\d,]{4,}(?:\.\d{2})?)", section.text)
+                        if amt_m:
+                            raw = amt_m.group(1).replace(",", "")
+                            try:
+                                if float(raw) > 5000:
+                                    last_sale_amt = "$" + amt_m.group(1)
+                                    break
+                            except Exception:
+                                pass
+            except Exception:
+                pass
+
+            # Fallback: scan body text for sale amount keywords
+            if not last_sale_amt:
+                try:
+                    body_text = driver.find_element(By.TAG_NAME, "body").text
+                    lines = [l.strip() for l in body_text.split("\n") if l.strip()]
+                    sale_keywords = [
+                        "sale price", "prior sale", "sales price",
+                        "deed amount", "consideration", "purchase price",
+                    ]
+                    for i, line in enumerate(lines):
+                        ll = line.lower()
+                        if any(kw in ll for kw in sale_keywords):
+                            amt_m = _re.search(r"\$?([\d,]{4,}(?:\.\d{2})?)", line)
+                            if not amt_m and i + 1 < len(lines):
+                                amt_m = _re.search(r"\$?([\d,]{4,}(?:\.\d{2})?)", lines[i + 1])
+                            if amt_m:
+                                raw = amt_m.group(1).replace(",", "")
+                                try:
+                                    if float(raw) > 5000:
+                                        last_sale_amt = "$" + amt_m.group(1)
+                                        break
+                                except Exception:
+                                    pass
+                except Exception:
+                    pass
 
         except Exception as e:
             log.warning(f"  BCAD [{prop_id}] parse error: {e}")
             errors += 1
             continue
 
-        # Calculate tenure from deed_date
+        # ── Calculate tenure from deed_date ───────────────────────────────────
         if deed_date:
             try:
                 deed_dt    = datetime.strptime(deed_date.strip(), "%m/%d/%Y")
@@ -1523,8 +1521,6 @@ def fetch_deed_and_arv(records, driver):
     log.info(f"BCAD deed+ARV: {fetched} enriched, {errors} errors out of {len(candidates)} candidates")
     return records
 
-
-# ── DUPLICATE DETECTION ───────────────────────────────────────────────────────
 def detect_duplicates(records):
     from collections import Counter
     counts = Counter(
@@ -1591,7 +1587,7 @@ if __name__ == "__main__":
     os.makedirs("dashboard", exist_ok=True)
 
     log.info("=" * 60)
-    log.info("Bexar County Lead Scraper v28.32 (Hybrid)")
+    log.info("Bexar County Lead Scraper v28.33 (Hybrid)")
     log.info(f"Primary:   PublicSearch.us ({KEEP_DAYS}d window, {CHUNK_DAYS}d chunks, {PAGE_TIMEOUT}s timeout)")
     log.info(f"Secondary: ArcGIS weekly backfill = {IS_SUNDAY}")
     log.info(f"Tertiary:  Code Enforcement 311 ({len(CE_CATEGORIES)} categories, {KEEP_DAYS}d window)")
