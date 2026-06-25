@@ -1,9 +1,17 @@
 """
-Bexar County Motivated Seller Lead Scraper v28.31
+Bexar County Motivated Seller Lead Scraper v28.32
 HYBRID SCRAPER:
   Primary:   bexar.tx.publicsearch.us  (Selenium, runs 2x daily)
   Secondary: ArcGIS GIS layer (urllib, runs weekly on Sunday)
   Owner enrichment: 5-strategy ArcGIS parcel lookup
+
+  v28.32 changes:
+    - fetch_deed_and_arv(): fix BCAD accordion click using JS targeting
+      tr[onclick]/td[onclick] — the actual trueautomation.com mechanism
+    - Backfill eligibility: changed from is_new-only to any record with
+      prop_id and no deed_date (backfills all existing leads with prop_id)
+    - 3-strategy fallback: JS click -> Selenium element click -> table scan
+    - Explicit 10s wait for date pattern after accordion click
 
   v28.31 changes:
     - Store PropID from ArcGIS parcel layer on every enriched record
@@ -56,7 +64,7 @@ CODE_ENFORCE_URL   = (
 )
 
 BCAD_DETAIL_URL    = "https://bexar.trueautomation.com/clientdb/Property.aspx?cid=110&prop_id={prop_id}"
-DEED_FETCH_LIMIT   = 30   # max new leads to hit BCAD detail page per run
+DEED_FETCH_LIMIT   = 30   # max leads to hit BCAD detail page per run
 
 LAYERS = [
     {"index": 0, "type": "NOF", "label": "Mortgage Foreclosure"},
@@ -102,7 +110,7 @@ def fetch_json(url, retries=3):
     for attempt in range(retries):
         try:
             req = urllib.request.Request(
-                url, headers={"User-Agent": "BexarScraper/28.30", "Accept": "application/json"})
+                url, headers={"User-Agent": "BexarScraper/28.32", "Accept": "application/json"})
             with urllib.request.urlopen(req, timeout=25) as r:
                 return json.loads(r.read().decode("utf-8", errors="replace"))
         except Exception as e:
@@ -167,7 +175,7 @@ def load_known_docs():
     try:
         req = urllib.request.Request(
             url,
-            headers={"User-Agent": "BexarScraper/28.30",
+            headers={"User-Agent": "BexarScraper/28.32",
                      "Accept": "application/json",
                      "Cache-Control": "no-cache"})
         with urllib.request.urlopen(req, timeout=20) as r:
@@ -198,13 +206,8 @@ def ms_to_date_str(ms):
 
 # ── TENURE HELPERS ────────────────────────────────────────────────────────────
 def parse_arcgis_sale_date(raw_val):
-    """
-    ArcGIS SaleDate can come back as epoch ms (int) or a date string.
-    Returns (date_str "MM/DD/YYYY", tenure_years int) or ("", None).
-    """
     if not raw_val:
         return "", None
-    # Epoch milliseconds
     if isinstance(raw_val, (int, float)) and raw_val > 1_000_000:
         try:
             dt = datetime.utcfromtimestamp(int(raw_val) / 1000)
@@ -212,7 +215,6 @@ def parse_arcgis_sale_date(raw_val):
             return dt.strftime("%m/%d/%Y"), max(years, 0)
         except Exception:
             return "", None
-    # String date
     raw_str = str(raw_val).strip()
     for fmt in ("%m/%d/%Y", "%Y-%m-%d", "%Y%m%d"):
         try:
@@ -225,7 +227,6 @@ def parse_arcgis_sale_date(raw_val):
 
 
 def tenure_bonus(tenure_years):
-    """Return score bonus based on years of ownership."""
     if tenure_years is None:
         return 0
     if tenure_years >= 15:
@@ -1154,9 +1155,7 @@ def match_features(feats, num, required_word=None):
     TAX_FIELDS      = ["TaxAmt","TAX_AMT","TaxAmount","TAX_AMOUNT","TotalTax","TOTAL_TAX","AnnualTax","ANNUAL_TAX"]
     LAND_FIELDS     = ["LandVal","LAND_VAL","LandValue","LAND_VALUE"]
     IMPR_FIELDS     = ["ImprovVal","IMPROV_VAL","ImprovValue","IMPROV_VALUE","ImpVal","IMP_VAL"]
-    # v28.30: SaleDate field candidates for tenure scoring
     SALE_DATE_FIELDS = ["SaleDate","SALE_DATE","saleDate","LastSaleDate","LAST_SALE_DATE","SaleDt","SALE_DT"]
-    # v28.31: PropID for BCAD detail page lookup
     PROPID_FIELDS   = ["PropID","PROP_ID","PropId","prop_id","PropertyID","PROPERTY_ID","ParcelID","PARCEL_ID"]
 
     def get_field(a, candidates):
@@ -1167,7 +1166,6 @@ def match_features(feats, num, required_word=None):
         return ""
 
     def get_raw(a, candidates):
-        """Return raw value (including 0 / epoch int) for date fields."""
         for c in candidates:
             v = a.get(c)
             if v is not None and str(v).strip() not in ("","None","null","<Null>","NULL"):
@@ -1195,7 +1193,6 @@ def match_features(feats, num, required_word=None):
             mail_addr = f"{addr1} {city} {zipcode}".strip()
         absentee = bool(mail_addr) and not normalize(mail_addr).startswith(num + " ")
 
-        # v28.30: parse SaleDate for tenure scoring
         raw_sale_date = get_raw(a, SALE_DATE_FIELDS)
         sale_date_arcgis, tenure_years = parse_arcgis_sale_date(raw_sale_date)
 
@@ -1285,11 +1282,9 @@ def enrich_owners(records):
             rec["appraised_value"]    = result.get("appraised_value", "")
             rec["annual_taxes"]       = result.get("annual_taxes", "")
             rec["land_value"]         = result.get("land_value", "")
-            # v28.30: tenure fields from ArcGIS parcel
             rec["sale_date_arcgis"]   = result.get("sale_date_arcgis", "")
             rec["tenure_years"]       = result.get("tenure_years", None)
             rec["tenure_score_bonus"] = result.get("tenure_score_bonus", 0)
-            # v28.31: PropID for BCAD detail page
             if result.get("prop_id"):
                 rec["prop_id"] = result["prop_id"]
             found += 1
@@ -1305,45 +1300,46 @@ def enrich_owners(records):
     return records
 
 
-# ── BCAD DEED HISTORY + ARV (new leads only) ─────────────────────────────────
+# ── BCAD DEED HISTORY + ARV ───────────────────────────────────────────────────
 def fetch_deed_and_arv(records, driver):
     """
-    For new leads that have a prop_id and no deed_date yet:
-    Hit bexar.trueautomation.com property detail page, parse:
-      - Deed History row 1 -> deed_date, tenure_years, tenure_score_bonus
-      - Values section     -> last_sale_amt (ARV comp)
-    Capped at DEED_FETCH_LIMIT leads per run to keep runtime under 5 min.
+    v28.32: backfill-eligible (prop_id set, no deed_date) — not just is_new.
+    Fixes accordion click on trueautomation.com using JS targeting
+    tr[onclick]/td[onclick] — the actual trueautomation.com mechanism.
+    3-strategy fallback: JS click -> Selenium element click -> table scan.
+    Explicit 10s wait for date pattern after accordion click.
     """
     from selenium.webdriver.common.by import By
+    from selenium.webdriver.support.ui import WebDriverWait
     import re as _re
 
+    # v28.32: changed from is_new-only to any record with prop_id and no deed_date
     candidates = [
         r for r in records
-        if r.get("is_new")
-        and r.get("prop_id")
+        if r.get("prop_id")
         and not r.get("deed_date")
-        and r.get("type") in ("NOF", "TAX", "LP", "PRE_FORE")
+        and r.get("type") in ("NOF", "TAX", "LP", "APPT")
     ]
     candidates = candidates[:DEED_FETCH_LIMIT]
 
     if not candidates:
-        log.info("BCAD deed+ARV: no eligible new leads with prop_id — skipping")
+        log.info("BCAD deed+ARV: no eligible leads with prop_id — skipping")
         return records
 
-    log.info(f"BCAD deed+ARV: {len(candidates)} new leads to enrich")
+    log.info(f"BCAD deed+ARV: {len(candidates)} leads to enrich (backfill-eligible)")
     fetched = 0
     errors  = 0
 
     for rec in candidates:
         prop_id = rec["prop_id"]
         addr    = rec.get("address", "")
-        url     = BCAD_DETAIL_URL.format(prop_id=prop_id)
+        url     = BCAD_DETAIL_URL.format(prop_id=int(float(prop_id)))
         log.info(f"  BCAD [{prop_id}] {addr}")
 
         try:
-            driver.set_page_load_timeout(25)
+            driver.set_page_load_timeout(30)
             driver.get(url)
-            time.sleep(3)
+            time.sleep(4)
         except Exception as e:
             log.warning(f"  BCAD [{prop_id}] load timeout: {e}")
             errors += 1
@@ -1354,144 +1350,162 @@ def fetch_deed_and_arv(records, driver):
         last_sale_amt = ""
 
         try:
-            from selenium.webdriver.support.ui import WebDriverWait
-            from selenium.webdriver.support import expected_conditions as EC
+            # ── Click ALL clickable tr/td rows that mention deed or value ─────
+            # trueautomation uses tr rows with onclick= to expand sections.
+            clicked_deed  = False
+            clicked_value = False
 
-            # ── Click open "Deed History" accordion if collapsed ──────────────
-            # trueautomation uses clickable header rows to expand sections
+            js_click_by_text = """
+                var els = document.querySelectorAll('tr[onclick], td[onclick], tr[style*="cursor"], td[style*="cursor"]');
+                var clicked = [];
+                for (var i = 0; i < els.length; i++) {
+                    var txt = (els[i].innerText || els[i].textContent || '').toLowerCase();
+                    if (txt.indexOf('deed') !== -1 && clicked.indexOf('deed') === -1) {
+                        els[i].click();
+                        clicked.push('deed');
+                    }
+                    if ((txt.indexOf('value') !== -1 || txt.indexOf('sale') !== -1) && clicked.indexOf('value') === -1) {
+                        els[i].click();
+                        clicked.push('value');
+                    }
+                }
+                return clicked;
+            """
             try:
-                headers = driver.find_elements(By.CSS_SELECTOR,
-                    "tr.sectionHeader, tr[onclick], td.sectionHeader, div.sectionHeader, "
-                    "h3, h4, .accordion-header, [data-toggle], td[style*='cursor']")
-                for hdr in headers:
-                    txt = (hdr.text or "").lower()
-                    if "deed" in txt:
-                        driver.execute_script("arguments[0].click();", hdr)
-                        time.sleep(2)
-                        log.info(f"  BCAD [{prop_id}] clicked deed history header")
-                        break
-            except Exception:
-                pass
+                clicked = driver.execute_script(js_click_by_text)
+                log.info(f"  BCAD [{prop_id}] JS clicked: {clicked}")
+                if clicked:
+                    time.sleep(3)
+                    clicked_deed  = "deed"  in (clicked or [])
+                    clicked_value = "value" in (clicked or [])
+            except Exception as js_e:
+                log.debug(f"  BCAD [{prop_id}] JS click error: {js_e}")
 
-            # ── Also try clicking "Values" section for last_sale_amt ──────────
-            try:
-                headers2 = driver.find_elements(By.CSS_SELECTOR,
-                    "tr.sectionHeader, tr[onclick], td.sectionHeader, div.sectionHeader, "
-                    "h3, h4, .accordion-header, [data-toggle], td[style*='cursor']")
-                for hdr in headers2:
-                    txt = (hdr.text or "").lower()
-                    if "value" in txt or "sale" in txt:
-                        driver.execute_script("arguments[0].click();", hdr)
-                        time.sleep(1)
-                        break
-            except Exception:
-                pass
+            # Fallback: direct Selenium click on any element whose text contains "deed"
+            if not clicked_deed:
+                try:
+                    all_els = driver.find_elements(By.CSS_SELECTOR, "tr, td, div, span, h3, h4")
+                    for el in all_els:
+                        txt = (el.text or "").lower()
+                        if "deed" in txt and len(txt) < 80:
+                            try:
+                                driver.execute_script("arguments[0].click();", el)
+                                time.sleep(2)
+                                clicked_deed = True
+                                log.info(f"  BCAD [{prop_id}] fallback clicked deed element")
+                                break
+                            except Exception:
+                                continue
+                except Exception:
+                    pass
 
-            # ── Wait for a date pattern to appear in any table cell ───────────
+            # Wait for date pattern to appear anywhere in page
             try:
-                WebDriverWait(driver, 8).until(
-                    lambda d: any(
-                        _re.search(r"\d{1,2}/\d{1,2}/\d{4}", cell.text or "")
-                        for cell in d.find_elements(By.CSS_SELECTOR, "td")
-                    )
+                WebDriverWait(driver, 10).until(
+                    lambda d: bool(_re.search(
+                        r"\d{1,2}/\d{1,2}/\d{4}",
+                        d.find_element(By.TAG_NAME, "body").text
+                    ))
                 )
             except Exception:
-                pass  # proceed with whatever rendered
+                log.info(f"  BCAD [{prop_id}] no date pattern appeared after wait")
 
-            body = driver.find_element(By.TAG_NAME, "body").text
+            body  = driver.find_element(By.TAG_NAME, "body").text
             lines = [l.strip() for l in body.split("\n") if l.strip()]
 
-            # ── Deed History: find header then grab first data row ────────────
-            # Page text has "Deed History" section with rows like:
-            # "9/13/2017  RES  Rescind of previous deed  MULTIMADERAS USA LLC  GUERRERO..."
-            # We scan for date pattern MM/DD/YYYY after the Deed History heading
-            in_deed_section = False
+            # Strategy 1: find "Deed History" heading then grab first date line
+            in_deed = False
             for line in lines:
-                if "deed history" in line.lower():
-                    in_deed_section = True
+                ll = line.lower()
+                if "deed history" in ll:
+                    in_deed = True
                     continue
-                if in_deed_section:
-                    # Look for a line starting with a date MM/DD/YYYY
+                if in_deed:
                     m = _re.match(r"^(\d{1,2}/\d{1,2}/\d{4})\b", line)
                     if m:
                         deed_date = m.group(1)
+                        log.info(f"  BCAD [{prop_id}] deed date from text: {deed_date}")
                         break
-                    # Stop if we hit another section header
                     if line.isupper() and len(line) > 10:
                         break
 
-            # ── Values section: last sale amount ─────────────────────────────
-            # Look for patterns like "Sale Price: $142,500" or "Prior Sales Price $142,500"
-            # or a line containing dollar amount near "sale" keyword
+            # Strategy 2: scan table rows for deed section then first date cell
+            if not deed_date:
+                try:
+                    rows = driver.find_elements(By.CSS_SELECTOR, "table tr")
+                    deed_section = False
+                    for row in rows:
+                        rtxt  = (row.text or "").strip()
+                        rtxtl = rtxt.lower()
+                        if "deed history" in rtxtl:
+                            deed_section = True
+                            continue
+                        if deed_section:
+                            cells = row.find_elements(By.TAG_NAME, "td")
+                            for cell in cells:
+                                m = _re.match(r"^(\d{1,2}/\d{1,2}/\d{4})\b",
+                                              (cell.text or "").strip())
+                                if m:
+                                    deed_date = m.group(1)
+                                    log.info(f"  BCAD [{prop_id}] deed date from table row: {deed_date}")
+                                    break
+                            if deed_date:
+                                break
+                            if rtxt.isupper() and len(rtxt) > 10 and len(cells) <= 1:
+                                break
+                except Exception as te:
+                    log.debug(f"  BCAD [{prop_id}] table scan error: {te}")
+
+            # Strategy 3: scan all td elements after a "deed" cell
+            if not deed_date:
+                try:
+                    all_cells = driver.find_elements(By.CSS_SELECTOR, "td")
+                    deed_flag = False
+                    for cell in all_cells:
+                        ctxt = (cell.text or "").strip()
+                        if "deed" in ctxt.lower() and len(ctxt) < 60:
+                            deed_flag = True
+                            continue
+                        if deed_flag:
+                            m = _re.match(r"^(\d{1,2}/\d{1,2}/\d{4})\b", ctxt)
+                            if m:
+                                deed_date = m.group(1)
+                                log.info(f"  BCAD [{prop_id}] deed date from cell scan: {deed_date}")
+                                break
+                            if len(ctxt) > 5 and not _re.search(r"\d{1,2}/\d{1,2}/\d{4}", ctxt):
+                                deed_flag = False
+                except Exception:
+                    pass
+
+            # Parse last sale amount
+            sale_keywords = [
+                "sale price", "prior sale", "sales price",
+                "deed amount", "consideration", "purchase price",
+            ]
             for i, line in enumerate(lines):
                 ll = line.lower()
-                if any(x in ll for x in ["sale price", "prior sale", "sales price", "deed amount", "consideration"]):
-                    # Try to find dollar amount on same line or next line
-                    amt_m = _re.search(r"\$?([\d,]+(?:\.\d{2})?)", line)
+                if any(kw in ll for kw in sale_keywords):
+                    amt_m = _re.search(r"\$?([\d,]{4,}(?:\.\d{2})?)", line)
                     if not amt_m and i + 1 < len(lines):
-                        amt_m = _re.search(r"\$?([\d,]+(?:\.\d{2})?)", lines[i + 1])
+                        amt_m = _re.search(r"\$?([\d,]{4,}(?:\.\d{2})?)", lines[i + 1])
                     if amt_m:
                         raw_amt = amt_m.group(1).replace(",", "")
                         try:
-                            if float(raw_amt) > 1000:  # filter out noise like page numbers
+                            if float(raw_amt) > 5000:
                                 last_sale_amt = "$" + amt_m.group(1)
                                 break
                         except Exception:
                             pass
 
-            # ── Also try table cells via Selenium if text parse missed ────────
-            if not deed_date:
-                try:
-                    # Scan ALL table cells for date pattern — deed history rows
-                    # have dates in first cell. Find the section by scanning for
-                    # a date after any row that mentions "deed"
-                    all_cells = driver.find_elements(By.CSS_SELECTOR, "td")
-                    found_deed_section = False
-                    for cell in all_cells:
-                        txt = (cell.text or "").strip()
-                        if "deed" in txt.lower() and len(txt) < 60:
-                            found_deed_section = True
-                            continue
-                        if found_deed_section:
-                            m = _re.match(r"^(\d{1,2}/\d{1,2}/\d{4})\b", txt)
-                            if m:
-                                deed_date = m.group(1)
-                                log.info(f"  BCAD [{prop_id}] found deed date via cell scan")
-                                break
-                            # Reset if we've moved too far without finding a date
-                            if len(txt) > 5 and not _re.search(r"\d", txt):
-                                found_deed_section = False
-                except Exception as ce:
-                    log.debug(f"  BCAD [{prop_id}] cell scan error: {ce}")
-
-            # ── Last resort: scan ALL cells for any date ──────────────────────
-            if not deed_date:
-                try:
-                    all_rows = driver.find_elements(By.CSS_SELECTOR, "table tr")
-                    for row in all_rows:
-                        row_txt = (row.text or "").lower()
-                        if "deed" not in row_txt and "sale" not in row_txt:
-                            continue
-                        cells = row.find_elements(By.TAG_NAME, "td")
-                        for cell in cells:
-                            m = _re.match(r"^(\d{1,2}/\d{1,2}/\d{4})\b", (cell.text or "").strip())
-                            if m:
-                                deed_date = m.group(1)
-                                break
-                        if deed_date:
-                            break
-                except Exception:
-                    pass
-
         except Exception as e:
-            log.debug(f"  BCAD [{prop_id}] parse error: {e}")
+            log.warning(f"  BCAD [{prop_id}] parse error: {e}")
             errors += 1
             continue
 
-        # ── Calculate tenure from deed_date ───────────────────────────────────
+        # Calculate tenure from deed_date
         if deed_date:
             try:
-                deed_dt  = datetime.strptime(deed_date.strip(), "%m/%d/%Y")
+                deed_dt    = datetime.strptime(deed_date.strip(), "%m/%d/%Y")
                 tenure_yrs = max((TODAY_NAIVE - deed_dt).days // 365, 0)
             except Exception:
                 tenure_yrs = None
@@ -1504,7 +1518,7 @@ def fetch_deed_and_arv(records, driver):
 
         log.info(f"  → deed={deed_date or '—'} tenure={tenure_yrs}yr "
                  f"last_sale={last_sale_amt or '—'} bonus=+{tenure_bonus(tenure_yrs)}")
-        time.sleep(1.5)
+        time.sleep(2)
 
     log.info(f"BCAD deed+ARV: {fetched} enriched, {errors} errors out of {len(candidates)} candidates")
     return records
@@ -1543,7 +1557,6 @@ def score_record(rec):
         if cat in CE_ABSENTEE:              s += 2
         if rec.get("ce_status", "").upper() == "OPEN":
             s += 1
-    # v28.30: tenure bonus — long-held = high motivation signal
     s += rec.get("tenure_score_bonus", 0)
     return s
 
@@ -1578,13 +1591,13 @@ if __name__ == "__main__":
     os.makedirs("dashboard", exist_ok=True)
 
     log.info("=" * 60)
-    log.info("Bexar County Lead Scraper v28.31 (Hybrid)")
+    log.info("Bexar County Lead Scraper v28.32 (Hybrid)")
     log.info(f"Primary:   PublicSearch.us ({KEEP_DAYS}d window, {CHUNK_DAYS}d chunks, {PAGE_TIMEOUT}s timeout)")
     log.info(f"Secondary: ArcGIS weekly backfill = {IS_SUNDAY}")
     log.info(f"Tertiary:  Code Enforcement 311 ({len(CE_CATEGORIES)} categories, {KEEP_DAYS}d window)")
     log.info(f"Doc fetch: backfill window = {DOC_FETCH_DAYS}d")
     log.info(f"Tenure:    scoring active — 15+yr=+25pts, 10-14yr=+15pts, 5-9yr=+5pts")
-    log.info(f"BCAD:      deed history + ARV via trueautomation.com (new leads only, cap={DEED_FETCH_LIMIT})")
+    log.info(f"BCAD:      deed history + ARV via trueautomation.com (backfill-eligible, cap={DEED_FETCH_LIMIT})")
     log.info(f"Filter:    {KEEP_DAYS}-day cutoff ({CUTOFF_DATE.strftime('%Y-%m-%d')}) | live auctions always kept")
     log.info("=" * 60)
 
@@ -1626,17 +1639,13 @@ if __name__ == "__main__":
     for r in prev_records:
         r["is_new"] = False
 
-    # Build prev_records index for VBP CE field preservation
     prev_by_doc = {r["doc_number"]: r for r in prev_records if r.get("doc_number")}
 
-    # VBP CE fields written by vbp_scraper — must never be lost on fetch.py runs
     VBP_CE_FIELDS = [
         "stacked", "ce_violations", "ce_viol_types", "ce_count",
         "ce_cat_label", "ce_status", "opened_date", "ce_case_id",
     ]
 
-    # v28.30: tenure fields to preserve from prev_records if already enriched
-    # v28.31: also preserve prop_id, deed_date, last_sale_amt
     TENURE_FIELDS = ["sale_date_arcgis", "tenure_years", "tenure_score_bonus",
                      "prop_id", "deed_date", "last_sale_amt"]
 
@@ -1648,7 +1657,6 @@ if __name__ == "__main__":
         if doc not in seen:
             seen[doc] = r
 
-    # Preserve VBP CE fields and tenure fields from prev_records
     vbp_ce_preserved = 0
     tenure_preserved = 0
     for doc, r in seen.items():
@@ -1659,7 +1667,6 @@ if __name__ == "__main__":
                     if prev.get(field) and not r.get(field):
                         r[field] = prev[field]
                         vbp_ce_preserved += 1
-            # Preserve tenure data on any record type if already resolved
             for field in TENURE_FIELDS:
                 if prev.get(field) is not None and prev.get(field) != "" and not r.get(field):
                     r[field] = prev[field]
@@ -1681,15 +1688,16 @@ if __name__ == "__main__":
     # ── Step 6: Owner enrichment ──────────────────────────────────────────────
     records = enrich_owners(records)
 
-    # ── Step 6b: BCAD deed history + ARV (new leads with prop_id only) ───────
+    # ── Step 6b: BCAD deed history + ARV (backfill-eligible: prop_id, no deed_date)
     bcad_driver = None
     try:
-        new_with_prop = [r for r in records if r.get("is_new") and r.get("prop_id") and not r.get("deed_date")]
-        if new_with_prop:
+        # v28.32: removed is_new check — backfills ALL leads with prop_id and no deed_date
+        needs_deed = [r for r in records if r.get("prop_id") and not r.get("deed_date")]
+        if needs_deed:
             bcad_driver = get_driver()
             records = fetch_deed_and_arv(records, bcad_driver)
         else:
-            log.info("BCAD deed+ARV: no new leads with prop_id to enrich")
+            log.info("BCAD deed+ARV: no leads with prop_id missing deed_date — skipping")
     except Exception as e:
         log.warning(f"BCAD deed+ARV driver error: {e}")
     finally:
@@ -1725,7 +1733,6 @@ if __name__ == "__main__":
             if cat in CE_ABSENTEE:               r["flags"].append("ABSENTEE PROP")
             if cat in CE_VACANT:                  r["flags"].append("VACANT STRUCT")
             if cat in CE_MIN_HOUS:                r["flags"].append("MIN HOUSING")
-        # v28.30/31: LONG HELD flag — tenure_years set by deed_date (v28.31) or ArcGIS (v28.30)
         if (r.get("tenure_years") or 0) >= 10:   r["flags"].append("LONG HELD")
         r["stacked"]           = existing_stacked
         r["score"]             = score_record(r)
