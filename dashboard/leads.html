@@ -361,6 +361,17 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 .fin-val{font-family:'DM Mono',monospace;font-size:15px;font-weight:700;color:var(--text);line-height:1}
 .fin-val.blue{color:var(--blue-dk)}.fin-val.amber{color:var(--amber-dk)}.fin-val.red{color:var(--red-dk)}.fin-val.teal{color:var(--teal-dk)}
 .fin-key{font-size:8px;color:var(--muted);margin-top:3px;text-transform:uppercase;letter-spacing:.05em}
+/* v4.1: appraisal trend */
+.trend-up{color:var(--green);font-weight:700}
+.trend-down{color:var(--red);font-weight:700}
+.trend-flat{color:var(--muted);font-weight:700}
+.roll-table{width:100%;border-collapse:collapse;font-size:10px;margin-top:8px}
+.roll-table th{text-align:left;color:var(--dim);font-size:8px;text-transform:uppercase;letter-spacing:.05em;padding:3px 6px;border-bottom:1px solid var(--border);font-weight:600;font-family:'DM Mono',monospace}
+.roll-table td{padding:4px 6px;font-family:'DM Mono',monospace;font-size:11px;color:var(--text2);border-bottom:1px solid var(--bg3)}
+.roll-table tr:first-child td{font-weight:700;color:var(--text)}
+.roll-table td.chg.up{color:var(--green)}.roll-table td.chg.down{color:var(--red)}.roll-table td.chg.flat{color:var(--muted)}
+.li-trend{font-size:10px;font-weight:700;font-family:'DM Mono',monospace}
+.li-trend.up{color:var(--green)}.li-trend.down{color:var(--red)}.li-trend.flat{color:var(--muted)}
 .eq-labels{display:flex;justify-content:space-between;font-size:9px;color:var(--muted);margin-bottom:3px;font-family:'DM Mono',monospace}
 .eq-track{height:5px;background:var(--bg3);border-radius:99px;overflow:hidden;margin-bottom:7px}
 .eq-fill{height:100%;border-radius:99px;transition:width .5s}
@@ -478,7 +489,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 <body>
 <!-- NAV -->
 <div class="nav">
-  <div class="nav-logo" onclick="toggleCountySwitcher()">BEXAR<span>·</span>LEADS<sub>v4.0</sub> <span style="font-size:10px;color:var(--dim)">▾</span>
+  <div class="nav-logo" onclick="toggleCountySwitcher()">BEXAR<span>·</span>LEADS<sub>v4.1</sub> <span style="font-size:10px;color:var(--dim)">▾</span>
     <div id="county-dropdown" style="display:none;position:absolute;top:42px;left:0;background:var(--surface);border:1px solid var(--border2);border-radius:var(--rl);min-width:220px;z-index:9999;box-shadow:var(--shadow-md);overflow:hidden"><div id="county-list"></div><div style="padding:8px 12px;border-top:1px solid var(--border)"><button onclick="openSettings();closeCountySwitcher()" style="font-size:11px;color:var(--blue);background:none;border:none;cursor:pointer;padding:0;font-family:'Inter',sans-serif">+ Manage counties</button></div></div>
   </div>
   <div class="nav-tabs">
@@ -664,9 +675,16 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
               <div class="fin-card"><div class="fin-val" id="m-ltv">—</div><div class="fin-key">LTV</div></div>
             </div>
             <div class="fin-grid-2">
-              <div class="fin-card arv-card"><div class="fin-val blue" id="m-last-sale">—</div><div class="fin-key">Last Sale Amt</div></div>
+              <div class="fin-card" id="m-trend-card"><div class="fin-val" id="m-appr-trend">—</div><div class="fin-key">Value Trend</div></div>
               <div class="fin-card tenure-card"><div class="fin-val teal" id="m-tenure-yrs">—</div><div class="fin-key">Yrs Owned</div></div>
               <div class="fin-card tenure-card"><div class="fin-val teal" id="m-tenure-bonus">—</div><div class="fin-key">Tenure Bonus</div></div>
+            </div>
+            <!-- v4.1: roll value history table -->
+            <div id="m-roll-history" style="display:none">
+              <table class="roll-table">
+                <thead><tr><th>Year</th><th>Appraised</th><th>Change</th></tr></thead>
+                <tbody id="m-roll-tbody"></tbody>
+              </table>
             </div>
             <div class="eq-labels"><span>Loan</span><span id="eq-center-lbl" style="font-weight:500">—</span><span>Appraised</span></div>
             <div class="eq-track"><div class="eq-fill" id="eq-fill" style="width:0%"></div></div>
@@ -728,7 +746,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
               <div class="info-field"><div class="info-lbl">Annual Taxes</div><div class="info-val red" id="m-taxes">—</div></div>
               <div class="info-field"><div class="info-lbl">Trustee</div><div class="info-val" id="m-trustee">—</div></div>
               <div class="info-field"><div class="info-lbl">Deed Date</div><div class="info-val teal" id="m-deed-date">—</div></div>
-              <div class="info-field"><div class="info-lbl">Last Sale Amt</div><div class="info-val blue" id="m-last-sale-2">—</div></div>
+              <div class="info-field"><div class="info-lbl">Value Trend</div><div class="info-val" id="m-appr-trend-2">—</div></div>
             </div>
           </div>
           <div class="dsec"><div class="dsec-lbl">Activity</div><div id="timeline"></div></div>
@@ -838,6 +856,10 @@ function runTsToMs(l){try{if(l.run_ts)return new Date(l.run_ts).getTime();}catch
 function scrapedDaysAgo(l){const ms=runTsToMs(l);if(!ms)return null;return Math.floor((Date.now()-ms)/(1000*60*60*24));}
 function scrapedAgoStr(l){const d=scrapedDaysAgo(l);if(d===null)return'';if(d===0)return'today';if(d===1)return'1d ago';return d+'d ago';}
 function tenureChipHTML(lead){const yrs=lead.tenure_years;if(yrs==null)return'';if(yrs>=15)return`<span class="li-tenure t-hot">🏠 ${yrs}yr</span>`;if(yrs>=10)return`<span class="li-tenure t-warm">🏠 ${yrs}yr</span>`;if(yrs>=5)return`<span class="li-tenure t-cool">🏠 ${yrs}yr</span>`;return'';}
+// v4.1: appraisal trend helpers
+function trendArrow(t){if(t==='up')return'↑';if(t==='down')return'↓';if(t==='flat')return'→';return'';}
+function trendClass(t){if(t==='up')return'up';if(t==='down')return'down';return'flat';}
+function trendLabel(t){if(t==='up')return'↑ Rising';if(t==='down')return'↓ Declining';if(t==='flat')return'→ Stable';return'—';}
 
 /* FETCH */
 async function fetchLeads(){
@@ -1022,7 +1044,7 @@ function renderItem(lead,idx){
   return`<div class="${cc}" onclick="selectLead('${lead.doc_number}')">
 <div class="li-top"><span class="li-rank">${idx+1}</span><span class="li-score ${sc}">${lead.score}</span>${tenureHTML}<span class="li-name">${displayName}</span>${isNew&&!isSel?'<span class="li-new-tag">NEW</span>':''}</div>
 <div class="li-addr">${lead.address||''}${lead.zip?' '+lead.zip:''}</div>
-<div class="li-bot"><div class="li-badges">${b.join('')}</div><div class="li-right">${scrapedStr?`<span class="li-age ${scrapedCls}">⬇ ${scrapedStr}</span>`:''} ${ageStr?`<span class="li-age ${ageCls}">${ageStr}</span>`:''} ${eqStr?`<span class="li-eq">Eq <b>${eqStr}</b></span>`:''} ${dateStr?`<span class="li-date ${dateCls}">🔨${dateStr}</span>`:''}</div></div>
+<div class="li-bot"><div class="li-badges">${b.join('')}</div><div class="li-right">${scrapedStr?`<span class="li-age ${scrapedCls}">⬇ ${scrapedStr}</span>`:''} ${ageStr?`<span class="li-age ${ageCls}">${ageStr}</span>`:''} ${lead.appr_trend?`<span class="li-trend ${trendClass(lead.appr_trend)}">${trendArrow(lead.appr_trend)}</span>`:''} ${eqStr?`<span class="li-eq">Eq <b>${eqStr}</b></span>`:''} ${dateStr?`<span class="li-date ${dateCls}">🔨${dateStr}</span>`:''}</div></div>
 </div>`;}
 
 function selectLead(doc){selectedDoc=doc;selectedIdx=filteredLeads.findIndex(l=>l.doc_number===doc);const lead=allLeads.find(l=>l.doc_number===doc);if(!lead)return;if(currentNavView==='dash')showView('work');renderList();populateDetail(lead);}
@@ -1074,9 +1096,21 @@ function populateDetail(lead){
   const pct=eq!=null&&appr?Math.max(0,Math.min(100,Math.round((appr-loan)/appr*100))):0;
   const fill=document.getElementById('eq-fill');fill.style.width=pct+'%';fill.style.background=eq!=null?(eq>=0?'linear-gradient(90deg,var(--blue),var(--teal))':'linear-gradient(90deg,var(--red),var(--amber))'):'var(--dim)';
   const lastSale=lead.last_sale_amt||'';const tenureYrs=lead.tenure_years;const tenureBonus=lead.tenure_score_bonus||0;
-  document.getElementById('m-last-sale').textContent=lastSale||'—';
+  const trend=lead.appr_trend||'';const history=lead.appr_history||[];
+  document.getElementById('m-last-sale') && (document.getElementById('m-last-sale').textContent=lastSale||'—');
   document.getElementById('m-tenure-yrs').textContent=tenureYrs!=null?tenureYrs+' yrs':'—';
   document.getElementById('m-tenure-bonus').textContent=tenureBonus>0?'+'+tenureBonus+' pts':'—';
+  // v4.1: trend card
+  const trendEl=document.getElementById('m-appr-trend');
+  const trendCard=document.getElementById('m-trend-card');
+  if(trendEl&&trend){trendEl.textContent=trendLabel(trend);trendEl.className='fin-val '+trendClass(trend);if(trendCard)trendCard.style.borderColor=trend==='up'?'var(--green-mid)':trend==='down'?'var(--red-mid)':'var(--border)';}
+  else if(trendEl){trendEl.textContent='—';trendEl.className='fin-val';}
+  const trendEl2=document.getElementById('m-appr-trend-2');
+  if(trendEl2){trendEl2.textContent=trend?trendLabel(trend):'—';trendEl2.className='info-val '+trendClass(trend);}
+  // v4.1: roll history table
+  const rollDiv=document.getElementById('m-roll-history');
+  const rollBody=document.getElementById('m-roll-tbody');
+  if(rollDiv&&rollBody&&history.length>=2){rollDiv.style.display='block';rollBody.innerHTML=history.slice(0,4).map((h,i)=>{const prev=history[i+1];const chg=prev?Math.round((h.appraised-prev.appraised)/prev.appraised*100):null;const chgCls=chg==null?'':chg>2?'up':chg<-2?'down':'flat';const chgStr=chg==null?'—':(chg>0?'+':'')+chg+'%';return`<tr><td>${h.year}</td><td>$${h.appraised.toLocaleString()}</td><td class="chg ${chgCls}">${chgStr}</td></tr>`;}).join('');}else if(rollDiv)rollDiv.style.display='none';
   const sigBox=document.getElementById('sig-box');
   if(eq!=null&&appr){sigBox.style.display='block';const loand=lead.loan_date?new Date(lead.loan_date):null;const old=loand&&(new Date()-loand)>5*365*24*60*60*1000;let sig='';if(eq<0)sig='Recent loan + underwater → may not pencil';else if(old&&eq>50000)sig='Old loan + high equity → has options, needs convincing';else if(!old&&eq>50000&&lead.absentee)sig='Absentee + high equity → best call of the day';else if(loan>appr*.8)sig='High loan + low equity → needs relief fast';else sig='Check equity before making the offer';if(tenureYrs>=15)sig+=' · 15+ yrs owned → highly motivated';else if(tenureYrs>=10)sig+=' · 10+ yrs owned → strong motivation signal';sigBox.textContent=sig;}
   else if(tenureYrs!=null){sigBox.style.display='block';sigBox.textContent=tenureYrs>=15?`Owner held ${tenureYrs} years — long-term, likely equity-rich and motivated`:tenureYrs>=10?`Owner held ${tenureYrs} years — solid motivation signal`:`Owner held ${tenureYrs} years`;}
@@ -1086,7 +1120,6 @@ function populateDetail(lead){
   document.getElementById('m-trustee').textContent=lead.trustee||'—';
   document.getElementById('m-taxes').textContent=lead.annual_taxes?'$'+Number(lead.annual_taxes).toLocaleString()+'/yr':'—';
   document.getElementById('m-deed-date').textContent=lead.deed_date?fmtDate(lead.deed_date):'—';
-  document.getElementById('m-last-sale-2').textContent=lastSale||'—';
   ['sf-first','sf-last','sf-city','sf-zip'].forEach((id,i)=>{const vals=[first,last,city,zip];const el=document.getElementById(id);el.textContent=vals[i]||'—';el.onclick=()=>{navigator.clipboard.writeText(el.textContent);toast('Copied: '+el.textContent);};});
   if(ls.phone){document.getElementById('phone-saved-area').style.display='block';document.getElementById('phone-entry-area').style.display='none';document.getElementById('saved-phone-display').textContent='📞 '+ls.phone;document.getElementById('saved-phone-meta').textContent=ls.searchedAt?'Searched '+new Date(ls.searchedAt).toLocaleDateString():'Searched';}
   else{document.getElementById('phone-saved-area').style.display='none';document.getElementById('phone-entry-area').style.display='block';document.getElementById('phone-input').value='';const th=document.getElementById('tracerfy-hint');if(th){if(lead.tracerfy_phone&&!lead.tracerfy_dnc){th.style.display='block';th.textContent='📱 Auto-traced: '+lead.tracerfy_phone+' — click to use';}else th.style.display='none';}}
