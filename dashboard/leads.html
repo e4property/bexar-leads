@@ -302,7 +302,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 <body>
 <div class="topbar">
   <div class="logo-wrap" style="position:relative">
-    <div class="logo" id="county-logo" onclick="toggleCountySwitcher()" style="cursor:pointer;user-select:none">BEXAR<span>·</span>LEADS<sub>v3.4</sub> <span style="font-size:10px;color:var(--muted)">▾</span></div>
+    <div class="logo" id="county-logo" onclick="toggleCountySwitcher()" style="cursor:pointer;user-select:none">BEXAR<span>·</span>LEADS<sub>v3.5</sub> <span style="font-size:10px;color:var(--muted)">▾</span></div>
     <div id="county-dropdown" style="display:none;position:absolute;top:40px;left:0;background:var(--surface);border:1px solid var(--border2);border-radius:var(--rl);min-width:220px;z-index:9999;box-shadow:var(--shadow-md);overflow:hidden"><div id="county-list"></div><div style="padding:8px 14px;border-top:1px solid var(--border)"><button onclick="openSettings();closeCountySwitcher()" style="font-size:11px;color:var(--blue);background:none;border:none;cursor:pointer;padding:0;font-family:'Inter',sans-serif">+ Manage counties</button></div></div>
   </div>
   <div class="stat-pills">
@@ -365,7 +365,8 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
       </div>
       <div class="search-wrap"><span class="search-ico">🔎</span><input class="search-input" id="search-input" placeholder="Name, address, zip…" oninput="filterLeads()"></div>
       <div class="sort-row">
-        <span class="sc on" id="sort-filed" onclick="setSort('filed',this)">Filed</span>
+        <span class="sc on" id="sort-recent" onclick="setSort('recent',this)">Recent</span>
+        <span class="sc" id="sort-filed" onclick="setSort('filed',this)">Filed</span>
         <span class="sc" id="sort-urgency" onclick="setSort('urgency',this)">Urgency</span>
         <span class="sc" id="sort-score" onclick="setSort('score',this)">Score</span>
         <span class="sc" id="sort-equity" onclick="setSort('equity',this)">Equity</span>
@@ -528,7 +529,7 @@ const GH_REPO='e4property/bexar-leads',GH_WORKFLOW='scrape.yml';
 const AGED_DAYS=60;
 let S={ghlApiKey:'',ghlLocationId:'UAOJlgeerLu3GChP9jDJ',recordsUrl:REC_URL_DEFAULT,weekStart:sundayTs(),used:0,leads:{},ghToken:''};
 let allLeads=[],filteredLeads=[],selectedDoc=null,selectedIdx=-1;
-let currentView='all',currentSort='filed',searchQ='';
+let currentView='all',currentSort='recent',searchQ='';
 
 function init(){loadState();checkWeekReset();updateBudgetUI();updateResetInfo();initCountySwitcher();fetchLeads();setupKeys();}
 function sundayTs(){const n=new Date(),d=new Date(n);d.setDate(n.getDate()-n.getDay());d.setHours(0,0,0,0);return d.getTime();}
@@ -562,6 +563,10 @@ function getGHLTag(l){if(isStacked(l))return'bexar_stacked';if(isVBP(l)&&!isStac
 function getVBPViolation(l){return l.ce_cat_label||l.ce_reason||l.ce_category||'';}
 function isVBPDangerous(l){const v=getVBPViolation(l).toLowerCase();return v.includes('dangerous')||v.includes('bsb');}
 function filedToNum(l){const df=l.date_filed||l.opened_date||'';try{const p=df.split('/');if(p.length===2)return parseInt(p[1])*100+parseInt(p[0]);if(p.length===3)return parseInt(p[2])*10000+parseInt(p[0])*100+parseInt(p[1]);}catch(e){}return 0;}
+// v3.5: sort by when lead entered pipeline (run_ts)
+function runTsToMs(l){try{if(l.run_ts)return new Date(l.run_ts).getTime();}catch(e){}return 0;}
+function scrapedDaysAgo(l){const ms=runTsToMs(l);if(!ms)return null;return Math.floor((Date.now()-ms)/(1000*60*60*24));}
+function scrapedAgoStr(l){const d=scrapedDaysAgo(l);if(d===null)return'';if(d===0)return'today';if(d===1)return'1d ago';return d+'d ago';}
 
 // v3.4: tenure chip helper for lead card
 function tenureChipHTML(lead){const yrs=lead.tenure_years;if(yrs==null)return'';if(yrs>=15)return`<span class="li-tenure t-hot">🏠 ${yrs}yr</span>`;if(yrs>=10)return`<span class="li-tenure t-warm">🏠 ${yrs}yr</span>`;if(yrs>=5)return`<span class="li-tenure t-cool">🏠 ${yrs}yr</span>`;return'';}
@@ -628,7 +633,7 @@ function setView(view,el,source){
 }
 
 function setTypeTab(id,el){if(id==='jarvis'){currentView='jarvis';document.querySelectorAll('.sidebar .sb-item').forEach(i=>i.classList.remove('on'));document.querySelectorAll('.type-tabs .ttab').forEach(t=>t.classList.remove('on'));const jt=document.getElementById('tt-jarvis-tab');if(jt)jt.classList.add('on');const sj=document.getElementById('sf-jarvis');if(sj)sj.classList.add('on');renderJarvisView();return;}setView(id,el);}
-function setSort(s,el){currentSort=s;document.querySelectorAll('.sort-row .sc').forEach(c=>c.classList.remove('on'));if(el)el.classList.add('on');filterLeads();}
+function setSort(s,el){currentSort=s;document.querySelectorAll('.sort-row .sc').forEach(c=>c.classList.remove('on'));if(el)el.classList.add('on');else{const se=document.getElementById('sort-'+s);if(se)se.classList.add('on');}filterLeads();}
 
 function renderJarvisView(){const ll=document.getElementById('lead-list');const jarvisLeads=allLeads.filter(l=>{const ls=LS(l.doc_number);return ls.ghl_pushed||ls.phone;}).sort((a,b)=>{const la=LS(a.doc_number),lb=LS(b.doc_number);return(lb.searchedAt||0)-(la.searchedAt||0);});if(!jarvisLeads.length){ll.innerHTML='<div class="jarvis-empty">No leads in Jarvis yet<br>Save a phone to push to GHL</div>';return;}const colors=[['var(--blue-bg)','var(--blue-dk)'],['var(--teal-bg)','var(--teal-dk)'],['var(--purple-bg)','var(--purple-dk)'],['var(--amber-bg)','var(--amber-dk)']];ll.innerHTML='<div>'+jarvisLeads.map((l,i)=>{const ls=LS(l.doc_number);const initials=(l.owner||'??').split(/\s+/).slice(0,2).map(w=>w[0]||'').join('').toUpperCase()||'??';const [bg,fg]=colors[i%colors.length];const tag=getGHLTag(l);const tagCls=tag==='bexar_stacked'?'b-stacked':tag==='bexar_vbp'?'b-vbp':tag==='bexar_ce'?'b-ce':tag==='bexar_lp'?'b-lp':'b-nof';const pushed=ls.searchedAt?new Date(ls.searchedAt).toLocaleDateString('en-US',{month:'short',day:'numeric'}):'';return`<div class="jarvis-item" onclick="selectLead('${l.doc_number}')"><div class="jarvis-avatar" style="background:${bg};color:${fg}">${initials}</div><div class="jarvis-info"><div class="jarvis-name">${l.owner||'—'}</div><div class="jarvis-meta">${l.address||''} · ${ls.phone||'no phone'}</div></div><div class="jarvis-right"><span class="badge ${tagCls}">${tag.replace('bexar_','')}</span><span class="jarvis-date">${pushed}</span></div></div>`;}).join('')+'</div>';}
 
@@ -655,6 +660,7 @@ function filterLeads(){
     if(currentView==='new')return(b.score||0)-(a.score||0);
     if(currentView==='urgent'){const ad=a.days_until_sale??9999,bd=b.days_until_sale??9999;return ad-bd;}
     if(currentView==='today')return 0;
+    if(currentSort==='recent')return runTsToMs(b)-runTsToMs(a);
     if(currentSort==='filed')return filedToNum(b)-filedToNum(a);
     if(currentSort==='score')return(b.score||0)-(a.score||0);
     if(currentSort==='equity'){const ae=getEquity(a),be=getEquity(b);if(!ae&&!be)return 0;if(!ae)return 1;if(!be)return-1;return be.equity-ae.equity;}
@@ -696,6 +702,9 @@ function renderItem(lead,idx){
   const d=lead.days_until_sale;const dateCls=d!=null&&d<=14?'urg':d!=null&&d<=30?'soon':'ok';const dateStr=d!=null&&!auctionPassed(lead)?`${d}d`:'';
   const eq=getEquity(lead);const eqStr=eq?'$'+Math.round(Math.abs(eq.equity)/1000)+'k':'';
   const age=daysAgo(lead);const ageCls=age<=14?'fresh':age<=60?'mid':'old';const ageStr=age<999?(age===0?'today':age+'d ago'):'';
+  // v3.5: scraped-ago indicator
+  const scrapedStr=scrapedAgoStr(lead);
+  const scrapedCls=scrapedDaysAgo(lead)<=1?'fresh':scrapedDaysAgo(lead)<=7?'mid':'old';
   // v3.4: tenure chip between score and name
   const tenureHTML=tenureChipHTML(lead);
   return`<div class="${cc}" onclick="selectLead('${lead.doc_number}')">
@@ -710,6 +719,7 @@ function renderItem(lead,idx){
 <div class="li-bot">
   <div class="li-badges">${b.join('')}</div>
   <div class="li-right">
+    ${scrapedStr?`<span class="li-age ${scrapedCls}" title="Scraped ${scrapedStr}">⬇ ${scrapedStr}</span>`:''}
     ${ageStr?`<span class="li-age ${ageCls}">${ageStr}</span>`:''}
     ${eqStr?`<span class="li-eq">Eq <b>${eqStr}</b></span>`:''}
     ${dateStr?`<span class="li-date ${dateCls}">🔨${dateStr}</span>`:''}
@@ -891,12 +901,12 @@ const DEFAULT_COUNTIES=[{id:'bexar',name:'Bexar County',label:'BEXAR·LEADS',url
 function getCounties(){try{const s=localStorage.getItem('bl_counties');if(s)return JSON.parse(s);}catch(e){}return DEFAULT_COUNTIES;}
 function saveCounties(c){localStorage.setItem('bl_counties',JSON.stringify(c));}
 function getActiveCounty(){try{const id=localStorage.getItem('bl_active_county');const counties=getCounties();return counties.find(c=>c.id===id)||counties[0];}catch(e){}return getCounties()[0];}
-function setActiveCounty(id){localStorage.setItem('bl_active_county',id);const county=getCounties().find(c=>c.id===id);if(!county)return;const logo=document.getElementById('county-logo');if(logo)logo.innerHTML=county.label+'<sub style="font-size:8px;font-family:\'DM Mono\',monospace;color:var(--muted);margin-left:3px">v3.4</sub> <span style="font-size:10px;color:var(--muted)">&#9660;</span>';S.recordsUrl=county.url;saveState();closeCountySwitcher();allLeads=[];filteredLeads=[];selectedDoc=null;selectedIdx=-1;document.getElementById('lead-list').innerHTML='<div class="loading">Loading<span class="ld">.</span><span class="ld">.</span><span class="ld">.</span></div>';fetchLeads();toast('Switched to '+county.name,'ok');}
+function setActiveCounty(id){localStorage.setItem('bl_active_county',id);const county=getCounties().find(c=>c.id===id);if(!county)return;const logo=document.getElementById('county-logo');if(logo)logo.innerHTML=county.label+'<sub style="font-size:8px;font-family:\'DM Mono\',monospace;color:var(--muted);margin-left:3px">v3.5</sub> <span style="font-size:10px;color:var(--muted)">&#9660;</span>';S.recordsUrl=county.url;saveState();closeCountySwitcher();allLeads=[];filteredLeads=[];selectedDoc=null;selectedIdx=-1;document.getElementById('lead-list').innerHTML='<div class="loading">Loading<span class="ld">.</span><span class="ld">.</span><span class="ld">.</span></div>';fetchLeads();toast('Switched to '+county.name,'ok');}
 function toggleCountySwitcher(){const dd=document.getElementById('county-dropdown');if(!dd)return;if(dd.style.display==='none'){renderCountyList();dd.style.display='block';setTimeout(()=>document.addEventListener('click',closeOnOutside),10);}else closeCountySwitcher();}
 function closeCountySwitcher(){const dd=document.getElementById('county-dropdown');if(dd)dd.style.display='none';document.removeEventListener('click',closeOnOutside);}
 function closeOnOutside(e){const w=document.querySelector('.logo-wrap');if(w&&!w.contains(e.target))closeCountySwitcher();}
 function renderCountyList(){const counties=getCounties();const active=getActiveCounty();const el=document.getElementById('county-list');if(!el)return;el.innerHTML=counties.map(c=>'<div onclick="setActiveCounty(\''+c.id+'\')" style="padding:10px 14px;cursor:pointer;display:flex;align-items:center;gap:10px;border-left:3px solid '+(c.id===active.id?c.color:'transparent')+';background:'+(c.id===active.id?'var(--surface2)':'transparent')+'"><div style="width:8px;height:8px;border-radius:50%;background:'+c.color+';flex-shrink:0"></div><div><div style="font-size:12px;font-weight:500;color:var(--text)">'+c.name+'</div><div style="font-size:9px;color:var(--muted);font-family:\'DM Mono\',monospace">'+(c.id===active.id?'&#9679; Active':'Click to switch')+'</div></div>'+(c.id===active.id?'<span style="margin-left:auto;font-size:10px;color:var(--blue)">&#10003;</span>':'')+'</div>').join('');}
-function initCountySwitcher(){const county=getActiveCounty();const logo=document.getElementById('county-logo');if(logo)logo.innerHTML=county.label+'<sub style="font-size:8px;font-family:\'DM Mono\',monospace;color:var(--muted);margin-left:3px">v3.4</sub> <span style="font-size:10px;color:var(--muted)">&#9660;</span>';S.recordsUrl=county.url;}
+function initCountySwitcher(){const county=getActiveCounty();const logo=document.getElementById('county-logo');if(logo)logo.innerHTML=county.label+'<sub style="font-size:8px;font-family:\'DM Mono\',monospace;color:var(--muted);margin-left:3px">v3.5</sub> <span style="font-size:10px;color:var(--muted)">&#9660;</span>';S.recordsUrl=county.url;}
 function autoLoadBestView(){const newCt=allLeads.filter(l=>l.is_new).length;if(newCt>0){setView('new',document.getElementById('sf-new'));}else{setView('all',document.getElementById('sf-all'));}}
 init();
 </script>
