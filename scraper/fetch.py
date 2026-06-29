@@ -494,6 +494,8 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
                     "prop_id":             "",
                     "deed_date":           "",
                     "last_sale_amt":       "",
+                    "appr_history":        [],
+                    "appr_trend":          "",
                 }
                 records.append(rec)
                 known_docs.add(doc_number)
@@ -1443,57 +1445,65 @@ def fetch_deed_and_arv(records, driver):
                 except Exception:
                     pass
 
-            # ── Read values / last sale amount ────────────────────────────────
+            # ── Read Roll Value History for appraisal trend ───────────────────
+            # div#rollHistoryDetails table: Year | Improvements | Land Market |
+            #   Ag Valuation | Appraised | HS Cap | Assessed
+            # We want the Appraised column (index 4) for last 3 years.
+            appr_history  = []   # list of {"year": "2026", "appraised": 291750}
+            appr_trend    = ""   # "up", "down", "flat"
             try:
-                # Try #valuesDetails section first
-                val_sections = driver.find_elements(
-                    By.CSS_SELECTOR,
-                    "div#valuesDetails, div#priorSalesDetails, div[id*='sale'], div[id*='value']"
-                )
-                sale_keywords = [
-                    "sale price", "prior sale", "sales price",
-                    "deed amount", "consideration", "purchase price",
-                ]
-                for section in val_sections:
-                    txt = (section.text or "").lower()
-                    if any(kw in txt for kw in sale_keywords):
-                        amt_m = _re.search(r"\$?([\d,]{4,}(?:\.\d{2})?)", section.text)
-                        if amt_m:
-                            raw = amt_m.group(1).replace(",", "")
-                            try:
-                                if float(raw) > 5000:
-                                    last_sale_amt = "$" + amt_m.group(1)
-                                    break
-                            except Exception:
-                                pass
-            except Exception:
-                pass
-
-            # Fallback: scan body text for sale amount keywords
-            if not last_sale_amt:
+                # Click Roll Value History open if collapsed
                 try:
-                    body_text = driver.find_element(By.TAG_NAME, "body").text
-                    lines = [l.strip() for l in body_text.split("\n") if l.strip()]
-                    sale_keywords = [
-                        "sale price", "prior sale", "sales price",
-                        "deed amount", "consideration", "purchase price",
-                    ]
-                    for i, line in enumerate(lines):
-                        ll = line.lower()
-                        if any(kw in ll for kw in sale_keywords):
-                            amt_m = _re.search(r"\$?([\d,]{4,}(?:\.\d{2})?)", line)
-                            if not amt_m and i + 1 < len(lines):
-                                amt_m = _re.search(r"\$?([\d,]{4,}(?:\.\d{2})?)", lines[i + 1])
-                            if amt_m:
-                                raw = amt_m.group(1).replace(",", "")
-                                try:
-                                    if float(raw) > 5000:
-                                        last_sale_amt = "$" + amt_m.group(1)
-                                        break
-                                except Exception:
-                                    pass
+                    roll_hdr = driver.find_element(By.CSS_SELECTOR, "div#rollHistory")
+                    opened = (roll_hdr.get_attribute("opened") or "").lower()
+                    if opened != "true":
+                        driver.execute_script("arguments[0].click();", roll_hdr)
+                        time.sleep(1.5)
                 except Exception:
-                    pass
+                    # Fallback: find by text
+                    try:
+                        hdrs = driver.find_elements(By.CSS_SELECTOR, "div.titleBar")
+                        for hdr in hdrs:
+                            if "roll value" in (hdr.text or "").lower():
+                                driver.execute_script("arguments[0].click();", hdr)
+                                time.sleep(1.5)
+                                break
+                    except Exception:
+                        pass
+
+                roll_section = driver.find_element(
+                    By.CSS_SELECTOR, "div#rollHistoryDetails"
+                )
+                rows = roll_section.find_elements(By.CSS_SELECTOR, "table tbody tr")
+                for row in rows[:4]:  # last 4 years max
+                    cells = row.find_elements(By.TAG_NAME, "td")
+                    if len(cells) >= 5:
+                        yr_txt   = (cells[0].text or "").strip()
+                        appr_txt = (cells[4].text or "").strip().replace("$", "").replace(",", "")
+                        try:
+                            yr   = int(yr_txt)
+                            appr = float(appr_txt)
+                            if yr > 2000 and appr > 0:
+                                appr_history.append({"year": str(yr), "appraised": int(appr)})
+                        except Exception:
+                            continue
+            except Exception as re:
+                log.debug(f"  BCAD [{prop_id}] roll history error: {re}")
+
+            # Calculate trend from most recent 2 years
+            if len(appr_history) >= 2:
+                latest  = appr_history[0]["appraised"]
+                prev    = appr_history[1]["appraised"]
+                pct_chg = (latest - prev) / prev * 100 if prev else 0
+                if pct_chg > 2:
+                    appr_trend = "up"
+                elif pct_chg < -2:
+                    appr_trend = "down"
+                else:
+                    appr_trend = "flat"
+                log.info(f"  BCAD [{prop_id}] roll history: {appr_history[:3]} trend={appr_trend} ({pct_chg:+.1f}%)")
+            else:
+                log.info(f"  BCAD [{prop_id}] roll history: no data found")
 
         except Exception as e:
             log.warning(f"  BCAD [{prop_id}] parse error: {e}")
@@ -1512,10 +1522,12 @@ def fetch_deed_and_arv(records, driver):
         rec["last_sale_amt"]      = last_sale_amt
         rec["tenure_years"]       = tenure_yrs
         rec["tenure_score_bonus"] = tenure_bonus(tenure_yrs)
+        rec["appr_history"]       = appr_history   # v28.35: roll value history
+        rec["appr_trend"]         = appr_trend     # v28.35: "up"/"down"/"flat"
         fetched += 1
 
         log.info(f"  → deed={deed_date or '—'} tenure={tenure_yrs}yr "
-                 f"last_sale={last_sale_amt or '—'} bonus=+{tenure_bonus(tenure_yrs)}")
+                 f"trend={appr_trend or '—'} bonus=+{tenure_bonus(tenure_yrs)}")
         time.sleep(2)
 
     log.info(f"BCAD deed+ARV: {fetched} enriched, {errors} errors out of {len(candidates)} candidates")
@@ -1645,7 +1657,8 @@ if __name__ == "__main__":
     ]
 
     TENURE_FIELDS = ["sale_date_arcgis", "tenure_years", "tenure_score_bonus",
-                     "prop_id", "deed_date", "last_sale_amt"]
+                     "prop_id", "deed_date", "last_sale_amt",
+                     "appr_history", "appr_trend"]  # v28.35
 
     seen = {}
     for r in new_records + arcgis_records + lp_records + ce_records + prev_records:
@@ -1756,6 +1769,7 @@ if __name__ == "__main__":
     with_tenure = sum(1 for r in records if r.get("tenure_years") is not None)
     with_deed   = sum(1 for r in records if r.get("deed_date"))
     with_arv    = sum(1 for r in records if r.get("last_sale_amt"))
+    with_trend  = sum(1 for r in records if r.get("appr_trend"))
     with_propid = sum(1 for r in records if r.get("prop_id"))
 
     log.info(f"Final: {len(records)} total | {named} named | {absentee} absentee")
@@ -1764,7 +1778,7 @@ if __name__ == "__main__":
     log.info(f"       VBP stacked: {stacked} confirmed VBP+CE leads")
     log.info(f"       Mortgage intel: {enriched} leads with loan_amount populated")
     log.info(f"       Tenure: {with_tenure} with tenure | {long_held} LONG HELD (10+ yr) | {with_deed} deed dates")
-    log.info(f"       BCAD: {with_propid} with prop_id | {with_arv} with last_sale_amt (ARV comp)")
+    log.info(f"       BCAD: {with_propid} with prop_id | {with_trend} with appr trend | {with_deed} deed dates")
 
     # ── Step 10: Save ─────────────────────────────────────────────────────────
     with open("data/records.json", "w", encoding="utf-8") as f:
