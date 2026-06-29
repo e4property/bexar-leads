@@ -28050,7 +28050,22 @@
     "land_value": "55520.0",
     "stacked": false,
     "score": 9,
-    "days_until_sale": 35
+    "days_until_sale": 35,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 277890
+      },
+      {
+        "year": "2025",
+        "appraised": 287250
+      },
+      {
+        "year": "2024",
+        "appraised": 276360
+      }
+    ],
+    "appr_trend": "down"
   },
   {
     "type": "NOF",
