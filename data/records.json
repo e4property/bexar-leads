@@ -27949,7 +27949,7 @@
     "mail_addr": "BOYD WENNONAH L SAN ANTONIO 78252",
     "absentee": true,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800150",
     "ps_doc_id": "",
     "year": "2026",
@@ -27962,7 +27962,6 @@
     "run_ts": "2026-06-29T15:11:57Z",
     "flags": [
       "ABSENTEE",
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -27990,7 +27989,7 @@
     "mail_addr": "SOLIS SARAH SAN ANTONIO 78222",
     "absentee": true,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800149",
     "ps_doc_id": "",
     "year": "2026",
@@ -28003,7 +28002,6 @@
     "run_ts": "2026-06-29T15:11:57Z",
     "flags": [
       "ABSENTEE",
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -29756,7 +29754,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800151",
     "ps_doc_id": "",
     "year": "2026",
@@ -29768,7 +29766,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-06-29T15:11:57Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -29796,7 +29793,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800147",
     "ps_doc_id": "",
     "year": "2026",
@@ -29808,7 +29805,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-06-29T15:11:57Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -29836,7 +29832,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800152",
     "ps_doc_id": "",
     "year": "2026",
@@ -29848,7 +29844,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-06-29T15:11:57Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -29876,7 +29871,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800146",
     "ps_doc_id": "",
     "year": "2026",
@@ -29888,7 +29883,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-06-29T15:11:57Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -35513,7 +35507,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800148",
     "ps_doc_id": "",
     "year": "2026",
@@ -35525,7 +35519,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-06-29T15:11:57Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
