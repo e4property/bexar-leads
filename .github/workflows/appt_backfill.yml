@@ -27,6 +27,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${{ secrets.GH_PAT }}@github.com/e4property/bexar-leads.git
           git add dashboard/records.json
           git diff --staged --quiet || git commit -m "backfill: APPT ArcGIS enrichment"
           git push
