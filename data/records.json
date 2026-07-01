@@ -20666,7 +20666,7 @@
     "mail_addr": "BISHOP CARL JUSTIN SAN ANTONIO 78212",
     "absentee": true,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800154",
     "ps_doc_id": "",
     "year": "2026",
@@ -20679,7 +20679,6 @@
     "run_ts": "2026-07-01T17:07:59Z",
     "flags": [
       "ABSENTEE",
-      "NEW",
       "HAS SALE DATE",
       "LONG HELD"
     ],
@@ -20723,7 +20722,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800153",
     "ps_doc_id": "",
     "year": "2026",
@@ -20735,7 +20734,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-01T17:07:59Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "LONG HELD"
     ],
@@ -21948,7 +21946,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800158",
     "ps_doc_id": "",
     "year": "2026",
@@ -21960,7 +21958,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-07-01T17:07:59Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -24192,7 +24189,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800156",
     "ps_doc_id": "",
     "year": "2026",
@@ -24204,7 +24201,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-01T17:07:59Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -24247,7 +24243,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800159",
     "ps_doc_id": "",
     "year": "2026",
@@ -24259,7 +24255,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-01T17:07:59Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -30055,7 +30050,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800157",
     "ps_doc_id": "",
     "year": "2026",
@@ -30067,7 +30062,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-07-01T17:07:59Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -30110,7 +30104,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800155",
     "ps_doc_id": "",
     "year": "2026",
@@ -30122,7 +30116,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-07-01T17:07:59Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
