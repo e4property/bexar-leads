@@ -848,7 +848,7 @@ function isAged(l){if(!isForeclosure(l))return false;const df=l.date_filed||'';t
 function isUrgent(l){return l.flags&&(l.flags.includes('URGENT')||l.flags.includes('AUCTION SOON'))&&l.days_until_sale!=null&&l.days_until_sale<=14;}
 function daysAgo(l){const df=l.date_filed||l.opened_date||'';try{const p=df.split('/');let dt;if(p.length===2)dt=new Date(parseInt(p[1]),parseInt(p[0])-1,1);else if(p.length===3)dt=new Date(parseInt(p[2]),parseInt(p[0])-1,parseInt(p[1]));if(dt)return Math.floor((Date.now()-dt.getTime())/(1000*60*60*24));}catch(e){}return 999;}
 function auctionPassed(l){if(!l.sale_date)return false;try{const p=l.sale_date.trim().split('/');if(p.length===3){const sd=new Date(parseInt(p[2]),parseInt(p[0])-1,parseInt(p[1]));return sd.getTime()<Date.now();}}catch(e){}return false;}
-function getGHLTag(l){if(isStacked(l))return'bexar_stacked';if(isVBP(l)&&!isStacked(l))return'bexar_vbp';if(isCEOnly(l))return'bexar_ce';if(isLP(l))return'bexar_lp';return'bexar_lead';}
+function getGHLTag(l){if(isStacked(l))return'bexar_stacked';if(isVBP(l)&&!isStacked(l))return'bexar_vbp';if(isCEOnly(l))return'bexar_ce';if(isLP(l))return'bexar_lp';if(isAppt(l))return'bexar_prefore';return'bexar_lead';}
 function getVBPViolation(l){return l.ce_cat_label||l.ce_reason||l.ce_category||'';}
 function isVBPDangerous(l){const v=getVBPViolation(l).toLowerCase();return v.includes('dangerous')||v.includes('bsb');}
 function filedToNum(l){const df=l.date_filed||l.opened_date||'';try{const p=df.split('/');if(p.length===2)return parseInt(p[1])*100+parseInt(p[0]);if(p.length===3)return parseInt(p[2])*10000+parseInt(p[0])*100+parseInt(p[1]);}catch(e){}return 0;}
@@ -1131,7 +1131,7 @@ function populateDetail(lead){
   else if(vbp){info=`Source: Vacant Building Program\nAddress: ${lead.address||'—'}\nGHL Tag: bexar_vbp\nOwner: ${lead.owner||'Not found'}`;}
   else if(ce){info=`Source: Code Enforcement\nViolation: ${lead.ce_reason||'—'}\nStatus: ${lead.ce_status||'—'}\nGHL Tag: bexar_ce`;}
   else if(lp){info=`Source: Lis Pendens (PublicSearch RP)\nAddress: ${lead.address||'—'}\nFiled: ${fmtDate(lead.date_filed)}\nGHL Tag: bexar_lp\nNote: LP filings often precede NOF by weeks/months.`;}
-  else if(appt){info=`Source: Appointment of Substitute Trustee\nAddress: ${lead.address||'—'}\nFiled: ${fmtDate(lead.date_filed)}\nGHL Tag: bexar_lead\nNote: Filed 2-4 weeks before NOF — earliest signal.`;}
+  else if(appt){info=`Source: Appointment of Substitute Trustee\nAddress: ${lead.address||'—'}\nFiled: ${fmtDate(lead.date_filed)}\nGHL Tag: bexar_prefore\nNote: Filed 2-4 weeks before NOF — earliest signal.`;}
   else{info=`Type: ${lead.type} · Score: ${lead.score}${tenureBonus>0?' (+'+tenureBonus+'pts tenure)':''}\nFiled: ${fmtDate(lead.date_filed)}\nGHL Tag: bexar_lead\nAbsentee: ${lead.absentee?'Yes':'No'}\nMail: ${lead.mail_addr||'—'}`;if(lead.sale_date)info+=`\nSale Date: ${fmtDate(lead.sale_date)}`;if(appr)info+=`\nAppraised: $${appr.toLocaleString()}`;if(tenureYrs!=null)info+=`\nYrs Owned: ${tenureYrs} yrs (deed: ${fmtDate(lead.deed_date)})`;if(lastSale)info+=`\nLast Sale: ${lastSale}`;}
   document.getElementById('lead-info-grid').textContent=info;
   updateStats();
@@ -1174,7 +1174,11 @@ function copyAddress(){const lead=allLeads.find(l=>l.doc_number===selectedDoc);i
 function openGHL(){const ls=LS(selectedDoc);window.open(ls.ghlId?`https://app.justjarvis.com/v2/location/${S.ghlLocationId}/contacts/detail/${ls.ghlId}`:'https://app.justjarvis.com','_blank');}
 
 async function pushGHL(lead,phone){
-  try{const{first,last}=parseName(lead.owner);const vbp=isVBP(lead),stacked=isStacked(lead),ce=isCEOnly(lead),lp=isLP(lead);const ghlTag=getGHLTag(lead);const tags=['bexar_lead','forewarn_searched',ghlTag];if(stacked){tags.push('bexar_stacked','bexar_vbp','bexar_ce');if(isVBPDangerous(lead))tags.push('ce_dangerous');}else if(vbp)tags.push('bexar_vbp');else if(ce){tags.push('bexar_ce');if(lead.flags?.includes('DANGEROUS PREMISES'))tags.push('ce_dangerous');}else if(lp)tags.push('bexar_lp');else{tags.push('bexar-contacted');if(lead.absentee)tags.push('absentee');if(lead.type==='TAX')tags.push('tax_foreclosure');if(lead.is_new)tags.push('new_lead');}if(isLongHeld(lead))tags.push('long_held');
+  try{const{first,last}=parseName(lead.owner);const vbp=isVBP(lead),stacked=isStacked(lead),ce=isCEOnly(lead),lp=isLP(lead),appt=isAppt(lead);const ghlTag=getGHLTag(lead);
+  // v4.1 fix: APPT leads must NOT get bexar_lead tag — it triggers wrong workflow
+  const baseTags=appt?['forewarn_searched']:['bexar_lead','forewarn_searched'];
+  const tags=[...baseTags,ghlTag];
+  if(stacked){tags.push('bexar_stacked','bexar_vbp','bexar_ce');if(isVBPDangerous(lead))tags.push('ce_dangerous');}else if(vbp)tags.push('bexar_vbp');else if(ce){tags.push('bexar_ce');if(lead.flags?.includes('DANGEROUS PREMISES'))tags.push('ce_dangerous');}else if(lp)tags.push('bexar_lp');else if(appt){tags.push('bexar_prefore');}else{tags.push('bexar-contacted');if(lead.absentee)tags.push('absentee');if(lead.type==='TAX')tags.push('tax_foreclosure');if(lead.is_new)tags.push('new_lead');}if(isLongHeld(lead))tags.push('long_held');
   const body={firstName:first||'',lastName:last||lead.address||'',phone,address1:lead.address,city:lead.city,state:'TX',postalCode:lead.zip,tags,locationId:S.ghlLocationId,source:'bexar-leads'};
   const res=await fetch('https://services.leadconnectorhq.com/contacts/',{method:'POST',headers:{'Authorization':'Bearer '+S.ghlApiKey,'Content-Type':'application/json','Version':'2021-07-28'},body:JSON.stringify(body)});
   const data=await res.json(),id=data.contact?.id||data.id;
