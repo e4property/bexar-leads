@@ -24223,6 +24223,495 @@
     "appr_trend": "down"
   },
   {
+    "doc_number": "20260097504",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Legacy Lifestyle Llc",
+    "address": "9331 THORNBURY ST",
+    "city": "SAN ANTONIO",
+    "zip": "78223",
+    "date_filed": "5/2026",
+    "month": "5",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-06-18T21:16:55Z",
+    "score": 10,
+    "flags": [],
+    "absentee": false,
+    "duplicate": false,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "184000.0",
+    "annual_taxes": "",
+    "mail_addr": "",
+    "stacked": false,
+    "ce_violations": false,
+    "prop_id": "564665.0",
+    "land_value": "42650.0",
+    "improvement_value": "141350.0",
+    "deed_date": "2/15/2020",
+    "last_sale_amt": "",
+    "tenure_years": 6,
+    "tenure_score_bonus": 5,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 184000
+      },
+      {
+        "year": "2025",
+        "appraised": 184000
+      },
+      {
+        "year": "2024",
+        "appraised": 207440
+      }
+    ],
+    "appr_trend": "flat"
+  },
+  {
+    "doc_number": "20260096785",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Us Bank National Association",
+    "address": "415 TERRITORY OAK",
+    "city": "SAN ANTONIO",
+    "zip": "78112",
+    "date_filed": "5/2026",
+    "month": "5",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-06-18T21:16:55Z",
+    "score": 10,
+    "flags": [
+      "DUPLICATE",
+      "LONG HELD"
+    ],
+    "absentee": false,
+    "duplicate": true,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "131560.0",
+    "annual_taxes": "",
+    "mail_addr": "",
+    "stacked": false,
+    "ce_violations": false,
+    "prop_id": "1134350.0",
+    "land_value": "56700.0",
+    "improvement_value": "74860.0",
+    "deed_date": "3/7/2007",
+    "last_sale_amt": "",
+    "tenure_years": 19,
+    "tenure_score_bonus": 25,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 131360
+      },
+      {
+        "year": "2025",
+        "appraised": 131560
+      },
+      {
+        "year": "2024",
+        "appraised": 124530
+      }
+    ],
+    "appr_trend": "flat"
+  },
+  {
+    "doc_number": "20260095066",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Idaho Housing And Finance Association",
+    "address": "11415 HOLLOW TREE ST",
+    "city": "SAN ANTONIO",
+    "zip": "78101",
+    "date_filed": "5/2026",
+    "month": "5",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-06-18T21:16:55Z",
+    "score": 10,
+    "flags": [
+      "DUPLICATE",
+      "LONG HELD"
+    ],
+    "absentee": false,
+    "duplicate": true,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "476500.0",
+    "annual_taxes": "",
+    "mail_addr": "",
+    "stacked": false,
+    "ce_violations": false,
+    "prop_id": "336228.0",
+    "land_value": "300000.0",
+    "improvement_value": "176500.0",
+    "deed_date": "12/29/2000",
+    "last_sale_amt": "",
+    "tenure_years": 25,
+    "tenure_score_bonus": 25,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 476500
+      },
+      {
+        "year": "2025",
+        "appraised": 476500
+      },
+      {
+        "year": "2024",
+        "appraised": 436500
+      }
+    ],
+    "appr_trend": "flat"
+  },
+  {
+    "doc_number": "20260094922",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Settle Adrian Darnell",
+    "address": "13004 LAKE FRYER",
+    "city": "SAINT HEDWIG",
+    "zip": "78223",
+    "date_filed": "5/2026",
+    "month": "5",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-06-18T21:16:55Z",
+    "score": 10,
+    "flags": [
+      "LONG HELD"
+    ],
+    "absentee": false,
+    "duplicate": false,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "396350.0",
+    "annual_taxes": "",
+    "mail_addr": "",
+    "stacked": false,
+    "ce_violations": false,
+    "prop_id": "157196.0",
+    "land_value": "168000.0",
+    "improvement_value": "228350.0",
+    "deed_date": "2/25/2006",
+    "last_sale_amt": "",
+    "tenure_years": 20,
+    "tenure_score_bonus": 25,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 396050
+      },
+      {
+        "year": "2025",
+        "appraised": 396350
+      },
+      {
+        "year": "2024",
+        "appraised": 368650
+      }
+    ],
+    "appr_trend": "flat"
+  },
+  {
+    "doc_number": "20260123252",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Estrada Leticia",
+    "address": "814 W HARDING BLVD",
+    "city": "SAN ANTONIO",
+    "zip": "78221",
+    "date_filed": "6/2026",
+    "month": "6",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-07-01T14:51:33Z",
+    "score": 10,
+    "flags": [
+      "DUPLICATE"
+    ],
+    "absentee": false,
+    "duplicate": true,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "124750.0",
+    "annual_taxes": "",
+    "mail_addr": "",
+    "stacked": false,
+    "ce_violations": false,
+    "prop_id": "438300.0",
+    "land_value": "46620.0",
+    "improvement_value": "78130.0",
+    "deed_date": "6/20/2018",
+    "last_sale_amt": "",
+    "tenure_years": 8,
+    "tenure_score_bonus": 5,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 120060
+      },
+      {
+        "year": "2025",
+        "appraised": 124750
+      },
+      {
+        "year": "2024",
+        "appraised": 127740
+      }
+    ],
+    "appr_trend": "down"
+  },
+  {
+    "doc_number": "20260119930",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Ybarra David D",
+    "address": "4310  VALLEYFIELD ST",
+    "city": "SAN ANTONIO",
+    "zip": "78222",
+    "date_filed": "6/2026",
+    "month": "6",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-06-26T14:39:06Z",
+    "score": 10,
+    "flags": [],
+    "absentee": false,
+    "duplicate": false,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "210650.0",
+    "annual_taxes": "",
+    "mail_addr": "",
+    "stacked": false,
+    "ce_violations": false,
+    "prop_id": "529753.0",
+    "land_value": "80600.0",
+    "improvement_value": "130050.0",
+    "deed_date": "6/11/2018",
+    "last_sale_amt": "",
+    "tenure_years": 8,
+    "tenure_score_bonus": 5,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 192910
+      },
+      {
+        "year": "2025",
+        "appraised": 210650
+      },
+      {
+        "year": "2024",
+        "appraised": 209440
+      }
+    ],
+    "appr_trend": "down"
+  },
+  {
+    "doc_number": "20260118992",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Perez David",
+    "address": "5943  IMPERIAL TOPAZ",
+    "city": "SAN ANTONIO",
+    "zip": "78222",
+    "date_filed": "6/2026",
+    "month": "6",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-06-25T14:46:33Z",
+    "score": 10,
+    "flags": [],
+    "absentee": false,
+    "duplicate": false,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "217650.0",
+    "annual_taxes": "",
+    "mail_addr": "",
+    "stacked": false,
+    "ce_violations": false,
+    "prop_id": "1067962.0",
+    "land_value": "44560.0",
+    "improvement_value": "173090.0",
+    "deed_date": "6/17/2021",
+    "last_sale_amt": "",
+    "tenure_years": 5,
+    "tenure_score_bonus": 5,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 212000
+      },
+      {
+        "year": "2025",
+        "appraised": 212000
+      },
+      {
+        "year": "2024",
+        "appraised": 219730
+      }
+    ],
+    "appr_trend": "flat"
+  },
+  {
+    "doc_number": "20260117961",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Hurwitz Joseph B",
+    "address": "2106  BENT ANCHOR",
+    "city": "SAN ANTONIO",
+    "zip": "78413",
+    "date_filed": "6/2026",
+    "month": "6",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-06-24T14:47:00Z",
+    "score": 10,
+    "flags": [
+      "LONG HELD"
+    ],
+    "absentee": false,
+    "duplicate": false,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "310950.0",
+    "annual_taxes": "",
+    "mail_addr": "",
+    "stacked": false,
+    "ce_violations": false,
+    "prop_id": "489085.0",
+    "land_value": "66200.0",
+    "improvement_value": "244750.0",
+    "deed_date": "10/15/2012",
+    "last_sale_amt": "",
+    "tenure_years": 13,
+    "tenure_score_bonus": 15,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 310950
+      },
+      {
+        "year": "2025",
+        "appraised": 310950
+      },
+      {
+        "year": "2024",
+        "appraised": 303860
+      }
+    ],
+    "appr_trend": "flat"
+  },
+  {
+    "doc_number": "20260101011",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Corral Bianca G",
+    "address": "7027  PLAINS WAY",
+    "city": "SAN ANTONIO",
+    "zip": "78253",
+    "date_filed": "5/2026",
+    "month": "5",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-06-18T21:16:55Z",
+    "score": 10,
+    "flags": [],
+    "absentee": false,
+    "duplicate": false,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "332350.0",
+    "annual_taxes": "",
+    "mail_addr": "",
+    "stacked": false,
+    "ce_violations": false,
+    "prop_id": "1193398.0",
+    "land_value": "84600.0",
+    "improvement_value": "247750.0",
+    "deed_date": "6/26/2020",
+    "last_sale_amt": "",
+    "tenure_years": 6,
+    "tenure_score_bonus": 5,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 331790
+      },
+      {
+        "year": "2025",
+        "appraised": 332350
+      },
+      {
+        "year": "2024",
+        "appraised": 347860
+      }
+    ],
+    "appr_trend": "flat"
+  },
+  {
     "type": "NOF",
     "address": "4731 SAHARA VLYS",
     "owner": "PASTRANO GILBERT CHAVEZ &",
@@ -35164,40 +35653,6 @@
     "appr_trend": "down"
   },
   {
-    "doc_number": "20260097504",
-    "ps_doc_id": "",
-    "type": "APPT",
-    "source": "publicsearch",
-    "county": "bexar",
-    "owner": "Legacy Lifestyle Llc",
-    "address": "9331 THORNBURY ST",
-    "city": "SAN ANTONIO",
-    "zip": "78223",
-    "date_filed": "5/2026",
-    "month": "5",
-    "year": "2026",
-    "sale_date": "",
-    "is_new": false,
-    "run_ts": "2026-06-18T21:16:55Z",
-    "score": 6,
-    "flags": [],
-    "absentee": false,
-    "duplicate": false,
-    "days_until_sale": null,
-    "loan_amount": "",
-    "loan_date": "",
-    "lender": "",
-    "trustee": "",
-    "appraised_value": "184000.0",
-    "annual_taxes": "",
-    "mail_addr": "",
-    "stacked": false,
-    "ce_violations": false,
-    "prop_id": "564665.0",
-    "land_value": "42650.0",
-    "improvement_value": "141350.0"
-  },
-  {
     "doc_number": "20260097340",
     "ps_doc_id": "",
     "type": "APPT",
@@ -35231,43 +35686,26 @@
     "ce_violations": false,
     "prop_id": "553706.0",
     "land_value": "35150.0",
-    "improvement_value": "155330.0"
-  },
-  {
-    "doc_number": "20260096785",
-    "ps_doc_id": "",
-    "type": "APPT",
-    "source": "publicsearch",
-    "county": "bexar",
-    "owner": "Us Bank National Association",
-    "address": "415 TERRITORY OAK",
-    "city": "SAN ANTONIO",
-    "zip": "78112",
-    "date_filed": "5/2026",
-    "month": "5",
-    "year": "2026",
-    "sale_date": "",
-    "is_new": false,
-    "run_ts": "2026-06-18T21:16:55Z",
-    "score": 6,
-    "flags": [
-      "DUPLICATE"
+    "improvement_value": "155330.0",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 190480
+      },
+      {
+        "year": "2025",
+        "appraised": 190480
+      },
+      {
+        "year": "2024",
+        "appraised": 190480
+      }
     ],
-    "absentee": false,
-    "duplicate": true,
-    "days_until_sale": null,
-    "loan_amount": "",
-    "loan_date": "",
-    "lender": "",
-    "trustee": "",
-    "appraised_value": "131560.0",
-    "annual_taxes": "",
-    "mail_addr": "",
-    "stacked": false,
-    "ce_violations": false,
-    "prop_id": "1134350.0",
-    "land_value": "56700.0",
-    "improvement_value": "74860.0"
+    "appr_trend": "flat"
   },
   {
     "doc_number": "20260096303",
@@ -35303,77 +35741,26 @@
     "ce_violations": false,
     "prop_id": "441838.0",
     "land_value": "51090.0",
-    "improvement_value": "105230.0"
-  },
-  {
-    "doc_number": "20260095066",
-    "ps_doc_id": "",
-    "type": "APPT",
-    "source": "publicsearch",
-    "county": "bexar",
-    "owner": "Idaho Housing And Finance Association",
-    "address": "11415 HOLLOW TREE ST",
-    "city": "SAN ANTONIO",
-    "zip": "78101",
-    "date_filed": "5/2026",
-    "month": "5",
-    "year": "2026",
-    "sale_date": "",
-    "is_new": false,
-    "run_ts": "2026-06-18T21:16:55Z",
-    "score": 6,
-    "flags": [
-      "DUPLICATE"
+    "improvement_value": "105230.0",
+    "deed_date": "5/18/2023",
+    "last_sale_amt": "",
+    "tenure_years": 3,
+    "tenure_score_bonus": 0,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 151170
+      },
+      {
+        "year": "2025",
+        "appraised": 156320
+      },
+      {
+        "year": "2024",
+        "appraised": 159830
+      }
     ],
-    "absentee": false,
-    "duplicate": true,
-    "days_until_sale": null,
-    "loan_amount": "",
-    "loan_date": "",
-    "lender": "",
-    "trustee": "",
-    "appraised_value": "476500.0",
-    "annual_taxes": "",
-    "mail_addr": "",
-    "stacked": false,
-    "ce_violations": false,
-    "prop_id": "336228.0",
-    "land_value": "300000.0",
-    "improvement_value": "176500.0"
-  },
-  {
-    "doc_number": "20260094922",
-    "ps_doc_id": "",
-    "type": "APPT",
-    "source": "publicsearch",
-    "county": "bexar",
-    "owner": "Settle Adrian Darnell",
-    "address": "13004 LAKE FRYER",
-    "city": "SAINT HEDWIG",
-    "zip": "78223",
-    "date_filed": "5/2026",
-    "month": "5",
-    "year": "2026",
-    "sale_date": "",
-    "is_new": false,
-    "run_ts": "2026-06-18T21:16:55Z",
-    "score": 6,
-    "flags": [],
-    "absentee": false,
-    "duplicate": false,
-    "days_until_sale": null,
-    "loan_amount": "",
-    "loan_date": "",
-    "lender": "",
-    "trustee": "",
-    "appraised_value": "396350.0",
-    "annual_taxes": "",
-    "mail_addr": "",
-    "stacked": false,
-    "ce_violations": false,
-    "prop_id": "157196.0",
-    "land_value": "168000.0",
-    "improvement_value": "228350.0"
+    "appr_trend": "down"
   },
   {
     "doc_number": "20230058148",
@@ -111175,145 +111562,26 @@
     "ce_violations": false,
     "prop_id": "622004.0",
     "land_value": "41650.0",
-    "improvement_value": "140060.0"
-  },
-  {
-    "doc_number": "20260123252",
-    "ps_doc_id": "",
-    "type": "APPT",
-    "source": "publicsearch",
-    "county": "bexar",
-    "owner": "Estrada Leticia",
-    "address": "814 W HARDING BLVD",
-    "city": "SAN ANTONIO",
-    "zip": "78221",
-    "date_filed": "6/2026",
-    "month": "6",
-    "year": "2026",
-    "sale_date": "",
-    "is_new": false,
-    "run_ts": "2026-07-01T14:51:33Z",
-    "score": 6,
-    "flags": [
-      "DUPLICATE"
+    "improvement_value": "140060.0",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 161270
+      },
+      {
+        "year": "2025",
+        "appraised": 181710
+      },
+      {
+        "year": "2024",
+        "appraised": 188530
+      }
     ],
-    "absentee": false,
-    "duplicate": true,
-    "days_until_sale": null,
-    "loan_amount": "",
-    "loan_date": "",
-    "lender": "",
-    "trustee": "",
-    "appraised_value": "124750.0",
-    "annual_taxes": "",
-    "mail_addr": "",
-    "stacked": false,
-    "ce_violations": false,
-    "prop_id": "438300.0",
-    "land_value": "46620.0",
-    "improvement_value": "78130.0"
-  },
-  {
-    "doc_number": "20260119930",
-    "ps_doc_id": "",
-    "type": "APPT",
-    "source": "publicsearch",
-    "county": "bexar",
-    "owner": "Ybarra David D",
-    "address": "4310  VALLEYFIELD ST",
-    "city": "SAN ANTONIO",
-    "zip": "78222",
-    "date_filed": "6/2026",
-    "month": "6",
-    "year": "2026",
-    "sale_date": "",
-    "is_new": false,
-    "run_ts": "2026-06-26T14:39:06Z",
-    "score": 6,
-    "flags": [],
-    "absentee": false,
-    "duplicate": false,
-    "days_until_sale": null,
-    "loan_amount": "",
-    "loan_date": "",
-    "lender": "",
-    "trustee": "",
-    "appraised_value": "210650.0",
-    "annual_taxes": "",
-    "mail_addr": "",
-    "stacked": false,
-    "ce_violations": false,
-    "prop_id": "529753.0",
-    "land_value": "80600.0",
-    "improvement_value": "130050.0"
-  },
-  {
-    "doc_number": "20260118992",
-    "ps_doc_id": "",
-    "type": "APPT",
-    "source": "publicsearch",
-    "county": "bexar",
-    "owner": "Perez David",
-    "address": "5943  IMPERIAL TOPAZ",
-    "city": "SAN ANTONIO",
-    "zip": "78222",
-    "date_filed": "6/2026",
-    "month": "6",
-    "year": "2026",
-    "sale_date": "",
-    "is_new": false,
-    "run_ts": "2026-06-25T14:46:33Z",
-    "score": 6,
-    "flags": [],
-    "absentee": false,
-    "duplicate": false,
-    "days_until_sale": null,
-    "loan_amount": "",
-    "loan_date": "",
-    "lender": "",
-    "trustee": "",
-    "appraised_value": "217650.0",
-    "annual_taxes": "",
-    "mail_addr": "",
-    "stacked": false,
-    "ce_violations": false,
-    "prop_id": "1067962.0",
-    "land_value": "44560.0",
-    "improvement_value": "173090.0"
-  },
-  {
-    "doc_number": "20260117961",
-    "ps_doc_id": "",
-    "type": "APPT",
-    "source": "publicsearch",
-    "county": "bexar",
-    "owner": "Hurwitz Joseph B",
-    "address": "2106  BENT ANCHOR",
-    "city": "SAN ANTONIO",
-    "zip": "78413",
-    "date_filed": "6/2026",
-    "month": "6",
-    "year": "2026",
-    "sale_date": "",
-    "is_new": false,
-    "run_ts": "2026-06-24T14:47:00Z",
-    "score": 6,
-    "flags": [],
-    "absentee": false,
-    "duplicate": false,
-    "days_until_sale": null,
-    "loan_amount": "",
-    "loan_date": "",
-    "lender": "",
-    "trustee": "",
-    "appraised_value": "310950.0",
-    "annual_taxes": "",
-    "mail_addr": "",
-    "stacked": false,
-    "ce_violations": false,
-    "prop_id": "489085.0",
-    "land_value": "66200.0",
-    "improvement_value": "244750.0"
+    "appr_trend": "down"
   },
   {
     "doc_number": "20260116982",
@@ -111347,7 +111615,26 @@
     "ce_violations": false,
     "prop_id": "143928.0",
     "land_value": "60280.0",
-    "improvement_value": "315490.0"
+    "improvement_value": "315490.0",
+    "deed_date": "4/10/2023",
+    "last_sale_amt": "",
+    "tenure_years": 3,
+    "tenure_score_bonus": 0,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 333590
+      },
+      {
+        "year": "2025",
+        "appraised": 375770
+      },
+      {
+        "year": "2024",
+        "appraised": 298490
+      }
+    ],
+    "appr_trend": "down"
   },
   {
     "doc_number": "20260114950",
@@ -111381,41 +111668,26 @@
     "ce_violations": false,
     "prop_id": "318536.0",
     "land_value": "38300.0",
-    "improvement_value": "163390.0"
-  },
-  {
-    "doc_number": "20260101011",
-    "ps_doc_id": "",
-    "type": "APPT",
-    "source": "publicsearch",
-    "county": "bexar",
-    "owner": "Corral Bianca G",
-    "address": "7027  PLAINS WAY",
-    "city": "SAN ANTONIO",
-    "zip": "78253",
-    "date_filed": "5/2026",
-    "month": "5",
-    "year": "2026",
-    "sale_date": "",
-    "is_new": false,
-    "run_ts": "2026-06-18T21:16:55Z",
-    "score": 6,
-    "flags": [],
-    "absentee": false,
-    "duplicate": false,
-    "days_until_sale": null,
-    "loan_amount": "",
-    "loan_date": "",
-    "lender": "",
-    "trustee": "",
-    "appraised_value": "332350.0",
-    "annual_taxes": "",
-    "mail_addr": "",
-    "stacked": false,
-    "ce_violations": false,
-    "prop_id": "1193398.0",
-    "land_value": "84600.0",
-    "improvement_value": "247750.0"
+    "improvement_value": "163390.0",
+    "deed_date": "11/8/2022",
+    "last_sale_amt": "",
+    "tenure_years": 3,
+    "tenure_score_bonus": 0,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 188060
+      },
+      {
+        "year": "2025",
+        "appraised": 201690
+      },
+      {
+        "year": "2024",
+        "appraised": 201690
+      }
+    ],
+    "appr_trend": "down"
   },
   {
     "doc_number": "20260098694",
@@ -111449,7 +111721,26 @@
     "ce_violations": false,
     "prop_id": "1160413.0",
     "land_value": "71780.0",
-    "improvement_value": "304020.0"
+    "improvement_value": "304020.0",
+    "deed_date": "6/2/2022",
+    "last_sale_amt": "",
+    "tenure_years": 4,
+    "tenure_score_bonus": 0,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 339620
+      },
+      {
+        "year": "2025",
+        "appraised": 375800
+      },
+      {
+        "year": "2024",
+        "appraised": 380830
+      }
+    ],
+    "appr_trend": "down"
   },
   {
     "doc_number": "20260097941",
@@ -111483,7 +111774,26 @@
     "ce_violations": false,
     "prop_id": "445365.0",
     "land_value": "52850.0",
-    "improvement_value": "49890.0"
+    "improvement_value": "49890.0",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 97380
+      },
+      {
+        "year": "2025",
+        "appraised": 102740
+      },
+      {
+        "year": "2024",
+        "appraised": 104400
+      }
+    ],
+    "appr_trend": "down"
   },
   {
     "doc_number": "20260095622",
@@ -111517,7 +111827,26 @@
     "ce_violations": false,
     "prop_id": "342758.0",
     "land_value": "83210.0",
-    "improvement_value": "251790.0"
+    "improvement_value": "251790.0",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 335000
+      },
+      {
+        "year": "2025",
+        "appraised": 335000
+      },
+      {
+        "year": "2024",
+        "appraised": 358040
+      }
+    ],
+    "appr_trend": "flat"
   },
   {
     "type": "NOF",
