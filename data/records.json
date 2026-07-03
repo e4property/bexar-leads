@@ -20666,7 +20666,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800178",
     "ps_doc_id": "",
     "year": "2026",
@@ -20678,7 +20678,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-03T16:19:40Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -20721,7 +20720,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800181",
     "ps_doc_id": "",
     "year": "2026",
@@ -20733,7 +20732,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-03T16:19:40Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "LONG HELD"
     ],
@@ -22057,7 +22055,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800176",
     "ps_doc_id": "",
     "year": "2026",
@@ -22069,7 +22067,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-07-03T16:19:40Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "LONG HELD"
     ],
@@ -22113,7 +22110,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800162",
     "ps_doc_id": "",
     "year": "2026",
@@ -22125,7 +22122,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-07-03T16:19:40Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -22168,7 +22164,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800161",
     "ps_doc_id": "",
     "year": "2026",
@@ -22180,7 +22176,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-07-03T16:19:40Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -22223,7 +22218,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800166",
     "ps_doc_id": "",
     "year": "2026",
@@ -22236,7 +22231,6 @@
     "run_ts": "2026-07-03T16:19:40Z",
     "flags": [
       "DUPLICATE",
-      "NEW",
       "HAS SALE DATE",
       "LONG HELD"
     ],
@@ -22280,7 +22274,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800160",
     "ps_doc_id": "",
     "year": "2026",
@@ -22292,7 +22286,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-07-03T16:19:40Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -22335,7 +22328,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800167",
     "ps_doc_id": "",
     "year": "2026",
@@ -22347,7 +22340,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-07-03T16:19:40Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -22379,6 +22371,60 @@
     "appraised_value": "242383.0",
     "annual_taxes": "",
     "land_value": "70950.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 59
+  },
+  {
+    "type": "NOF",
+    "address": "1503 HAWKS MEADOW",
+    "owner": "ORDONEZ CARLOS & FARIAS MARIA",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260800180",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78248",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "09/01/2026",
+    "run_ts": "2026-07-03T16:19:40Z",
+    "flags": [
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 5,
+    "tenure_score_bonus": 5,
+    "prop_id": "699486.0",
+    "deed_date": "6/30/2021",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 630000
+      },
+      {
+        "year": "2025",
+        "appraised": 635000
+      },
+      {
+        "year": "2024",
+        "appraised": 631660
+      }
+    ],
+    "appr_trend": "flat",
+    "appraised_value": "635000.0",
+    "annual_taxes": "",
+    "land_value": "124830.0",
     "stacked": false,
     "score": 10,
     "days_until_sale": 59
@@ -25598,7 +25644,7 @@
     "mail_addr": "DURAN RUBY ALEJANDRA CONVERSE 78109",
     "absentee": true,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800179",
     "ps_doc_id": "",
     "year": "2026",
@@ -25611,7 +25657,6 @@
     "run_ts": "2026-07-03T16:19:40Z",
     "flags": [
       "ABSENTEE",
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -26883,7 +26928,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800177",
     "ps_doc_id": "",
     "year": "2026",
@@ -26895,7 +26940,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-03T16:19:40Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -26938,7 +26982,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800165",
     "ps_doc_id": "",
     "year": "2026",
@@ -26950,7 +26994,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-03T16:19:40Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -32849,67 +32892,12 @@
   },
   {
     "type": "NOF",
-    "address": "1503 HAWKS MEADOW",
-    "owner": "ORDONEZ CARLOS & FARIAS MARIA",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": true,
-    "doc_number": "20260800180",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "7",
-    "city": "SAN ANTONIO",
-    "zip": "78248",
-    "school_dist": "",
-    "date_filed": "7/2026",
-    "sale_date": "09/01/2026",
-    "run_ts": "2026-07-03T16:19:40Z",
-    "flags": [
-      "NEW",
-      "HAS SALE DATE"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "699486.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [
-      {
-        "year": "2026",
-        "appraised": 630000
-      },
-      {
-        "year": "2025",
-        "appraised": 635000
-      },
-      {
-        "year": "2024",
-        "appraised": 631660
-      }
-    ],
-    "appr_trend": "flat",
-    "appraised_value": "635000.0",
-    "annual_taxes": "",
-    "land_value": "124830.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 59
-  },
-  {
-    "type": "NOF",
     "address": "13506 SUN CHASE",
     "owner": "MENTZER WILLIAM BRADLEY",
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800164",
     "ps_doc_id": "",
     "year": "2026",
@@ -32921,7 +32909,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-07-03T16:19:40Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -32964,7 +32951,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800163",
     "ps_doc_id": "",
     "year": "2026",
@@ -32976,7 +32963,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-07-03T16:19:40Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
