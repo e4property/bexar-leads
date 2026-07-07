@@ -14561,7 +14561,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800231",
     "ps_doc_id": "",
     "year": "2026",
@@ -14573,7 +14573,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-07T17:06:48Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON",
       "LONG HELD"
@@ -14618,7 +14617,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800232",
     "ps_doc_id": "",
     "year": "2026",
@@ -14630,7 +14629,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-07T17:06:48Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -14674,7 +14672,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800220",
     "ps_doc_id": "",
     "year": "2026",
@@ -14686,7 +14684,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-07T17:06:48Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -14730,7 +14727,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800221",
     "ps_doc_id": "",
     "year": "2026",
@@ -14742,7 +14739,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-07T17:06:48Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -14786,7 +14782,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800229",
     "ps_doc_id": "",
     "year": "2026",
@@ -14798,7 +14794,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-07T17:06:48Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -14842,7 +14837,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800228",
     "ps_doc_id": "",
     "year": "2026",
@@ -14854,7 +14849,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-07T17:06:48Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -17448,7 +17442,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800233",
     "ps_doc_id": "",
     "year": "2026",
@@ -17460,7 +17454,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-07T17:06:48Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -17504,7 +17497,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800217",
     "ps_doc_id": "",
     "year": "2026",
@@ -17517,7 +17510,6 @@
     "run_ts": "2026-07-07T17:06:48Z",
     "flags": [
       "DUPLICATE",
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -17561,7 +17553,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800224",
     "ps_doc_id": "",
     "year": "2026",
@@ -17573,7 +17565,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-07T17:06:48Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -17617,7 +17608,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800216",
     "ps_doc_id": "",
     "year": "2026",
@@ -17630,7 +17621,6 @@
     "run_ts": "2026-07-07T17:06:48Z",
     "flags": [
       "DUPLICATE",
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -17674,7 +17664,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800226",
     "ps_doc_id": "",
     "year": "2026",
@@ -17686,7 +17676,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-07T17:06:48Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -17730,7 +17719,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800227",
     "ps_doc_id": "",
     "year": "2026",
@@ -17742,7 +17731,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-07T17:06:48Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -17786,7 +17774,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800223",
     "ps_doc_id": "",
     "year": "2026",
@@ -17798,7 +17786,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-07T17:06:48Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -17842,7 +17829,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800219",
     "ps_doc_id": "",
     "year": "2026",
@@ -17854,7 +17841,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-07T17:06:48Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -17898,7 +17884,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800218",
     "ps_doc_id": "",
     "year": "2026",
@@ -17910,7 +17896,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-07T17:06:48Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -17954,7 +17939,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800215",
     "ps_doc_id": "",
     "year": "2026",
@@ -17966,7 +17951,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-07T17:06:48Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -18010,7 +17994,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800230",
     "ps_doc_id": "",
     "year": "2026",
@@ -18022,7 +18006,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-07T17:06:48Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -24759,7 +24742,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800234",
     "ps_doc_id": "",
     "year": "2026",
@@ -24771,7 +24754,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-07T17:06:48Z",
     "flags": [
-      "NEW",
       "NO OWNER",
       "HAS SALE DATE",
       "AUCTION SOON"
@@ -24870,7 +24852,7 @@
     "mail_addr": "YVONNE P CONVERSE 78109",
     "absentee": true,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800213",
     "ps_doc_id": "",
     "year": "2026",
@@ -24883,7 +24865,6 @@
     "run_ts": "2026-07-07T17:06:48Z",
     "flags": [
       "ABSENTEE",
-      "NEW",
       "HAS SALE DATE",
       "LONG HELD"
     ],
@@ -24927,7 +24908,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800222",
     "ps_doc_id": "",
     "year": "2026",
@@ -24939,7 +24920,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-07-07T17:06:48Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "LONG HELD"
     ],
@@ -24983,7 +24963,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800225",
     "ps_doc_id": "",
     "year": "2026",
@@ -24995,7 +24975,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-07-07T17:06:48Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "LONG HELD"
     ],
@@ -29903,7 +29882,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800214",
     "ps_doc_id": "",
     "year": "2026",
@@ -29915,7 +29894,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-07-07T17:06:48Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
