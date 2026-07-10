@@ -974,7 +974,7 @@
     "owner": "JUETTEMEYER KENNETH",
     "mail_addr": "",
     "absentee": false,
-    "duplicate": false,
+    "duplicate": true,
     "is_new": false,
     "doc_number": "20260600364",
     "ps_doc_id": "",
@@ -987,6 +987,7 @@
     "sale_date": "06/02/2026",
     "run_ts": "2026-05-12T22:14:46Z",
     "flags": [
+      "DUPLICATE",
       "HAS SALE DATE",
       "AUCTION SOON",
       "URGENT"
@@ -9032,7 +9033,7 @@
     "owner": "VALE CHRISTOPHER H & SAUCEDO MERCEDES N",
     "mail_addr": "",
     "absentee": false,
-    "duplicate": false,
+    "duplicate": true,
     "is_new": false,
     "doc_number": "20260700150",
     "ps_doc_id": "",
@@ -9045,6 +9046,7 @@
     "sale_date": "07/07/2026",
     "run_ts": "2026-06-15T20:54:13Z",
     "flags": [
+      "DUPLICATE",
       "HAS SALE DATE",
       "AUCTION SOON",
       "URGENT"
@@ -10442,7 +10444,7 @@
     "owner": "KRAUSE MICHAEL",
     "mail_addr": "",
     "absentee": false,
-    "duplicate": false,
+    "duplicate": true,
     "is_new": false,
     "doc_number": "20260700079",
     "ps_doc_id": "",
@@ -10455,6 +10457,7 @@
     "sale_date": "07/07/2026",
     "run_ts": "2026-06-15T20:54:13Z",
     "flags": [
+      "DUPLICATE",
       "HAS SALE DATE",
       "AUCTION SOON",
       "URGENT"
@@ -14557,6 +14560,569 @@
   },
   {
     "type": "NOF",
+    "address": "2310 RUIZ ST",
+    "owner": "SOTO MIGUEL ANGEL",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260800322",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78207",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "08/04/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 5,
+    "tenure_score_bonus": 5,
+    "prop_id": "149042.0",
+    "deed_date": "11/1/2020",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 132730
+      },
+      {
+        "year": "2025",
+        "appraised": 151420
+      },
+      {
+        "year": "2024",
+        "appraised": 164130
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "151420.0",
+    "annual_taxes": "",
+    "land_value": "45440.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 24
+  },
+  {
+    "type": "NOF",
+    "address": "239 E DULLNIG CT",
+    "owner": "GUEVARA DIONICIO RUDY ANTONIO & GEVARA ERIKA ELIZABETH",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260800320",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78223",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "08/04/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 6,
+    "tenure_score_bonus": 5,
+    "prop_id": "417754.0",
+    "deed_date": "12/2/2019",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 94300
+      },
+      {
+        "year": "2025",
+        "appraised": 106260
+      },
+      {
+        "year": "2024",
+        "appraised": 106260
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "106260.0",
+    "annual_taxes": "",
+    "land_value": "45500.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 24
+  },
+  {
+    "type": "NOF",
+    "address": "162 LANGFORD PL",
+    "owner": "TORRES RAFAEL ROCHA & MARIA PATRICIA",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260800321",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78221",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "08/04/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 5,
+    "tenure_score_bonus": 5,
+    "prop_id": "465411.0",
+    "deed_date": "12/30/2020",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 137370
+      },
+      {
+        "year": "2025",
+        "appraised": 141920
+      },
+      {
+        "year": "2024",
+        "appraised": 142020
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "141920.0",
+    "annual_taxes": "",
+    "land_value": "45340.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 24
+  },
+  {
+    "type": "NOF",
+    "address": "8555 LAURENS LN",
+    "owner": "8555 LAURENS LANE LLC",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": true,
+    "is_new": true,
+    "doc_number": "20260800316",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78218",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "08/04/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "DUPLICATE",
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 5,
+    "tenure_score_bonus": 5,
+    "prop_id": "501409.0",
+    "deed_date": "7/8/2021",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 28700000
+      },
+      {
+        "year": "2025",
+        "appraised": 29700000
+      },
+      {
+        "year": "2024",
+        "appraised": 32000000
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "29700000.0",
+    "annual_taxes": "",
+    "land_value": "4748610.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 24
+  },
+  {
+    "type": "NOF",
+    "address": "146 GLENCOE DR",
+    "owner": "RAMIREZ FELIPE D GONZALEZ",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260800315",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78212",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "08/04/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 7,
+    "tenure_score_bonus": 5,
+    "prop_id": "445663.0",
+    "deed_date": "11/5/2018",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 287200
+      },
+      {
+        "year": "2025",
+        "appraised": 287230
+      },
+      {
+        "year": "2024",
+        "appraised": 287260
+      }
+    ],
+    "appr_trend": "flat",
+    "appraised_value": "287230.0",
+    "annual_taxes": "",
+    "land_value": "54790.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 24
+  },
+  {
+    "type": "NOF",
+    "address": "1419 BAILEY AVE",
+    "owner": "HINOJOSA PATRICK",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260800313",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78210",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "08/04/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 5,
+    "tenure_score_bonus": 5,
+    "prop_id": "986088.0",
+    "deed_date": "5/7/2021",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 166990
+      },
+      {
+        "year": "2025",
+        "appraised": 192940
+      },
+      {
+        "year": "2024",
+        "appraised": 192940
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "192940.0",
+    "annual_taxes": "",
+    "land_value": "42180.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 24
+  },
+  {
+    "type": "NOF",
+    "address": "6011 CECILYANN",
+    "owner": "REYES ADAM",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260800310",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78253",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "08/04/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 5,
+    "tenure_score_bonus": 5,
+    "prop_id": "1197697.0",
+    "deed_date": "12/11/2020",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 491120
+      },
+      {
+        "year": "2025",
+        "appraised": 522880
+      },
+      {
+        "year": "2024",
+        "appraised": 518950
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "522880.0",
+    "annual_taxes": "",
+    "land_value": "94760.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 24
+  },
+  {
+    "type": "NOF",
+    "address": "2131 LAMAR",
+    "owner": "ESCOBEDO JULIO",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260800308",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78202",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "08/04/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 9,
+    "tenure_score_bonus": 5,
+    "prop_id": "441439.0",
+    "deed_date": "3/28/2017",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 239370
+      },
+      {
+        "year": "2025",
+        "appraised": 242000
+      },
+      {
+        "year": "2024",
+        "appraised": 250000
+      }
+    ],
+    "appr_trend": "flat",
+    "appraised_value": "242000.0",
+    "annual_taxes": "",
+    "land_value": "130050.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 24
+  },
+  {
+    "type": "NOF",
+    "address": "843 LEE HALL",
+    "owner": "ESPINOSA OSCAR ARELLEANO & DEL RO MARIA",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260800301",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78212",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "08/04/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON",
+      "LONG HELD"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 11,
+    "tenure_score_bonus": 15,
+    "prop_id": "1121172.0",
+    "deed_date": "10/20/2014",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 216210
+      },
+      {
+        "year": "2025",
+        "appraised": 216210
+      },
+      {
+        "year": "2024",
+        "appraised": 226890
+      }
+    ],
+    "appr_trend": "flat",
+    "appraised_value": "216210.0",
+    "annual_taxes": "",
+    "land_value": "66890.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 24
+  },
+  {
+    "type": "NOF",
+    "address": "10406 LOUISBURG DR",
+    "owner": "OCHOA SUSANA",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260800307",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78245",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "08/04/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON",
+      "LONG HELD"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 11,
+    "tenure_score_bonus": 15,
+    "prop_id": "597637.0",
+    "deed_date": "10/14/2014",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 202920
+      },
+      {
+        "year": "2025",
+        "appraised": 202920
+      },
+      {
+        "year": "2024",
+        "appraised": 209500
+      }
+    ],
+    "appr_trend": "flat",
+    "appraised_value": "202920.0",
+    "annual_taxes": "",
+    "land_value": "58020.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 24
+  },
+  {
+    "type": "NOF",
     "address": "222 S WW WHITE RD",
     "owner": "SIERRA HOSPITALITY LTD",
     "mail_addr": "",
@@ -14609,7 +15175,7 @@
     "land_value": "551380.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -14664,7 +15230,7 @@
     "land_value": "70270.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -14721,7 +15287,7 @@
     "land_value": "129660.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -14777,7 +15343,7 @@
     "land_value": "75420.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -14832,7 +15398,7 @@
     "land_value": "46130.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -14887,7 +15453,7 @@
     "land_value": "44740.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -14942,7 +15508,7 @@
     "land_value": "49870.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -14997,7 +15563,7 @@
     "land_value": "65980.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -15052,7 +15618,7 @@
     "land_value": "60190.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -15108,7 +15674,7 @@
     "land_value": "48190.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -15163,7 +15729,7 @@
     "land_value": "82260.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -15218,7 +15784,7 @@
     "land_value": "51270.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -15274,7 +15840,7 @@
     "land_value": "102180.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -15329,7 +15895,7 @@
     "land_value": "181120.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -15385,7 +15951,7 @@
     "land_value": "53480.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -15440,7 +16006,7 @@
     "land_value": "40680.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -15497,7 +16063,7 @@
     "land_value": "945510.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -15553,7 +16119,7 @@
     "land_value": "54150.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -15609,7 +16175,7 @@
     "land_value": "74780.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -15666,7 +16232,7 @@
     "land_value": "48230.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -15721,7 +16287,7 @@
     "land_value": "126110.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -15776,7 +16342,7 @@
     "land_value": "53450.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -15832,7 +16398,7 @@
     "land_value": "8838350.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -15889,7 +16455,7 @@
     "land_value": "109730.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -15945,7 +16511,7 @@
     "land_value": "2448470.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -15987,7 +16553,7 @@
     "land_value": "54110.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -16028,7 +16594,7 @@
     "land_value": "50430.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -16068,7 +16634,7 @@
     "land_value": "121270.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -16109,7 +16675,7 @@
     "land_value": "61490.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -16149,7 +16715,7 @@
     "land_value": "96250.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -16189,7 +16755,7 @@
     "land_value": "36420.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -16230,7 +16796,7 @@
     "land_value": "104010.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -16270,7 +16836,7 @@
     "land_value": "48950.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -16310,7 +16876,7 @@
     "land_value": "50750.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -16350,7 +16916,7 @@
     "land_value": "57720.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -16391,7 +16957,7 @@
     "land_value": "64330.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -16432,7 +16998,7 @@
     "land_value": "64760.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -16472,7 +17038,7 @@
     "land_value": "72790.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -16513,7 +17079,7 @@
     "land_value": "38980.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -16554,7 +17120,7 @@
     "land_value": "58200.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -16595,7 +17161,7 @@
     "land_value": "46250.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -16635,7 +17201,7 @@
     "land_value": "44620.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -16676,7 +17242,7 @@
     "land_value": "48050.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -16717,7 +17283,7 @@
     "land_value": "59980.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -16757,7 +17323,7 @@
     "land_value": "40390.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -16797,7 +17363,7 @@
     "land_value": "92320.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -16839,7 +17405,7 @@
     "land_value": "99210.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -16880,7 +17446,7 @@
     "land_value": "46200.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -16921,7 +17487,7 @@
     "land_value": "60710.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -16962,7 +17528,7 @@
     "land_value": "171680.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -17003,7 +17569,7 @@
     "land_value": "74610.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -17044,7 +17610,7 @@
     "land_value": "65020.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -17086,7 +17652,7 @@
     "land_value": "73010.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -17128,7 +17694,7 @@
     "land_value": "55520.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 25,
+    "days_until_sale": 24,
     "appr_history": [
       {
         "year": "2026",
@@ -17199,7 +17765,7 @@
     "land_value": "52010.0",
     "stacked": false,
     "score": 9,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -17240,7 +17806,7 @@
     "land_value": "63900.0",
     "stacked": false,
     "score": 9,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -17281,7 +17847,7 @@
     "land_value": "135560.0",
     "stacked": false,
     "score": 9,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -17322,7 +17888,7 @@
     "land_value": "44770.0",
     "stacked": false,
     "score": 9,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -17357,7 +17923,7 @@
     "land_value": "110700.0",
     "stacked": false,
     "score": 9,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -17392,7 +17958,7 @@
     "land_value": "90020.0",
     "stacked": false,
     "score": 9,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -17427,7 +17993,7 @@
     "land_value": "40890.0",
     "stacked": false,
     "score": 9,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -17462,7 +18028,7 @@
     "land_value": "48310.0",
     "stacked": false,
     "score": 9,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -17497,7 +18063,7 @@
     "land_value": "46380.0",
     "stacked": false,
     "score": 9,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -17532,7 +18098,7 @@
     "land_value": "63600.0",
     "stacked": false,
     "score": 9,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -17567,7 +18133,7 @@
     "land_value": "68250.0",
     "stacked": false,
     "score": 9,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -17601,8 +18167,933 @@
     "annual_taxes": "",
     "land_value": "54610.0",
     "score": 9,
-    "days_until_sale": 25,
+    "days_until_sale": 24,
     "stacked": false
+  },
+  {
+    "type": "NOF",
+    "address": "800 GENTLEMAN RD",
+    "owner": "800 GENTLEMAN RD BACONES HEIGHTS TX 78201 LLC",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260800323",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78201",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "08/04/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "prop_id": "358086.0",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 6014773
+      },
+      {
+        "year": "2025",
+        "appraised": 5350000
+      },
+      {
+        "year": "2024",
+        "appraised": 5350000
+      }
+    ],
+    "appr_trend": "up",
+    "appraised_value": "5523050.0",
+    "annual_taxes": "",
+    "land_value": "562190.0",
+    "stacked": false,
+    "score": 7,
+    "days_until_sale": 24
+  },
+  {
+    "type": "NOF",
+    "address": "531 KIRK PL",
+    "owner": "ARMENTA NORBERTO EMMANUEL TERRAZAS",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260800319",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78225",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "08/04/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 1,
+    "tenure_score_bonus": 0,
+    "prop_id": "146916.0",
+    "deed_date": "12/2/2024",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 117680
+      },
+      {
+        "year": "2025",
+        "appraised": 120760
+      },
+      {
+        "year": "2024",
+        "appraised": 120260
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "120760.0",
+    "annual_taxes": "",
+    "land_value": "30980.0",
+    "stacked": false,
+    "score": 7,
+    "days_until_sale": 24
+  },
+  {
+    "type": "NOF",
+    "address": "5322 WAR CLOUD DR",
+    "owner": "GARCIA JESUS R & MARIA O",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260800317",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78242",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "08/04/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "prop_id": "603500.0",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 162130
+      },
+      {
+        "year": "2025",
+        "appraised": 183870
+      },
+      {
+        "year": "2024",
+        "appraised": 183870
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "183870.0",
+    "annual_taxes": "",
+    "land_value": "34660.0",
+    "stacked": false,
+    "score": 7,
+    "days_until_sale": 24
+  },
+  {
+    "type": "NOF",
+    "address": "827 ANGELA ST",
+    "owner": "GARCIA LUIS GUADALUPE TREVINO",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": true,
+    "is_new": true,
+    "doc_number": "20260800318",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78207",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "08/04/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "DUPLICATE",
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 1,
+    "tenure_score_bonus": 0,
+    "prop_id": "391190.0",
+    "deed_date": "8/21/2024",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 99900
+      },
+      {
+        "year": "2025",
+        "appraised": 122820
+      },
+      {
+        "year": "2024",
+        "appraised": 128820
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "122820.0",
+    "annual_taxes": "",
+    "land_value": "31050.0",
+    "stacked": false,
+    "score": 7,
+    "days_until_sale": 24
+  },
+  {
+    "type": "NOF",
+    "address": "1226 HAYLOFT LN",
+    "owner": "MCPEAK JESSICA & MAYEUR CHRISTOPHER",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260800311",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78245",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "08/04/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 1,
+    "tenure_score_bonus": 0,
+    "prop_id": "594143.0",
+    "deed_date": "8/14/2024",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 272930
+      },
+      {
+        "year": "2025",
+        "appraised": 272930
+      },
+      {
+        "year": "2024",
+        "appraised": 282450
+      }
+    ],
+    "appr_trend": "flat",
+    "appraised_value": "272930.0",
+    "annual_taxes": "",
+    "land_value": "63350.0",
+    "stacked": false,
+    "score": 7,
+    "days_until_sale": 24
+  },
+  {
+    "type": "NOF",
+    "address": "13726 SUBMARINE COVE",
+    "owner": "GONZALES MARY JANE",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260800309",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78223",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "08/04/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 2,
+    "tenure_score_bonus": 0,
+    "prop_id": "1374121.0",
+    "deed_date": "11/13/2023",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 267140
+      },
+      {
+        "year": "2025",
+        "appraised": 269080
+      },
+      {
+        "year": "2024",
+        "appraised": 264500
+      }
+    ],
+    "appr_trend": "flat",
+    "appraised_value": "269080.0",
+    "annual_taxes": "",
+    "land_value": "78490.0",
+    "stacked": false,
+    "score": 7,
+    "days_until_sale": 24
+  },
+  {
+    "type": "NOF",
+    "address": "2406 ROSEVILLE ST",
+    "owner": "DIAZ ANTONIO R",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": true,
+    "is_new": true,
+    "doc_number": "20260800298",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78219",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "08/04/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "DUPLICATE",
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 0,
+    "tenure_score_bonus": 0,
+    "prop_id": "327452.0",
+    "deed_date": "10/30/2025",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 208770
+      },
+      {
+        "year": "2025",
+        "appraised": 212210
+      },
+      {
+        "year": "2024",
+        "appraised": 212210
+      }
+    ],
+    "appr_trend": "flat",
+    "appraised_value": "212210.0",
+    "annual_taxes": "",
+    "land_value": "42920.0",
+    "stacked": false,
+    "score": 7,
+    "days_until_sale": 24
+  },
+  {
+    "type": "NOF",
+    "address": "446 HERMINE BLVD",
+    "owner": "FLEETWOOD DANIEL E & EMILY",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260800292",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78212",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "08/04/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "prop_id": "433224.0",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 171650
+      },
+      {
+        "year": "2025",
+        "appraised": 172990
+      },
+      {
+        "year": "2024",
+        "appraised": 172990
+      }
+    ],
+    "appr_trend": "flat",
+    "appraised_value": "172990.0",
+    "annual_taxes": "",
+    "land_value": "58990.0",
+    "stacked": false,
+    "score": 7,
+    "days_until_sale": 24
+  },
+  {
+    "type": "NOF",
+    "address": "206 SAMUEL KEMPER",
+    "owner": "ARAIZA DE GARCIA GUADALUPE & GARCIA LUIS JR",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260800282",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78220",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "08/04/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "prop_id": "1286463.0",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "appr_history": [],
+    "appr_trend": "",
+    "appraised_value": "214950.0",
+    "annual_taxes": "",
+    "land_value": "50910.0",
+    "stacked": false,
+    "score": 7,
+    "days_until_sale": 24
+  },
+  {
+    "type": "NOF",
+    "address": "238 PATRICIA",
+    "owner": "JUETTEMEYER KENNETH",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": true,
+    "is_new": true,
+    "doc_number": "20260800265",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78216",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "08/04/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "DUPLICATE",
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "prop_id": "520525.0",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "appr_history": [],
+    "appr_trend": "",
+    "appraised_value": "220000.0",
+    "annual_taxes": "",
+    "land_value": "61780.0",
+    "stacked": false,
+    "score": 7,
+    "days_until_sale": 24
+  },
+  {
+    "type": "NOF",
+    "address": "5230 ALAN BEAN DR",
+    "owner": "RAMOS JOSE",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260800287",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78219",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "08/04/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "prop_id": "168880.0",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "appr_history": [],
+    "appr_trend": "",
+    "appraised_value": "191070.0",
+    "annual_taxes": "",
+    "land_value": "41170.0",
+    "stacked": false,
+    "score": 7,
+    "days_until_sale": 24
+  },
+  {
+    "type": "NOF",
+    "address": "6310 CHANNEL VW",
+    "owner": "LAMONTAGNE ELSA",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260800276",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78222",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "08/04/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "prop_id": "1123921.0",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "appr_history": [],
+    "appr_trend": "",
+    "appraised_value": "227040.0",
+    "annual_taxes": "",
+    "land_value": "44590.0",
+    "stacked": false,
+    "score": 7,
+    "days_until_sale": 24
+  },
+  {
+    "type": "NOF",
+    "address": "5139 SAGAMORE DR",
+    "owner": "ZAPATA SAUL ESTRADA & ESTRADA ROCHELLE",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260800272",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78242",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "08/04/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "prop_id": "657533.0",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "appr_history": [],
+    "appr_trend": "",
+    "appraised_value": "177590.0",
+    "annual_taxes": "",
+    "land_value": "36620.0",
+    "stacked": false,
+    "score": 7,
+    "days_until_sale": 24
+  },
+  {
+    "type": "NOF",
+    "address": "2807 PRESLEY MEADOW",
+    "owner": "GUTIERREZ FELINA & LUIS SOLANO",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260800271",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78222",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "08/04/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "prop_id": "1276744.0",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "appr_history": [],
+    "appr_trend": "",
+    "appraised_value": "191080.0",
+    "annual_taxes": "",
+    "land_value": "44660.0",
+    "stacked": false,
+    "score": 7,
+    "days_until_sale": 24
+  },
+  {
+    "type": "NOF",
+    "address": "5135 MORNING GRAZE",
+    "owner": "HOUSES 4 TEXAS LLC",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260800274",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAINT HEDWIG",
+    "zip": "78152",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "08/04/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "prop_id": "1317655.0",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "appr_history": [],
+    "appr_trend": "",
+    "appraised_value": "205000.0",
+    "annual_taxes": "",
+    "land_value": "52500.0",
+    "stacked": false,
+    "score": 7,
+    "days_until_sale": 24
+  },
+  {
+    "type": "NOF",
+    "address": "5907 SMOKY QUARTZ",
+    "owner": "CORBIN-HUETE ELISIA & GERMAN HUETE",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260800273",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78222",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "08/04/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "prop_id": "1069178.0",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "appr_history": [],
+    "appr_trend": "",
+    "appraised_value": "252450.0",
+    "annual_taxes": "",
+    "land_value": "45000.0",
+    "stacked": false,
+    "score": 7,
+    "days_until_sale": 24
+  },
+  {
+    "type": "NOF",
+    "address": "204 MOHAWK",
+    "owner": "CITIFINANCIAL MORTGAGE CO INC",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260800278",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78211",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "08/04/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "prop_id": "477028.0",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "appr_history": [],
+    "appr_trend": "",
+    "appraised_value": "108450.0",
+    "annual_taxes": "",
+    "land_value": "38690.0",
+    "stacked": false,
+    "score": 7,
+    "days_until_sale": 24
+  },
+  {
+    "type": "NOF",
+    "address": "8610 TIMBERBRIAR ST",
+    "owner": "FRADY JORDAN",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260800275",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78250",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "08/04/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "prop_id": "711561.0",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "appr_history": [],
+    "appr_trend": "",
+    "appraised_value": "320910.0",
+    "annual_taxes": "",
+    "land_value": "75100.0",
+    "stacked": false,
+    "score": 7,
+    "days_until_sale": 24
+  },
+  {
+    "type": "NOF",
+    "address": "8211 RUSTIC TERRACE",
+    "owner": "VALE CHRISTOPHER H & SAUCEDO MERCEDES N",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": true,
+    "is_new": true,
+    "doc_number": "20260800284",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78249",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "08/04/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "DUPLICATE",
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "prop_id": "1178103.0",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "appr_history": [],
+    "appr_trend": "",
+    "appraised_value": "404480.0",
+    "annual_taxes": "",
+    "land_value": "87150.0",
+    "stacked": false,
+    "score": 7,
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -17657,7 +19148,7 @@
     "land_value": "57310.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -17712,7 +19203,7 @@
     "land_value": "591560.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -17767,7 +19258,7 @@
     "land_value": "48550.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -17823,7 +19314,7 @@
     "land_value": "105000.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -17874,7 +19365,7 @@
     "land_value": "54410.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -17930,7 +19421,7 @@
     "land_value": "48310.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -17985,7 +19476,7 @@
     "land_value": "44800.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -18040,7 +19531,7 @@
     "land_value": "90970.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -18096,7 +19587,7 @@
     "land_value": "36820.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -18151,7 +19642,7 @@
     "land_value": "65880.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -18207,7 +19698,7 @@
     "land_value": "51570.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -18262,7 +19753,7 @@
     "land_value": "66890.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -18317,7 +19808,7 @@
     "land_value": "53490.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -18372,7 +19863,7 @@
     "land_value": "57540.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -18427,7 +19918,7 @@
     "land_value": "44950.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -18482,7 +19973,7 @@
     "land_value": "20390.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -18537,7 +20028,7 @@
     "land_value": "88790.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -18592,7 +20083,7 @@
     "land_value": "126900.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -18647,7 +20138,7 @@
     "land_value": "44720.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -18702,7 +20193,7 @@
     "land_value": "43160.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -18757,7 +20248,7 @@
     "land_value": "54910.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -18812,7 +20303,7 @@
     "land_value": "99430.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -18867,7 +20358,7 @@
     "land_value": "40990.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -18922,7 +20413,7 @@
     "land_value": "54610.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -18977,7 +20468,7 @@
     "land_value": "134560.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -19032,7 +20523,7 @@
     "land_value": "64160.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -19087,7 +20578,7 @@
     "land_value": "34840.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -19142,7 +20633,7 @@
     "land_value": "38920.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -19197,7 +20688,7 @@
     "land_value": "50200.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -19252,7 +20743,7 @@
     "land_value": "102640.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -19307,7 +20798,7 @@
     "land_value": "59270.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -19362,7 +20853,7 @@
     "land_value": "66150.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -19402,7 +20893,7 @@
     "land_value": "29270.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -19442,7 +20933,7 @@
     "land_value": "42180.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -19482,7 +20973,7 @@
     "land_value": "70880.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -19522,7 +21013,7 @@
     "land_value": "41660.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -19562,7 +21053,7 @@
     "land_value": "85500.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -19602,7 +21093,7 @@
     "land_value": "44150.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -19642,7 +21133,7 @@
     "land_value": "51090.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -19650,7 +21141,7 @@
     "owner": "GARCIA ALFREDO",
     "mail_addr": "",
     "absentee": false,
-    "duplicate": false,
+    "duplicate": true,
     "is_new": false,
     "doc_number": "20260800134",
     "ps_doc_id": "",
@@ -19663,6 +21154,7 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-06-25T22:19:46Z",
     "flags": [
+      "DUPLICATE",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -19682,7 +21174,7 @@
     "land_value": "47660.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -19722,7 +21214,7 @@
     "land_value": "49530.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -19762,7 +21254,7 @@
     "land_value": "75730.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -19802,7 +21294,7 @@
     "land_value": "44590.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -19842,7 +21334,7 @@
     "land_value": "43690.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -19882,7 +21374,7 @@
     "land_value": "59600.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -19922,7 +21414,7 @@
     "land_value": "51550.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -19962,7 +21454,7 @@
     "land_value": "51580.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -20002,7 +21494,7 @@
     "land_value": "38190.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -20042,7 +21534,7 @@
     "land_value": "53360.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -20082,7 +21574,7 @@
     "land_value": "122630.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -20122,7 +21614,7 @@
     "land_value": "52360.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -20162,7 +21654,7 @@
     "land_value": "57630.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -20203,7 +21695,7 @@
     "land_value": "39430.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -20244,7 +21736,7 @@
     "land_value": "45760.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -20279,7 +21771,7 @@
     "land_value": "50890.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -20314,7 +21806,7 @@
     "land_value": "45550.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -20349,7 +21841,7 @@
     "land_value": "45550.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -20384,7 +21876,7 @@
     "land_value": "50890.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -20418,7 +21910,7 @@
     "land_value": "62420.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -20452,7 +21944,7 @@
     "land_value": "46180.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -20486,7 +21978,7 @@
     "land_value": "77290.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -20520,7 +22012,7 @@
     "land_value": "112900.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -20554,7 +22046,7 @@
     "land_value": "52880.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -20589,7 +22081,7 @@
     "land_value": "30460.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -20623,7 +22115,7 @@
     "land_value": "39440.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -20657,7 +22149,7 @@
     "land_value": "89860.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -20692,7 +22184,7 @@
     "land_value": "44910.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -20726,7 +22218,7 @@
     "land_value": "34180.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -20761,7 +22253,7 @@
     "land_value": "90600.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -20795,7 +22287,7 @@
     "land_value": "62790.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -20829,7 +22321,7 @@
     "land_value": "171060.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -20863,7 +22355,7 @@
     "land_value": "44550.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -20897,7 +22389,7 @@
     "land_value": "52520.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -20931,7 +22423,7 @@
     "land_value": "38230.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -20965,7 +22457,7 @@
     "land_value": "53960.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -20999,7 +22491,7 @@
     "land_value": "51010.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -21033,7 +22525,7 @@
     "land_value": "65580.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -21067,7 +22559,7 @@
     "land_value": "73590.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -21101,7 +22593,7 @@
     "land_value": "100520.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -21135,7 +22627,7 @@
     "land_value": "70060.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -21169,7 +22661,7 @@
     "land_value": "178740.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -21203,7 +22695,7 @@
     "land_value": "83210.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -21237,7 +22729,7 @@
     "land_value": "92060.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -21271,7 +22763,7 @@
     "land_value": "37500.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -21305,7 +22797,7 @@
     "land_value": "120670.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -21339,7 +22831,7 @@
     "land_value": "46620.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -21373,7 +22865,7 @@
     "land_value": "98830.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -21407,7 +22899,7 @@
     "land_value": "73310.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -21441,7 +22933,7 @@
     "land_value": "67060.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -21475,7 +22967,7 @@
     "land_value": "92240.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -21510,7 +23002,7 @@
     "land_value": "82960.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -21544,7 +23036,7 @@
     "land_value": "59630.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -21578,7 +23070,7 @@
     "land_value": "178750.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -21612,7 +23104,7 @@
     "land_value": "167190.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -21646,7 +23138,7 @@
     "land_value": "51490.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -21680,7 +23172,7 @@
     "land_value": "29190.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -21715,7 +23207,7 @@
     "land_value": "39630.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -21749,7 +23241,7 @@
     "land_value": "50730.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -21783,7 +23275,7 @@
     "land_value": "210100.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -21817,7 +23309,7 @@
     "land_value": "86970.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -21851,7 +23343,7 @@
     "land_value": "53700.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -21885,7 +23377,7 @@
     "land_value": "60350.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -21920,7 +23412,7 @@
     "land_value": "57120.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -21954,7 +23446,7 @@
     "land_value": "41120.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -21988,7 +23480,7 @@
     "land_value": "44430.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -22022,7 +23514,7 @@
     "land_value": "67280.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -22056,7 +23548,7 @@
     "land_value": "78440.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -22090,7 +23582,7 @@
     "land_value": "100120.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -22124,7 +23616,7 @@
     "land_value": "41760.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -22158,7 +23650,7 @@
     "land_value": "56660.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -22192,7 +23684,7 @@
     "land_value": "55760.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -22226,7 +23718,7 @@
     "land_value": "93790.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -22261,7 +23753,7 @@
     "land_value": "45120.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -22295,7 +23787,7 @@
     "land_value": "62030.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -22329,7 +23821,7 @@
     "land_value": "38400.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -22363,7 +23855,7 @@
     "land_value": "91500.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -22397,7 +23889,7 @@
     "land_value": "41040.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -22431,7 +23923,7 @@
     "land_value": "33170.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -22465,7 +23957,7 @@
     "land_value": "52730.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -22499,7 +23991,7 @@
     "land_value": "50470.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -22533,7 +24025,7 @@
     "land_value": "146160.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -22567,7 +24059,7 @@
     "land_value": "40040.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -22601,7 +24093,7 @@
     "land_value": "62580.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -22635,7 +24127,7 @@
     "land_value": "229450.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -22669,7 +24161,7 @@
     "land_value": "66840.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -22703,7 +24195,7 @@
     "land_value": "80720.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -22737,7 +24229,7 @@
     "land_value": "36690.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -22771,7 +24263,7 @@
     "land_value": "98890.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -22805,7 +24297,7 @@
     "land_value": "48770.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -22839,7 +24331,7 @@
     "land_value": "56570.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -22873,7 +24365,7 @@
     "land_value": "42550.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -22907,7 +24399,7 @@
     "land_value": "53050.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -22941,7 +24433,7 @@
     "land_value": "53070.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -22975,7 +24467,7 @@
     "land_value": "79200.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -23010,7 +24502,7 @@
     "land_value": "36740.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -23044,7 +24536,7 @@
     "land_value": "44410.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -23078,7 +24570,7 @@
     "land_value": "39630.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -23112,7 +24604,7 @@
     "land_value": "44620.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -23146,7 +24638,7 @@
     "land_value": "48590.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -23180,7 +24672,7 @@
     "land_value": "51520.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -23215,7 +24707,7 @@
     "land_value": "52980.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -23249,7 +24741,7 @@
     "land_value": "56370.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -23283,7 +24775,7 @@
     "land_value": "70940.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -23317,7 +24809,7 @@
     "land_value": "96870.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -23351,7 +24843,7 @@
     "land_value": "13994.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -23386,7 +24878,7 @@
     "land_value": "65100.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -23420,7 +24912,7 @@
     "land_value": "70340.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -23454,7 +24946,7 @@
     "land_value": "73460.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -23488,7 +24980,7 @@
     "land_value": "60980.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -23522,7 +25014,7 @@
     "land_value": "54370.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -23556,7 +25048,7 @@
     "land_value": "124420.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -23590,7 +25082,7 @@
     "land_value": "53970.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -23624,7 +25116,7 @@
     "land_value": "61640.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -23658,7 +25150,7 @@
     "land_value": "61280.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -23692,7 +25184,7 @@
     "land_value": "45890.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -23726,7 +25218,7 @@
     "land_value": "68090.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -23760,7 +25252,7 @@
     "land_value": "106990.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -23794,7 +25286,7 @@
     "land_value": "72780.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -23828,7 +25320,7 @@
     "land_value": "58630.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -23863,7 +25355,7 @@
     "land_value": "52340.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -23897,7 +25389,7 @@
     "land_value": "77390.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -23931,7 +25423,7 @@
     "land_value": "73930.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -23965,7 +25457,7 @@
     "land_value": "43470.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -23999,7 +25491,7 @@
     "land_value": "57720.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -24033,7 +25525,7 @@
     "land_value": "50510.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -24067,7 +25559,7 @@
     "land_value": "55570.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -24101,7 +25593,7 @@
     "land_value": "61030.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -24135,7 +25627,7 @@
     "land_value": "58850.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -24169,7 +25661,7 @@
     "land_value": "42870.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -24203,7 +25695,7 @@
     "land_value": "73180.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -24237,7 +25729,7 @@
     "land_value": "45400.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -24271,7 +25763,7 @@
     "land_value": "37090.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -24305,7 +25797,7 @@
     "land_value": "45940.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -24339,7 +25831,7 @@
     "land_value": "48910.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -24373,7 +25865,7 @@
     "land_value": "55940.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -24407,7 +25899,7 @@
     "land_value": "33440.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -24441,7 +25933,7 @@
     "land_value": "45940.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -24476,7 +25968,7 @@
     "land_value": "54280.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -24510,7 +26002,7 @@
     "land_value": "37180.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -24544,7 +26036,7 @@
     "land_value": "57400.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -24578,7 +26070,7 @@
     "land_value": "62500.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -24612,7 +26104,7 @@
     "land_value": "52810.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -24646,7 +26138,7 @@
     "land_value": "45440.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -24680,7 +26172,7 @@
     "land_value": "43490.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -24714,7 +26206,7 @@
     "land_value": "48000.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -24748,7 +26240,7 @@
     "land_value": "41520.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -24782,7 +26274,7 @@
     "land_value": "85390.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -24816,7 +26308,7 @@
     "land_value": "41830.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -24850,7 +26342,7 @@
     "land_value": "95830.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -24884,7 +26376,7 @@
     "land_value": "42870.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -24917,7 +26409,7 @@
     "annual_taxes": "",
     "land_value": "104980.0",
     "score": 7,
-    "days_until_sale": 25,
+    "days_until_sale": 24,
     "stacked": false
   },
   {
@@ -24951,7 +26443,7 @@
     "annual_taxes": "",
     "land_value": "44970.0",
     "score": 7,
-    "days_until_sale": 25,
+    "days_until_sale": 24,
     "stacked": false
   },
   {
@@ -24985,7 +26477,7 @@
     "annual_taxes": "",
     "land_value": "40100.0",
     "score": 7,
-    "days_until_sale": 25,
+    "days_until_sale": 24,
     "stacked": false
   },
   {
@@ -25019,7 +26511,7 @@
     "annual_taxes": "",
     "land_value": "62910.0",
     "score": 7,
-    "days_until_sale": 25,
+    "days_until_sale": 24,
     "stacked": false
   },
   {
@@ -25053,7 +26545,7 @@
     "annual_taxes": "",
     "land_value": "55060.0",
     "score": 7,
-    "days_until_sale": 25,
+    "days_until_sale": 24,
     "stacked": false
   },
   {
@@ -25087,7 +26579,7 @@
     "annual_taxes": "",
     "land_value": "65470.0",
     "score": 7,
-    "days_until_sale": 25,
+    "days_until_sale": 24,
     "stacked": false
   },
   {
@@ -25122,7 +26614,7 @@
     "annual_taxes": "",
     "land_value": "33070.0",
     "score": 7,
-    "days_until_sale": 25,
+    "days_until_sale": 24,
     "stacked": false
   },
   {
@@ -25156,7 +26648,7 @@
     "annual_taxes": "",
     "land_value": "52160.0",
     "score": 7,
-    "days_until_sale": 25,
+    "days_until_sale": 24,
     "stacked": false
   },
   {
@@ -25190,7 +26682,7 @@
     "annual_taxes": "",
     "land_value": "50710.0",
     "score": 7,
-    "days_until_sale": 25,
+    "days_until_sale": 24,
     "stacked": false
   },
   {
@@ -25224,7 +26716,7 @@
     "annual_taxes": "",
     "land_value": "74440.0",
     "score": 7,
-    "days_until_sale": 25,
+    "days_until_sale": 24,
     "stacked": false
   },
   {
@@ -25258,7 +26750,7 @@
     "annual_taxes": "",
     "land_value": "45280.0",
     "score": 7,
-    "days_until_sale": 25,
+    "days_until_sale": 24,
     "stacked": false
   },
   {
@@ -25284,7 +26776,7 @@
     ],
     "source": "publicsearch",
     "score": 7,
-    "days_until_sale": 25,
+    "days_until_sale": 24,
     "stacked": false
   },
   {
@@ -25325,7 +26817,7 @@
     "appr_trend": "",
     "stacked": false,
     "score": 4,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -25365,7 +26857,7 @@
     "appr_trend": "",
     "stacked": false,
     "score": 4,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -25405,7 +26897,7 @@
     "appr_trend": "",
     "stacked": false,
     "score": 4,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -25445,7 +26937,7 @@
     "appr_trend": "",
     "stacked": false,
     "score": 4,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -25485,7 +26977,7 @@
     "appr_trend": "",
     "stacked": false,
     "score": 4,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -25523,7 +27015,7 @@
     "last_sale_amt": "",
     "stacked": false,
     "score": 4,
-    "days_until_sale": 25
+    "days_until_sale": 24
   },
   {
     "type": "NOF",
@@ -25555,7 +27047,286 @@
     "trustee": "",
     "stacked": false,
     "score": 4,
-    "days_until_sale": 25
+    "days_until_sale": 24
+  },
+  {
+    "type": "NOF",
+    "address": "7103 PHOEBE VIEW",
+    "owner": "MORALES ANTONIA MORONES DE",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260800312",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78252",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "09/01/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "LONG HELD"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 13,
+    "tenure_score_bonus": 15,
+    "prop_id": "366156.0",
+    "deed_date": "5/8/2013",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 65770
+      },
+      {
+        "year": "2025",
+        "appraised": 65770
+      },
+      {
+        "year": "2024",
+        "appraised": 54040
+      }
+    ],
+    "appr_trend": "flat",
+    "appraised_value": "65770.0",
+    "annual_taxes": "",
+    "land_value": "65740.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 52
+  },
+  {
+    "type": "NOF",
+    "address": "11807 SILVERBERRY CV",
+    "owner": "CRISPIN ANTONIO H",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260800296",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78213",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "09/01/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "LONG HELD"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 21,
+    "tenure_score_bonus": 25,
+    "prop_id": "624357.0",
+    "deed_date": "6/24/2005",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 370730
+      },
+      {
+        "year": "2025",
+        "appraised": 370730
+      },
+      {
+        "year": "2024",
+        "appraised": 362210
+      }
+    ],
+    "appr_trend": "flat",
+    "appraised_value": "370730.0",
+    "annual_taxes": "",
+    "land_value": "80270.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 52
+  },
+  {
+    "type": "NOF",
+    "address": "5218 LAKEBEND EAST DR",
+    "owner": "MITCHELL EVAN",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260800300",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78244",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "09/01/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 7,
+    "tenure_score_bonus": 5,
+    "prop_id": "319135.0",
+    "deed_date": "5/5/2019",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 219280
+      },
+      {
+        "year": "2025",
+        "appraised": 235370
+      },
+      {
+        "year": "2024",
+        "appraised": 235370
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "235370.0",
+    "annual_taxes": "",
+    "land_value": "49530.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 52
+  },
+  {
+    "type": "NOF",
+    "address": "6405 VON ROSK",
+    "owner": "ARVIZU DOMINIQUE",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260800305",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78238",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "09/01/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 5,
+    "tenure_score_bonus": 5,
+    "prop_id": "1040426.0",
+    "deed_date": "5/14/2021",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 304470
+      },
+      {
+        "year": "2025",
+        "appraised": 314720
+      },
+      {
+        "year": "2024",
+        "appraised": 315650
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "314720.0",
+    "annual_taxes": "",
+    "land_value": "51670.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 52
+  },
+  {
+    "type": "NOF",
+    "address": "8902 LAGUNA FALLS",
+    "owner": "SANTOS ALFRED PETE  EST OF",
+    "mail_addr": "REBECCA G SANTOS  L/E SAN ANTONIO 78251",
+    "absentee": true,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260800304",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78251",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "09/01/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "ABSENTEE",
+      "NEW",
+      "HAS SALE DATE",
+      "LONG HELD"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 21,
+    "tenure_score_bonus": 25,
+    "prop_id": "718310.0",
+    "deed_date": "4/23/2005",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 236460
+      },
+      {
+        "year": "2025",
+        "appraised": 236480
+      },
+      {
+        "year": "2024",
+        "appraised": 242310
+      }
+    ],
+    "appr_trend": "flat",
+    "appraised_value": "236480.0",
+    "annual_taxes": "",
+    "land_value": "58100.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -25611,7 +27382,7 @@
     "land_value": "50880.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -25666,7 +27437,7 @@
     "land_value": "74700.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -25721,7 +27492,7 @@
     "land_value": "41990.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -25776,7 +27547,7 @@
     "land_value": "50040.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -25830,7 +27601,7 @@
     "land_value": "46600.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -25884,7 +27655,7 @@
     "land_value": "75740.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -25939,7 +27710,7 @@
     "land_value": "79660.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -25993,7 +27764,7 @@
     "land_value": "59490.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -26048,7 +27819,7 @@
     "land_value": "56750.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -26102,7 +27873,7 @@
     "land_value": "80830.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -26157,7 +27928,7 @@
     "land_value": "79000.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -26213,7 +27984,7 @@
     "land_value": "51210.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -26267,7 +28038,7 @@
     "land_value": "44440.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -26321,7 +28092,7 @@
     "land_value": "70950.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -26375,7 +28146,7 @@
     "land_value": "124830.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -26429,7 +28200,7 @@
     "land_value": "49660.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -26469,7 +28240,7 @@
     "land_value": "51520.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -26510,7 +28281,7 @@
     "land_value": "36740.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -26550,7 +28321,7 @@
     "land_value": "35160.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -26589,7 +28360,7 @@
     "land_value": "93290.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -26629,7 +28400,7 @@
     "land_value": "41810.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -26669,7 +28440,7 @@
     "land_value": "60860.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -26709,7 +28480,7 @@
     "land_value": "43060.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -26749,7 +28520,7 @@
     "land_value": "57940.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -26789,7 +28560,7 @@
     "land_value": "66110.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -26828,7 +28599,7 @@
     "land_value": "35940.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -26867,7 +28638,7 @@
     "land_value": "50560.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -26907,7 +28678,7 @@
     "land_value": "60990.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -26947,7 +28718,118 @@
     "land_value": "40550.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 53
+    "days_until_sale": 52
+  },
+  {
+    "type": "NOF",
+    "address": "9226 RUE DE LIS",
+    "owner": "RIVERA BENITO & LIRA REBECCA COLUNGA & COLUNGA JUANITA FABIOLA",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260800295",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78250",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "LONG HELD"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 11,
+    "tenure_score_bonus": 15,
+    "prop_id": "722249.0",
+    "deed_date": "12/11/2014",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 225360
+      },
+      {
+        "year": "2025",
+        "appraised": 227650
+      },
+      {
+        "year": "2024",
+        "appraised": 236540
+      }
+    ],
+    "appr_trend": "flat",
+    "appraised_value": "227650.0",
+    "annual_taxes": "",
+    "land_value": "61850.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 87
+  },
+  {
+    "type": "NOF",
+    "address": "867 LAMBSHEAD DRAW",
+    "owner": "SANCHEZ ANASTACIO & SHANNON",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260800297",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78245",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 6,
+    "tenure_score_bonus": 5,
+    "prop_id": "1275078.0",
+    "deed_date": "1/21/2020",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 351950
+      },
+      {
+        "year": "2025",
+        "appraised": 366270
+      },
+      {
+        "year": "2024",
+        "appraised": 367610
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "366270.0",
+    "annual_taxes": "",
+    "land_value": "67680.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 87
   },
   {
     "doc_number": "20260129625",
@@ -29580,7 +31462,7 @@
     "land_value": "49020.0",
     "stacked": false,
     "score": 9,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -29614,7 +31496,7 @@
     "land_value": "45920.0",
     "stacked": false,
     "score": 9,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -29648,7 +31530,7 @@
     "land_value": "64290.0",
     "stacked": false,
     "score": 9,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -29682,7 +31564,7 @@
     "land_value": "55490.0",
     "stacked": false,
     "score": 9,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -29716,7 +31598,7 @@
     "land_value": "38200.0",
     "stacked": false,
     "score": 9,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -29750,7 +31632,7 @@
     "land_value": "54760.0",
     "stacked": false,
     "score": 9,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -29784,7 +31666,79 @@
     "land_value": "44100.0",
     "stacked": false,
     "score": 9,
-    "days_until_sale": 144
+    "days_until_sale": 143
+  },
+  {
+    "doc_number": "20260130895",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "21923 Pivot Pt, San Antonio, Texas, 78261",
+    "address": "21923 PIVOT PT",
+    "city": "SAN ANTONIO",
+    "zip": "78258",
+    "date_filed": "7/2026",
+    "month": "7",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-07-10T14:43:29Z",
+    "score": 8,
+    "flags": [
+      "ABSENTEE"
+    ],
+    "absentee": true,
+    "duplicate": false,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "386590.0",
+    "annual_taxes": "",
+    "mail_addr": "JORIE L SAN ANTONIO 78258",
+    "prop_id": "739370.0",
+    "land_value": "",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false
+  },
+  {
+    "doc_number": "20260130230",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Salcedo Dniel F",
+    "address": "105 EL FLEDO CT",
+    "city": "SAN ANTONIO",
+    "zip": "78216",
+    "date_filed": "7/2026",
+    "month": "7",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-07-10T14:43:29Z",
+    "score": 8,
+    "flags": [
+      "ABSENTEE"
+    ],
+    "absentee": true,
+    "duplicate": false,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "45000.0",
+    "annual_taxes": "",
+    "mail_addr": "PENA GILBERT C SAN ANTONIO 78216",
+    "prop_id": "173856.0",
+    "land_value": "",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false
   },
   {
     "doc_number": "20260129685",
@@ -30979,6 +32933,522 @@
   },
   {
     "type": "NOF",
+    "address": "5414 FLYING HOOVES",
+    "owner": "LARSON DYLAN JAMES & VALADEZ SAVANNAH PAULINE",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260800294",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78222",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "09/01/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 2,
+    "tenure_score_bonus": 0,
+    "prop_id": "1364882.0",
+    "deed_date": "8/31/2023",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 231350
+      },
+      {
+        "year": "2025",
+        "appraised": 245140
+      },
+      {
+        "year": "2024",
+        "appraised": 240690
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "245140.0",
+    "annual_taxes": "",
+    "land_value": "40440.0",
+    "stacked": false,
+    "score": 7,
+    "days_until_sale": 52
+  },
+  {
+    "type": "NOF",
+    "address": "2610 CONCAN ST",
+    "owner": "GUILLEN FRANK DANIEL",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260800302",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78251",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "09/01/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 3,
+    "tenure_score_bonus": 0,
+    "prop_id": "666056.0",
+    "deed_date": "3/29/2023",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 335770
+      },
+      {
+        "year": "2025",
+        "appraised": 335770
+      },
+      {
+        "year": "2024",
+        "appraised": 343270
+      }
+    ],
+    "appr_trend": "flat",
+    "appraised_value": "335770.0",
+    "annual_taxes": "",
+    "land_value": "48150.0",
+    "stacked": false,
+    "score": 7,
+    "days_until_sale": 52
+  },
+  {
+    "type": "NOF",
+    "address": "1106 WORSHAN TERRACE",
+    "owner": "MARTINEZ ISABEL & ROSA FERNANDO L",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260800293",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78221",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "09/01/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 2,
+    "tenure_score_bonus": 0,
+    "prop_id": "1383520.0",
+    "deed_date": "2/20/2024",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 211510
+      },
+      {
+        "year": "2025",
+        "appraised": 213070
+      },
+      {
+        "year": "2024",
+        "appraised": 181530
+      }
+    ],
+    "appr_trend": "flat",
+    "appraised_value": "213070.0",
+    "annual_taxes": "",
+    "land_value": "59210.0",
+    "stacked": false,
+    "score": 7,
+    "days_until_sale": 52
+  },
+  {
+    "type": "NOF",
+    "address": "2004 PALMER PLACE",
+    "owner": "LOZOYA JOSHUA",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260800299",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "CONVERSE",
+    "zip": "78109",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "09/01/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 2,
+    "tenure_score_bonus": 0,
+    "prop_id": "1415235.0",
+    "deed_date": "5/28/2024",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 255540
+      },
+      {
+        "year": "2025",
+        "appraised": 316840
+      },
+      {
+        "year": "2024",
+        "appraised": 32000
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "316840.0",
+    "annual_taxes": "",
+    "land_value": "51200.0",
+    "stacked": false,
+    "score": 7,
+    "days_until_sale": 52
+  },
+  {
+    "type": "NOF",
+    "address": "1206 GENERAL BRAGG ST",
+    "owner": "KRAUSE MICHAEL",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": true,
+    "is_new": true,
+    "doc_number": "20260800306",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78245",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "09/01/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "DUPLICATE",
+      "NEW",
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "prop_id": "597679.0",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "appr_history": [],
+    "appr_trend": "",
+    "appraised_value": "289270.0",
+    "annual_taxes": "",
+    "land_value": "72500.0",
+    "stacked": false,
+    "score": 7,
+    "days_until_sale": 52
+  },
+  {
+    "type": "NOF",
+    "address": "9734 CYLBURN PARK",
+    "owner": "TAMAYO CORBIN T &  ABIGAIL J",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260800303",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "CONVERSE",
+    "zip": "78109",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "09/01/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "prop_id": "305413.0",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "appr_history": [],
+    "appr_trend": "",
+    "appraised_value": "246790.0",
+    "annual_taxes": "",
+    "land_value": "61680.0",
+    "stacked": false,
+    "score": 7,
+    "days_until_sale": 52
+  },
+  {
+    "type": "NOF",
+    "address": "2522 INDIAN FRST",
+    "owner": "RAK RANDY V & ROSA M",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260800279",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78244",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "09/01/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "prop_id": "686280.0",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "appr_history": [],
+    "appr_trend": "",
+    "appraised_value": "387450.0",
+    "annual_taxes": "",
+    "land_value": "93180.0",
+    "stacked": false,
+    "score": 7,
+    "days_until_sale": 52
+  },
+  {
+    "type": "NOF",
+    "address": "619 CANYONWOOD LANE",
+    "owner": "RAMON IRMA B",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260800291",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78227",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "09/01/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "prop_id": "576958.0",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "appr_history": [],
+    "appr_trend": "",
+    "appraised_value": "187420.0",
+    "annual_taxes": "",
+    "land_value": "37630.0",
+    "stacked": false,
+    "score": 7,
+    "days_until_sale": 52
+  },
+  {
+    "type": "NOF",
+    "address": "311 PLACID DR",
+    "owner": "ROGOVOY DAVID & HAMMONTREE CARLIE JO",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260800268",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78228",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "09/01/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "prop_id": "414113.0",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "appr_history": [],
+    "appr_trend": "",
+    "appraised_value": "163300.0",
+    "annual_taxes": "",
+    "land_value": "48810.0",
+    "stacked": false,
+    "score": 7,
+    "days_until_sale": 52
+  },
+  {
+    "type": "NOF",
+    "address": "12418 REVOLVER RUN",
+    "owner": "NGUYEN BIN VAN",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260800280",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78254",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "09/01/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "prop_id": "1341496.0",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "appr_history": [],
+    "appr_trend": "",
+    "appraised_value": "449910.0",
+    "annual_taxes": "",
+    "land_value": "72550.0",
+    "stacked": false,
+    "score": 7,
+    "days_until_sale": 52
+  },
+  {
+    "type": "NOF",
+    "address": "331 FURR DR",
+    "owner": "GARCIA ALFREDO",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": true,
+    "is_new": true,
+    "doc_number": "20260800285",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78201",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "09/01/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "DUPLICATE",
+      "NEW",
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "prop_id": "381697.0",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "appr_history": [],
+    "appr_trend": "",
+    "appraised_value": "230000.0",
+    "annual_taxes": "",
+    "land_value": "97600.0",
+    "stacked": false,
+    "score": 7,
+    "days_until_sale": 52
+  },
+  {
+    "type": "NOF",
     "address": "9307 ATEN SHORE",
     "owner": "PRUITT NEILE DAWN",
     "mail_addr": "",
@@ -31029,7 +33499,7 @@
     "land_value": "100280.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -31083,7 +33553,7 @@
     "land_value": "62290.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -31137,7 +33607,7 @@
     "land_value": "45020.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -31191,7 +33661,7 @@
     "land_value": "50600.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -31245,7 +33715,7 @@
     "land_value": "66640.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -31299,7 +33769,7 @@
     "land_value": "71960.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -31354,7 +33824,7 @@
     "land_value": "71780.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -31408,7 +33878,7 @@
     "land_value": "79230.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -31462,7 +33932,7 @@
     "land_value": "158770.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -31516,7 +33986,7 @@
     "land_value": "61530.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -31570,7 +34040,7 @@
     "land_value": "37040.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -31624,7 +34094,7 @@
     "land_value": "81090.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -31678,7 +34148,7 @@
     "land_value": "53540.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -31732,7 +34202,7 @@
     "land_value": "108690.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -31786,7 +34256,7 @@
     "land_value": "63460.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -31825,7 +34295,7 @@
     "land_value": "59180.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -31864,7 +34334,7 @@
     "land_value": "77570.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -31903,7 +34373,7 @@
     "land_value": "73320.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -31942,7 +34412,7 @@
     "land_value": "65310.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -31981,7 +34451,7 @@
     "land_value": "52010.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -32020,7 +34490,7 @@
     "land_value": "38450.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -32059,7 +34529,7 @@
     "land_value": "38400.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -32098,7 +34568,7 @@
     "land_value": "76490.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -32137,7 +34607,7 @@
     "land_value": "60340.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -32176,7 +34646,7 @@
     "land_value": "46190.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -32215,7 +34685,7 @@
     "land_value": "66860.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -32254,7 +34724,7 @@
     "land_value": "50570.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -32293,7 +34763,7 @@
     "land_value": "78820.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -32332,7 +34802,7 @@
     "land_value": "49830.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -32371,7 +34841,7 @@
     "land_value": "79970.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -32404,7 +34874,7 @@
     "land_value": "65570.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -32437,7 +34907,7 @@
     "land_value": "64290.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -32471,7 +34941,7 @@
     "land_value": "47270.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -32504,7 +34974,7 @@
     "land_value": "39010.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -32537,7 +35007,7 @@
     "land_value": "44890.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -32570,7 +35040,7 @@
     "land_value": "148620.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -32603,7 +35073,7 @@
     "land_value": "40630.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -32636,7 +35106,7 @@
     "land_value": "48930.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -32669,7 +35139,7 @@
     "land_value": "36920.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -32703,7 +35173,7 @@
     "land_value": "47270.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -32736,7 +35206,7 @@
     "land_value": "49690.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -32769,7 +35239,7 @@
     "land_value": "91670.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -32802,7 +35272,7 @@
     "land_value": "88870.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -32835,7 +35305,7 @@
     "land_value": "78110.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -32868,7 +35338,7 @@
     "land_value": "48840.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -32901,7 +35371,7 @@
     "land_value": "41810.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -32935,7 +35405,7 @@
     "land_value": "81500.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -32968,7 +35438,7 @@
     "land_value": "44750.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -33001,7 +35471,7 @@
     "land_value": "40350.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -33034,7 +35504,7 @@
     "land_value": "35350.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -33067,7 +35537,7 @@
     "land_value": "33050.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -33100,7 +35570,7 @@
     "land_value": "53120.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -33133,7 +35603,7 @@
     "land_value": "40740.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -33166,7 +35636,7 @@
     "land_value": "44590.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -33199,7 +35669,7 @@
     "land_value": "52470.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -33233,7 +35703,7 @@
     "land_value": "59410.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -33266,7 +35736,7 @@
     "land_value": "47300.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -33299,7 +35769,7 @@
     "land_value": "117860.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -33332,7 +35802,7 @@
     "land_value": "55680.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -33365,7 +35835,7 @@
     "land_value": "89040.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -33398,7 +35868,7 @@
     "land_value": "48830.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -33431,7 +35901,7 @@
     "land_value": "60190.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -33464,7 +35934,7 @@
     "land_value": "57840.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -33497,7 +35967,7 @@
     "land_value": "59780.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -33530,7 +36000,7 @@
     "land_value": "65060.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -33563,7 +36033,7 @@
     "land_value": "39780.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -33596,7 +36066,7 @@
     "land_value": "55050.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -33630,7 +36100,7 @@
     "land_value": "50680.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -33663,7 +36133,7 @@
     "land_value": "77280.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -33696,7 +36166,7 @@
     "land_value": "46090.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -33729,7 +36199,7 @@
     "land_value": "42000.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -33762,7 +36232,146 @@
     "land_value": "64690.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 53
+    "days_until_sale": 52
+  },
+  {
+    "type": "NOF",
+    "address": "14434 STAGHORN GATE",
+    "owner": "CASTILLEJA EDUARDO & HINOJOSA KARINA MAGDALENA",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260800314",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78233",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 4,
+    "tenure_score_bonus": 0,
+    "prop_id": "620460.0",
+    "deed_date": "9/16/2021",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 272830
+      },
+      {
+        "year": "2025",
+        "appraised": 283760
+      },
+      {
+        "year": "2024",
+        "appraised": 282510
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "283760.0",
+    "annual_taxes": "",
+    "land_value": "65070.0",
+    "stacked": false,
+    "score": 7,
+    "days_until_sale": 87
+  },
+  {
+    "type": "NOF",
+    "address": "8514 GROSBEAK COVE",
+    "owner": "BETTS SHYVONNE REANETTA",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260800269",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78245",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "prop_id": "1352173.0",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "appr_history": [],
+    "appr_trend": "",
+    "appraised_value": "230560.0",
+    "annual_taxes": "",
+    "land_value": "33480.0",
+    "stacked": false,
+    "score": 7,
+    "days_until_sale": 87
+  },
+  {
+    "type": "NOF",
+    "address": "9922 MOFFITT DR",
+    "owner": "MORIN DEBRA A",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260800267",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78251",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-07-10T16:50:34Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "prop_id": "1004311.0",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "appr_history": [],
+    "appr_trend": "",
+    "appraised_value": "298830.0",
+    "annual_taxes": "",
+    "land_value": "53580.0",
+    "stacked": false,
+    "score": 7,
+    "days_until_sale": 87
   },
   {
     "type": "NOF",
@@ -33795,7 +36404,7 @@
     "land_value": "44300.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 88
+    "days_until_sale": 87
   },
   {
     "type": "NOF",
@@ -33828,7 +36437,41 @@
     "land_value": "41360.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 116
+    "days_until_sale": 115
+  },
+  {
+    "doc_number": "20260130893",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Mattingly Andrew",
+    "address": "1131 SW 35TH ST",
+    "city": "SAN ANTONIO",
+    "zip": "78237",
+    "date_filed": "7/2026",
+    "month": "7",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-07-10T14:43:29Z",
+    "score": 6,
+    "flags": [],
+    "absentee": false,
+    "duplicate": false,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "154850.0",
+    "annual_taxes": "",
+    "mail_addr": "",
+    "prop_id": "407201.0",
+    "land_value": "",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false
   },
   {
     "doc_number": "20260128901",
@@ -108930,7 +111573,7 @@
     "owner": "GARCIA LUIS GUADALUPE TREVINO",
     "mail_addr": "",
     "absentee": false,
-    "duplicate": false,
+    "duplicate": true,
     "is_new": false,
     "doc_number": "20260500260",
     "year": "2026",
@@ -108941,7 +111584,9 @@
     "date_filed": "5/2026",
     "run_ts": "2026-04-27T04:53:23Z",
     "sale_date": "",
-    "flags": [],
+    "flags": [
+      "DUPLICATE"
+    ],
     "score": 6,
     "days_until_sale": null,
     "stacked": false
@@ -117450,7 +120095,7 @@
     "last_sale_amt": "",
     "stacked": false,
     "score": 4,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "type": "NOF",
@@ -117481,7 +120126,7 @@
     "trustee": "",
     "stacked": false,
     "score": 4,
-    "days_until_sale": 53
+    "days_until_sale": 52
   },
   {
     "doc_number": "20260129245",
