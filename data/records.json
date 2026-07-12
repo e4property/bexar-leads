@@ -29160,7 +29160,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2019TA102373",
     "year": "2026",
     "month": "8",
@@ -29172,7 +29172,6 @@
     "run_ts": "2026-07-12T15:51:28Z",
     "flags": [
       "TAX FORE",
-      "NEW",
       "LONG HELD"
     ],
     "source": "arcgis",
@@ -29211,7 +29210,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2024TA100375",
     "year": "2026",
     "month": "8",
@@ -29222,8 +29221,7 @@
     "sale_date": "",
     "run_ts": "2026-07-12T15:51:28Z",
     "flags": [
-      "TAX FORE",
-      "NEW"
+      "TAX FORE"
     ],
     "source": "arcgis",
     "sale_date_arcgis": "",
@@ -29261,7 +29259,7 @@
     "mail_addr": "C/O WILLIAM M DALMEIDA SAN ANTONIO 78207",
     "absentee": true,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2024TA100634",
     "year": "2026",
     "month": "8",
@@ -29273,8 +29271,7 @@
     "run_ts": "2026-07-12T15:51:28Z",
     "flags": [
       "TAX FORE",
-      "ABSENTEE",
-      "NEW"
+      "ABSENTEE"
     ],
     "source": "arcgis",
     "sale_date_arcgis": "",
@@ -29312,7 +29309,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2024TA101719",
     "year": "2026",
     "month": "8",
@@ -29323,8 +29320,7 @@
     "sale_date": "",
     "run_ts": "2026-07-12T15:51:28Z",
     "flags": [
-      "TAX FORE",
-      "NEW"
+      "TAX FORE"
     ],
     "source": "arcgis",
     "sale_date_arcgis": "",
@@ -29362,7 +29358,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2024TA101862",
     "year": "2026",
     "month": "8",
@@ -29373,8 +29369,7 @@
     "sale_date": "",
     "run_ts": "2026-07-12T15:51:28Z",
     "flags": [
-      "TAX FORE",
-      "NEW"
+      "TAX FORE"
     ],
     "source": "arcgis",
     "sale_date_arcgis": "",
@@ -29412,7 +29407,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2017TA101078",
     "year": "2026",
     "month": "8",
@@ -29424,7 +29419,6 @@
     "run_ts": "2026-07-12T15:51:28Z",
     "flags": [
       "TAX FORE",
-      "NEW",
       "LONG HELD"
     ],
     "source": "arcgis",
@@ -29463,7 +29457,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2015TA104409",
     "year": "2026",
     "month": "8",
@@ -29475,7 +29469,6 @@
     "run_ts": "2026-07-12T15:51:28Z",
     "flags": [
       "TAX FORE",
-      "NEW",
       "LONG HELD"
     ],
     "source": "arcgis",
@@ -29514,7 +29507,7 @@
     "mail_addr": "C/O JUAN TORRES SAN ANTONIO 78237",
     "absentee": true,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2012TA102987",
     "year": "2026",
     "month": "8",
@@ -29526,8 +29519,7 @@
     "run_ts": "2026-07-12T15:51:28Z",
     "flags": [
       "TAX FORE",
-      "ABSENTEE",
-      "NEW"
+      "ABSENTEE"
     ],
     "source": "arcgis",
     "sale_date_arcgis": "",
@@ -29551,6 +29543,56 @@
       {
         "year": "2024",
         "appraised": 13380
+      }
+    ],
+    "appr_trend": "down",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": null
+  },
+  {
+    "type": "TAX",
+    "address": "1139 GLADSTONE",
+    "owner": "ROMAN SANTIAGO O JR",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "2014TA100203",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78225",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "8/2026",
+    "sale_date": "",
+    "run_ts": "2026-07-12T15:51:28Z",
+    "flags": [
+      "TAX FORE",
+      "LONG HELD"
+    ],
+    "source": "arcgis",
+    "sale_date_arcgis": "",
+    "tenure_years": 21,
+    "tenure_score_bonus": 25,
+    "prop_id": "370277.0",
+    "deed_date": "5/23/2005",
+    "last_sale_amt": "",
+    "appraised_value": "175890.0",
+    "annual_taxes": "",
+    "land_value": "42580.0",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 168710
+      },
+      {
+        "year": "2025",
+        "appraised": 175890
+      },
+      {
+        "year": "2024",
+        "appraised": 184540
       }
     ],
     "appr_trend": "down",
@@ -32562,62 +32604,12 @@
   },
   {
     "type": "TAX",
-    "address": "1139 GLADSTONE",
-    "owner": "ROMAN SANTIAGO O JR",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": true,
-    "doc_number": "2014TA100203",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78225",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "8/2026",
-    "sale_date": "",
-    "run_ts": "2026-07-12T15:51:28Z",
-    "flags": [
-      "TAX FORE",
-      "NEW"
-    ],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "370277.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appraised_value": "175890.0",
-    "annual_taxes": "",
-    "land_value": "42580.0",
-    "appr_history": [
-      {
-        "year": "2026",
-        "appraised": 168710
-      },
-      {
-        "year": "2025",
-        "appraised": 175890
-      },
-      {
-        "year": "2024",
-        "appraised": 184540
-      }
-    ],
-    "appr_trend": "down",
-    "stacked": false,
-    "score": 8,
-    "days_until_sale": null
-  },
-  {
-    "type": "TAX",
     "address": "418 E HART AVE",
     "owner": "GIDEON FLOYD H",
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2017TA100496",
     "year": "2026",
     "month": "8",
@@ -32628,8 +32620,7 @@
     "sale_date": "",
     "run_ts": "2026-07-12T15:51:28Z",
     "flags": [
-      "TAX FORE",
-      "NEW"
+      "TAX FORE"
     ],
     "source": "arcgis",
     "sale_date_arcgis": "",
