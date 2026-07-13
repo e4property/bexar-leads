@@ -29672,6 +29672,60 @@
   },
   {
     "type": "NOF",
+    "address": "1409 W WOODLAWN AVE",
+    "owner": "3 AMIGOS MF #5 GRAY WOOD CLOUD LLC",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260800353",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78201",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "09/01/2026",
+    "run_ts": "2026-07-13T17:07:57Z",
+    "flags": [
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 9,
+    "tenure_score_bonus": 5,
+    "prop_id": "377868.0",
+    "deed_date": "5/26/2017",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 527367
+      },
+      {
+        "year": "2025",
+        "appraised": 625000
+      },
+      {
+        "year": "2024",
+        "appraised": 661120
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "625000.0",
+    "annual_taxes": "",
+    "land_value": "116700.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 49
+  },
+  {
+    "type": "NOF",
     "address": "9226 RUE DE LIS",
     "owner": "RIVERA BENITO & LIRA REBECCA COLUNGA & COLUNGA JUANITA FABIOLA",
     "mail_addr": "",
@@ -34737,60 +34791,6 @@
     "score": 8,
     "days_until_sale": null,
     "stacked": false
-  },
-  {
-    "type": "NOF",
-    "address": "1409 W WOODLAWN AVE",
-    "owner": "3 AMIGOS MF #5 GRAY WOOD CLOUD LLC",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260800353",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "7",
-    "city": "SAN ANTONIO",
-    "zip": "78201",
-    "school_dist": "",
-    "date_filed": "7/2026",
-    "sale_date": "09/01/2026",
-    "run_ts": "2026-07-13T17:07:57Z",
-    "flags": [
-      "HAS SALE DATE"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "377868.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [
-      {
-        "year": "2026",
-        "appraised": 527367
-      },
-      {
-        "year": "2025",
-        "appraised": 625000
-      },
-      {
-        "year": "2024",
-        "appraised": 661120
-      }
-    ],
-    "appr_trend": "down",
-    "appraised_value": "625000.0",
-    "annual_taxes": "",
-    "land_value": "116700.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 49
   },
   {
     "type": "NOF",
