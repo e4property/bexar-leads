@@ -14567,7 +14567,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800335",
     "ps_doc_id": "",
     "year": "2026",
@@ -14580,7 +14580,6 @@
     "run_ts": "2026-07-13T17:07:57Z",
     "flags": [
       "DUPLICATE",
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON",
       "LONG HELD"
@@ -14625,7 +14624,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800332",
     "ps_doc_id": "",
     "year": "2026",
@@ -14637,7 +14636,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-13T17:07:57Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON",
       "LONG HELD"
@@ -14682,7 +14680,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800330",
     "ps_doc_id": "",
     "year": "2026",
@@ -14694,7 +14692,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-13T17:07:57Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON",
       "LONG HELD"
@@ -14739,7 +14736,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800329",
     "ps_doc_id": "",
     "year": "2026",
@@ -14751,7 +14748,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-13T17:07:57Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -14795,7 +14791,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800327",
     "ps_doc_id": "",
     "year": "2026",
@@ -14807,7 +14803,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-13T17:07:57Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON",
       "LONG HELD"
@@ -18385,7 +18380,7 @@
     "mail_addr": "& BARBOZA CINTHIA POALA MARTINEZ SAN ANTONIO 78201",
     "absentee": true,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800333",
     "ps_doc_id": "",
     "year": "2026",
@@ -18399,7 +18394,6 @@
     "flags": [
       "ABSENTEE",
       "DUPLICATE",
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -18902,7 +18896,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800337",
     "ps_doc_id": "",
     "year": "2026",
@@ -18915,7 +18909,6 @@
     "run_ts": "2026-07-13T17:07:57Z",
     "flags": [
       "DUPLICATE",
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -18959,7 +18952,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800334",
     "ps_doc_id": "",
     "year": "2026",
@@ -18972,7 +18965,6 @@
     "run_ts": "2026-07-13T17:07:57Z",
     "flags": [
       "DUPLICATE",
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -19016,7 +19008,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800328",
     "ps_doc_id": "",
     "year": "2026",
@@ -19028,7 +19020,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-13T17:07:57Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -19072,7 +19063,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800326",
     "ps_doc_id": "",
     "year": "2026",
@@ -19084,7 +19075,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-13T17:07:57Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -27585,7 +27575,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800331",
     "ps_doc_id": "",
     "year": "2026",
@@ -27597,7 +27587,6 @@
     "sale_date": "08/06/2026",
     "run_ts": "2026-07-13T17:07:57Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -33427,7 +33416,7 @@
     "mail_addr": "HACKWORTH SARINA NERYS SAINT HEDWIG 78152",
     "absentee": true,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800336",
     "ps_doc_id": "",
     "year": "2026",
@@ -33440,7 +33429,6 @@
     "run_ts": "2026-07-13T17:07:57Z",
     "flags": [
       "ABSENTEE",
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -34757,7 +34745,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800353",
     "ps_doc_id": "",
     "year": "2026",
@@ -34769,7 +34757,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-07-13T17:07:57Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
