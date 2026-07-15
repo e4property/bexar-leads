@@ -7913,7 +7913,7 @@
     "owner": "J4 REAL ESTATE HOLDINGS LLC",
     "mail_addr": "",
     "absentee": false,
-    "duplicate": false,
+    "duplicate": true,
     "is_new": false,
     "doc_number": "20260700209",
     "ps_doc_id": "",
@@ -7926,6 +7926,7 @@
     "sale_date": "07/07/2026",
     "run_ts": "2026-06-15T20:54:13Z",
     "flags": [
+      "DUPLICATE",
       "HAS SALE DATE",
       "AUCTION SOON",
       "URGENT"
@@ -14568,12 +14569,69 @@
   },
   {
     "type": "NOF",
+    "address": "4419 NEW MATHIS RD",
+    "owner": "LANDCO INVESTMENTS INC",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260800436",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "ELMENDORF",
+    "zip": "78112",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "08/04/2026",
+    "run_ts": "2026-07-15T20:53:51Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON",
+      "LONG HELD"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 17,
+    "tenure_score_bonus": 25,
+    "prop_id": "177685.0",
+    "deed_date": "11/19/2008",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 156350
+      },
+      {
+        "year": "2025",
+        "appraised": 167700
+      },
+      {
+        "year": "2024",
+        "appraised": 161270
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "167700.0",
+    "annual_taxes": "",
+    "land_value": "66150.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 19
+  },
+  {
+    "type": "NOF",
     "address": "11810 BRIDGE HAMPTON",
     "owner": "CORTES REYMUNDO",
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800471",
     "ps_doc_id": "",
     "year": "2026",
@@ -14586,7 +14644,6 @@
     "run_ts": "2026-07-15T16:14:03Z",
     "flags": [
       "DUPLICATE",
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -14630,7 +14687,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800453",
     "ps_doc_id": "",
     "year": "2026",
@@ -14643,7 +14700,6 @@
     "run_ts": "2026-07-15T16:14:03Z",
     "flags": [
       "DUPLICATE",
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON",
       "LONG HELD"
@@ -14688,7 +14744,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800448",
     "ps_doc_id": "",
     "year": "2026",
@@ -14700,7 +14756,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-15T16:14:03Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON",
       "LONG HELD"
@@ -14734,6 +14789,118 @@
     "appraised_value": "134210.0",
     "annual_taxes": "",
     "land_value": "51200.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 19
+  },
+  {
+    "type": "NOF",
+    "address": "1915 SANDY CIRCLE",
+    "owner": "HIDALGO PAULO E",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260800472",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78264",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "08/04/2026",
+    "run_ts": "2026-07-15T16:14:03Z",
+    "flags": [
+      "HAS SALE DATE",
+      "AUCTION SOON",
+      "LONG HELD"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 20,
+    "tenure_score_bonus": 25,
+    "prop_id": "181558.0",
+    "deed_date": "3/23/2006",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 111150
+      },
+      {
+        "year": "2025",
+        "appraised": 111150
+      },
+      {
+        "year": "2024",
+        "appraised": 95260
+      }
+    ],
+    "appr_trend": "flat",
+    "appraised_value": "111150.0",
+    "annual_taxes": "",
+    "land_value": "108580.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 19
+  },
+  {
+    "type": "NOF",
+    "address": "8904 DAKOTA RUN",
+    "owner": "JEFFRIES BRIAN & SHANNON JUDY",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260800439",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "CONVERSE",
+    "zip": "78109",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "08/04/2026",
+    "run_ts": "2026-07-15T16:14:03Z",
+    "flags": [
+      "HAS SALE DATE",
+      "AUCTION SOON",
+      "LONG HELD"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 14,
+    "tenure_score_bonus": 15,
+    "prop_id": "313460.0",
+    "deed_date": "10/18/2011",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 233500
+      },
+      {
+        "year": "2025",
+        "appraised": 234840
+      },
+      {
+        "year": "2024",
+        "appraised": 235940
+      }
+    ],
+    "appr_trend": "flat",
+    "appraised_value": "234840.0",
+    "annual_taxes": "",
+    "land_value": "45070.0",
     "stacked": false,
     "score": 10,
     "days_until_sale": 19
@@ -18671,7 +18838,7 @@
     "mail_addr": "CARABIN PARTNERS LTD SAN ANTONIO 78220",
     "absentee": true,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800470",
     "ps_doc_id": "",
     "year": "2026",
@@ -18684,7 +18851,6 @@
     "run_ts": "2026-07-15T16:14:03Z",
     "flags": [
       "ABSENTEE",
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -19239,23 +19405,24 @@
   },
   {
     "type": "NOF",
-    "address": "1915 SANDY CIRCLE",
-    "owner": "HIDALGO PAULO E",
+    "address": "9923 EVENING WAY DR",
+    "owner": "J4 REAL ESTATE HOLDINGS LLC",
     "mail_addr": "",
     "absentee": false,
-    "duplicate": false,
+    "duplicate": true,
     "is_new": true,
-    "doc_number": "20260800472",
+    "doc_number": "20260800447",
     "ps_doc_id": "",
     "year": "2026",
     "month": "7",
     "city": "SAN ANTONIO",
-    "zip": "78264",
+    "zip": "78233",
     "school_dist": "",
     "date_filed": "7/2026",
     "sale_date": "08/04/2026",
-    "run_ts": "2026-07-15T16:14:03Z",
+    "run_ts": "2026-07-15T20:53:51Z",
     "flags": [
+      "DUPLICATE",
       "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
@@ -19268,27 +19435,84 @@
     "sale_date_arcgis": "",
     "tenure_years": null,
     "tenure_score_bonus": 0,
-    "prop_id": "181558.0",
+    "prop_id": "535124.0",
     "deed_date": "",
     "last_sale_amt": "",
     "appr_history": [
       {
         "year": "2026",
-        "appraised": 111150
+        "appraised": 206300
       },
       {
         "year": "2025",
-        "appraised": 111150
+        "appraised": 217240
       },
       {
         "year": "2024",
-        "appraised": 95260
+        "appraised": 220350
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "217240.0",
+    "annual_taxes": "",
+    "land_value": "48600.0",
+    "stacked": false,
+    "score": 7,
+    "days_until_sale": 19
+  },
+  {
+    "type": "NOF",
+    "address": "15814 MARISA PL",
+    "owner": "ION HOMES AND RESORT USA LLC",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": true,
+    "is_new": true,
+    "doc_number": "20260800427",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78247",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "08/04/2026",
+    "run_ts": "2026-07-15T20:53:51Z",
+    "flags": [
+      "DUPLICATE",
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 2,
+    "tenure_score_bonus": 0,
+    "prop_id": "672203.0",
+    "deed_date": "5/31/2024",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 326280
+      },
+      {
+        "year": "2025",
+        "appraised": 326280
+      },
+      {
+        "year": "2024",
+        "appraised": 326280
       }
     ],
     "appr_trend": "flat",
-    "appraised_value": "111150.0",
+    "appraised_value": "326280.0",
     "annual_taxes": "",
-    "land_value": "108580.0",
+    "land_value": "63960.0",
     "stacked": false,
     "score": 7,
     "days_until_sale": 19
@@ -19300,7 +19524,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800469",
     "ps_doc_id": "",
     "year": "2026",
@@ -19312,7 +19536,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-15T16:14:03Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -19356,7 +19579,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800468",
     "ps_doc_id": "",
     "year": "2026",
@@ -19369,7 +19592,6 @@
     "run_ts": "2026-07-15T16:14:03Z",
     "flags": [
       "DUPLICATE",
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -19413,7 +19635,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800467",
     "ps_doc_id": "",
     "year": "2026",
@@ -19425,7 +19647,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-15T16:14:03Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -19469,7 +19690,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800466",
     "ps_doc_id": "",
     "year": "2026",
@@ -19481,7 +19702,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-15T16:14:03Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -19525,7 +19745,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800464",
     "ps_doc_id": "",
     "year": "2026",
@@ -19538,7 +19758,6 @@
     "run_ts": "2026-07-15T16:14:03Z",
     "flags": [
       "DUPLICATE",
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -19582,7 +19801,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800465",
     "ps_doc_id": "",
     "year": "2026",
@@ -19594,7 +19813,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-15T16:14:03Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -19638,7 +19856,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800463",
     "ps_doc_id": "",
     "year": "2026",
@@ -19650,7 +19868,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-15T16:14:03Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -19694,7 +19911,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800462",
     "ps_doc_id": "",
     "year": "2026",
@@ -19706,7 +19923,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-15T16:14:03Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -19750,7 +19966,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800461",
     "ps_doc_id": "",
     "year": "2026",
@@ -19762,7 +19978,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-15T16:14:03Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -19806,7 +20021,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800460",
     "ps_doc_id": "",
     "year": "2026",
@@ -19818,7 +20033,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-15T16:14:03Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -19862,7 +20076,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800459",
     "ps_doc_id": "",
     "year": "2026",
@@ -19874,7 +20088,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-15T16:14:03Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -19918,7 +20131,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800458",
     "ps_doc_id": "",
     "year": "2026",
@@ -19931,7 +20144,6 @@
     "run_ts": "2026-07-15T16:14:03Z",
     "flags": [
       "DUPLICATE",
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -19975,7 +20187,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800457",
     "ps_doc_id": "",
     "year": "2026",
@@ -19988,7 +20200,6 @@
     "run_ts": "2026-07-15T16:14:03Z",
     "flags": [
       "DUPLICATE",
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -20032,7 +20243,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800451",
     "ps_doc_id": "",
     "year": "2026",
@@ -20044,7 +20255,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-15T16:14:03Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -20088,7 +20298,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800455",
     "ps_doc_id": "",
     "year": "2026",
@@ -20100,7 +20310,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-15T16:14:03Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -20144,7 +20353,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800454",
     "ps_doc_id": "",
     "year": "2026",
@@ -20156,7 +20365,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-15T16:14:03Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -20200,7 +20408,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800452",
     "ps_doc_id": "",
     "year": "2026",
@@ -20212,7 +20420,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-15T16:14:03Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -20256,7 +20463,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800429",
     "ps_doc_id": "",
     "year": "2026",
@@ -20269,7 +20476,6 @@
     "run_ts": "2026-07-15T16:14:03Z",
     "flags": [
       "DUPLICATE",
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -20313,7 +20519,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800430",
     "ps_doc_id": "",
     "year": "2026",
@@ -20325,7 +20531,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-15T16:14:03Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -20369,7 +20574,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800444",
     "ps_doc_id": "",
     "year": "2026",
@@ -20382,7 +20587,6 @@
     "run_ts": "2026-07-15T16:14:03Z",
     "flags": [
       "DUPLICATE",
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -20426,7 +20630,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800443",
     "ps_doc_id": "",
     "year": "2026",
@@ -20439,7 +20643,6 @@
     "run_ts": "2026-07-15T16:14:03Z",
     "flags": [
       "DUPLICATE",
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -20483,7 +20686,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800440",
     "ps_doc_id": "",
     "year": "2026",
@@ -20495,7 +20698,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-15T16:14:03Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -20505,13 +20707,26 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 1,
     "tenure_score_bonus": 0,
     "prop_id": "723289.0",
-    "deed_date": "",
+    "deed_date": "5/8/2025",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 495250
+      },
+      {
+        "year": "2025",
+        "appraised": 495250
+      },
+      {
+        "year": "2024",
+        "appraised": 558840
+      }
+    ],
+    "appr_trend": "flat",
     "appraised_value": "495250.0",
     "annual_taxes": "",
     "land_value": "100050.0",
@@ -20526,7 +20741,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800425",
     "ps_doc_id": "",
     "year": "2026",
@@ -20539,7 +20754,6 @@
     "run_ts": "2026-07-15T16:14:03Z",
     "flags": [
       "DUPLICATE",
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -20549,13 +20763,26 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 3,
     "tenure_score_bonus": 0,
     "prop_id": "1094968.0",
-    "deed_date": "",
+    "deed_date": "1/5/2023",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 96730
+      },
+      {
+        "year": "2025",
+        "appraised": 96730
+      },
+      {
+        "year": "2024",
+        "appraised": 96730
+      }
+    ],
+    "appr_trend": "flat",
     "appraised_value": "96730.0",
     "annual_taxes": "",
     "land_value": "96730.0",
@@ -20570,7 +20797,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800424",
     "ps_doc_id": "",
     "year": "2026",
@@ -20583,7 +20810,6 @@
     "run_ts": "2026-07-15T16:14:03Z",
     "flags": [
       "DUPLICATE",
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -20593,13 +20819,26 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 2,
     "tenure_score_bonus": 0,
     "prop_id": "718380.0",
-    "deed_date": "",
+    "deed_date": "3/8/2024",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 196940
+      },
+      {
+        "year": "2025",
+        "appraised": 201740
+      },
+      {
+        "year": "2024",
+        "appraised": 194170
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "201740.0",
     "annual_taxes": "",
     "land_value": "59700.0",
@@ -20614,7 +20853,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800426",
     "ps_doc_id": "",
     "year": "2026",
@@ -20627,7 +20866,6 @@
     "run_ts": "2026-07-15T16:14:03Z",
     "flags": [
       "DUPLICATE",
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -20637,13 +20875,26 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 3,
     "tenure_score_bonus": 0,
     "prop_id": "1060028.0",
-    "deed_date": "",
+    "deed_date": "12/13/2022",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 522000
+      },
+      {
+        "year": "2025",
+        "appraised": 327700
+      },
+      {
+        "year": "2024",
+        "appraised": 108020
+      }
+    ],
+    "appr_trend": "up",
     "appraised_value": "327700.0",
     "annual_taxes": "",
     "land_value": "46490.0",
@@ -20658,7 +20909,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800438",
     "ps_doc_id": "",
     "year": "2026",
@@ -20671,7 +20922,6 @@
     "run_ts": "2026-07-15T16:14:03Z",
     "flags": [
       "DUPLICATE",
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -20681,59 +20931,29 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 1,
     "tenure_score_bonus": 0,
     "prop_id": "168784.0",
-    "deed_date": "",
+    "deed_date": "11/8/2024",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 209430
+      },
+      {
+        "year": "2025",
+        "appraised": 215270
+      },
+      {
+        "year": "2024",
+        "appraised": 215270
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "215270.0",
     "annual_taxes": "",
     "land_value": "38920.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 19
-  },
-  {
-    "type": "NOF",
-    "address": "8904 DAKOTA RUN",
-    "owner": "JEFFRIES BRIAN & SHANNON JUDY",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": true,
-    "doc_number": "20260800439",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "7",
-    "city": "CONVERSE",
-    "zip": "78109",
-    "school_dist": "",
-    "date_filed": "7/2026",
-    "sale_date": "08/04/2026",
-    "run_ts": "2026-07-15T16:14:03Z",
-    "flags": [
-      "NEW",
-      "HAS SALE DATE",
-      "AUCTION SOON"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "313460.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "234840.0",
-    "annual_taxes": "",
-    "land_value": "45070.0",
     "stacked": false,
     "score": 7,
     "days_until_sale": 19
@@ -20745,7 +20965,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800442",
     "ps_doc_id": "",
     "year": "2026",
@@ -20758,7 +20978,6 @@
     "run_ts": "2026-07-15T16:14:03Z",
     "flags": [
       "DUPLICATE",
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -20768,13 +20987,26 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 2,
     "tenure_score_bonus": 0,
     "prop_id": "118719.0",
-    "deed_date": "",
+    "deed_date": "7/19/2023",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 170990
+      },
+      {
+        "year": "2025",
+        "appraised": 187510
+      },
+      {
+        "year": "2024",
+        "appraised": 191290
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "187510.0",
     "annual_taxes": "",
     "land_value": "142520.0",
@@ -20789,7 +21021,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800435",
     "ps_doc_id": "",
     "year": "2026",
@@ -20802,7 +21034,6 @@
     "run_ts": "2026-07-15T16:14:03Z",
     "flags": [
       "DUPLICATE",
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -20812,13 +21043,22 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 1,
     "tenure_score_bonus": 0,
     "prop_id": "1425203.0",
-    "deed_date": "",
+    "deed_date": "1/22/2025",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 222370
+      },
+      {
+        "year": "2025",
+        "appraised": 199170
+      }
+    ],
+    "appr_trend": "up",
     "appraised_value": "199170.0",
     "annual_taxes": "",
     "land_value": "47560.0",
@@ -20833,7 +21073,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800428",
     "ps_doc_id": "",
     "year": "2026",
@@ -20846,7 +21086,6 @@
     "run_ts": "2026-07-15T16:14:03Z",
     "flags": [
       "DUPLICATE",
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -20856,13 +21095,26 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 3,
     "tenure_score_bonus": 0,
     "prop_id": "1060027.0",
-    "deed_date": "",
+    "deed_date": "12/13/2022",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 347880
+      },
+      {
+        "year": "2025",
+        "appraised": 271090
+      },
+      {
+        "year": "2024",
+        "appraised": 200310
+      }
+    ],
+    "appr_trend": "up",
     "appraised_value": "271090.0",
     "annual_taxes": "",
     "land_value": "38620.0",
@@ -20877,7 +21129,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800431",
     "ps_doc_id": "",
     "year": "2026",
@@ -20889,7 +21141,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-15T16:14:03Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -20899,13 +21150,26 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 3,
     "tenure_score_bonus": 0,
     "prop_id": "419662.0",
-    "deed_date": "",
+    "deed_date": "8/10/2022",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 643000
+      },
+      {
+        "year": "2025",
+        "appraised": 657390
+      },
+      {
+        "year": "2024",
+        "appraised": 603720
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "657390.0",
     "annual_taxes": "",
     "land_value": "254580.0",
@@ -20920,7 +21184,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800432",
     "ps_doc_id": "",
     "year": "2026",
@@ -20932,7 +21196,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-15T16:14:03Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -20942,13 +21205,26 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 4,
     "tenure_score_bonus": 0,
     "prop_id": "372818.0",
-    "deed_date": "",
+    "deed_date": "2/11/2022",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 159490
+      },
+      {
+        "year": "2025",
+        "appraised": 165350
+      },
+      {
+        "year": "2024",
+        "appraised": 165350
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "165350.0",
     "annual_taxes": "",
     "land_value": "42170.0",
@@ -20963,7 +21239,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800419",
     "ps_doc_id": "",
     "year": "2026",
@@ -20975,7 +21251,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-15T16:14:03Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -20985,13 +21260,26 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 3,
     "tenure_score_bonus": 0,
     "prop_id": "1045129.0",
-    "deed_date": "",
+    "deed_date": "11/14/2022",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 244080
+      },
+      {
+        "year": "2025",
+        "appraised": 246400
+      },
+      {
+        "year": "2024",
+        "appraised": 248700
+      }
+    ],
+    "appr_trend": "flat",
     "appraised_value": "246400.0",
     "annual_taxes": "",
     "land_value": "52950.0",
@@ -21006,7 +21294,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800420",
     "ps_doc_id": "",
     "year": "2026",
@@ -21018,7 +21306,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-15T16:14:03Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -21028,13 +21315,26 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 1,
     "tenure_score_bonus": 0,
     "prop_id": "1407479.0",
-    "deed_date": "",
+    "deed_date": "11/22/2024",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 318430
+      },
+      {
+        "year": "2025",
+        "appraised": 314990
+      },
+      {
+        "year": "2024",
+        "appraised": 36200
+      }
+    ],
+    "appr_trend": "flat",
     "appraised_value": "314990.0",
     "annual_taxes": "",
     "land_value": "58640.0",
@@ -21049,7 +21349,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800422",
     "ps_doc_id": "",
     "year": "2026",
@@ -21061,7 +21361,6 @@
     "sale_date": "08/04/2026",
     "run_ts": "2026-07-15T16:14:03Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -21071,13 +21370,26 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 3,
     "tenure_score_bonus": 0,
     "prop_id": "1362488.0",
-    "deed_date": "",
+    "deed_date": "3/15/2023",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 353020
+      },
+      {
+        "year": "2025",
+        "appraised": 365740
+      },
+      {
+        "year": "2024",
+        "appraised": 364510
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "365740.0",
     "annual_taxes": "",
     "land_value": "68970.0",
@@ -30375,7 +30687,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800456",
     "ps_doc_id": "",
     "year": "2026",
@@ -30387,7 +30699,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-07-15T16:14:03Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -30430,7 +30741,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800434",
     "ps_doc_id": "",
     "year": "2026",
@@ -30442,7 +30753,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-07-15T16:14:03Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "LONG HELD"
     ],
@@ -32309,6 +32619,61 @@
     "stacked": false,
     "score": 10,
     "days_until_sale": 47
+  },
+  {
+    "type": "NOF",
+    "address": "5430 HAREFIELD DR",
+    "owner": "SMITH BRIAN & CORINA",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260800423",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78228",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-07-15T20:53:51Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 8,
+    "tenure_score_bonus": 5,
+    "prop_id": "1107148.0",
+    "deed_date": "11/7/2017",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 202240
+      },
+      {
+        "year": "2025",
+        "appraised": 206490
+      },
+      {
+        "year": "2024",
+        "appraised": 208640
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "206490.0",
+    "annual_taxes": "",
+    "land_value": "31000.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 82
   },
   {
     "type": "NOF",
@@ -37385,7 +37750,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800450",
     "ps_doc_id": "",
     "year": "2026",
@@ -37397,7 +37762,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-07-15T16:14:03Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -37440,7 +37804,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800449",
     "ps_doc_id": "",
     "year": "2026",
@@ -37452,7 +37816,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-07-15T16:14:03Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -37495,7 +37858,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800416",
     "ps_doc_id": "",
     "year": "2026",
@@ -37507,7 +37870,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-07-15T16:14:03Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -37516,13 +37878,26 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 2,
     "tenure_score_bonus": 0,
     "prop_id": "269980.0",
-    "deed_date": "",
+    "deed_date": "2/14/2024",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 364370
+      },
+      {
+        "year": "2025",
+        "appraised": 385350
+      },
+      {
+        "year": "2024",
+        "appraised": 415400
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "385350.0",
     "annual_taxes": "",
     "land_value": "52740.0",
@@ -40811,7 +41186,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800418",
     "ps_doc_id": "",
     "year": "2026",
@@ -40823,7 +41198,6 @@
     "sale_date": "10/06/2026",
     "run_ts": "2026-07-15T16:14:03Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -40832,13 +41206,26 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 3,
     "tenure_score_bonus": 0,
     "prop_id": "1045057.0",
-    "deed_date": "",
+    "deed_date": "12/2/2022",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 229490
+      },
+      {
+        "year": "2025",
+        "appraised": 231520
+      },
+      {
+        "year": "2024",
+        "appraised": 233570
+      }
+    ],
+    "appr_trend": "flat",
     "appraised_value": "231520.0",
     "annual_taxes": "",
     "land_value": "60280.0",
