@@ -30623,7 +30623,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900029",
     "ps_doc_id": "",
     "year": "2026",
@@ -30635,7 +30635,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-07-17T16:08:20Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -30678,7 +30677,7 @@
     "mail_addr": "CASTANEDA LORENA G SAN ANTONIO 78204",
     "absentee": true,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900026",
     "ps_doc_id": "",
     "year": "2026",
@@ -30691,7 +30690,6 @@
     "run_ts": "2026-07-17T16:08:20Z",
     "flags": [
       "ABSENTEE",
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -30734,7 +30732,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900020",
     "ps_doc_id": "",
     "year": "2026",
@@ -30746,7 +30744,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-07-17T16:08:20Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -30789,7 +30786,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900017",
     "ps_doc_id": "",
     "year": "2026",
@@ -30801,7 +30798,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-07-17T16:08:20Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -30844,7 +30840,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900025",
     "ps_doc_id": "",
     "year": "2026",
@@ -30856,7 +30852,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-07-17T16:08:20Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "LONG HELD"
     ],
@@ -30900,7 +30895,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900021",
     "ps_doc_id": "",
     "year": "2026",
@@ -30912,7 +30907,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-07-17T16:08:20Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -30955,7 +30949,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900013",
     "ps_doc_id": "",
     "year": "2026",
@@ -30968,7 +30962,6 @@
     "run_ts": "2026-07-17T16:08:20Z",
     "flags": [
       "DUPLICATE",
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -31011,7 +31004,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900018",
     "ps_doc_id": "",
     "year": "2026",
@@ -31024,7 +31017,6 @@
     "run_ts": "2026-07-17T16:08:20Z",
     "flags": [
       "DUPLICATE",
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -31067,7 +31059,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900022",
     "ps_doc_id": "",
     "year": "2026",
@@ -31079,7 +31071,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-07-17T16:08:20Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -31122,7 +31113,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900016",
     "ps_doc_id": "",
     "year": "2026",
@@ -31134,7 +31125,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-07-17T16:08:20Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -31177,7 +31167,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900008",
     "ps_doc_id": "",
     "year": "2026",
@@ -31189,7 +31179,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-07-17T16:08:20Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "LONG HELD"
     ],
@@ -33173,7 +33162,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900023",
     "ps_doc_id": "",
     "year": "2026",
@@ -33185,7 +33174,6 @@
     "sale_date": "10/06/2026",
     "run_ts": "2026-07-17T16:08:20Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "LONG HELD"
     ],
@@ -33218,6 +33206,171 @@
     "appraised_value": "146570.0",
     "annual_taxes": "",
     "land_value": "45340.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 80
+  },
+  {
+    "type": "NOF",
+    "address": "59 LONGLEAF CORAL",
+    "owner": "ROBLES MANUEL JR & MARTHA",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260900004",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78247",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-07-17T16:08:20Z",
+    "flags": [
+      "HAS SALE DATE",
+      "LONG HELD"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 24,
+    "tenure_score_bonus": 25,
+    "prop_id": "534168.0",
+    "deed_date": "2/13/2002",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 302320
+      },
+      {
+        "year": "2025",
+        "appraised": 305490
+      },
+      {
+        "year": "2024",
+        "appraised": 311840
+      }
+    ],
+    "appr_trend": "flat",
+    "appraised_value": "305490.0",
+    "annual_taxes": "",
+    "land_value": "51750.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 80
+  },
+  {
+    "type": "NOF",
+    "address": "5282 PRINCE VALIANT",
+    "owner": "SNELL VALERIE",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260900002",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78218",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-07-17T16:08:20Z",
+    "flags": [
+      "HAS SALE DATE",
+      "LONG HELD"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 23,
+    "tenure_score_bonus": 25,
+    "prop_id": "589912.0",
+    "deed_date": "4/17/2003",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 254760
+      },
+      {
+        "year": "2025",
+        "appraised": 261990
+      },
+      {
+        "year": "2024",
+        "appraised": 261990
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "261990.0",
+    "annual_taxes": "",
+    "land_value": "42240.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 80
+  },
+  {
+    "type": "NOF",
+    "address": "3534 ROBIN MEADOW",
+    "owner": "TREVINO JUAN A JR",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260900001",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78222",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-07-17T16:08:20Z",
+    "flags": [
+      "HAS SALE DATE",
+      "LONG HELD"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 11,
+    "tenure_score_bonus": 15,
+    "prop_id": "1094731.0",
+    "deed_date": "5/7/2015",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 223700
+      },
+      {
+        "year": "2025",
+        "appraised": 238450
+      },
+      {
+        "year": "2024",
+        "appraised": 238450
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "238450.0",
+    "annual_taxes": "",
+    "land_value": "43160.0",
     "stacked": false,
     "score": 10,
     "days_until_sale": 80
@@ -38731,7 +38884,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900035",
     "ps_doc_id": "",
     "year": "2026",
@@ -38743,7 +38896,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-07-17T16:08:20Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -38786,7 +38938,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900036",
     "ps_doc_id": "",
     "year": "2026",
@@ -38798,7 +38950,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-07-17T16:08:20Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -38841,7 +38992,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900034",
     "ps_doc_id": "",
     "year": "2026",
@@ -38853,7 +39004,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-07-17T16:08:20Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -38896,7 +39046,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900027",
     "ps_doc_id": "",
     "year": "2026",
@@ -38908,7 +39058,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-07-17T16:08:20Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -38951,7 +39100,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900028",
     "ps_doc_id": "",
     "year": "2026",
@@ -38964,7 +39113,6 @@
     "run_ts": "2026-07-17T16:08:20Z",
     "flags": [
       "DUPLICATE",
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -39007,7 +39155,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900033",
     "ps_doc_id": "",
     "year": "2026",
@@ -39020,7 +39168,6 @@
     "run_ts": "2026-07-17T16:08:20Z",
     "flags": [
       "DUPLICATE",
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -39063,7 +39210,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900024",
     "ps_doc_id": "",
     "year": "2026",
@@ -39075,7 +39222,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-07-17T16:08:20Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -39118,7 +39264,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900012",
     "ps_doc_id": "",
     "year": "2026",
@@ -39130,7 +39276,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-07-17T16:08:20Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -39173,7 +39318,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900015",
     "ps_doc_id": "",
     "year": "2026",
@@ -39185,7 +39330,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-07-17T16:08:20Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -39228,7 +39372,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900019",
     "ps_doc_id": "",
     "year": "2026",
@@ -39240,7 +39384,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-07-17T16:08:20Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -39283,7 +39426,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900014",
     "ps_doc_id": "",
     "year": "2026",
@@ -39296,7 +39439,6 @@
     "run_ts": "2026-07-17T16:08:20Z",
     "flags": [
       "DUPLICATE",
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -39339,7 +39481,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900010",
     "ps_doc_id": "",
     "year": "2026",
@@ -39351,7 +39493,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-07-17T16:08:20Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -39394,7 +39535,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900009",
     "ps_doc_id": "",
     "year": "2026",
@@ -39406,7 +39547,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-07-17T16:08:20Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -39449,7 +39589,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900007",
     "ps_doc_id": "",
     "year": "2026",
@@ -39461,7 +39601,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-07-17T16:08:20Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -39475,8 +39614,21 @@
     "prop_id": "314829.0",
     "deed_date": "",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 209940
+      },
+      {
+        "year": "2025",
+        "appraised": 222930
+      },
+      {
+        "year": "2024",
+        "appraised": 222930
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "222930.0",
     "annual_taxes": "",
     "land_value": "42970.0",
@@ -42927,7 +43079,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900030",
     "ps_doc_id": "",
     "year": "2026",
@@ -42939,7 +43091,6 @@
     "sale_date": "10/06/2026",
     "run_ts": "2026-07-17T16:08:20Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -42948,10 +43099,10 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 3,
     "tenure_score_bonus": 0,
     "prop_id": "1364421.0",
-    "deed_date": "",
+    "deed_date": "1/31/2023",
     "last_sale_amt": "",
     "appr_history": [
       {
@@ -42982,7 +43133,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900032",
     "ps_doc_id": "",
     "year": "2026",
@@ -42994,7 +43145,6 @@
     "sale_date": "10/06/2026",
     "run_ts": "2026-07-17T16:08:20Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -43037,7 +43187,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900031",
     "ps_doc_id": "",
     "year": "2026",
@@ -43049,7 +43199,6 @@
     "sale_date": "10/06/2026",
     "run_ts": "2026-07-17T16:08:20Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -43092,7 +43241,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900011",
     "ps_doc_id": "",
     "year": "2026",
@@ -43105,7 +43254,6 @@
     "run_ts": "2026-07-17T16:08:20Z",
     "flags": [
       "DUPLICATE",
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -43148,7 +43296,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900006",
     "ps_doc_id": "",
     "year": "2026",
@@ -43160,7 +43308,6 @@
     "sale_date": "10/06/2026",
     "run_ts": "2026-07-17T16:08:20Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -43203,7 +43350,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900003",
     "ps_doc_id": "",
     "year": "2026",
@@ -43215,7 +43362,6 @@
     "sale_date": "10/06/2026",
     "run_ts": "2026-07-17T16:08:20Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -43224,13 +43370,26 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 1,
     "tenure_score_bonus": 0,
     "prop_id": "1148762.0",
-    "deed_date": "",
+    "deed_date": "12/13/2024",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 218130
+      },
+      {
+        "year": "2025",
+        "appraised": 227890
+      },
+      {
+        "year": "2024",
+        "appraised": 227890
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "227890.0",
     "annual_taxes": "",
     "land_value": "45790.0",
@@ -43245,7 +43404,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900005",
     "ps_doc_id": "",
     "year": "2026",
@@ -43257,7 +43416,6 @@
     "sale_date": "10/06/2026",
     "run_ts": "2026-07-17T16:08:20Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -43266,142 +43424,29 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 2,
     "tenure_score_bonus": 0,
     "prop_id": "181561.0",
-    "deed_date": "",
+    "deed_date": "10/20/2023",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 252260
+      },
+      {
+        "year": "2025",
+        "appraised": 254130
+      },
+      {
+        "year": "2024",
+        "appraised": 245860
+      }
+    ],
+    "appr_trend": "flat",
     "appraised_value": "254130.0",
     "annual_taxes": "",
     "land_value": "108580.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 80
-  },
-  {
-    "type": "NOF",
-    "address": "59 LONGLEAF CORAL",
-    "owner": "ROBLES MANUEL JR & MARTHA",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": true,
-    "doc_number": "20260900004",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "7",
-    "city": "SAN ANTONIO",
-    "zip": "78247",
-    "school_dist": "",
-    "date_filed": "7/2026",
-    "sale_date": "10/06/2026",
-    "run_ts": "2026-07-17T16:08:20Z",
-    "flags": [
-      "NEW",
-      "HAS SALE DATE"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "534168.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "305490.0",
-    "annual_taxes": "",
-    "land_value": "51750.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 80
-  },
-  {
-    "type": "NOF",
-    "address": "5282 PRINCE VALIANT",
-    "owner": "SNELL VALERIE",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": true,
-    "doc_number": "20260900002",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "7",
-    "city": "SAN ANTONIO",
-    "zip": "78218",
-    "school_dist": "",
-    "date_filed": "7/2026",
-    "sale_date": "10/06/2026",
-    "run_ts": "2026-07-17T16:08:20Z",
-    "flags": [
-      "NEW",
-      "HAS SALE DATE"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "589912.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "261990.0",
-    "annual_taxes": "",
-    "land_value": "42240.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 80
-  },
-  {
-    "type": "NOF",
-    "address": "3534 ROBIN MEADOW",
-    "owner": "TREVINO JUAN A JR",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": true,
-    "doc_number": "20260900001",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "7",
-    "city": "SAN ANTONIO",
-    "zip": "78222",
-    "school_dist": "",
-    "date_filed": "7/2026",
-    "sale_date": "10/06/2026",
-    "run_ts": "2026-07-17T16:08:20Z",
-    "flags": [
-      "NEW",
-      "HAS SALE DATE"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "1094731.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "238450.0",
-    "annual_taxes": "",
-    "land_value": "43160.0",
     "stacked": false,
     "score": 7,
     "days_until_sale": 80
