@@ -33603,7 +33603,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800262",
     "year": "2026",
     "month": "8",
@@ -33615,7 +33615,6 @@
     "run_ts": "2026-07-19T15:49:00Z",
     "flags": [
       "DUPLICATE",
-      "NEW",
       "LONG HELD"
     ],
     "source": "arcgis",
@@ -33654,7 +33653,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800281",
     "year": "2026",
     "month": "8",
@@ -33664,9 +33663,7 @@
     "date_filed": "8/2026",
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "sale_date_arcgis": "",
     "tenure_years": 5,
@@ -33703,7 +33700,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800286",
     "year": "2026",
     "month": "8",
@@ -33714,7 +33711,6 @@
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
     "flags": [
-      "NEW",
       "LONG HELD"
     ],
     "source": "arcgis",
@@ -33753,7 +33749,7 @@
     "mail_addr": "& KHOUN SOKUNTHEA SAN ANTONIO 78245",
     "absentee": true,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800288",
     "year": "2026",
     "month": "8",
@@ -33764,8 +33760,7 @@
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
     "flags": [
-      "ABSENTEE",
-      "NEW"
+      "ABSENTEE"
     ],
     "source": "arcgis",
     "sale_date_arcgis": "",
@@ -33803,7 +33798,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800341",
     "year": "2026",
     "month": "8",
@@ -33814,8 +33809,7 @@
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
     "flags": [
-      "DUPLICATE",
-      "NEW"
+      "DUPLICATE"
     ],
     "source": "arcgis",
     "sale_date_arcgis": "",
@@ -33853,7 +33847,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800348",
     "year": "2026",
     "month": "8",
@@ -33864,7 +33858,6 @@
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
     "flags": [
-      "NEW",
       "LONG HELD"
     ],
     "source": "arcgis",
@@ -33903,7 +33896,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800349",
     "year": "2026",
     "month": "8",
@@ -33913,9 +33906,7 @@
     "date_filed": "8/2026",
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "sale_date_arcgis": "",
     "tenure_years": 5,
@@ -33952,7 +33943,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800351",
     "year": "2026",
     "month": "8",
@@ -33963,7 +33954,6 @@
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
     "flags": [
-      "NEW",
       "LONG HELD"
     ],
     "source": "arcgis",
@@ -34002,7 +33992,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800354",
     "year": "2026",
     "month": "8",
@@ -34012,9 +34002,7 @@
     "date_filed": "8/2026",
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "sale_date_arcgis": "",
     "tenure_years": 6,
@@ -34051,7 +34039,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800356",
     "year": "2026",
     "month": "8",
@@ -34061,9 +34049,7 @@
     "date_filed": "8/2026",
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "sale_date_arcgis": "",
     "tenure_years": 9,
@@ -34100,7 +34086,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800357",
     "year": "2026",
     "month": "8",
@@ -34110,9 +34096,7 @@
     "date_filed": "8/2026",
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "sale_date_arcgis": "",
     "tenure_years": 5,
@@ -34149,7 +34133,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800358",
     "year": "2026",
     "month": "8",
@@ -34160,7 +34144,6 @@
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
     "flags": [
-      "NEW",
       "LONG HELD"
     ],
     "source": "arcgis",
@@ -34199,7 +34182,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800359",
     "year": "2026",
     "month": "8",
@@ -34210,7 +34193,6 @@
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
     "flags": [
-      "NEW",
       "LONG HELD"
     ],
     "source": "arcgis",
@@ -34249,7 +34231,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800360",
     "year": "2026",
     "month": "8",
@@ -34260,7 +34242,6 @@
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
     "flags": [
-      "NEW",
       "LONG HELD"
     ],
     "source": "arcgis",
@@ -34299,7 +34280,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800362",
     "year": "2026",
     "month": "8",
@@ -34309,9 +34290,7 @@
     "date_filed": "8/2026",
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "sale_date_arcgis": "",
     "tenure_years": 6,
@@ -34348,7 +34327,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800363",
     "year": "2026",
     "month": "8",
@@ -34359,7 +34338,6 @@
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
     "flags": [
-      "NEW",
       "LONG HELD"
     ],
     "source": "arcgis",
@@ -34398,7 +34376,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800365",
     "year": "2026",
     "month": "8",
@@ -34409,7 +34387,6 @@
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
     "flags": [
-      "NEW",
       "LONG HELD"
     ],
     "source": "arcgis",
@@ -34440,6 +34417,824 @@
     "stacked": false,
     "score": 10,
     "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "18942 DE ENCLAVE",
+    "owner": "MODESTO EDGAR & BERTHA A",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260800368",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78258",
+    "school_dist": "Northeast ISD",
+    "date_filed": "8/2026",
+    "sale_date": "",
+    "run_ts": "2026-07-19T15:49:00Z",
+    "flags": [
+      "LONG HELD"
+    ],
+    "source": "arcgis",
+    "sale_date_arcgis": "",
+    "tenure_years": 10,
+    "tenure_score_bonus": 15,
+    "prop_id": "740886.0",
+    "deed_date": "8/10/2015",
+    "last_sale_amt": "",
+    "appraised_value": "995210.0",
+    "annual_taxes": "",
+    "land_value": "306120.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": null,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 995210
+      },
+      {
+        "year": "2025",
+        "appraised": 995210
+      },
+      {
+        "year": "2024",
+        "appraised": 995210
+      }
+    ],
+    "appr_trend": "flat"
+  },
+  {
+    "type": "NOF",
+    "address": "338 CHICKERING AVE",
+    "owner": "CELERR LIMITED",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": true,
+    "is_new": false,
+    "doc_number": "20260800369",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78210",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "8/2026",
+    "sale_date": "",
+    "run_ts": "2026-07-19T15:49:00Z",
+    "flags": [
+      "DUPLICATE"
+    ],
+    "source": "arcgis",
+    "sale_date_arcgis": "",
+    "tenure_years": 7,
+    "tenure_score_bonus": 5,
+    "prop_id": "395186.0",
+    "deed_date": "3/26/2019",
+    "last_sale_amt": "",
+    "appraised_value": "370940.0",
+    "annual_taxes": "",
+    "land_value": "370940.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": null,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 333890
+      },
+      {
+        "year": "2025",
+        "appraised": 370940
+      },
+      {
+        "year": "2024",
+        "appraised": 370940
+      }
+    ],
+    "appr_trend": "down"
+  },
+  {
+    "type": "NOF",
+    "address": "505 LIVE OAK",
+    "owner": "ASNDSATX LLC",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260800370",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78202",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "8/2026",
+    "sale_date": "",
+    "run_ts": "2026-07-19T15:49:00Z",
+    "flags": [],
+    "source": "arcgis",
+    "sale_date_arcgis": "",
+    "tenure_years": 6,
+    "tenure_score_bonus": 5,
+    "prop_id": "1061359.0",
+    "deed_date": "12/31/2019",
+    "last_sale_amt": "",
+    "appraised_value": "5750000.0",
+    "annual_taxes": "",
+    "land_value": "1477030.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": null,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 5500000
+      },
+      {
+        "year": "2025",
+        "appraised": 5750000
+      },
+      {
+        "year": "2024",
+        "appraised": 4500000
+      }
+    ],
+    "appr_trend": "down"
+  },
+  {
+    "type": "NOF",
+    "address": "2821 GUADALUPE ST",
+    "owner": "ALAMSHAW INVESTMENTS LLC",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": true,
+    "is_new": false,
+    "doc_number": "20260800371",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78207",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "8/2026",
+    "sale_date": "",
+    "run_ts": "2026-07-19T15:49:00Z",
+    "flags": [
+      "DUPLICATE"
+    ],
+    "source": "arcgis",
+    "sale_date_arcgis": "",
+    "tenure_years": 5,
+    "tenure_score_bonus": 5,
+    "prop_id": "378177.0",
+    "deed_date": "8/12/2020",
+    "last_sale_amt": "",
+    "appraised_value": "1890000.0",
+    "annual_taxes": "",
+    "land_value": "308610.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": null,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 1820000
+      },
+      {
+        "year": "2025",
+        "appraised": 1890000
+      },
+      {
+        "year": "2024",
+        "appraised": 1900000
+      }
+    ],
+    "appr_trend": "down"
+  },
+  {
+    "type": "NOF",
+    "address": "9519 FULWOOD TRAIL",
+    "owner": "DEATHERAGE DYLAN C & CHAVEZ ADRIANA N",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260800373",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78239",
+    "school_dist": "Northeast ISD",
+    "date_filed": "8/2026",
+    "sale_date": "",
+    "run_ts": "2026-07-19T15:49:00Z",
+    "flags": [],
+    "source": "arcgis",
+    "sale_date_arcgis": "",
+    "tenure_years": 8,
+    "tenure_score_bonus": 5,
+    "prop_id": "362569.0",
+    "deed_date": "11/8/2017",
+    "last_sale_amt": "",
+    "appraised_value": "273920.0",
+    "annual_taxes": "",
+    "land_value": "62300.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": null,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 268430
+      },
+      {
+        "year": "2025",
+        "appraised": 273920
+      },
+      {
+        "year": "2024",
+        "appraised": 286290
+      }
+    ],
+    "appr_trend": "down"
+  },
+  {
+    "type": "NOF",
+    "address": "5627 SEACOMBER PL",
+    "owner": "BALDERRAMA FRANCISCO JR",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260800378",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78242",
+    "school_dist": "South San Antonio ISD",
+    "date_filed": "8/2026",
+    "sale_date": "",
+    "run_ts": "2026-07-19T15:49:00Z",
+    "flags": [
+      "LONG HELD"
+    ],
+    "source": "arcgis",
+    "sale_date_arcgis": "",
+    "tenure_years": 24,
+    "tenure_score_bonus": 25,
+    "prop_id": "574129.0",
+    "deed_date": "12/27/2001",
+    "last_sale_amt": "",
+    "appraised_value": "156290.0",
+    "annual_taxes": "",
+    "land_value": "46410.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": null,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 151950
+      },
+      {
+        "year": "2025",
+        "appraised": 156290
+      },
+      {
+        "year": "2024",
+        "appraised": 156910
+      }
+    ],
+    "appr_trend": "down"
+  },
+  {
+    "type": "NOF",
+    "address": "111 VICKERS AVE",
+    "owner": "GONZALES CRUZITA",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260800379",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78211",
+    "school_dist": "Harlandale ISD",
+    "date_filed": "8/2026",
+    "sale_date": "",
+    "run_ts": "2026-07-19T15:49:00Z",
+    "flags": [
+      "LONG HELD"
+    ],
+    "source": "arcgis",
+    "sale_date_arcgis": "",
+    "tenure_years": 20,
+    "tenure_score_bonus": 25,
+    "prop_id": "417460.0",
+    "deed_date": "9/26/2005",
+    "last_sale_amt": "",
+    "appraised_value": "109580.0",
+    "annual_taxes": "",
+    "land_value": "44060.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": null,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 105210
+      },
+      {
+        "year": "2025",
+        "appraised": 109580
+      },
+      {
+        "year": "2024",
+        "appraised": 121980
+      }
+    ],
+    "appr_trend": "down"
+  },
+  {
+    "type": "NOF",
+    "address": "126 PROSPECT",
+    "owner": "RAMOS RAYMUNDO GALARZA",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260800380",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78211",
+    "school_dist": "South San Antonio ISD",
+    "date_filed": "8/2026",
+    "sale_date": "",
+    "run_ts": "2026-07-19T15:49:00Z",
+    "flags": [
+      "LONG HELD"
+    ],
+    "source": "arcgis",
+    "sale_date_arcgis": "",
+    "tenure_years": 22,
+    "tenure_score_bonus": 25,
+    "prop_id": "418902.0",
+    "deed_date": "6/28/2004",
+    "last_sale_amt": "",
+    "appraised_value": "85780.0",
+    "annual_taxes": "",
+    "land_value": "25800.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": null,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 76410
+      },
+      {
+        "year": "2025",
+        "appraised": 85780
+      },
+      {
+        "year": "2024",
+        "appraised": 86530
+      }
+    ],
+    "appr_trend": "down"
+  },
+  {
+    "type": "NOF",
+    "address": "255 E RAMPART DR",
+    "owner": "PARKWOOD NORTH CONDOMINIUM OWNERS ASSOCIATION INC",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260800381",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78216",
+    "school_dist": "Northeast ISD",
+    "date_filed": "8/2026",
+    "sale_date": "",
+    "run_ts": "2026-07-19T15:49:00Z",
+    "flags": [
+      "LONG HELD"
+    ],
+    "source": "arcgis",
+    "sale_date_arcgis": "",
+    "tenure_years": 19,
+    "tenure_score_bonus": 25,
+    "prop_id": "1084197.0",
+    "deed_date": "8/25/2006",
+    "last_sale_amt": "",
+    "appraised_value": "1021050.0",
+    "annual_taxes": "",
+    "land_value": "938280.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": null,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 1022520
+      },
+      {
+        "year": "2025",
+        "appraised": 1021050
+      },
+      {
+        "year": "2024",
+        "appraised": 1022240
+      }
+    ],
+    "appr_trend": "flat"
+  },
+  {
+    "type": "NOF",
+    "address": "228 SANDRA DR",
+    "owner": "RODRIGUEZ SAMANTHA A & ROMERO LEONARDO C",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": true,
+    "is_new": false,
+    "doc_number": "20260800382",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78223",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "8/2026",
+    "sale_date": "",
+    "run_ts": "2026-07-19T15:49:00Z",
+    "flags": [
+      "DUPLICATE",
+      "LONG HELD"
+    ],
+    "source": "arcgis",
+    "sale_date_arcgis": "",
+    "tenure_years": 10,
+    "tenure_score_bonus": 15,
+    "prop_id": "440780.0",
+    "deed_date": "11/30/2015",
+    "last_sale_amt": "",
+    "appraised_value": "100000.0",
+    "annual_taxes": "",
+    "land_value": "50750.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": null,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 100000
+      },
+      {
+        "year": "2025",
+        "appraised": 100000
+      },
+      {
+        "year": "2024",
+        "appraised": 100000
+      }
+    ],
+    "appr_trend": "flat"
+  },
+  {
+    "type": "NOF",
+    "address": "7115 CYPRESS GROVE DR",
+    "owner": "VELA PAUL DAVID & ESCAMILLA KATIE MARIE",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260800387",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78227",
+    "school_dist": "Northside ISD (Bexar)",
+    "date_filed": "8/2026",
+    "sale_date": "",
+    "run_ts": "2026-07-19T15:49:00Z",
+    "flags": [],
+    "source": "arcgis",
+    "sale_date_arcgis": "",
+    "tenure_years": 5,
+    "tenure_score_bonus": 5,
+    "prop_id": "576457.0",
+    "deed_date": "5/7/2021",
+    "last_sale_amt": "",
+    "appraised_value": "152360.0",
+    "annual_taxes": "",
+    "land_value": "37070.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": null,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 152360
+      },
+      {
+        "year": "2025",
+        "appraised": 152360
+      },
+      {
+        "year": "2024",
+        "appraised": 152360
+      }
+    ],
+    "appr_trend": "flat"
+  },
+  {
+    "type": "NOF",
+    "address": "22743 BLACK CHERRY",
+    "owner": "GARCIA JUAN MANUEL",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260800389",
+    "year": "2026",
+    "month": "8",
+    "city": "ELMENDORF",
+    "zip": "78112",
+    "school_dist": "Southside ISD",
+    "date_filed": "8/2026",
+    "sale_date": "",
+    "run_ts": "2026-07-19T15:49:00Z",
+    "flags": [],
+    "source": "arcgis",
+    "sale_date_arcgis": "",
+    "tenure_years": 5,
+    "tenure_score_bonus": 5,
+    "prop_id": "178224.0",
+    "deed_date": "3/30/2021",
+    "last_sale_amt": "",
+    "appraised_value": "65850.0",
+    "annual_taxes": "",
+    "land_value": "65850.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": null,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 65850
+      },
+      {
+        "year": "2025",
+        "appraised": 65850
+      },
+      {
+        "year": "2024",
+        "appraised": 56570
+      }
+    ],
+    "appr_trend": "flat"
+  },
+  {
+    "type": "NOF",
+    "address": "831 S FLORES ST",
+    "owner": "COX SEAN",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260800390",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78210",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "8/2026",
+    "sale_date": "",
+    "run_ts": "2026-07-19T15:49:00Z",
+    "flags": [],
+    "source": "arcgis",
+    "sale_date_arcgis": "",
+    "tenure_years": 7,
+    "tenure_score_bonus": 5,
+    "prop_id": "455250.0",
+    "deed_date": "7/19/2019",
+    "last_sale_amt": "",
+    "appraised_value": "150420.0",
+    "annual_taxes": "",
+    "land_value": "50200.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": null,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 145310
+      },
+      {
+        "year": "2025",
+        "appraised": 150420
+      },
+      {
+        "year": "2024",
+        "appraised": 153760
+      }
+    ],
+    "appr_trend": "down"
+  },
+  {
+    "type": "NOF",
+    "address": "5922 W INTERSTATE 10",
+    "owner": "JAID HOSPITALITY DEVELOPMENT LLC",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260800391",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78201",
+    "school_dist": "San Antonio ISD",
+    "date_filed": "8/2026",
+    "sale_date": "",
+    "run_ts": "2026-07-19T15:49:00Z",
+    "flags": [],
+    "source": "arcgis",
+    "sale_date_arcgis": "",
+    "tenure_years": 6,
+    "tenure_score_bonus": 5,
+    "prop_id": "388537.0",
+    "deed_date": "1/6/2020",
+    "last_sale_amt": "",
+    "appraised_value": "2400000.0",
+    "annual_taxes": "",
+    "land_value": "1037480.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": null,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 1975000
+      },
+      {
+        "year": "2025",
+        "appraised": 2400000
+      },
+      {
+        "year": "2024",
+        "appraised": 2400000
+      }
+    ],
+    "appr_trend": "down"
+  },
+  {
+    "type": "NOF",
+    "address": "12102 WELLSTONE RUN",
+    "owner": "ZAHROONI VALID",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260800393",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78249",
+    "school_dist": "Northside ISD (Bexar)",
+    "date_filed": "8/2026",
+    "sale_date": "",
+    "run_ts": "2026-07-19T15:49:00Z",
+    "flags": [],
+    "source": "arcgis",
+    "sale_date_arcgis": "",
+    "tenure_years": 8,
+    "tenure_score_bonus": 5,
+    "prop_id": "1007387.0",
+    "deed_date": "7/5/2018",
+    "last_sale_amt": "",
+    "appraised_value": "340750.0",
+    "annual_taxes": "",
+    "land_value": "83730.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": null,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 337580
+      },
+      {
+        "year": "2025",
+        "appraised": 340750
+      },
+      {
+        "year": "2024",
+        "appraised": 347100
+      }
+    ],
+    "appr_trend": "flat"
+  },
+  {
+    "type": "NOF",
+    "address": "11507 SWEET DESTINY",
+    "owner": "TARANG KRISTEN ELI & GENESSIS I",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260800394",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78253",
+    "school_dist": "Northside ISD (Bexar)",
+    "date_filed": "8/2026",
+    "sale_date": "",
+    "run_ts": "2026-07-19T15:49:00Z",
+    "flags": [],
+    "source": "arcgis",
+    "sale_date_arcgis": "",
+    "tenure_years": 9,
+    "tenure_score_bonus": 5,
+    "prop_id": "1197767.0",
+    "deed_date": "12/15/2016",
+    "last_sale_amt": "",
+    "appraised_value": "518840.0",
+    "annual_taxes": "",
+    "land_value": "94070.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": null,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 491560
+      },
+      {
+        "year": "2025",
+        "appraised": 518840
+      },
+      {
+        "year": "2024",
+        "appraised": 519540
+      }
+    ],
+    "appr_trend": "down"
+  },
+  {
+    "type": "NOF",
+    "address": "9107 SPIRAL WOODS",
+    "owner": "BRYANT JEANNE M",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260800397",
+    "year": "2026",
+    "month": "8",
+    "city": "UNIVERSAL CITY",
+    "zip": "78148",
+    "school_dist": "Judson ISD",
+    "date_filed": "8/2026",
+    "sale_date": "",
+    "run_ts": "2026-07-19T15:49:00Z",
+    "flags": [
+      "LONG HELD"
+    ],
+    "source": "arcgis",
+    "sale_date_arcgis": "",
+    "tenure_years": 13,
+    "tenure_score_bonus": 15,
+    "prop_id": "307400.0",
+    "deed_date": "10/11/2012",
+    "last_sale_amt": "",
+    "appraised_value": "236440.0",
+    "annual_taxes": "",
+    "land_value": "58190.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": null,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 220240
+      },
+      {
+        "year": "2025",
+        "appraised": 236440
+      },
+      {
+        "year": "2024",
+        "appraised": 236440
+      }
+    ],
+    "appr_trend": "down"
   },
   {
     "doc_number": "20260136894",
@@ -44917,7 +45712,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800254",
     "year": "2026",
     "month": "8",
@@ -44927,9 +45722,7 @@
     "date_filed": "8/2026",
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "sale_date_arcgis": "",
     "tenure_years": null,
@@ -44966,7 +45759,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800259",
     "year": "2026",
     "month": "8",
@@ -44976,9 +45769,7 @@
     "date_filed": "8/2026",
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "sale_date_arcgis": "",
     "tenure_years": 1,
@@ -45015,7 +45806,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800260",
     "year": "2026",
     "month": "8",
@@ -45025,9 +45816,7 @@
     "date_filed": "8/2026",
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "sale_date_arcgis": "",
     "tenure_years": 3,
@@ -45064,7 +45853,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800263",
     "year": "2026",
     "month": "8",
@@ -45074,9 +45863,7 @@
     "date_filed": "8/2026",
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "sale_date_arcgis": "",
     "tenure_years": 2,
@@ -45113,7 +45900,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800289",
     "year": "2026",
     "month": "8",
@@ -45123,9 +45910,7 @@
     "date_filed": "8/2026",
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "sale_date_arcgis": "",
     "tenure_years": 4,
@@ -45162,7 +45947,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800290",
     "year": "2026",
     "month": "8",
@@ -45172,9 +45957,7 @@
     "date_filed": "8/2026",
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "sale_date_arcgis": "",
     "tenure_years": 3,
@@ -45211,7 +45994,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800347",
     "year": "2026",
     "month": "8",
@@ -45221,9 +46004,7 @@
     "date_filed": "8/2026",
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "sale_date_arcgis": "",
     "tenure_years": 3,
@@ -45260,7 +46041,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800350",
     "year": "2026",
     "month": "8",
@@ -45270,9 +46051,7 @@
     "date_filed": "8/2026",
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "sale_date_arcgis": "",
     "tenure_years": 1,
@@ -45309,7 +46088,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800352",
     "year": "2026",
     "month": "8",
@@ -45319,9 +46098,7 @@
     "date_filed": "8/2026",
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "sale_date_arcgis": "",
     "tenure_years": 4,
@@ -45358,7 +46135,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800361",
     "year": "2026",
     "month": "8",
@@ -45368,9 +46145,7 @@
     "date_filed": "8/2026",
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "sale_date_arcgis": "",
     "tenure_years": null,
@@ -45407,7 +46182,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800364",
     "year": "2026",
     "month": "8",
@@ -45417,9 +46192,7 @@
     "date_filed": "8/2026",
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "sale_date_arcgis": "",
     "tenure_years": 3,
@@ -45456,7 +46229,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800366",
     "year": "2026",
     "month": "8",
@@ -45466,9 +46239,7 @@
     "date_filed": "8/2026",
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "sale_date_arcgis": "",
     "tenure_years": 0,
@@ -45505,7 +46276,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800367",
     "year": "2026",
     "month": "8",
@@ -45515,9 +46286,7 @@
     "date_filed": "8/2026",
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "sale_date_arcgis": "",
     "tenure_years": 3,
@@ -45549,150 +46318,12 @@
   },
   {
     "type": "NOF",
-    "address": "18942 DE ENCLAVE",
-    "owner": "MODESTO EDGAR & BERTHA A",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": true,
-    "doc_number": "20260800368",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78258",
-    "school_dist": "Northeast ISD",
-    "date_filed": "8/2026",
-    "sale_date": "",
-    "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "740886.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appraised_value": "995210.0",
-    "annual_taxes": "",
-    "land_value": "306120.0",
-    "stacked": false,
-    "score": 6,
-    "days_until_sale": null
-  },
-  {
-    "type": "NOF",
-    "address": "338 CHICKERING AVE",
-    "owner": "CELERR LIMITED",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": true,
-    "is_new": true,
-    "doc_number": "20260800369",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78210",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "8/2026",
-    "sale_date": "",
-    "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "DUPLICATE",
-      "NEW"
-    ],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "395186.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appraised_value": "370940.0",
-    "annual_taxes": "",
-    "land_value": "370940.0",
-    "stacked": false,
-    "score": 6,
-    "days_until_sale": null
-  },
-  {
-    "type": "NOF",
-    "address": "505 LIVE OAK",
-    "owner": "ASNDSATX LLC",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": true,
-    "doc_number": "20260800370",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78202",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "8/2026",
-    "sale_date": "",
-    "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "1061359.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appraised_value": "5750000.0",
-    "annual_taxes": "",
-    "land_value": "1477030.0",
-    "stacked": false,
-    "score": 6,
-    "days_until_sale": null
-  },
-  {
-    "type": "NOF",
-    "address": "2821 GUADALUPE ST",
-    "owner": "ALAMSHAW INVESTMENTS LLC",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": true,
-    "is_new": true,
-    "doc_number": "20260800371",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78207",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "8/2026",
-    "sale_date": "",
-    "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "DUPLICATE",
-      "NEW"
-    ],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "378177.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appraised_value": "1890000.0",
-    "annual_taxes": "",
-    "land_value": "308610.0",
-    "stacked": false,
-    "score": 6,
-    "days_until_sale": null
-  },
-  {
-    "type": "NOF",
     "address": "123 SAGE DR",
     "owner": "MORUA MARIO N & MARIA M",
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800372",
     "year": "2026",
     "month": "8",
@@ -45702,9 +46333,7 @@
     "date_filed": "8/2026",
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "sale_date_arcgis": "",
     "tenure_years": null,
@@ -45717,41 +46346,22 @@
     "land_value": "38640.0",
     "stacked": false,
     "score": 6,
-    "days_until_sale": null
-  },
-  {
-    "type": "NOF",
-    "address": "9519 FULWOOD TRAIL",
-    "owner": "DEATHERAGE DYLAN C & CHAVEZ ADRIANA N",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": true,
-    "doc_number": "20260800373",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78239",
-    "school_dist": "Northeast ISD",
-    "date_filed": "8/2026",
-    "sale_date": "",
-    "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
+    "days_until_sale": null,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 87520
+      },
+      {
+        "year": "2025",
+        "appraised": 105930
+      },
+      {
+        "year": "2024",
+        "appraised": 110330
+      }
     ],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "362569.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appraised_value": "273920.0",
-    "annual_taxes": "",
-    "land_value": "62300.0",
-    "stacked": false,
-    "score": 6,
-    "days_until_sale": null
+    "appr_trend": "down"
   },
   {
     "type": "NOF",
@@ -45760,7 +46370,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800374",
     "year": "2026",
     "month": "8",
@@ -45771,8 +46381,7 @@
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
     "flags": [
-      "DUPLICATE",
-      "NEW"
+      "DUPLICATE"
     ],
     "source": "arcgis",
     "sale_date_arcgis": "",
@@ -45786,7 +46395,18 @@
     "land_value": "2281220.0",
     "stacked": false,
     "score": 6,
-    "days_until_sale": null
+    "days_until_sale": null,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 2539170
+      },
+      {
+        "year": "2025",
+        "appraised": 2515470
+      }
+    ],
+    "appr_trend": "flat"
   },
   {
     "type": "NOF",
@@ -45795,7 +46415,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800375",
     "year": "2026",
     "month": "8",
@@ -45805,22 +46425,35 @@
     "date_filed": "8/2026",
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 2,
     "tenure_score_bonus": 0,
     "prop_id": "112949.0",
-    "deed_date": "",
+    "deed_date": "2/29/2024",
     "last_sale_amt": "",
     "appraised_value": "108910.0",
     "annual_taxes": "",
     "land_value": "71980.0",
     "stacked": false,
     "score": 6,
-    "days_until_sale": null
+    "days_until_sale": null,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 101710
+      },
+      {
+        "year": "2025",
+        "appraised": 108910
+      },
+      {
+        "year": "2024",
+        "appraised": 100000
+      }
+    ],
+    "appr_trend": "down"
   },
   {
     "type": "NOF",
@@ -45829,7 +46462,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800376",
     "year": "2026",
     "month": "8",
@@ -45839,22 +46472,35 @@
     "date_filed": "8/2026",
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 1,
     "tenure_score_bonus": 0,
     "prop_id": "1303805.0",
-    "deed_date": "",
+    "deed_date": "8/28/2024",
     "last_sale_amt": "",
     "appraised_value": "290650.0",
     "annual_taxes": "",
     "land_value": "67760.0",
     "stacked": false,
     "score": 6,
-    "days_until_sale": null
+    "days_until_sale": null,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 288360
+      },
+      {
+        "year": "2025",
+        "appraised": 290650
+      },
+      {
+        "year": "2024",
+        "appraised": 280120
+      }
+    ],
+    "appr_trend": "flat"
   },
   {
     "type": "NOF",
@@ -45863,7 +46509,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800377",
     "year": "2026",
     "month": "8",
@@ -45873,193 +46519,35 @@
     "date_filed": "8/2026",
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 2,
     "tenure_score_bonus": 0,
     "prop_id": "353009.0",
-    "deed_date": "",
+    "deed_date": "4/4/2024",
     "last_sale_amt": "",
     "appraised_value": "348770.0",
     "annual_taxes": "",
     "land_value": "197560.0",
     "stacked": false,
     "score": 6,
-    "days_until_sale": null
-  },
-  {
-    "type": "NOF",
-    "address": "5627 SEACOMBER PL",
-    "owner": "BALDERRAMA FRANCISCO JR",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": true,
-    "doc_number": "20260800378",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78242",
-    "school_dist": "South San Antonio ISD",
-    "date_filed": "8/2026",
-    "sale_date": "",
-    "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
+    "days_until_sale": null,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 348700
+      },
+      {
+        "year": "2025",
+        "appraised": 348770
+      },
+      {
+        "year": "2024",
+        "appraised": 339560
+      }
     ],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "574129.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appraised_value": "156290.0",
-    "annual_taxes": "",
-    "land_value": "46410.0",
-    "stacked": false,
-    "score": 6,
-    "days_until_sale": null
-  },
-  {
-    "type": "NOF",
-    "address": "111 VICKERS AVE",
-    "owner": "GONZALES CRUZITA",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": true,
-    "doc_number": "20260800379",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78211",
-    "school_dist": "Harlandale ISD",
-    "date_filed": "8/2026",
-    "sale_date": "",
-    "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "417460.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appraised_value": "109580.0",
-    "annual_taxes": "",
-    "land_value": "44060.0",
-    "stacked": false,
-    "score": 6,
-    "days_until_sale": null
-  },
-  {
-    "type": "NOF",
-    "address": "126 PROSPECT",
-    "owner": "RAMOS RAYMUNDO GALARZA",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": true,
-    "doc_number": "20260800380",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78211",
-    "school_dist": "South San Antonio ISD",
-    "date_filed": "8/2026",
-    "sale_date": "",
-    "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "418902.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appraised_value": "85780.0",
-    "annual_taxes": "",
-    "land_value": "25800.0",
-    "stacked": false,
-    "score": 6,
-    "days_until_sale": null
-  },
-  {
-    "type": "NOF",
-    "address": "255 E RAMPART DR",
-    "owner": "PARKWOOD NORTH CONDOMINIUM OWNERS ASSOCIATION INC",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": true,
-    "doc_number": "20260800381",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78216",
-    "school_dist": "Northeast ISD",
-    "date_filed": "8/2026",
-    "sale_date": "",
-    "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "1084197.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appraised_value": "1021050.0",
-    "annual_taxes": "",
-    "land_value": "938280.0",
-    "stacked": false,
-    "score": 6,
-    "days_until_sale": null
-  },
-  {
-    "type": "NOF",
-    "address": "228 SANDRA DR",
-    "owner": "RODRIGUEZ SAMANTHA A & ROMERO LEONARDO C",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": true,
-    "is_new": true,
-    "doc_number": "20260800382",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78223",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "8/2026",
-    "sale_date": "",
-    "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "DUPLICATE",
-      "NEW"
-    ],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "440780.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appraised_value": "100000.0",
-    "annual_taxes": "",
-    "land_value": "50750.0",
-    "stacked": false,
-    "score": 6,
-    "days_until_sale": null
+    "appr_trend": "flat"
   },
   {
     "type": "NOF",
@@ -46068,7 +46556,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800383",
     "year": "2026",
     "month": "8",
@@ -46078,22 +46566,35 @@
     "date_filed": "8/2026",
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 3,
     "tenure_score_bonus": 0,
     "prop_id": "432729.0",
-    "deed_date": "",
+    "deed_date": "5/10/2023",
     "last_sale_amt": "",
     "appraised_value": "183110.0",
     "annual_taxes": "",
     "land_value": "30170.0",
     "stacked": false,
     "score": 6,
-    "days_until_sale": null
+    "days_until_sale": null,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 160190
+      },
+      {
+        "year": "2025",
+        "appraised": 183110
+      },
+      {
+        "year": "2024",
+        "appraised": 183180
+      }
+    ],
+    "appr_trend": "down"
   },
   {
     "type": "NOF",
@@ -46102,7 +46603,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800384",
     "year": "2026",
     "month": "8",
@@ -46113,22 +46614,36 @@
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
     "flags": [
-      "DUPLICATE",
-      "NEW"
+      "DUPLICATE"
     ],
     "source": "arcgis",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 4,
     "tenure_score_bonus": 0,
     "prop_id": "111010.0",
-    "deed_date": "",
+    "deed_date": "2/4/2022",
     "last_sale_amt": "",
     "appraised_value": "614290.0",
     "annual_taxes": "",
     "land_value": "386740.0",
     "stacked": false,
     "score": 6,
-    "days_until_sale": null
+    "days_until_sale": null,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 614270
+      },
+      {
+        "year": "2025",
+        "appraised": 614290
+      },
+      {
+        "year": "2024",
+        "appraised": 610890
+      }
+    ],
+    "appr_trend": "flat"
   },
   {
     "type": "NOF",
@@ -46137,7 +46652,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800385",
     "year": "2026",
     "month": "8",
@@ -46147,22 +46662,35 @@
     "date_filed": "8/2026",
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 1,
     "tenure_score_bonus": 0,
     "prop_id": "389668.0",
-    "deed_date": "",
+    "deed_date": "6/17/2025",
     "last_sale_amt": "",
     "appraised_value": "120130.0",
     "annual_taxes": "",
     "land_value": "50280.0",
     "stacked": false,
     "score": 6,
-    "days_until_sale": null
+    "days_until_sale": null,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 119310
+      },
+      {
+        "year": "2025",
+        "appraised": 120130
+      },
+      {
+        "year": "2024",
+        "appraised": 120130
+      }
+    ],
+    "appr_trend": "flat"
   },
   {
     "type": "NOF",
@@ -46171,7 +46699,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800386",
     "year": "2026",
     "month": "8",
@@ -46181,56 +46709,35 @@
     "date_filed": "8/2026",
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 2,
     "tenure_score_bonus": 0,
     "prop_id": "533323.0",
-    "deed_date": "",
+    "deed_date": "10/19/2023",
     "last_sale_amt": "",
     "appraised_value": "185860.0",
     "annual_taxes": "",
     "land_value": "60350.0",
     "stacked": false,
     "score": 6,
-    "days_until_sale": null
-  },
-  {
-    "type": "NOF",
-    "address": "7115 CYPRESS GROVE DR",
-    "owner": "VELA PAUL DAVID & ESCAMILLA KATIE MARIE",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": true,
-    "doc_number": "20260800387",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78227",
-    "school_dist": "Northside ISD (Bexar)",
-    "date_filed": "8/2026",
-    "sale_date": "",
-    "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
+    "days_until_sale": null,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 177940
+      },
+      {
+        "year": "2025",
+        "appraised": 185860
+      },
+      {
+        "year": "2024",
+        "appraised": 189010
+      }
     ],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "576457.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appraised_value": "152360.0",
-    "annual_taxes": "",
-    "land_value": "37070.0",
-    "stacked": false,
-    "score": 6,
-    "days_until_sale": null
+    "appr_trend": "down"
   },
   {
     "type": "NOF",
@@ -46239,7 +46746,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800388",
     "year": "2026",
     "month": "8",
@@ -46250,226 +46757,36 @@
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
     "flags": [
-      "DUPLICATE",
-      "NEW"
+      "DUPLICATE"
     ],
     "source": "arcgis",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 1,
     "tenure_score_bonus": 0,
     "prop_id": "464893.0",
-    "deed_date": "",
+    "deed_date": "4/16/2025",
     "last_sale_amt": "",
     "appraised_value": "11170.0",
     "annual_taxes": "",
     "land_value": "11170.0",
     "stacked": false,
     "score": 6,
-    "days_until_sale": null
-  },
-  {
-    "type": "NOF",
-    "address": "22743 BLACK CHERRY",
-    "owner": "GARCIA JUAN MANUEL",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": true,
-    "doc_number": "20260800389",
-    "year": "2026",
-    "month": "8",
-    "city": "ELMENDORF",
-    "zip": "78112",
-    "school_dist": "Southside ISD",
-    "date_filed": "8/2026",
-    "sale_date": "",
-    "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
+    "days_until_sale": null,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 16500
+      },
+      {
+        "year": "2025",
+        "appraised": 11170
+      },
+      {
+        "year": "2024",
+        "appraised": 11170
+      }
     ],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "178224.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appraised_value": "65850.0",
-    "annual_taxes": "",
-    "land_value": "65850.0",
-    "stacked": false,
-    "score": 6,
-    "days_until_sale": null
-  },
-  {
-    "type": "NOF",
-    "address": "831 S FLORES ST",
-    "owner": "COX SEAN",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": true,
-    "doc_number": "20260800390",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78210",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "8/2026",
-    "sale_date": "",
-    "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "455250.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appraised_value": "150420.0",
-    "annual_taxes": "",
-    "land_value": "50200.0",
-    "stacked": false,
-    "score": 6,
-    "days_until_sale": null
-  },
-  {
-    "type": "NOF",
-    "address": "5922 W INTERSTATE 10",
-    "owner": "JAID HOSPITALITY DEVELOPMENT LLC",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": true,
-    "doc_number": "20260800391",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78201",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "8/2026",
-    "sale_date": "",
-    "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "388537.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appraised_value": "2400000.0",
-    "annual_taxes": "",
-    "land_value": "1037480.0",
-    "stacked": false,
-    "score": 6,
-    "days_until_sale": null
-  },
-  {
-    "type": "NOF",
-    "address": "12102 WELLSTONE RUN",
-    "owner": "ZAHROONI VALID",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": true,
-    "doc_number": "20260800393",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78249",
-    "school_dist": "Northside ISD (Bexar)",
-    "date_filed": "8/2026",
-    "sale_date": "",
-    "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "1007387.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appraised_value": "340750.0",
-    "annual_taxes": "",
-    "land_value": "83730.0",
-    "stacked": false,
-    "score": 6,
-    "days_until_sale": null
-  },
-  {
-    "type": "NOF",
-    "address": "11507 SWEET DESTINY",
-    "owner": "TARANG KRISTEN ELI & GENESSIS I",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": true,
-    "doc_number": "20260800394",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78253",
-    "school_dist": "Northside ISD (Bexar)",
-    "date_filed": "8/2026",
-    "sale_date": "",
-    "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "1197767.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appraised_value": "518840.0",
-    "annual_taxes": "",
-    "land_value": "94070.0",
-    "stacked": false,
-    "score": 6,
-    "days_until_sale": null
-  },
-  {
-    "type": "NOF",
-    "address": "9107 SPIRAL WOODS",
-    "owner": "BRYANT JEANNE M",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": true,
-    "doc_number": "20260800397",
-    "year": "2026",
-    "month": "8",
-    "city": "UNIVERSAL CITY",
-    "zip": "78148",
-    "school_dist": "Judson ISD",
-    "date_filed": "8/2026",
-    "sale_date": "",
-    "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "307400.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appraised_value": "236440.0",
-    "annual_taxes": "",
-    "land_value": "58190.0",
-    "stacked": false,
-    "score": 6,
-    "days_until_sale": null
+    "appr_trend": "up"
   },
   {
     "type": "NOF",
@@ -46478,7 +46795,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800398",
     "year": "2026",
     "month": "8",
@@ -46488,9 +46805,7 @@
     "date_filed": "8/2026",
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "sale_date_arcgis": "",
     "tenure_years": null,
@@ -46503,7 +46818,22 @@
     "land_value": "40330.0",
     "stacked": false,
     "score": 6,
-    "days_until_sale": null
+    "days_until_sale": null,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 145270
+      },
+      {
+        "year": "2025",
+        "appraised": 148470
+      },
+      {
+        "year": "2024",
+        "appraised": 158590
+      }
+    ],
+    "appr_trend": "down"
   },
   {
     "type": "NOF",
@@ -46512,7 +46842,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800400",
     "year": "2026",
     "month": "8",
@@ -46522,9 +46852,7 @@
     "date_filed": "8/2026",
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "sale_date_arcgis": "",
     "tenure_years": null,
@@ -46546,7 +46874,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800406",
     "year": "2026",
     "month": "8",
@@ -46556,9 +46884,7 @@
     "date_filed": "8/2026",
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "sale_date_arcgis": "",
     "tenure_years": null,
@@ -46580,7 +46906,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800407",
     "year": "2026",
     "month": "8",
@@ -46590,9 +46916,7 @@
     "date_filed": "8/2026",
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "sale_date_arcgis": "",
     "tenure_years": null,
@@ -46614,7 +46938,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800408",
     "year": "2026",
     "month": "8",
@@ -46624,9 +46948,7 @@
     "date_filed": "8/2026",
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "sale_date_arcgis": "",
     "tenure_years": null,
@@ -46648,7 +46970,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800409",
     "year": "2026",
     "month": "8",
@@ -46659,8 +46981,7 @@
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
     "flags": [
-      "DUPLICATE",
-      "NEW"
+      "DUPLICATE"
     ],
     "source": "arcgis",
     "sale_date_arcgis": "",
@@ -46683,7 +47004,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800410",
     "year": "2026",
     "month": "8",
@@ -46693,9 +47014,7 @@
     "date_filed": "8/2026",
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "sale_date_arcgis": "",
     "tenure_years": null,
@@ -46717,7 +47036,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800412",
     "year": "2026",
     "month": "8",
@@ -46728,8 +47047,7 @@
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
     "flags": [
-      "DUPLICATE",
-      "NEW"
+      "DUPLICATE"
     ],
     "source": "arcgis",
     "sale_date_arcgis": "",
@@ -46752,7 +47070,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800413",
     "year": "2026",
     "month": "8",
@@ -46763,8 +47081,7 @@
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
     "flags": [
-      "DUPLICATE",
-      "NEW"
+      "DUPLICATE"
     ],
     "source": "arcgis",
     "sale_date_arcgis": "",
@@ -46787,7 +47104,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800414",
     "year": "2026",
     "month": "8",
@@ -46797,9 +47114,7 @@
     "date_filed": "8/2026",
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "sale_date_arcgis": "",
     "tenure_years": null,
@@ -46821,7 +47136,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800417",
     "year": "2026",
     "month": "8",
@@ -46831,9 +47146,7 @@
     "date_filed": "8/2026",
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "sale_date_arcgis": "",
     "tenure_years": null,
@@ -46855,7 +47168,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800421",
     "year": "2026",
     "month": "8",
@@ -46865,9 +47178,7 @@
     "date_filed": "8/2026",
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "sale_date_arcgis": "",
     "tenure_years": null,
@@ -46889,7 +47200,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800433",
     "year": "2026",
     "month": "8",
@@ -46899,9 +47210,7 @@
     "date_filed": "8/2026",
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "sale_date_arcgis": "",
     "tenure_years": null,
@@ -46923,7 +47232,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800437",
     "year": "2026",
     "month": "8",
@@ -46934,8 +47243,7 @@
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
     "flags": [
-      "DUPLICATE",
-      "NEW"
+      "DUPLICATE"
     ],
     "source": "arcgis",
     "sale_date_arcgis": "",
@@ -46958,7 +47266,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800441",
     "year": "2026",
     "month": "8",
@@ -46969,8 +47277,7 @@
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
     "flags": [
-      "DUPLICATE",
-      "NEW"
+      "DUPLICATE"
     ],
     "source": "arcgis",
     "sale_date_arcgis": "",
@@ -46993,7 +47300,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800445",
     "year": "2026",
     "month": "8",
@@ -47004,8 +47311,7 @@
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
     "flags": [
-      "DUPLICATE",
-      "NEW"
+      "DUPLICATE"
     ],
     "source": "arcgis",
     "sale_date_arcgis": "",
@@ -47028,7 +47334,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800446",
     "year": "2026",
     "month": "8",
@@ -47038,9 +47344,7 @@
     "date_filed": "8/2026",
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "sale_date_arcgis": "",
     "tenure_years": null,
@@ -47062,7 +47366,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800249",
     "year": "2026",
     "month": "8",
@@ -47073,8 +47377,7 @@
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
     "flags": [
-      "DUPLICATE",
-      "NEW"
+      "DUPLICATE"
     ],
     "source": "arcgis",
     "sale_date_arcgis": "",
@@ -47097,7 +47400,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800250",
     "year": "2026",
     "month": "8",
@@ -47108,8 +47411,7 @@
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
     "flags": [
-      "DUPLICATE",
-      "NEW"
+      "DUPLICATE"
     ],
     "source": "arcgis",
     "sale_date_arcgis": "",
@@ -47132,7 +47434,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800252",
     "year": "2026",
     "month": "8",
@@ -47142,9 +47444,7 @@
     "date_filed": "8/2026",
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "arcgis",
     "sale_date_arcgis": "",
     "tenure_years": null,
@@ -131366,7 +131666,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800251",
     "year": "2026",
     "month": "8",
@@ -131377,7 +131677,6 @@
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
     "flags": [
-      "NEW",
       "NO OWNER"
     ],
     "source": "arcgis",
@@ -131398,7 +131697,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800346",
     "year": "2026",
     "month": "8",
@@ -131409,7 +131708,6 @@
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
     "flags": [
-      "NEW",
       "NO OWNER"
     ],
     "source": "arcgis",
@@ -131430,7 +131728,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260800355",
     "year": "2026",
     "month": "8",
@@ -131441,7 +131739,6 @@
     "sale_date": "",
     "run_ts": "2026-07-19T15:49:00Z",
     "flags": [
-      "NEW",
       "NO OWNER"
     ],
     "source": "arcgis",
