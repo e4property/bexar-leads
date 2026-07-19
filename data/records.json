@@ -39360,6 +39360,147 @@
   },
   {
     "type": "NOF",
+    "address": "2831 LAVENDER MEADOW",
+    "owner": "LORA GERMAN",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260800406",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78222",
+    "school_dist": "East Central ISD",
+    "date_filed": "8/2026",
+    "sale_date": "",
+    "run_ts": "2026-07-19T15:49:00Z",
+    "flags": [],
+    "source": "arcgis",
+    "sale_date_arcgis": "",
+    "tenure_years": 7,
+    "tenure_score_bonus": 5,
+    "prop_id": "1276652.0",
+    "deed_date": "3/25/2019",
+    "last_sale_amt": "",
+    "appraised_value": "211020.0",
+    "annual_taxes": "",
+    "land_value": "49950.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": null,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 171970
+      },
+      {
+        "year": "2025",
+        "appraised": 211020
+      },
+      {
+        "year": "2024",
+        "appraised": 212690
+      }
+    ],
+    "appr_trend": "down"
+  },
+  {
+    "type": "NOF",
+    "address": "13510 SUMMER LIGHT",
+    "owner": "GANT LABRIELLE J",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260800407",
+    "year": "2026",
+    "month": "8",
+    "city": "SAINT HEDWIG",
+    "zip": "78152",
+    "school_dist": "Schertz-Cibolo-Universal City ISD",
+    "date_filed": "8/2026",
+    "sale_date": "",
+    "run_ts": "2026-07-19T15:49:00Z",
+    "flags": [],
+    "source": "arcgis",
+    "sale_date_arcgis": "",
+    "tenure_years": 5,
+    "tenure_score_bonus": 5,
+    "prop_id": "1317711.0",
+    "deed_date": "10/28/2020",
+    "last_sale_amt": "",
+    "appraised_value": "215000.0",
+    "annual_taxes": "",
+    "land_value": "52290.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": null,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 200560
+      },
+      {
+        "year": "2025",
+        "appraised": 215000
+      },
+      {
+        "year": "2024",
+        "appraised": 215000
+      }
+    ],
+    "appr_trend": "down"
+  },
+  {
+    "type": "NOF",
+    "address": "3506 HACIENDA WAY",
+    "owner": "NAGY RONALD JAY & SANDOVAL-NAGY BIANCA QUINONES",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260800408",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78224",
+    "school_dist": "Southwest ISD",
+    "date_filed": "8/2026",
+    "sale_date": "",
+    "run_ts": "2026-07-19T15:49:00Z",
+    "flags": [],
+    "source": "arcgis",
+    "sale_date_arcgis": "",
+    "tenure_years": 5,
+    "tenure_score_bonus": 5,
+    "prop_id": "1302253.0",
+    "deed_date": "9/29/2020",
+    "last_sale_amt": "",
+    "appraised_value": "235790.0",
+    "annual_taxes": "",
+    "land_value": "50330.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": null,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 211310
+      },
+      {
+        "year": "2025",
+        "appraised": 235790
+      },
+      {
+        "year": "2024",
+        "appraised": 245390
+      }
+    ],
+    "appr_trend": "down"
+  },
+  {
+    "type": "NOF",
     "address": "4672 VIA SONOMA TRL",
     "owner": "BERUMEN CRISTOBAL ALONZO &",
     "mail_addr": "DURAN RUBY ALEJANDRA CONVERSE 78109",
@@ -45789,10 +45930,10 @@
     "flags": [],
     "source": "arcgis",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 0,
     "tenure_score_bonus": 0,
     "prop_id": "132708.0",
-    "deed_date": "",
+    "deed_date": "7/24/2025",
     "last_sale_amt": "",
     "appraised_value": "206230.0",
     "annual_taxes": "",
@@ -46919,113 +47060,32 @@
     "flags": [],
     "source": "arcgis",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 4,
     "tenure_score_bonus": 0,
     "prop_id": "602745.0",
-    "deed_date": "",
+    "deed_date": "9/3/2021",
     "last_sale_amt": "",
     "appraised_value": "204710.0",
     "annual_taxes": "",
     "land_value": "55390.0",
     "stacked": false,
     "score": 6,
-    "days_until_sale": null
-  },
-  {
-    "type": "NOF",
-    "address": "2831 LAVENDER MEADOW",
-    "owner": "LORA GERMAN",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260800406",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78222",
-    "school_dist": "East Central ISD",
-    "date_filed": "8/2026",
-    "sale_date": "",
-    "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "1276652.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appraised_value": "211020.0",
-    "annual_taxes": "",
-    "land_value": "49950.0",
-    "stacked": false,
-    "score": 6,
-    "days_until_sale": null
-  },
-  {
-    "type": "NOF",
-    "address": "13510 SUMMER LIGHT",
-    "owner": "GANT LABRIELLE J",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260800407",
-    "year": "2026",
-    "month": "8",
-    "city": "SAINT HEDWIG",
-    "zip": "78152",
-    "school_dist": "Schertz-Cibolo-Universal City ISD",
-    "date_filed": "8/2026",
-    "sale_date": "",
-    "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "1317711.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appraised_value": "215000.0",
-    "annual_taxes": "",
-    "land_value": "52290.0",
-    "stacked": false,
-    "score": 6,
-    "days_until_sale": null
-  },
-  {
-    "type": "NOF",
-    "address": "3506 HACIENDA WAY",
-    "owner": "NAGY RONALD JAY & SANDOVAL-NAGY BIANCA QUINONES",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260800408",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78224",
-    "school_dist": "Southwest ISD",
-    "date_filed": "8/2026",
-    "sale_date": "",
-    "run_ts": "2026-07-19T15:49:00Z",
-    "flags": [],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "1302253.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appraised_value": "235790.0",
-    "annual_taxes": "",
-    "land_value": "50330.0",
-    "stacked": false,
-    "score": 6,
-    "days_until_sale": null
+    "days_until_sale": null,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 204710
+      },
+      {
+        "year": "2025",
+        "appraised": 204710
+      },
+      {
+        "year": "2024",
+        "appraised": 210010
+      }
+    ],
+    "appr_trend": "flat"
   },
   {
     "type": "NOF",
@@ -47059,7 +47119,22 @@
     "land_value": "102640.0",
     "stacked": false,
     "score": 6,
-    "days_until_sale": null
+    "days_until_sale": null,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 102640
+      },
+      {
+        "year": "2025",
+        "appraised": 102640
+      },
+      {
+        "year": "2024",
+        "appraised": 83510
+      }
+    ],
+    "appr_trend": "flat"
   },
   {
     "type": "NOF",
@@ -47081,17 +47156,32 @@
     "flags": [],
     "source": "arcgis",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 3,
     "tenure_score_bonus": 0,
     "prop_id": "1067861.0",
-    "deed_date": "",
+    "deed_date": "7/29/2022",
     "last_sale_amt": "",
     "appraised_value": "249120.0",
     "annual_taxes": "",
     "land_value": "44950.0",
     "stacked": false,
     "score": 6,
-    "days_until_sale": null
+    "days_until_sale": null,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 251690
+      },
+      {
+        "year": "2025",
+        "appraised": 249120
+      },
+      {
+        "year": "2024",
+        "appraised": 251530
+      }
+    ],
+    "appr_trend": "flat"
   },
   {
     "type": "NOF",
@@ -47115,17 +47205,32 @@
     ],
     "source": "arcgis",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 3,
     "tenure_score_bonus": 0,
     "prop_id": "1368603.0",
-    "deed_date": "",
+    "deed_date": "2/27/2023",
     "last_sale_amt": "",
     "appraised_value": "323470.0",
     "annual_taxes": "",
     "land_value": "42150.0",
     "stacked": false,
     "score": 6,
-    "days_until_sale": null
+    "days_until_sale": null,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 317770
+      },
+      {
+        "year": "2025",
+        "appraised": 323470
+      },
+      {
+        "year": "2024",
+        "appraised": 309040
+      }
+    ],
+    "appr_trend": "flat"
   },
   {
     "type": "NOF",
@@ -47149,17 +47254,32 @@
     ],
     "source": "arcgis",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 4,
     "tenure_score_bonus": 0,
     "prop_id": "140774.0",
-    "deed_date": "",
+    "deed_date": "9/29/2021",
     "last_sale_amt": "",
     "appraised_value": "251000.0",
     "annual_taxes": "",
     "land_value": "113800.0",
     "stacked": false,
     "score": 6,
-    "days_until_sale": null
+    "days_until_sale": null,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 251000
+      },
+      {
+        "year": "2025",
+        "appraised": 251000
+      },
+      {
+        "year": "2024",
+        "appraised": 255973
+      }
+    ],
+    "appr_trend": "flat"
   },
   {
     "type": "NOF",
@@ -47181,17 +47301,32 @@
     "flags": [],
     "source": "arcgis",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 2,
     "tenure_score_bonus": 0,
     "prop_id": "133992.0",
-    "deed_date": "",
+    "deed_date": "9/27/2023",
     "last_sale_amt": "",
     "appraised_value": "234230.0",
     "annual_taxes": "",
     "land_value": "95960.0",
     "stacked": false,
     "score": 6,
-    "days_until_sale": null
+    "days_until_sale": null,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 209820
+      },
+      {
+        "year": "2025",
+        "appraised": 234230
+      },
+      {
+        "year": "2024",
+        "appraised": 168190
+      }
+    ],
+    "appr_trend": "down"
   },
   {
     "type": "NOF",
@@ -47213,17 +47348,32 @@
     "flags": [],
     "source": "arcgis",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 3,
     "tenure_score_bonus": 0,
     "prop_id": "1034082.0",
-    "deed_date": "",
+    "deed_date": "5/25/2023",
     "last_sale_amt": "",
     "appraised_value": "250630.0",
     "annual_taxes": "",
     "land_value": "53090.0",
     "stacked": false,
     "score": 6,
-    "days_until_sale": null
+    "days_until_sale": null,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 225670
+      },
+      {
+        "year": "2025",
+        "appraised": 250630
+      },
+      {
+        "year": "2024",
+        "appraised": 254540
+      }
+    ],
+    "appr_trend": "down"
   },
   {
     "type": "NOF",
@@ -47245,17 +47395,32 @@
     "flags": [],
     "source": "arcgis",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 4,
     "tenure_score_bonus": 0,
     "prop_id": "1330429.0",
-    "deed_date": "",
+    "deed_date": "9/30/2021",
     "last_sale_amt": "",
     "appraised_value": "255330.0",
     "annual_taxes": "",
     "land_value": "55550.0",
     "stacked": false,
     "score": 6,
-    "days_until_sale": null
+    "days_until_sale": null,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 249990
+      },
+      {
+        "year": "2025",
+        "appraised": 255330
+      },
+      {
+        "year": "2024",
+        "appraised": 243670
+      }
+    ],
+    "appr_trend": "down"
   },
   {
     "type": "NOF",
