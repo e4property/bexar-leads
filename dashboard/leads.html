@@ -361,7 +361,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 .fin-val{font-family:'DM Mono',monospace;font-size:15px;font-weight:700;color:var(--text);line-height:1}
 .fin-val.blue{color:var(--blue-dk)}.fin-val.amber{color:var(--amber-dk)}.fin-val.red{color:var(--red-dk)}.fin-val.teal{color:var(--teal-dk)}
 .fin-key{font-size:8px;color:var(--muted);margin-top:3px;text-transform:uppercase;letter-spacing:.05em}
-/* v4.1: appraisal trend */
+/* v4.2: appraisal trend */
 .trend-up{color:var(--green);font-weight:700}
 .trend-down{color:var(--red);font-weight:700}
 .trend-flat{color:var(--muted);font-weight:700}
@@ -489,7 +489,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 <body>
 <!-- NAV -->
 <div class="nav">
-  <div class="nav-logo" onclick="toggleCountySwitcher()">BEXAR<span>·</span>LEADS<sub>v4.1</sub> <span style="font-size:10px;color:var(--dim)">▾</span>
+  <div class="nav-logo" onclick="toggleCountySwitcher()">BEXAR<span>·</span>LEADS<sub>v4.2</sub> <span style="font-size:10px;color:var(--dim)">▾</span>
     <div id="county-dropdown" style="display:none;position:absolute;top:42px;left:0;background:var(--surface);border:1px solid var(--border2);border-radius:var(--rl);min-width:220px;z-index:9999;box-shadow:var(--shadow-md);overflow:hidden"><div id="county-list"></div><div style="padding:8px 12px;border-top:1px solid var(--border)"><button onclick="openSettings();closeCountySwitcher()" style="font-size:11px;color:var(--blue);background:none;border:none;cursor:pointer;padding:0;font-family:'Inter',sans-serif">+ Manage counties</button></div></div>
   </div>
   <div class="nav-tabs">
@@ -679,7 +679,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
               <div class="fin-card tenure-card"><div class="fin-val teal" id="m-tenure-yrs">—</div><div class="fin-key">Yrs Owned</div></div>
               <div class="fin-card tenure-card"><div class="fin-val teal" id="m-tenure-bonus">—</div><div class="fin-key">Tenure Bonus</div></div>
             </div>
-            <!-- v4.1: roll value history table -->
+            <!-- v4.2: roll value history table -->
             <div id="m-roll-history" style="display:none">
               <table class="roll-table">
                 <thead><tr><th>Year</th><th>Appraised</th><th>Change</th></tr></thead>
@@ -710,8 +710,8 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
               </div>
             </div>
             <div class="fw-grid">
-              <div class="fw-field"><div class="fw-lbl">First</div><div class="fw-val" id="sf-first">—</div></div>
-              <div class="fw-field"><div class="fw-lbl">Last</div><div class="fw-val" id="sf-last">—</div></div>
+              <div class="fw-field"><div class="fw-lbl">First ✏️</div><input class="fw-val" id="sf-first" type="text" placeholder="First name" style="cursor:text;font-family:'Inter',sans-serif"></div>
+              <div class="fw-field"><div class="fw-lbl">Last ✏️</div><input class="fw-val" id="sf-last" type="text" placeholder="Last name" style="cursor:text;font-family:'Inter',sans-serif"></div>
               <div class="fw-field"><div class="fw-lbl">City</div><div class="fw-val" id="sf-city">—</div></div>
               <div class="fw-field"><div class="fw-lbl">ZIP</div><div class="fw-val" id="sf-zip">—</div></div>
             </div>
@@ -856,7 +856,7 @@ function runTsToMs(l){try{if(l.run_ts)return new Date(l.run_ts).getTime();}catch
 function scrapedDaysAgo(l){const ms=runTsToMs(l);if(!ms)return null;return Math.floor((Date.now()-ms)/(1000*60*60*24));}
 function scrapedAgoStr(l){const d=scrapedDaysAgo(l);if(d===null)return'';if(d===0)return'today';if(d===1)return'1d ago';return d+'d ago';}
 function tenureChipHTML(lead){const yrs=lead.tenure_years;if(yrs==null)return'';if(yrs>=15)return`<span class="li-tenure t-hot">🏠 ${yrs}yr</span>`;if(yrs>=10)return`<span class="li-tenure t-warm">🏠 ${yrs}yr</span>`;if(yrs>=5)return`<span class="li-tenure t-cool">🏠 ${yrs}yr</span>`;return'';}
-// v4.1: appraisal trend helpers
+// v4.2: appraisal trend helpers
 function trendArrow(t){if(t==='up')return'↑';if(t==='down')return'↓';if(t==='flat')return'→';return'';}
 function trendClass(t){if(t==='up')return'up';if(t==='down')return'down';return'flat';}
 function trendLabel(t){if(t==='up')return'↑ Rising';if(t==='down')return'↓ Declining';if(t==='flat')return'→ Stable';return'—';}
@@ -1100,14 +1100,14 @@ function populateDetail(lead){
   document.getElementById('m-last-sale') && (document.getElementById('m-last-sale').textContent=lastSale||'—');
   document.getElementById('m-tenure-yrs').textContent=tenureYrs!=null?tenureYrs+' yrs':'—';
   document.getElementById('m-tenure-bonus').textContent=tenureBonus>0?'+'+tenureBonus+' pts':'—';
-  // v4.1: trend card
+  // v4.2: trend card
   const trendEl=document.getElementById('m-appr-trend');
   const trendCard=document.getElementById('m-trend-card');
   if(trendEl&&trend){trendEl.textContent=trendLabel(trend);trendEl.className='fin-val '+trendClass(trend);if(trendCard)trendCard.style.borderColor=trend==='up'?'var(--green-mid)':trend==='down'?'var(--red-mid)':'var(--border)';}
   else if(trendEl){trendEl.textContent='—';trendEl.className='fin-val';}
   const trendEl2=document.getElementById('m-appr-trend-2');
   if(trendEl2){trendEl2.textContent=trend?trendLabel(trend):'—';trendEl2.className='info-val '+trendClass(trend);}
-  // v4.1: roll history table
+  // v4.2: roll history table
   const rollDiv=document.getElementById('m-roll-history');
   const rollBody=document.getElementById('m-roll-tbody');
   if(rollDiv&&rollBody&&history.length>=2){rollDiv.style.display='block';rollBody.innerHTML=history.slice(0,4).map((h,i)=>{const prev=history[i+1];const chg=prev?Math.round((h.appraised-prev.appraised)/prev.appraised*100):null;const chgCls=chg==null?'':chg>2?'up':chg<-2?'down':'flat';const chgStr=chg==null?'—':(chg>0?'+':'')+chg+'%';return`<tr><td>${h.year}</td><td>$${h.appraised.toLocaleString()}</td><td class="chg ${chgCls}">${chgStr}</td></tr>`;}).join('');}else if(rollDiv)rollDiv.style.display='none';
@@ -1120,7 +1120,15 @@ function populateDetail(lead){
   document.getElementById('m-trustee').textContent=lead.trustee||'—';
   document.getElementById('m-taxes').textContent=lead.annual_taxes?'$'+Number(lead.annual_taxes).toLocaleString()+'/yr':'—';
   document.getElementById('m-deed-date').textContent=lead.deed_date?fmtDate(lead.deed_date):'—';
-  ['sf-first','sf-last','sf-city','sf-zip'].forEach((id,i)=>{const vals=[first,last,city,zip];const el=document.getElementById(id);el.textContent=vals[i]||'—';el.onclick=()=>{navigator.clipboard.writeText(el.textContent);toast('Copied: '+el.textContent);};});
+  // v4.2: First/Last are now editable inputs
+  const firstEl=document.getElementById('sf-first');
+  const lastEl=document.getElementById('sf-last');
+  if(firstEl)firstEl.value=first||'';
+  if(lastEl)lastEl.value=last||'';
+  const cityEl=document.getElementById('sf-city');
+  const zipEl=document.getElementById('sf-zip');
+  if(cityEl){cityEl.textContent=city||'—';cityEl.onclick=()=>{navigator.clipboard.writeText(cityEl.textContent);toast('Copied: '+cityEl.textContent);};}
+  if(zipEl){zipEl.textContent=zip||'—';zipEl.onclick=()=>{navigator.clipboard.writeText(zipEl.textContent);toast('Copied: '+zipEl.textContent);};}
   if(ls.phone){document.getElementById('phone-saved-area').style.display='block';document.getElementById('phone-entry-area').style.display='none';document.getElementById('saved-phone-display').textContent='📞 '+ls.phone;document.getElementById('saved-phone-meta').textContent=ls.searchedAt?'Searched '+new Date(ls.searchedAt).toLocaleDateString():'Searched';}
   else{document.getElementById('phone-saved-area').style.display='none';document.getElementById('phone-entry-area').style.display='block';document.getElementById('phone-input').value='';const th=document.getElementById('tracerfy-hint');if(th){if(lead.tracerfy_phone&&!lead.tracerfy_dnc){th.style.display='block';th.textContent='📱 Auto-traced: '+lead.tracerfy_phone+' — click to use';}else th.style.display='none';}}
   renderDispoTrack(lead.doc_number,ls.dispo||'new');
@@ -1174,8 +1182,17 @@ function copyAddress(){const lead=allLeads.find(l=>l.doc_number===selectedDoc);i
 function openGHL(){const ls=LS(selectedDoc);window.open(ls.ghlId?`https://app.justjarvis.com/v2/location/${S.ghlLocationId}/contacts/detail/${ls.ghlId}`:'https://app.justjarvis.com','_blank');}
 
 async function pushGHL(lead,phone){
-  try{const{first,last}=parseName(lead.owner);const vbp=isVBP(lead),stacked=isStacked(lead),ce=isCEOnly(lead),lp=isLP(lead),appt=isAppt(lead);const ghlTag=getGHLTag(lead);
-  // v4.1 fix: APPT leads must NOT get bexar_lead tag — it triggers wrong workflow
+  try{
+    // v4.2: read from editable inputs if user has changed name
+    const firstInput=document.getElementById('sf-first');
+    const lastInput=document.getElementById('sf-last');
+    const editedFirst=(firstInput&&firstInput.value.trim())||'';
+    const editedLast=(lastInput&&lastInput.value.trim())||'';
+    const{first:parsedFirst,last:parsedLast}=parseName(lead.owner);
+    const first=editedFirst||parsedFirst||'';
+    const last=editedLast||parsedLast||lead.address||'';
+    const vbp=isVBP(lead),stacked=isStacked(lead),ce=isCEOnly(lead),lp=isLP(lead),appt=isAppt(lead);const ghlTag=getGHLTag(lead);
+  // v4.2 fix: APPT leads must NOT get bexar_lead tag — it triggers wrong workflow
   const baseTags=appt?['forewarn_searched']:['bexar_lead','forewarn_searched'];
   const tags=[...baseTags,ghlTag];
   if(stacked){tags.push('bexar_stacked','bexar_vbp','bexar_ce');if(isVBPDangerous(lead))tags.push('ce_dangerous');}else if(vbp)tags.push('bexar_vbp');else if(ce){tags.push('bexar_ce');if(lead.flags?.includes('DANGEROUS PREMISES'))tags.push('ce_dangerous');}else if(lp)tags.push('bexar_lp');else if(appt){tags.push('bexar_prefore');}else{tags.push('bexar-contacted');if(lead.absentee)tags.push('absentee');if(lead.type==='TAX')tags.push('tax_foreclosure');if(lead.is_new)tags.push('new_lead');}if(isLongHeld(lead))tags.push('long_held');
