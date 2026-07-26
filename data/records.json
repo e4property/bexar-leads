@@ -23385,6 +23385,279 @@
     "days_until_sale": 71
   },
   {
+    "type": "NOF",
+    "address": "5511 SOOTHING WATER",
+    "owner": "SALONE NICOLE LASHELL",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260900103",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78244",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-07-24T20:57:17Z",
+    "flags": [
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 5,
+    "tenure_score_bonus": 5,
+    "prop_id": "1329394.0",
+    "deed_date": "6/17/2021",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 297680
+      },
+      {
+        "year": "2025",
+        "appraised": 291780
+      },
+      {
+        "year": "2024",
+        "appraised": 295050
+      }
+    ],
+    "appr_trend": "up",
+    "appraised_value": "291780.0",
+    "annual_taxes": "",
+    "land_value": "77510.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 71
+  },
+  {
+    "type": "NOF",
+    "address": "10802 HUNTERS WAY",
+    "owner": "CAMILLO PROPERTIES LTD",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260900104",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "HELOTES",
+    "zip": "78023",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-07-24T20:57:17Z",
+    "flags": [
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 5,
+    "tenure_score_bonus": 5,
+    "prop_id": "1216553.0",
+    "deed_date": "12/18/2020",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 174025
+      },
+      {
+        "year": "2025",
+        "appraised": 192506
+      },
+      {
+        "year": "2024",
+        "appraised": 204136
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "192506.0",
+    "annual_taxes": "",
+    "land_value": "63660.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 71
+  },
+  {
+    "type": "NOF",
+    "address": "830 THREE WOOD WAY",
+    "owner": "FACTOR ALFREDO G",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260900118",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78221",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-07-24T20:57:17Z",
+    "flags": [
+      "HAS SALE DATE",
+      "LONG HELD"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 15,
+    "tenure_score_bonus": 25,
+    "prop_id": "1121283.0",
+    "deed_date": "11/18/2010",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 203050
+      },
+      {
+        "year": "2025",
+        "appraised": 203050
+      },
+      {
+        "year": "2024",
+        "appraised": 213100
+      }
+    ],
+    "appr_trend": "flat",
+    "appraised_value": "203050.0",
+    "annual_taxes": "",
+    "land_value": "62870.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 71
+  },
+  {
+    "type": "NOF",
+    "address": "3535 OAKHORNE ST",
+    "owner": "FARQUHARSON RYAN O",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260900075",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78247",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-07-24T20:57:17Z",
+    "flags": [
+      "HAS SALE DATE",
+      "LONG HELD"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 16,
+    "tenure_score_bonus": 25,
+    "prop_id": "678313.0",
+    "deed_date": "5/28/2010",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 310040
+      },
+      {
+        "year": "2025",
+        "appraised": 310040
+      },
+      {
+        "year": "2024",
+        "appraised": 303120
+      }
+    ],
+    "appr_trend": "flat",
+    "appraised_value": "310040.0",
+    "annual_taxes": "",
+    "land_value": "71240.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 71
+  },
+  {
+    "type": "NOF",
+    "address": "207 KATE SCHENCK AVE",
+    "owner": "PALACIOS ERICA",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260900078",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78223",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-07-24T20:57:17Z",
+    "flags": [
+      "HAS SALE DATE",
+      "LONG HELD"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 10,
+    "tenure_score_bonus": 15,
+    "prop_id": "471183.0",
+    "deed_date": "4/22/2016",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 203510
+      },
+      {
+        "year": "2025",
+        "appraised": 219360
+      },
+      {
+        "year": "2024",
+        "appraised": 224450
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "219360.0",
+    "annual_taxes": "",
+    "land_value": "43770.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 71
+  },
+  {
     "doc_number": "20260141301",
     "ps_doc_id": "",
     "type": "APPT",
@@ -37402,47 +37675,6 @@
   },
   {
     "type": "NOF",
-    "address": "5511 SOOTHING WATER",
-    "owner": "SALONE NICOLE LASHELL",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260900103",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "7",
-    "city": "SAN ANTONIO",
-    "zip": "78244",
-    "school_dist": "",
-    "date_filed": "7/2026",
-    "sale_date": "10/06/2026",
-    "run_ts": "2026-07-24T20:57:17Z",
-    "flags": [
-      "HAS SALE DATE"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "1329394.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "291780.0",
-    "annual_taxes": "",
-    "land_value": "77510.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 71
-  },
-  {
-    "type": "NOF",
     "address": "2711 TYNE DR",
     "owner": "GUTIERREZ GUILLERMO & GUTIERREZ JULIETTE A",
     "mail_addr": "",
@@ -37468,98 +37700,29 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 3,
     "tenure_score_bonus": 0,
     "prop_id": "512180.0",
-    "deed_date": "",
+    "deed_date": "12/15/2022",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 274570
+      },
+      {
+        "year": "2025",
+        "appraised": 282710
+      },
+      {
+        "year": "2024",
+        "appraised": 274540
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "282710.0",
     "annual_taxes": "",
     "land_value": "80660.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 71
-  },
-  {
-    "type": "NOF",
-    "address": "10802 HUNTERS WAY",
-    "owner": "CAMILLO PROPERTIES LTD",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260900104",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "7",
-    "city": "HELOTES",
-    "zip": "78023",
-    "school_dist": "",
-    "date_filed": "7/2026",
-    "sale_date": "10/06/2026",
-    "run_ts": "2026-07-24T20:57:17Z",
-    "flags": [
-      "HAS SALE DATE"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "1216553.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "192506.0",
-    "annual_taxes": "",
-    "land_value": "63660.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 71
-  },
-  {
-    "type": "NOF",
-    "address": "830 THREE WOOD WAY",
-    "owner": "FACTOR ALFREDO G",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260900118",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "7",
-    "city": "SAN ANTONIO",
-    "zip": "78221",
-    "school_dist": "",
-    "date_filed": "7/2026",
-    "sale_date": "10/06/2026",
-    "run_ts": "2026-07-24T20:57:17Z",
-    "flags": [
-      "HAS SALE DATE"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "1121283.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "203050.0",
-    "annual_taxes": "",
-    "land_value": "62870.0",
     "stacked": false,
     "score": 7,
     "days_until_sale": 71
@@ -37591,13 +37754,26 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 1,
     "tenure_score_bonus": 0,
     "prop_id": "1312239.0",
-    "deed_date": "",
+    "deed_date": "8/28/2024",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 243940
+      },
+      {
+        "year": "2025",
+        "appraised": 243940
+      },
+      {
+        "year": "2024",
+        "appraised": 43600
+      }
+    ],
+    "appr_trend": "flat",
     "appraised_value": "243940.0",
     "annual_taxes": "",
     "land_value": "57720.0",
@@ -37632,13 +37808,26 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 2,
     "tenure_score_bonus": 0,
     "prop_id": "1379904.0",
-    "deed_date": "",
+    "deed_date": "9/25/2023",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 259510
+      },
+      {
+        "year": "2025",
+        "appraised": 261440
+      },
+      {
+        "year": "2024",
+        "appraised": 276440
+      }
+    ],
+    "appr_trend": "flat",
     "appraised_value": "261440.0",
     "annual_taxes": "",
     "land_value": "69090.0",
@@ -37673,13 +37862,26 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 4,
     "tenure_score_bonus": 0,
     "prop_id": "1336436.0",
-    "deed_date": "",
+    "deed_date": "6/29/2022",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 245900
+      },
+      {
+        "year": "2025",
+        "appraised": 251000
+      },
+      {
+        "year": "2024",
+        "appraised": 252560
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "251000.0",
     "annual_taxes": "",
     "land_value": "53870.0",
@@ -37714,13 +37916,26 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 2,
     "tenure_score_bonus": 0,
     "prop_id": "1324501.0",
-    "deed_date": "",
+    "deed_date": "5/8/2024",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 326480
+      },
+      {
+        "year": "2025",
+        "appraised": 366580
+      },
+      {
+        "year": "2024",
+        "appraised": 363430
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "366580.0",
     "annual_taxes": "",
     "land_value": "102050.0",
@@ -37755,98 +37970,29 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 0,
     "tenure_score_bonus": 0,
     "prop_id": "1393655.0",
-    "deed_date": "",
+    "deed_date": "2/19/2026",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 260000
+      },
+      {
+        "year": "2025",
+        "appraised": 260000
+      },
+      {
+        "year": "2024",
+        "appraised": 158760
+      }
+    ],
+    "appr_trend": "flat",
     "appraised_value": "260000.0",
     "annual_taxes": "",
     "land_value": "52500.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 71
-  },
-  {
-    "type": "NOF",
-    "address": "3535 OAKHORNE ST",
-    "owner": "FARQUHARSON RYAN O",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260900075",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "7",
-    "city": "SAN ANTONIO",
-    "zip": "78247",
-    "school_dist": "",
-    "date_filed": "7/2026",
-    "sale_date": "10/06/2026",
-    "run_ts": "2026-07-24T20:57:17Z",
-    "flags": [
-      "HAS SALE DATE"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "678313.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "310040.0",
-    "annual_taxes": "",
-    "land_value": "71240.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 71
-  },
-  {
-    "type": "NOF",
-    "address": "207 KATE SCHENCK AVE",
-    "owner": "PALACIOS ERICA",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260900078",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "7",
-    "city": "SAN ANTONIO",
-    "zip": "78223",
-    "school_dist": "",
-    "date_filed": "7/2026",
-    "sale_date": "10/06/2026",
-    "run_ts": "2026-07-24T20:57:17Z",
-    "flags": [
-      "HAS SALE DATE"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "471183.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "219360.0",
-    "annual_taxes": "",
-    "land_value": "43770.0",
     "stacked": false,
     "score": 7,
     "days_until_sale": 71
@@ -37878,13 +38024,26 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 2,
     "tenure_score_bonus": 0,
     "prop_id": "1419132.0",
-    "deed_date": "",
+    "deed_date": "6/5/2024",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 214330
+      },
+      {
+        "year": "2025",
+        "appraised": 219000
+      },
+      {
+        "year": "2024",
+        "appraised": 226770
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "219000.0",
     "annual_taxes": "",
     "land_value": "42690.0",
