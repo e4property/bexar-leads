@@ -24145,6 +24145,226 @@
     "days_until_sale": 70
   },
   {
+    "type": "NOF",
+    "address": "10530 BRANCH POST",
+    "owner": "BROWN JIM R & KATHY R",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260900045",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78245",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-07-24T20:57:17Z",
+    "flags": [
+      "HAS SALE DATE",
+      "LONG HELD"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 13,
+    "tenure_score_bonus": 15,
+    "prop_id": "1164066.0",
+    "deed_date": "1/11/2013",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 355850
+      },
+      {
+        "year": "2025",
+        "appraised": 366020
+      },
+      {
+        "year": "2024",
+        "appraised": 366020
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "366020.0",
+    "annual_taxes": "",
+    "land_value": "46980.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 70
+  },
+  {
+    "type": "NOF",
+    "address": "114 OKLAHOMA ST",
+    "owner": "DELAFUENTE MARIA D",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": true,
+    "is_new": false,
+    "doc_number": "20260900041",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78237",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-07-24T20:57:17Z",
+    "flags": [
+      "DUPLICATE",
+      "HAS SALE DATE",
+      "LONG HELD"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 21,
+    "tenure_score_bonus": 25,
+    "prop_id": "430165.0",
+    "deed_date": "9/9/2004",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 135140
+      },
+      {
+        "year": "2025",
+        "appraised": 139080
+      },
+      {
+        "year": "2024",
+        "appraised": 135490
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "139080.0",
+    "annual_taxes": "",
+    "land_value": "39630.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 70
+  },
+  {
+    "type": "NOF",
+    "address": "2020 SISYPHUS VW",
+    "owner": "COBB RUSSELL WILLIAM & TAMARA LYNETTE",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260900044",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78245",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-07-24T20:57:17Z",
+    "flags": [
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 6,
+    "tenure_score_bonus": 5,
+    "prop_id": "1299560.0",
+    "deed_date": "3/20/2020",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 213350
+      },
+      {
+        "year": "2025",
+        "appraised": 221230
+      },
+      {
+        "year": "2024",
+        "appraised": 227450
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "221230.0",
+    "annual_taxes": "",
+    "land_value": "50490.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 70
+  },
+  {
+    "type": "NOF",
+    "address": "1525 NW 36TH ST",
+    "owner": "SANDOVAL STEVE",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260900046",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78228",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-07-24T20:57:17Z",
+    "flags": [
+      "HAS SALE DATE",
+      "LONG HELD"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 23,
+    "tenure_score_bonus": 25,
+    "prop_id": "443114.0",
+    "deed_date": "10/4/2002",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 208600
+      },
+      {
+        "year": "2025",
+        "appraised": 256850
+      },
+      {
+        "year": "2024",
+        "appraised": 251570
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "256850.0",
+    "annual_taxes": "",
+    "land_value": "70430.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 70
+  },
+  {
     "doc_number": "20260141301",
     "ps_doc_id": "",
     "type": "APPT",
@@ -30193,6 +30413,114 @@
       }
     ],
     "appr_trend": "flat"
+  },
+  {
+    "doc_number": "20260141571",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Mcdonald Woodrow W Jr",
+    "address": "13106 FORUM RD",
+    "city": "UNIVERSAL CITY",
+    "zip": "78233",
+    "date_filed": "7/2026",
+    "month": "7",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-07-25T13:50:17Z",
+    "score": 10,
+    "flags": [],
+    "absentee": false,
+    "duplicate": false,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "241680.0",
+    "annual_taxes": "",
+    "mail_addr": "",
+    "prop_id": "297803.0",
+    "land_value": "",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false,
+    "deed_date": "7/30/2020",
+    "last_sale_amt": "",
+    "tenure_years": 5,
+    "tenure_score_bonus": 5,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 239160
+      },
+      {
+        "year": "2025",
+        "appraised": 241680
+      },
+      {
+        "year": "2024",
+        "appraised": 260570
+      }
+    ],
+    "appr_trend": "flat"
+  },
+  {
+    "doc_number": "20260140979",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Lesok Craig C",
+    "address": "3407 SAN FERNANDO STREET",
+    "city": "SAN ANTONIO",
+    "zip": "78222",
+    "date_filed": "7/2026",
+    "month": "7",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-07-24T14:00:17Z",
+    "score": 10,
+    "flags": [
+      "LONG HELD"
+    ],
+    "absentee": false,
+    "duplicate": false,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "202000.0",
+    "annual_taxes": "",
+    "mail_addr": "",
+    "prop_id": "466556.0",
+    "land_value": "",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false,
+    "deed_date": "4/27/2001",
+    "last_sale_amt": "",
+    "tenure_years": 25,
+    "tenure_score_bonus": 25,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 190000
+      },
+      {
+        "year": "2025",
+        "appraised": 202000
+      },
+      {
+        "year": "2024",
+        "appraised": 215000
+      }
+    ],
+    "appr_trend": "down"
   },
   {
     "type": "NOF",
@@ -38702,130 +39030,6 @@
   },
   {
     "type": "NOF",
-    "address": "10530 BRANCH POST",
-    "owner": "BROWN JIM R & KATHY R",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260900045",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "7",
-    "city": "SAN ANTONIO",
-    "zip": "78245",
-    "school_dist": "",
-    "date_filed": "7/2026",
-    "sale_date": "10/06/2026",
-    "run_ts": "2026-07-24T20:57:17Z",
-    "flags": [
-      "HAS SALE DATE"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "1164066.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "366020.0",
-    "annual_taxes": "",
-    "land_value": "46980.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 70
-  },
-  {
-    "type": "NOF",
-    "address": "114 OKLAHOMA ST",
-    "owner": "DELAFUENTE MARIA D",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": true,
-    "is_new": false,
-    "doc_number": "20260900041",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "7",
-    "city": "SAN ANTONIO",
-    "zip": "78237",
-    "school_dist": "",
-    "date_filed": "7/2026",
-    "sale_date": "10/06/2026",
-    "run_ts": "2026-07-24T20:57:17Z",
-    "flags": [
-      "DUPLICATE",
-      "HAS SALE DATE"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "430165.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "139080.0",
-    "annual_taxes": "",
-    "land_value": "39630.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 70
-  },
-  {
-    "type": "NOF",
-    "address": "2020 SISYPHUS VW",
-    "owner": "COBB RUSSELL WILLIAM & TAMARA LYNETTE",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260900044",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "7",
-    "city": "SAN ANTONIO",
-    "zip": "78245",
-    "school_dist": "",
-    "date_filed": "7/2026",
-    "sale_date": "10/06/2026",
-    "run_ts": "2026-07-24T20:57:17Z",
-    "flags": [
-      "HAS SALE DATE"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "1299560.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "221230.0",
-    "annual_taxes": "",
-    "land_value": "50490.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 70
-  },
-  {
-    "type": "NOF",
     "address": "6203 VISTA VALLEY DR",
     "owner": "GARZA JAVIER",
     "mail_addr": "",
@@ -38856,52 +39060,24 @@
     "prop_id": "572111.0",
     "deed_date": "",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 170300
+      },
+      {
+        "year": "2025",
+        "appraised": 173020
+      },
+      {
+        "year": "2024",
+        "appraised": 179790
+      }
+    ],
+    "appr_trend": "flat",
     "appraised_value": "173020.0",
     "annual_taxes": "",
     "land_value": "46270.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 70
-  },
-  {
-    "type": "NOF",
-    "address": "1525 NW 36TH ST",
-    "owner": "SANDOVAL STEVE",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260900046",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "7",
-    "city": "SAN ANTONIO",
-    "zip": "78228",
-    "school_dist": "",
-    "date_filed": "7/2026",
-    "sale_date": "10/06/2026",
-    "run_ts": "2026-07-24T20:57:17Z",
-    "flags": [
-      "HAS SALE DATE"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "443114.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "256850.0",
-    "annual_taxes": "",
-    "land_value": "70430.0",
     "stacked": false,
     "score": 7,
     "days_until_sale": 70
@@ -39669,13 +39845,26 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 4,
     "tenure_score_bonus": 0,
     "prop_id": "305776.0",
-    "deed_date": "",
+    "deed_date": "12/9/2021",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 234070
+      },
+      {
+        "year": "2025",
+        "appraised": 238050
+      },
+      {
+        "year": "2024",
+        "appraised": 246020
+      }
+    ],
+    "appr_trend": "flat",
     "appraised_value": "238050.0",
     "annual_taxes": "",
     "land_value": "65490.0",
@@ -39771,59 +39960,6 @@
     "days_until_sale": 13156
   },
   {
-    "doc_number": "20260141571",
-    "ps_doc_id": "",
-    "type": "APPT",
-    "source": "publicsearch",
-    "county": "bexar",
-    "owner": "Mcdonald Woodrow W Jr",
-    "address": "13106 FORUM RD",
-    "city": "UNIVERSAL CITY",
-    "zip": "78233",
-    "date_filed": "7/2026",
-    "month": "7",
-    "year": "2026",
-    "sale_date": "",
-    "is_new": false,
-    "run_ts": "2026-07-25T13:50:17Z",
-    "score": 6,
-    "flags": [],
-    "absentee": false,
-    "duplicate": false,
-    "days_until_sale": null,
-    "loan_amount": "",
-    "loan_date": "",
-    "lender": "",
-    "trustee": "",
-    "appraised_value": "241680.0",
-    "annual_taxes": "",
-    "mail_addr": "",
-    "prop_id": "297803.0",
-    "land_value": "",
-    "improvement_value": "",
-    "stacked": false,
-    "ce_violations": false,
-    "deed_date": "",
-    "last_sale_amt": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "appr_history": [
-      {
-        "year": "2026",
-        "appraised": 239160
-      },
-      {
-        "year": "2025",
-        "appraised": 241680
-      },
-      {
-        "year": "2024",
-        "appraised": 260570
-      }
-    ],
-    "appr_trend": "flat"
-  },
-  {
     "doc_number": "20260141468",
     "ps_doc_id": "",
     "type": "APPT",
@@ -39872,59 +40008,6 @@
       {
         "year": "2024",
         "appraised": 215760
-      }
-    ],
-    "appr_trend": "down"
-  },
-  {
-    "doc_number": "20260140979",
-    "ps_doc_id": "",
-    "type": "APPT",
-    "source": "publicsearch",
-    "county": "bexar",
-    "owner": "Lesok Craig C",
-    "address": "3407 SAN FERNANDO STREET",
-    "city": "SAN ANTONIO",
-    "zip": "78222",
-    "date_filed": "7/2026",
-    "month": "7",
-    "year": "2026",
-    "sale_date": "",
-    "is_new": false,
-    "run_ts": "2026-07-24T14:00:17Z",
-    "score": 6,
-    "flags": [],
-    "absentee": false,
-    "duplicate": false,
-    "days_until_sale": null,
-    "loan_amount": "",
-    "loan_date": "",
-    "lender": "",
-    "trustee": "",
-    "appraised_value": "202000.0",
-    "annual_taxes": "",
-    "mail_addr": "",
-    "prop_id": "466556.0",
-    "land_value": "",
-    "improvement_value": "",
-    "stacked": false,
-    "ce_violations": false,
-    "deed_date": "",
-    "last_sale_amt": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "appr_history": [
-      {
-        "year": "2026",
-        "appraised": 190000
-      },
-      {
-        "year": "2025",
-        "appraised": 202000
-      },
-      {
-        "year": "2024",
-        "appraised": 215000
       }
     ],
     "appr_trend": "down"
