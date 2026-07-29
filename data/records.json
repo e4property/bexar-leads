@@ -24473,6 +24473,60 @@
     "days_until_sale": 68
   },
   {
+    "type": "NOF",
+    "address": "16423 PASO RIO CRK",
+    "owner": "ESTRADA MICHAEL JOSEPH & DANIELLE",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260900140",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78247",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-07-29T14:17:48Z",
+    "flags": [
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 5,
+    "tenure_score_bonus": 5,
+    "prop_id": "1259210.0",
+    "deed_date": "12/14/2020",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 346900
+      },
+      {
+        "year": "2025",
+        "appraised": 363520
+      },
+      {
+        "year": "2024",
+        "appraised": 368700
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "363520.0",
+    "annual_taxes": "",
+    "land_value": "85240.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 68
+  },
+  {
     "doc_number": "20260142708",
     "ps_doc_id": "",
     "type": "APPT",
@@ -38430,60 +38484,6 @@
     "stacked": false,
     "score": 7,
     "days_until_sale": 33
-  },
-  {
-    "type": "NOF",
-    "address": "16423 PASO RIO CRK",
-    "owner": "ESTRADA MICHAEL JOSEPH & DANIELLE",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260900140",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "7",
-    "city": "SAN ANTONIO",
-    "zip": "78247",
-    "school_dist": "",
-    "date_filed": "7/2026",
-    "sale_date": "10/06/2026",
-    "run_ts": "2026-07-29T14:17:48Z",
-    "flags": [
-      "HAS SALE DATE"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "1259210.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [
-      {
-        "year": "2026",
-        "appraised": 346900
-      },
-      {
-        "year": "2025",
-        "appraised": 363520
-      },
-      {
-        "year": "2024",
-        "appraised": 368700
-      }
-    ],
-    "appr_trend": "down",
-    "appraised_value": "363520.0",
-    "annual_taxes": "",
-    "land_value": "85240.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 68
   },
   {
     "type": "NOF",
