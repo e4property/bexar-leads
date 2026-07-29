@@ -38438,7 +38438,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900140",
     "ps_doc_id": "",
     "year": "2026",
@@ -38450,7 +38450,6 @@
     "sale_date": "10/06/2026",
     "run_ts": "2026-07-29T14:17:48Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
