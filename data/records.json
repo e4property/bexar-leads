@@ -30043,7 +30043,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900141",
     "ps_doc_id": "",
     "year": "2026",
@@ -30055,7 +30055,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-07-30T16:21:12Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
