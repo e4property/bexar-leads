@@ -4498,8 +4498,21 @@
     "prop_id": "718455.0",
     "deed_date": "",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 212600
+      },
+      {
+        "year": "2025",
+        "appraised": 212600
+      },
+      {
+        "year": "2024",
+        "appraised": 223880
+      }
+    ],
+    "appr_trend": "flat",
     "appraised_value": "212600.0",
     "annual_taxes": "",
     "land_value": "52010.0",
@@ -5295,8 +5308,21 @@
     "prop_id": "365846.0",
     "deed_date": "",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 171350
+      },
+      {
+        "year": "2025",
+        "appraised": 171350
+      },
+      {
+        "year": "2024",
+        "appraised": 169930
+      }
+    ],
+    "appr_trend": "flat",
     "appraised_value": "171350.0",
     "annual_taxes": "",
     "land_value": "77660.0",
@@ -5844,8 +5870,21 @@
     "prop_id": "482632.0",
     "deed_date": "",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 200030
+      },
+      {
+        "year": "2025",
+        "appraised": 210030
+      },
+      {
+        "year": "2024",
+        "appraised": 213600
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "210030.0",
     "annual_taxes": "",
     "land_value": "56370.0",
@@ -7635,8 +7674,21 @@
     "prop_id": "603500.0",
     "deed_date": "",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 162130
+      },
+      {
+        "year": "2025",
+        "appraised": 183870
+      },
+      {
+        "year": "2024",
+        "appraised": 183870
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "183870.0",
     "annual_taxes": "",
     "land_value": "34660.0",
@@ -7904,8 +7956,21 @@
     "prop_id": "433224.0",
     "deed_date": "",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 171650
+      },
+      {
+        "year": "2025",
+        "appraised": 172990
+      },
+      {
+        "year": "2024",
+        "appraised": 172990
+      }
+    ],
+    "appr_trend": "flat",
     "appraised_value": "172990.0",
     "annual_taxes": "",
     "land_value": "58990.0",
@@ -9740,8 +9805,21 @@
     "prop_id": "471130.0",
     "deed_date": "",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 176070
+      },
+      {
+        "year": "2025",
+        "appraised": 189790
+      },
+      {
+        "year": "2024",
+        "appraised": 194170
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "189790.0",
     "annual_taxes": "",
     "land_value": "38920.0",
@@ -9840,8 +9918,21 @@
     "prop_id": "180130.0",
     "deed_date": "",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 102640
+      },
+      {
+        "year": "2025",
+        "appraised": 102640
+      },
+      {
+        "year": "2024",
+        "appraised": 83510
+      }
+    ],
+    "appr_trend": "flat",
     "appraised_value": "102640.0",
     "annual_taxes": "",
     "land_value": "102640.0",
@@ -32477,6 +32568,281 @@
   },
   {
     "type": "NOF",
+    "address": "9827 COMMON LAW",
+    "owner": "VAN SLYKE VERNITA C",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260900149",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "CONVERSE",
+    "zip": "78109",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-07-31T16:30:25Z",
+    "flags": [
+      "HAS SALE DATE",
+      "LONG HELD"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 14,
+    "tenure_score_bonus": 15,
+    "prop_id": "1147142.0",
+    "deed_date": "9/16/2011",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 296800
+      },
+      {
+        "year": "2025",
+        "appraised": 303520
+      },
+      {
+        "year": "2024",
+        "appraised": 306370
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "303520.0",
+    "annual_taxes": "",
+    "land_value": "51050.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 65
+  },
+  {
+    "type": "NOF",
+    "address": "6830 CROWN RDG",
+    "owner": "WILLIAMS AL & BRANDELYN",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260900150",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78239",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-07-31T16:30:25Z",
+    "flags": [
+      "HAS SALE DATE",
+      "LONG HELD"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 10,
+    "tenure_score_bonus": 15,
+    "prop_id": "535313.0",
+    "deed_date": "11/20/2015",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 144670
+      },
+      {
+        "year": "2025",
+        "appraised": 170670
+      },
+      {
+        "year": "2024",
+        "appraised": 170670
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "170670.0",
+    "annual_taxes": "",
+    "land_value": "36660.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 65
+  },
+  {
+    "type": "NOF",
+    "address": "308 W MALONE AVE",
+    "owner": "VILLA JACLYN R",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260900147",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78214",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-07-31T16:30:25Z",
+    "flags": [
+      "HAS SALE DATE",
+      "LONG HELD"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 23,
+    "tenure_score_bonus": 25,
+    "prop_id": "143114.0",
+    "deed_date": "6/6/2003",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 152030
+      },
+      {
+        "year": "2025",
+        "appraised": 133620
+      },
+      {
+        "year": "2024",
+        "appraised": 135830
+      }
+    ],
+    "appr_trend": "up",
+    "appraised_value": "133620.0",
+    "annual_taxes": "",
+    "land_value": "49340.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 65
+  },
+  {
+    "type": "NOF",
+    "address": "16811 UNION CAVERN",
+    "owner": "RAMIREZ CARMEN L",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260900145",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78247",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-07-31T16:30:25Z",
+    "flags": [
+      "HAS SALE DATE",
+      "LONG HELD"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 10,
+    "tenure_score_bonus": 15,
+    "prop_id": "677047.0",
+    "deed_date": "3/15/2016",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 239650
+      },
+      {
+        "year": "2025",
+        "appraised": 245320
+      },
+      {
+        "year": "2024",
+        "appraised": 254460
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "245320.0",
+    "annual_taxes": "",
+    "land_value": "55510.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 65
+  },
+  {
+    "type": "NOF",
+    "address": "2106 COLORADO BND",
+    "owner": "FORD HEATHER D & CHRISTOPHER M",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260900143",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78245",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-07-31T16:30:25Z",
+    "flags": [
+      "HAS SALE DATE",
+      "LONG HELD"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 20,
+    "tenure_score_bonus": 25,
+    "prop_id": "1045892.0",
+    "deed_date": "5/10/2006",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 279280
+      },
+      {
+        "year": "2025",
+        "appraised": 284630
+      },
+      {
+        "year": "2024",
+        "appraised": 302590
+      }
+    ],
+    "appr_trend": "flat",
+    "appraised_value": "284630.0",
+    "annual_taxes": "",
+    "land_value": "62020.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 65
+  },
+  {
+    "type": "NOF",
     "address": "2014 S TRINITY ST",
     "owner": "SALAZAR FERNANDO",
     "mail_addr": "",
@@ -35331,8 +35697,21 @@
     "appraised_value": "145830.0",
     "annual_taxes": "",
     "land_value": "55620.0",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 120780
+      },
+      {
+        "year": "2025",
+        "appraised": 145830
+      },
+      {
+        "year": "2024",
+        "appraised": 151730
+      }
+    ],
+    "appr_trend": "down",
     "stacked": false,
     "score": 10,
     "days_until_sale": null
@@ -35566,8 +35945,21 @@
     "appraised_value": "13380.0",
     "annual_taxes": "",
     "land_value": "13380.0",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 12030
+      },
+      {
+        "year": "2025",
+        "appraised": 13380
+      },
+      {
+        "year": "2024",
+        "appraised": 13380
+      }
+    ],
+    "appr_trend": "down",
     "stacked": false,
     "score": 10,
     "days_until_sale": null
@@ -38504,8 +38896,21 @@
     "appraised_value": "67190.0",
     "annual_taxes": "",
     "land_value": "47930.0",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 62390
+      },
+      {
+        "year": "2025",
+        "appraised": 67190
+      },
+      {
+        "year": "2024",
+        "appraised": 72070
+      }
+    ],
+    "appr_trend": "down",
     "stacked": false,
     "score": 8,
     "days_until_sale": null
@@ -38549,8 +38954,21 @@
     "last_sale_amt": "",
     "tenure_years": null,
     "tenure_score_bonus": 0,
-    "appr_history": [],
-    "appr_trend": ""
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 6650000
+      },
+      {
+        "year": "2025",
+        "appraised": 6745040
+      },
+      {
+        "year": "2024",
+        "appraised": 6600000
+      }
+    ],
+    "appr_trend": "flat"
   },
   {
     "doc_number": "20260129358",
@@ -38592,8 +39010,21 @@
     "last_sale_amt": "",
     "tenure_years": null,
     "tenure_score_bonus": 0,
-    "appr_history": [],
-    "appr_trend": ""
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 254500
+      },
+      {
+        "year": "2025",
+        "appraised": 286260
+      },
+      {
+        "year": "2024",
+        "appraised": 284740
+      }
+    ],
+    "appr_trend": "down"
   },
   {
     "doc_number": "20260127429",
@@ -38634,8 +39065,21 @@
     "last_sale_amt": "",
     "tenure_years": null,
     "tenure_score_bonus": 0,
-    "appr_history": [],
-    "appr_trend": ""
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 196530
+      },
+      {
+        "year": "2025",
+        "appraised": 212460
+      },
+      {
+        "year": "2024",
+        "appraised": 216940
+      }
+    ],
+    "appr_trend": "down"
   },
   {
     "type": "TAX",
@@ -39760,88 +40204,6 @@
   },
   {
     "type": "NOF",
-    "address": "9827 COMMON LAW",
-    "owner": "VAN SLYKE VERNITA C",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260900149",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "7",
-    "city": "CONVERSE",
-    "zip": "78109",
-    "school_dist": "",
-    "date_filed": "7/2026",
-    "sale_date": "10/06/2026",
-    "run_ts": "2026-07-31T16:30:25Z",
-    "flags": [
-      "HAS SALE DATE"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "1147142.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "303520.0",
-    "annual_taxes": "",
-    "land_value": "51050.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 65
-  },
-  {
-    "type": "NOF",
-    "address": "6830 CROWN RDG",
-    "owner": "WILLIAMS AL & BRANDELYN",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260900150",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "7",
-    "city": "SAN ANTONIO",
-    "zip": "78239",
-    "school_dist": "",
-    "date_filed": "7/2026",
-    "sale_date": "10/06/2026",
-    "run_ts": "2026-07-31T16:30:25Z",
-    "flags": [
-      "HAS SALE DATE"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "535313.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "170670.0",
-    "annual_taxes": "",
-    "land_value": "36660.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 65
-  },
-  {
-    "type": "NOF",
     "address": "13130 BLANCO RD",
     "owner": "CHESAPEAKE CONDOMINIUM",
     "mail_addr": "",
@@ -39872,8 +40234,21 @@
     "prop_id": "641706.0",
     "deed_date": "",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 4579930
+      },
+      {
+        "year": "2025",
+        "appraised": 4567340
+      },
+      {
+        "year": "2024",
+        "appraised": 4359630
+      }
+    ],
+    "appr_trend": "flat",
     "appraised_value": "4567340.0",
     "annual_taxes": "",
     "land_value": "3841160.0",
@@ -39908,139 +40283,29 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 2,
     "tenure_score_bonus": 0,
     "prop_id": "1100319.0",
-    "deed_date": "",
+    "deed_date": "7/5/2024",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 273670
+      },
+      {
+        "year": "2025",
+        "appraised": 276230
+      },
+      {
+        "year": "2024",
+        "appraised": 278740
+      }
+    ],
+    "appr_trend": "flat",
     "appraised_value": "276230.0",
     "annual_taxes": "",
     "land_value": "54520.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 65
-  },
-  {
-    "type": "NOF",
-    "address": "308 W MALONE AVE",
-    "owner": "VILLA JACLYN R",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260900147",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "7",
-    "city": "SAN ANTONIO",
-    "zip": "78214",
-    "school_dist": "",
-    "date_filed": "7/2026",
-    "sale_date": "10/06/2026",
-    "run_ts": "2026-07-31T16:30:25Z",
-    "flags": [
-      "HAS SALE DATE"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "143114.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "133620.0",
-    "annual_taxes": "",
-    "land_value": "49340.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 65
-  },
-  {
-    "type": "NOF",
-    "address": "16811 UNION CAVERN",
-    "owner": "RAMIREZ CARMEN L",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260900145",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "7",
-    "city": "SAN ANTONIO",
-    "zip": "78247",
-    "school_dist": "",
-    "date_filed": "7/2026",
-    "sale_date": "10/06/2026",
-    "run_ts": "2026-07-31T16:30:25Z",
-    "flags": [
-      "HAS SALE DATE"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "677047.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "245320.0",
-    "annual_taxes": "",
-    "land_value": "55510.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 65
-  },
-  {
-    "type": "NOF",
-    "address": "2106 COLORADO BND",
-    "owner": "FORD HEATHER D & CHRISTOPHER M",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260900143",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "7",
-    "city": "SAN ANTONIO",
-    "zip": "78245",
-    "school_dist": "",
-    "date_filed": "7/2026",
-    "sale_date": "10/06/2026",
-    "run_ts": "2026-07-31T16:30:25Z",
-    "flags": [
-      "HAS SALE DATE"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "1045892.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "284630.0",
-    "annual_taxes": "",
-    "land_value": "62020.0",
     "stacked": false,
     "score": 7,
     "days_until_sale": 65
@@ -40072,13 +40337,26 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 2,
     "tenure_score_bonus": 0,
     "prop_id": "446172.0",
-    "deed_date": "",
+    "deed_date": "2/27/2024",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 192160
+      },
+      {
+        "year": "2025",
+        "appraised": 192160
+      },
+      {
+        "year": "2024",
+        "appraised": 199750
+      }
+    ],
+    "appr_trend": "flat",
     "appraised_value": "192160.0",
     "annual_taxes": "",
     "land_value": "54550.0",
