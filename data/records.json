@@ -22190,6 +22190,62 @@
   },
   {
     "type": "NOF",
+    "address": "9226 SHADOW LAWN CIR",
+    "owner": "BENNETT SHARON",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260900195",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "CONVERSE",
+    "zip": "78109",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "09/01/2026",
+    "run_ts": "2026-07-31T16:30:25Z",
+    "flags": [
+      "HAS SALE DATE",
+      "AUCTION SOON",
+      "LONG HELD"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 20,
+    "tenure_score_bonus": 25,
+    "prop_id": "311439.0",
+    "deed_date": "12/30/2005",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 271990
+      },
+      {
+        "year": "2025",
+        "appraised": 271990
+      },
+      {
+        "year": "2024",
+        "appraised": 271990
+      }
+    ],
+    "appr_trend": "flat",
+    "appraised_value": "271990.0",
+    "annual_taxes": "",
+    "land_value": "63070.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 30
+  },
+  {
+    "type": "NOF",
     "address": "11703 SILVER FIELD",
     "owner": "SFR JV-2 2022-2 BORROWER LLC",
     "mail_addr": "C/O TRICON AMERICAN HOMES LLC TUSTIN 92780",
@@ -22863,48 +22919,6 @@
   },
   {
     "type": "NOF",
-    "address": "9226 SHADOW LAWN CIR",
-    "owner": "BENNETT SHARON",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260900195",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "7",
-    "city": "CONVERSE",
-    "zip": "78109",
-    "school_dist": "",
-    "date_filed": "7/2026",
-    "sale_date": "09/01/2026",
-    "run_ts": "2026-07-31T16:30:25Z",
-    "flags": [
-      "HAS SALE DATE",
-      "AUCTION SOON"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "311439.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "271990.0",
-    "annual_taxes": "",
-    "land_value": "63070.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 30
-  },
-  {
-    "type": "NOF",
     "address": "816 CHICAGO BLVD",
     "owner": "AGUIRRE ROSA",
     "mail_addr": "",
@@ -22936,8 +22950,21 @@
     "prop_id": "143966.0",
     "deed_date": "",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 151210
+      },
+      {
+        "year": "2025",
+        "appraised": 169830
+      },
+      {
+        "year": "2024",
+        "appraised": 169040
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "169830.0",
     "annual_taxes": "",
     "land_value": "60280.0",
@@ -23033,8 +23060,21 @@
     "prop_id": "471524.0",
     "deed_date": "",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 290330
+      },
+      {
+        "year": "2025",
+        "appraised": 322650
+      },
+      {
+        "year": "2024",
+        "appraised": 332940
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "322650.0",
     "annual_taxes": "",
     "land_value": "68480.0",
@@ -23130,8 +23170,21 @@
     "prop_id": "491442.0",
     "deed_date": "",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 193700
+      },
+      {
+        "year": "2025",
+        "appraised": 193700
+      },
+      {
+        "year": "2024",
+        "appraised": 197810
+      }
+    ],
+    "appr_trend": "flat",
     "appraised_value": "193700.0",
     "annual_taxes": "",
     "land_value": "58870.0",
@@ -23172,8 +23225,21 @@
     "prop_id": "575554.0",
     "deed_date": "",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 171440
+      },
+      {
+        "year": "2025",
+        "appraised": 192210
+      },
+      {
+        "year": "2024",
+        "appraised": 192210
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "192210.0",
     "annual_taxes": "",
     "land_value": "40300.0",
@@ -23932,8 +23998,21 @@
     "prop_id": "456230.0",
     "deed_date": "",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 303040
+      },
+      {
+        "year": "2025",
+        "appraised": 308790
+      },
+      {
+        "year": "2024",
+        "appraised": 308790
+      }
+    ],
+    "appr_trend": "flat",
     "appraised_value": "308790.0",
     "annual_taxes": "",
     "land_value": "142210.0",
@@ -24304,8 +24383,21 @@
     "prop_id": "455237.0",
     "deed_date": "",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 104500
+      },
+      {
+        "year": "2025",
+        "appraised": 109570
+      },
+      {
+        "year": "2024",
+        "appraised": 111530
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "109570.0",
     "annual_taxes": "",
     "land_value": "50510.0",
@@ -24733,8 +24825,21 @@
     "prop_id": "710942.0",
     "deed_date": "",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 218040
+      },
+      {
+        "year": "2025",
+        "appraised": 228310
+      },
+      {
+        "year": "2024",
+        "appraised": 233880
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "228310.0",
     "annual_taxes": "",
     "land_value": "52610.0",
@@ -25105,8 +25210,21 @@
     "prop_id": "154796.0",
     "deed_date": "",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 104150
+      },
+      {
+        "year": "2025",
+        "appraised": 112680
+      },
+      {
+        "year": "2024",
+        "appraised": 112680
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "112680.0",
     "annual_taxes": "",
     "land_value": "46380.0",
@@ -26525,8 +26643,21 @@
     "prop_id": "686280.0",
     "deed_date": "",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 387450
+      },
+      {
+        "year": "2025",
+        "appraised": 387450
+      },
+      {
+        "year": "2024",
+        "appraised": 383970
+      }
+    ],
+    "appr_trend": "flat",
     "appraised_value": "387450.0",
     "annual_taxes": "",
     "land_value": "93180.0",
@@ -32121,6 +32252,225 @@
     "appraised_value": "363520.0",
     "annual_taxes": "",
     "land_value": "85240.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 65
+  },
+  {
+    "type": "NOF",
+    "address": "8017 APRIL BND",
+    "owner": "REVILLA VIVIAN",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260900165",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78250",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-07-31T16:30:25Z",
+    "flags": [
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 8,
+    "tenure_score_bonus": 5,
+    "prop_id": "720381.0",
+    "deed_date": "7/27/2018",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 216080
+      },
+      {
+        "year": "2025",
+        "appraised": 229480
+      },
+      {
+        "year": "2024",
+        "appraised": 233750
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "229480.0",
+    "annual_taxes": "",
+    "land_value": "50230.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 65
+  },
+  {
+    "type": "NOF",
+    "address": "9703 BARONS CRK",
+    "owner": "HOUSTON TERRI",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": true,
+    "is_new": false,
+    "doc_number": "20260900152",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78251",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-07-31T16:30:25Z",
+    "flags": [
+      "DUPLICATE",
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 6,
+    "tenure_score_bonus": 5,
+    "prop_id": "664833.0",
+    "deed_date": "1/20/2020",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 577360
+      },
+      {
+        "year": "2025",
+        "appraised": 577570
+      },
+      {
+        "year": "2024",
+        "appraised": 564300
+      }
+    ],
+    "appr_trend": "flat",
+    "appraised_value": "577570.0",
+    "annual_taxes": "",
+    "land_value": "126110.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 65
+  },
+  {
+    "type": "NOF",
+    "address": "3535 OAKHORNE ST",
+    "owner": "FARQUHARSON RYAN O",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": true,
+    "is_new": false,
+    "doc_number": "20260900153",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78247",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-07-31T16:30:25Z",
+    "flags": [
+      "DUPLICATE",
+      "HAS SALE DATE",
+      "LONG HELD"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 16,
+    "tenure_score_bonus": 25,
+    "prop_id": "678313.0",
+    "deed_date": "5/28/2010",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 310040
+      },
+      {
+        "year": "2025",
+        "appraised": 310040
+      },
+      {
+        "year": "2024",
+        "appraised": 303120
+      }
+    ],
+    "appr_trend": "flat",
+    "appraised_value": "310040.0",
+    "annual_taxes": "",
+    "land_value": "71240.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 65
+  },
+  {
+    "type": "NOF",
+    "address": "1419 CROW CT",
+    "owner": "BATY SARAH W",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260900155",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "7",
+    "city": "SAN ANTONIO",
+    "zip": "78245",
+    "school_dist": "",
+    "date_filed": "7/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-07-31T16:30:25Z",
+    "flags": [
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 6,
+    "tenure_score_bonus": 5,
+    "prop_id": "989290.0",
+    "deed_date": "5/18/2020",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 353900
+      },
+      {
+        "year": "2025",
+        "appraised": 353900
+      },
+      {
+        "year": "2024",
+        "appraised": 360450
+      }
+    ],
+    "appr_trend": "flat",
+    "appraised_value": "353900.0",
+    "annual_taxes": "",
+    "land_value": "83020.0",
     "stacked": false,
     "score": 10,
     "days_until_sale": 65
@@ -39356,47 +39706,6 @@
   },
   {
     "type": "NOF",
-    "address": "8017 APRIL BND",
-    "owner": "REVILLA VIVIAN",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260900165",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "7",
-    "city": "SAN ANTONIO",
-    "zip": "78250",
-    "school_dist": "",
-    "date_filed": "7/2026",
-    "sale_date": "10/06/2026",
-    "run_ts": "2026-07-31T16:30:25Z",
-    "flags": [
-      "HAS SALE DATE"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "720381.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "229480.0",
-    "annual_taxes": "",
-    "land_value": "50230.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 65
-  },
-  {
-    "type": "NOF",
     "address": "5006 TOPAZ BEND",
     "owner": "STOVALL MICHAEL & VANESSA RENEE",
     "mail_addr": "",
@@ -39422,141 +39731,29 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 3,
     "tenure_score_bonus": 0,
     "prop_id": "1363347.0",
-    "deed_date": "",
+    "deed_date": "9/15/2022",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 325920
+      },
+      {
+        "year": "2025",
+        "appraised": 336410
+      },
+      {
+        "year": "2024",
+        "appraised": 339420
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "336410.0",
     "annual_taxes": "",
     "land_value": "44680.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 65
-  },
-  {
-    "type": "NOF",
-    "address": "9703 BARONS CRK",
-    "owner": "HOUSTON TERRI",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": true,
-    "is_new": false,
-    "doc_number": "20260900152",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "7",
-    "city": "SAN ANTONIO",
-    "zip": "78251",
-    "school_dist": "",
-    "date_filed": "7/2026",
-    "sale_date": "10/06/2026",
-    "run_ts": "2026-07-31T16:30:25Z",
-    "flags": [
-      "DUPLICATE",
-      "HAS SALE DATE"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "664833.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "577570.0",
-    "annual_taxes": "",
-    "land_value": "126110.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 65
-  },
-  {
-    "type": "NOF",
-    "address": "3535 OAKHORNE ST",
-    "owner": "FARQUHARSON RYAN O",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": true,
-    "is_new": false,
-    "doc_number": "20260900153",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "7",
-    "city": "SAN ANTONIO",
-    "zip": "78247",
-    "school_dist": "",
-    "date_filed": "7/2026",
-    "sale_date": "10/06/2026",
-    "run_ts": "2026-07-31T16:30:25Z",
-    "flags": [
-      "DUPLICATE",
-      "HAS SALE DATE"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "678313.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "310040.0",
-    "annual_taxes": "",
-    "land_value": "71240.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 65
-  },
-  {
-    "type": "NOF",
-    "address": "1419 CROW CT",
-    "owner": "BATY SARAH W",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260900155",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "7",
-    "city": "SAN ANTONIO",
-    "zip": "78245",
-    "school_dist": "",
-    "date_filed": "7/2026",
-    "sale_date": "10/06/2026",
-    "run_ts": "2026-07-31T16:30:25Z",
-    "flags": [
-      "HAS SALE DATE"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "989290.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "353900.0",
-    "annual_taxes": "",
-    "land_value": "83020.0",
     "stacked": false,
     "score": 7,
     "days_until_sale": 65
@@ -41804,8 +42001,21 @@
     "last_sale_amt": "",
     "tenure_years": null,
     "tenure_score_bonus": 0,
-    "appr_history": [],
-    "appr_trend": ""
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 121910
+      },
+      {
+        "year": "2025",
+        "appraised": 131780
+      },
+      {
+        "year": "2024",
+        "appraised": 134540
+      }
+    ],
+    "appr_trend": "down"
   },
   {
     "doc_number": "20260146551",
@@ -41840,12 +42050,875 @@
     "improvement_value": "",
     "stacked": false,
     "ce_violations": false,
-    "deed_date": "",
+    "deed_date": "9/10/2021",
     "last_sale_amt": "",
-    "tenure_years": null,
+    "tenure_years": 4,
     "tenure_score_bonus": 0,
-    "appr_history": [],
-    "appr_trend": ""
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 331300
+      },
+      {
+        "year": "2025",
+        "appraised": 338270
+      },
+      {
+        "year": "2024",
+        "appraised": 341250
+      }
+    ],
+    "appr_trend": "down"
+  },
+  {
+    "doc_number": "VBP-114-E-MAIN-PLAZA-78204",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "114 E MAIN PLAZA",
+    "city": "SAN ANTONIO",
+    "zip": "78204",
+    "date_filed": "2026-08",
+    "sale_date": "",
+    "owner": "114 MAIN PLAZA LLC",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": true,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-08-01T15:27:40",
+    "flags": [
+      "STACKED",
+      "DUPLICATE"
+    ],
+    "score": 6,
+    "sq_ft": 5250,
+    "is_sf": false,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Overgrown Yard/Trash (Vacant Lot)",
+        "status": "OPEN",
+        "opened": "07/15/2026",
+        "address": "114 ELGIN, SAN ANTONIO, TX 78210"
+      }
+    ],
+    "ce_viol_types": [
+      "Overgrown Yard/Trash (Vacant Lot)"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Overgrown Yard/Trash (Vacant Lot)",
+    "ce_status": "OPEN",
+    "opened_date": "07/15/2026",
+    "ce_case_id": "",
+    "appraised_value": "866000.0",
+    "land_value": "766830.0",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-103-MADISON-78205",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "103 MADISON",
+    "city": "SAN ANTONIO",
+    "zip": "78205",
+    "date_filed": "2026-08",
+    "sale_date": "",
+    "owner": "NOBLE DONALD P",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-08-01T15:27:40",
+    "flags": [
+      "STACKED"
+    ],
+    "score": 6,
+    "sq_ft": 736,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "07/21/2026",
+        "address": "103 MADISON ST, SAN ANTONIO, TX 78204"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "07/21/2026",
+    "ce_case_id": "",
+    "appraised_value": "56110.0",
+    "land_value": "56110.0",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-1246-LEAL-ST-78207",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "1246 LEAL ST",
+    "city": "SAN ANTONIO",
+    "zip": "78207",
+    "date_filed": "2026-08",
+    "sale_date": "",
+    "owner": "DELAGARZA ROBERT & ROSARIO M",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-08-01T15:27:40",
+    "flags": [
+      "STACKED"
+    ],
+    "score": 6,
+    "sq_ft": 858,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "07/17/2026",
+        "address": "1246 LEAL ST, SAN ANTONIO, TX 78207"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "07/17/2026",
+    "ce_case_id": "",
+    "appraised_value": "174790.0",
+    "land_value": "53360.0",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-284-THORAIN-BLVD-78212",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "284 THORAIN BLVD",
+    "city": "SAN ANTONIO",
+    "zip": "78212",
+    "date_filed": "2026-08",
+    "sale_date": "",
+    "owner": "DANVAL MANAGEMENT LLC",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-08-01T15:27:40",
+    "flags": [
+      "STACKED"
+    ],
+    "score": 6,
+    "sq_ft": 1788,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "07/06/2026",
+        "address": "284 THORAIN BLVD, SAN ANTONIO, TX 78212"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "07/06/2026",
+    "ce_case_id": "",
+    "appraised_value": "327300.0",
+    "land_value": "327300.0",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-325-E-COURTLAND-PL-78212",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "325 E COURTLAND PL",
+    "city": "SAN ANTONIO",
+    "zip": "78212",
+    "date_filed": "2026-08",
+    "sale_date": "",
+    "owner": "SANCHEZ MARCOS O & LAURA H",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-08-01T15:27:40",
+    "flags": [
+      "STACKED"
+    ],
+    "score": 6,
+    "sq_ft": 2982,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "07/13/2026",
+        "address": "325 ESMA, SAN ANTONIO, TX 78223"
+      },
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "05/04/2026",
+        "address": "325 E COURTLAND PLACE, SAN ANTONIO, TX 78212"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 2,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "07/13/2026",
+    "ce_case_id": "",
+    "appraised_value": "647570.0",
+    "land_value": "317640.0",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-435-W-KINGS-HWY-78212",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "435 W KINGS HWY",
+    "city": "SAN ANTONIO",
+    "zip": "78212",
+    "date_filed": "2026-08",
+    "sale_date": "",
+    "owner": "BRANDL-BLAKE ROBERT LEE & BRANDL-BLAKE MEGAN NICOLE",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-08-01T15:27:40",
+    "flags": [
+      "STACKED"
+    ],
+    "score": 6,
+    "sq_ft": 3660,
+    "is_sf": false,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "07/07/2026",
+        "address": "435 W KINGS HWY, SAN ANTONIO, TX 78212"
+      },
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "07/23/2026",
+        "address": "3435 WILLOWWOOD BLVD, SAN ANTONIO, TX 78219"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 2,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "07/07/2026",
+    "ce_case_id": "",
+    "appraised_value": "285000.0",
+    "land_value": "167260.0",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-810-LEE-HALL-78212",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "810 LEE HALL",
+    "city": "SAN ANTONIO",
+    "zip": "78212",
+    "date_filed": "2026-08",
+    "sale_date": "",
+    "owner": "CASTELLANOS ALAN RODRIGO",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-08-01T15:27:40",
+    "flags": [
+      "STACKED"
+    ],
+    "score": 6,
+    "sq_ft": 1154,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "07/07/2026",
+        "address": "810 LEE HALL, SAN ANTONIO, TX 78212"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "07/07/2026",
+    "ce_case_id": "",
+    "appraised_value": "130000.0",
+    "land_value": "43210.0",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-922-W-ASHBY-PL-78212",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "922 W ASHBY PL",
+    "city": "SAN ANTONIO",
+    "zip": "78212",
+    "date_filed": "2026-08",
+    "sale_date": "",
+    "owner": "GUTIERREZ YAZMIN &",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": true,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-08-01T15:27:40",
+    "flags": [
+      "STACKED",
+      "DUPLICATE"
+    ],
+    "score": 6,
+    "sq_ft": 960,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Overgrown Yard/Trash (Vacant Lot)",
+        "status": "OPEN",
+        "opened": "06/30/2026",
+        "address": "6922 WURZBACH RD, SAN ANTONIO, TX 78240"
+      }
+    ],
+    "ce_viol_types": [
+      "Overgrown Yard/Trash (Vacant Lot)"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Overgrown Yard/Trash (Vacant Lot)",
+    "ce_status": "OPEN",
+    "opened_date": "06/30/2026",
+    "ce_case_id": "",
+    "appraised_value": "180400.0",
+    "land_value": "46680.0",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-210-N-MESQUITE-LN-78202",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "210 N MESQUITE LN",
+    "city": "SAN ANTONIO",
+    "zip": "78202",
+    "date_filed": "2026-08",
+    "sale_date": "",
+    "owner": "AUGUSTINA BUTLER",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-08-01T15:27:40",
+    "flags": [
+      "STACKED"
+    ],
+    "score": 6,
+    "sq_ft": 1148,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Structure Maintenance Multi-Tenant (Interior)",
+        "status": "OPEN",
+        "opened": "07/22/2026",
+        "address": "1210 N HUNT LANE, SAN ANTONIO, TX 78251"
+      }
+    ],
+    "ce_viol_types": [
+      "Structure Maintenance Multi-Tenant (Interior)"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Structure Maintenance Multi-Tenant (Interior)",
+    "ce_status": "OPEN",
+    "opened_date": "07/22/2026",
+    "ce_case_id": "",
+    "appraised_value": "237830.0",
+    "land_value": "207310.0",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-508-N-OLIVE-ST-78202",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "508 N OLIVE ST",
+    "city": "SAN ANTONIO",
+    "zip": "78202",
+    "date_filed": "2026-08",
+    "sale_date": "",
+    "owner": "JIMENEZ FAMILY INVESTMENTS LLC",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-08-01T15:27:40",
+    "flags": [
+      "STACKED"
+    ],
+    "score": 6,
+    "sq_ft": 1252,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "07/15/2026",
+        "address": "508 N PINE ST, SAN ANTONIO, TX 78202"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "07/15/2026",
+    "ce_case_id": "",
+    "appraised_value": "151180.0",
+    "land_value": "118040.0",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-508-N-PINE-ST-78202",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "508 N PINE ST",
+    "city": "SAN ANTONIO",
+    "zip": "78202",
+    "date_filed": "2026-08",
+    "sale_date": "",
+    "owner": "GRADY JEFFREY W",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-08-01T15:27:40",
+    "flags": [
+      "STACKED"
+    ],
+    "score": 6,
+    "sq_ft": 1048,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "07/15/2026",
+        "address": "508 N PINE ST, SAN ANTONIO, TX 78202"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "07/15/2026",
+    "ce_case_id": "",
+    "appraised_value": "181860.0",
+    "land_value": "125430.0",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-132-SPRUCE-ST-78203",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "132 SPRUCE ST",
+    "city": "SAN ANTONIO",
+    "zip": "78203",
+    "date_filed": "2026-08",
+    "sale_date": "",
+    "owner": "LAURA RULLAN",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-08-01T15:27:40",
+    "flags": [
+      "STACKED"
+    ],
+    "score": 6,
+    "sq_ft": 1436,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "07/17/2026",
+        "address": "132 SPRUCE ST, SAN ANTONIO, TX 78203"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "07/17/2026",
+    "ce_case_id": "",
+    "appraised_value": "168000.0",
+    "land_value": "38230.0",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-306-E-CEVALLOS-78204",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "306 E CEVALLOS",
+    "city": "SAN ANTONIO",
+    "zip": "78204",
+    "date_filed": "2026-08",
+    "sale_date": "",
+    "owner": "MILO HOMES LLC",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": true,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-08-01T15:27:40",
+    "flags": [
+      "STACKED",
+      "DUPLICATE"
+    ],
+    "score": 6,
+    "sq_ft": 1440,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "07/21/2026",
+        "address": "306 E HAFER, SAN ANTONIO, TX 78214"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "07/21/2026",
+    "ce_case_id": "",
+    "appraised_value": "335000.0",
+    "land_value": "283450.0",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-427-CUMBERLAND-RD-78204",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "427 CUMBERLAND RD",
+    "city": "SAN ANTONIO",
+    "zip": "78204",
+    "date_filed": "2026-08",
+    "sale_date": "",
+    "owner": "3D HOMES ONE LLC",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-08-01T15:27:40",
+    "flags": [
+      "STACKED"
+    ],
+    "score": 6,
+    "sq_ft": 2772,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "07/24/2026",
+        "address": "427 CUMBERLAND BLVD, SAN ANTONIO, TX 78204"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "07/24/2026",
+    "ce_case_id": "",
+    "appraised_value": "211750.0",
+    "land_value": "43460.0",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-2102-S-LAREDO-ST-78207",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "2102 S LAREDO ST",
+    "city": "SAN ANTONIO",
+    "zip": "78207",
+    "date_filed": "2026-08",
+    "sale_date": "",
+    "owner": "HERNANDEZ EDDIE & SERVIA PENELOPE",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-08-01T15:27:40",
+    "flags": [
+      "STACKED"
+    ],
+    "score": 6,
+    "sq_ft": 3272,
+    "is_sf": false,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "07/14/2026",
+        "address": "2102 S PRESA ST, SAN ANTONIO, TX 78210"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "07/14/2026",
+    "ce_case_id": "",
+    "appraised_value": "183420.0",
+    "land_value": "29320.0",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-2115-ARBOR-PL-78207",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "2115 ARBOR PL",
+    "city": "SAN ANTONIO",
+    "zip": "78207",
+    "date_filed": "2026-08",
+    "sale_date": "",
+    "owner": "VALDEZ DANIEL ET AL",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-08-01T15:27:40",
+    "flags": [
+      "STACKED"
+    ],
+    "score": 6,
+    "sq_ft": 1274,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "07/23/2026",
+        "address": "2115 ARBOR PLACE, SAN ANTONIO, TX 78207"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "07/23/2026",
+    "ce_case_id": "",
+    "appraised_value": "169350.0",
+    "land_value": "54770.0",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-817-S-SMITH-ST-78207",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "817 S SMITH ST",
+    "city": "SAN ANTONIO",
+    "zip": "78207",
+    "date_filed": "2026-08",
+    "sale_date": "",
+    "owner": "BOTELLO ROLAND G",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-08-01T15:27:40",
+    "flags": [
+      "STACKED"
+    ],
+    "score": 6,
+    "sq_ft": 1185,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "07/20/2026",
+        "address": "817 S GENERAL MCMULLEN, SAN ANTONIO, TX 78237"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "07/20/2026",
+    "ce_case_id": "",
+    "appraised_value": "55000.0",
+    "land_value": "29700.0",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "days_until_sale": null
   },
   {
     "doc_number": "20260145659",
@@ -101266,9 +102339,11 @@
     "is_new": false,
     "run_ts": "2026-06-15T20:54:13Z",
     "score": 6,
-    "flags": [],
+    "flags": [
+      "DUPLICATE"
+    ],
     "absentee": false,
-    "duplicate": false,
+    "duplicate": true,
     "days_until_sale": null,
     "loan_amount": "",
     "loan_date": "",
@@ -107401,11 +108476,12 @@
     "owner": "GUTIERREZ YAZMIN &",
     "mail_addr": "",
     "absentee": false,
-    "duplicate": false,
+    "duplicate": true,
     "is_new": false,
     "run_ts": "2026-05-13T18:54:03",
     "flags": [
-      "STACKED"
+      "STACKED",
+      "DUPLICATE"
     ],
     "score": 6,
     "sq_ft": 960,
@@ -112271,11 +113347,12 @@
     "owner": "MILO HOMES LLC",
     "mail_addr": "",
     "absentee": false,
-    "duplicate": false,
+    "duplicate": true,
     "is_new": false,
     "run_ts": "2026-05-13T18:54:03",
     "flags": [
-      "STACKED"
+      "STACKED",
+      "DUPLICATE"
     ],
     "score": 6,
     "sq_ft": 1652,
