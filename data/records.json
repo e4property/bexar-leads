@@ -38891,6 +38891,61 @@
     "appr_trend": "flat"
   },
   {
+    "doc_number": "20260145253",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "3507 Rancho Primera, San Antonio, Texas, 78224",
+    "address": "3507 RANCHO PRIMERA",
+    "city": "SAN ANTONIO",
+    "zip": "78223",
+    "date_filed": "7/2026",
+    "month": "7",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-07-31T14:24:00Z",
+    "score": 10,
+    "flags": [
+      "LONG HELD"
+    ],
+    "absentee": false,
+    "duplicate": false,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "213860.0",
+    "annual_taxes": "",
+    "mail_addr": "",
+    "prop_id": "517954.0",
+    "land_value": "",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false,
+    "deed_date": "4/4/2016",
+    "last_sale_amt": "",
+    "tenure_years": 10,
+    "tenure_score_bonus": 15,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 198480
+      },
+      {
+        "year": "2025",
+        "appraised": 213860
+      },
+      {
+        "year": "2024",
+        "appraised": 218890
+      }
+    ],
+    "appr_trend": "down"
+  },
+  {
     "type": "NOF",
     "address": "2619 BANDITOS RDG",
     "owner": "WALKER CASSONDRA JOYCE &",
@@ -43389,40 +43444,6 @@
       }
     ],
     "appr_trend": "down"
-  },
-  {
-    "doc_number": "20260145253",
-    "ps_doc_id": "",
-    "type": "APPT",
-    "source": "publicsearch",
-    "county": "bexar",
-    "owner": "3507 Rancho Primera, San Antonio, Texas, 78224",
-    "address": "3507 RANCHO PRIMERA",
-    "city": "SAN ANTONIO",
-    "zip": "78223",
-    "date_filed": "7/2026",
-    "month": "7",
-    "year": "2026",
-    "sale_date": "",
-    "is_new": false,
-    "run_ts": "2026-07-31T14:24:00Z",
-    "score": 6,
-    "flags": [],
-    "absentee": false,
-    "duplicate": false,
-    "days_until_sale": null,
-    "loan_amount": "",
-    "loan_date": "",
-    "lender": "",
-    "trustee": "",
-    "appraised_value": "213860.0",
-    "annual_taxes": "",
-    "mail_addr": "",
-    "prop_id": "517954.0",
-    "land_value": "",
-    "improvement_value": "",
-    "stacked": false,
-    "ce_violations": false
   },
   {
     "doc_number": "20260143712",
