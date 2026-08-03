@@ -38952,7 +38952,7 @@
     "mail_addr": "GARZA JOYCE RODRIGUEZ CONVERSE 78109",
     "absentee": true,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900217",
     "ps_doc_id": "",
     "year": "2026",
@@ -38965,7 +38965,6 @@
     "run_ts": "2026-08-03T17:04:38Z",
     "flags": [
       "ABSENTEE",
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -39896,7 +39895,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900218",
     "ps_doc_id": "",
     "year": "2026",
@@ -39908,7 +39907,6 @@
     "sale_date": "10/06/2026",
     "run_ts": "2026-08-03T17:04:38Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
