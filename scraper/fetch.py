@@ -474,6 +474,7 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
                     "is_new":              True,
                     "doc_number":          doc_number,
                     "ps_doc_id":           ps_doc_id,
+                    "_source_url":         url,
                     "year":                year,
                     "month":               month,
                     "city":                city,
@@ -925,48 +926,125 @@ def login_publicsearch(driver):
         return False
 
 
-def lookup_ps_doc_id(doc_number, driver):
+def goto_doc_by_click(driver, source_url, doc_number, timeout=20):
+    """
+    PublicSearch's results table is a pure React SPA with no href/data-id
+    anywhere in the row HTML — the internal doc ID only exists in JS state
+    and appears in the URL after a client-side route change from a row
+    click (confirmed against the same site's Nueces instance). So instead
+    of scraping a link that doesn't exist, reload the exact results page
+    the row came from, find that row by its visible doc number, click it,
+    and wait for the route to land on /doc/<id>. Leaves the driver on the
+    doc page on success.
+    """
+    from selenium.webdriver.common.by import By
+    from selenium.webdriver.support.ui import WebDriverWait
+    from selenium.webdriver.support import expected_conditions as EC
+
+    if not source_url or not doc_number:
+        return False
+    try:
+        driver.set_page_load_timeout(timeout)
+        driver.get(source_url)
+        WebDriverWait(driver, timeout).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, "table tr td"))
+        )
+        time.sleep(1)
+
+        row_xpath = f"//tr[.//*[normalize-space(text())='{doc_number}']]"
+        row = WebDriverWait(driver, timeout).until(
+            EC.presence_of_element_located((By.XPATH, row_xpath))
+        )
+        clickable = row.find_element(By.CSS_SELECTOR, "td.col-3")
+        driver.execute_script("arguments[0].scrollIntoView({block:'center'});", clickable)
+        clickable.click()
+
+        WebDriverWait(driver, timeout).until(EC.url_contains("/doc/"))
+        time.sleep(1.5)
+        return True
+    except Exception as e:
+        log.debug(f"  click-fallback failed for doc {doc_number}: {e}")
+        return False
+
+
+def extract_loan_details(driver):
+    """
+    Assumes the driver is already sitting on a PublicSearch /doc/<id> page
+    (e.g. after goto_doc_by_click). Clicks the Summary tab if present, then
+    regex-parses the deed-of-trust text for loan amount/date/lender/trustee.
+    Returns a dict with all four keys, blank string where nothing matched.
+    """
     from selenium.webdriver.common.by import By
     import re as _re
+
     try:
-        driver.set_page_load_timeout(15)
-        url = (f"{PUBLICSEARCH_BASE}/results?department=FC"
-               f"&limit=10&offset=0&sort=desc&sortBy=recordedDate"
-               f"&docNumber={doc_number}")
-        driver.get(url)
-        time.sleep(3)
-
-        links = driver.find_elements(By.CSS_SELECTOR, "a[href*='/doc/']")
-        for link in links:
-            href = link.get_attribute("href") or ""
-            m = _re.search(r"/doc/(\d+)", href)
-            if m:
-                try:
-                    row = link.find_element(By.XPATH, "ancestor::tr")
-                    if doc_number in (row.text or ""):
-                        return m.group(1)
-                except Exception:
-                    return m.group(1)
-
-        rows = driver.find_elements(By.CSS_SELECTOR, "table tbody tr")
-        for row in rows:
-            if doc_number in (row.text or ""):
-                row.click()
+        tabs = driver.find_elements(By.CSS_SELECTOR, ".tab-item, .tab, [role='tab'], .nav-link, button, a")
+        for tab in tabs:
+            txt = (tab.text or tab.get_attribute("textContent") or "").strip().lower()
+            if txt == "summary" or txt.startswith("summar"):
+                tab.click()
                 time.sleep(2)
-                m = _re.search(r"/doc/(\d+)", driver.current_url)
-                if m:
-                    return m.group(1)
                 break
+    except Exception:
+        pass
+
+    loan_amount = ""
+    loan_date   = ""
+    lender      = ""
+    trustee     = ""
+
+    try:
+        page_text = driver.find_element(By.TAG_NAME, "body").text
+        lines = page_text.split("\n")
+
+        m = _re.search(
+            r"Deed of Trust is dated\s+(\d{1,2}/\d{1,2}/\d{4}|\w+ \d{1,2},\s*\d{4})",
+            page_text, _re.IGNORECASE)
+        if not m:
+            m = _re.search(
+                r"dated\s+(\d{1,2}/\d{1,2}/\d{4}|\w+ \d{1,2},\s*\d{4})",
+                page_text, _re.IGNORECASE)
+        if m:
+            loan_date = m.group(1).strip()
+
+        m = _re.search(
+            r"nominee for\s+([A-Z][^\n,]{4,60}?)(?:\s*,|\s+AN\s|\s+ITS\s|\s+A\s)",
+            page_text, _re.IGNORECASE)
+        if m:
+            lender = m.group(1).strip()
+        if not lender:
+            for i, line in enumerate(lines):
+                ll = line.lower()
+                if any(x in ll for x in ["original beneficiary", "beneficiary:", "mortgagee:"]):
+                    val = line.split(":")[-1].strip() if ":" in line else ""
+                    if not val and i+1 < len(lines):
+                        val = lines[i+1].strip()
+                    if val and len(val) > 3:
+                        lender = val
+                        break
+        if not lender:
+            m = _re.search(r"Current\s+Beneficiary[:\s]+([A-Z][^\n]{4,60})", page_text)
+            if m:
+                lender = m.group(1).strip()
+
+        m = _re.search(r"Trustor[s]?\(?s?\)?[:\s]+([A-Z][^\n]{4,80})", page_text)
+        if m:
+            trustee = m.group(1).strip()
+
+        m = _re.search(
+            r"(?:original|principal)\s+(?:loan\s+)?amount[:\s]+\$?([\d,]+(?:\.\d{2})?)",
+            page_text, _re.IGNORECASE)
+        if m:
+            loan_amount = "$" + m.group(1)
 
     except Exception as e:
-        log.debug(f"  ps_doc_id lookup error [{doc_number}]: {e}")
-    return ""
+        log.debug(f"  Body text parse: {e}")
+
+    return {"loan_amount": loan_amount, "loan_date": loan_date,
+            "lender": lender, "trustee": trustee}
 
 
 def fetch_doc_details(records, driver):
-    from selenium.webdriver.common.by import By
-    import re as _re
-
     cutoff = TODAY_NAIVE - timedelta(days=DOC_FETCH_DAYS)
 
     candidates = [
@@ -974,6 +1052,7 @@ def fetch_doc_details(records, driver):
         if r.get("type") in ("NOF", "TAX")
         and not r.get("loan_amount")
         and r.get("source", "publicsearch") == "publicsearch"
+        and r.get("_source_url")
     ]
     log.info(f"Doc fetch: {len(candidates)} candidates missing loan data")
 
@@ -998,126 +1077,27 @@ def fetch_doc_details(records, driver):
         log.info(f"Doc fetch: no leads within {DOC_FETCH_DAYS}d window missing loan data — skipping")
         return records
 
-    missing_id = [r for r in recent if not r.get("ps_doc_id")]
-    if missing_id:
-        log.info(f"Doc fetch: resolving ps_doc_id for {len(missing_id)} leads...")
-        seen_ids = set()
-        for r in missing_id:
-            pid = lookup_ps_doc_id(r["doc_number"], driver)
-            if pid:
-                if pid in seen_ids:
-                    log.warning(f"  DUPLICATE ID [{r['doc_number']}] → {pid} — skipping")
-                    continue
-                r["ps_doc_id"] = pid
-                seen_ids.add(pid)
-                log.info(f"  Resolved [{r['doc_number']}] → {pid}")
-            else:
-                log.info(f"  No ID found for [{r['doc_number']}]")
-            time.sleep(1)
-
-    seen = set()
-    deduped = []
-    for r in recent:
-        pid = r.get("ps_doc_id")
-        if pid and pid not in seen:
-            seen.add(pid)
-            deduped.append(r)
-    recent = deduped
-    if not recent:
-        log.info("Doc fetch: no ps_doc_ids resolved — skipping")
-        return records
-
     log.info(f"Doc fetch: enriching {len(recent)} leads with mortgage intel...")
     fetched = 0
 
     for rec in recent:
-        ps_id   = rec["ps_doc_id"]
         doc_num = rec["doc_number"]
-        url     = f"{PUBLICSEARCH_BASE}/doc/{ps_id}"
-        log.info(f"  Doc [{doc_num}] id={ps_id}")
+        log.info(f"  Doc [{doc_num}] locating via row click")
 
-        try:
-            driver.set_page_load_timeout(20)
-            driver.get(url)
-            time.sleep(3)
-        except Exception:
-            log.warning(f"  Doc [{doc_num}] page load timeout — skipping")
+        if not goto_doc_by_click(driver, rec["_source_url"], doc_num):
+            log.info(f"  Doc [{doc_num}] click-through failed — skipping")
             continue
 
-        try:
-            tabs = driver.find_elements(By.CSS_SELECTOR, ".tab-item, .tab, [role='tab'], .nav-link, button, a")
-            for tab in tabs:
-                txt = (tab.text or tab.get_attribute("textContent") or "").strip().lower()
-                if txt == "summary" or txt.startswith("summar"):
-                    tab.click()
-                    time.sleep(2)
-                    break
-        except Exception:
-            pass
-
-        loan_amount = ""
-        loan_date   = ""
-        lender      = ""
-        trustee     = ""
-
-        try:
-            page_text = driver.find_element(By.TAG_NAME, "body").text
-            lines = page_text.split("\n")
-
-            if not loan_date:
-                m = _re.search(
-                    r"Deed of Trust is dated\s+(\d{1,2}/\d{1,2}/\d{4}|\w+ \d{1,2},\s*\d{4})",
-                    page_text, _re.IGNORECASE)
-                if not m:
-                    m = _re.search(
-                        r"dated\s+(\d{1,2}/\d{1,2}/\d{4}|\w+ \d{1,2},\s*\d{4})",
-                        page_text, _re.IGNORECASE)
-                if m:
-                    loan_date = m.group(1).strip()
-
-            if not lender:
-                m = _re.search(
-                    r"nominee for\s+([A-Z][^\n,]{4,60}?)(?:\s*,|\s+AN\s|\s+ITS\s|\s+A\s)",
-                    page_text, _re.IGNORECASE)
-                if m:
-                    lender = m.group(1).strip()
-            if not lender:
-                for i, line in enumerate(lines):
-                    ll = line.lower()
-                    if any(x in ll for x in ["original beneficiary", "beneficiary:", "mortgagee:"]):
-                        val = line.split(":")[-1].strip() if ":" in line else ""
-                        if not val and i+1 < len(lines):
-                            val = lines[i+1].strip()
-                        if val and len(val) > 3:
-                            lender = val
-                            break
-            if not lender:
-                m = _re.search(r"Current\s+Beneficiary[:\s]+([A-Z][^\n]{4,60})", page_text)
-                if m:
-                    lender = m.group(1).strip()
-
-            if not trustee:
-                m = _re.search(r"Trustor[s]?\(?s?\)?[:\s]+([A-Z][^\n]{4,80})", page_text)
-                if m:
-                    trustee = m.group(1).strip()
-
-            if not loan_amount:
-                m = _re.search(
-                    r"(?:original|principal)\s+(?:loan\s+)?amount[:\s]+\$?([\d,]+(?:\.\d{2})?)",
-                    page_text, _re.IGNORECASE)
-                if m:
-                    loan_amount = "$" + m.group(1)
-
-        except Exception as e:
-            log.debug(f"  Body text parse: {e}")
-
-        rec["loan_amount"] = loan_amount
-        rec["loan_date"]   = loan_date
-        rec["lender"]      = lender
-        rec["trustee"]     = trustee
+        details = extract_loan_details(driver)
+        rec["loan_amount"] = details["loan_amount"]
+        rec["loan_date"]   = details["loan_date"]
+        rec["lender"]      = details["lender"]
+        rec["trustee"]     = details["trustee"]
         fetched += 1
 
-        log.info(f"  → amt={loan_amount or '—'} | lender={lender[:35] if lender else '—'} | date={loan_date or '—'}")
+        log.info(f"  → amt={details['loan_amount'] or '—'} | "
+                 f"lender={details['lender'][:35] if details['lender'] else '—'} | "
+                 f"date={details['loan_date'] or '—'}")
         time.sleep(1)
 
     log.info(f"Doc fetch: {fetched}/{len(recent)} enriched")
@@ -1781,6 +1761,11 @@ if __name__ == "__main__":
     log.info(f"       BCAD: {with_propid} with prop_id | {with_trend} with appr trend | {with_deed} deed dates")
 
     # ── Step 10: Save ─────────────────────────────────────────────────────────
+    # _source_url is only needed during this run's doc-page click-through —
+    # strip it so it doesn't bloat records.json or leak into the dashboard.
+    for r in records:
+        r.pop("_source_url", None)
+
     with open("data/records.json", "w", encoding="utf-8") as f:
         json.dump(records, f, indent=2)
     build_dashboard(records)

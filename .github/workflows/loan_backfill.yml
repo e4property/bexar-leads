@@ -1,0 +1,34 @@
+name: Loan Amount Backfill
+
+on:
+  workflow_dispatch:
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_PAT }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4 lxml selenium
+
+      - name: Run loan amount backfill
+        run: python scraper/loan_backfill.py
+
+      - name: Commit updated records.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${{ secrets.GH_PAT }}@github.com/e4property/bexar-leads.git
+          git add dashboard/records.json data/records.json
+          git diff --staged --quiet || git commit -m "backfill: loan amount enrichment"
+          git push
