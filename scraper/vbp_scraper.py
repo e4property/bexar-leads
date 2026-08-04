@@ -202,6 +202,18 @@ def download_vbp_pdf():
     return properties
 
 
+def vbp_doc_key(addr, zipcode):
+    """
+    Normalized VBP dedup key. Collapses whitespace/punctuation drift between
+    monthly PDF pulls so the same property always maps to the same key —
+    prevents duplicate leads and lets reruns match back to the existing
+    record instead of creating a new one.
+    """
+    a = re.sub(r"[^\w\s-]", "", (addr or "").upper().strip())
+    a = re.sub(r"\s+", " ", a)
+    return f"VBP-{a.replace(' ', '-')}-{(zipcode or '').strip()}"
+
+
 def filter_properties(properties):
     filtered = []
     for p in properties:
@@ -407,6 +419,13 @@ def main():
     existing_docs = {r["doc_number"] for r in existing}
     log.info(f"Existing doc numbers: {len(existing_docs)}")
 
+    # Keyed by normalized address+zip (not raw doc_number) so a rerun matches
+    # an existing VBP lead even if the PDF's address formatting drifted.
+    existing_by_key = {
+        vbp_doc_key(r.get("address", ""), r.get("zip", "")): r
+        for r in existing if r.get("type") == "VBP"
+    }
+
     # Step 1: Clean incorrectly stamped NOF/TAX records
     cleaned = clean_nof_stacked_flags(existing)
     log.info(f"Cleaned stacked flag from {cleaned} NOF/TAX records")
@@ -466,15 +485,57 @@ def main():
     ce_checked = 0
     ce_found   = 0
     skipped    = 0
+    updated    = 0
 
     log.info(f"Checking {len(props)} VBP addresses against CE portal...")
 
     for i, prop in enumerate(props):
         addr    = prop["address"]
         zipcode = prop["zip"]
-        doc_key = f"VBP-{addr.replace(' ', '-')}-{zipcode}"
+        doc_key = vbp_doc_key(addr, zipcode)
 
-        if doc_key in existing_docs:
+        if doc_key in existing_by_key:
+            # Already a lead for this property — refresh its CE data in
+            # place instead of creating a duplicate. Same 25d cooldown as
+            # the new-address check below, so we're not hammering the CE
+            # API for every known VBP address on every run.
+            if addr in checked and checked[addr].get("checked_at"):
+                checked_dt = datetime.fromisoformat(checked[addr]["checked_at"])
+                if (datetime.now() - checked_dt).days < 25:
+                    skipped += 1
+                    continue
+
+            violations = check_ce_for_address(addr)
+            ce_checked += 1
+            checked[addr] = {
+                "checked_at": RUN_TIMESTAMP,
+                "violations": len(violations) > 0,
+            }
+
+            if violations:
+                rec          = existing_by_key[doc_key]
+                viol_types   = list({v["typename"] for v in violations})
+                first        = violations[0]
+                is_dangerous = any("dangerous" in t.lower() for t in viol_types)
+
+                rec["ce_violations"] = violations
+                rec["ce_viol_types"] = viol_types
+                rec["ce_count"]      = len(violations)
+                rec["ce_cat_label"]  = first["typename"]
+                rec["ce_status"]     = first["status"]
+                rec["opened_date"]   = first["opened"]
+                rec["ce_case_id"]    = first["case_id"]
+
+                flags = set(rec.get("flags") or [])
+                flags.update(["VACANT STRUCT", "CODE ENFORCE", "STACKED"])
+                if is_dangerous:
+                    flags.add("DANGEROUS PREMISES")
+                rec["flags"]   = list(flags)
+                rec["stacked"] = True
+                rec["score"]   = max(rec.get("score", 0), 8 + (2 if is_dangerous else 0))
+                updated += 1
+
+            time.sleep(0.4)
             skipped += 1
             continue
 
@@ -556,15 +617,14 @@ def main():
         time.sleep(0.4)
 
     log.info(f"CE check complete: {ce_checked} queried | "
-             f"{ce_found} new stacked | {skipped} skipped")
+             f"{ce_found} new stacked | {updated} existing updated | {skipped} skipped")
 
-    # Merge and write
+    # Merge and write (existing records were updated in place above, not duplicated)
     merged = existing + new_leads
     write_records(merged)
     log.info(f"records.json saved — {len(merged)} total | "
              f"{cleaned} NOF cleaned | {stamped} VBP stamped | "
-             f"{enriched} CE enriched | {len(new_leads)} new VBP+CE leads added")
-    log.info(f"Added {len(new_leads)} stacked VBP+CE leads")
+             f"{enriched} CE enriched | {updated} refreshed | {len(new_leads)} new VBP+CE leads added")
 
     # Update state
     state["last_vbp_count"] = vbp_count

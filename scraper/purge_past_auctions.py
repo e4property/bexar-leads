@@ -55,10 +55,6 @@ def should_purge(rec):
     lead_type = rec.get("type", "")
     source    = rec.get("source", "")
 
-    # Never purge leads with GHL activity — someone worked these
-    if has_ghl_activity(rec):
-        return False, "has_ghl_activity"
-
     # Never purge VBP, CE, LP, APPT — no auction date relevance
     if lead_type in ("LP", "APPT", "VBP", "CE") or source in ("vbp_ce", "code_enforcement"):
         return False, "non_foreclosure_type"
@@ -69,7 +65,13 @@ def should_purge(rec):
         if sale_date:
             dt = parse_date(sale_date)
             if dt and dt < TODAY:
+                # Auction passed — purge even if worked in GHL, it's already
+                # in Jarvis and doesn't need to also live in the dash.
                 return True, f"auction_passed ({sale_date})"
+
+        # No sale date + stale: keep if someone's actively worked it
+        if has_ghl_activity(rec):
+            return False, "has_ghl_activity"
         # No sale date + older than 180 days = stale, auction likely passed
         age = days_old(rec)
         if age > 180:
