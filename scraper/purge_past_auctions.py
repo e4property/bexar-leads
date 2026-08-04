@@ -15,6 +15,7 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(me
 log = logging.getLogger(__name__)
 
 RECORDS_PATH = Path("dashboard/records.json")
+DATA_PATH    = Path("data/records.json")
 TODAY = datetime.now()
 
 def parse_date(s):
@@ -115,7 +116,10 @@ def main():
         json.dumps(keep, ensure_ascii=False),
         encoding="utf-8"
     )
-    log.info(f"\nrecords.json saved: {len(keep)} records remaining")
+    if DATA_PATH.exists():
+        DATA_PATH.write_text(json.dumps(keep, indent=2), encoding="utf-8")
+    log.info(f"\nrecords.json saved: {len(keep)} records remaining" +
+             (f" (both {RECORDS_PATH} and {DATA_PATH})" if DATA_PATH.exists() else ""))
 
 if __name__ == "__main__":
     main()
