@@ -20707,7 +20707,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900219",
     "ps_doc_id": "",
     "year": "2026",
@@ -20720,7 +20720,6 @@
     "run_ts": "2026-08-04T14:42:40Z",
     "flags": [
       "DUPLICATE",
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -20764,7 +20763,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900221",
     "ps_doc_id": "",
     "year": "2026",
@@ -20777,7 +20776,6 @@
     "run_ts": "2026-08-04T14:42:40Z",
     "flags": [
       "DUPLICATE",
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -20821,7 +20819,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900220",
     "ps_doc_id": "",
     "year": "2026",
@@ -20834,7 +20832,6 @@
     "run_ts": "2026-08-04T14:42:40Z",
     "flags": [
       "DUPLICATE",
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
