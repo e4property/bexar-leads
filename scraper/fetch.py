@@ -1682,9 +1682,14 @@ if __name__ == "__main__":
             except Exception:
                 pass
 
-    # ── Step 1c: Lis Pendens early detection ─────────────────────────────────
-    lp_records = scrape_lis_pendens(known_docs, get_driver, RUN_TIMESTAMP)
-    log.info(f"LP scrape: {len(lp_records)} new Lis Pendens records")
+    # ── Step 1c: Lis Pendens — disabled 2026-08-06 ───────────────────────────
+    # Site is returning records from 2018/2023 regardless of the 21-day
+    # instrumentDateRange filter (confirmed: 4047 "new" LP records appeared
+    # in one run, all dated 2018/2023, right after known_docs lost its LP
+    # entries from a purge). Foreclosure-only focus for now per user
+    # request; needs a real fix (client-side date safety filter at minimum)
+    # before re-enabling.
+    lp_records = []
 
     # ── Step 2: ArcGIS weekly backfill (Sundays only) ────────────────────────
     arcgis_records = []
