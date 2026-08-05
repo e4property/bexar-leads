@@ -66,30 +66,59 @@ outreach — untested which wins for this audience):
 > foreclosure filing come through and wanted to check in. Reply STOP to
 > opt out.
 
-## Reply-handling (once someone responds — this is where most wins happen)
+## AI Agent qualification flow — "Xavi - Bexar Bot," live in Jarvis
 
-Goal: get a phone call if they'll take it, but keep moving forward over
-text if that's their preference — collect enough info (condition,
-timeline, why selling, rough price expectation) to make an offer once
-the numbers are run.
+Once someone replies, "Xavi - Bexar Bot" (Automation → AI Agents →
+Conversation AI, primary agent, SMS channel) takes over and runs this
+flow automatically — this is where most of the actual reply-handling
+happens now, not a manual script. Updated live 2026-08-06 after
+reviewing what was there (rigid fixed-order questions, no guidance for
+price-asks) and researching what top wholesalers/AI-bot platforms
+recommend instead.
 
-- **Any positive/curious reply** → *"Glad you reached out! Easiest way to
-  figure out if I can help is a quick call — what's a good time today or
-  tomorrow? If a call's not your thing, happy to just text back and
-  forth too."*
-- **They reply but prefer text** → *"No problem, text works. Mind
-  sharing a bit about the property — how many beds/baths, and roughly
-  what kind of shape is it in?"* → then → *"Got it, thanks. What's your
-  timeline like — are you looking to move quickly or just exploring
-  options?"* → then → *"That's helpful. Do you have a number in mind for
-  what you'd want, or want me to run some numbers and get back to you
-  with an offer?"*
-- **"How much are you offering"** (before enough info is gathered) →
-  *"I want to give you a real number, not a guess — mind if I ask a
-  couple quick things about the property first so it's accurate?"*
-- **Vague/one-word reply ("ok", "who is this")** → *"Sorry — I'm Xavi, I
-  reached out about your property on [Street]. Just seeing if you'd be
-  open to chatting, no pressure."*
+Current live instructions (Trigger 2, "Bexar Foreclosure Knowledge
+Base"):
+
+> Use this knowledge base when qualifying motivated sellers in
+> foreclosure. Cover, in roughly this order but adapt if they've already
+> shared something — don't force a rigid sequence: 1) Property condition
+> (roof, HVAC, water heater, recent updates) 2) Mortgage payoff amount
+> and any other liens, plus what they'd like to walk away with 3) Months
+> behind on payments 4) Monthly payment amount 5) Who is on title 6) Book
+> appointment. Ask one question at a time, keep messages short. Accept
+> short answers and move on. Never ask "do you still owe on the
+> mortgage" — assume they owe and go straight to payoff amount. If asked
+> for a specific price or offer, don't state one — ask "what number did
+> you have in mind?" instead. Making an actual offer is Xavi's job at the
+> appointment.
+
+What changed and why:
+- **No longer a rigid fixed-order script.** Practitioner consensus is
+  that forcing every question in a strict sequence when the seller
+  volunteers info out of order reads robotic and can dead-end the
+  conversation. Bot now adapts instead.
+- **Property condition** broken into specifics (roof, HVAC, water
+  heater, recent updates) instead of one open question — reads less
+  like an interrogation.
+- **Payoff + liens combined** with "what would you like to walk away
+  with" — doubles as a motivation-gauging question.
+- **Price-ask handling added.** Researched whether the bot should give a
+  soft ballpark instead of fully deferring — no source recommends
+  quoting a range before condition/payoff/liens are known, even among
+  wholesalers who eventually give a verbal ballpark (that only happens
+  after a callback + desktop underwriting, never on first contact). The
+  well-supported middle ground instead: reverse the question — *"what
+  number did you have in mind?"* — keeps the bot from ever committing to
+  a number (a bad/hallucinated price can kill a deal) while still
+  engaging rather than stonewalling.
+
+## Manual talking points — for objections outside the bot's flow
+
+The bot's flow above covers qualification. These cover objections/
+scenarios it doesn't have explicit steps for — useful if Xavi jumps into
+a conversation personally, or worth adding to the bot's instructions
+later if they come up often:
+
 - **"I already have a loan modification in progress"** → *"That's great
   — I hope it works out. Loan mods can take 3-6 months though. Would it
   be okay if I check back in a few weeks, just in case?"*
@@ -100,6 +129,9 @@ the numbers are run.
   challenges with the property, or is everything handled?"* (gives room
   to correct you if it's already resolved, rather than assuming
   disinterest).
+- **Vague/one-word reply ("ok", "who is this")** → *"Sorry — I'm Xavi, I
+  reached out about your property on [Street]. Just seeing if you'd be
+  open to chatting, no pressure."*
 
 ## Pre-Foreclosure (APPT) — NOT YET SENT, pending finalization
 
@@ -119,13 +151,17 @@ Jarvis if one exists, and run it through the same critique pass the NOF
 script got (cut tagline/testimonial-style phrasing, keep it short and
 person-to-person).
 
-## Also on the to-do list
-
-Update the AI Agent persona/instructions in Jarvis (Automation → AI
-Agents) to match this script's tone once finalized — that's what governs
-how Jarvis's AI responds in conversations, and it should sound like the
-same person as these texts.
+**Open question:** "Xavi - Bexar Bot" is the only *primary* Conversation
+AI agent (only the primary agent replies to inbound messages — a second
+bot, "Xavi - Bexar VBP Bot," exists for VBP/CE leads specifically). Its
+Trigger 2 knowledge base is scoped to foreclosure qualification. Unclear
+yet whether APPT replies get handled by this same bot with the wrong
+(foreclosure-specific) flow, or fall through with no structured
+handling at all — check this before sending any APPT texts.
 
 Sources: flipmantis.com/resources/pre-foreclosure-scripts,
 realestateskills.com, batchdialer.com, landvoice.com, textdrip.com,
-dealmachine.com (TX SB140 compliance).
+dealmachine.com (TX SB140 compliance and seller-objection scripts),
+crushingrei.com (qualification question phrasing), biggerpockets.com
+(verbal-ballpark-offer practice), getperspective.ai and noem.ai (AI
+qualification bot conversation design).
