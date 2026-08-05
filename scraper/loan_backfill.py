@@ -31,15 +31,23 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 from fetch import get_driver, goto_doc_by_click, extract_loan_details, PUBLICSEARCH_BASE
 
-RECORDS_PATH = Path("dashboard/records.json")
-DATA_PATH    = Path("data/records.json")
-MAX_PER_RUN  = 150
+RECORDS_PATH  = Path("dashboard/records.json")
+DATA_PATH     = Path("data/records.json")
+MAX_PER_RUN   = 100
+SAVE_EVERY    = 15  # checkpoint so a timeout/crash mid-run doesn't lose everything
 
 
 def search_url_for(doc_number):
     q = urllib.parse.quote(doc_number, safe="")
     return (f"{PUBLICSEARCH_BASE}/results?department=FC"
             f"&limit=10&offset=0&sort=desc&sortBy=recordedDate&docNumber={q}")
+
+
+def save_records(records):
+    json_str = json.dumps(records, separators=(",", ":"), ensure_ascii=True)
+    RECORDS_PATH.write_text(json_str, encoding="utf-8")
+    if DATA_PATH.exists():
+        DATA_PATH.write_text(json.dumps(records, indent=2), encoding="utf-8")
 
 
 def main():
@@ -89,6 +97,11 @@ def main():
             log.info(f"  → amt={details['loan_amount'] or '—'} | "
                      f"lender={details['lender'][:35] if details['lender'] else '—'} | "
                      f"date={details['loan_date'] or '—'}")
+
+            if fetched % SAVE_EVERY == 0:
+                save_records(records)
+                log.info(f"  checkpoint saved ({fetched} enriched so far)")
+
             time.sleep(1)
     finally:
         try:
@@ -98,10 +111,7 @@ def main():
 
     log.info(f"Backfill: {fetched}/{len(batch)} enriched | {remaining_after} still remaining")
 
-    json_str = json.dumps(records, separators=(",", ":"), ensure_ascii=True)
-    RECORDS_PATH.write_text(json_str, encoding="utf-8")
-    if DATA_PATH.exists():
-        DATA_PATH.write_text(json.dumps(records, indent=2), encoding="utf-8")
+    save_records(records)
     log.info(f"Saved {len(records)} records to {RECORDS_PATH}" +
              (f" and {DATA_PATH}" if DATA_PATH.exists() else ""))
 
