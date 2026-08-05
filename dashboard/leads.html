@@ -1178,7 +1178,7 @@ function clearPhone(){if(!confirm('Clear phone?'))return;if(S.leads[selectedDoc]
 function skipLead(){if(!S.leads[selectedDoc])S.leads[selectedDoc]={};S.leads[selectedDoc].skipped=!S.leads[selectedDoc].skipped;saveState();filterLeads();toast('Skipped');setTimeout(()=>navNextUnworked(),300);}
 function setDispo(doc,dispo){if(!S.leads[doc])S.leads[doc]={};S.leads[doc].dispo=dispo;saveState();renderDispoTrack(doc,dispo);renderList();updateStats();if(S.ghlApiKey&&S.leads[doc]?.ghlId)updateGHLTag(S.leads[doc].ghlId,dispo);writeBackToRepo(doc,{dash_dispo:dispo});toast(`Dispo → ${dispo}`);}
 function saveNotes(){if(!selectedDoc)return;if(!S.leads[selectedDoc])S.leads[selectedDoc]={};const notes=document.getElementById('notes-area').value;S.leads[selectedDoc].notes=notes;saveState();writeBackToRepo(selectedDoc,{dash_notes:notes});}
-function copyAddress(){const lead=allLeads.find(l=>l.doc_number===selectedDoc);if(!lead)return;navigator.clipboard.writeText(`${lead.address}, ${lead.city} TX ${lead.zip}`);toast('Address copied');}
+function copyAddress(){const lead=allLeads.find(l=>l.doc_number===selectedDoc);if(!lead)return;navigator.clipboard.writeText(`${toTitle(lead.address||'')}, ${toTitle(lead.city||'')} TX ${lead.zip}`);toast('Address copied');}
 function openGHL(){const ls=LS(selectedDoc);window.open(ls.ghlId?`https://app.justjarvis.com/v2/location/${S.ghlLocationId}/contacts/detail/${ls.ghlId}`:'https://app.justjarvis.com','_blank');}
 
 async function pushGHL(lead,phone){
@@ -1190,13 +1190,14 @@ async function pushGHL(lead,phone){
     const editedLast=(lastInput&&lastInput.value.trim())||'';
     const{first:parsedFirst,last:parsedLast}=parseName(lead.owner);
     const first=editedFirst||parsedFirst||'';
-    const last=editedLast||parsedLast||lead.address||'';
+    const addrTitle=lead.address?toTitle(lead.address):'';
+    const last=editedLast||parsedLast||addrTitle||'';
     const vbp=isVBP(lead),stacked=isStacked(lead),ce=isCEOnly(lead),lp=isLP(lead),appt=isAppt(lead);const ghlTag=getGHLTag(lead);
   // v4.2 fix: APPT leads must NOT get bexar_lead tag — it triggers wrong workflow
   const baseTags=appt?['forewarn_searched']:['bexar_lead','forewarn_searched'];
   const tags=[...baseTags,ghlTag];
   if(stacked){tags.push('bexar_stacked','bexar_vbp','bexar_ce');if(isVBPDangerous(lead))tags.push('ce_dangerous');}else if(vbp)tags.push('bexar_vbp');else if(ce){tags.push('bexar_ce');if(lead.flags?.includes('DANGEROUS PREMISES'))tags.push('ce_dangerous');}else if(lp)tags.push('bexar_lp');else if(appt){tags.push('bexar_prefore');}else{tags.push('bexar-contacted');if(lead.absentee)tags.push('absentee');if(lead.type==='TAX')tags.push('tax_foreclosure');if(lead.is_new)tags.push('new_lead');}if(isLongHeld(lead))tags.push('long_held');
-  const body={firstName:first||'',lastName:last||lead.address||'',phone,address1:lead.address,city:lead.city,state:'TX',postalCode:lead.zip,tags,locationId:S.ghlLocationId,source:'bexar-leads'};
+  const body={firstName:first||'',lastName:last||addrTitle||'',phone,address1:addrTitle,city:lead.city,state:'TX',postalCode:lead.zip,tags,locationId:S.ghlLocationId,source:'bexar-leads'};
   const res=await fetch('https://services.leadconnectorhq.com/contacts/',{method:'POST',headers:{'Authorization':'Bearer '+S.ghlApiKey,'Content-Type':'application/json','Version':'2021-07-28'},body:JSON.stringify(body)});
   const data=await res.json(),id=data.contact?.id||data.id;
   if(id){S.leads[lead.doc_number].ghlId=id;S.leads[lead.doc_number].ghl_pushed=true;saveState();setGhlDot(true);return id;}else{setGhlDot(false);return null;}}catch(e){setGhlDot(false);return null;}
