@@ -1513,6 +1513,70 @@ def fetch_deed_and_arv(records, driver):
     log.info(f"BCAD deed+ARV: {fetched} enriched, {errors} errors out of {len(candidates)} candidates")
     return records
 
+def _month_year_age_days(date_filed):
+    """date_filed is stored as 'MM/YYYY' (day-level precision isn't
+    available from the source) — approximate age from the 1st of that
+    month. Good enough for a coarse staleness threshold, not exact."""
+    try:
+        parts = date_filed.strip().split("/")
+        if len(parts) != 2:
+            return None
+        dt = datetime(int(parts[1]), int(parts[0]), 1)
+        return (TODAY_NAIVE - dt).days
+    except Exception:
+        return None
+
+
+def link_appt_to_nof(records):
+    """
+    Cross-reference APPT (Appointment of Substitute Trustee / pre-fore)
+    leads against NOF/TAX leads for the same owner+address.
+
+    If a matching NOF/TAX shows up, the pre-fore signal was real —
+    mark the APPT record converted (useful lineage, distinct from a lead
+    that just never went anywhere).
+
+    If an APPT has no matching NOF/TAX after ~60 days (NOF typically
+    follows an APPT by 2-4 weeks per CLAUDE.md), it likely resolved —
+    cured, refinanced, or withdrawn. Flag it stale so it can be
+    deprioritized/parked instead of treated as an indefinite live lead.
+    """
+    def key_for(r):
+        owner = (r.get("owner") or "").upper().strip()
+        addr  = (r.get("address") or "").upper().strip()
+        return (owner, addr) if owner and addr else None
+
+    nof_by_key = {}
+    for r in records:
+        if r.get("type") in ("NOF", "TAX"):
+            k = key_for(r)
+            if k:
+                nof_by_key.setdefault(k, []).append(r)
+
+    converted = 0
+    stale = 0
+    for r in records:
+        if r.get("type") != "APPT":
+            continue
+        r["appt_converted"] = False
+        r["appt_stale"] = False
+
+        k = key_for(r)
+        if k and k in nof_by_key:
+            r["appt_converted"] = True
+            r["converted_doc_number"] = nof_by_key[k][0].get("doc_number", "")
+            converted += 1
+            continue
+
+        age = _month_year_age_days(r.get("date_filed", ""))
+        if age is not None and age > 60:
+            r["appt_stale"] = True
+            stale += 1
+
+    log.info(f"APPT cross-ref: {converted} converted to NOF/TAX | {stale} stale (60d+, no NOF yet)")
+    return records
+
+
 def detect_duplicates(records):
     from collections import Counter
     counts = Counter(
@@ -1548,6 +1612,12 @@ def score_record(rec):
     # v28.34: tenure bonus capped so total never exceeds 10
     # prevents old leads from being resurfaced with inflated scores
     s += rec.get("tenure_score_bonus", 0)
+    # APPT leads that already converted to a real NOF/TAX are redundant —
+    # work the NOF instead, which has more info (sale date). Ones that
+    # went 60d+ with no NOF likely resolved on their own. Either way,
+    # deprioritize the APPT record itself rather than keep surfacing it.
+    if rec.get("type") == "APPT" and (rec.get("appt_converted") or rec.get("appt_stale")):
+        s = max(s - 4, 0)
     return min(s, 10)
 
 
@@ -1700,6 +1770,7 @@ if __name__ == "__main__":
 
     # ── Step 7: Duplicate detection ───────────────────────────────────────────
     records = detect_duplicates(records)
+    records = link_appt_to_nof(records)
 
     # ── Step 8: Flag + score ──────────────────────────────────────────────────
     for r in records:
@@ -1725,6 +1796,8 @@ if __name__ == "__main__":
             if cat in CE_VACANT:                  r["flags"].append("VACANT STRUCT")
             if cat in CE_MIN_HOUS:                r["flags"].append("MIN HOUSING")
         if (r.get("tenure_years") or 0) >= 10:   r["flags"].append("LONG HELD")
+        if r.get("appt_converted"):              r["flags"].append("CONVERTED TO NOF")
+        if r.get("appt_stale"):                  r["flags"].append("LIKELY RESOLVED")
         r["stacked"]           = existing_stacked
         r["score"]             = score_record(r)
         r["days_until_sale"]   = d
