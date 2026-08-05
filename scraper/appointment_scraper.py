@@ -675,6 +675,23 @@ def scrape_appointments(known_docs, get_driver_fn, run_timestamp):
                                 rec["owner_unverified"] = False
                                 log.info(f"  Confirmed owner for {rec['doc_number']}: {rec['owner']}")
 
+                        # Lender name — we're already on the doc page for
+                        # address/owner, so pull this too while here. Useful
+                        # context on negotiation posture (some servicers move
+                        # to NOF faster / are less flexible than others).
+                        if not rec.get("lender"):
+                            page_text_plain = re.sub(r"<[^>]+>", " ", page_src)
+                            m = re.search(
+                                r"nominee for\s+([A-Z][^\n,]{4,60}?)(?:\s*,|\s+AN\s|\s+ITS\s|\s+A\s)",
+                                page_text_plain, re.IGNORECASE)
+                            if not m:
+                                m = re.search(
+                                    r"(?:original beneficiary|beneficiary|mortgagee)[:\s]+([A-Z][^\n,]{4,60})",
+                                    page_text_plain, re.IGNORECASE)
+                            if m:
+                                rec["lender"] = m.group(1).strip()
+                                log.info(f"  Got lender for {rec['doc_number']}: {rec['lender']}")
+
                         rec["score"] = score_appt_record(rec)
 
                         time.sleep(1)
