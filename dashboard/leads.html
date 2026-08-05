@@ -1166,11 +1166,16 @@ async function savePhone(){
   Object.assign(S.leads[selectedDoc],{phone,searchedAt:Date.now(),dispo:S.leads[selectedDoc].dispo||'new',skipped:false});
   S.used++;saveState();updateBudgetUI();
   let ghlId=null;if(S.ghlApiKey)ghlId=await pushGHL(lead,phone);
-  const updates={dash_phone:phone,dash_searched_at:new Date().toISOString(),ghl_pushed:true,ghl_pushed_at:new Date().toISOString()};
+  const pushed=!!ghlId||!S.ghlApiKey;
+  const updates={dash_phone:phone,dash_searched_at:new Date().toISOString(),ghl_pushed:pushed,ghl_pushed_at:pushed?new Date().toISOString():null};
   if(ghlId)updates.ghl_id=ghlId;
   writeBackToRepo(selectedDoc,updates);
-  toast(`✓ Saved · ${Math.max(0,100-S.used)} left`,'ok');
-  setTimeout(()=>navNextUnworked(),600);
+  if(S.ghlApiKey&&!ghlId){
+    // pushGHL already toasted the specific reason (missing name/address, or API error) — don't overwrite it
+  }else{
+    toast(`✓ Saved · ${Math.max(0,100-S.used)} left`,'ok');
+    setTimeout(()=>navNextUnworked(),600);
+  }
 }
 
 function useTracerfyPhone(){const lead=allLeads.find(l=>l.doc_number===selectedDoc);if(!lead||!lead.tracerfy_phone)return;document.getElementById('phone-input').value=lead.tracerfy_phone;document.getElementById('phone-input').focus();toast('Tracerfy phone loaded — verify in ForeWarn then save');}
@@ -1192,6 +1197,14 @@ async function pushGHL(lead,phone){
     const first=editedFirst||parsedFirst||'';
     const addrTitle=lead.address?toTitle(lead.address):'';
     const last=editedLast||parsedLast||addrTitle||'';
+    // v4.3 fix 2026-08-05: block push if name/address is missing — a contact with
+    // blank merge-tag data still gets enrolled in the live SMS sequence and sends
+    // a broken text (confirmed incident: text went out with no name/address).
+    if(!first.trim()||!addrTitle.trim()){
+      const missing=[!first.trim()&&'first name',!addrTitle.trim()&&'address'].filter(Boolean).join(' and ');
+      toast(`Blocked push — missing ${missing}. Fill in the First/Address field(s) before saving.`,true);
+      return null;
+    }
     const vbp=isVBP(lead),stacked=isStacked(lead),ce=isCEOnly(lead),lp=isLP(lead),appt=isAppt(lead);const ghlTag=getGHLTag(lead);
   // v4.2 fix: APPT leads must NOT get bexar_lead tag — it triggers wrong workflow
   const baseTags=appt?['forewarn_searched']:['bexar_lead','forewarn_searched'];
