@@ -271,6 +271,30 @@ def _tenure_bonus(yrs):
     if yrs >= 5:    return 5
     return 0
 
+def score_appt_record(rec):
+    """
+    Was a flat 7 (8 if absentee) regardless of data quality — no signal
+    beyond "this is an APPT lead". Now factors in the same kind of
+    multi-signal weighting fetch.py uses for NOF/TAX: confirmed
+    address/owner (enrichment actually landed, not just a scraped row),
+    absentee, and appraised value tier as a rough equity/property-value
+    proxy (no tenure/deed_date source available for APPT — see CLAUDE.md).
+    """
+    s = 5  # base: filed = real pre-foreclosure signal
+    if rec.get("address"):
+        s += 2
+    if rec.get("owner") and not is_entity_name(rec.get("owner", "")):
+        s += 2
+    if rec.get("absentee"):
+        s += 1
+    try:
+        appr = float(str(rec.get("appraised_value", "")).replace(",", "").replace("$", "") or 0)
+    except ValueError:
+        appr = 0
+    if appr >= 300000:
+        s += 1
+    return min(s, 10)
+
 def arcgis_enrich_appt_records(records):
     """
     Phase 1 ArcGIS enrichment for APPT records.
@@ -347,9 +371,7 @@ def arcgis_enrich_appt_records(records):
         if not rec.get("prop_id") and result.get("prop_id"):
             rec["prop_id"] = result["prop_id"]
 
-        # Score bump for absentee
-        if rec.get("absentee") and rec.get("score", 7) < 8:
-            rec["score"] = 8
+        rec["score"] = score_appt_record(rec)
 
         time.sleep(0.2)
 
@@ -360,7 +382,49 @@ def arcgis_enrich_appt_records(records):
     return records
 
 
-# ── Main scraper (unchanged from v1.1 except ArcGIS call at end) ──────────────
+def _goto_doc_by_click(driver, source_url, doc_number, timeout=20):
+    """
+    PublicSearch's results table is a pure React SPA with no href/data-id
+    in the row HTML — the internal doc ID only exists in JS state and
+    appears in the URL after a client-side route change from a row click.
+    Same fix as fetch.py's goto_doc_by_click (v1.3 — ps_doc_id href
+    scraping never worked here either). Reload the results page the row
+    came from, find the row by its visible doc number, click it, wait for
+    the route to land on /doc/<id>. Leaves the driver on the doc page on
+    success. Self-contained per this module's design (no import from
+    fetch.py).
+    """
+    from selenium.webdriver.common.by import By
+    from selenium.webdriver.support.ui import WebDriverWait
+    from selenium.webdriver.support import expected_conditions as EC
+
+    if not source_url or not doc_number:
+        return False
+    try:
+        driver.set_page_load_timeout(timeout)
+        driver.get(source_url)
+        WebDriverWait(driver, timeout).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, "table tr td"))
+        )
+        time.sleep(1)
+
+        row_xpath = f"//tr[.//*[normalize-space(text())='{doc_number}']]"
+        row = WebDriverWait(driver, timeout).until(
+            EC.presence_of_element_located((By.XPATH, row_xpath))
+        )
+        clickable = row.find_element(By.CSS_SELECTOR, "td.col-3")
+        driver.execute_script("arguments[0].scrollIntoView({block:'center'});", clickable)
+        clickable.click()
+
+        WebDriverWait(driver, timeout).until(EC.url_contains("/doc/"))
+        time.sleep(1.5)
+        return True
+    except Exception as e:
+        log.debug(f"  click-fallback failed for doc {doc_number}: {e}")
+        return False
+
+
+# ── Main scraper (v1.3 — click-through detail fetch replaces broken href) ─────
 
 def scrape_appointments(known_docs, get_driver_fn, run_timestamp):
     """
@@ -443,10 +507,12 @@ def scrape_appointments(known_docs, get_driver_fn, run_timestamp):
                 if not doc_num or doc_num in known_docs:
                     continue
 
+                # NOTE: ps_doc_id via href scraping doesn't work — PublicSearch's
+                # results table is a React SPA with no href in row HTML (same
+                # issue found/fixed for NOF loan_amount in fetch.py). Kept here
+                # at "" for schema compat; _source_url below is what the
+                # click-through detail fetch actually uses.
                 ps_doc_id = ""
-                href_matches = re.findall(r'/doc/(\d+)', row)
-                if href_matches:
-                    ps_doc_id = href_matches[0]
 
                 dates = [c for c in cells if re.match(r"^\d{1,2}/\d{1,2}/\d{4}$", c.strip())]
                 recorded_date = dates[0] if dates else ""
@@ -505,6 +571,7 @@ def scrape_appointments(known_docs, get_driver_fn, run_timestamp):
                 rec = {
                     "doc_number":      doc_num,
                     "ps_doc_id":       ps_doc_id,
+                    "_source_url":     url,
                     "type":            "APPT",
                     "source":          "publicsearch",
                     "county":          "bexar",
@@ -519,7 +586,7 @@ def scrape_appointments(known_docs, get_driver_fn, run_timestamp):
                     "sale_date":       "",
                     "is_new":          True,
                     "run_ts":          run_timestamp,
-                    "score":           7,
+                    "score":           0,  # overwritten by score_appt_record() below
                     "flags":           ["APPT", "PRE-FORE"],
                     "absentee":        False,
                     "duplicate":       False,
@@ -537,24 +604,25 @@ def scrape_appointments(known_docs, get_driver_fn, run_timestamp):
                     "stacked":         False,
                     "ce_violations":   False,
                 }
+                rec["score"] = score_appt_record(rec)
                 page_records.append(rec)
 
             log.info(f"Appointment offset={offset} | {len(page_records)} on page")
 
-            # Summary detail fetch for missing address/owner
+            # Summary detail fetch for missing address/owner — click-through
+            # via _source_url (ps_doc_id is never populated, see note above)
             need_summary = [
                 r for r in page_records
                 if (not r["address"] or r.get("owner_unverified"))
-                and r["ps_doc_id"]
+                and r.get("_source_url")
             ]
             if need_summary:
                 log.info(f"Fetching Summary detail for {len(need_summary)} records...")
                 for rec in need_summary:
+                    if not _goto_doc_by_click(driver, rec["_source_url"], rec["doc_number"]):
+                        log.info(f"  Doc [{rec['doc_number']}] click-through failed — skipping")
+                        continue
                     try:
-                        doc_url = f"{PUBLICSEARCH_BASE}/doc/{rec['ps_doc_id']}"
-                        driver.get(doc_url)
-                        time.sleep(2)
-
                         try:
                             tabs = driver.find_elements(By.CSS_SELECTOR, ".tab-item, [role='tab'], button, a")
                             for tab in tabs:
@@ -565,7 +633,6 @@ def scrape_appointments(known_docs, get_driver_fn, run_timestamp):
                                     break
                         except Exception:
                             pass
-
                         page_src = driver.page_source
 
                         if not rec["address"]:
@@ -608,12 +675,15 @@ def scrape_appointments(known_docs, get_driver_fn, run_timestamp):
                                 rec["owner_unverified"] = False
                                 log.info(f"  Confirmed owner for {rec['doc_number']}: {rec['owner']}")
 
+                        rec["score"] = score_appt_record(rec)
+
                         time.sleep(1)
                     except Exception as e:
                         log.debug(f"Summary fetch error for {rec.get('doc_number')}: {e}")
 
             for rec in page_records:
                 rec.pop("owner_unverified", None)
+                rec.pop("_source_url", None)
                 if rec["doc_number"] not in known_docs:
                     known_docs.add(rec["doc_number"])
                     new_records.append(rec)
