@@ -55,9 +55,19 @@ def should_purge(rec):
     lead_type = rec.get("type", "")
     source    = rec.get("source", "")
 
-    # Never purge VBP, CE, LP, APPT — no auction date relevance
-    if lead_type in ("LP", "APPT", "VBP", "CE") or source in ("vbp_ce", "code_enforcement"):
+    # Never purge VBP, CE, APPT — no auction/staleness date relevance
+    if lead_type in ("APPT", "VBP", "CE") or source in ("vbp_ce", "code_enforcement"):
         return False, "non_foreclosure_type"
+
+    # LP: usually converts to NOF within weeks/months. If it hasn't in
+    # 180 days it's almost certainly resolved/dismissed and stale.
+    if lead_type == "LP":
+        if has_ghl_activity(rec):
+            return False, "has_ghl_activity"
+        age = days_old(rec)
+        if age > 180:
+            return True, f"lp_stale ({age}d old)"
+        return False, "keep"
 
     # NOF / TAX leads
     if lead_type in ("NOF", "TAX"):
