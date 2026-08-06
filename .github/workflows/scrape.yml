@@ -61,10 +61,9 @@ jobs:
 
       - uses: actions/deploy-pages@v4
 
-      - name: Notify via email (foreclosure leads only)
+      - name: Notify via SMS (foreclosure leads only)
         env:
-          GMAIL_USER: "${{ secrets.GMAIL_USER }}"
-          GMAIL_APP_PASSWORD: "${{ secrets.GMAIL_APP_PASSWORD }}"
+          GHL_API_KEY: "${{ secrets.GHL_API_KEY }}"
         run: python scraper/notify_foreclosure.py
 
       - name: Notify via GHL SMS
