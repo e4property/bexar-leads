@@ -1,0 +1,37 @@
+name: Test Foreclosure Email Alert
+on:
+  workflow_dispatch:
+
+jobs:
+  test-notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Write fake test record
+        run: |
+          mkdir -p /tmp/test
+          cat > /tmp/test/records.json <<'EOF'
+          [
+            {
+              "type": "NOF",
+              "is_new": true,
+              "address": "123 Test St",
+              "owner": "Test Owner",
+              "score": 99
+            }
+          ]
+          EOF
+
+      - name: Run notify script against fake record
+        env:
+          GMAIL_USER: "${{ secrets.GMAIL_USER }}"
+          GMAIL_APP_PASSWORD: "${{ secrets.GMAIL_APP_PASSWORD }}"
+          RECORDS_PATH: /tmp/test/records.json
+        run: python scraper/notify_foreclosure.py
