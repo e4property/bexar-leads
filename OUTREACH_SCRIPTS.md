@@ -16,6 +16,31 @@ Tone rules (apply to all messages, both lead types):
   $500/violation, $1,500 if willful, uncapped aggregate. Scrub against
   the National DNC list before texting.
 
+**Workflow send-time window (all Bexar workflows):** 9:15 AM–8:15 PM CST,
+Monday–Saturday (no Sunday sends). Confirmed standard 2026-08-05 after a
+same-day incident wiped this setting on "Bexar - Initial Outreach" along
+with the From Number — both had to be re-entered manually. If a workflow
+ever shows blank Time Window / From Number again, this is the value to
+restore.
+
+**⚠ Merge tag syntax — read before pasting anything into Jarvis.** `[First]`
+and `[Address]` below are documentation placeholders only — they are NOT
+valid GHL merge syntax. Pasted literally into a live SMS step, GHL has
+nothing to substitute and sends the brackets as-is to the customer.
+Incident 2026-08-05: this exact mistake shipped a live text reading "Hi
+[First], this is Xavi... property at [Address]..." to a real customer.
+When building the actual message in Jarvis's Builder, use the real merge
+tags instead:
+- First name → `{{contact.first_name}}`
+- Address → `{{contact.address1}}`
+Typing these exactly (double curly braces) into the SMS message box
+works directly. If it ever renders as literal text again after saving,
+use the merge-tag picker (the "+"/"{ }" icon in the message toolbar)
+instead of typing by hand, and search "First Name" / "Address" from the
+list. Always send one test message after any script edit and read the
+literal delivered text back before trusting it — do not assume a saved
+edit rendered correctly.
+
 ## Foreclosure (NOF) — live sequence, finalized 2026-08-05
 
 Revised after reviewing the actual live script and researching what reads
