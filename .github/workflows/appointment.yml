@@ -10,7 +10,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: appointment-${{ github.run_id }}
+  group: pages
   cancel-in-progress: false
 
 jobs:
@@ -64,6 +64,18 @@ jobs:
             git fetch origin main
             git rebase origin/main
             sleep 3
+          done
+
+      - name: Clean up stale github-pages artifacts
+        if: steps.appt.outputs.new_count != '0'
+        env:
+          GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        run: |
+          gh api "repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts" \
+            --jq '.artifacts[] | select(.name=="github-pages") | .id' | \
+          while read -r id; do
+            echo "Deleting stale github-pages artifact id=$id"
+            gh api -X DELETE "repos/${{ github.repository }}/actions/artifacts/$id" || true
           done
 
       - name: Upload Pages artifact
