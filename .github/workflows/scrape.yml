@@ -61,6 +61,12 @@ jobs:
 
       - uses: actions/deploy-pages@v4
 
+      - name: Notify via email (foreclosure leads only)
+        env:
+          GMAIL_USER: "${{ secrets.GMAIL_USER }}"
+          GMAIL_APP_PASSWORD: "${{ secrets.GMAIL_APP_PASSWORD }}"
+        run: python scraper/notify_foreclosure.py
+
       - name: Notify via GHL SMS
         if: false
         run: echo "SMS notify parked"
