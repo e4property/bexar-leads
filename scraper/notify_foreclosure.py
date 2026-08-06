@@ -17,7 +17,7 @@ import os
 import smtplib
 from email.mime.text import MIMEText
 
-RECORDS_PATH = "dashboard/records.json"
+RECORDS_PATH = os.environ.get("RECORDS_PATH", "dashboard/records.json")
 DASHBOARD_URL = "https://e4property.github.io/bexar-leads/"
 
 
