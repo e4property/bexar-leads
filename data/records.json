@@ -7110,6 +7110,62 @@
   },
   {
     "type": "NOF",
+    "address": "1955 SUNDERIDGE",
+    "owner": "MCKINNEY SOLUTIONS GROUP LLC",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": true,
+    "is_new": false,
+    "doc_number": "20260900295",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78260",
+    "school_dist": "",
+    "date_filed": "8/2026",
+    "sale_date": "09/01/2026",
+    "run_ts": "2026-08-07T15:15:13Z",
+    "flags": [
+      "DUPLICATE",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 5,
+    "tenure_score_bonus": 5,
+    "prop_id": "267200.0",
+    "deed_date": "7/21/2021",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 400000
+      },
+      {
+        "year": "2025",
+        "appraised": 400000
+      },
+      {
+        "year": "2024",
+        "appraised": 423000
+      }
+    ],
+    "appr_trend": "flat",
+    "appraised_value": "400000.0",
+    "annual_taxes": "",
+    "land_value": "91780.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 24
+  },
+  {
+    "type": "NOF",
     "address": "11703 SILVER FIELD",
     "owner": "SFR JV-2 2022-2 BORROWER LLC",
     "mail_addr": "C/O TRICON AMERICAN HOMES LLC TUSTIN 92780",
@@ -7393,62 +7449,6 @@
     "land_value": "54760.0",
     "stacked": false,
     "score": 9,
-    "days_until_sale": 24
-  },
-  {
-    "type": "NOF",
-    "address": "1955 SUNDERIDGE",
-    "owner": "MCKINNEY SOLUTIONS GROUP LLC",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": true,
-    "is_new": false,
-    "doc_number": "20260900295",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78260",
-    "school_dist": "",
-    "date_filed": "8/2026",
-    "sale_date": "09/01/2026",
-    "run_ts": "2026-08-07T15:15:13Z",
-    "flags": [
-      "DUPLICATE",
-      "HAS SALE DATE",
-      "AUCTION SOON"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "267200.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [
-      {
-        "year": "2026",
-        "appraised": 400000
-      },
-      {
-        "year": "2025",
-        "appraised": 400000
-      },
-      {
-        "year": "2024",
-        "appraised": 423000
-      }
-    ],
-    "appr_trend": "flat",
-    "appraised_value": "400000.0",
-    "annual_taxes": "",
-    "land_value": "91780.0",
-    "stacked": false,
-    "score": 7,
     "days_until_sale": 24
   },
   {
@@ -19979,6 +19979,60 @@
   },
   {
     "type": "NOF",
+    "address": "3150 BEGONIA BND",
+    "owner": "GARZA JUAN",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260900227",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78222",
+    "school_dist": "",
+    "date_filed": "8/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-08-07T15:15:13Z",
+    "flags": [
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 6,
+    "tenure_score_bonus": 5,
+    "prop_id": "1303552.0",
+    "deed_date": "12/27/2019",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 235650
+      },
+      {
+        "year": "2025",
+        "appraised": 273860
+      },
+      {
+        "year": "2024",
+        "appraised": 276250
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "273860.0",
+    "annual_taxes": "",
+    "land_value": "44610.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 59
+  },
+  {
+    "type": "NOF",
     "address": "2014 S TRINITY ST",
     "owner": "SALAZAR FERNANDO",
     "mail_addr": "",
@@ -20140,6 +20194,177 @@
     "stacked": false,
     "score": 10,
     "days_until_sale": 115
+  },
+  {
+    "doc_number": "20260150843",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Velasquez Karen Berenic Tovar",
+    "address": "2026 BEXAR COUNTY",
+    "city": "TEXAS. ALL RIGHTS RESERVE",
+    "zip": "78216",
+    "date_filed": "8/2026",
+    "month": "8",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-08-07T21:32:34Z",
+    "score": 10,
+    "flags": [
+      "LONG HELD"
+    ],
+    "absentee": false,
+    "duplicate": false,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "350360.0",
+    "annual_taxes": "",
+    "mail_addr": "",
+    "prop_id": "457943.0",
+    "land_value": "",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false,
+    "deed_date": "12/5/2013",
+    "last_sale_amt": "",
+    "tenure_years": 12,
+    "tenure_score_bonus": 15,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 331090
+      },
+      {
+        "year": "2025",
+        "appraised": 350360
+      },
+      {
+        "year": "2024",
+        "appraised": 400000
+      }
+    ],
+    "appr_trend": "down",
+    "appt_converted": false,
+    "appt_stale": false
+  },
+  {
+    "doc_number": "20260150842",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Garcia Hilda",
+    "address": "2026 BEXAR COUNTY",
+    "city": "TEXAS. ALL RIGHTS RESERVE",
+    "zip": "78216",
+    "date_filed": "8/2026",
+    "month": "8",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-08-07T21:32:34Z",
+    "score": 10,
+    "flags": [
+      "LONG HELD"
+    ],
+    "absentee": false,
+    "duplicate": false,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "350360.0",
+    "annual_taxes": "",
+    "mail_addr": "",
+    "prop_id": "457943.0",
+    "land_value": "",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false,
+    "deed_date": "12/5/2013",
+    "last_sale_amt": "",
+    "tenure_years": 12,
+    "tenure_score_bonus": 15,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 331090
+      },
+      {
+        "year": "2025",
+        "appraised": 350360
+      },
+      {
+        "year": "2024",
+        "appraised": 400000
+      }
+    ],
+    "appr_trend": "down",
+    "appt_converted": false,
+    "appt_stale": false
+  },
+  {
+    "doc_number": "20260150841",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Alvarez Lizeth Carreon",
+    "address": "2026 BEXAR COUNTY",
+    "city": "TEXAS. ALL RIGHTS RESERVE",
+    "zip": "78216",
+    "date_filed": "8/2026",
+    "month": "8",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-08-07T21:32:34Z",
+    "score": 10,
+    "flags": [
+      "LONG HELD"
+    ],
+    "absentee": false,
+    "duplicate": false,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "350360.0",
+    "annual_taxes": "",
+    "mail_addr": "",
+    "prop_id": "457943.0",
+    "land_value": "",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false,
+    "deed_date": "12/5/2013",
+    "last_sale_amt": "",
+    "tenure_years": 12,
+    "tenure_score_bonus": 15,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 331090
+      },
+      {
+        "year": "2025",
+        "appraised": 350360
+      },
+      {
+        "year": "2024",
+        "appraised": 400000
+      }
+    ],
+    "appr_trend": "down",
+    "appt_converted": false,
+    "appt_stale": false
   },
   {
     "doc_number": "20260147615",
@@ -27396,13 +27621,26 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 2,
     "tenure_score_bonus": 0,
     "prop_id": "710820.0",
-    "deed_date": "",
+    "deed_date": "4/2/2024",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 231940
+      },
+      {
+        "year": "2025",
+        "appraised": 231940
+      },
+      {
+        "year": "2024",
+        "appraised": 231050
+      }
+    ],
+    "appr_trend": "flat",
     "appraised_value": "231940.0",
     "annual_taxes": "",
     "land_value": "52010.0",
@@ -27437,57 +27675,29 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 2,
     "tenure_score_bonus": 0,
     "prop_id": "128279.0",
-    "deed_date": "",
+    "deed_date": "2/9/2024",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 121210
+      },
+      {
+        "year": "2025",
+        "appraised": 144240
+      },
+      {
+        "year": "2024",
+        "appraised": 134130
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "144240.0",
     "annual_taxes": "",
     "land_value": "29650.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 59
-  },
-  {
-    "type": "NOF",
-    "address": "3150 BEGONIA BND",
-    "owner": "GARZA JUAN",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260900227",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78222",
-    "school_dist": "",
-    "date_filed": "8/2026",
-    "sale_date": "10/06/2026",
-    "run_ts": "2026-08-07T15:15:13Z",
-    "flags": [
-      "HAS SALE DATE"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "1303552.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "273860.0",
-    "annual_taxes": "",
-    "land_value": "44610.0",
     "stacked": false,
     "score": 7,
     "days_until_sale": 59
@@ -27520,13 +27730,26 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 3,
     "tenure_score_bonus": 0,
     "prop_id": "604856.0",
-    "deed_date": "",
+    "deed_date": "4/21/2023",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 348890
+      },
+      {
+        "year": "2025",
+        "appraised": 370000
+      },
+      {
+        "year": "2024",
+        "appraised": 378280
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "370000.0",
     "annual_taxes": "",
     "land_value": "39490.0",
@@ -30860,6 +31083,116 @@
     "stacked": false,
     "score": 7,
     "days_until_sale": 13145
+  },
+  {
+    "doc_number": "20260151098",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Zuniga Tracy L",
+    "address": "2026 BEXAR COUNTY",
+    "city": "TEXAS. ALL RIGHTS RESERVE",
+    "zip": "78216",
+    "date_filed": "8/2026",
+    "month": "8",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-08-07T21:32:34Z",
+    "score": 6,
+    "flags": [],
+    "absentee": false,
+    "duplicate": false,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "350360.0",
+    "annual_taxes": "",
+    "mail_addr": "",
+    "prop_id": "457943.0",
+    "land_value": "",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false,
+    "deed_date": "",
+    "last_sale_amt": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 331090
+      },
+      {
+        "year": "2025",
+        "appraised": 350360
+      },
+      {
+        "year": "2024",
+        "appraised": 400000
+      }
+    ],
+    "appr_trend": "down",
+    "appt_converted": false,
+    "appt_stale": false
+  },
+  {
+    "doc_number": "20260150652",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Strauss Patrick",
+    "address": "723 LARRY STREET",
+    "city": "SAN ANTONIO",
+    "zip": "78223",
+    "date_filed": "8/2026",
+    "month": "8",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-08-07T21:32:34Z",
+    "score": 6,
+    "flags": [],
+    "absentee": false,
+    "duplicate": false,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "161600.0",
+    "annual_taxes": "",
+    "mail_addr": "",
+    "prop_id": "500775.0",
+    "land_value": "",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false,
+    "deed_date": "",
+    "last_sale_amt": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 149600
+      },
+      {
+        "year": "2025",
+        "appraised": 161600
+      },
+      {
+        "year": "2024",
+        "appraised": 165210
+      }
+    ],
+    "appr_trend": "down",
+    "appt_converted": false,
+    "appt_stale": false
   },
   {
     "doc_number": "20260150274",
