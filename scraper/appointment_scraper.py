@@ -57,6 +57,34 @@ def is_entity_name(name):
     return any(kw in upper for kw in ENTITY_KEYWORDS)
 
 
+# ── Address sanity check ────────────────────────────────────────────────────
+# 2026-08-07 fix: the old address_raw regex only checked "starts with digits
+# then a letter" -- page footer/copyright text like "2026 Bexar County...
+# Texas. All Rights Reserved." trivially matches that (the year reads as a
+# street number) and was slipping through as a real address. Require an
+# actual street-suffix word and reject known non-address boilerplate.
+STREET_SUFFIXES = {
+    "ST","AVE","DR","RD","LN","CT","CIR","BLVD","WAY","PL","TRL","PKWY",
+    "HWY","LOOP","PASS","CV","PT","HLS","TRAIL","GROVE","RIDGE","CREEK",
+    "LAKE","PARK","GLEN","RUN","XING","STREET","AVENUE","DRIVE","ROAD",
+    "LANE","COURT","CIRCLE","BOULEVARD","PLACE","TERRACE","TER","WALK",
+    "ROW","BND","BEND","VW","VIEW","CV","COVE","MNR","MANOR","SQ","SQUARE",
+}
+GARBAGE_ADDRESS_KEYWORDS = [
+    "RIGHTS RESERVE", "COPYRIGHT", "ALL RIGHTS", "BEXAR COUNTY,",
+    "CLERK OF", "GOVOS", "ACCESSIBILITY",
+]
+
+def _looks_like_address(s):
+    if not s:
+        return False
+    upper = s.upper()
+    if any(kw in upper for kw in GARBAGE_ADDRESS_KEYWORDS):
+        return False
+    words = re.split(r"[\s,]+", upper)
+    return any(w.rstrip(".") in STREET_SUFFIXES for w in words)
+
+
 # ── ArcGIS helpers (self-contained, no dependency on fetch.py) ────────────────
 
 def _fetch_json(url, timeout=20):
@@ -542,7 +570,8 @@ def scrape_appointments(known_docs, get_driver_fn, run_timestamp):
                     (c for c in cells
                      if re.match(r"^\d+\s+[A-Z]", c.upper())
                      and len(c) > 8
-                     and "N/A" not in c.upper()), "")
+                     and "N/A" not in c.upper()
+                     and _looks_like_address(c)), "")
 
                 month, year = "", ""
                 if recorded_date:
