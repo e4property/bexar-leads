@@ -8580,10 +8580,10 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 4,
     "tenure_score_bonus": 0,
     "prop_id": "159838.0",
-    "deed_date": "",
+    "deed_date": "4/22/2022",
     "last_sale_amt": "",
     "appr_history": [
       {
@@ -19706,6 +19706,279 @@
   },
   {
     "type": "NOF",
+    "address": "11715 PLOVER PLACE",
+    "owner": "RIVERA STEPHEN",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260900246",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78221",
+    "school_dist": "",
+    "date_filed": "8/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-08-07T15:15:13Z",
+    "flags": [
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 8,
+    "tenure_score_bonus": 5,
+    "prop_id": "1251983.0",
+    "deed_date": "11/17/2017",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 243640
+      },
+      {
+        "year": "2025",
+        "appraised": 245660
+      },
+      {
+        "year": "2024",
+        "appraised": 259280
+      }
+    ],
+    "appr_trend": "flat",
+    "appraised_value": "245660.0",
+    "annual_taxes": "",
+    "land_value": "54030.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 59
+  },
+  {
+    "type": "NOF",
+    "address": "7906 DERBY VISTA",
+    "owner": "MEDINA ROBERT F & SHIRLEY J",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260900235",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "8",
+    "city": "SELMA",
+    "zip": "78154",
+    "school_dist": "",
+    "date_filed": "8/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-08-07T15:15:13Z",
+    "flags": [
+      "HAS SALE DATE",
+      "LONG HELD"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 16,
+    "tenure_score_bonus": 25,
+    "prop_id": "1123325.0",
+    "deed_date": "12/17/2009",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 286840
+      },
+      {
+        "year": "2025",
+        "appraised": 301690
+      },
+      {
+        "year": "2024",
+        "appraised": 315050
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "301690.0",
+    "annual_taxes": "",
+    "land_value": "62760.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 59
+  },
+  {
+    "type": "NOF",
+    "address": "6526 CANDLEARCH CIR",
+    "owner": "MANSOLO CYNTHIA & AMANDA JEAN",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260900236",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78244",
+    "school_dist": "",
+    "date_filed": "8/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-08-07T15:15:13Z",
+    "flags": [
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 5,
+    "tenure_score_bonus": 5,
+    "prop_id": "1096804.0",
+    "deed_date": "4/16/2021",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 250140
+      },
+      {
+        "year": "2025",
+        "appraised": 262560
+      },
+      {
+        "year": "2024",
+        "appraised": 265000
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "262560.0",
+    "annual_taxes": "",
+    "land_value": "48960.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 59
+  },
+  {
+    "type": "NOF",
+    "address": "11262 PECAN CYN",
+    "owner": "MORALES REYNALDO & YVONNE",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260900248",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78252",
+    "school_dist": "",
+    "date_filed": "8/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-08-07T15:15:13Z",
+    "flags": [
+      "HAS SALE DATE",
+      "LONG HELD"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 16,
+    "tenure_score_bonus": 25,
+    "prop_id": "1134118.0",
+    "deed_date": "8/31/2009",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 155170
+      },
+      {
+        "year": "2025",
+        "appraised": 156380
+      },
+      {
+        "year": "2024",
+        "appraised": 163480
+      }
+    ],
+    "appr_trend": "flat",
+    "appraised_value": "156380.0",
+    "annual_taxes": "",
+    "land_value": "51710.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 59
+  },
+  {
+    "type": "NOF",
+    "address": "8538 MORNING GROVE",
+    "owner": "GARCIA JOSE",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260900233",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "8",
+    "city": "CONVERSE",
+    "zip": "78109",
+    "school_dist": "",
+    "date_filed": "8/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-08-07T15:15:13Z",
+    "flags": [
+      "HAS SALE DATE",
+      "LONG HELD"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 17,
+    "tenure_score_bonus": 25,
+    "prop_id": "313147.0",
+    "deed_date": "7/10/2009",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 195030
+      },
+      {
+        "year": "2025",
+        "appraised": 195030
+      },
+      {
+        "year": "2024",
+        "appraised": 198380
+      }
+    ],
+    "appr_trend": "flat",
+    "appraised_value": "195030.0",
+    "annual_taxes": "",
+    "land_value": "38200.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 59
+  },
+  {
+    "type": "NOF",
     "address": "2014 S TRINITY ST",
     "owner": "SALAZAR FERNANDO",
     "mail_addr": "",
@@ -26882,47 +27155,6 @@
   },
   {
     "type": "NOF",
-    "address": "11715 PLOVER PLACE",
-    "owner": "RIVERA STEPHEN",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260900246",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78221",
-    "school_dist": "",
-    "date_filed": "8/2026",
-    "sale_date": "10/06/2026",
-    "run_ts": "2026-08-07T15:15:13Z",
-    "flags": [
-      "HAS SALE DATE"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "1251983.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "245660.0",
-    "annual_taxes": "",
-    "land_value": "54030.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 59
-  },
-  {
-    "type": "NOF",
     "address": "410 SHROPSHIRE DR",
     "owner": "NERI SARA L",
     "mail_addr": "",
@@ -26953,52 +27185,24 @@
     "prop_id": "506830.0",
     "deed_date": "",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 214520
+      },
+      {
+        "year": "2025",
+        "appraised": 221250
+      },
+      {
+        "year": "2024",
+        "appraised": 219560
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "221250.0",
     "annual_taxes": "",
     "land_value": "60860.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 59
-  },
-  {
-    "type": "NOF",
-    "address": "7906 DERBY VISTA",
-    "owner": "MEDINA ROBERT F & SHIRLEY J",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260900235",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "8",
-    "city": "SELMA",
-    "zip": "78154",
-    "school_dist": "",
-    "date_filed": "8/2026",
-    "sale_date": "10/06/2026",
-    "run_ts": "2026-08-07T15:15:13Z",
-    "flags": [
-      "HAS SALE DATE"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "1123325.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "301690.0",
-    "annual_taxes": "",
-    "land_value": "62760.0",
     "stacked": false,
     "score": 7,
     "days_until_sale": 59
@@ -27030,13 +27234,26 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 2,
     "tenure_score_bonus": 0,
     "prop_id": "1371017.0",
-    "deed_date": "",
+    "deed_date": "9/11/2023",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 134650
+      },
+      {
+        "year": "2025",
+        "appraised": 135800
+      },
+      {
+        "year": "2024",
+        "appraised": 144470
+      }
+    ],
+    "appr_trend": "flat",
     "appraised_value": "135800.0",
     "annual_taxes": "",
     "land_value": "22870.0",
@@ -27071,57 +27288,29 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 4,
     "tenure_score_bonus": 0,
     "prop_id": "308589.0",
-    "deed_date": "",
+    "deed_date": "2/11/2022",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 296860
+      },
+      {
+        "year": "2025",
+        "appraised": 317510
+      },
+      {
+        "year": "2024",
+        "appraised": 321260
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "317510.0",
     "annual_taxes": "",
     "land_value": "69820.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 59
-  },
-  {
-    "type": "NOF",
-    "address": "6526 CANDLEARCH CIR",
-    "owner": "MANSOLO CYNTHIA & AMANDA JEAN",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260900236",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78244",
-    "school_dist": "",
-    "date_filed": "8/2026",
-    "sale_date": "10/06/2026",
-    "run_ts": "2026-08-07T15:15:13Z",
-    "flags": [
-      "HAS SALE DATE"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "1096804.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "262560.0",
-    "annual_taxes": "",
-    "land_value": "48960.0",
     "stacked": false,
     "score": 7,
     "days_until_sale": 59
@@ -27153,98 +27342,29 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 1,
     "tenure_score_bonus": 0,
     "prop_id": "1355394.0",
-    "deed_date": "",
+    "deed_date": "6/18/2025",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 227730
+      },
+      {
+        "year": "2025",
+        "appraised": 235040
+      },
+      {
+        "year": "2024",
+        "appraised": 234620
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "235040.0",
     "annual_taxes": "",
     "land_value": "57720.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 59
-  },
-  {
-    "type": "NOF",
-    "address": "11262 PECAN CYN",
-    "owner": "MORALES REYNALDO & YVONNE",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260900248",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78252",
-    "school_dist": "",
-    "date_filed": "8/2026",
-    "sale_date": "10/06/2026",
-    "run_ts": "2026-08-07T15:15:13Z",
-    "flags": [
-      "HAS SALE DATE"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "1134118.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "156380.0",
-    "annual_taxes": "",
-    "land_value": "51710.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 59
-  },
-  {
-    "type": "NOF",
-    "address": "8538 MORNING GROVE",
-    "owner": "GARCIA JOSE",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260900233",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "8",
-    "city": "CONVERSE",
-    "zip": "78109",
-    "school_dist": "",
-    "date_filed": "8/2026",
-    "sale_date": "10/06/2026",
-    "run_ts": "2026-08-07T15:15:13Z",
-    "flags": [
-      "HAS SALE DATE"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "313147.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "195030.0",
-    "annual_taxes": "",
-    "land_value": "38200.0",
     "stacked": false,
     "score": 7,
     "days_until_sale": 59
