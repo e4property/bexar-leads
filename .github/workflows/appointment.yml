@@ -62,7 +62,7 @@ jobs:
             git push origin main && break
             echo "Push attempt $i failed, retrying..."
             git fetch origin main
-            git rebase origin/main
+            git rebase -X theirs origin/main || git rebase --abort
             sleep 3
           done
 
