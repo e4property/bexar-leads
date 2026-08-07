@@ -72,12 +72,3 @@ jobs:
           path: dashboard/
 
       - uses: actions/deploy-pages@v4
-
-      - name: Notify via SMS (foreclosure leads only)
-        env:
-          GHL_API_KEY: "${{ secrets.GHL_API_KEY }}"
-        run: python scraper/notify_foreclosure.py
-
-      - name: Notify via GHL SMS
-        if: false
-        run: echo "SMS notify parked"
