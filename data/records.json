@@ -7458,7 +7458,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900299",
     "ps_doc_id": "",
     "year": "2026",
@@ -7470,7 +7470,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-08-08T15:03:19Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -7514,7 +7513,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900297",
     "ps_doc_id": "",
     "year": "2026",
@@ -7526,7 +7525,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-08-08T15:03:19Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -16189,7 +16187,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900298",
     "ps_doc_id": "",
     "year": "2026",
@@ -16201,7 +16199,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-08-08T15:03:19Z",
     "flags": [
-      "NEW",
       "NO OWNER",
       "HAS SALE DATE",
       "AUCTION SOON"
@@ -26482,6 +26479,120 @@
     "appt_stale": false
   },
   {
+    "doc_number": "20260150274",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "210 Samuel Kemper, San Antonio, Texas, 78220",
+    "address": "210 SAMUEL KEMPER",
+    "city": "SAN ANTONIO",
+    "zip": "78112",
+    "date_filed": "8/2026",
+    "month": "8",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-08-06T14:47:21Z",
+    "score": 10,
+    "flags": [
+      "LONG HELD"
+    ],
+    "absentee": false,
+    "duplicate": false,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "45610.0",
+    "annual_taxes": "",
+    "mail_addr": "",
+    "prop_id": "173692.0",
+    "land_value": "",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false,
+    "appt_converted": false,
+    "appt_stale": false,
+    "deed_date": "1/3/1996",
+    "last_sale_amt": "",
+    "tenure_years": 30,
+    "tenure_score_bonus": 25,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 45030
+      },
+      {
+        "year": "2025",
+        "appraised": 45610
+      },
+      {
+        "year": "2024",
+        "appraised": 40860
+      }
+    ],
+    "appr_trend": "flat"
+  },
+  {
+    "doc_number": "20260149456",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Smith Braunda Moody",
+    "address": "2026 BEXAR COUNTY",
+    "city": "TEXAS. ALL RIGHTS RESERVE",
+    "zip": "78216",
+    "date_filed": "8/2026",
+    "month": "8",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-08-06T14:47:21Z",
+    "score": 10,
+    "flags": [
+      "LONG HELD"
+    ],
+    "absentee": false,
+    "duplicate": false,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "350360.0",
+    "annual_taxes": "",
+    "mail_addr": "",
+    "prop_id": "457943.0",
+    "land_value": "",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false,
+    "appt_converted": false,
+    "appt_stale": false,
+    "deed_date": "12/5/2013",
+    "last_sale_amt": "",
+    "tenure_years": 12,
+    "tenure_score_bonus": 15,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 331090
+      },
+      {
+        "year": "2025",
+        "appraised": 350360
+      },
+      {
+        "year": "2024",
+        "appraised": 400000
+      }
+    ],
+    "appr_trend": "down"
+  },
+  {
     "type": "NOF",
     "address": "9907 ABRAMS VIEW",
     "owner": "BIPPES DONALD ROBERT &",
@@ -31522,78 +31633,6 @@
     "appt_stale": false
   },
   {
-    "doc_number": "20260150274",
-    "ps_doc_id": "",
-    "type": "APPT",
-    "source": "publicsearch",
-    "county": "bexar",
-    "owner": "210 Samuel Kemper, San Antonio, Texas, 78220",
-    "address": "210 SAMUEL KEMPER",
-    "city": "SAN ANTONIO",
-    "zip": "78112",
-    "date_filed": "8/2026",
-    "month": "8",
-    "year": "2026",
-    "sale_date": "",
-    "is_new": false,
-    "run_ts": "2026-08-06T14:47:21Z",
-    "score": 6,
-    "flags": [],
-    "absentee": false,
-    "duplicate": false,
-    "days_until_sale": null,
-    "loan_amount": "",
-    "loan_date": "",
-    "lender": "",
-    "trustee": "",
-    "appraised_value": "45610.0",
-    "annual_taxes": "",
-    "mail_addr": "",
-    "prop_id": "173692.0",
-    "land_value": "",
-    "improvement_value": "",
-    "stacked": false,
-    "ce_violations": false,
-    "appt_converted": false,
-    "appt_stale": false
-  },
-  {
-    "doc_number": "20260149456",
-    "ps_doc_id": "",
-    "type": "APPT",
-    "source": "publicsearch",
-    "county": "bexar",
-    "owner": "Smith Braunda Moody",
-    "address": "2026 BEXAR COUNTY",
-    "city": "TEXAS. ALL RIGHTS RESERVE",
-    "zip": "78216",
-    "date_filed": "8/2026",
-    "month": "8",
-    "year": "2026",
-    "sale_date": "",
-    "is_new": false,
-    "run_ts": "2026-08-06T14:47:21Z",
-    "score": 6,
-    "flags": [],
-    "absentee": false,
-    "duplicate": false,
-    "days_until_sale": null,
-    "loan_amount": "",
-    "loan_date": "",
-    "lender": "",
-    "trustee": "",
-    "appraised_value": "350360.0",
-    "annual_taxes": "",
-    "mail_addr": "",
-    "prop_id": "457943.0",
-    "land_value": "",
-    "improvement_value": "",
-    "stacked": false,
-    "ce_violations": false,
-    "appt_converted": false,
-    "appt_stale": false
-  },
-  {
     "doc_number": "20260149022",
     "ps_doc_id": "",
     "type": "APPT",
@@ -31627,7 +31666,26 @@
     "stacked": false,
     "ce_violations": false,
     "appt_converted": false,
-    "appt_stale": false
+    "appt_stale": false,
+    "deed_date": "4/15/2024",
+    "last_sale_amt": "",
+    "tenure_years": 2,
+    "tenure_score_bonus": 0,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 254280
+      },
+      {
+        "year": "2025",
+        "appraised": 254500
+      },
+      {
+        "year": "2024",
+        "appraised": 194000
+      }
+    ],
+    "appr_trend": "flat"
   },
   {
     "doc_number": "20260147423",
