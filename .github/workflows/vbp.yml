@@ -73,7 +73,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           for i in 1 2 3; do
             git fetch origin main
-            git rebase origin/main && break
+            git rebase -X theirs origin/main && break
             echo "Rebase attempt $i failed, retrying..."
             git rebase --abort 2>/dev/null || true
             sleep 3
@@ -84,7 +84,7 @@ jobs:
             git push origin main && break
             echo "Push attempt $i failed, retrying..."
             git fetch origin main
-            git rebase origin/main
+            git rebase -X theirs origin/main || git rebase --abort
             sleep 3
           done
 
