@@ -20357,7 +20357,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2019TA100098",
     "year": "2026",
     "month": "9",
@@ -20369,7 +20369,6 @@
     "run_ts": "2026-08-09T15:22:01Z",
     "flags": [
       "TAX FORE",
-      "NEW",
       "LONG HELD"
     ],
     "source": "arcgis",
@@ -20408,7 +20407,7 @@
     "mail_addr": "EZELL CLOVIS EST OF SAN ANTONIO 78249",
     "absentee": true,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2020TA102055",
     "year": "2026",
     "month": "9",
@@ -20420,8 +20419,7 @@
     "run_ts": "2026-08-09T15:22:01Z",
     "flags": [
       "TAX FORE",
-      "ABSENTEE",
-      "NEW"
+      "ABSENTEE"
     ],
     "source": "arcgis",
     "sale_date_arcgis": "",
@@ -20459,7 +20457,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2021TA100054",
     "year": "2026",
     "month": "9",
@@ -20471,7 +20469,6 @@
     "run_ts": "2026-08-09T15:22:01Z",
     "flags": [
       "TAX FORE",
-      "NEW",
       "LONG HELD"
     ],
     "source": "arcgis",
@@ -20510,7 +20507,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2021TA100345",
     "year": "2026",
     "month": "9",
@@ -20523,7 +20520,6 @@
     "flags": [
       "TAX FORE",
       "DUPLICATE",
-      "NEW",
       "LONG HELD"
     ],
     "source": "arcgis",
@@ -20562,7 +20558,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2021TA101124",
     "year": "2026",
     "month": "9",
@@ -20573,8 +20569,7 @@
     "sale_date": "",
     "run_ts": "2026-08-09T15:22:01Z",
     "flags": [
-      "TAX FORE",
-      "NEW"
+      "TAX FORE"
     ],
     "source": "arcgis",
     "sale_date_arcgis": "",
@@ -20612,7 +20607,7 @@
     "mail_addr": "% BRENDA BARRAZA SAN ANTONIO 78210",
     "absentee": true,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2021TA101210",
     "year": "2026",
     "month": "9",
@@ -20625,7 +20620,6 @@
     "flags": [
       "TAX FORE",
       "ABSENTEE",
-      "NEW",
       "LONG HELD"
     ],
     "source": "arcgis",
@@ -20664,7 +20658,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2022TA100455",
     "year": "2026",
     "month": "9",
@@ -20677,7 +20671,6 @@
     "flags": [
       "TAX FORE",
       "DUPLICATE",
-      "NEW",
       "LONG HELD"
     ],
     "source": "arcgis",
@@ -20716,7 +20709,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2022TA100496",
     "year": "2026",
     "month": "9",
@@ -20728,7 +20721,6 @@
     "run_ts": "2026-08-09T15:22:01Z",
     "flags": [
       "TAX FORE",
-      "NEW",
       "LONG HELD"
     ],
     "source": "arcgis",
@@ -20767,7 +20759,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2022TA101370",
     "year": "2026",
     "month": "9",
@@ -20778,8 +20770,7 @@
     "sale_date": "",
     "run_ts": "2026-08-09T15:22:01Z",
     "flags": [
-      "TAX FORE",
-      "NEW"
+      "TAX FORE"
     ],
     "source": "arcgis",
     "sale_date_arcgis": "",
@@ -20817,7 +20808,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2022TA102042",
     "year": "2026",
     "month": "9",
@@ -20829,7 +20820,6 @@
     "run_ts": "2026-08-09T15:22:01Z",
     "flags": [
       "TAX FORE",
-      "NEW",
       "LONG HELD"
     ],
     "source": "arcgis",
@@ -20868,7 +20858,7 @@
     "mail_addr": "GEORGINA S SAN ANTONIO 78242",
     "absentee": true,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2016TA101132",
     "year": "2026",
     "month": "9",
@@ -20881,7 +20871,6 @@
     "flags": [
       "TAX FORE",
       "ABSENTEE",
-      "NEW",
       "LONG HELD"
     ],
     "source": "arcgis",
@@ -27366,7 +27355,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2013TA100758",
     "year": "2026",
     "month": "9",
@@ -27377,8 +27366,7 @@
     "sale_date": "",
     "run_ts": "2026-08-09T15:22:01Z",
     "flags": [
-      "TAX FORE",
-      "NEW"
+      "TAX FORE"
     ],
     "source": "arcgis",
     "sale_date_arcgis": "",
@@ -27416,7 +27404,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2021TA100099",
     "year": "2026",
     "month": "9",
@@ -27427,8 +27415,7 @@
     "sale_date": "",
     "run_ts": "2026-08-09T15:22:01Z",
     "flags": [
-      "TAX FORE",
-      "NEW"
+      "TAX FORE"
     ],
     "source": "arcgis",
     "sale_date_arcgis": "",
@@ -27466,7 +27453,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2022TA100483",
     "year": "2026",
     "month": "9",
@@ -27477,8 +27464,7 @@
     "sale_date": "",
     "run_ts": "2026-08-09T15:22:01Z",
     "flags": [
-      "TAX FORE",
-      "NEW"
+      "TAX FORE"
     ],
     "source": "arcgis",
     "sale_date_arcgis": "",
@@ -27516,7 +27502,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2025TA100194",
     "year": "2026",
     "month": "9",
@@ -27528,8 +27514,7 @@
     "run_ts": "2026-08-09T15:22:01Z",
     "flags": [
       "TAX FORE",
-      "DUPLICATE",
-      "NEW"
+      "DUPLICATE"
     ],
     "source": "arcgis",
     "sale_date_arcgis": "",
@@ -27567,7 +27552,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2015TA103095",
     "year": "2026",
     "month": "9",
@@ -27578,8 +27563,7 @@
     "sale_date": "",
     "run_ts": "2026-08-09T15:22:01Z",
     "flags": [
-      "TAX FORE",
-      "NEW"
+      "TAX FORE"
     ],
     "source": "arcgis",
     "sale_date_arcgis": "",
@@ -27617,7 +27601,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "2011TA100395",
     "year": "2026",
     "month": "9",
@@ -27628,8 +27612,7 @@
     "sale_date": "",
     "run_ts": "2026-08-09T15:22:01Z",
     "flags": [
-      "TAX FORE",
-      "NEW"
+      "TAX FORE"
     ],
     "source": "arcgis",
     "sale_date_arcgis": "",
