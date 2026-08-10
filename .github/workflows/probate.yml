@@ -48,21 +48,18 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          for i in 1 2 3; do
-            git fetch origin main
-            git rebase -X theirs origin/main && break
-            echo "Rebase attempt $i failed, retrying..."
-            git rebase --abort 2>/dev/null || true
-            sleep 3
-          done
+          python scraper/merge_dashboard_status.py origin/main || true
           git add dashboard/records.json
           git diff --cached --quiet && echo "No changes" && exit 0
           git commit -m "probate: $(date -u +'%Y-%m-%d') — ${{ steps.probate.outputs.new_count }} new records"
           for i in 1 2 3; do
-            git push origin main && break
-            echo "Push attempt $i failed, retrying..."
             git fetch origin main
-            git rebase -X theirs origin/main || git rebase --abort
+            python scraper/merge_dashboard_status.py origin/main || true
+            git add dashboard/records.json
+            git diff --cached --quiet || git commit --amend --no-edit
+            git rebase -X ours origin/main || git rebase --abort
+            git push origin main && echo "Push succeeded" && break
+            echo "Push attempt $i failed, retrying..."
             sleep 3
           done
 
