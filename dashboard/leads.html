@@ -519,7 +519,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
       <div class="kpi red" onclick="showView('work');setView('urgent')"><div class="kpi-num" id="dk-urg">—</div><div class="kpi-lbl">Auction ≤14d</div><div class="kpi-sub" id="dk-urg-sub"></div></div>
       <div class="kpi green" onclick="showView('work');setView('new')"><div class="kpi-num" id="dk-new">—</div><div class="kpi-lbl">New This Run</div><div class="kpi-sub">Scraped latest</div></div>
       <div class="kpi purple" onclick="showView('work');setView('vbp')"><div class="kpi-num" id="dk-vbp">—</div><div class="kpi-lbl">VBP+CE</div><div class="kpi-sub">Stacked leads</div></div>
-      <div class="kpi teal" onclick="showView('work');setTypeTab('jarvis')"><div class="kpi-num" id="dk-jarvis">—</div><div class="kpi-lbl">In Jarvis</div><div class="kpi-sub">Active convos</div></div>
+      <div class="kpi teal" onclick="showView('work');setTypeTab('jarvis')"><div class="kpi-num" id="dk-jarvis">—</div><div class="kpi-lbl">In Jarvis</div><div class="kpi-sub" id="dk-jarvis-sub">—</div></div>
       <div class="kpi amber"><div class="kpi-num" id="dk-longheld">—</div><div class="kpi-lbl">Long Held 10yr+</div><div class="kpi-sub">High motivation</div></div>
     </div>
     <!-- Mid row -->
@@ -614,6 +614,8 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
       <div class="sb-item" id="sf-today" onclick="setView('today',this)"><div class="sb-icon" style="background:var(--blue-bg)">⚡</div><div class="sb-info"><div class="sb-name">Today's Hot List</div><div class="sb-cnt" id="fc-today">—</div></div></div>
       <div class="sb-item" id="sf-unsearched" onclick="setView('unsearched',this)"><div class="sb-icon" style="background:var(--purple-bg)">🔍</div><div class="sb-info"><div class="sb-name">Unsearched</div><div class="sb-cnt" id="fc-unsearched">—</div></div></div>
       <div class="sb-item" id="sf-jarvis" onclick="setTypeTab('jarvis',null)"><div class="sb-icon" style="background:var(--teal-bg)">✅</div><div class="sb-info"><div class="sb-name">In Jarvis</div><div class="sb-cnt" id="fc-jarvis">—</div></div></div>
+      <div class="sb-item"><div class="sb-icon" style="background:var(--teal-bg)">📤</div><div class="sb-info"><div class="sb-name">Pushed Today</div><div class="sb-cnt" id="fc-pushed-today">—</div></div></div>
+      <div class="sb-item"><div class="sb-icon" style="background:var(--teal-bg)">🗓</div><div class="sb-info"><div class="sb-name">Pushed This Week</div><div class="sb-cnt" id="fc-pushed-week">—</div></div></div>
       <div class="sb-div"></div>
       <div class="sb-hdr">Lead Types</div>
       <div class="sb-item" id="sf-all" onclick="setView('all',this)"><div class="sb-icon" style="background:var(--bg3)">📋</div><div class="sb-info"><div class="sb-name">All Leads</div><div class="sb-cnt" id="fc-all">—</div></div></div>
@@ -849,6 +851,30 @@ function isAged(l){if(!isForeclosure(l))return false;const df=l.date_filed||'';t
 function isUrgent(l){return l.flags&&(l.flags.includes('URGENT')||l.flags.includes('AUCTION SOON'))&&l.days_until_sale!=null&&l.days_until_sale<=14;}
 function daysAgo(l){const df=l.date_filed||l.opened_date||'';try{const p=df.split('/');let dt;if(p.length===2)dt=new Date(parseInt(p[1]),parseInt(p[0])-1,1);else if(p.length===3)dt=new Date(parseInt(p[2]),parseInt(p[0])-1,parseInt(p[1]));if(dt)return Math.floor((Date.now()-dt.getTime())/(1000*60*60*24));}catch(e){}return 999;}
 function auctionPassed(l){if(!l.sale_date)return false;try{const p=l.sale_date.trim().split('/');if(p.length===3){const sd=new Date(parseInt(p[2]),parseInt(p[0])-1,parseInt(p[1]));return sd.getTime()<Date.now();}}catch(e){}return false;}
+
+/* Jarvis push counters — sourced from synced records.json (rec.ghl_pushed/
+   ghl_pushed_at), NOT localStorage, so these match reality regardless of
+   which browser/device you're viewing from. Day/week boundaries computed in
+   America/Chicago time since that's where the business operates. */
+function chicagoDateStr(d){return new Date(d).toLocaleDateString('en-CA',{timeZone:'America/Chicago'});}
+function isPushedToday(l){return!!(l.ghl_pushed&&l.ghl_pushed_at&&chicagoDateStr(l.ghl_pushed_at)===chicagoDateStr(new Date()));}
+function weekBoundsChicago(){
+  const now=new Date(new Date().toLocaleString('en-US',{timeZone:'America/Chicago'}));
+  const day=now.getDay();// 0=Sun..6=Sat
+  const diffToMon=(day===0?-6:1-day);
+  const mon=new Date(now);mon.setDate(now.getDate()+diffToMon);mon.setHours(0,1,0,0);// Monday 12:01am
+  const sun=new Date(mon);sun.setDate(mon.getDate()+6);sun.setHours(23,59,59,999);// Sunday 11:59pm
+  return[mon,sun];
+}
+function isPushedThisWeek(l){
+  if(!l.ghl_pushed||!l.ghl_pushed_at)return false;
+  const pushedChicago=new Date(new Date(l.ghl_pushed_at).toLocaleString('en-US',{timeZone:'America/Chicago'}));
+  const[mon,sun]=weekBoundsChicago();
+  return pushedChicago>=mon&&pushedChicago<=sun;
+}
+function getJarvisCount(){return allLeads.filter(l=>l.ghl_pushed).length;}
+function getPushedTodayCount(){return allLeads.filter(isPushedToday).length;}
+function getPushedWeekCount(){return allLeads.filter(isPushedThisWeek).length;}
 function getGHLTag(l){if(isStacked(l))return'bexar_stacked';if(isVBP(l)&&!isStacked(l))return'bexar_vbp';if(isCEOnly(l))return'bexar_ce';if(isLP(l))return'bexar_lp';if(isAppt(l))return'bexar_prefore';return'bexar_lead';}
 function getVBPViolation(l){return l.ce_cat_label||l.ce_reason||l.ce_category||'';}
 function isVBPDangerous(l){const v=getVBPViolation(l).toLowerCase();return v.includes('dangerous')||v.includes('bsb');}
@@ -880,7 +906,9 @@ async function fetchLeads(){
 function renderDashboard(){
   const newCt=allLeads.filter(l=>l.is_new).length;
   const urgCt=allLeads.filter(l=>isUrgent(l)&&!auctionPassed(l)).length;
-  const jarvisCt=Object.values(S.leads).filter(l=>l.phone||l.ghl_pushed).length;
+  const jarvisCt=getJarvisCount();
+  const pushedTodayCt=getPushedTodayCount();
+  const pushedWeekCt=getPushedWeekCount();
   const vbpCt=allLeads.filter(l=>isVBP(l)||isStacked(l)).length;
   const longHeld=allLeads.filter(isLongHeld).length;
   const total=allLeads.length;
@@ -891,6 +919,7 @@ function renderDashboard(){
   set('dk-total-sub',`${allLeads.filter(l=>l.is_new).length} new this run`);
   const soonCt=allLeads.filter(l=>l.days_until_sale!=null&&l.days_until_sale<=30&&!auctionPassed(l)).length;
   set('dk-urg-sub',`${soonCt} auction ≤30d`);
+  set('dk-jarvis-sub',`${pushedTodayCt} today · ${pushedWeekCt} this week`);
   set('dk-urg2',urgCt);set('dk-urg-pct',Math.round(urgCt/Math.max(total,1)*100)+'% of pipeline');
   set('qa-today',todayCt);set('qa-urg',urgCt);set('qa-new',newCt);set('qa-unsearch',unsearch);
   set('nav-unsearch',unsearch);set('nav-urg',urgCt);set('nav-jarvis',jarvisCt);set('nav-vbp',vbpCt);
@@ -948,8 +977,9 @@ function renderNewLeadsBar(){const newLeads=allLeads.filter(l=>l.is_new&&!auctio
 
 function renderHotStrip(){const hot=allLeads.filter(l=>l.days_until_sale!=null&&l.days_until_sale<=30&&!auctionPassed(l)&&!LS(l.doc_number).phone).slice(0,10);const strip=document.getElementById('hot-strip');if(!hot.length){if(strip)strip.style.display='none';return;}if(strip)strip.style.display='flex';const hc=document.getElementById('hot-cards');if(hc)hc.innerHTML=hot.map(l=>`<div class="hcard ${l.days_until_sale<=14?'urg':'soon'}" onclick="selectLead('${l.doc_number}')"><div class="hc-tag">AUCTION ${l.days_until_sale}d</div><div class="hc-name">${l.owner||'—'}</div></div>`).join('');}
 
-function updateAllCounts(){const newCt=allLeads.filter(l=>l.is_new).length;const urgCt=allLeads.filter(l=>isUrgent(l)&&!auctionPassed(l)).length;const jarvisCt=Object.values(S.leads).filter(l=>l.phone||l.ghl_pushed).length;const vbpCt=allLeads.filter(l=>isVBP(l)||isStacked(l)).length;const unsearch=allLeads.filter(l=>!LS(l.doc_number).phone&&!LS(l.doc_number).skipped).length;
+function updateAllCounts(){const newCt=allLeads.filter(l=>l.is_new).length;const urgCt=allLeads.filter(l=>isUrgent(l)&&!auctionPassed(l)).length;const jarvisCt=getJarvisCount();const pushedTodayCt=getPushedTodayCount();const pushedWeekCt=getPushedWeekCount();const vbpCt=allLeads.filter(l=>isVBP(l)||isStacked(l)).length;const unsearch=allLeads.filter(l=>!LS(l.doc_number).phone&&!LS(l.doc_number).skipped).length;
 set('tt-new',newCt);set('tt-urg',urgCt);set('tt-all',allLeads.length);set('tt-fore',allLeads.filter(l=>isForeclosure(l)&&!isAged(l)).length);set('tt-aged',allLeads.filter(isAged).length);set('tt-vbp',vbpCt);set('tt-lp',allLeads.filter(isLP).length);set('tt-appt',allLeads.filter(isAppt).length);set('tt-jarvis',jarvisCt);
+set('fc-pushed-today',pushedTodayCt+' leads');set('fc-pushed-week',pushedWeekCt+' leads');
 const sbn=document.getElementById('sb-new-badge');if(sbn){sbn.textContent=newCt;sbn.style.display=newCt>0?'block':'none';}
 const sbu=document.getElementById('sb-urg-badge');if(sbu){sbu.textContent=urgCt;sbu.style.display=urgCt>0?'block':'none';}
 set('fc-new',newCt+' leads');set('fc-urgent',urgCt+' leads');set('fc-today',getTodayList().length+' leads');set('fc-unsearched',unsearch+' leads');set('fc-jarvis',jarvisCt+' leads');set('fc-all',allLeads.length+' leads');set('fc-fore',allLeads.filter(l=>isForeclosure(l)&&!isAged(l)).length+' leads');set('fc-vbp',vbpCt+' leads');set('fc-lp',allLeads.filter(isLP).length+' leads');set('fc-appt',allLeads.filter(isAppt).length+' leads');set('fc-aged',allLeads.filter(isAged).length+' leads');}
