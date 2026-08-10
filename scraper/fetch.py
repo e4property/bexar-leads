@@ -1596,7 +1596,18 @@ def fetch_arv_homeharvest(records):
 
     No Selenium driver needed — homeharvest does its own HTTP requests.
     """
+    import pandas as pd
     from homeharvest import scrape_property
+
+    def clean(val):
+        """pandas NA/NaN don't survive `in (None, "", ...)` checks — they
+        raise 'boolean value of NA is ambiguous' instead of comparing
+        False, which is exactly what crashed record #12 out of 30 here on
+        2026-08-10 and silently killed every candidate after it."""
+        if val is None or pd.isna(val):
+            return None
+        s = str(val).strip()
+        return None if s in ("", "nan", "<NA>", "None") else val
 
     candidates = [
         r for r in records
@@ -1616,30 +1627,31 @@ def fetch_arv_homeharvest(records):
         full_addr = f"{rec['address']}, {rec.get('city', '')}, TX {rec.get('zip', '')}".strip(", ")
         try:
             df = scrape_property(location=full_addr)
+
+            if df is None or len(df) == 0:
+                log.info(f"  ARV [{rec.get('doc_number')}] {full_addr}: no match on Realtor.com")
+                continue
+
+            row = df.iloc[0]
+            est = clean(row.get("estimated_value"))
+            if est is not None:
+                rec["arv_estimate"]   = int(est)
+                rec["arv_status"]     = clean(row.get("status")) or ""
+                sqft_val = clean(row.get("sqft"))
+                rec["arv_sqft"]       = int(sqft_val) if sqft_val is not None else None
+                rec["arv_fetched_at"] = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+                fetched += 1
+                log.info(f"  ARV [{rec.get('doc_number')}] {full_addr}: ${int(est):,} (status={rec['arv_status']})")
+            else:
+                log.info(f"  ARV [{rec.get('doc_number')}] {full_addr}: matched but no estimated_value")
         except Exception as e:
-            log.warning(f"  ARV [{rec.get('doc_number')}] {full_addr}: lookup error: {e}")
+            # Per-record guard — one bad row (pandas NA quirks, unexpected
+            # schema, network blip) must never take the rest of the batch
+            # down with it, which is exactly what happened here before.
+            log.warning(f"  ARV [{rec.get('doc_number')}] {full_addr}: error: {e}")
             errors += 1
+        finally:
             time.sleep(1)
-            continue
-
-        if df is None or len(df) == 0:
-            log.info(f"  ARV [{rec.get('doc_number')}] {full_addr}: no match on Realtor.com")
-            time.sleep(1)
-            continue
-
-        row = df.iloc[0]
-        est = row.get("estimated_value")
-        if est is not None and str(est) not in ("", "nan", "<NA>"):
-            rec["arv_estimate"]    = int(est)
-            rec["arv_status"]      = row.get("status", "")
-            rec["arv_sqft"]        = int(row["sqft"]) if row.get("sqft") not in (None, "", "<NA>") else None
-            rec["arv_fetched_at"]  = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
-            fetched += 1
-            log.info(f"  ARV [{rec.get('doc_number')}] {full_addr}: ${int(est):,} (status={row.get('status')})")
-        else:
-            log.info(f"  ARV [{rec.get('doc_number')}] {full_addr}: matched but no estimated_value")
-
-        time.sleep(1)
 
     log.info(f"ARV (HomeHarvest): {fetched} enriched, {errors} errors out of {len(candidates)} candidates")
     return records
