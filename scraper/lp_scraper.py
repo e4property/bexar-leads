@@ -67,7 +67,7 @@ def scrape_lis_pendens(known_docs, get_driver_fn, run_timestamp):
                 f"{PUBLICSEARCH_BASE}/results"
                 f"?department=RP"
                 f"&docTypes=%5B%22LP%22%2C%22LP2%22%5D"
-                f"&instrumentDateRange={cutoff}%2C{today_str}"
+                f"&recordedDateRange={cutoff}%2C{today_str}"
                 f"&keywordSearch=false&offset={offset}"
             )
             log.info(f"LP offset={offset}")

@@ -87,7 +87,7 @@ def scrape_probate(known_docs, get_driver_fn, run_timestamp):
                 f"{PUBLICSEARCH_BASE}/results"
                 f"?department=PR"
                 f"&docTypes={PROBATE_TYPES_ENCODED}"
-                f"&instrumentDateRange={cutoff}%2C{today_str}"
+                f"&recordedDateRange={cutoff}%2C{today_str}"
                 f"&keywordSearch=false&offset={offset}"
                 f"&limit=50&sort=desc&sortBy=recordedDate"
             )
