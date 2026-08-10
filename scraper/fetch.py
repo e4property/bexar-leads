@@ -65,6 +65,7 @@ CODE_ENFORCE_URL   = (
 
 BCAD_DETAIL_URL    = "https://bexar.trueautomation.com/clientdb/Property.aspx?cid=110&prop_id={prop_id}"
 DEED_FETCH_LIMIT   = 30   # max leads to hit BCAD detail page per run
+ARV_FETCH_LIMIT    = 30   # max leads to look up via HomeHarvest/Realtor.com per run
 
 LAYERS = [
     {"index": 0, "type": "NOF", "label": "Mortgage Foreclosure"},
@@ -1576,6 +1577,74 @@ def fetch_deed_and_arv(records, driver):
     log.info(f"BCAD deed+ARV: {fetched} enriched, {errors} errors out of {len(candidates)} candidates")
     return records
 
+
+def fetch_arv_homeharvest(records):
+    """
+    Free ARV estimate via homeharvest (pip, MIT license) scraping Realtor.com's
+    public page data — no API key, no cost. Realtor.com blends CoreLogic,
+    Collateral Analytics, and Quantarium AVMs into an estimated_value field
+    that's present even for off-market/distressed properties (confirmed live
+    2026-08-10 against real Bexar addresses, sold and pending alike).
+
+    Chosen over Zillow/Redfin scraping: both run aggressive bot detection
+    (PerimeterX/Cloudflare) that blocks datacenter IPs — including GitHub
+    Actions runners — within minutes. Realtor.com is comparatively tractable
+    right now, but its ToS still prohibits automated access, so this is kept
+    as a soft dependency: any failure (network, no match, library error)
+    just leaves arv_estimate blank rather than breaking the run, and the
+    lead still has BCAD's appraised_value as a fallback value signal.
+
+    No Selenium driver needed — homeharvest does its own HTTP requests.
+    """
+    from homeharvest import scrape_property
+
+    candidates = [
+        r for r in records
+        if r.get("address") and not r.get("arv_estimate")
+    ]
+    candidates = candidates[:ARV_FETCH_LIMIT]
+
+    if not candidates:
+        log.info("ARV (HomeHarvest): no eligible leads — skipping")
+        return records
+
+    log.info(f"ARV (HomeHarvest): {len(candidates)} leads to look up (cap={ARV_FETCH_LIMIT})")
+    fetched = 0
+    errors  = 0
+
+    for rec in candidates:
+        full_addr = f"{rec['address']}, {rec.get('city', '')}, TX {rec.get('zip', '')}".strip(", ")
+        try:
+            df = scrape_property(location=full_addr)
+        except Exception as e:
+            log.warning(f"  ARV [{rec.get('doc_number')}] {full_addr}: lookup error: {e}")
+            errors += 1
+            time.sleep(1)
+            continue
+
+        if df is None or len(df) == 0:
+            log.info(f"  ARV [{rec.get('doc_number')}] {full_addr}: no match on Realtor.com")
+            time.sleep(1)
+            continue
+
+        row = df.iloc[0]
+        est = row.get("estimated_value")
+        if est is not None and str(est) not in ("", "nan", "<NA>"):
+            rec["arv_estimate"]    = int(est)
+            rec["arv_status"]      = row.get("status", "")
+            rec["arv_sqft"]        = int(row["sqft"]) if row.get("sqft") not in (None, "", "<NA>") else None
+            rec["arv_fetched_at"]  = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+            fetched += 1
+            log.info(f"  ARV [{rec.get('doc_number')}] {full_addr}: ${int(est):,} (status={row.get('status')})")
+        else:
+            log.info(f"  ARV [{rec.get('doc_number')}] {full_addr}: matched but no estimated_value")
+
+        time.sleep(1)
+
+    log.info(f"ARV (HomeHarvest): {fetched} enriched, {errors} errors out of {len(candidates)} candidates")
+    return records
+
+
 def _month_year_age_days(date_filed):
     """date_filed is stored as 'MM/YYYY' (day-level precision isn't
     available from the source) — approximate age from the 1st of that
@@ -1835,6 +1904,12 @@ if __name__ == "__main__":
                 bcad_driver.quit()
             except Exception:
                 pass
+
+    # ── Step 6c: ARV via HomeHarvest (free, Realtor.com, no Selenium needed) ──
+    try:
+        records = fetch_arv_homeharvest(records)
+    except Exception as e:
+        log.warning(f"ARV (HomeHarvest) error: {e}")
 
     # ── Step 7: Duplicate detection ───────────────────────────────────────────
     records = detect_duplicates(records)
