@@ -1275,7 +1275,7 @@ function toast(msg,type=false){const el=document.getElementById('toast');el.text
 if('serviceWorker' in navigator){navigator.serviceWorker.register('/bexar-leads/sw.js').catch(e=>console.log('SW:',e));}
 setInterval(()=>fetchLeads(),15*60*1000);
 
-const DEFAULT_COUNTIES=[{id:'bexar',name:'Bexar County',label:'BEXAR·LEADS',url:'https://e4property.github.io/bexar-leads/records.json',ghlTag:'bexar_lead',color:'var(--blue)'},{id:'nueces',name:'Nueces County',label:'NUECES·LEADS',url:'https://e4property.github.io/nueces-leads/records.json',ghlTag:'nueces_lead',color:'var(--teal)'}];
+const DEFAULT_COUNTIES=[{id:'bexar',name:'Bexar County',label:'BEXAR·LEADS',url:'https://e4property.github.io/bexar-leads/records.json',ghlTag:'bexar_lead',color:'var(--blue)'},{id:'nueces',name:'Nueces County',label:'NUECES·LEADS',url:'https://e4property.github.io/nueces-leads/records.json',ghlTag:'nueces_lead',color:'var(--teal)'},{id:'guadalupe',name:'Guadalupe County',label:'GUADALUPE·LEADS',url:'https://e4property.github.io/guadalupe-leads/records.json',ghlTag:'guadalupe_lead',color:'var(--purple)'}];
 function getCounties(){try{const s=localStorage.getItem('bl_counties');if(s)return JSON.parse(s);}catch(e){}return DEFAULT_COUNTIES;}
 function saveCounties(c){localStorage.setItem('bl_counties',JSON.stringify(c));}
 function getActiveCounty(){try{const id=localStorage.getItem('bl_active_county');const counties=getCounties();return counties.find(c=>c.id===id)||counties[0];}catch(e){}return getCounties()[0];}
