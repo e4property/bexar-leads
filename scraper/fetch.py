@@ -967,85 +967,141 @@ def goto_doc_by_click(driver, source_url, doc_number, timeout=20):
         return False
 
 
+QUICK_SEARCH_URL_TMPL = (
+    "https://bexar.tx.publicsearch.us/results?department=RP&keywordSearch=false"
+    "&recordedDateRange=18000101%2C{today}&searchOcrText=false"
+    "&searchType=quickSearch&searchValue={doc_number}"
+)
+
+
+def ocr_current_doc_page(driver):
+    """
+    The PublicSearch doc viewer renders the recorded instrument as a canvas
+    image, not selectable DOM text — confirmed 2026-08-10 by direct
+    inspection. The neighboring "Summary" tab is generic accessibility
+    boilerplate and never contains the instrument's actual text, which is
+    why loan_amount extraction never worked reading it. This screenshots
+    the canvas and OCRs it instead. No purchase/"Add to Cart" step needed —
+    the viewer already renders the page for free.
+    """
+    from selenium.webdriver.common.by import By
+    import pytesseract
+    from PIL import Image
+    import io
+
+    try:
+        canvas = driver.find_element(By.CSS_SELECTOR, "canvas")
+        png = canvas.screenshot_as_png
+    except Exception:
+        try:
+            png = driver.get_screenshot_as_png()
+        except Exception as e:
+            log.warning(f"  ocr_current_doc_page: screenshot failed: {e}")
+            return ""
+
+    try:
+        return pytesseract.image_to_string(Image.open(io.BytesIO(png)))
+    except Exception as e:
+        log.warning(f"  ocr_current_doc_page: tesseract failed: {e}")
+        return ""
+
+
+def search_and_ocr_referenced_doc(driver, doc_number, timeout=20):
+    """
+    Looks up a doc number (e.g. the original Deed of Trust referenced inside
+    a Notice of [Substitute] Trustee's Sale) via the quickSearch URL pattern
+    confirmed live 2026-08-10, clicks the single result row, and OCRs that
+    page. Returns "" if the search comes up empty or the click-through fails
+    — this is a best-effort second hop, not guaranteed to resolve.
+    """
+    from selenium.webdriver.common.by import By
+    from selenium.webdriver.support.ui import WebDriverWait
+    from selenium.webdriver.support import expected_conditions as EC
+
+    today_str = TODAY_NAIVE.strftime("%Y%m%d")
+    url = QUICK_SEARCH_URL_TMPL.format(today=today_str, doc_number=doc_number)
+
+    try:
+        driver.set_page_load_timeout(timeout)
+        driver.get(url)
+        WebDriverWait(driver, timeout).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, "table tr td"))
+        )
+        time.sleep(1)
+
+        row = driver.find_element(By.CSS_SELECTOR, "table tbody tr")
+        row.click()
+        WebDriverWait(driver, timeout).until(EC.url_contains("/doc/"))
+        time.sleep(1.5)
+        return ocr_current_doc_page(driver)
+    except Exception as e:
+        log.warning(f"  search_and_ocr_referenced_doc: lookup failed for {doc_number}: {e}")
+        return ""
+
+
 def extract_loan_details(driver):
     """
     Assumes the driver is already sitting on a PublicSearch /doc/<id> page
-    (e.g. after goto_doc_by_click). Clicks the Summary tab if present, then
-    regex-parses the deed-of-trust text for loan amount/date/lender/trustee.
+    for a Notice of [Substitute] Trustee's Sale (e.g. after
+    goto_doc_by_click). OCRs that page for the lender name and the doc
+    number of the original Deed of Trust it references, then — if found —
+    hops to that referenced document and OCRs it too for the actual
+    principal loan amount, which foreclosure notices don't state directly.
     Returns a dict with all four keys, blank string where nothing matched.
     """
-    from selenium.webdriver.common.by import By
     import re as _re
-
-    try:
-        tabs = driver.find_elements(By.CSS_SELECTOR, ".tab-item, .tab, [role='tab'], .nav-link, button, a")
-        for tab in tabs:
-            txt = (tab.text or tab.get_attribute("textContent") or "").strip().lower()
-            if txt == "summary" or txt.startswith("summar"):
-                tab.click()
-                time.sleep(2)
-                break
-    except Exception:
-        pass
 
     loan_amount = ""
     loan_date   = ""
     lender      = ""
     trustee     = ""
 
-    try:
-        page_text = driver.find_element(By.TAG_NAME, "body").text
-        lines = page_text.split("\n")
+    notice_text = ocr_current_doc_page(driver)
+
+    if notice_text:
+        m = _re.search(
+            r"(?:duly\s+)?recorded[^.]*?Document\s+Number\s+(\d{6,})\s+on\s+"
+            r"([A-Za-z]+ \d{1,2},\s*\d{4})",
+            notice_text, _re.IGNORECASE)
+        referenced_doc, dot_date = (m.group(1), m.group(2)) if m else (None, None)
+        if dot_date:
+            loan_date = dot_date.strip()
 
         m = _re.search(
-            r"Deed of Trust is dated\s+(\d{1,2}/\d{1,2}/\d{4}|\w+ \d{1,2},\s*\d{4})",
-            page_text, _re.IGNORECASE)
-        if not m:
-            m = _re.search(
-                r"dated\s+(\d{1,2}/\d{1,2}/\d{4}|\w+ \d{1,2},\s*\d{4})",
-                page_text, _re.IGNORECASE)
+            r"([A-Z][A-Za-z0-9,.&\s]{2,60}?)\s+is\s+the\s*[\"'“]?Lender",
+            notice_text)
         if m:
-            loan_date = m.group(1).strip()
+            lender = m.group(1).strip().rstrip(",")
 
         m = _re.search(
-            r"nominee for\s+([A-Z][^\n,]{4,60}?)(?:\s*,|\s+AN\s|\s+ITS\s|\s+A\s)",
-            page_text, _re.IGNORECASE)
-        if m:
-            lender = m.group(1).strip()
-        if not lender:
-            for i, line in enumerate(lines):
-                ll = line.lower()
-                if any(x in ll for x in ["original beneficiary", "beneficiary:", "mortgagee:"]):
-                    val = line.split(":")[-1].strip() if ":" in line else ""
-                    if not val and i+1 < len(lines):
-                        val = lines[i+1].strip()
-                    if val and len(val) > 3:
-                        lender = val
-                        break
-        if not lender:
-            m = _re.search(r"Current\s+Beneficiary[:\s]+([A-Z][^\n]{4,60})", page_text)
-            if m:
-                lender = m.group(1).strip()
-
-        m = _re.search(r"Trustor[s]?\(?s?\)?[:\s]+([A-Z][^\n]{4,80})", page_text)
+            r"Substitute\s+Trustee[s]?[:\s,]+([A-Z][^\n,]{4,80})",
+            notice_text, _re.IGNORECASE)
         if m:
             trustee = m.group(1).strip()
 
-        m = _re.search(
-            r"(?:original|principal)\s+(?:loan\s+)?amount[:\s]+\$?([\d,]+(?:\.\d{2})?)",
-            page_text, _re.IGNORECASE)
-        if m:
-            loan_amount = "$" + m.group(1)
-
-    except Exception as e:
-        log.warning(f"  Body text parse: {e}")
+        if referenced_doc:
+            log.info(f"  Notice references Deed of Trust {referenced_doc} ({dot_date}) — hopping to it")
+            dot_text = search_and_ocr_referenced_doc(driver, referenced_doc)
+            if dot_text:
+                for pattern in [
+                    r"principal\s+amount\s+of\s*\$?([\d,]+(?:\.\d{2})?)",
+                    r"principal\s+sum\s+of\s*\$?([\d,]+(?:\.\d{2})?)",
+                    r"in\s+the\s+(?:original\s+)?amount\s+of\s*\$?([\d,]+(?:\.\d{2})?)",
+                ]:
+                    m = _re.search(pattern, dot_text, _re.IGNORECASE)
+                    if m:
+                        loan_amount = "$" + m.group(1)
+                        break
+                if not loan_amount:
+                    log.warning(f"  Deed of Trust {referenced_doc} OCR'd but no amount pattern matched — "
+                                f"first 300 chars: {dot_text[:300]!r}")
+            else:
+                log.warning(f"  Deed of Trust {referenced_doc}: OCR/lookup returned nothing")
+    else:
+        log.warning("  extract_loan_details: OCR of the Notice page returned no text")
 
     if not loan_amount:
-        # No exception, but nothing matched — the page rendered fine and the
-        # try block above completed, so the regex patterns themselves are the
-        # likely failure point (page wording/layout drift), not a crash.
-        log.warning("  extract_loan_details: no exception, but loan_amount still blank — "
-                    "regex patterns likely no longer match the live page text")
+        log.warning("  extract_loan_details: loan_amount still blank after OCR + referenced-doc hop")
 
     return {"loan_amount": loan_amount, "loan_date": loan_date,
             "lender": lender, "trustee": trustee}

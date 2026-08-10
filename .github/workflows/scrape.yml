@@ -33,8 +33,11 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Install Tesseract OCR
+        run: sudo apt-get update && sudo apt-get install -y tesseract-ocr
+
       - name: Install dependencies
-        run: pip install requests beautifulsoup4 lxml selenium
+        run: pip install requests beautifulsoup4 lxml selenium pytesseract pillow
 
       - name: Run python scraper/fetch.py
         id: scrape
