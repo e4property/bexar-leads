@@ -963,7 +963,7 @@ def goto_doc_by_click(driver, source_url, doc_number, timeout=20):
         time.sleep(1.5)
         return True
     except Exception as e:
-        log.debug(f"  click-fallback failed for doc {doc_number}: {e}")
+        log.warning(f"  click-fallback failed for doc {doc_number}: {e}")
         return False
 
 
@@ -1038,7 +1038,14 @@ def extract_loan_details(driver):
             loan_amount = "$" + m.group(1)
 
     except Exception as e:
-        log.debug(f"  Body text parse: {e}")
+        log.warning(f"  Body text parse: {e}")
+
+    if not loan_amount:
+        # No exception, but nothing matched — the page rendered fine and the
+        # try block above completed, so the regex patterns themselves are the
+        # likely failure point (page wording/layout drift), not a crash.
+        log.warning("  extract_loan_details: no exception, but loan_amount still blank — "
+                    "regex patterns likely no longer match the live page text")
 
     return {"loan_amount": loan_amount, "loan_date": loan_date,
             "lender": lender, "trustee": trustee}
