@@ -71,20 +71,17 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          for i in 1 2 3; do
-            git fetch origin main
-            git rebase -X theirs origin/main && break
-            echo "Rebase attempt $i failed, retrying..."
-            git rebase --abort 2>/dev/null || true
-            sleep 3
-          done
+          python scraper/merge_dashboard_status.py origin/main || true
           git add dashboard/records.json data/vbp_state.json
           git diff --cached --quiet || git commit -m "vbp: $(date -u +'%Y-%m-%d') — ${{ steps.vbp.outputs.new_leads }} new | ${{ steps.vbp.outputs.stamped }} stamped | ${{ steps.vbp.outputs.cleaned }} cleaned"
           for i in 1 2 3; do
-            git push origin main && break
-            echo "Push attempt $i failed, retrying..."
             git fetch origin main
-            git rebase -X theirs origin/main || git rebase --abort
+            python scraper/merge_dashboard_status.py origin/main || true
+            git add dashboard/records.json
+            git diff --cached --quiet || git commit --amend --no-edit
+            git rebase -X ours origin/main || git rebase --abort
+            git push origin main && echo "Push succeeded" && break
+            echo "Push attempt $i failed, retrying..."
             sleep 3
           done
 
