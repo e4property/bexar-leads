@@ -68,6 +68,8 @@ def main():
             rt = datetime.fromisoformat(ts.replace("Z", "+00:00"))
         except ValueError:
             continue
+        if rt.tzinfo is None:
+            rt = rt.replace(tzinfo=timezone.utc)
         if rt >= cutoff_dt:
             eligible.append(r)
 
