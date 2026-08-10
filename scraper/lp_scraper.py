@@ -13,6 +13,39 @@ log = logging.getLogger(__name__)
 
 PUBLICSEARCH_BASE = "https://bexar.tx.publicsearch.us"
 
+# ── Address/owner sanity check ──────────────────────────────────────────────
+# Ported from appointment_scraper.py's 2026-08-07 fix: a loose leading-digit
+# regex lets page footer/copyright text ("2026 Bexar County... All Rights
+# Reserved") slip through as a real address since the year reads as a street
+# number. Require an actual street-suffix word and reject known boilerplate.
+STREET_SUFFIXES = {
+    "ST","AVE","DR","RD","LN","CT","CIR","BLVD","WAY","PL","TRL","PKWY",
+    "HWY","LOOP","PASS","CV","PT","HLS","TRAIL","GROVE","RIDGE","CREEK",
+    "LAKE","PARK","GLEN","RUN","XING","STREET","AVENUE","DRIVE","ROAD",
+    "LANE","COURT","CIRCLE","BOULEVARD","PLACE","TERRACE","TER","WALK",
+    "ROW","BND","BEND","VW","VIEW","CV","COVE","MNR","MANOR","SQ","SQUARE",
+}
+GARBAGE_ADDRESS_KEYWORDS = [
+    "RIGHTS RESERVE", "COPYRIGHT", "ALL RIGHTS", "BEXAR COUNTY,",
+    "CLERK OF", "GOVOS", "ACCESSIBILITY",
+]
+
+def _looks_like_address(s):
+    if not s:
+        return False
+    upper = s.upper()
+    if any(kw in upper for kw in GARBAGE_ADDRESS_KEYWORDS):
+        return False
+    words = re.split(r"[\s,]+", upper)
+    return any(w.rstrip(".") in STREET_SUFFIXES for w in words)
+
+def _looks_like_boilerplate(s):
+    if not s:
+        return False
+    upper = s.upper()
+    return any(kw in upper for kw in GARBAGE_ADDRESS_KEYWORDS)
+
+
 def scrape_lis_pendens(known_docs, get_driver_fn, run_timestamp):
     from selenium.webdriver.common.by import By
     from selenium.webdriver.support.ui import WebDriverWait
@@ -73,10 +106,12 @@ def scrape_lis_pendens(known_docs, get_driver_fn, run_timestamp):
                      and c not in dates
                      and not re.match(r"^\d{9,12}$", c)
                      and re.search(r"[A-Z]{2,}", c)
-                     and c.upper() not in ("N/A", "LES PENDENS", "LIS PENDENS", "LP")), "")
+                     and c.upper() not in ("N/A", "LES PENDENS", "LIS PENDENS", "LP")
+                     and not _looks_like_boilerplate(c)), "")
                 address = next(
                     (c for c in cells
-                     if re.search(r"\d+\s+[A-Z]", c) and len(c) > 8), "")
+                     if re.search(r"\d+\s+[A-Z]", c) and len(c) > 8
+                     and _looks_like_address(c)), "")
                 page_records.append({
                     "doc_number":      doc_num,
                     "type":            "LP",

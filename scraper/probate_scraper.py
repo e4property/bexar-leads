@@ -37,6 +37,22 @@ DOC_TYPE_LABELS = {
     "MUNW":  "Muniment of Title",
 }
 
+# ── Boilerplate rejection ────────────────────────────────────────────────────
+# Same fix class as appointment_scraper.py's 2026-08-07 address bug: the
+# grantor/grantee extraction below is a "longest plausible cell" heuristic
+# with no guard against page footer/copyright text, so port the same
+# boilerplate keyword rejection here before it's trusted with real names.
+GARBAGE_KEYWORDS = [
+    "RIGHTS RESERVE", "COPYRIGHT", "ALL RIGHTS", "BEXAR COUNTY,",
+    "CLERK OF", "GOVOS", "ACCESSIBILITY",
+]
+
+def _looks_like_boilerplate(s):
+    if not s:
+        return False
+    upper = s.upper()
+    return any(kw in upper for kw in GARBAGE_KEYWORDS)
+
 
 def scrape_probate(known_docs, get_driver_fn, run_timestamp):
     """
@@ -154,6 +170,7 @@ def scrape_probate(known_docs, get_driver_fn, run_timestamp):
                     and not re.match(r"^\d{1,2}/\d{1,2}/\d{4}$", c)
                     and c.upper() not in PROBATE_DOC_TYPES
                     and len(re.findall(r"[A-Za-z]", c)) > 3
+                    and not _looks_like_boilerplate(c)
                 ]
 
                 # Grantor = deceased owner (estate of X)
