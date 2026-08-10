@@ -353,7 +353,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 .dsec{padding:12px 16px;border-bottom:1px solid var(--border);background:var(--surface)}
 .dsec-lbl{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:10px;display:flex;align-items:center;gap:8px;font-family:'DM Mono',monospace}
 .dsec-lbl::after{content:'';flex:1;height:1px;background:var(--border)}
-.fin-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:7px;margin-bottom:8px}
+.fin-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:7px;margin-bottom:8px}
 .fin-grid-2{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-bottom:8px}
 .fin-card{background:var(--bg2);border-radius:6px;padding:9px;border:1px solid var(--border)}
 .fin-card.tenure-card{border-color:var(--teal-mid);background:var(--teal-bg)}
@@ -672,6 +672,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
             <div class="dsec-lbl">🏦 Financial Intel</div>
             <div class="fin-grid">
               <div class="fin-card"><div class="fin-val amber" id="m-appraised">—</div><div class="fin-key">Appraised</div></div>
+              <div class="fin-card arv-card"><div class="fin-val teal" id="m-arv">—</div><div class="fin-key" id="m-arv-key">ARV Est.</div></div>
               <div class="fin-card"><div class="fin-val" id="m-amount">—</div><div class="fin-key">Loan Amount</div></div>
               <div class="fin-card"><div class="fin-val blue" id="m-equity">—</div><div class="fin-key">Equity Est.</div></div>
               <div class="fin-card"><div class="fin-val" id="m-ltv">—</div><div class="fin-key">LTV</div></div>
@@ -1119,6 +1120,9 @@ function populateDetail(lead){
   const appr=parseFloat(lead.appraised_value)||0,loan=parseFloat((lead.loan_amount+'').replace(/[$,]/g,''))||0;
   const eq=appr&&loan?appr-loan:null,ltv=appr&&loan?Math.round(loan/appr*100):null;
   document.getElementById('m-appraised').textContent=appr?'$'+appr.toLocaleString():'—';
+  const arv=parseFloat(lead.arv_estimate)||0;
+  document.getElementById('m-arv').textContent=arv?'$'+arv.toLocaleString():'—';
+  document.getElementById('m-arv-key').textContent=lead.arv_status?`ARV Est. (${lead.arv_status.replace(/_/g,' ')})`:'ARV Est.';
   document.getElementById('m-amount').textContent=lead.loan_amount||'—';
   const eqEl=document.getElementById('m-equity');eqEl.textContent=eq!=null?(eq>=0?'$'+Math.abs(eq).toLocaleString():'($'+Math.abs(eq).toLocaleString()+')'):'—';eqEl.className='fin-val '+(eq!=null?(eq>=0?'blue':'red'):'');
   document.getElementById('m-ltv').textContent=ltv!=null?ltv+'%':'—';
