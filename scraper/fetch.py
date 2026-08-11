@@ -977,21 +977,18 @@ QUICK_SEARCH_URL_TMPL = (
 
 def ocr_current_doc_page(driver):
     """
-    The PublicSearch doc viewer renders the recorded instrument as a canvas
-    image, not selectable DOM text — confirmed 2026-08-10 by direct
-    inspection. The neighboring "Summary" tab is generic accessibility
-    boilerplate and never contains the instrument's actual text, which is
-    why loan_amount extraction never worked reading it. This screenshots
-    the canvas and OCRs it instead. No purchase/"Add to Cart" step needed —
-    the viewer already renders the page for free.
-
-    v28.37: the canvas isn't there the instant the page navigates — a
-    fixed 1.5s sleep after the click wasn't enough, so find_element(canvas)
-    was throwing and silently falling back to a full-page screenshot,
-    which OCR'd the navbar/toolbar chrome (Register/Sign in/cart/Help,
-    "Back to Results", the SUMMARY tab label) instead of the actual
-    document — confirmed live 2026-08-11 from the raw OCR dump. Now waits
-    explicitly for the canvas to exist before screenshotting it.
+    The PublicSearch doc viewer renders the recorded instrument as an
+    <svg role="img" aria-label="Document preview image">, not selectable
+    DOM text and NOT a <canvas> — confirmed via live DevTools inspection
+    2026-08-11 (the previous two fix attempts both assumed canvas, which
+    doesn't exist anywhere on this page, hence the wait always timing
+    out and silently falling back to a full-page screenshot that OCR'd
+    navbar chrome instead of the document). The neighboring "Summary" tab
+    is generic accessibility boilerplate and never contains the
+    instrument's actual text, which is why loan_amount extraction never
+    worked reading it. This screenshots the SVG and OCRs it instead. No
+    purchase/"Add to Cart" step needed — the viewer already renders the
+    page for free.
     """
     from selenium.webdriver.common.by import By
     from selenium.webdriver.support.ui import WebDriverWait
@@ -1001,13 +998,15 @@ def ocr_current_doc_page(driver):
     import io
 
     try:
-        canvas = WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, "canvas"))
+        img_el = WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located(
+                (By.CSS_SELECTOR, 'svg[aria-label="Document preview image"], svg[role="img"]')
+            )
         )
-        time.sleep(1)  # let the page-render paint finish inside the canvas
-        png = canvas.screenshot_as_png
+        time.sleep(1)  # let the page-render paint finish inside the svg
+        png = img_el.screenshot_as_png
     except Exception as e:
-        log.warning(f"  ocr_current_doc_page: canvas never appeared ({e}) — falling back to full-page screenshot")
+        log.warning(f"  ocr_current_doc_page: document preview svg never appeared ({e}) — falling back to full-page screenshot")
         try:
             png = driver.get_screenshot_as_png()
         except Exception as e2:
