@@ -103,7 +103,7 @@ KEEP_DAYS     = 90
 CHUNK_DAYS    = 7
 PAGE_TIMEOUT  = 180
 CUTOFF_DATE   = TODAY_NAIVE - timedelta(days=KEEP_DAYS)
-DOC_FETCH_DAYS = 6
+DOC_FETCH_LIMIT = 20   # max leads to OCR for loan/lender detail per run (was date-windowed; see fetch_doc_details)
 
 
 # ── HELPERS ───────────────────────────────────────────────────────────────────
@@ -1109,8 +1109,13 @@ def extract_loan_details(driver):
 
 
 def fetch_doc_details(records, driver):
-    cutoff = TODAY_NAIVE - timedelta(days=DOC_FETCH_DAYS)
-
+    # v28.36: dropped the date_filed-based recency window — date_filed only
+    # has month/year granularity (e.g. "8/2026"), which the old code turned
+    # into "the 1st of the month" and compared against a DOC_FETCH_DAYS-ago
+    # cutoff. Past the 6th of any month that comparison always fails, so
+    # every candidate was silently excluded for most of every month —
+    # confirmed live 2026-08-11: 8 candidates found, 0 survived the window.
+    # Backfill-eligible like BCAD/ARV instead: no date filter, just capped.
     candidates = [
         r for r in records
         if r.get("type") in ("NOF", "TAX")
@@ -1120,25 +1125,11 @@ def fetch_doc_details(records, driver):
     ]
     log.info(f"Doc fetch: {len(candidates)} candidates missing loan data")
 
-    recent = []
-    for r in candidates:
-        date_filed = r.get("date_filed", "")
-        try:
-            parts = date_filed.split("/")
-            if len(parts) == 2:
-                filed_dt = datetime(int(parts[1]), int(parts[0]), 1)
-                if filed_dt >= cutoff:
-                    recent.append(r)
-            else:
-                recent.append(r)
-        except Exception:
-            recent.append(r)
-
-    recent = recent[:20]
-    log.info(f"Doc fetch: {len(recent)} within {DOC_FETCH_DAYS}d window (capped at 20)")
+    recent = candidates[:DOC_FETCH_LIMIT]
+    log.info(f"Doc fetch: {len(recent)} selected (capped at {DOC_FETCH_LIMIT})")
 
     if not recent:
-        log.info(f"Doc fetch: no leads within {DOC_FETCH_DAYS}d window missing loan data — skipping")
+        log.info("Doc fetch: no leads missing loan data — skipping")
         return records
 
     log.info(f"Doc fetch: enriching {len(recent)} leads with mortgage intel...")
@@ -1799,9 +1790,10 @@ if __name__ == "__main__":
     log.info(f"Primary:   PublicSearch.us ({KEEP_DAYS}d window, {CHUNK_DAYS}d chunks, {PAGE_TIMEOUT}s timeout)")
     log.info(f"Secondary: ArcGIS weekly backfill = {IS_SUNDAY}")
     log.info(f"Tertiary:  Code Enforcement 311 ({len(CE_CATEGORIES)} categories, {KEEP_DAYS}d window)")
-    log.info(f"Doc fetch: backfill window = {DOC_FETCH_DAYS}d")
+    log.info(f"Doc fetch: OCR loan/lender detail (backfill-eligible, cap={DOC_FETCH_LIMIT})")
     log.info(f"Tenure:    scoring active — 15+yr=+25pts, 10-14yr=+15pts, 5-9yr=+5pts")
     log.info(f"BCAD:      deed history + ARV via trueautomation.com (backfill-eligible, cap={DEED_FETCH_LIMIT})")
+    log.info(f"ARV:       HomeHarvest/Realtor.com (backfill-eligible, cap={ARV_FETCH_LIMIT})")
     log.info(f"Filter:    {KEEP_DAYS}-day cutoff ({CUTOFF_DATE.strftime('%Y-%m-%d')}) | live auctions always kept")
     log.info("=" * 60)
 
