@@ -984,20 +984,34 @@ def ocr_current_doc_page(driver):
     why loan_amount extraction never worked reading it. This screenshots
     the canvas and OCRs it instead. No purchase/"Add to Cart" step needed —
     the viewer already renders the page for free.
+
+    v28.37: the canvas isn't there the instant the page navigates — a
+    fixed 1.5s sleep after the click wasn't enough, so find_element(canvas)
+    was throwing and silently falling back to a full-page screenshot,
+    which OCR'd the navbar/toolbar chrome (Register/Sign in/cart/Help,
+    "Back to Results", the SUMMARY tab label) instead of the actual
+    document — confirmed live 2026-08-11 from the raw OCR dump. Now waits
+    explicitly for the canvas to exist before screenshotting it.
     """
     from selenium.webdriver.common.by import By
+    from selenium.webdriver.support.ui import WebDriverWait
+    from selenium.webdriver.support import expected_conditions as EC
     import pytesseract
     from PIL import Image
     import io
 
     try:
-        canvas = driver.find_element(By.CSS_SELECTOR, "canvas")
+        canvas = WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, "canvas"))
+        )
+        time.sleep(1)  # let the page-render paint finish inside the canvas
         png = canvas.screenshot_as_png
-    except Exception:
+    except Exception as e:
+        log.warning(f"  ocr_current_doc_page: canvas never appeared ({e}) — falling back to full-page screenshot")
         try:
             png = driver.get_screenshot_as_png()
-        except Exception as e:
-            log.warning(f"  ocr_current_doc_page: screenshot failed: {e}")
+        except Exception as e2:
+            log.warning(f"  ocr_current_doc_page: screenshot failed: {e2}")
             return ""
 
     try:
