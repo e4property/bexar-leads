@@ -1098,6 +1098,9 @@ def extract_loan_details(driver):
                                 f"first 300 chars: {dot_text[:300]!r}")
             else:
                 log.warning(f"  Deed of Trust {referenced_doc}: OCR/lookup returned nothing")
+        else:
+            log.warning("  Notice OCR'd but no lender/referenced-doc pattern matched — "
+                         f"first 400 chars: {notice_text[:400]!r}")
     else:
         log.warning("  extract_loan_details: OCR of the Notice page returned no text")
 
