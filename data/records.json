@@ -28,19 +28,36 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 1,
     "tenure_score_bonus": 0,
     "prop_id": "142361.0",
-    "deed_date": "",
+    "deed_date": "1/25/2025",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 79340
+      },
+      {
+        "year": "2025",
+        "appraised": 90570
+      },
+      {
+        "year": "2024",
+        "appraised": 90570
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "90570.0",
     "annual_taxes": "",
     "land_value": "42180.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 0
+    "days_until_sale": 0,
+    "arv_estimate": 128800,
+    "arv_status": "SOLD",
+    "arv_sqft": 768,
+    "arv_fetched_at": "2026-08-12T16:03:18Z"
   },
   {
     "type": "NOF",
@@ -109,7 +126,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900427",
     "ps_doc_id": "",
     "year": "2026",
@@ -121,7 +138,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-08-12T14:38:25Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -169,7 +185,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900420",
     "ps_doc_id": "",
     "year": "2026",
@@ -181,7 +197,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-08-12T14:38:25Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -229,7 +244,7 @@
     "mail_addr": "PEREZ DIONICIO TRUSTEE SAN ANTONIO 78211",
     "absentee": true,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900419",
     "ps_doc_id": "",
     "year": "2026",
@@ -242,7 +257,6 @@
     "run_ts": "2026-08-12T14:38:25Z",
     "flags": [
       "ABSENTEE",
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -290,7 +304,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900418",
     "ps_doc_id": "",
     "year": "2026",
@@ -302,7 +316,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-08-12T14:38:25Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -8268,18 +8281,611 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
+    "tenure_years": 6,
+    "tenure_score_bonus": 5,
     "prop_id": "529589.0",
-    "deed_date": "",
+    "deed_date": "8/3/2020",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 2781580
+      },
+      {
+        "year": "2025",
+        "appraised": 2441920
+      },
+      {
+        "year": "2024",
+        "appraised": 2787750
+      }
+    ],
+    "appr_trend": "up",
     "appraised_value": "2441920.0",
     "annual_taxes": "",
     "land_value": "288150.0",
     "stacked": false,
-    "score": 9,
+    "score": 10,
+    "days_until_sale": 19,
+    "arv_estimate": 116500,
+    "arv_status": "OFF_MARKET",
+    "arv_sqft": 49073,
+    "arv_fetched_at": "2026-08-12T16:03:44Z"
+  },
+  {
+    "type": "NOF",
+    "address": "819 TIMILO DR",
+    "owner": "JOHNSON MARY LOUISE",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260900413",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78219",
+    "school_dist": "",
+    "date_filed": "8/2026",
+    "sale_date": "09/01/2026",
+    "run_ts": "2026-08-11T20:31:50Z",
+    "flags": [
+      "HAS SALE DATE",
+      "AUCTION SOON",
+      "LONG HELD"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "Nathan C",
+    "sale_date_arcgis": "",
+    "tenure_years": 16,
+    "tenure_score_bonus": 25,
+    "prop_id": "525434.0",
+    "deed_date": "3/1/2010",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 129060
+      },
+      {
+        "year": "2025",
+        "appraised": 134210
+      },
+      {
+        "year": "2024",
+        "appraised": 135290
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "134210.0",
+    "annual_taxes": "",
+    "land_value": "51200.0",
+    "arv_estimate": 144694,
+    "arv_status": "OFF_MARKET",
+    "arv_sqft": 864,
+    "arv_fetched_at": "2026-08-11T20:50:07Z",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 19
+  },
+  {
+    "type": "NOF",
+    "address": "7703 ANNEX ST",
+    "owner": "MORENO RICHARD",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": true,
+    "is_new": false,
+    "doc_number": "20260900371",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78222",
+    "school_dist": "",
+    "date_filed": "8/2026",
+    "sale_date": "09/01/2026",
+    "run_ts": "2026-08-11T20:31:50Z",
+    "flags": [
+      "DUPLICATE",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 6,
+    "tenure_score_bonus": 5,
+    "prop_id": "1304559.0",
+    "deed_date": "5/12/2020",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 247320
+      },
+      {
+        "year": "2025",
+        "appraised": 261500
+      },
+      {
+        "year": "2024",
+        "appraised": 271200
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "261500.0",
+    "annual_taxes": "",
+    "land_value": "52960.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 19,
+    "arv_estimate": 244429,
+    "arv_status": "SOLD",
+    "arv_sqft": 1668,
+    "arv_fetched_at": "2026-08-12T16:04:12Z"
+  },
+  {
+    "type": "NOF",
+    "address": "11607 TAHOKA DAISY",
+    "owner": "FLORES PEDRO M JR & AMPARO E",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260900374",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78245",
+    "school_dist": "",
+    "date_filed": "8/2026",
+    "sale_date": "09/01/2026",
+    "run_ts": "2026-08-11T20:31:50Z",
+    "flags": [
+      "HAS SALE DATE",
+      "AUCTION SOON",
+      "LONG HELD"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 14,
+    "tenure_score_bonus": 15,
+    "prop_id": "1053348.0",
+    "deed_date": "9/29/2011",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 317000
+      },
+      {
+        "year": "2025",
+        "appraised": 334000
+      },
+      {
+        "year": "2024",
+        "appraised": 353820
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "352550.0",
+    "annual_taxes": "",
+    "land_value": "58460.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 19,
+    "arv_estimate": 327500,
+    "arv_status": "SOLD",
+    "arv_sqft": 3015,
+    "arv_fetched_at": "2026-08-12T16:04:21Z"
+  },
+  {
+    "type": "NOF",
+    "address": "122 MORNINGVIEW DR",
+    "owner": "SOTO JOSE MIGUEL",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": true,
+    "is_new": false,
+    "doc_number": "20260900369",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78220",
+    "school_dist": "",
+    "date_filed": "8/2026",
+    "sale_date": "09/01/2026",
+    "run_ts": "2026-08-11T20:31:50Z",
+    "flags": [
+      "DUPLICATE",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 7,
+    "tenure_score_bonus": 5,
+    "prop_id": "441595.0",
+    "deed_date": "4/29/2019",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 127000
+      },
+      {
+        "year": "2025",
+        "appraised": 127000
+      },
+      {
+        "year": "2024",
+        "appraised": 127000
+      }
+    ],
+    "appr_trend": "flat",
+    "appraised_value": "127000.0",
+    "annual_taxes": "",
+    "land_value": "35180.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 19,
+    "arv_estimate": 140700,
+    "arv_status": "OFF_MARKET",
+    "arv_sqft": 1092,
+    "arv_fetched_at": "2026-08-12T16:04:44Z"
+  },
+  {
+    "type": "NOF",
+    "address": "11207 WILD PINE",
+    "owner": "SHERRILL CARL ANDREW",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260900367",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78253",
+    "school_dist": "",
+    "date_filed": "8/2026",
+    "sale_date": "09/01/2026",
+    "run_ts": "2026-08-11T20:31:50Z",
+    "flags": [
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 5,
+    "tenure_score_bonus": 5,
+    "prop_id": "1045949.0",
+    "deed_date": "9/11/2020",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 260000
+      },
+      {
+        "year": "2025",
+        "appraised": 260000
+      },
+      {
+        "year": "2024",
+        "appraised": 301900
+      }
+    ],
+    "appr_trend": "flat",
+    "appraised_value": "260000.0",
+    "annual_taxes": "",
+    "land_value": "54760.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 19
+  },
+  {
+    "type": "NOF",
+    "address": "8425 AHERN DR",
+    "owner": "PRIMETIME 8425 AHERN DRIVE LLC",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260900366",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78216",
+    "school_dist": "",
+    "date_filed": "8/2026",
+    "sale_date": "09/01/2026",
+    "run_ts": "2026-08-11T20:31:50Z",
+    "flags": [
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 5,
+    "tenure_score_bonus": 5,
+    "prop_id": "497234.0",
+    "deed_date": "3/26/2021",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 5500000
+      },
+      {
+        "year": "2025",
+        "appraised": 7200000
+      },
+      {
+        "year": "2024",
+        "appraised": 7547558
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "7200000.0",
+    "annual_taxes": "",
+    "land_value": "4095860.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 19
+  },
+  {
+    "type": "NOF",
+    "address": "123 TIPTON AVE",
+    "owner": "RIVERCITY GROUP LLC",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260900363",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78204",
+    "school_dist": "",
+    "date_filed": "8/2026",
+    "sale_date": "09/01/2026",
+    "run_ts": "2026-08-11T20:31:50Z",
+    "flags": [
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 8,
+    "tenure_score_bonus": 5,
+    "prop_id": "382344.0",
+    "deed_date": "5/24/2018",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 241760
+      },
+      {
+        "year": "2025",
+        "appraised": 136050
+      },
+      {
+        "year": "2024",
+        "appraised": 132380
+      }
+    ],
+    "appr_trend": "up",
+    "appraised_value": "136050.0",
+    "annual_taxes": "",
+    "land_value": "74300.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 19,
+    "arv_estimate": 317725,
+    "arv_status": "FOR_SALE",
+    "arv_sqft": 1570,
+    "arv_fetched_at": "2026-08-12T16:05:28Z"
+  },
+  {
+    "type": "NOF",
+    "address": "7750 BRIARIDGE DR",
+    "owner": "HOTEL CAPITAL SAN ANTONIO LLC",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260900359",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78230",
+    "school_dist": "",
+    "date_filed": "8/2026",
+    "sale_date": "09/01/2026",
+    "run_ts": "2026-08-11T20:31:50Z",
+    "flags": [
+      "HAS SALE DATE",
+      "AUCTION SOON",
+      "LONG HELD"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 11,
+    "tenure_score_bonus": 15,
+    "prop_id": "524299.0",
+    "deed_date": "6/23/2015",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 3300000
+      },
+      {
+        "year": "2025",
+        "appraised": 3700000
+      },
+      {
+        "year": "2024",
+        "appraised": 4000000
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "3700000.0",
+    "annual_taxes": "",
+    "land_value": "2448470.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 19
+  },
+  {
+    "type": "NOF",
+    "address": "1171 BANDERA RD",
+    "owner": "OAKS ON BANDERA LLC",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260900358",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78228",
+    "school_dist": "",
+    "date_filed": "8/2026",
+    "sale_date": "09/01/2026",
+    "run_ts": "2026-08-11T20:31:50Z",
+    "flags": [
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 6,
+    "tenure_score_bonus": 5,
+    "prop_id": "485182.0",
+    "deed_date": "4/16/2020",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 5815000
+      },
+      {
+        "year": "2025",
+        "appraised": 6120000
+      },
+      {
+        "year": "2024",
+        "appraised": 6308100
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "6120000.0",
+    "annual_taxes": "",
+    "land_value": "1690210.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 19
+  },
+  {
+    "type": "NOF",
+    "address": "980 HEDGESTONE DR",
+    "owner": "GALVAN SALVADOR",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260900356",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78258",
+    "school_dist": "",
+    "date_filed": "8/2026",
+    "sale_date": "09/01/2026",
+    "run_ts": "2026-08-11T20:31:50Z",
+    "flags": [
+      "HAS SALE DATE",
+      "AUCTION SOON",
+      "LONG HELD"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 20,
+    "tenure_score_bonus": 25,
+    "prop_id": "735706.0",
+    "deed_date": "7/14/2006",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 347720
+      },
+      {
+        "year": "2025",
+        "appraised": 358010
+      },
+      {
+        "year": "2024",
+        "appraised": 358010
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "358010.0",
+    "annual_taxes": "",
+    "land_value": "96520.0",
+    "stacked": false,
+    "score": 10,
     "days_until_sale": 19
   },
   {
@@ -8316,8 +8922,21 @@
     "prop_id": "641838.0",
     "deed_date": "",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 3925040
+      },
+      {
+        "year": "2025",
+        "appraised": 3887730
+      },
+      {
+        "year": "2024",
+        "appraised": 3898470
+      }
+    ],
+    "appr_trend": "flat",
     "appraised_value": "3887730.0",
     "annual_taxes": "",
     "land_value": "2583650.0",
@@ -8359,14 +8978,27 @@
     "prop_id": "541422.0",
     "deed_date": "",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 3152560
+      },
+      {
+        "year": "2025",
+        "appraised": 3143850
+      }
+    ],
+    "appr_trend": "flat",
     "appraised_value": "3143850.0",
     "annual_taxes": "",
     "land_value": "2882840.0",
     "stacked": false,
     "score": 9,
-    "days_until_sale": 19
+    "days_until_sale": 19,
+    "arv_estimate": 226000,
+    "arv_status": "SOLD",
+    "arv_sqft": 1573,
+    "arv_fetched_at": "2026-08-12T16:04:08Z"
   },
   {
     "type": "NOF",
@@ -8690,7 +9322,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900428",
     "ps_doc_id": "",
     "year": "2026",
@@ -8703,7 +9335,6 @@
     "run_ts": "2026-08-12T14:38:25Z",
     "flags": [
       "DUPLICATE",
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -8751,7 +9382,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900424",
     "ps_doc_id": "",
     "year": "2026",
@@ -8763,7 +9394,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-08-12T14:38:25Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -8811,7 +9441,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900426",
     "ps_doc_id": "",
     "year": "2026",
@@ -8823,7 +9453,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-08-12T14:38:25Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -8871,7 +9500,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900425",
     "ps_doc_id": "",
     "year": "2026",
@@ -8883,7 +9512,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-08-12T14:38:25Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -8931,7 +9559,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900421",
     "ps_doc_id": "",
     "year": "2026",
@@ -8943,7 +9571,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-08-12T14:38:25Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -8991,7 +9618,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900423",
     "ps_doc_id": "",
     "year": "2026",
@@ -9003,7 +9630,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-08-12T14:38:25Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -9051,7 +9677,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900422",
     "ps_doc_id": "",
     "year": "2026",
@@ -9063,7 +9689,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-08-12T14:38:25Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -9111,7 +9736,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900417",
     "ps_doc_id": "",
     "year": "2026",
@@ -9123,7 +9748,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-08-12T14:38:25Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -9156,65 +9780,6 @@
     "arv_status": "OFF_MARKET",
     "arv_sqft": null,
     "arv_fetched_at": "2026-08-12T14:51:44Z",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 19
-  },
-  {
-    "type": "NOF",
-    "address": "819 TIMILO DR",
-    "owner": "JOHNSON MARY LOUISE",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260900413",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78219",
-    "school_dist": "",
-    "date_filed": "8/2026",
-    "sale_date": "09/01/2026",
-    "run_ts": "2026-08-11T20:31:50Z",
-    "flags": [
-      "HAS SALE DATE",
-      "AUCTION SOON"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "Nathan C",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "525434.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [
-      {
-        "year": "2026",
-        "appraised": 129060
-      },
-      {
-        "year": "2025",
-        "appraised": 134210
-      },
-      {
-        "year": "2024",
-        "appraised": 135290
-      }
-    ],
-    "appr_trend": "down",
-    "appraised_value": "134210.0",
-    "annual_taxes": "",
-    "land_value": "51200.0",
-    "arv_estimate": 144694,
-    "arv_status": "OFF_MARKET",
-    "arv_sqft": 864,
-    "arv_fetched_at": "2026-08-11T20:50:07Z",
     "stacked": false,
     "score": 7,
     "days_until_sale": 19
@@ -9834,62 +10399,36 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 1,
     "tenure_score_bonus": 0,
     "prop_id": "304503.0",
-    "deed_date": "",
+    "deed_date": "6/24/2025",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 266600
+      },
+      {
+        "year": "2025",
+        "appraised": 217460
+      },
+      {
+        "year": "2024",
+        "appraised": 217460
+      }
+    ],
+    "appr_trend": "up",
     "appraised_value": "217460.0",
     "annual_taxes": "",
     "land_value": "49780.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 19
-  },
-  {
-    "type": "NOF",
-    "address": "7703 ANNEX ST",
-    "owner": "MORENO RICHARD",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": true,
-    "is_new": false,
-    "doc_number": "20260900371",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78222",
-    "school_dist": "",
-    "date_filed": "8/2026",
-    "sale_date": "09/01/2026",
-    "run_ts": "2026-08-11T20:31:50Z",
-    "flags": [
-      "DUPLICATE",
-      "HAS SALE DATE",
-      "AUCTION SOON"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "1304559.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "261500.0",
-    "annual_taxes": "",
-    "land_value": "52960.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 19
+    "days_until_sale": 19,
+    "arv_estimate": 233000,
+    "arv_status": "FOR_RENT",
+    "arv_sqft": 1470,
+    "arv_fetched_at": "2026-08-12T16:04:10Z"
   },
   {
     "type": "NOF",
@@ -9919,19 +10458,36 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 1,
     "tenure_score_bonus": 0,
     "prop_id": "391301.0",
-    "deed_date": "",
+    "deed_date": "10/17/2024",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 274140
+      },
+      {
+        "year": "2025",
+        "appraised": 283770
+      },
+      {
+        "year": "2024",
+        "appraised": 292440
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "283770.0",
     "annual_taxes": "",
     "land_value": "95520.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 19
+    "days_until_sale": 19,
+    "arv_estimate": 247000,
+    "arv_status": "SOLD",
+    "arv_sqft": 1641,
+    "arv_fetched_at": "2026-08-12T16:04:14Z"
   },
   {
     "type": "NOF",
@@ -9962,19 +10518,36 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 2,
     "tenure_score_bonus": 0,
     "prop_id": "378520.0",
-    "deed_date": "",
+    "deed_date": "5/30/2024",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 182760
+      },
+      {
+        "year": "2025",
+        "appraised": 185000
+      },
+      {
+        "year": "2024",
+        "appraised": 128940
+      }
+    ],
+    "appr_trend": "flat",
     "appraised_value": "185000.0",
     "annual_taxes": "",
     "land_value": "72560.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 19
+    "days_until_sale": 19,
+    "arv_estimate": 188400,
+    "arv_status": "SOLD",
+    "arv_sqft": 1176,
+    "arv_fetched_at": "2026-08-12T16:04:16Z"
   },
   {
     "type": "NOF",
@@ -10004,19 +10577,36 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 4,
     "tenure_score_bonus": 0,
     "prop_id": "372818.0",
-    "deed_date": "",
+    "deed_date": "2/11/2022",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 159490
+      },
+      {
+        "year": "2025",
+        "appraised": 165350
+      },
+      {
+        "year": "2024",
+        "appraised": 165350
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "165350.0",
     "annual_taxes": "",
     "land_value": "42170.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 19
+    "days_until_sale": 19,
+    "arv_estimate": 203000,
+    "arv_status": "OFF_MARKET",
+    "arv_sqft": 1339,
+    "arv_fetched_at": "2026-08-12T16:04:17Z"
   },
   {
     "type": "NOF",
@@ -10046,61 +10636,36 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 1,
     "tenure_score_bonus": 0,
     "prop_id": "596483.0",
-    "deed_date": "",
+    "deed_date": "5/6/2025",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 279360
+      },
+      {
+        "year": "2025",
+        "appraised": 279360
+      },
+      {
+        "year": "2024",
+        "appraised": 279360
+      }
+    ],
+    "appr_trend": "flat",
     "appraised_value": "279360.0",
     "annual_taxes": "",
     "land_value": "45700.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 19
-  },
-  {
-    "type": "NOF",
-    "address": "11607 TAHOKA DAISY",
-    "owner": "FLORES PEDRO M JR & AMPARO E",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260900374",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78245",
-    "school_dist": "",
-    "date_filed": "8/2026",
-    "sale_date": "09/01/2026",
-    "run_ts": "2026-08-11T20:31:50Z",
-    "flags": [
-      "HAS SALE DATE",
-      "AUCTION SOON"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "1053348.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "352550.0",
-    "annual_taxes": "",
-    "land_value": "58460.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 19
+    "days_until_sale": 19,
+    "arv_estimate": 265831,
+    "arv_status": "SOLD",
+    "arv_sqft": 3093,
+    "arv_fetched_at": "2026-08-12T16:04:19Z"
   },
   {
     "type": "NOF",
@@ -10130,19 +10695,36 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 3,
     "tenure_score_bonus": 0,
     "prop_id": "485813.0",
-    "deed_date": "",
+    "deed_date": "1/19/2023",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 2848950
+      },
+      {
+        "year": "2025",
+        "appraised": 2848950
+      },
+      {
+        "year": "2024",
+        "appraised": 3391889
+      }
+    ],
+    "appr_trend": "flat",
     "appraised_value": "2848950.0",
     "annual_taxes": "",
     "land_value": "249260.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 19
+    "days_until_sale": 19,
+    "arv_estimate": 219393,
+    "arv_status": "FOR_SALE",
+    "arv_sqft": 1681,
+    "arv_fetched_at": "2026-08-12T16:04:39Z"
   },
   {
     "type": "NOF",
@@ -10172,19 +10754,36 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 3,
     "tenure_score_bonus": 0,
     "prop_id": "1345603.0",
-    "deed_date": "",
+    "deed_date": "11/4/2022",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 238530
+      },
+      {
+        "year": "2025",
+        "appraised": 238530
+      },
+      {
+        "year": "2024",
+        "appraised": 235920
+      }
+    ],
+    "appr_trend": "flat",
     "appraised_value": "238530.0",
     "annual_taxes": "",
     "land_value": "51550.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 19
+    "days_until_sale": 19,
+    "arv_estimate": 191558,
+    "arv_status": "FOR_SALE",
+    "arv_sqft": 1450,
+    "arv_fetched_at": "2026-08-12T16:04:40Z"
   },
   {
     "type": "NOF",
@@ -10215,62 +10814,36 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 4,
     "tenure_score_bonus": 0,
     "prop_id": "405756.0",
-    "deed_date": "",
+    "deed_date": "12/10/2021",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 199820
+      },
+      {
+        "year": "2025",
+        "appraised": 204190
+      },
+      {
+        "year": "2024",
+        "appraised": 228800
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "204190.0",
     "annual_taxes": "",
     "land_value": "44060.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 19
-  },
-  {
-    "type": "NOF",
-    "address": "122 MORNINGVIEW DR",
-    "owner": "SOTO JOSE MIGUEL",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": true,
-    "is_new": false,
-    "doc_number": "20260900369",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78220",
-    "school_dist": "",
-    "date_filed": "8/2026",
-    "sale_date": "09/01/2026",
-    "run_ts": "2026-08-11T20:31:50Z",
-    "flags": [
-      "DUPLICATE",
-      "HAS SALE DATE",
-      "AUCTION SOON"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "441595.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "127000.0",
-    "annual_taxes": "",
-    "land_value": "35180.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 19
+    "days_until_sale": 19,
+    "arv_estimate": 214600,
+    "arv_status": "OFF_MARKET",
+    "arv_sqft": 2018,
+    "arv_fetched_at": "2026-08-12T16:04:42Z"
   },
   {
     "type": "NOF",
@@ -10301,103 +10874,36 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 1,
     "tenure_score_bonus": 0,
     "prop_id": "523561.0",
-    "deed_date": "",
+    "deed_date": "9/17/2024",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 229770
+      },
+      {
+        "year": "2025",
+        "appraised": 233770
+      },
+      {
+        "year": "2024",
+        "appraised": 234910
+      }
+    ],
+    "appr_trend": "flat",
     "appraised_value": "233770.0",
     "annual_taxes": "",
     "land_value": "63970.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 19
-  },
-  {
-    "type": "NOF",
-    "address": "11207 WILD PINE",
-    "owner": "SHERRILL CARL ANDREW",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260900367",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78253",
-    "school_dist": "",
-    "date_filed": "8/2026",
-    "sale_date": "09/01/2026",
-    "run_ts": "2026-08-11T20:31:50Z",
-    "flags": [
-      "HAS SALE DATE",
-      "AUCTION SOON"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "1045949.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "260000.0",
-    "annual_taxes": "",
-    "land_value": "54760.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 19
-  },
-  {
-    "type": "NOF",
-    "address": "8425 AHERN DR",
-    "owner": "PRIMETIME 8425 AHERN DRIVE LLC",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260900366",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78216",
-    "school_dist": "",
-    "date_filed": "8/2026",
-    "sale_date": "09/01/2026",
-    "run_ts": "2026-08-11T20:31:50Z",
-    "flags": [
-      "HAS SALE DATE",
-      "AUCTION SOON"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "497234.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "7200000.0",
-    "annual_taxes": "",
-    "land_value": "4095860.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 19
+    "days_until_sale": 19,
+    "arv_estimate": 257721,
+    "arv_status": "OFF_MARKET",
+    "arv_sqft": 1136,
+    "arv_fetched_at": "2026-08-12T16:04:45Z"
   },
   {
     "type": "NOF",
@@ -10432,56 +10938,31 @@
     "prop_id": "590971.0",
     "deed_date": "",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 178550
+      },
+      {
+        "year": "2025",
+        "appraised": 178550
+      },
+      {
+        "year": "2024",
+        "appraised": 179250
+      }
+    ],
+    "appr_trend": "flat",
     "appraised_value": "178550.0",
     "annual_taxes": "",
     "land_value": "46570.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 19
-  },
-  {
-    "type": "NOF",
-    "address": "123 TIPTON AVE",
-    "owner": "RIVERCITY GROUP LLC",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260900363",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78204",
-    "school_dist": "",
-    "date_filed": "8/2026",
-    "sale_date": "09/01/2026",
-    "run_ts": "2026-08-11T20:31:50Z",
-    "flags": [
-      "HAS SALE DATE",
-      "AUCTION SOON"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "382344.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "136050.0",
-    "annual_taxes": "",
-    "land_value": "74300.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 19
+    "days_until_sale": 19,
+    "arv_estimate": 354000,
+    "arv_status": "SOLD",
+    "arv_sqft": 1775,
+    "arv_fetched_at": "2026-08-12T16:05:26Z"
   },
   {
     "type": "NOF",
@@ -10512,13 +10993,26 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 1,
     "tenure_score_bonus": 0,
     "prop_id": "489629.0",
-    "deed_date": "",
+    "deed_date": "1/27/2025",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 42500000
+      },
+      {
+        "year": "2025",
+        "appraised": 43000000
+      },
+      {
+        "year": "2024",
+        "appraised": 43000000
+      }
+    ],
+    "appr_trend": "flat",
     "appraised_value": "43000000.0",
     "annual_taxes": "",
     "land_value": "5374420.0",
@@ -10555,13 +11049,26 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 1,
     "tenure_score_bonus": 0,
     "prop_id": "487392.0",
-    "deed_date": "",
+    "deed_date": "2/14/2025",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 23500000
+      },
+      {
+        "year": "2025",
+        "appraised": 24500000
+      },
+      {
+        "year": "2024",
+        "appraised": 23850000
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "24500000.0",
     "annual_taxes": "",
     "land_value": "5238900.0",
@@ -10597,19 +11104,36 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 0,
     "tenure_score_bonus": 0,
     "prop_id": "690469.0",
-    "deed_date": "",
+    "deed_date": "9/19/2025",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 199330
+      },
+      {
+        "year": "2025",
+        "appraised": 199330
+      },
+      {
+        "year": "2024",
+        "appraised": 199330
+      }
+    ],
+    "appr_trend": "flat",
     "appraised_value": "199330.0",
     "annual_taxes": "",
     "land_value": "56590.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 19
+    "days_until_sale": 19,
+    "arv_estimate": 198725,
+    "arv_status": "SOLD",
+    "arv_sqft": 1259,
+    "arv_fetched_at": "2026-08-12T16:05:54Z"
   },
   {
     "type": "NOF",
@@ -10639,100 +11163,29 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 4,
     "tenure_score_bonus": 0,
     "prop_id": "358086.0",
-    "deed_date": "",
+    "deed_date": "5/20/2022",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 6014773
+      },
+      {
+        "year": "2025",
+        "appraised": 5350000
+      },
+      {
+        "year": "2024",
+        "appraised": 5350000
+      }
+    ],
+    "appr_trend": "up",
     "appraised_value": "5523050.0",
     "annual_taxes": "",
     "land_value": "562190.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 19
-  },
-  {
-    "type": "NOF",
-    "address": "7750 BRIARIDGE DR",
-    "owner": "HOTEL CAPITAL SAN ANTONIO LLC",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260900359",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78230",
-    "school_dist": "",
-    "date_filed": "8/2026",
-    "sale_date": "09/01/2026",
-    "run_ts": "2026-08-11T20:31:50Z",
-    "flags": [
-      "HAS SALE DATE",
-      "AUCTION SOON"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "524299.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "3700000.0",
-    "annual_taxes": "",
-    "land_value": "2448470.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 19
-  },
-  {
-    "type": "NOF",
-    "address": "1171 BANDERA RD",
-    "owner": "OAKS ON BANDERA LLC",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260900358",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78228",
-    "school_dist": "",
-    "date_filed": "8/2026",
-    "sale_date": "09/01/2026",
-    "run_ts": "2026-08-11T20:31:50Z",
-    "flags": [
-      "HAS SALE DATE",
-      "AUCTION SOON"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "485182.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "6120000.0",
-    "annual_taxes": "",
-    "land_value": "1690210.0",
     "stacked": false,
     "score": 7,
     "days_until_sale": 19
@@ -10766,58 +11219,29 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 3,
     "tenure_score_bonus": 0,
     "prop_id": "1405191.0",
-    "deed_date": "",
+    "deed_date": "5/15/2023",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 3192850
+      },
+      {
+        "year": "2025",
+        "appraised": 3223600
+      },
+      {
+        "year": "2024",
+        "appraised": 3288990
+      }
+    ],
+    "appr_trend": "flat",
     "appraised_value": "3223600.0",
     "annual_taxes": "",
     "land_value": "2428000.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 19
-  },
-  {
-    "type": "NOF",
-    "address": "980 HEDGESTONE DR",
-    "owner": "GALVAN SALVADOR",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260900356",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78258",
-    "school_dist": "",
-    "date_filed": "8/2026",
-    "sale_date": "09/01/2026",
-    "run_ts": "2026-08-11T20:31:50Z",
-    "flags": [
-      "HAS SALE DATE",
-      "AUCTION SOON"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "735706.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "358010.0",
-    "annual_taxes": "",
-    "land_value": "96520.0",
     "stacked": false,
     "score": 7,
     "days_until_sale": 19
@@ -21656,7 +22080,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900415",
     "ps_doc_id": "",
     "year": "2026",
@@ -21668,7 +22092,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-08-12T14:38:25Z",
     "flags": [
-      "NEW",
       "NO OWNER",
       "HAS SALE DATE",
       "AUCTION SOON"
@@ -21697,7 +22120,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260900416",
     "ps_doc_id": "",
     "year": "2026",
@@ -21709,7 +22132,6 @@
     "sale_date": "09/01/2026",
     "run_ts": "2026-08-12T14:38:25Z",
     "flags": [
-      "NEW",
       "NO OWNER",
       "HAS SALE DATE",
       "AUCTION SOON"
