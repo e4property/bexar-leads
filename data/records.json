@@ -9597,7 +9597,11 @@
     "land_value": "55940.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 18
+    "days_until_sale": 18,
+    "arv_estimate": 1158139,
+    "arv_status": "SOLD",
+    "arv_sqft": 4449,
+    "arv_fetched_at": "2026-08-13T20:48:41Z"
   },
   {
     "type": "NOF",
@@ -9653,7 +9657,11 @@
     "land_value": "36390.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 18
+    "days_until_sale": 18,
+    "arv_estimate": 177146,
+    "arv_status": "SOLD",
+    "arv_sqft": 1279,
+    "arv_fetched_at": "2026-08-13T20:48:43Z"
   },
   {
     "type": "NOF",
@@ -9820,7 +9828,11 @@
     "land_value": "67320.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 18
+    "days_until_sale": 18,
+    "arv_estimate": 233500,
+    "arv_status": "SOLD",
+    "arv_sqft": 1552,
+    "arv_fetched_at": "2026-08-13T20:49:10Z"
   },
   {
     "type": "NOF",
@@ -13326,7 +13338,11 @@
     "land_value": "40850.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 18
+    "days_until_sale": 18,
+    "arv_estimate": 82300,
+    "arv_status": "SOLD",
+    "arv_sqft": 448,
+    "arv_fetched_at": "2026-08-13T20:52:41Z"
   },
   {
     "type": "NOF",
@@ -37447,10 +37463,10 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 1,
     "tenure_score_bonus": 0,
     "prop_id": "1415879.0",
-    "deed_date": "",
+    "deed_date": "4/17/2025",
     "last_sale_amt": "",
     "appr_history": [
       {
