@@ -9541,7 +9541,11 @@
     "land_value": "54700.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 15
+    "days_until_sale": 15,
+    "arv_estimate": 271000,
+    "arv_status": "FOR_RENT",
+    "arv_sqft": 2563,
+    "arv_fetched_at": "2026-08-16T20:28:14Z"
   },
   {
     "type": "NOF",
@@ -16155,7 +16159,11 @@
     "land_value": "57730.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 15
+    "days_until_sale": 15,
+    "arv_estimate": 275200,
+    "arv_status": "SOLD",
+    "arv_sqft": 1839,
+    "arv_fetched_at": "2026-08-16T20:33:02Z"
   },
   {
     "type": "NOF",
@@ -16215,7 +16223,11 @@
     "dash_searched_at": "2026-08-10T17:13:59.139Z",
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T17:13:59.139Z",
-    "ghl_id": "i1HVeHUDplUZ5SmAxPjF"
+    "ghl_id": "i1HVeHUDplUZ5SmAxPjF",
+    "arv_estimate": 199398,
+    "arv_status": "OFF_MARKET",
+    "arv_sqft": 1369,
+    "arv_fetched_at": "2026-08-16T20:33:03Z"
   },
   {
     "type": "NOF",
