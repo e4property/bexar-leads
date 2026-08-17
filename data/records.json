@@ -16751,7 +16751,11 @@
     "dash_searched_at": "2026-08-10T17:15:34.478Z",
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T17:15:34.478Z",
-    "ghl_id": "HJwQItjWYCv9ywIowTr3"
+    "ghl_id": "HJwQItjWYCv9ywIowTr3",
+    "arv_estimate": 191814,
+    "arv_status": "OFF_MARKET",
+    "arv_sqft": 1103,
+    "arv_fetched_at": "2026-08-17T23:58:55Z"
   },
   {
     "type": "NOF",
@@ -16808,7 +16812,11 @@
     "land_value": "44060.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 14
+    "days_until_sale": 14,
+    "arv_estimate": 141789,
+    "arv_status": "OFF_MARKET",
+    "arv_sqft": 1020,
+    "arv_fetched_at": "2026-08-17T23:58:56Z"
   },
   {
     "type": "NOF",
