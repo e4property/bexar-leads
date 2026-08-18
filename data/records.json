@@ -17486,7 +17486,11 @@
     "land_value": "42660.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 13
+    "days_until_sale": 13,
+    "arv_estimate": 191900,
+    "arv_status": "SOLD",
+    "arv_sqft": 1021,
+    "arv_fetched_at": "2026-08-18T20:35:36Z"
   },
   {
     "type": "NOF",
@@ -17542,7 +17546,11 @@
     "land_value": "47880.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 13
+    "days_until_sale": 13,
+    "arv_estimate": 239959,
+    "arv_status": "SOLD",
+    "arv_sqft": 1934,
+    "arv_fetched_at": "2026-08-18T20:35:38Z"
   },
   {
     "type": "NOF",
@@ -17598,7 +17606,11 @@
     "land_value": "51390.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 13
+    "days_until_sale": 13,
+    "arv_estimate": 237400,
+    "arv_status": "SOLD",
+    "arv_sqft": 1516,
+    "arv_fetched_at": "2026-08-18T20:35:39Z"
   },
   {
     "type": "NOF",
@@ -17654,7 +17666,11 @@
     "land_value": "43160.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 13
+    "days_until_sale": 13,
+    "arv_estimate": 228000,
+    "arv_status": "SOLD",
+    "arv_sqft": 1460,
+    "arv_fetched_at": "2026-08-18T20:35:41Z"
   },
   {
     "type": "NOF",
@@ -17710,7 +17726,11 @@
     "land_value": "92670.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 13
+    "days_until_sale": 13,
+    "arv_estimate": 724107,
+    "arv_status": "FOR_SALE",
+    "arv_sqft": 4724,
+    "arv_fetched_at": "2026-08-18T20:35:42Z"
   },
   {
     "type": "NOF",
@@ -17766,7 +17786,11 @@
     "land_value": "83190.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 13
+    "days_until_sale": 13,
+    "arv_estimate": 353600,
+    "arv_status": "FOR_SALE",
+    "arv_sqft": 3635,
+    "arv_fetched_at": "2026-08-18T20:35:44Z"
   },
   {
     "type": "NOF",
@@ -38556,7 +38580,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000035",
     "ps_doc_id": "",
     "year": "2026",
@@ -38568,7 +38592,6 @@
     "sale_date": "10/06/2026",
     "run_ts": "2026-08-18T19:21:26Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
