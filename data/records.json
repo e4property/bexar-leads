@@ -17246,7 +17246,11 @@
     "land_value": "44330.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 13
+    "days_until_sale": 13,
+    "arv_estimate": 162000,
+    "arv_status": "SOLD",
+    "arv_sqft": 1152,
+    "arv_fetched_at": "2026-08-18T19:37:32Z"
   },
   {
     "type": "NOF",
@@ -17302,7 +17306,11 @@
     "land_value": "51350.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 13
+    "days_until_sale": 13,
+    "arv_estimate": 151632,
+    "arv_status": "SOLD",
+    "arv_sqft": 1088,
+    "arv_fetched_at": "2026-08-18T19:37:33Z"
   },
   {
     "type": "NOF",
@@ -17358,7 +17366,11 @@
     "land_value": "105720.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 13
+    "days_until_sale": 13,
+    "arv_estimate": 502000,
+    "arv_status": "SOLD",
+    "arv_sqft": 2579,
+    "arv_fetched_at": "2026-08-18T19:37:35Z"
   },
   {
     "type": "NOF",
@@ -17414,7 +17426,11 @@
     "land_value": "142210.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 13
+    "days_until_sale": 13,
+    "arv_estimate": 45000,
+    "arv_status": "FOR_SALE",
+    "arv_sqft": 1034,
+    "arv_fetched_at": "2026-08-18T19:38:03Z"
   },
   {
     "type": "NOF",
@@ -38532,6 +38548,65 @@
     "stacked": false,
     "score": 8,
     "days_until_sale": null
+  },
+  {
+    "type": "NOF",
+    "address": "22045 PRIEST RD",
+    "owner": "ORDONEZ BEATRICE & MONDRAGON EDWARD",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20261000035",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "8",
+    "city": "ELMENDORF",
+    "zip": "78112",
+    "school_dist": "",
+    "date_filed": "8/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-08-18T19:21:26Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "prop_id": "160624.0",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 202500
+      },
+      {
+        "year": "2025",
+        "appraised": 208700
+      },
+      {
+        "year": "2024",
+        "appraised": 212670
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "208700.0",
+    "annual_taxes": "",
+    "land_value": "61400.0",
+    "arv_estimate": 207000,
+    "arv_status": "SOLD",
+    "arv_sqft": 1512,
+    "arv_fetched_at": "2026-08-18T19:33:00Z",
+    "stacked": false,
+    "score": 7,
+    "days_until_sale": 48
   },
   {
     "type": "NOF",
