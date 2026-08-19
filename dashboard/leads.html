@@ -1280,7 +1280,30 @@ function setGhlDot(ok){const dot=document.getElementById('ghl-dot'),txt=document
 
 function updateStats(){set('ov-total',allLeads.length);set('ov-new',allLeads.filter(l=>l.is_new).length);set('ov-urgent',allLeads.filter(l=>isUrgent(l)&&!auctionPassed(l)).length);set('ov-absentee',allLeads.filter(l=>l.absentee).length);set('ov-tax',allLeads.filter(l=>l.type==='TAX').length);set('ov-ce',allLeads.filter(isCEOnly).length);set('ov-vbp',allLeads.filter(l=>isVBP(l)||isStacked(l)).length);set('ov-searched',Object.values(S.leads).filter(l=>l.phone||l.ghl_pushed).length);set('ov-deals',Object.values(S.leads).filter(l=>l.dispo==='deal').length);const ls=Object.values(S.leads),cont=ls.filter(l=>l.dispo==='contacted').length,resp=ls.filter(l=>l.dispo==='responded').length,deal=ls.filter(l=>l.dispo==='deal').length,dead=ls.filter(l=>l.dispo==='dead').length;const tot=Math.max(Object.values(S.leads).filter(l=>l.phone).length,1),pct=n=>Math.round(n/tot*100)+'%';['pb-contacted','pb-responded','pb-deal','pb-dead'].forEach((id,i)=>{const el=document.getElementById(id);if(el)el.style.width=pct([cont,resp,deal,dead][i]);});set('pb-l-cont',cont+' contacted');set('pb-l-resp',resp+' responded');set('pb-l-deal',deal+' deals');set('pb-l-dead',dead+' dead');}
 
-async function triggerScrape(){if(!S.ghToken){toast('Save GitHub token in Settings first',true);openSettings();return;}const btn=document.getElementById('btn-scrape');btn.innerHTML='<span class="spin"></span> Running…';btn.disabled=true;try{const res=await fetch(`https://api.github.com/repos/${GH_REPO}/actions/workflows/${GH_WORKFLOW}/dispatches`,{method:'POST',headers:{'Authorization':'Bearer '+S.ghToken,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28','Content-Type':'application/json'},body:JSON.stringify({ref:'main'})});if(res.status===204)toast('✓ Scrape triggered! Check Actions in ~10 min','ok');else{const d=await res.json();toast('Error: '+(d.message||res.status),true);}}catch(e){toast('Failed: '+e.message,true);}btn.innerHTML='▶ Run Scrape';btn.disabled=false;}
+// Derives the repo to hit from whichever county is ACTIVE in the switcher,
+// not a hardcoded constant -- this file gets copy-pasted across all three
+// county sites, and the old hardcoded GH_REPO meant switching to Nueces
+// from the Bexar page and hitting "Run Scrape" silently triggered Bexar's
+// workflow instead. Guadalupe has no scrape.yml at all (manually-seeded
+// repo, per its own README) -- fails clearly rather than pretending.
+function repoForActiveCounty(){
+  const county=getActiveCounty();
+  const m=(county.url||'').match(/github\.io\/([a-z0-9-]+)\//i);
+  return m?`e4property/${m[1]}`:GH_REPO;
+}
+async function triggerScrape(){
+  if(!S.ghToken){toast('Save GitHub token in Settings first',true);openSettings();return;}
+  const county=getActiveCounty();
+  if(county.id==='guadalupe'){toast('Guadalupe has no automated scraper yet — leads are added manually from county PDFs','ok');return;}
+  const repo=repoForActiveCounty();
+  const btn=document.getElementById('btn-scrape');btn.innerHTML='<span class="spin"></span> Running…';btn.disabled=true;
+  try{
+    const res=await fetch(`https://api.github.com/repos/${repo}/actions/workflows/${GH_WORKFLOW}/dispatches`,{method:'POST',headers:{'Authorization':'Bearer '+S.ghToken,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28','Content-Type':'application/json'},body:JSON.stringify({ref:'main'})});
+    if(res.status===204)toast(`✓ ${county.name} scrape triggered! Check Actions in ~10 min`,'ok');
+    else{const d=await res.json();toast('Error: '+(d.message||res.status),true);}
+  }catch(e){toast('Failed: '+e.message,true);}
+  btn.innerHTML='▶ Run Scrape';btn.disabled=false;
+}
 
 let toastTimer;
 function toast(msg,type=false){const el=document.getElementById('toast');el.textContent=msg;el.className='show'+(type===true?' err':type==='ok'?' ok':'');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.className='',3000);}
