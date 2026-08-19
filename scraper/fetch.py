@@ -103,7 +103,11 @@ KEEP_DAYS     = 90
 CHUNK_DAYS    = 7
 PAGE_TIMEOUT  = 180
 CUTOFF_DATE   = TODAY_NAIVE - timedelta(days=KEEP_DAYS)
-DOC_FETCH_LIMIT = 20   # max leads to OCR for loan/lender detail per run (was date-windowed; see fetch_doc_details)
+DOC_FETCH_LIMIT = 8    # max leads to OCR for loan/lender detail per run -- was 20, but each lead can
+                        # need a page load + screenshot + tesseract OCR + a second page hop, and a run
+                        # hit the 90-min workflow timeout and got killed (2026-08-19, 106 min elapsed,
+                        # nothing deployed) with this cap at 20. Trading backlog speed for runs that
+                        # actually finish.
 
 
 # ── HELPERS ───────────────────────────────────────────────────────────────────
