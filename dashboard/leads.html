@@ -385,6 +385,9 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 .mao-breakdown{font-size:11px;color:var(--dim);line-height:1.8;font-family:'DM Mono',monospace}
 .mao-breakdown .row{display:flex;justify-content:space-between}
 .mao-warn{background:var(--red-bg);border:1px solid var(--red-mid);border-radius:6px;padding:8px 10px;font-size:11px;color:var(--red-dk);margin-top:8px;line-height:1.5}
+.mao-net{background:var(--blue-bg);border:1px solid var(--blue-mid);border-radius:var(--r);padding:10px;text-align:center;margin-top:8px}
+.mao-net-num{font-size:18px;font-weight:700;color:var(--blue-dk);font-family:'DM Mono',monospace}
+.mao-net-lbl{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-top:2px}
 .mao-base-note{font-weight:400;text-transform:none;letter-spacing:0;color:var(--dim);font-size:10px}
 .budget-bar-d{display:flex;align-items:center;background:var(--bg2);border:1px solid var(--border);border-radius:var(--rl);padding:9px 12px;margin-bottom:9px}
 .bud-item-d{flex:1;text-align:center}
@@ -729,6 +732,10 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
               <div class="mao-result-lbl">Max Allowable Offer</div>
             </div>
             <div class="mao-breakdown" id="mao-breakdown"></div>
+            <div class="mao-net" id="mao-net" style="display:none">
+              <div class="mao-net-num" id="mao-net-num">—</div>
+              <div class="mao-net-lbl" id="mao-net-lbl">Est. Net to Seller</div>
+            </div>
             <div class="mao-warn" id="mao-warn" style="display:none"></div>
           </div>
           <div class="dsec">
@@ -1279,7 +1286,8 @@ function saveNotes(){if(!selectedDoc)return;if(!S.leads[selectedDoc])S.leads[sel
    UI whenever it's the fallback, never presented as equally trustworthy).
    maoRepairManual tracks whether the operator has hand-edited the repair
    budget so switching tiers doesn't clobber a manual override. */
-let maoLeadDoc=null, maoBase=0, maoBaseSrc='', maoSqft=0, maoRepairManual=false;
+const MAO_CLOSING_COST=2000; // matches EST_CLOSING_COST in pushGHL — keep these two in sync
+let maoLeadDoc=null, maoBase=0, maoBaseSrc='', maoSqft=0, maoPayoff=0, maoRepairManual=false;
 
 function initMAO(lead,appr,arv){
   if(lead.doc_number!==maoLeadDoc){maoRepairManual=false;maoLeadDoc=lead.doc_number;}
@@ -1287,6 +1295,7 @@ function initMAO(lead,appr,arv){
   else if(appr){maoBase=appr;maoBaseSrc='appraised';}
   else{maoBase=0;maoBaseSrc='';}
   maoSqft=parseFloat(lead.arv_sqft)||0;
+  maoPayoff=parseFloat((lead.loan_amount+'').replace(/[$,]/g,''))||0;
   const noteEl=document.getElementById('mao-base-note');
   if(!maoBase)noteEl.textContent='no ARV or appraised value yet';
   else if(maoBaseSrc==='arv')noteEl.textContent=`base: ARV $${maoBase.toLocaleString()}`;
@@ -1320,6 +1329,16 @@ function updateMAO(manualRepair){
   if(mao<=0){warnEl.style.display='block';warnEl.textContent='This tier/discount combo leaves nothing after repairs and fee — this deal likely doesn\'t work at this repair level. Try a lighter tier or pass.';}
   else if(!maoSqft&&!maoRepairManual){warnEl.style.display='block';warnEl.textContent='No sqft data yet for this lead — repair budget defaulted to $0, enter one manually.';}
   else warnEl.style.display='none';
+
+  const netEl=document.getElementById('mao-net'),netNumEl=document.getElementById('mao-net-num'),netLblEl=document.getElementById('mao-net-lbl');
+  if(maoPayoff>0){
+    const net=Math.max(0,mao-maoPayoff-MAO_CLOSING_COST);
+    netEl.style.display='block';
+    netNumEl.textContent='$'+Math.round(net).toLocaleString();
+    netLblEl.textContent=`Est. Net to Seller (after $${maoPayoff.toLocaleString()} payoff + ~$${MAO_CLOSING_COST.toLocaleString()} closing)`;
+  }else{
+    netEl.style.display='none';
+  }
 }
 
 function copyAddress(){const lead=allLeads.find(l=>l.doc_number===selectedDoc);if(!lead)return;const addressInput=document.getElementById('sf-address'),cityInput=document.getElementById('sf-city'),zipInput=document.getElementById('sf-zip');const addr=(addressInput&&addressInput.value.trim())||toTitle(lead.address||'');const city=(cityInput&&cityInput.value.trim())||toTitle(lead.city||'');const zip=(zipInput&&zipInput.value.trim())||lead.zip;navigator.clipboard.writeText(`${addr}, ${city} TX ${zip}`);toast('Address copied');}
