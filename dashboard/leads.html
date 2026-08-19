@@ -804,8 +804,8 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
       <button onclick="resetBudget()" style="padding:5px 12px;border-radius:6px;border:1px solid var(--border2);background:var(--surface);font-size:11px;color:var(--red);cursor:pointer;font-weight:600">Reset Counter</button>
     </div>
     <label>Jarvis Push Status</label>
-    <div style="display:flex;gap:8px;align-items:center">
-      <span style="font-size:12px;color:var(--muted)" id="jarvis-reconcile-status">Checks GHL for leads that were actually pushed but aren't marked as such locally</span>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center">
+      <span style="font-size:12px;color:var(--muted);flex:1 1 200px;min-width:0" id="jarvis-reconcile-status">Checks GHL for leads that were actually pushed but aren't marked as such locally</span>
       <button onclick="reconcileJarvis()" id="reconcile-btn" style="padding:5px 12px;border-radius:6px;border:1px solid var(--border2);background:var(--surface);font-size:11px;color:var(--blue);cursor:pointer;font-weight:600;flex-shrink:0">Reconcile</button>
     </div>
     <input type="password" id="set-ghtoken" placeholder="ghp_…">
