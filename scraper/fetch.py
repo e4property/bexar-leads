@@ -931,47 +931,6 @@ def login_publicsearch(driver):
         return False
 
 
-def goto_doc_by_click(driver, source_url, doc_number, timeout=20):
-    """
-    PublicSearch's results table is a pure React SPA with no href/data-id
-    anywhere in the row HTML — the internal doc ID only exists in JS state
-    and appears in the URL after a client-side route change from a row
-    click (confirmed against the same site's Nueces instance). So instead
-    of scraping a link that doesn't exist, reload the exact results page
-    the row came from, find that row by its visible doc number, click it,
-    and wait for the route to land on /doc/<id>. Leaves the driver on the
-    doc page on success.
-    """
-    from selenium.webdriver.common.by import By
-    from selenium.webdriver.support.ui import WebDriverWait
-    from selenium.webdriver.support import expected_conditions as EC
-
-    if not source_url or not doc_number:
-        return False
-    try:
-        driver.set_page_load_timeout(timeout)
-        driver.get(source_url)
-        WebDriverWait(driver, timeout).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, "table tr td"))
-        )
-        time.sleep(1)
-
-        row_xpath = f"//tr[.//*[normalize-space(text())='{doc_number}']]"
-        row = WebDriverWait(driver, timeout).until(
-            EC.presence_of_element_located((By.XPATH, row_xpath))
-        )
-        clickable = row.find_element(By.CSS_SELECTOR, "td.col-3")
-        driver.execute_script("arguments[0].scrollIntoView({block:'center'});", clickable)
-        clickable.click()
-
-        WebDriverWait(driver, timeout).until(EC.url_contains("/doc/"))
-        time.sleep(1.5)
-        return True
-    except Exception as e:
-        log.warning(f"  click-fallback failed for doc {doc_number}: {e}")
-        return False
-
-
 QUICK_SEARCH_URL_TMPL = (
     "https://bexar.tx.publicsearch.us/results?department=RP&keywordSearch=false"
     "&recordedDateRange=18000101%2C{today}&searchOcrText=false"
@@ -1057,6 +1016,46 @@ def search_and_ocr_referenced_doc(driver, doc_number, timeout=20):
         return ""
 
 
+def goto_doc_by_docnumber(driver, doc_number, timeout=20):
+    """
+    v28.38: replaces goto_doc_by_click + _source_url for fetch_doc_details.
+    _source_url only survives in memory for leads discovered brand-new in
+    the SAME run (it's stripped before every save — "only needed during
+    this run's doc-page click-through"), so the old candidate filter
+    (type in NOF/TAX, missing loan_amount, has _source_url) was
+    structurally empty on every "0 new" day, which is most days —
+    confirmed live 2026-08-19: OCR fixes were all correct but never got a
+    single candidate to run on. This uses the same quickSearch URL hop
+    already proven for the Deed-of-Trust lookup, which works for ANY doc
+    number regardless of when it was originally scraped — unlocks OCR for
+    the full backlog, not just today's rare new leads. Returns True/False
+    to match goto_doc_by_click's contract.
+    """
+    from selenium.webdriver.common.by import By
+    from selenium.webdriver.support.ui import WebDriverWait
+    from selenium.webdriver.support import expected_conditions as EC
+
+    today_str = TODAY_NAIVE.strftime("%Y%m%d")
+    url = QUICK_SEARCH_URL_TMPL.format(today=today_str, doc_number=doc_number)
+
+    try:
+        driver.set_page_load_timeout(timeout)
+        driver.get(url)
+        WebDriverWait(driver, timeout).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, "table tr td"))
+        )
+        time.sleep(1)
+
+        row = driver.find_element(By.CSS_SELECTOR, "table tbody tr")
+        row.click()
+        WebDriverWait(driver, timeout).until(EC.url_contains("/doc/"))
+        time.sleep(1.5)
+        return True
+    except Exception as e:
+        log.warning(f"  goto_doc_by_docnumber: lookup failed for {doc_number}: {e}")
+        return False
+
+
 def extract_loan_details(driver):
     """
     Assumes the driver is already sitting on a PublicSearch /doc/<id> page
@@ -1136,12 +1135,19 @@ def fetch_doc_details(records, driver):
     # every candidate was silently excluded for most of every month —
     # confirmed live 2026-08-11: 8 candidates found, 0 survived the window.
     # Backfill-eligible like BCAD/ARV instead: no date filter, just capped.
+    #
+    # v28.38: also dropped the _source_url requirement. That field only
+    # survives in memory for leads discovered brand-new in THIS run (it's
+    # stripped before every save), so on any "0 new" day -- most days --
+    # this candidate list was structurally empty regardless of the above
+    # fix. goto_doc_by_docnumber() looks up any doc number directly via
+    # quickSearch instead, so it no longer matters when a lead was found.
     candidates = [
         r for r in records
         if r.get("type") in ("NOF", "TAX")
         and not r.get("loan_amount")
         and r.get("source", "publicsearch") == "publicsearch"
-        and r.get("_source_url")
+        and r.get("doc_number")
     ]
     log.info(f"Doc fetch: {len(candidates)} candidates missing loan data")
 
@@ -1157,10 +1163,10 @@ def fetch_doc_details(records, driver):
 
     for rec in recent:
         doc_num = rec["doc_number"]
-        log.info(f"  Doc [{doc_num}] locating via row click")
+        log.info(f"  Doc [{doc_num}] locating via quickSearch")
 
-        if not goto_doc_by_click(driver, rec["_source_url"], doc_num):
-            log.info(f"  Doc [{doc_num}] click-through failed — skipping")
+        if not goto_doc_by_docnumber(driver, doc_num):
+            log.info(f"  Doc [{doc_num}] lookup failed — skipping")
             continue
 
         details = extract_loan_details(driver)
