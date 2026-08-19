@@ -18147,7 +18147,11 @@
     "land_value": "53070.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 12
+    "days_until_sale": 12,
+    "arv_estimate": 193000,
+    "arv_status": "PENDING",
+    "arv_sqft": 1970,
+    "arv_fetched_at": "2026-08-19T13:42:38Z"
   },
   {
     "type": "NOF",
@@ -18204,7 +18208,11 @@
     "land_value": "67060.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 12
+    "days_until_sale": 12,
+    "arv_estimate": 353000,
+    "arv_status": "SOLD",
+    "arv_sqft": 3305,
+    "arv_fetched_at": "2026-08-19T13:42:40Z"
   },
   {
     "type": "NOF",
@@ -18260,7 +18268,11 @@
     "land_value": "45270.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 12
+    "days_until_sale": 12,
+    "arv_estimate": 209000,
+    "arv_status": "SOLD",
+    "arv_sqft": 1354,
+    "arv_fetched_at": "2026-08-19T13:42:41Z"
   },
   {
     "type": "NOF",
@@ -18316,7 +18328,11 @@
     "land_value": "52610.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 12
+    "days_until_sale": 12,
+    "arv_estimate": 220117,
+    "arv_status": "SOLD",
+    "arv_sqft": 1282,
+    "arv_fetched_at": "2026-08-19T13:42:43Z"
   },
   {
     "type": "NOF",
@@ -18372,7 +18388,11 @@
     "land_value": "58770.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 12
+    "days_until_sale": 12,
+    "arv_estimate": 232091,
+    "arv_status": "OFF_MARKET",
+    "arv_sqft": 1182,
+    "arv_fetched_at": "2026-08-19T13:42:44Z"
   },
   {
     "type": "NOF",
@@ -18428,7 +18448,11 @@
     "land_value": "90360.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 12
+    "days_until_sale": 12,
+    "arv_estimate": 432100,
+    "arv_status": "OFF_MARKET",
+    "arv_sqft": 2855,
+    "arv_fetched_at": "2026-08-19T13:42:45Z"
   },
   {
     "type": "NOF",
@@ -37279,7 +37303,7 @@
     "mail_addr": "ERNESTINA SAN ANTONIO 78228",
     "absentee": true,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000036",
     "ps_doc_id": "",
     "year": "2026",
@@ -37292,7 +37316,6 @@
     "run_ts": "2026-08-19T01:05:02Z",
     "flags": [
       "ABSENTEE",
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
