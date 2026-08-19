@@ -802,7 +802,13 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
     <div style="display:flex;gap:8px;align-items:center">
       <span style="font-size:12px;color:var(--muted)" id="fw-budget-display"></span>
       <button onclick="resetBudget()" style="padding:5px 12px;border-radius:6px;border:1px solid var(--border2);background:var(--surface);font-size:11px;color:var(--red);cursor:pointer;font-weight:600">Reset Counter</button>
-    </div><input type="password" id="set-ghtoken" placeholder="ghp_…">
+    </div>
+    <label>Jarvis Push Status</label>
+    <div style="display:flex;gap:8px;align-items:center">
+      <span style="font-size:12px;color:var(--muted)" id="jarvis-reconcile-status">Checks GHL for leads that were actually pushed but aren't marked as such locally</span>
+      <button onclick="reconcileJarvis()" id="reconcile-btn" style="padding:5px 12px;border-radius:6px;border:1px solid var(--border2);background:var(--surface);font-size:11px;color:var(--blue);cursor:pointer;font-weight:600;flex-shrink:0">Reconcile</button>
+    </div>
+    <input type="password" id="set-ghtoken" placeholder="ghp_…">
     <div class="modal-actions">
       <button class="nav-btn" onclick="closeSettings()">Cancel</button>
       <button class="nav-btn run" onclick="saveSettings()">Save</button>
@@ -1302,6 +1308,52 @@ function closeOnOutside(e){const w=document.querySelector('.nav-logo');if(w&&!w.
 function renderCountyList(){const counties=getCounties();const active=getActiveCounty();const el=document.getElementById('county-list');if(!el)return;el.innerHTML=counties.map(c=>'<div onclick="setActiveCounty(\''+c.id+'\')" style="padding:9px 12px;cursor:pointer;display:flex;align-items:center;gap:10px;border-left:3px solid '+(c.id===active.id?c.color:'transparent')+';background:'+(c.id===active.id?'var(--blue-bg)':'transparent')+'"><div style="width:7px;height:7px;border-radius:50%;background:'+c.color+';flex-shrink:0"></div><div><div style="font-size:12px;font-weight:500;color:var(--text)">'+c.name+'</div><div style="font-size:9px;color:var(--muted);font-family:\'DM Mono\',monospace">'+(c.id===active.id?'● Active':'Click to switch')+'</div></div>'+(c.id===active.id?'<span style="margin-left:auto;font-size:10px;color:var(--blue)">✓</span>':'')+'</div>').join('');}
 function initCountySwitcher(){const county=getActiveCounty();S.recordsUrl=county.url;}
 function resetBudget(){S.used=0;S.weekStart=Date.now();saveState();updateBudgetUI();const el=document.getElementById('fw-budget-display');if(el)el.textContent=`Used: 0 / 100 — reset ${new Date().toLocaleTimeString()}`;toast('ForeWarn counter reset to 0','ok');}
+
+/* Jarvis reconciliation — 2026-08-19: the 8/13 GHL-web-UI edit made
+   ghl_pushed unconditional on save (true whether the actual API push
+   succeeded or not) for several days before being caught and fixed, so
+   some leads that WERE genuinely pushed to Jarvis may be sitting here
+   marked as not-pushed (or the reverse). This checks every lead with a
+   saved ForeWarn phone number but no confirmed ghl_pushed against GHL's
+   own contact-by-phone lookup, and corrects the record — both locally
+   and via writeBackToRepo — for any real match found. Uses whatever
+   GHL API key is already configured in Settings; never leaves the
+   browser. */
+async function reconcileJarvis(){
+  if(!S.ghlApiKey||!S.ghlLocationId){toast('Set your GHL API key + Location ID first','ok');return;}
+  const candidates=allLeads.filter(l=>{const ls=LS(l.doc_number);return ls.phone&&!ls.ghl_pushed;});
+  if(!candidates.length){toast('Nothing to check — every lead with a saved phone is already marked pushed','ok');return;}
+  const btn=document.getElementById('reconcile-btn');
+  const statusEl=document.getElementById('jarvis-reconcile-status');
+  if(btn){btn.disabled=true;btn.textContent='Checking…';}
+  let found=0,checked=0,errors=0;
+  for(const lead of candidates){
+    const ls=LS(lead.doc_number);
+    checked++;
+    if(statusEl)statusEl.textContent=`Checking ${checked}/${candidates.length}…`;
+    try{
+      const digits=(ls.phone||'').replace(/\D/g,'');
+      const res=await fetch(`https://services.leadconnectorhq.com/contacts/search/duplicate?locationId=${S.ghlLocationId}&number=${encodeURIComponent(digits)}`,{
+        headers:{'Authorization':'Bearer '+S.ghlApiKey,'Version':'2021-07-28','Accept':'application/json'}
+      });
+      if(res.status===200){
+        const data=await res.json();
+        const contactId=data.contact?.id||data.id;
+        if(contactId){
+          found++;
+          S.leads[lead.doc_number]=S.leads[lead.doc_number]||{};
+          Object.assign(S.leads[lead.doc_number],{ghl_pushed:true,ghlId:contactId});
+          writeBackToRepo(lead.doc_number,{ghl_pushed:true,ghl_pushed_at:new Date().toISOString(),ghl_id:contactId});
+        }
+      }
+    }catch(e){errors++;console.warn('reconcileJarvis:',lead.doc_number,e);}
+    await new Promise(r=>setTimeout(r,300)); // stay well under GHL's rate limit
+  }
+  saveState();updateAllCounts();renderList();
+  if(btn){btn.disabled=false;btn.textContent='Reconcile';}
+  if(statusEl)statusEl.textContent=`Checked ${checked}, corrected ${found}${errors?`, ${errors} errors`:''}`;
+  toast(`Reconcile done — ${found} lead(s) corrected to Pushed`,'ok');
+}
 function openSettings(){const el=document.getElementById('fw-budget-display');if(el)el.textContent=`Used: ${S.used} / 100`;document.getElementById('set-apikey').value=S.ghlApiKey||'';document.getElementById('set-locid').value=S.ghlLocationId||'UAOJlgeerLu3GChP9jDJ';document.getElementById('set-url').value=S.recordsUrl||REC_URL_DEFAULT;document.getElementById('set-ghtoken').value=S.ghToken||'';const ne=document.getElementById('set-nueces-url');if(ne){const counties=getCounties();const n=counties.find(c=>c.id==='nueces');if(n)ne.value=n.url||'';}document.getElementById('settings-modal').classList.add('open');}
 function closeSettings(){document.getElementById('settings-modal').classList.remove('open');}
 function saveSettings(){S.ghlApiKey=document.getElementById('set-apikey').value.trim();S.ghlLocationId=document.getElementById('set-locid').value.trim();S.recordsUrl=document.getElementById('set-url').value.trim()||REC_URL_DEFAULT;S.ghToken=document.getElementById('set-ghtoken').value.trim();const ne=document.getElementById('set-nueces-url');if(ne&&ne.value.trim()){const counties=getCounties();const n=counties.find(c=>c.id==='nueces');if(n){n.url=ne.value.trim();saveCounties(counties);}}saveState();closeSettings();toast('Settings saved','ok');fetchLeads();}
