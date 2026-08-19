@@ -353,7 +353,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 .dsec{padding:12px 16px;border-bottom:1px solid var(--border);background:var(--surface)}
 .dsec-lbl{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:10px;display:flex;align-items:center;gap:8px;font-family:'DM Mono',monospace}
 .dsec-lbl::after{content:'';flex:1;height:1px;background:var(--border)}
-.fin-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:7px;margin-bottom:8px}
+.fin-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:7px;margin-bottom:8px}
 .fin-grid-2{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-bottom:8px}
 .fin-card{background:var(--bg2);border-radius:6px;padding:9px;border:1px solid var(--border)}
 .fin-card.tenure-card{border-color:var(--teal-mid);background:var(--teal-bg)}
@@ -519,7 +519,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
       <div class="kpi red" onclick="showView('work');setView('urgent')"><div class="kpi-num" id="dk-urg">—</div><div class="kpi-lbl">Auction ≤14d</div><div class="kpi-sub" id="dk-urg-sub"></div></div>
       <div class="kpi green" onclick="showView('work');setView('new')"><div class="kpi-num" id="dk-new">—</div><div class="kpi-lbl">New This Run</div><div class="kpi-sub">Scraped latest</div></div>
       <div class="kpi purple" onclick="showView('work');setView('vbp')"><div class="kpi-num" id="dk-vbp">—</div><div class="kpi-lbl">VBP+CE</div><div class="kpi-sub">Stacked leads</div></div>
-      <div class="kpi teal" onclick="showView('work');setTypeTab('jarvis')"><div class="kpi-num" id="dk-jarvis">—</div><div class="kpi-lbl">In Jarvis</div><div class="kpi-sub">Active convos</div></div>
+      <div class="kpi teal" onclick="showView('work');setTypeTab('jarvis')"><div class="kpi-num" id="dk-jarvis">—</div><div class="kpi-lbl">In Jarvis</div><div class="kpi-sub" id="dk-jarvis-sub">—</div></div>
       <div class="kpi amber"><div class="kpi-num" id="dk-longheld">—</div><div class="kpi-lbl">Long Held 10yr+</div><div class="kpi-sub">High motivation</div></div>
     </div>
     <!-- Mid row -->
@@ -614,6 +614,8 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
       <div class="sb-item" id="sf-today" onclick="setView('today',this)"><div class="sb-icon" style="background:var(--blue-bg)">⚡</div><div class="sb-info"><div class="sb-name">Today's Hot List</div><div class="sb-cnt" id="fc-today">—</div></div></div>
       <div class="sb-item" id="sf-unsearched" onclick="setView('unsearched',this)"><div class="sb-icon" style="background:var(--purple-bg)">🔍</div><div class="sb-info"><div class="sb-name">Unsearched</div><div class="sb-cnt" id="fc-unsearched">—</div></div></div>
       <div class="sb-item" id="sf-jarvis" onclick="setTypeTab('jarvis',null)"><div class="sb-icon" style="background:var(--teal-bg)">✅</div><div class="sb-info"><div class="sb-name">In Jarvis</div><div class="sb-cnt" id="fc-jarvis">—</div></div></div>
+      <div class="sb-item"><div class="sb-icon" style="background:var(--teal-bg)">📤</div><div class="sb-info"><div class="sb-name">Pushed Today</div><div class="sb-cnt" id="fc-pushed-today">—</div></div></div>
+      <div class="sb-item"><div class="sb-icon" style="background:var(--teal-bg)">🗓</div><div class="sb-info"><div class="sb-name">Pushed This Week</div><div class="sb-cnt" id="fc-pushed-week">—</div></div></div>
       <div class="sb-div"></div>
       <div class="sb-hdr">Lead Types</div>
       <div class="sb-item" id="sf-all" onclick="setView('all',this)"><div class="sb-icon" style="background:var(--bg3)">📋</div><div class="sb-info"><div class="sb-name">All Leads</div><div class="sb-cnt" id="fc-all">—</div></div></div>
@@ -670,6 +672,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
             <div class="dsec-lbl">🏦 Financial Intel</div>
             <div class="fin-grid">
               <div class="fin-card"><div class="fin-val amber" id="m-appraised">—</div><div class="fin-key">Appraised</div></div>
+              <div class="fin-card arv-card"><div class="fin-val teal" id="m-arv">—</div><div class="fin-key" id="m-arv-key">ARV Est.</div></div>
               <div class="fin-card"><div class="fin-val" id="m-amount">—</div><div class="fin-key">Loan Amount</div></div>
               <div class="fin-card"><div class="fin-val blue" id="m-equity">—</div><div class="fin-key">Equity Est.</div></div>
               <div class="fin-card"><div class="fin-val" id="m-ltv">—</div><div class="fin-key">LTV</div></div>
@@ -710,10 +713,11 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
               </div>
             </div>
             <div class="fw-grid">
+              <div class="fw-field" style="grid-column:1/-1"><div class="fw-lbl">Address ✏️</div><input class="fw-val" id="sf-address" type="text" placeholder="Street address" style="cursor:text;font-family:'Inter',sans-serif"></div>
               <div class="fw-field"><div class="fw-lbl">First ✏️</div><input class="fw-val" id="sf-first" type="text" placeholder="First name" style="cursor:text;font-family:'Inter',sans-serif"></div>
               <div class="fw-field"><div class="fw-lbl">Last ✏️</div><input class="fw-val" id="sf-last" type="text" placeholder="Last name" style="cursor:text;font-family:'Inter',sans-serif"></div>
-              <div class="fw-field"><div class="fw-lbl">City</div><div class="fw-val" id="sf-city">—</div></div>
-              <div class="fw-field"><div class="fw-lbl">ZIP</div><div class="fw-val" id="sf-zip">—</div></div>
+              <div class="fw-field"><div class="fw-lbl">City ✏️</div><input class="fw-val" id="sf-city" type="text" placeholder="City" style="cursor:text;font-family:'Inter',sans-serif"></div>
+              <div class="fw-field"><div class="fw-lbl">ZIP ✏️</div><input class="fw-val" id="sf-zip" type="text" placeholder="ZIP" style="cursor:text;font-family:'Inter',sans-serif"></div>
             </div>
             <div id="phone-saved-area" style="display:none">
               <div class="phone-saved"><div><div class="saved-num" id="saved-phone-display"></div><div class="saved-meta" id="saved-phone-meta"></div></div><button class="act-btn" style="margin-left:auto;flex:none;padding:4px 10px" onclick="clearPhone()">Clear</button></div>
@@ -852,6 +856,30 @@ function isAged(l){if(!isForeclosure(l))return false;const df=l.date_filed||'';t
 function isUrgent(l){return l.flags&&(l.flags.includes('URGENT')||l.flags.includes('AUCTION SOON'))&&l.days_until_sale!=null&&l.days_until_sale<=14;}
 function daysAgo(l){const df=l.date_filed||l.opened_date||'';try{const p=df.split('/');let dt;if(p.length===2)dt=new Date(parseInt(p[1]),parseInt(p[0])-1,1);else if(p.length===3)dt=new Date(parseInt(p[2]),parseInt(p[0])-1,parseInt(p[1]));if(dt)return Math.floor((Date.now()-dt.getTime())/(1000*60*60*24));}catch(e){}return 999;}
 function auctionPassed(l){if(!l.sale_date)return false;try{const p=l.sale_date.trim().split('/');if(p.length===3){const sd=new Date(parseInt(p[2]),parseInt(p[0])-1,parseInt(p[1]));return sd.getTime()<Date.now();}}catch(e){}return false;}
+
+/* Jarvis push counters — sourced from synced records.json (rec.ghl_pushed/
+   ghl_pushed_at), NOT localStorage, so these match reality regardless of
+   which browser/device you're viewing from. Day/week boundaries computed in
+   America/Chicago time since that's where the business operates. */
+function chicagoDateStr(d){return new Date(d).toLocaleDateString('en-CA',{timeZone:'America/Chicago'});}
+function isPushedToday(l){return!!(l.ghl_pushed&&l.ghl_pushed_at&&chicagoDateStr(l.ghl_pushed_at)===chicagoDateStr(new Date()));}
+function weekBoundsChicago(){
+  const now=new Date(new Date().toLocaleString('en-US',{timeZone:'America/Chicago'}));
+  const day=now.getDay();// 0=Sun..6=Sat
+  const diffToMon=(day===0?-6:1-day);
+  const mon=new Date(now);mon.setDate(now.getDate()+diffToMon);mon.setHours(0,1,0,0);// Monday 12:01am
+  const sun=new Date(mon);sun.setDate(mon.getDate()+6);sun.setHours(23,59,59,999);// Sunday 11:59pm
+  return[mon,sun];
+}
+function isPushedThisWeek(l){
+  if(!l.ghl_pushed||!l.ghl_pushed_at)return false;
+  const pushedChicago=new Date(new Date(l.ghl_pushed_at).toLocaleString('en-US',{timeZone:'America/Chicago'}));
+  const[mon,sun]=weekBoundsChicago();
+  return pushedChicago>=mon&&pushedChicago<=sun;
+}
+function getJarvisCount(){return allLeads.filter(l=>l.ghl_pushed).length;}
+function getPushedTodayCount(){return allLeads.filter(isPushedToday).length;}
+function getPushedWeekCount(){return allLeads.filter(isPushedThisWeek).length;}
 function getGHLTag(l){if(isStacked(l))return'bexar_stacked';if(isVBP(l)&&!isStacked(l))return'bexar_vbp';if(isCEOnly(l))return'bexar_ce';if(isLP(l))return'bexar_lp';if(isAppt(l))return'bexar_prefore';return'bexar_lead';}
 function getVBPViolation(l){return l.ce_cat_label||l.ce_reason||l.ce_category||'';}
 function isVBPDangerous(l){const v=getVBPViolation(l).toLowerCase();return v.includes('dangerous')||v.includes('bsb');}
@@ -883,7 +911,9 @@ async function fetchLeads(){
 function renderDashboard(){
   const newCt=allLeads.filter(l=>l.is_new).length;
   const urgCt=allLeads.filter(l=>isUrgent(l)&&!auctionPassed(l)).length;
-  const jarvisCt=Object.values(S.leads).filter(l=>l.phone||l.ghl_pushed).length;
+  const jarvisCt=getJarvisCount();
+  const pushedTodayCt=getPushedTodayCount();
+  const pushedWeekCt=getPushedWeekCount();
   const vbpCt=allLeads.filter(l=>isVBP(l)||isStacked(l)).length;
   const longHeld=allLeads.filter(isLongHeld).length;
   const total=allLeads.length;
@@ -894,6 +924,7 @@ function renderDashboard(){
   set('dk-total-sub',`${allLeads.filter(l=>l.is_new).length} new this run`);
   const soonCt=allLeads.filter(l=>l.days_until_sale!=null&&l.days_until_sale<=30&&!auctionPassed(l)).length;
   set('dk-urg-sub',`${soonCt} auction ≤30d`);
+  set('dk-jarvis-sub',`${pushedTodayCt} today · ${pushedWeekCt} this week`);
   set('dk-urg2',urgCt);set('dk-urg-pct',Math.round(urgCt/Math.max(total,1)*100)+'% of pipeline');
   set('qa-today',todayCt);set('qa-urg',urgCt);set('qa-new',newCt);set('qa-unsearch',unsearch);
   set('nav-unsearch',unsearch);set('nav-urg',urgCt);set('nav-jarvis',jarvisCt);set('nav-vbp',vbpCt);
@@ -951,8 +982,9 @@ function renderNewLeadsBar(){const newLeads=allLeads.filter(l=>l.is_new&&!auctio
 
 function renderHotStrip(){const hot=allLeads.filter(l=>l.days_until_sale!=null&&l.days_until_sale<=30&&!auctionPassed(l)&&!LS(l.doc_number).phone).slice(0,10);const strip=document.getElementById('hot-strip');if(!hot.length){if(strip)strip.style.display='none';return;}if(strip)strip.style.display='flex';const hc=document.getElementById('hot-cards');if(hc)hc.innerHTML=hot.map(l=>`<div class="hcard ${l.days_until_sale<=14?'urg':'soon'}" onclick="selectLead('${l.doc_number}')"><div class="hc-tag">AUCTION ${l.days_until_sale}d</div><div class="hc-name">${l.owner||'—'}</div></div>`).join('');}
 
-function updateAllCounts(){const newCt=allLeads.filter(l=>l.is_new).length;const urgCt=allLeads.filter(l=>isUrgent(l)&&!auctionPassed(l)).length;const jarvisCt=Object.values(S.leads).filter(l=>l.phone||l.ghl_pushed).length;const vbpCt=allLeads.filter(l=>isVBP(l)||isStacked(l)).length;const unsearch=allLeads.filter(l=>!LS(l.doc_number).phone&&!LS(l.doc_number).skipped).length;
+function updateAllCounts(){const newCt=allLeads.filter(l=>l.is_new).length;const urgCt=allLeads.filter(l=>isUrgent(l)&&!auctionPassed(l)).length;const jarvisCt=getJarvisCount();const pushedTodayCt=getPushedTodayCount();const pushedWeekCt=getPushedWeekCount();const vbpCt=allLeads.filter(l=>isVBP(l)||isStacked(l)).length;const unsearch=allLeads.filter(l=>!LS(l.doc_number).phone&&!LS(l.doc_number).skipped).length;
 set('tt-new',newCt);set('tt-urg',urgCt);set('tt-all',allLeads.length);set('tt-fore',allLeads.filter(l=>isForeclosure(l)&&!isAged(l)).length);set('tt-aged',allLeads.filter(isAged).length);set('tt-vbp',vbpCt);set('tt-lp',allLeads.filter(isLP).length);set('tt-appt',allLeads.filter(isAppt).length);set('tt-jarvis',jarvisCt);
+set('fc-pushed-today',pushedTodayCt+' leads');set('fc-pushed-week',pushedWeekCt+' leads');
 const sbn=document.getElementById('sb-new-badge');if(sbn){sbn.textContent=newCt;sbn.style.display=newCt>0?'block':'none';}
 const sbu=document.getElementById('sb-urg-badge');if(sbu){sbu.textContent=urgCt;sbu.style.display=urgCt>0?'block':'none';}
 set('fc-new',newCt+' leads');set('fc-urgent',urgCt+' leads');set('fc-today',getTodayList().length+' leads');set('fc-unsearched',unsearch+' leads');set('fc-jarvis',jarvisCt+' leads');set('fc-all',allLeads.length+' leads');set('fc-fore',allLeads.filter(l=>isForeclosure(l)&&!isAged(l)).length+' leads');set('fc-vbp',vbpCt+' leads');set('fc-lp',allLeads.filter(isLP).length+' leads');set('fc-appt',allLeads.filter(isAppt).length+' leads');set('fc-aged',allLeads.filter(isAged).length+' leads');}
@@ -1092,6 +1124,9 @@ function populateDetail(lead){
   const appr=parseFloat(lead.appraised_value)||0,loan=parseFloat((lead.loan_amount+'').replace(/[$,]/g,''))||0;
   const eq=appr&&loan?appr-loan:null,ltv=appr&&loan?Math.round(loan/appr*100):null;
   document.getElementById('m-appraised').textContent=appr?'$'+appr.toLocaleString():'—';
+  const arv=parseFloat(lead.arv_estimate)||0;
+  document.getElementById('m-arv').textContent=arv?'$'+arv.toLocaleString():'—';
+  document.getElementById('m-arv-key').textContent=lead.arv_status?`ARV Est. (${lead.arv_status.replace(/_/g,' ')})`:'ARV Est.';
   document.getElementById('m-amount').textContent=lead.loan_amount||'—';
   const eqEl=document.getElementById('m-equity');eqEl.textContent=eq!=null?(eq>=0?'$'+Math.abs(eq).toLocaleString():'($'+Math.abs(eq).toLocaleString()+')'):'—';eqEl.className='fin-val '+(eq!=null?(eq>=0?'blue':'red'):'');
   document.getElementById('m-ltv').textContent=ltv!=null?ltv+'%':'—';
@@ -1124,15 +1159,19 @@ function populateDetail(lead){
   document.getElementById('m-trustee').textContent=lead.trustee||'—';
   document.getElementById('m-taxes').textContent=lead.annual_taxes?'$'+Number(lead.annual_taxes).toLocaleString()+'/yr':'—';
   document.getElementById('m-deed-date').textContent=lead.deed_date?fmtDate(lead.deed_date):'—';
-  // v4.2: First/Last are now editable inputs
+  // v4.4: Address/First/Last/City/Zip are all editable inputs — scraped data
+  // (esp. APPT) is sometimes garbage (e.g. site footer text mistaken for an
+  // address), so every field that can be wrong needs to be fixable inline.
+  const addressEl=document.getElementById('sf-address');
   const firstEl=document.getElementById('sf-first');
   const lastEl=document.getElementById('sf-last');
+  if(addressEl)addressEl.value=lead.address?toTitle(lead.address):'';
   if(firstEl)firstEl.value=first||'';
   if(lastEl)lastEl.value=last||'';
   const cityEl=document.getElementById('sf-city');
   const zipEl=document.getElementById('sf-zip');
-  if(cityEl){cityEl.textContent=city||'—';cityEl.onclick=()=>{navigator.clipboard.writeText(cityEl.textContent);toast('Copied: '+cityEl.textContent);};}
-  if(zipEl){zipEl.textContent=zip||'—';zipEl.onclick=()=>{navigator.clipboard.writeText(zipEl.textContent);toast('Copied: '+zipEl.textContent);};}
+  if(cityEl)cityEl.value=city||'';
+  if(zipEl)zipEl.value=zip||'';
   if(ls.phone){document.getElementById('phone-saved-area').style.display='block';document.getElementById('phone-entry-area').style.display='none';document.getElementById('saved-phone-display').textContent='📞 '+ls.phone;document.getElementById('saved-phone-meta').textContent=ls.searchedAt?'Searched '+new Date(ls.searchedAt).toLocaleDateString():'Searched';}
   else{document.getElementById('phone-saved-area').style.display='none';document.getElementById('phone-entry-area').style.display='block';document.getElementById('phone-input').value='';const th=document.getElementById('tracerfy-hint');if(th){if(lead.tracerfy_phone&&!lead.tracerfy_dnc){th.style.display='block';th.textContent='📱 Auto-traced: '+lead.tracerfy_phone+' — click to use';}else th.style.display='none';}}
   renderDispoTrack(lead.doc_number,ls.dispo||'new');
@@ -1171,11 +1210,16 @@ async function savePhone(){
   Object.assign(S.leads[selectedDoc],{phone,searchedAt:Date.now(),dispo:S.leads[selectedDoc].dispo||'new',skipped:false});
   S.used++;saveState();updateBudgetUI();
   let ghlId=null;if(S.ghlApiKey)ghlId=await pushGHL(lead,phone);
-  const updates={dash_phone:phone,dash_searched_at:new Date().toISOString(),ghl_pushed:true,ghl_pushed_at:new Date().toISOString()};
+  const pushed=!!ghlId||!S.ghlApiKey;
+  const updates={dash_phone:phone,dash_searched_at:new Date().toISOString(),ghl_pushed:pushed,ghl_pushed_at:pushed?new Date().toISOString():null};
   if(ghlId)updates.ghl_id=ghlId;
   writeBackToRepo(selectedDoc,updates);
-  toast(`✓ Saved · ${Math.max(0,100-S.used)} left`,'ok');
-  setTimeout(()=>navNextUnworked(),600);
+  if(S.ghlApiKey&&!ghlId){
+    // pushGHL already toasted the specific reason (missing name/address, or API error) — don't overwrite it
+  }else{
+    toast(`✓ Saved · ${Math.max(0,100-S.used)} left`,'ok');
+    setTimeout(()=>navNextUnworked(),600);
+  }
 }
 
 function useTracerfyPhone(){const lead=allLeads.find(l=>l.doc_number===selectedDoc);if(!lead||!lead.tracerfy_phone)return;document.getElementById('phone-input').value=lead.tracerfy_phone;document.getElementById('phone-input').focus();toast('Tracerfy phone loaded — verify in ForeWarn then save');}
@@ -1183,25 +1227,43 @@ function clearPhone(){if(!confirm('Clear phone?'))return;if(S.leads[selectedDoc]
 function skipLead(){if(!S.leads[selectedDoc])S.leads[selectedDoc]={};S.leads[selectedDoc].skipped=!S.leads[selectedDoc].skipped;saveState();filterLeads();toast('Skipped');setTimeout(()=>navNextUnworked(),300);}
 function setDispo(doc,dispo){if(!S.leads[doc])S.leads[doc]={};S.leads[doc].dispo=dispo;saveState();renderDispoTrack(doc,dispo);renderList();updateStats();if(S.ghlApiKey&&S.leads[doc]?.ghlId)updateGHLTag(S.leads[doc].ghlId,dispo);writeBackToRepo(doc,{dash_dispo:dispo});toast(`Dispo → ${dispo}`);}
 function saveNotes(){if(!selectedDoc)return;if(!S.leads[selectedDoc])S.leads[selectedDoc]={};const notes=document.getElementById('notes-area').value;S.leads[selectedDoc].notes=notes;saveState();writeBackToRepo(selectedDoc,{dash_notes:notes});}
-function copyAddress(){const lead=allLeads.find(l=>l.doc_number===selectedDoc);if(!lead)return;navigator.clipboard.writeText(`${lead.address}, ${lead.city} TX ${lead.zip}`);toast('Address copied');}
+function copyAddress(){const lead=allLeads.find(l=>l.doc_number===selectedDoc);if(!lead)return;const addressInput=document.getElementById('sf-address'),cityInput=document.getElementById('sf-city'),zipInput=document.getElementById('sf-zip');const addr=(addressInput&&addressInput.value.trim())||toTitle(lead.address||'');const city=(cityInput&&cityInput.value.trim())||toTitle(lead.city||'');const zip=(zipInput&&zipInput.value.trim())||lead.zip;navigator.clipboard.writeText(`${addr}, ${city} TX ${zip}`);toast('Address copied');}
 function openGHL(){const ls=LS(selectedDoc);window.open(ls.ghlId?`https://app.justjarvis.com/v2/location/${S.ghlLocationId}/contacts/detail/${ls.ghlId}`:'https://app.justjarvis.com','_blank');}
 
 async function pushGHL(lead,phone){
   try{
     // v4.2: read from editable inputs if user has changed name
+    // v4.4: same for address/city/zip -- scraped data can be garbage, esp APPT
     const firstInput=document.getElementById('sf-first');
     const lastInput=document.getElementById('sf-last');
+    const addressInput=document.getElementById('sf-address');
+    const cityInput=document.getElementById('sf-city');
+    const zipInput=document.getElementById('sf-zip');
     const editedFirst=(firstInput&&firstInput.value.trim())||'';
     const editedLast=(lastInput&&lastInput.value.trim())||'';
+    const editedAddress=(addressInput&&addressInput.value.trim())||'';
+    const editedCity=(cityInput&&cityInput.value.trim())||'';
+    const editedZip=(zipInput&&zipInput.value.trim())||'';
     const{first:parsedFirst,last:parsedLast}=parseName(lead.owner);
     const first=editedFirst||parsedFirst||'';
-    const last=editedLast||parsedLast||lead.address||'';
+    const addrTitle=editedAddress||(lead.address?toTitle(lead.address):'');
+    const cityTitle=editedCity||toTitle(lead.city||'');
+    const zipVal=editedZip||lead.zip;
+    const last=editedLast||parsedLast||addrTitle||'';
+    // v4.3 fix 2026-08-05: block push if name/address is missing — a contact with
+    // blank merge-tag data still gets enrolled in the live SMS sequence and sends
+    // a broken text (confirmed incident: text went out with no name/address).
+    if(!first.trim()||!addrTitle.trim()){
+      const missing=[!first.trim()&&'first name',!addrTitle.trim()&&'address'].filter(Boolean).join(' and ');
+      toast(`Blocked push — missing ${missing}. Fill in the First/Address field(s) before saving.`,true);
+      return null;
+    }
     const vbp=isVBP(lead),stacked=isStacked(lead),ce=isCEOnly(lead),lp=isLP(lead),appt=isAppt(lead);const ghlTag=getGHLTag(lead);
   // v4.2 fix: APPT leads must NOT get bexar_lead tag — it triggers wrong workflow
   const baseTags=appt?['forewarn_searched']:['bexar_lead','forewarn_searched'];
   const tags=[...baseTags,ghlTag];
-  if(stacked){tags.push('bexar_stacked','bexar_vbp','bexar_ce');if(isVBPDangerous(lead))tags.push('ce_dangerous');}else if(vbp)tags.push('bexar_vbp');else if(ce){tags.push('bexar_ce');if(lead.flags?.includes('DANGEROUS PREMISES'))tags.push('ce_dangerous');}else if(lp)tags.push('bexar_lp');else if(appt){tags.push('bexar_prefore');}else{tags.push('bexar-contacted');if(lead.absentee)tags.push('absentee');if(lead.type==='TAX')tags.push('tax_foreclosure');if(lead.is_new)tags.push('new_lead');}if(isLongHeld(lead))tags.push('long_held');
-  const body={firstName:first||'',lastName:last||lead.address||'',phone,address1:lead.address,city:lead.city,state:'TX',postalCode:lead.zip,tags,locationId:S.ghlLocationId,source:'bexar-leads'};
+  if(stacked){tags.push('bexar_stacked','bexar_vbp','bexar_ce');if(isVBPDangerous(lead))tags.push('ce_dangerous');}else if(vbp)tags.push('bexar_vbp');else if(ce){tags.push('bexar_ce');if(lead.flags?.includes('DANGEROUS PREMISES'))tags.push('ce_dangerous');}else if(lp)tags.push('bexar_lp');else if(appt){/* bexar_prefore already added via ghlTag above */}else{tags.push('bexar-contacted');if(lead.absentee)tags.push('absentee');if(lead.type==='TAX')tags.push('tax_foreclosure');if(lead.is_new)tags.push('new_lead');}if(isLongHeld(lead))tags.push('long_held');
+  const body={firstName:first||'',lastName:last||addrTitle||'',phone,address1:addrTitle,city:cityTitle,state:'TX',postalCode:zipVal,tags,locationId:S.ghlLocationId,source:'bexar-leads'};
   const res=await fetch('https://services.leadconnectorhq.com/contacts/',{method:'POST',headers:{'Authorization':'Bearer '+S.ghlApiKey,'Content-Type':'application/json','Version':'2021-07-28'},body:JSON.stringify(body)});
   const data=await res.json(),id=data.contact?.id||data.id;
   if(id){S.leads[lead.doc_number].ghlId=id;S.leads[lead.doc_number].ghl_pushed=true;saveState();setGhlDot(true);return id;}else{setGhlDot(false);return null;}}catch(e){setGhlDot(false);return null;}
@@ -1222,11 +1284,18 @@ function toast(msg,type=false){const el=document.getElementById('toast');el.text
 if('serviceWorker' in navigator){navigator.serviceWorker.register('/bexar-leads/sw.js').catch(e=>console.log('SW:',e));}
 setInterval(()=>fetchLeads(),15*60*1000);
 
-const DEFAULT_COUNTIES=[{id:'bexar',name:'Bexar County',label:'BEXAR·LEADS',url:'https://e4property.github.io/bexar-leads/records.json',ghlTag:'bexar_lead',color:'var(--blue)'},{id:'nueces',name:'Nueces County',label:'NUECES·LEADS',url:'https://e4property.github.io/nueces-leads/records.json',ghlTag:'nueces_lead',color:'var(--teal)'}];
-function getCounties(){try{const s=localStorage.getItem('bl_counties');if(s)return JSON.parse(s);}catch(e){}return DEFAULT_COUNTIES;}
-function saveCounties(c){localStorage.setItem('bl_counties',JSON.stringify(c));}
-function getActiveCounty(){try{const id=localStorage.getItem('bl_active_county');const counties=getCounties();return counties.find(c=>c.id===id)||counties[0];}catch(e){}return getCounties()[0];}
-function setActiveCounty(id){localStorage.setItem('bl_active_county',id);const county=getCounties().find(c=>c.id===id);if(!county)return;S.recordsUrl=county.url;saveState();closeCountySwitcher();allLeads=[];filteredLeads=[];selectedDoc=null;selectedIdx=-1;document.getElementById('lead-list').innerHTML='<div class="loading">Loading<span class="ld">.</span><span class="ld">.</span><span class="ld">.</span></div>';fetchLeads();toast('Switched to '+county.name,'ok');}
+const DEFAULT_COUNTIES=[{id:'bexar',name:'Bexar County',label:'BEXAR·LEADS',url:'https://e4property.github.io/bexar-leads/records.json',ghlTag:'bexar_lead',color:'var(--blue)'},{id:'nueces',name:'Nueces County',label:'NUECES·LEADS',url:'https://e4property.github.io/nueces-leads/records.json',ghlTag:'nueces_lead',color:'var(--teal)'},{id:'guadalupe',name:'Guadalupe County',label:'GUADALUPE·LEADS',url:'https://e4property.github.io/guadalupe-leads/records.json',ghlTag:'guadalupe_lead',color:'var(--purple)'}];
+// Scoped per-site with SK (bl_v6/nl_v1/gl_v1) — NOT a bare global key. GitHub
+// Pages serves bexar-leads/nueces-leads/guadalupe-leads all under the same
+// e4property.github.io origin, and localStorage is shared per-origin, not
+// per-path. A bare 'bl_active_county' key meant picking Nueces from the
+// switcher on ANY of the three sites silently overrode which data loaded on
+// ALL of them, including plain direct page loads — confirmed live
+// 2026-08-19 as "I chose Nueces and Bexar showed up, and vice versa."
+function getCounties(){try{const s=localStorage.getItem(SK+'_counties');if(s)return JSON.parse(s);}catch(e){}return DEFAULT_COUNTIES;}
+function saveCounties(c){localStorage.setItem(SK+'_counties',JSON.stringify(c));}
+function getActiveCounty(){try{const id=localStorage.getItem(SK+'_active_county');const counties=getCounties();return counties.find(c=>c.id===id)||counties[0];}catch(e){}return getCounties()[0];}
+function setActiveCounty(id){localStorage.setItem(SK+'_active_county',id);const county=getCounties().find(c=>c.id===id);if(!county)return;S.recordsUrl=county.url;saveState();closeCountySwitcher();allLeads=[];filteredLeads=[];selectedDoc=null;selectedIdx=-1;document.getElementById('lead-list').innerHTML='<div class="loading">Loading<span class="ld">.</span><span class="ld">.</span><span class="ld">.</span></div>';fetchLeads();toast('Switched to '+county.name,'ok');}
 function toggleCountySwitcher(){const dd=document.getElementById('county-dropdown');if(!dd)return;if(dd.style.display==='none'){renderCountyList();dd.style.display='block';setTimeout(()=>document.addEventListener('click',closeOnOutside),10);}else closeCountySwitcher();}
 function closeCountySwitcher(){const dd=document.getElementById('county-dropdown');if(dd)dd.style.display='none';document.removeEventListener('click',closeOnOutside);}
 function closeOnOutside(e){const w=document.querySelector('.nav-logo');if(w&&!w.contains(e.target))closeCountySwitcher();}
