@@ -1358,7 +1358,26 @@ async function pushGHL(lead,phone){
   const baseTags=appt?['forewarn_searched']:['bexar_lead','forewarn_searched'];
   const tags=[...baseTags,ghlTag];
   if(stacked){tags.push('bexar_stacked','bexar_vbp','bexar_ce');if(isVBPDangerous(lead))tags.push('ce_dangerous');}else if(vbp)tags.push('bexar_vbp');else if(ce){tags.push('bexar_ce');if(lead.flags?.includes('DANGEROUS PREMISES'))tags.push('ce_dangerous');}else if(lp)tags.push('bexar_lp');else if(appt){/* bexar_prefore already added via ghlTag above */}else{tags.push('bexar-contacted');if(lead.absentee)tags.push('absentee');if(lead.type==='TAX')tags.push('tax_foreclosure');if(lead.is_new)tags.push('new_lead');}if(isLongHeld(lead))tags.push('long_held');
+  // Soft-range offer test, 2026-08-19: only for long-tenure (15+ yr) leads,
+  // computed with the same base/tier logic as the dashboard's MAO
+  // calculator. mao_high assumes light repair (best case), mao_low
+  // assumes heavy repair (worst case) — a genuine range, not a firm
+  // number. Skipped entirely if there's no sqft to base a repair
+  // estimate on, rather than fabricating one.
+  const customFields=[];
+  if(isLongHeld(lead)){
+    const maoBase=parseFloat(lead.arv_estimate)||parseFloat(lead.appraised_value)||0;
+    const maoSqft=parseFloat(lead.arv_sqft)||0;
+    if(maoBase&&maoSqft){
+      const subtotal=maoBase*0.70;
+      const high=Math.max(0,Math.round((subtotal-20*maoSqft-12000)/100)*100);
+      const low=Math.max(0,Math.round((subtotal-75*maoSqft-12000)/100)*100);
+      customFields.push({key:'mao_low',field_value:String(Math.min(low,high))});
+      customFields.push({key:'mao_high',field_value:String(Math.max(low,high))});
+    }
+  }
   const body={firstName:first||'',lastName:last||addrTitle||'',phone,address1:addrTitle,city:cityTitle,state:'TX',postalCode:zipVal,tags,locationId:S.ghlLocationId,source:'bexar-leads'};
+  if(customFields.length)body.customFields=customFields;
   const res=await fetch('https://services.leadconnectorhq.com/contacts/',{method:'POST',headers:{'Authorization':'Bearer '+S.ghlApiKey,'Content-Type':'application/json','Version':'2021-07-28'},body:JSON.stringify(body)});
   const data=await res.json(),id=data.contact?.id||data.id;
   if(id){S.leads[lead.doc_number].ghlId=id;S.leads[lead.doc_number].ghl_pushed=true;saveState();setGhlDot(true);return id;}else{setGhlDot(false);return null;}}catch(e){setGhlDot(false);return null;}
