@@ -1358,23 +1358,47 @@ async function pushGHL(lead,phone){
   const baseTags=appt?['forewarn_searched']:['bexar_lead','forewarn_searched'];
   const tags=[...baseTags,ghlTag];
   if(stacked){tags.push('bexar_stacked','bexar_vbp','bexar_ce');if(isVBPDangerous(lead))tags.push('ce_dangerous');}else if(vbp)tags.push('bexar_vbp');else if(ce){tags.push('bexar_ce');if(lead.flags?.includes('DANGEROUS PREMISES'))tags.push('ce_dangerous');}else if(lp)tags.push('bexar_lp');else if(appt){/* bexar_prefore already added via ghlTag above */}else{tags.push('bexar-contacted');if(lead.absentee)tags.push('absentee');if(lead.type==='TAX')tags.push('tax_foreclosure');if(lead.is_new)tags.push('new_lead');}if(isLongHeld(lead))tags.push('long_held');
-  // Soft-range offer test, 2026-08-19: only for long-tenure (15+ yr) leads,
-  // computed with the same base/tier logic as the dashboard's MAO
-  // calculator. mao_high assumes light repair (best case), mao_low
-  // assumes heavy repair (worst case) — a genuine range, not a firm
-  // number. Skipped entirely if there's no sqft to base a repair
-  // estimate on, rather than fabricating one.
+  // Soft-range offer, 2026-08-19 -> 2026-08-19 v2: originally gated on
+  // long-tenure (15+ yr) as a proxy bracket, back when loan_amount was
+  // 0% filled and there was no real financial data to gate on. Now that
+  // the OCR root-cause fix (e8884c7) unblocks loan_amount, switched to
+  // the bracket the operator actually asked for: real loan balance, not
+  // tenure. mao_low/mao_high compute for ANY lead with a base value +
+  // sqft (same tier logic as the dashboard's MAO calculator — light
+  // repair = best case = mao_high, heavy repair = worst case = mao_low).
+  // net_low/net_high additionally net out the real mortgage payoff plus a
+  // small flat est. closing/title cost (no listing commission on a
+  // wholesale deal, but title/closing fees are real) — matches the
+  // standard seller-net-sheet convention researched 2026-08-19.
+  // cash_offer_bracket only gets set when even the WORST-case MAO clears
+  // payoff by a genuine $5k+ margin, not just >$0 — a deal that barely
+  // clears isn't meaningfully different from one that doesn't, and
+  // texting a "cash offer" framing that nets someone ~$500 looks bad.
+  // That margin gate is the signal the bot's cash-offer trigger keys
+  // off, decoupled from whether the raw numbers exist at all. Doesn't
+  // net out "other liens" — those are only known once the bot asks in
+  // conversation, so the bot script caveats the range instead of the
+  // math faking it.
+  const CASH_OFFER_MARGIN=5000, EST_CLOSING_COST=2000;
   const customFields=[];
-  if(isLongHeld(lead)){
-    const maoBase=parseFloat(lead.arv_estimate)||parseFloat(lead.appraised_value)||0;
-    const maoSqft=parseFloat(lead.arv_sqft)||0;
-    if(maoBase&&maoSqft){
-      const subtotal=maoBase*0.70;
-      const high=Math.max(0,Math.round((subtotal-20*maoSqft-12000)/100)*100);
-      const low=Math.max(0,Math.round((subtotal-75*maoSqft-12000)/100)*100);
-      customFields.push({key:'mao_low',field_value:String(Math.min(low,high))});
-      customFields.push({key:'mao_high',field_value:String(Math.max(low,high))});
-    }
+  const maoBase=parseFloat(lead.arv_estimate)||parseFloat(lead.appraised_value)||0;
+  const maoSqft=parseFloat(lead.arv_sqft)||0;
+  let maoLow=null,maoHigh=null;
+  if(maoBase&&maoSqft){
+    const subtotal=maoBase*0.70;
+    const hi=Math.max(0,Math.round((subtotal-20*maoSqft-12000)/100)*100);
+    const lo=Math.max(0,Math.round((subtotal-75*maoSqft-12000)/100)*100);
+    maoLow=Math.min(lo,hi);maoHigh=Math.max(lo,hi);
+    customFields.push({key:'mao_low',field_value:String(maoLow)});
+    customFields.push({key:'mao_high',field_value:String(maoHigh)});
+  }
+  const payoff=parseFloat((lead.loan_amount+'').replace(/[$,]/g,''))||0;
+  if(maoLow!=null&&payoff>0){
+    const netLow=Math.max(0,maoLow-payoff-EST_CLOSING_COST);
+    const netHigh=Math.max(0,maoHigh-payoff-EST_CLOSING_COST);
+    customFields.push({key:'net_low',field_value:String(netLow)});
+    customFields.push({key:'net_high',field_value:String(netHigh)});
+    if(maoLow-payoff>=CASH_OFFER_MARGIN)tags.push('cash_offer_bracket');
   }
   const body={firstName:first||'',lastName:last||addrTitle||'',phone,address1:addrTitle,city:cityTitle,state:'TX',postalCode:zipVal,tags,locationId:S.ghlLocationId,source:'bexar-leads'};
   if(customFields.length)body.customFields=customFields;
