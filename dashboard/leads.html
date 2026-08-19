@@ -376,6 +376,16 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 .eq-track{height:5px;background:var(--bg3);border-radius:99px;overflow:hidden;margin-bottom:7px}
 .eq-fill{height:100%;border-radius:99px;transition:width .5s}
 .sig-box{background:var(--green-bg);border:1px solid var(--green-mid);border-radius:6px;padding:7px 9px;font-size:11px;color:var(--green-dk);line-height:1.5}
+.mao-controls{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+.mao-field label{display:block;font-size:9px;color:var(--muted);margin-bottom:3px;font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.05em}
+.mao-field select,.mao-field input{width:100%;padding:6px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg2);color:var(--text);font-size:12px;font-family:'Inter',sans-serif}
+.mao-result{background:var(--teal-bg);border:1px solid var(--teal-mid);border-radius:var(--r);padding:12px;text-align:center;margin-bottom:8px}
+.mao-result-num{font-size:24px;font-weight:700;color:var(--teal-dk);font-family:'DM Mono',monospace}
+.mao-result-lbl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-top:2px}
+.mao-breakdown{font-size:11px;color:var(--dim);line-height:1.8;font-family:'DM Mono',monospace}
+.mao-breakdown .row{display:flex;justify-content:space-between}
+.mao-warn{background:var(--red-bg);border:1px solid var(--red-mid);border-radius:6px;padding:8px 10px;font-size:11px;color:var(--red-dk);margin-top:8px;line-height:1.5}
+.mao-base-note{font-weight:400;text-transform:none;letter-spacing:0;color:var(--dim);font-size:10px}
 .budget-bar-d{display:flex;align-items:center;background:var(--bg2);border:1px solid var(--border);border-radius:var(--rl);padding:9px 12px;margin-bottom:9px}
 .bud-item-d{flex:1;text-align:center}
 .bud-num-d{font-family:'DM Mono',monospace;font-size:18px;font-weight:700;line-height:1}
@@ -692,6 +702,34 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
             <div class="eq-labels"><span>Loan</span><span id="eq-center-lbl" style="font-weight:500">—</span><span>Appraised</span></div>
             <div class="eq-track"><div class="eq-fill" id="eq-fill" style="width:0%"></div></div>
             <div class="sig-box" id="sig-box" style="display:none"></div>
+          </div>
+          <div class="dsec">
+            <div class="dsec-lbl">🧮 MAO Calculator <span class="mao-base-note" id="mao-base-note"></span></div>
+            <div class="mao-controls">
+              <div class="mao-field"><label>Repair Tier</label>
+                <select id="mao-tier" onchange="updateMAO()">
+                  <option value="20">Light — $20/sqft</option>
+                  <option value="40" selected>Medium — $40/sqft</option>
+                  <option value="75">Heavy — $75/sqft</option>
+                </select>
+              </div>
+              <div class="mao-field"><label>Discount off Base</label>
+                <select id="mao-discount" onchange="updateMAO()">
+                  <option value="0.70" selected>70% — standard</option>
+                  <option value="0.65">65% — urgent/distressed</option>
+                </select>
+              </div>
+            </div>
+            <div class="mao-controls">
+              <div class="mao-field"><label>Repair Budget ($)</label><input type="number" id="mao-repair" step="500" oninput="updateMAO(true)"></div>
+              <div class="mao-field"><label>Wholesale Fee ($)</label><input type="number" id="mao-fee" step="500" value="12000" oninput="updateMAO()"></div>
+            </div>
+            <div class="mao-result">
+              <div class="mao-result-num" id="mao-result">—</div>
+              <div class="mao-result-lbl">Max Allowable Offer</div>
+            </div>
+            <div class="mao-breakdown" id="mao-breakdown"></div>
+            <div class="mao-warn" id="mao-warn" style="display:none"></div>
           </div>
           <div class="dsec">
             <div class="dsec-lbl">📞 ForeWarn</div>
@@ -1133,6 +1171,7 @@ function populateDetail(lead){
   const arv=parseFloat(lead.arv_estimate)||0;
   document.getElementById('m-arv').textContent=arv?'$'+arv.toLocaleString():'—';
   document.getElementById('m-arv-key').textContent=lead.arv_status?`ARV Est. (${lead.arv_status.replace(/_/g,' ')})`:'ARV Est.';
+  initMAO(lead,appr,arv);
   document.getElementById('m-amount').textContent=lead.loan_amount||'—';
   const eqEl=document.getElementById('m-equity');eqEl.textContent=eq!=null?(eq>=0?'$'+Math.abs(eq).toLocaleString():'($'+Math.abs(eq).toLocaleString()+')'):'—';eqEl.className='fin-val '+(eq!=null?(eq>=0?'blue':'red'):'');
   document.getElementById('m-ltv').textContent=ltv!=null?ltv+'%':'—';
@@ -1233,6 +1272,56 @@ function clearPhone(){if(!confirm('Clear phone?'))return;if(S.leads[selectedDoc]
 function skipLead(){if(!S.leads[selectedDoc])S.leads[selectedDoc]={};S.leads[selectedDoc].skipped=!S.leads[selectedDoc].skipped;saveState();filterLeads();toast('Skipped');setTimeout(()=>navNextUnworked(),300);}
 function setDispo(doc,dispo){if(!S.leads[doc])S.leads[doc]={};S.leads[doc].dispo=dispo;saveState();renderDispoTrack(doc,dispo);renderList();updateStats();if(S.ghlApiKey&&S.leads[doc]?.ghlId)updateGHLTag(S.leads[doc].ghlId,dispo);writeBackToRepo(doc,{dash_dispo:dispo});toast(`Dispo → ${dispo}`);}
 function saveNotes(){if(!selectedDoc)return;if(!S.leads[selectedDoc])S.leads[selectedDoc]={};const notes=document.getElementById('notes-area').value;S.leads[selectedDoc].notes=notes;saveState();writeBackToRepo(selectedDoc,{dash_notes:notes});}
+/* MAO Calculator — 2026-08-19, first build, testing for a week before
+   trusting it fully. Base = arv_estimate when available (real sold-comp
+   AVM), falls back to appraised_value otherwise (confirmed by the
+   operator to run high vs. actual market value — flagged clearly in the
+   UI whenever it's the fallback, never presented as equally trustworthy).
+   maoRepairManual tracks whether the operator has hand-edited the repair
+   budget so switching tiers doesn't clobber a manual override. */
+let maoLeadDoc=null, maoBase=0, maoBaseSrc='', maoSqft=0, maoRepairManual=false;
+
+function initMAO(lead,appr,arv){
+  if(lead.doc_number!==maoLeadDoc){maoRepairManual=false;maoLeadDoc=lead.doc_number;}
+  if(arv){maoBase=arv;maoBaseSrc='arv';}
+  else if(appr){maoBase=appr;maoBaseSrc='appraised';}
+  else{maoBase=0;maoBaseSrc='';}
+  maoSqft=parseFloat(lead.arv_sqft)||0;
+  const noteEl=document.getElementById('mao-base-note');
+  if(!maoBase)noteEl.textContent='no ARV or appraised value yet';
+  else if(maoBaseSrc==='arv')noteEl.textContent=`base: ARV $${maoBase.toLocaleString()}`;
+  else noteEl.textContent=`⚠ base: appraised value $${maoBase.toLocaleString()} — no ARV yet, appraised often runs high, verify before offering`;
+  updateMAO();
+}
+
+function updateMAO(manualRepair){
+  if(manualRepair)maoRepairManual=true;
+  const tierRate=parseFloat(document.getElementById('mao-tier').value)||0;
+  const repairEl=document.getElementById('mao-repair');
+  if(!maoRepairManual)repairEl.value=maoSqft?Math.round(tierRate*maoSqft):'';
+  const discount=parseFloat(document.getElementById('mao-discount').value)||0.70;
+  const repair=parseFloat(repairEl.value)||0;
+  const fee=parseFloat(document.getElementById('mao-fee').value)||0;
+  const resultEl=document.getElementById('mao-result');
+  const breakdownEl=document.getElementById('mao-breakdown');
+  const warnEl=document.getElementById('mao-warn');
+  if(!maoBase){
+    resultEl.textContent='—';breakdownEl.innerHTML='';warnEl.style.display='none';
+    return;
+  }
+  const subtotal=maoBase*discount;
+  const mao=subtotal-repair-fee;
+  resultEl.textContent='$'+Math.round(mao).toLocaleString();
+  resultEl.style.color=mao>0?'var(--teal-dk)':'var(--red-dk)';
+  breakdownEl.innerHTML=
+    `<div class="row"><span>Base (${maoBaseSrc==='arv'?'ARV':'Appraised'}) × ${Math.round(discount*100)}%</span><span>$${Math.round(subtotal).toLocaleString()}</span></div>`+
+    `<div class="row"><span>− Repair budget${maoSqft&&!maoRepairManual?` (${maoSqft.toLocaleString()} sqft)`:''}</span><span>$${Math.round(repair).toLocaleString()}</span></div>`+
+    `<div class="row"><span>− Wholesale fee</span><span>$${Math.round(fee).toLocaleString()}</span></div>`;
+  if(mao<=0){warnEl.style.display='block';warnEl.textContent='This tier/discount combo leaves nothing after repairs and fee — this deal likely doesn\'t work at this repair level. Try a lighter tier or pass.';}
+  else if(!maoSqft&&!maoRepairManual){warnEl.style.display='block';warnEl.textContent='No sqft data yet for this lead — repair budget defaulted to $0, enter one manually.';}
+  else warnEl.style.display='none';
+}
+
 function copyAddress(){const lead=allLeads.find(l=>l.doc_number===selectedDoc);if(!lead)return;const addressInput=document.getElementById('sf-address'),cityInput=document.getElementById('sf-city'),zipInput=document.getElementById('sf-zip');const addr=(addressInput&&addressInput.value.trim())||toTitle(lead.address||'');const city=(cityInput&&cityInput.value.trim())||toTitle(lead.city||'');const zip=(zipInput&&zipInput.value.trim())||lead.zip;navigator.clipboard.writeText(`${addr}, ${city} TX ${zip}`);toast('Address copied');}
 function openGHL(){const ls=LS(selectedDoc);window.open(ls.ghlId?`https://app.justjarvis.com/v2/location/${S.ghlLocationId}/contacts/detail/${ls.ghlId}`:'https://app.justjarvis.com','_blank');}
 
