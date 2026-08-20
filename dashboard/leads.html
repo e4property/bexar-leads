@@ -1476,6 +1476,19 @@ async function pushGHL(lead,phone){
       toast(`Blocked push — missing ${missing}. Fill in the First/Address field(s) before saving.`,true);
       return null;
     }
+    // 2026-08-20: block push if owner is a placeholder string, not a real
+    // name -- confirmed live on Guadalupe leads where the source notice
+    // document has no owner field, and the scraper recorded that AS the
+    // owner text (e.g. "Not stated in notice text"). The missing-name
+    // guard above only catches an EMPTY string, not a populated-but-fake
+    // one -- parseName() would happily split this into a garbage
+    // first/last name and let it push straight through to a live SMS
+    // greeting. Same guard added to all three county dashboards.
+    const PLACEHOLDER_OWNER_RE=/not stated|not captured|not found|not available|unknown owner|n\/a/i;
+    if(PLACEHOLDER_OWNER_RE.test(lead.owner||'')&&!editedFirst){
+      toast(`Blocked push — this lead's owner name looks like a placeholder ("${(lead.owner||'').slice(0,60)}"), not a real name. Look up the real owner (county appraisal district) and enter it in the First/Last fields before pushing.`,true);
+      return null;
+    }
     const vbp=isVBP(lead),stacked=isStacked(lead),ce=isCEOnly(lead),lp=isLP(lead),appt=isAppt(lead);const ghlTag=getGHLTag(lead);
   // v4.2 fix: APPT leads must NOT get bexar_lead tag — it triggers wrong workflow
   const baseTags=appt?['forewarn_searched']:['bexar_lead','forewarn_searched'];
