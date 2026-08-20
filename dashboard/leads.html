@@ -389,6 +389,9 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 .mao-net-num{font-size:18px;font-weight:700;color:var(--blue-dk);font-family:'DM Mono',monospace}
 .mao-net-lbl{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-top:2px}
 .mao-base-note{font-weight:400;text-transform:none;letter-spacing:0;color:var(--dim);font-size:10px}
+.mao-offer-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:10px;margin-top:8px}
+.mao-offer-range{background:var(--teal-bg);border:1px solid var(--teal-mid);border-radius:6px;padding:8px;text-align:center;margin:8px 0;font-family:'DM Mono',monospace;font-size:15px;font-weight:700;color:var(--teal-dk)}
+.mao-offer-status{font-size:10px;color:var(--muted);margin-top:6px;text-align:center;line-height:1.5}
 .budget-bar-d{display:flex;align-items:center;background:var(--bg2);border:1px solid var(--border);border-radius:var(--rl);padding:9px 12px;margin-bottom:9px}
 .bud-item-d{flex:1;text-align:center}
 .bud-num-d{font-family:'DM Mono',monospace;font-size:18px;font-weight:700;line-height:1}
@@ -737,6 +740,12 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
               <div class="mao-net-lbl" id="mao-net-lbl">Est. Net to Seller</div>
             </div>
             <div class="mao-warn" id="mao-warn" style="display:none"></div>
+            <div class="mao-offer-box" id="mao-offer-box" style="display:none">
+              <div class="mao-field"><label>Target Offer ($) <span style="font-weight:400;text-transform:none;letter-spacing:0">— what you're actually prepared to pay</span></label><input type="number" id="mao-target" step="500" oninput="updateMAO(false,true)"></div>
+              <div class="mao-offer-range" id="mao-offer-range">—</div>
+              <button class="act-btn" id="btn-bot-offer" onclick="enableBotOffer()" style="width:100%">🎯 Enable Bot Offer</button>
+              <div class="mao-offer-status" id="mao-offer-status"></div>
+            </div>
           </div>
           <div class="dsec">
             <div class="dsec-lbl">📞 ForeWarn</div>
@@ -1287,10 +1296,11 @@ function saveNotes(){if(!selectedDoc)return;if(!S.leads[selectedDoc])S.leads[sel
    maoRepairManual tracks whether the operator has hand-edited the repair
    budget so switching tiers doesn't clobber a manual override. */
 const MAO_CLOSING_COST=2000; // matches EST_CLOSING_COST in pushGHL — keep these two in sync
-let maoLeadDoc=null, maoBase=0, maoBaseSrc='', maoSqft=0, maoPayoff=0, maoRepairManual=false;
+let maoLeadDoc=null, maoBase=0, maoBaseSrc='', maoSqft=0, maoPayoff=0, maoRepairManual=false, maoTargetManual=false;
+const OFFER_GAP=5000, OFFER_SPREAD=10000; // stated range sits $5k-$15k under target (e.g. target 85k -> "70-80")
 
 function initMAO(lead,appr,arv){
-  if(lead.doc_number!==maoLeadDoc){maoRepairManual=false;maoLeadDoc=lead.doc_number;}
+  if(lead.doc_number!==maoLeadDoc){maoRepairManual=false;maoTargetManual=false;maoLeadDoc=lead.doc_number;}
   if(arv){maoBase=arv;maoBaseSrc='arv';}
   else if(appr){maoBase=appr;maoBaseSrc='appraised';}
   else{maoBase=0;maoBaseSrc='';}
@@ -1303,8 +1313,9 @@ function initMAO(lead,appr,arv){
   updateMAO();
 }
 
-function updateMAO(manualRepair){
+function updateMAO(manualRepair,manualTarget){
   if(manualRepair)maoRepairManual=true;
+  if(manualTarget)maoTargetManual=true;
   const tierRate=parseFloat(document.getElementById('mao-tier').value)||0;
   const repairEl=document.getElementById('mao-repair');
   if(!maoRepairManual)repairEl.value=maoSqft?Math.round(tierRate*maoSqft):'';
@@ -1316,6 +1327,7 @@ function updateMAO(manualRepair){
   const warnEl=document.getElementById('mao-warn');
   if(!maoBase){
     resultEl.textContent='—';breakdownEl.innerHTML='';warnEl.style.display='none';
+    document.getElementById('mao-offer-box').style.display='none';
     return;
   }
   const subtotal=maoBase*discount;
@@ -1338,6 +1350,61 @@ function updateMAO(manualRepair){
     netLblEl.textContent=`Est. Net to Seller (after $${maoPayoff.toLocaleString()} payoff + ~$${MAO_CLOSING_COST.toLocaleString()} closing)`;
   }else{
     netEl.style.display='none';
+  }
+
+  const offerBox=document.getElementById('mao-offer-box'),targetEl=document.getElementById('mao-target'),rangeEl=document.getElementById('mao-offer-range'),btnOffer=document.getElementById('btn-bot-offer'),statusEl=document.getElementById('mao-offer-status');
+  offerBox.style.display='block';
+  if(!maoTargetManual)targetEl.value=mao>0?Math.round(mao):'';
+  const target=parseFloat(targetEl.value)||0;
+  const top=Math.max(0,Math.floor((target-OFFER_GAP)/1000)*1000);
+  const bottom=Math.max(0,top-OFFER_SPREAD);
+  if(target<=0){
+    rangeEl.textContent='—';btnOffer.disabled=true;
+  }else if(bottom<=0){
+    rangeEl.textContent='Target too low for a clean range';btnOffer.disabled=true;
+  }else{
+    rangeEl.textContent=`Say: $${bottom.toLocaleString()} – $${top.toLocaleString()}`;btnOffer.disabled=false;
+  }
+  const lead=allLeads.find(l=>l.doc_number===maoLeadDoc);
+  const ls=lead?LS(lead.doc_number):null;
+  const local=lead?S.leads[lead.doc_number]:null;
+  if(!ls||!ls.ghlId){
+    statusEl.textContent='Push this lead to Jarvis first, then enable the bot offer.';btnOffer.disabled=true;
+  }else if(local&&local.botOfferEnabled){
+    statusEl.textContent=`✓ Bot offer enabled — $${local.botOfferLow.toLocaleString()}–$${local.botOfferHigh.toLocaleString()} (re-enable to update)`;
+  }else{
+    statusEl.textContent='Not yet enabled — bot will not mention numbers until you click this.';
+  }
+}
+
+async function enableBotOffer(){
+  const lead=allLeads.find(l=>l.doc_number===selectedDoc);
+  if(!lead)return;
+  const ls=LS(lead.doc_number);
+  if(!ls.ghlId){toast('Push this lead to Jarvis first','err');return;}
+  const target=parseFloat(document.getElementById('mao-target').value)||0;
+  const top=Math.max(0,Math.floor((target-OFFER_GAP)/1000)*1000);
+  const bottom=Math.max(0,top-OFFER_SPREAD);
+  if(target<=0||bottom<=0){toast('Enter a valid target offer first','err');return;}
+  const btn=document.getElementById('btn-bot-offer');
+  const origLabel=btn.textContent;
+  btn.disabled=true;btn.textContent='Enabling…';
+  try{
+    const cfRes=await fetch(`https://services.leadconnectorhq.com/contacts/${ls.ghlId}`,{method:'PUT',headers:{'Authorization':'Bearer '+S.ghlApiKey,'Content-Type':'application/json','Version':'2021-07-28'},body:JSON.stringify({customFields:[{key:'offer_low',field_value:String(bottom)},{key:'offer_high',field_value:String(top)}]})});
+    if(!cfRes.ok)throw new Error('customFields update failed');
+    await fetch(`https://services.leadconnectorhq.com/contacts/${ls.ghlId}/tags/`,{method:'POST',headers:{'Authorization':'Bearer '+S.ghlApiKey,'Content-Type':'application/json','Version':'2021-07-28'},body:JSON.stringify({tags:['bot_offer_enabled']})});
+    if(!S.leads[lead.doc_number])S.leads[lead.doc_number]={};
+    S.leads[lead.doc_number].botOfferEnabled=true;
+    S.leads[lead.doc_number].botOfferLow=bottom;
+    S.leads[lead.doc_number].botOfferHigh=top;
+    S.leads[lead.doc_number].botOfferAt=Date.now();
+    saveState();
+    toast(`✓ Bot offer enabled — $${bottom.toLocaleString()}–$${top.toLocaleString()}`,'ok');
+    btn.textContent=origLabel;
+    updateMAO();
+  }catch(e){
+    toast('Failed to enable bot offer — check GHL connection','err');
+    btn.disabled=false;btn.textContent=origLabel;
   }
 }
 
@@ -1377,50 +1444,15 @@ async function pushGHL(lead,phone){
   const baseTags=appt?['forewarn_searched']:['bexar_lead','forewarn_searched'];
   const tags=[...baseTags,ghlTag];
   if(stacked){tags.push('bexar_stacked','bexar_vbp','bexar_ce');if(isVBPDangerous(lead))tags.push('ce_dangerous');}else if(vbp)tags.push('bexar_vbp');else if(ce){tags.push('bexar_ce');if(lead.flags?.includes('DANGEROUS PREMISES'))tags.push('ce_dangerous');}else if(lp)tags.push('bexar_lp');else if(appt){/* bexar_prefore already added via ghlTag above */}else{tags.push('bexar-contacted');if(lead.absentee)tags.push('absentee');if(lead.type==='TAX')tags.push('tax_foreclosure');if(lead.is_new)tags.push('new_lead');}if(isLongHeld(lead))tags.push('long_held');
-  // Soft-range offer, 2026-08-19 -> 2026-08-19 v2: originally gated on
-  // long-tenure (15+ yr) as a proxy bracket, back when loan_amount was
-  // 0% filled and there was no real financial data to gate on. Now that
-  // the OCR root-cause fix (e8884c7) unblocks loan_amount, switched to
-  // the bracket the operator actually asked for: real loan balance, not
-  // tenure. mao_low/mao_high compute for ANY lead with a base value +
-  // sqft (same tier logic as the dashboard's MAO calculator — light
-  // repair = best case = mao_high, heavy repair = worst case = mao_low).
-  // net_low/net_high additionally net out the real mortgage payoff plus a
-  // small flat est. closing/title cost (no listing commission on a
-  // wholesale deal, but title/closing fees are real) — matches the
-  // standard seller-net-sheet convention researched 2026-08-19.
-  // cash_offer_bracket only gets set when even the WORST-case MAO clears
-  // payoff by a genuine $5k+ margin, not just >$0 — a deal that barely
-  // clears isn't meaningfully different from one that doesn't, and
-  // texting a "cash offer" framing that nets someone ~$500 looks bad.
-  // That margin gate is the signal the bot's cash-offer trigger keys
-  // off, decoupled from whether the raw numbers exist at all. Doesn't
-  // net out "other liens" — those are only known once the bot asks in
-  // conversation, so the bot script caveats the range instead of the
-  // math faking it.
-  const CASH_OFFER_MARGIN=5000, EST_CLOSING_COST=2000;
-  const customFields=[];
-  const maoBase=parseFloat(lead.arv_estimate)||parseFloat(lead.appraised_value)||0;
-  const maoSqft=parseFloat(lead.arv_sqft)||0;
-  let maoLow=null,maoHigh=null;
-  if(maoBase&&maoSqft){
-    const subtotal=maoBase*0.70;
-    const hi=Math.max(0,Math.round((subtotal-20*maoSqft-12000)/100)*100);
-    const lo=Math.max(0,Math.round((subtotal-75*maoSqft-12000)/100)*100);
-    maoLow=Math.min(lo,hi);maoHigh=Math.max(lo,hi);
-    customFields.push({key:'mao_low',field_value:String(maoLow)});
-    customFields.push({key:'mao_high',field_value:String(maoHigh)});
-  }
-  const payoff=parseFloat((lead.loan_amount+'').replace(/[$,]/g,''))||0;
-  if(maoLow!=null&&payoff>0){
-    const netLow=Math.max(0,maoLow-payoff-EST_CLOSING_COST);
-    const netHigh=Math.max(0,maoHigh-payoff-EST_CLOSING_COST);
-    customFields.push({key:'net_low',field_value:String(netLow)});
-    customFields.push({key:'net_high',field_value:String(netHigh)});
-    if(maoLow-payoff>=CASH_OFFER_MARGIN)tags.push('cash_offer_bracket');
-  }
+  // Bot-offer bracket, 2026-08-20: dropped the auto financial-margin gate
+  // (mao_low/mao_high/net_low/net_high/cash_offer_bracket pushed at
+  // initial contact creation) in favor of a fully manual gate — Xavi
+  // reviews the MAO Calculator per lead and clicks "Enable Bot Offer"
+  // himself (see enableBotOffer()), same trust model as picking who gets
+  // the top-50 PDF calls. That pushes offer_low/offer_high + the
+  // bot_offer_enabled tag as a separate action on an already-pushed
+  // contact, not here at initial push time.
   const body={firstName:first||'',lastName:last||addrTitle||'',phone,address1:addrTitle,city:cityTitle,state:'TX',postalCode:zipVal,tags,locationId:S.ghlLocationId,source:'bexar-leads'};
-  if(customFields.length)body.customFields=customFields;
   const res=await fetch('https://services.leadconnectorhq.com/contacts/',{method:'POST',headers:{'Authorization':'Bearer '+S.ghlApiKey,'Content-Type':'application/json','Version':'2021-07-28'},body:JSON.stringify(body)});
   const data=await res.json(),id=data.contact?.id||data.id;
   if(id){S.leads[lead.doc_number].ghlId=id;S.leads[lead.doc_number].ghl_pushed=true;saveState();setGhlDot(true);return id;}else{setGhlDot(false);return null;}}catch(e){setGhlDot(false);return null;}
