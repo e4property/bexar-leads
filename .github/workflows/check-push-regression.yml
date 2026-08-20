@@ -1,0 +1,53 @@
+name: Check Push-Tracking Regression
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'dashboard/records.json'
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Compare ghl_pushed counts vs previous commit
+        run: |
+          python3 - <<'PYEOF'
+          import json, subprocess, sys
+
+          def count_pushed(ref):
+              try:
+                  raw = subprocess.check_output(["git", "show", f"{ref}:dashboard/records.json"])
+              except subprocess.CalledProcessError:
+                  return None
+              try:
+                  recs = json.loads(raw)
+              except Exception:
+                  return None
+              return sum(1 for r in recs if r.get("ghl_pushed"))
+
+          before = count_pushed("HEAD~1")
+          after = count_pushed("HEAD")
+
+          if before is None or after is None:
+              print("Could not read records.json on one side -- skipping check.")
+              sys.exit(0)
+
+          drop = before - after
+          print(f"ghl_pushed count: {before} -> {after} (drop={drop})")
+
+          # Single test-reset-and-repush cycles are expected and fine -- only
+          # flag a LARGE drop in one commit, the shape of the real incident
+          # this check exists for (160 leads lost their tracking at once).
+          THRESHOLD = 5
+          if drop > THRESHOLD:
+              print(f"::error::ghl_pushed count dropped by {drop} in a single commit (threshold={THRESHOLD}). This looks like the same push-tracking regression that happened before, not a normal single-lead test reset. Check what changed in this commit before trusting it.")
+              sys.exit(1)
+          PYEOF
