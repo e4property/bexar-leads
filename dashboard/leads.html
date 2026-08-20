@@ -392,6 +392,8 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 .mao-offer-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:10px;margin-top:8px}
 .mao-offer-range{background:var(--teal-bg);border:1px solid var(--teal-mid);border-radius:6px;padding:8px;text-align:center;margin:8px 0;font-family:'DM Mono',monospace;font-size:15px;font-weight:700;color:var(--teal-dk)}
 .mao-offer-status{font-size:10px;color:var(--muted);margin-top:6px;text-align:center;line-height:1.5}
+.mao-mark-label{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text);margin:8px 0;line-height:1.4;cursor:pointer}
+.mao-mark-label input{flex:none;width:auto;margin:0}
 .budget-bar-d{display:flex;align-items:center;background:var(--bg2);border:1px solid var(--border);border-radius:var(--rl);padding:9px 12px;margin-bottom:9px}
 .bud-item-d{flex:1;text-align:center}
 .bud-num-d{font-family:'DM Mono',monospace;font-size:18px;font-weight:700;line-height:1}
@@ -743,7 +745,8 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
             <div class="mao-offer-box" id="mao-offer-box" style="display:none">
               <div class="mao-field"><label>Target Offer ($) <span style="font-weight:400;text-transform:none;letter-spacing:0">— what you're actually prepared to pay</span></label><input type="number" id="mao-target" step="500" oninput="updateMAO(false,true)"></div>
               <div class="mao-offer-range" id="mao-offer-range">—</div>
-              <button class="act-btn" id="btn-bot-offer" onclick="enableBotOffer()" style="width:100%">🎯 Enable Bot Offer</button>
+              <label class="mao-mark-label" id="mao-mark-wrap" style="display:none"><input type="checkbox" id="mao-mark-offer" onchange="toggleMarkBotOffer()"> Mark for Bot Offer — include this range automatically when I push this lead to Jarvis</label>
+              <button class="act-btn" id="btn-bot-offer" onclick="enableBotOffer()" style="width:100%;display:none">🎯 Enable Bot Offer</button>
               <div class="mao-offer-status" id="mao-offer-status"></div>
             </div>
           </div>
@@ -1352,29 +1355,46 @@ function updateMAO(manualRepair,manualTarget){
     netEl.style.display='none';
   }
 
-  const offerBox=document.getElementById('mao-offer-box'),targetEl=document.getElementById('mao-target'),rangeEl=document.getElementById('mao-offer-range'),btnOffer=document.getElementById('btn-bot-offer'),statusEl=document.getElementById('mao-offer-status');
+  const offerBox=document.getElementById('mao-offer-box'),targetEl=document.getElementById('mao-target'),rangeEl=document.getElementById('mao-offer-range'),btnOffer=document.getElementById('btn-bot-offer'),statusEl=document.getElementById('mao-offer-status'),markWrap=document.getElementById('mao-mark-wrap'),markCb=document.getElementById('mao-mark-offer');
   offerBox.style.display='block';
   if(!maoTargetManual)targetEl.value=mao>0?Math.round(mao):'';
   const target=parseFloat(targetEl.value)||0;
   const top=Math.max(0,Math.floor((target-OFFER_GAP)/1000)*1000);
   const bottom=Math.max(0,top-OFFER_SPREAD);
-  if(target<=0){
-    rangeEl.textContent='—';btnOffer.disabled=true;
-  }else if(bottom<=0){
-    rangeEl.textContent='Target too low for a clean range';btnOffer.disabled=true;
-  }else{
-    rangeEl.textContent=`Say: $${bottom.toLocaleString()} – $${top.toLocaleString()}`;btnOffer.disabled=false;
-  }
+  const rangeOk=target>0&&bottom>0;
+  if(target<=0)rangeEl.textContent='—';
+  else if(bottom<=0)rangeEl.textContent='Target too low for a clean range';
+  else rangeEl.textContent=`Say: $${bottom.toLocaleString()} – $${top.toLocaleString()}`;
   const lead=allLeads.find(l=>l.doc_number===maoLeadDoc);
   const ls=lead?LS(lead.doc_number):null;
   const local=lead?S.leads[lead.doc_number]:null;
   if(!ls||!ls.ghlId){
-    statusEl.textContent='Push this lead to Jarvis first, then enable the bot offer.';btnOffer.disabled=true;
-  }else if(local&&local.botOfferEnabled){
-    statusEl.textContent=`✓ Bot offer enabled — $${local.botOfferLow.toLocaleString()}–$${local.botOfferHigh.toLocaleString()} (re-enable to update)`;
+    // Not pushed yet -- primary path is the checkbox (mark now, tag/fields
+    // go out with the initial push). The button is for already-pushed
+    // leads only, so it stays hidden here.
+    markWrap.style.display='flex';btnOffer.style.display='none';
+    markCb.checked=!!(local&&local.botOfferMarked);
+    markCb.disabled=!rangeOk;
+    if(!rangeOk)statusEl.textContent='Enter a target offer to mark this lead.';
+    else if(markCb.checked)statusEl.textContent='Marked — will be included automatically when you push this lead to Jarvis.';
+    else statusEl.textContent='Not marked — will push as a normal lead with no offer numbers.';
   }else{
-    statusEl.textContent='Not yet enabled — bot will not mention numbers until you click this.';
+    // Already pushed -- checkbox no longer applies (push already happened),
+    // fall back to the direct enable/update button.
+    markWrap.style.display='none';btnOffer.style.display='block';
+    btnOffer.disabled=!rangeOk;
+    if(local&&local.botOfferEnabled)statusEl.textContent=`✓ Bot offer enabled — $${local.botOfferLow.toLocaleString()}–$${local.botOfferHigh.toLocaleString()} (re-enable to update)`;
+    else statusEl.textContent='Not yet enabled — bot will not mention numbers until you click this.';
   }
+}
+
+function toggleMarkBotOffer(){
+  const lead=allLeads.find(l=>l.doc_number===maoLeadDoc);
+  if(!lead)return;
+  if(!S.leads[lead.doc_number])S.leads[lead.doc_number]={};
+  S.leads[lead.doc_number].botOfferMarked=document.getElementById('mao-mark-offer').checked;
+  saveState();
+  updateMAO();
 }
 
 async function enableBotOffer(){
@@ -1444,18 +1464,32 @@ async function pushGHL(lead,phone){
   const baseTags=appt?['forewarn_searched']:['bexar_lead','forewarn_searched'];
   const tags=[...baseTags,ghlTag];
   if(stacked){tags.push('bexar_stacked','bexar_vbp','bexar_ce');if(isVBPDangerous(lead))tags.push('ce_dangerous');}else if(vbp)tags.push('bexar_vbp');else if(ce){tags.push('bexar_ce');if(lead.flags?.includes('DANGEROUS PREMISES'))tags.push('ce_dangerous');}else if(lp)tags.push('bexar_lp');else if(appt){/* bexar_prefore already added via ghlTag above */}else{tags.push('bexar-contacted');if(lead.absentee)tags.push('absentee');if(lead.type==='TAX')tags.push('tax_foreclosure');if(lead.is_new)tags.push('new_lead');}if(isLongHeld(lead))tags.push('long_held');
-  // Bot-offer bracket, 2026-08-20: dropped the auto financial-margin gate
-  // (mao_low/mao_high/net_low/net_high/cash_offer_bracket pushed at
-  // initial contact creation) in favor of a fully manual gate — Xavi
-  // reviews the MAO Calculator per lead and clicks "Enable Bot Offer"
-  // himself (see enableBotOffer()), same trust model as picking who gets
-  // the top-50 PDF calls. That pushes offer_low/offer_high + the
-  // bot_offer_enabled tag as a separate action on an already-pushed
-  // contact, not here at initial push time.
+  // Bot-offer bracket, 2026-08-20 (v2): originally the tag/fields only
+  // went out as a separate "Enable Bot Offer" click AFTER the lead was
+  // already pushed -- operator feedback was that going back into an
+  // already-pushed lead is clunky, so the primary path is now marking a
+  // lead (mao-mark-offer checkbox, only shown pre-push) BEFORE pushing:
+  // if marked, the range computed from the currently-open lead's Target
+  // Offer field goes out in this SAME initial contact creation. The
+  // "Enable Bot Offer" button/enableBotOffer() still exists for leads
+  // pushed before this was marked -- a retroactive add, not the main flow.
+  let offerLow=null,offerHigh=null;
+  if(S.leads[lead.doc_number]&&S.leads[lead.doc_number].botOfferMarked&&lead.doc_number===maoLeadDoc){
+    const targetEl=document.getElementById('mao-target');
+    const target=targetEl?parseFloat(targetEl.value)||0:0;
+    const top=Math.max(0,Math.floor((target-OFFER_GAP)/1000)*1000);
+    const bottom=Math.max(0,top-OFFER_SPREAD);
+    if(target>0&&bottom>0){offerLow=bottom;offerHigh=top;tags.push('bot_offer_enabled');}
+  }
   const body={firstName:first||'',lastName:last||addrTitle||'',phone,address1:addrTitle,city:cityTitle,state:'TX',postalCode:zipVal,tags,locationId:S.ghlLocationId,source:'bexar-leads'};
+  if(offerLow!=null)body.customFields=[{key:'offer_low',field_value:String(offerLow)},{key:'offer_high',field_value:String(offerHigh)}];
   const res=await fetch('https://services.leadconnectorhq.com/contacts/',{method:'POST',headers:{'Authorization':'Bearer '+S.ghlApiKey,'Content-Type':'application/json','Version':'2021-07-28'},body:JSON.stringify(body)});
   const data=await res.json(),id=data.contact?.id||data.id;
-  if(id){S.leads[lead.doc_number].ghlId=id;S.leads[lead.doc_number].ghl_pushed=true;saveState();setGhlDot(true);return id;}else{setGhlDot(false);return null;}}catch(e){setGhlDot(false);return null;}
+  if(id){
+    S.leads[lead.doc_number].ghlId=id;S.leads[lead.doc_number].ghl_pushed=true;
+    if(offerLow!=null){S.leads[lead.doc_number].botOfferEnabled=true;S.leads[lead.doc_number].botOfferLow=offerLow;S.leads[lead.doc_number].botOfferHigh=offerHigh;S.leads[lead.doc_number].botOfferAt=Date.now();}
+    saveState();setGhlDot(true);return id;
+  }else{setGhlDot(false);return null;}}catch(e){setGhlDot(false);return null;}
 }
 
 async function updateGHLTag(contactId,dispo){const tagMap={contacted:'dispo_contacted',responded:'dispo_responded',deal:'dispo_deal',dead:'dispo_dead'},tag=tagMap[dispo];if(!tag)return;try{await fetch(`https://services.leadconnectorhq.com/contacts/${contactId}/tags/`,{method:'POST',headers:{'Authorization':'Bearer '+S.ghlApiKey,'Content-Type':'application/json','Version':'2021-07-28'},body:JSON.stringify({tags:[tag]})});}catch(e){}}
