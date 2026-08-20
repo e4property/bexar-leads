@@ -670,7 +670,22 @@ def scrape_appointments(known_docs, get_driver_fn, run_timestamp):
                                 page_src, re.IGNORECASE | re.DOTALL)
                             if addr_match:
                                 raw = re.sub(r"<[^>]+>", "", addr_match.group(1)).strip()
-                                if "," in raw:
+                                # 2026-08-20 fix: this path assigned rec["address"]
+                                # straight from the regex match with no validation --
+                                # unlike the main candidate-selection path earlier in
+                                # this file, it never called _looks_like_address().
+                                # When a doc's real Property Address is empty (a real,
+                                # common case -- confirmed the same document type has
+                                # no address field on the source page at all), the
+                                # non-greedy .*? skips ahead to the next digit+TEXAS
+                                # pattern on the page, which is the copyright footer
+                                # ("© 2026 Bexar County, Texas. All Rights Reserved.")
+                                # -- confirmed live 2026-08-20 on doc 20260156666
+                                # (Sedacey Michael M), address recorded as literally
+                                # "2026 Bexar County" / city "Texas. All Rights Reserve".
+                                if not _looks_like_address(raw):
+                                    log.info(f"  Rejected non-address match for {rec['doc_number']}: {raw!r}")
+                                elif "," in raw:
                                     parts = [p.strip() for p in raw.split(",")]
                                     rec["address"] = parts[0].upper()
                                     if len(parts) >= 2:
@@ -683,7 +698,8 @@ def scrape_appointments(known_docs, get_driver_fn, run_timestamp):
                                             rec["city"] = city_c.upper()
                                 else:
                                     rec["address"] = raw.upper()
-                                log.info(f"  Got address for {rec['doc_number']}: {rec['address']}")
+                                if rec["address"]:
+                                    log.info(f"  Got address for {rec['doc_number']}: {rec['address']}")
 
                         if rec.get("owner_unverified") or not rec["owner"]:
                             grantor_block = re.findall(
