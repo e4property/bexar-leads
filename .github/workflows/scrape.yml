@@ -41,6 +41,9 @@ jobs:
 
       - name: Run python scraper/fetch.py
         id: scrape
+        env:
+          CLERK_EMAIL: "${{ secrets.CLERK_EMAIL }}"
+          CLERK_PASSWORD: "${{ secrets.CLERK_PASSWORD }}"
         run: python scraper/fetch.py
 
       - name: Commit records
