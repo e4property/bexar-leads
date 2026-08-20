@@ -1812,7 +1812,7 @@ if __name__ == "__main__":
     os.makedirs("dashboard", exist_ok=True)
 
     log.info("=" * 60)
-    log.info("Bexar County Lead Scraper v28.34 (Hybrid)")
+    log.info("Bexar County Lead Scraper v28.39 (Hybrid)")
     log.info(f"Primary:   PublicSearch.us ({KEEP_DAYS}d window, {CHUNK_DAYS}d chunks, {PAGE_TIMEOUT}s timeout)")
     log.info(f"Secondary: ArcGIS weekly backfill = {IS_SUNDAY}")
     log.info(f"Tertiary:  Code Enforcement 311 ({len(CE_CATEGORIES)} categories, {KEEP_DAYS}d window)")
@@ -1832,6 +1832,17 @@ if __name__ == "__main__":
     doc_driver = None
     try:
         doc_driver = get_driver()
+        # v28.39: login_publicsearch() existed but was never actually called
+        # anywhere in this file -- confirmed live 2026-08-20: every single
+        # goto_doc_by_docnumber() lookup failed identically (~20s timeout
+        # waiting for "table tr td" on the quickSearch results page, 8/8
+        # candidates, 0 exceptions). The chunked /results browse in
+        # scrape_publicsearch() works fine anonymously, but quickSearch
+        # (single-doc-number lookup, used for every doc-detail/OCR hop)
+        # appears to require an authenticated session -- exactly what
+        # CLERK_EMAIL/CLERK_PASSWORD were already wired up for.
+        if not login_publicsearch(doc_driver):
+            log.warning("Doc fetch: PublicSearch login failed or was skipped — quickSearch lookups will likely fail")
         all_for_doc_fetch = new_records + prev_records
         all_for_doc_fetch = fetch_doc_details(all_for_doc_fetch, doc_driver)
         new_records = [r for r in all_for_doc_fetch if r.get("is_new")]
