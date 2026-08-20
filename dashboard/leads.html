@@ -379,6 +379,12 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 .mao-controls{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
 .mao-field label{display:block;font-size:9px;color:var(--muted);margin-bottom:3px;font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.05em}
 .mao-field select,.mao-field input{width:100%;padding:6px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg2);color:var(--text);font-size:12px;font-family:'Inter',sans-serif}
+.mao-ticker{display:flex;align-items:center;gap:4px}
+.mao-ticker input{width:100%;text-align:center;padding:6px 4px;-moz-appearance:textfield}
+.mao-ticker input::-webkit-inner-spin-button,.mao-ticker input::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+.mao-ticker-pct{font-size:11px;color:var(--muted);flex:none}
+.mao-ticker-btn{flex:none;width:24px;height:24px;border-radius:6px;border:1px solid var(--border);background:var(--bg2);color:var(--text);font-size:14px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.mao-ticker-btn:hover{background:var(--border)}
 .mao-result{background:var(--teal-bg);border:1px solid var(--teal-mid);border-radius:var(--r);padding:12px;text-align:center;margin-bottom:8px}
 .mao-result-num{font-size:24px;font-weight:700;color:var(--teal-dk);font-family:'DM Mono',monospace}
 .mao-result-lbl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-top:2px}
@@ -722,10 +728,12 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
                 </select>
               </div>
               <div class="mao-field"><label>Discount off Base</label>
-                <select id="mao-discount" onchange="updateMAO()">
-                  <option value="0.70" selected>70% — standard</option>
-                  <option value="0.65">65% — urgent/distressed</option>
-                </select>
+                <div class="mao-ticker">
+                  <button type="button" class="mao-ticker-btn" onclick="bumpDiscount(-1)">−</button>
+                  <input type="number" id="mao-discount" min="60" max="80" step="1" value="70" oninput="updateMAO()">
+                  <span class="mao-ticker-pct">%</span>
+                  <button type="button" class="mao-ticker-btn" onclick="bumpDiscount(1)">+</button>
+                </div>
               </div>
             </div>
             <div class="mao-controls">
@@ -1316,13 +1324,22 @@ function initMAO(lead,appr,arv){
   updateMAO();
 }
 
+function bumpDiscount(delta){
+  const el=document.getElementById('mao-discount');
+  el.value=Math.min(80,Math.max(60,(parseFloat(el.value)||70)+delta));
+  updateMAO();
+}
+
 function updateMAO(manualRepair,manualTarget){
   if(manualRepair)maoRepairManual=true;
   if(manualTarget)maoTargetManual=true;
   const tierRate=parseFloat(document.getElementById('mao-tier').value)||0;
   const repairEl=document.getElementById('mao-repair');
   if(!maoRepairManual)repairEl.value=maoSqft?Math.round(tierRate*maoSqft):'';
-  const discount=parseFloat(document.getElementById('mao-discount').value)||0.70;
+  const discountEl=document.getElementById('mao-discount');
+  const discountPct=Math.min(80,Math.max(60,parseFloat(discountEl.value)||70));
+  discountEl.value=discountPct;
+  const discount=discountPct/100;
   const repair=parseFloat(repairEl.value)||0;
   const fee=parseFloat(document.getElementById('mao-fee').value)||0;
   const resultEl=document.getElementById('mao-result');
