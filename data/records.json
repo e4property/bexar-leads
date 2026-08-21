@@ -1594,7 +1594,10 @@
     "days_until_sale": 10,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-06T00:00:44.755Z",
-    "ghl_id": "UQT3afkVpo18uf0ICyhl"
+    "ghl_id": "UQT3afkVpo18uf0ICyhl",
+    "on_market": true,
+    "on_market_status": "FOR_RENT",
+    "on_market_checked_at": "2026-08-21T16:07:17Z"
   },
   {
     "type": "NOF",
@@ -2778,7 +2781,10 @@
     "land_value": "49520.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10
+    "days_until_sale": 10,
+    "on_market": true,
+    "on_market_status": "FOR_RENT",
+    "on_market_checked_at": "2026-08-21T16:07:25Z"
   },
   {
     "type": "NOF",
@@ -3083,7 +3089,8 @@
     "days_until_sale": 10,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-07T15:02:03.758Z",
-    "ghl_id": "a4WHXE1Q98vajwsLHrqs"
+    "ghl_id": "a4WHXE1Q98vajwsLHrqs",
+    "on_market_checked_at": "2026-08-21T16:07:27Z"
   },
   {
     "type": "NOF",
@@ -7151,7 +7158,10 @@
     "land_value": "116700.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10
+    "days_until_sale": 10,
+    "on_market": true,
+    "on_market_status": "PENDING",
+    "on_market_checked_at": "2026-08-21T16:07:28Z"
   },
   {
     "type": "NOF",
@@ -8737,7 +8747,10 @@
     "land_value": "4095860.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10
+    "days_until_sale": 10,
+    "on_market": true,
+    "on_market_status": "FOR_RENT",
+    "on_market_checked_at": "2026-08-21T16:07:41Z"
   },
   {
     "type": "NOF",
@@ -8854,7 +8867,10 @@
     "land_value": "2448470.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10
+    "days_until_sale": 10,
+    "on_market": true,
+    "on_market_status": "FOR_RENT",
+    "on_market_checked_at": "2026-08-21T16:07:55Z"
   },
   {
     "type": "NOF",
@@ -8910,7 +8926,10 @@
     "land_value": "1690210.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10
+    "days_until_sale": 10,
+    "on_market": true,
+    "on_market_status": "FOR_RENT",
+    "on_market_checked_at": "2026-08-21T16:07:57Z"
   },
   {
     "type": "NOF",
@@ -9269,7 +9288,10 @@
     "land_value": "990590.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10
+    "days_until_sale": 10,
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-08-21T16:07:59Z"
   },
   {
     "type": "NOF",
@@ -9811,7 +9833,10 @@
     "land_value": "1477030.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10
+    "days_until_sale": 10,
+    "on_market": true,
+    "on_market_status": "FOR_RENT",
+    "on_market_checked_at": "2026-08-21T16:08:08Z"
   },
   {
     "type": "NOF",
@@ -9868,7 +9893,10 @@
     "land_value": "35000.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10
+    "days_until_sale": 10,
+    "on_market": true,
+    "on_market_status": "FOR_RENT",
+    "on_market_checked_at": "2026-08-21T16:08:20Z"
   },
   {
     "type": "NOF",
@@ -9985,7 +10013,10 @@
     "land_value": "2583650.0",
     "stacked": false,
     "score": 9,
-    "days_until_sale": 10
+    "days_until_sale": 10,
+    "on_market": true,
+    "on_market_status": "FOR_RENT",
+    "on_market_checked_at": "2026-08-21T16:08:35Z"
   },
   {
     "type": "NOF",
@@ -11460,7 +11491,8 @@
     "land_value": "38330.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 10,
+    "on_market_checked_at": "2026-08-21T16:08:36Z"
   },
   {
     "type": "NOF",
@@ -12240,7 +12272,10 @@
     "land_value": "5374420.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 10,
+    "on_market": true,
+    "on_market_status": "FOR_RENT",
+    "on_market_checked_at": "2026-08-21T16:08:38Z"
   },
   {
     "type": "NOF",
@@ -12297,7 +12332,10 @@
     "land_value": "5238900.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 10,
+    "on_market": true,
+    "on_market_status": "FOR_RENT",
+    "on_market_checked_at": "2026-08-21T16:08:53Z"
   },
   {
     "type": "NOF",
@@ -12413,7 +12451,10 @@
     "land_value": "562190.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 10,
+    "on_market": true,
+    "on_market_status": "FOR_RENT",
+    "on_market_checked_at": "2026-08-21T16:09:05Z"
   },
   {
     "type": "NOF",
@@ -12773,7 +12814,10 @@
     "land_value": "67760.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 10,
+    "on_market": true,
+    "on_market_status": "FOR_RENT",
+    "on_market_checked_at": "2026-08-21T16:09:31Z"
   },
   {
     "type": "NOF",
@@ -13312,7 +13356,10 @@
     "land_value": "4001800.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 10,
+    "on_market": true,
+    "on_market_status": "FOR_RENT",
+    "on_market_checked_at": "2026-08-21T16:09:33Z"
   },
   {
     "type": "NOF",
@@ -13429,7 +13476,10 @@
     "land_value": "575350.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 10,
+    "on_market": true,
+    "on_market_status": "FOR_RENT",
+    "on_market_checked_at": "2026-08-21T16:09:36Z"
   },
   {
     "type": "NOF",
@@ -13546,7 +13596,10 @@
     "land_value": "363620.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 10,
+    "on_market": true,
+    "on_market_status": "FOR_RENT",
+    "on_market_checked_at": "2026-08-21T16:09:40Z"
   },
   {
     "type": "NOF",
@@ -13603,7 +13656,10 @@
     "land_value": "575350.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 10,
+    "on_market": true,
+    "on_market_status": "FOR_RENT",
+    "on_market_checked_at": "2026-08-21T16:09:44Z"
   },
   {
     "type": "NOF",
@@ -14449,7 +14505,8 @@
     "days_until_sale": 10,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:15:52.012Z",
-    "ghl_id": "rDoT5l461CcaoQVAAzVg"
+    "ghl_id": "rDoT5l461CcaoQVAAzVg",
+    "on_market_checked_at": "2026-08-21T16:09:45Z"
   },
   {
     "type": "NOF",
@@ -14880,7 +14937,10 @@
     "land_value": "322800.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 10,
+    "on_market": true,
+    "on_market_status": "FOR_RENT",
+    "on_market_checked_at": "2026-08-21T16:10:06Z"
   },
   {
     "type": "NOF",
@@ -16237,7 +16297,10 @@
     "land_value": "46380.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 10,
+    "on_market": true,
+    "on_market_status": "FOR_RENT",
+    "on_market_checked_at": "2026-08-21T16:10:20Z"
   },
   {
     "type": "NOF",
@@ -17935,7 +17998,10 @@
     "land_value": "92780.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 10,
+    "on_market": true,
+    "on_market_status": "FOR_RENT",
+    "on_market_checked_at": "2026-08-21T16:10:32Z"
   },
   {
     "type": "NOF",
@@ -19381,7 +19447,10 @@
     "land_value": "528480.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 10,
+    "on_market": true,
+    "on_market_status": "FOR_SALE",
+    "on_market_checked_at": "2026-08-21T16:10:33Z"
   },
   {
     "type": "NOF",
@@ -19497,7 +19566,8 @@
     "land_value": "57550.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 10,
+    "on_market_checked_at": "2026-08-21T16:10:35Z"
   },
   {
     "type": "NOF",
@@ -20214,7 +20284,10 @@
     "land_value": "51200.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 10,
+    "on_market": true,
+    "on_market_status": "FOR_RENT",
+    "on_market_checked_at": "2026-08-21T16:11:02Z"
   },
   {
     "type": "NOF",
@@ -39351,7 +39424,26 @@
     "stacked": false,
     "ce_violations": false,
     "appt_converted": false,
-    "appt_stale": false
+    "appt_stale": false,
+    "deed_date": "",
+    "last_sale_amt": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 6650000
+      },
+      {
+        "year": "2025",
+        "appraised": 6745040
+      },
+      {
+        "year": "2024",
+        "appraised": 6600000
+      }
+    ],
+    "appr_trend": "flat"
   },
   {
     "type": "TAX",
@@ -46723,7 +46815,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000056",
     "ps_doc_id": "",
     "year": "2026",
@@ -46735,7 +46827,6 @@
     "sale_date": "11/03/2026",
     "run_ts": "2026-08-21T15:24:32Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
