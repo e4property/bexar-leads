@@ -23993,7 +23993,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000112",
     "ps_doc_id": "",
     "year": "2026",
@@ -24005,7 +24005,6 @@
     "sale_date": "10/06/2026",
     "run_ts": "2026-08-21T14:36:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -24052,7 +24051,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000106",
     "ps_doc_id": "",
     "year": "2026",
@@ -24064,7 +24063,6 @@
     "sale_date": "10/06/2026",
     "run_ts": "2026-08-21T14:36:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "LONG HELD"
     ],
@@ -24108,7 +24106,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000110",
     "ps_doc_id": "",
     "year": "2026",
@@ -24120,7 +24118,6 @@
     "sale_date": "10/06/2026",
     "run_ts": "2026-08-21T14:36:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "LONG HELD"
     ],
@@ -24168,7 +24165,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000082",
     "ps_doc_id": "",
     "year": "2026",
@@ -24180,7 +24177,6 @@
     "sale_date": "10/06/2026",
     "run_ts": "2026-08-21T14:36:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "LONG HELD"
     ],
@@ -24228,7 +24224,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000081",
     "ps_doc_id": "",
     "year": "2026",
@@ -24240,7 +24236,6 @@
     "sale_date": "10/06/2026",
     "run_ts": "2026-08-21T14:36:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "LONG HELD"
     ],
@@ -24288,7 +24283,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000089",
     "ps_doc_id": "",
     "year": "2026",
@@ -24300,7 +24295,6 @@
     "sale_date": "10/06/2026",
     "run_ts": "2026-08-21T14:36:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -24347,7 +24341,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000084",
     "ps_doc_id": "",
     "year": "2026",
@@ -24359,7 +24353,6 @@
     "sale_date": "10/06/2026",
     "run_ts": "2026-08-21T14:36:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -24406,7 +24399,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000090",
     "ps_doc_id": "",
     "year": "2026",
@@ -24418,7 +24411,6 @@
     "sale_date": "10/06/2026",
     "run_ts": "2026-08-21T14:36:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "LONG HELD"
     ],
@@ -24455,6 +24447,583 @@
     "arv_status": "OFF_MARKET",
     "arv_sqft": 2506,
     "arv_fetched_at": "2026-08-21T14:49:36Z",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 45
+  },
+  {
+    "type": "NOF",
+    "address": "7234 PEBBLE CREEK",
+    "owner": "DUROCHER ERIN JEAN",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20261000077",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78238",
+    "school_dist": "",
+    "date_filed": "8/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-08-21T14:36:49Z",
+    "flags": [
+      "HAS SALE DATE",
+      "LONG HELD"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 10,
+    "tenure_score_bonus": 15,
+    "prop_id": "708762.0",
+    "deed_date": "4/20/2016",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 214480
+      },
+      {
+        "year": "2025",
+        "appraised": 224280
+      },
+      {
+        "year": "2024",
+        "appraised": 215660
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "224280.0",
+    "annual_taxes": "",
+    "land_value": "45100.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 45
+  },
+  {
+    "type": "NOF",
+    "address": "925 ROMERO",
+    "owner": "CASIANO RAUL G",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20261000079",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78237",
+    "school_dist": "",
+    "date_filed": "8/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-08-21T14:36:49Z",
+    "flags": [
+      "HAS SALE DATE",
+      "LONG HELD"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 26,
+    "tenure_score_bonus": 25,
+    "prop_id": "407552.0",
+    "deed_date": "6/2/2000",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 134780
+      },
+      {
+        "year": "2025",
+        "appraised": 139420
+      },
+      {
+        "year": "2024",
+        "appraised": 150940
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "139420.0",
+    "annual_taxes": "",
+    "land_value": "37760.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 45,
+    "arv_estimate": 166000,
+    "arv_status": "SOLD",
+    "arv_sqft": 1098,
+    "arv_fetched_at": "2026-08-21T15:35:05Z"
+  },
+  {
+    "type": "NOF",
+    "address": "24571 OPEN RANGE RD",
+    "owner": "NEELEY ELENA & GALVAN KRISTINE",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20261000075",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78264",
+    "school_dist": "",
+    "date_filed": "8/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-08-21T14:36:49Z",
+    "flags": [
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 5,
+    "tenure_score_bonus": 5,
+    "prop_id": "176129.0",
+    "deed_date": "2/1/2021",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 338570
+      },
+      {
+        "year": "2025",
+        "appraised": 356980
+      },
+      {
+        "year": "2024",
+        "appraised": 344450
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "356980.0",
+    "annual_taxes": "",
+    "land_value": "115420.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 45,
+    "arv_estimate": 299700,
+    "arv_status": "SOLD",
+    "arv_sqft": null,
+    "arv_fetched_at": "2026-08-21T15:35:08Z"
+  },
+  {
+    "type": "NOF",
+    "address": "1123 RENA",
+    "owner": "MAXWELL ANDREA FAYE",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20261000072",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78228",
+    "school_dist": "",
+    "date_filed": "8/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-08-21T14:36:49Z",
+    "flags": [
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 8,
+    "tenure_score_bonus": 5,
+    "prop_id": "496695.0",
+    "deed_date": "2/1/2018",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 184910
+      },
+      {
+        "year": "2025",
+        "appraised": 190640
+      },
+      {
+        "year": "2024",
+        "appraised": 190640
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "190640.0",
+    "annual_taxes": "",
+    "land_value": "40360.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 45,
+    "arv_estimate": 209800,
+    "arv_status": "SOLD",
+    "arv_sqft": 1886,
+    "arv_fetched_at": "2026-08-21T15:35:09Z"
+  },
+  {
+    "type": "NOF",
+    "address": "10606 WEST AVE",
+    "owner": "LEBOW TERAH B EST OF",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20261000070",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78213",
+    "school_dist": "",
+    "date_filed": "8/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-08-21T14:36:49Z",
+    "flags": [
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 6,
+    "tenure_score_bonus": 5,
+    "prop_id": "502378.0",
+    "deed_date": "5/12/2020",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 380030
+      },
+      {
+        "year": "2025",
+        "appraised": 380030
+      },
+      {
+        "year": "2024",
+        "appraised": 390990
+      }
+    ],
+    "appr_trend": "flat",
+    "appraised_value": "380030.0",
+    "annual_taxes": "",
+    "land_value": "117600.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 45,
+    "arv_estimate": 445991,
+    "arv_status": "OFF_MARKET",
+    "arv_sqft": 2661,
+    "arv_fetched_at": "2026-08-21T15:35:11Z"
+  },
+  {
+    "type": "NOF",
+    "address": "4822 TUSLER PARK",
+    "owner": "MARTINEZ JOE ANTHONY & CERVANTES SAMANTHA MARIE",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20261000066",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78223",
+    "school_dist": "",
+    "date_filed": "8/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-08-21T14:36:49Z",
+    "flags": [
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 5,
+    "tenure_score_bonus": 5,
+    "prop_id": "1326490.0",
+    "deed_date": "6/29/2021",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 238390
+      },
+      {
+        "year": "2025",
+        "appraised": 240330
+      },
+      {
+        "year": "2024",
+        "appraised": 237700
+      }
+    ],
+    "appr_trend": "flat",
+    "appraised_value": "240330.0",
+    "annual_taxes": "",
+    "land_value": "51590.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 45,
+    "arv_estimate": 236300,
+    "arv_status": "SOLD",
+    "arv_sqft": 1625,
+    "arv_fetched_at": "2026-08-21T15:35:12Z"
+  },
+  {
+    "type": "NOF",
+    "address": "9923 CHANTEMAR",
+    "owner": "ADAMS PERCIVAL",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20261000074",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78250",
+    "school_dist": "",
+    "date_filed": "8/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-08-21T14:36:49Z",
+    "flags": [
+      "HAS SALE DATE",
+      "LONG HELD"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 10,
+    "tenure_score_bonus": 15,
+    "prop_id": "710323.0",
+    "deed_date": "9/12/2015",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 187840
+      },
+      {
+        "year": "2025",
+        "appraised": 213460
+      },
+      {
+        "year": "2024",
+        "appraised": 215870
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "213460.0",
+    "annual_taxes": "",
+    "land_value": "47130.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 45,
+    "arv_estimate": 208356,
+    "arv_status": "SOLD",
+    "arv_sqft": 1145,
+    "arv_fetched_at": "2026-08-21T15:35:16Z"
+  },
+  {
+    "type": "NOF",
+    "address": "4803 TUSLER PARK",
+    "owner": "SERRATO CAMERON MARIA & FRAGA FRANCES IRENE",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20261000068",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78223",
+    "school_dist": "",
+    "date_filed": "8/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-08-21T14:36:49Z",
+    "flags": [
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 5,
+    "tenure_score_bonus": 5,
+    "prop_id": "1326485.0",
+    "deed_date": "8/4/2021",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 287710
+      },
+      {
+        "year": "2025",
+        "appraised": 290040
+      },
+      {
+        "year": "2024",
+        "appraised": 286870
+      }
+    ],
+    "appr_trend": "flat",
+    "appraised_value": "290040.0",
+    "annual_taxes": "",
+    "land_value": "64150.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 45,
+    "arv_estimate": 266500,
+    "arv_status": "SOLD",
+    "arv_sqft": 2084,
+    "arv_fetched_at": "2026-08-21T15:35:17Z"
+  },
+  {
+    "type": "NOF",
+    "address": "1931 DELLHAVEN DR",
+    "owner": "VILLA HECTOR VALDEZ",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": true,
+    "is_new": false,
+    "doc_number": "20261000073",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78220",
+    "school_dist": "",
+    "date_filed": "8/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-08-21T14:36:49Z",
+    "flags": [
+      "DUPLICATE",
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 8,
+    "tenure_score_bonus": 5,
+    "prop_id": "519814.0",
+    "deed_date": "8/22/2018",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 208010
+      },
+      {
+        "year": "2025",
+        "appraised": 212370
+      },
+      {
+        "year": "2024",
+        "appraised": 214470
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "212370.0",
+    "annual_taxes": "",
+    "land_value": "42870.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 45,
+    "arv_estimate": 191900,
+    "arv_status": "SOLD",
+    "arv_sqft": 1240,
+    "arv_fetched_at": "2026-08-21T15:35:19Z"
+  },
+  {
+    "type": "NOF",
+    "address": "122 SALISBURY",
+    "owner": "SWEARINGEN DREW H",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20261000071",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78217",
+    "school_dist": "",
+    "date_filed": "8/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-08-21T14:36:49Z",
+    "flags": [
+      "HAS SALE DATE",
+      "LONG HELD"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 24,
+    "tenure_score_bonus": 25,
+    "prop_id": "507018.0",
+    "deed_date": "6/28/2002",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 191360
+      },
+      {
+        "year": "2025",
+        "appraised": 197100
+      },
+      {
+        "year": "2024",
+        "appraised": 194950
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "197100.0",
+    "annual_taxes": "",
+    "land_value": "59980.0",
     "stacked": false,
     "score": 10,
     "days_until_sale": 45
@@ -29893,7 +30462,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000086",
     "ps_doc_id": "",
     "year": "2026",
@@ -29905,7 +30474,6 @@
     "sale_date": "11/03/2026",
     "run_ts": "2026-08-21T14:36:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -29952,7 +30520,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000101",
     "ps_doc_id": "",
     "year": "2026",
@@ -29964,7 +30532,6 @@
     "sale_date": "11/03/2026",
     "run_ts": "2026-08-21T14:36:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -30011,7 +30578,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000102",
     "ps_doc_id": "",
     "year": "2026",
@@ -30023,7 +30590,6 @@
     "sale_date": "11/03/2026",
     "run_ts": "2026-08-21T14:36:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "LONG HELD"
     ],
@@ -30067,7 +30633,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000095",
     "ps_doc_id": "",
     "year": "2026",
@@ -30079,7 +30645,6 @@
     "sale_date": "11/03/2026",
     "run_ts": "2026-08-21T14:36:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -30126,7 +30691,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000087",
     "ps_doc_id": "",
     "year": "2026",
@@ -30138,7 +30703,6 @@
     "sale_date": "11/03/2026",
     "run_ts": "2026-08-21T14:36:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "LONG HELD"
     ],
@@ -38704,7 +39268,7 @@
     "mail_addr": "ALEMU BENYAM G NEW BRAUNFELS 78130",
     "absentee": true,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000107",
     "ps_doc_id": "",
     "year": "2026",
@@ -38717,7 +39281,6 @@
     "run_ts": "2026-08-21T14:36:49Z",
     "flags": [
       "ABSENTEE",
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -40196,7 +40759,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000109",
     "ps_doc_id": "",
     "year": "2026",
@@ -40208,7 +40771,6 @@
     "sale_date": "10/06/2026",
     "run_ts": "2026-08-21T14:36:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -40217,10 +40779,10 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 3,
     "tenure_score_bonus": 0,
     "prop_id": "513909.0",
-    "deed_date": "",
+    "deed_date": "5/25/2023",
     "last_sale_amt": "",
     "appr_history": [
       {
@@ -40255,7 +40817,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000111",
     "ps_doc_id": "",
     "year": "2026",
@@ -40267,7 +40829,6 @@
     "sale_date": "10/06/2026",
     "run_ts": "2026-08-21T14:36:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -40314,7 +40875,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000103",
     "ps_doc_id": "",
     "year": "2026",
@@ -40327,7 +40888,6 @@
     "run_ts": "2026-08-21T14:36:49Z",
     "flags": [
       "DUPLICATE",
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -40370,7 +40930,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000108",
     "ps_doc_id": "",
     "year": "2026",
@@ -40382,7 +40942,6 @@
     "sale_date": "10/06/2026",
     "run_ts": "2026-08-21T14:36:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -40429,7 +40988,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000104",
     "ps_doc_id": "",
     "year": "2026",
@@ -40441,7 +41000,6 @@
     "sale_date": "10/06/2026",
     "run_ts": "2026-08-21T14:36:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -40488,7 +41046,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000083",
     "ps_doc_id": "",
     "year": "2026",
@@ -40500,7 +41058,6 @@
     "sale_date": "10/06/2026",
     "run_ts": "2026-08-21T14:36:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -40547,7 +41104,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000099",
     "ps_doc_id": "",
     "year": "2026",
@@ -40559,7 +41116,6 @@
     "sale_date": "10/06/2026",
     "run_ts": "2026-08-21T14:36:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -40606,7 +41162,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000091",
     "ps_doc_id": "",
     "year": "2026",
@@ -40618,7 +41174,6 @@
     "sale_date": "10/06/2026",
     "run_ts": "2026-08-21T14:36:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -40665,7 +41220,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000092",
     "ps_doc_id": "",
     "year": "2026",
@@ -40678,7 +41233,6 @@
     "run_ts": "2026-08-21T14:36:49Z",
     "flags": [
       "DUPLICATE",
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -40725,7 +41279,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000088",
     "ps_doc_id": "",
     "year": "2026",
@@ -40737,7 +41291,6 @@
     "sale_date": "10/06/2026",
     "run_ts": "2026-08-21T14:36:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -40784,7 +41337,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000080",
     "ps_doc_id": "",
     "year": "2026",
@@ -40796,7 +41349,6 @@
     "sale_date": "10/06/2026",
     "run_ts": "2026-08-21T14:36:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -40843,7 +41395,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000093",
     "ps_doc_id": "",
     "year": "2026",
@@ -40856,7 +41408,6 @@
     "run_ts": "2026-08-21T14:36:49Z",
     "flags": [
       "DUPLICATE",
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -40903,7 +41454,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000085",
     "ps_doc_id": "",
     "year": "2026",
@@ -40915,7 +41466,6 @@
     "sale_date": "10/06/2026",
     "run_ts": "2026-08-21T14:36:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -40962,7 +41512,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000096",
     "ps_doc_id": "",
     "year": "2026",
@@ -40974,7 +41524,6 @@
     "sale_date": "10/06/2026",
     "run_ts": "2026-08-21T14:36:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -41021,7 +41570,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000098",
     "ps_doc_id": "",
     "year": "2026",
@@ -41033,7 +41582,6 @@
     "sale_date": "10/06/2026",
     "run_ts": "2026-08-21T14:36:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -41042,19 +41590,36 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 2,
     "tenure_score_bonus": 0,
     "prop_id": "537237.0",
-    "deed_date": "",
+    "deed_date": "7/12/2024",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 297620
+      },
+      {
+        "year": "2025",
+        "appraised": 307090
+      },
+      {
+        "year": "2024",
+        "appraised": 312080
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "307090.0",
     "annual_taxes": "",
     "land_value": "67260.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 45,
+    "arv_estimate": 295600,
+    "arv_status": "SOLD",
+    "arv_sqft": 1881,
+    "arv_fetched_at": "2026-08-21T15:34:51Z"
   },
   {
     "type": "NOF",
@@ -41063,7 +41628,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000100",
     "ps_doc_id": "",
     "year": "2026",
@@ -41075,7 +41640,6 @@
     "sale_date": "10/06/2026",
     "run_ts": "2026-08-21T14:36:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -41084,19 +41648,36 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 4,
     "tenure_score_bonus": 0,
     "prop_id": "1347659.0",
-    "deed_date": "",
+    "deed_date": "7/1/2022",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 224340
+      },
+      {
+        "year": "2025",
+        "appraised": 230760
+      },
+      {
+        "year": "2024",
+        "appraised": 227250
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "230760.0",
     "annual_taxes": "",
     "land_value": "75570.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 45,
+    "arv_estimate": 220000,
+    "arv_status": "SOLD",
+    "arv_sqft": 1151,
+    "arv_fetched_at": "2026-08-21T15:34:52Z"
   },
   {
     "type": "NOF",
@@ -41105,7 +41686,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000097",
     "ps_doc_id": "",
     "year": "2026",
@@ -41117,7 +41698,6 @@
     "sale_date": "10/06/2026",
     "run_ts": "2026-08-21T14:36:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -41126,103 +41706,36 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 2,
     "tenure_score_bonus": 0,
     "prop_id": "1358988.0",
-    "deed_date": "",
+    "deed_date": "7/10/2024",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 344730
+      },
+      {
+        "year": "2025",
+        "appraised": 347840
+      },
+      {
+        "year": "2024",
+        "appraised": 237790
+      }
+    ],
+    "appr_trend": "flat",
     "appraised_value": "347840.0",
     "annual_taxes": "",
     "land_value": "40830.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
-  },
-  {
-    "type": "NOF",
-    "address": "7234 PEBBLE CREEK",
-    "owner": "DUROCHER ERIN JEAN",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": true,
-    "doc_number": "20261000077",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78238",
-    "school_dist": "",
-    "date_filed": "8/2026",
-    "sale_date": "10/06/2026",
-    "run_ts": "2026-08-21T14:36:49Z",
-    "flags": [
-      "NEW",
-      "HAS SALE DATE"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "708762.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "224280.0",
-    "annual_taxes": "",
-    "land_value": "45100.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 45
-  },
-  {
-    "type": "NOF",
-    "address": "925 ROMERO",
-    "owner": "CASIANO RAUL G",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": true,
-    "doc_number": "20261000079",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78237",
-    "school_dist": "",
-    "date_filed": "8/2026",
-    "sale_date": "10/06/2026",
-    "run_ts": "2026-08-21T14:36:49Z",
-    "flags": [
-      "NEW",
-      "HAS SALE DATE"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "407552.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "139420.0",
-    "annual_taxes": "",
-    "land_value": "37760.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 45,
+    "arv_estimate": 292200,
+    "arv_status": "FOR_SALE",
+    "arv_sqft": 2780,
+    "arv_fetched_at": "2026-08-21T15:34:54Z"
   },
   {
     "type": "NOF",
@@ -41231,7 +41744,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000078",
     "ps_doc_id": "",
     "year": "2026",
@@ -41243,7 +41756,6 @@
     "sale_date": "10/06/2026",
     "run_ts": "2026-08-21T14:36:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -41252,187 +41764,36 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 3,
     "tenure_score_bonus": 0,
     "prop_id": "1345687.0",
-    "deed_date": "",
+    "deed_date": "11/23/2022",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 253680
+      },
+      {
+        "year": "2025",
+        "appraised": 253680
+      },
+      {
+        "year": "2024",
+        "appraised": 250860
+      }
+    ],
+    "appr_trend": "flat",
     "appraised_value": "253680.0",
     "annual_taxes": "",
     "land_value": "51550.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
-  },
-  {
-    "type": "NOF",
-    "address": "24571 OPEN RANGE RD",
-    "owner": "NEELEY ELENA & GALVAN KRISTINE",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": true,
-    "doc_number": "20261000075",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78264",
-    "school_dist": "",
-    "date_filed": "8/2026",
-    "sale_date": "10/06/2026",
-    "run_ts": "2026-08-21T14:36:49Z",
-    "flags": [
-      "NEW",
-      "HAS SALE DATE"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "176129.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "356980.0",
-    "annual_taxes": "",
-    "land_value": "115420.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 45
-  },
-  {
-    "type": "NOF",
-    "address": "1123 RENA",
-    "owner": "MAXWELL ANDREA FAYE",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": true,
-    "doc_number": "20261000072",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78228",
-    "school_dist": "",
-    "date_filed": "8/2026",
-    "sale_date": "10/06/2026",
-    "run_ts": "2026-08-21T14:36:49Z",
-    "flags": [
-      "NEW",
-      "HAS SALE DATE"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "496695.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "190640.0",
-    "annual_taxes": "",
-    "land_value": "40360.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 45
-  },
-  {
-    "type": "NOF",
-    "address": "10606 WEST AVE",
-    "owner": "LEBOW TERAH B EST OF",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": true,
-    "doc_number": "20261000070",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78213",
-    "school_dist": "",
-    "date_filed": "8/2026",
-    "sale_date": "10/06/2026",
-    "run_ts": "2026-08-21T14:36:49Z",
-    "flags": [
-      "NEW",
-      "HAS SALE DATE"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "502378.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "380030.0",
-    "annual_taxes": "",
-    "land_value": "117600.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 45
-  },
-  {
-    "type": "NOF",
-    "address": "4822 TUSLER PARK",
-    "owner": "MARTINEZ JOE ANTHONY & CERVANTES SAMANTHA MARIE",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": true,
-    "doc_number": "20261000066",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78223",
-    "school_dist": "",
-    "date_filed": "8/2026",
-    "sale_date": "10/06/2026",
-    "run_ts": "2026-08-21T14:36:49Z",
-    "flags": [
-      "NEW",
-      "HAS SALE DATE"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "1326490.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "240330.0",
-    "annual_taxes": "",
-    "land_value": "51590.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 45,
+    "arv_estimate": 249900,
+    "arv_status": "SOLD",
+    "arv_sqft": 1606,
+    "arv_fetched_at": "2026-08-21T15:35:06Z"
   },
   {
     "type": "NOF",
@@ -41441,7 +41802,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000055",
     "ps_doc_id": "",
     "year": "2026",
@@ -41454,7 +41815,6 @@
     "run_ts": "2026-08-21T14:36:49Z",
     "flags": [
       "DUPLICATE",
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -41463,188 +41823,36 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 3,
     "tenure_score_bonus": 0,
     "prop_id": "1066585.0",
-    "deed_date": "",
+    "deed_date": "6/5/2023",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 249850
+      },
+      {
+        "year": "2025",
+        "appraised": 264100
+      },
+      {
+        "year": "2024",
+        "appraised": 266700
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "264100.0",
     "annual_taxes": "",
     "land_value": "47880.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
-  },
-  {
-    "type": "NOF",
-    "address": "9923 CHANTEMAR",
-    "owner": "ADAMS PERCIVAL",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": true,
-    "doc_number": "20261000074",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78250",
-    "school_dist": "",
-    "date_filed": "8/2026",
-    "sale_date": "10/06/2026",
-    "run_ts": "2026-08-21T14:36:49Z",
-    "flags": [
-      "NEW",
-      "HAS SALE DATE"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "710323.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "213460.0",
-    "annual_taxes": "",
-    "land_value": "47130.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 45
-  },
-  {
-    "type": "NOF",
-    "address": "4803 TUSLER PARK",
-    "owner": "SERRATO CAMERON MARIA & FRAGA FRANCES IRENE",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": true,
-    "doc_number": "20261000068",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78223",
-    "school_dist": "",
-    "date_filed": "8/2026",
-    "sale_date": "10/06/2026",
-    "run_ts": "2026-08-21T14:36:49Z",
-    "flags": [
-      "NEW",
-      "HAS SALE DATE"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "1326485.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "290040.0",
-    "annual_taxes": "",
-    "land_value": "64150.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 45
-  },
-  {
-    "type": "NOF",
-    "address": "1931 DELLHAVEN DR",
-    "owner": "VILLA HECTOR VALDEZ",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": true,
-    "is_new": true,
-    "doc_number": "20261000073",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78220",
-    "school_dist": "",
-    "date_filed": "8/2026",
-    "sale_date": "10/06/2026",
-    "run_ts": "2026-08-21T14:36:49Z",
-    "flags": [
-      "DUPLICATE",
-      "NEW",
-      "HAS SALE DATE"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "519814.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "212370.0",
-    "annual_taxes": "",
-    "land_value": "42870.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 45
-  },
-  {
-    "type": "NOF",
-    "address": "122 SALISBURY",
-    "owner": "SWEARINGEN DREW H",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": true,
-    "doc_number": "20261000071",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78217",
-    "school_dist": "",
-    "date_filed": "8/2026",
-    "sale_date": "10/06/2026",
-    "run_ts": "2026-08-21T14:36:49Z",
-    "flags": [
-      "NEW",
-      "HAS SALE DATE"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "507018.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "197100.0",
-    "annual_taxes": "",
-    "land_value": "59980.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 45,
+    "arv_estimate": 239959,
+    "arv_status": "SOLD",
+    "arv_sqft": 1934,
+    "arv_fetched_at": "2026-08-21T15:35:14Z"
   },
   {
     "type": "NOF",
@@ -46875,12 +47083,71 @@
   },
   {
     "type": "NOF",
+    "address": "9732 LAUREN MIST",
+    "owner": "KOLNES STEVEN A",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20261000056",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78251",
+    "school_dist": "",
+    "date_filed": "8/2026",
+    "sale_date": "11/03/2026",
+    "run_ts": "2026-08-21T15:24:32Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "prop_id": "665698.0",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 199570
+      },
+      {
+        "year": "2025",
+        "appraised": 213460
+      },
+      {
+        "year": "2024",
+        "appraised": 224140
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "213460.0",
+    "annual_taxes": "",
+    "land_value": "52160.0",
+    "arv_estimate": 184000,
+    "arv_status": "SOLD",
+    "arv_sqft": 1068,
+    "arv_fetched_at": "2026-08-21T15:34:28Z",
+    "stacked": false,
+    "score": 7,
+    "days_until_sale": 73
+  },
+  {
+    "type": "NOF",
     "address": "5822 AGAVE SPINE",
     "owner": "RUIZ JAVIER DAVID",
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000105",
     "ps_doc_id": "",
     "year": "2026",
@@ -46892,7 +47159,6 @@
     "sale_date": "11/03/2026",
     "run_ts": "2026-08-21T14:36:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -46939,7 +47205,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000094",
     "ps_doc_id": "",
     "year": "2026",
@@ -46951,7 +47217,6 @@
     "sale_date": "11/03/2026",
     "run_ts": "2026-08-21T14:36:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -46998,7 +47263,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000058",
     "ps_doc_id": "",
     "year": "2026",
@@ -47010,7 +47275,6 @@
     "sale_date": "11/03/2026",
     "run_ts": "2026-08-21T14:36:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -47019,19 +47283,36 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 3,
     "tenure_score_bonus": 0,
     "prop_id": "322333.0",
-    "deed_date": "",
+    "deed_date": "10/13/2022",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 271860
+      },
+      {
+        "year": "2025",
+        "appraised": 274720
+      },
+      {
+        "year": "2024",
+        "appraised": 275990
+      }
+    ],
+    "appr_trend": "flat",
     "appraised_value": "274720.0",
     "annual_taxes": "",
     "land_value": "52700.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 73
+    "days_until_sale": 73,
+    "arv_estimate": 252400,
+    "arv_status": "SOLD",
+    "arv_sqft": 2269,
+    "arv_fetched_at": "2026-08-21T15:35:37Z"
   },
   {
     "type": "NOF",
@@ -47040,7 +47321,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000064",
     "ps_doc_id": "",
     "year": "2026",
@@ -47052,7 +47333,6 @@
     "sale_date": "11/03/2026",
     "run_ts": "2026-08-21T14:36:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -47061,19 +47341,36 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 0,
     "tenure_score_bonus": 0,
     "prop_id": "235366.0",
-    "deed_date": "",
+    "deed_date": "1/13/2026",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 210810
+      },
+      {
+        "year": "2025",
+        "appraised": 222270
+      },
+      {
+        "year": "2024",
+        "appraised": 231740
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "222270.0",
     "annual_taxes": "",
     "land_value": "44630.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 73
+    "days_until_sale": 73,
+    "arv_estimate": 219390,
+    "arv_status": "SOLD",
+    "arv_sqft": 1582,
+    "arv_fetched_at": "2026-08-21T15:35:39Z"
   },
   {
     "type": "NOF",
@@ -47082,7 +47379,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000059",
     "ps_doc_id": "",
     "year": "2026",
@@ -47095,7 +47392,6 @@
     "run_ts": "2026-08-21T14:36:49Z",
     "flags": [
       "DUPLICATE",
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -47104,19 +47400,36 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 4,
     "tenure_score_bonus": 0,
     "prop_id": "1332512.0",
-    "deed_date": "",
+    "deed_date": "1/12/2022",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 393560
+      },
+      {
+        "year": "2025",
+        "appraised": 409030
+      },
+      {
+        "year": "2024",
+        "appraised": 411500
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "409030.0",
     "annual_taxes": "",
     "land_value": "100280.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 73
+    "days_until_sale": 73,
+    "arv_estimate": 375400,
+    "arv_status": "SOLD",
+    "arv_sqft": 2702,
+    "arv_fetched_at": "2026-08-21T15:35:41Z"
   },
   {
     "type": "NOF",
@@ -47125,7 +47438,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000057",
     "ps_doc_id": "",
     "year": "2026",
@@ -47137,7 +47450,6 @@
     "sale_date": "11/03/2026",
     "run_ts": "2026-08-21T14:36:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -47146,19 +47458,36 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 3,
     "tenure_score_bonus": 0,
     "prop_id": "1065815.0",
-    "deed_date": "",
+    "deed_date": "7/19/2023",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 258910
+      },
+      {
+        "year": "2025",
+        "appraised": 261380
+      },
+      {
+        "year": "2024",
+        "appraised": 258840
+      }
+    ],
+    "appr_trend": "flat",
     "appraised_value": "261380.0",
     "annual_taxes": "",
     "land_value": "52880.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 73
+    "days_until_sale": 73,
+    "arv_estimate": 269100,
+    "arv_status": "FOR_SALE",
+    "arv_sqft": 2153,
+    "arv_fetched_at": "2026-08-21T15:35:42Z"
   },
   {
     "type": "NOF",
@@ -47167,7 +47496,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000061",
     "ps_doc_id": "",
     "year": "2026",
@@ -47179,7 +47508,6 @@
     "sale_date": "11/03/2026",
     "run_ts": "2026-08-21T14:36:49Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -47188,19 +47516,36 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 1,
     "tenure_score_bonus": 0,
     "prop_id": "464958.0",
-    "deed_date": "",
+    "deed_date": "9/16/2024",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 74430
+      },
+      {
+        "year": "2025",
+        "appraised": 84530
+      },
+      {
+        "year": "2024",
+        "appraised": 84530
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "84530.0",
     "annual_taxes": "",
     "land_value": "48230.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 73
+    "days_until_sale": 73,
+    "arv_estimate": 663000,
+    "arv_status": "SOLD",
+    "arv_sqft": 2622,
+    "arv_fetched_at": "2026-08-21T15:35:44Z"
   },
   {
     "type": "NOF",
