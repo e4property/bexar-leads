@@ -635,6 +635,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
       <div class="sb-hdr">Priority</div>
       <div class="sb-item new-v" id="sf-new" onclick="setView('new',this)"><div class="sb-icon" style="background:var(--green-bg)">✨</div><div class="sb-info"><div class="sb-name" style="color:var(--green-dk);font-weight:700">New This Run</div><div class="sb-cnt" id="fc-new">—</div></div><div class="sb-badge" id="sb-new-badge" style="display:none">0</div></div>
       <div class="sb-item urg-v" id="sf-urgent" onclick="setView('urgent',this)"><div class="sb-icon" style="background:var(--red-bg)">🚨</div><div class="sb-info"><div class="sb-name" style="color:var(--red-dk);font-weight:700">Auction ≤14d</div><div class="sb-cnt" id="fc-urgent">—</div></div><div class="sb-badge red" id="sb-urg-badge" style="display:none">0</div></div>
+      <div class="sb-item" id="sf-onmarket" onclick="setView('onmarket',this)"><div class="sb-icon" style="background:var(--amber-bg)">🏷️</div><div class="sb-info"><div class="sb-name" style="color:var(--amber-dk);font-weight:700">Already On Market</div><div class="sb-cnt" id="fc-onmarket">—</div></div><div class="sb-badge red" id="sb-onmarket-badge" style="display:none">0</div></div>
       <div class="sb-item" id="sf-today" onclick="setView('today',this)"><div class="sb-icon" style="background:var(--blue-bg)">⚡</div><div class="sb-info"><div class="sb-name">Today's Hot List</div><div class="sb-cnt" id="fc-today">—</div></div></div>
       <div class="sb-item" id="sf-unsearched" onclick="setView('unsearched',this)"><div class="sb-icon" style="background:var(--purple-bg)">🔍</div><div class="sb-info"><div class="sb-name">Unsearched</div><div class="sb-cnt" id="fc-unsearched">—</div></div></div>
       <div class="sb-item" id="sf-jarvis" onclick="setTypeTab('jarvis',null)"><div class="sb-icon" style="background:var(--teal-bg)">✅</div><div class="sb-info"><div class="sb-name">In Jarvis</div><div class="sb-cnt" id="fc-jarvis">—</div></div></div>
@@ -987,6 +988,7 @@ function renderDashboard(){
   const pushedWeekCt=getPushedWeekCount();
   const vbpCt=allLeads.filter(l=>isVBP(l)||isStacked(l)).length;
   const longHeld=allLeads.filter(isLongHeld).length;
+  const onMarketCt=allLeads.filter(l=>l.on_market).length;
   const total=allLeads.length;
   const unsearch=allLeads.filter(l=>!LS(l.doc_number).phone&&!LS(l.doc_number).skipped).length;
   const todayCt=getTodayList().length;
@@ -1006,6 +1008,7 @@ function renderDashboard(){
   let a1='',a2='';
   if(newCt>0)a1+=`<div class="alert-strip green" style="margin-bottom:4px"><div class="as-icon">✨</div><div class="as-txt"><div class="as-main" style="color:var(--green-dk)">${newCt} new lead${newCt>1?'s':''} scraped this run</div><div class="as-sub">Click to work them now</div></div><button class="as-btn green" onclick="showView('work');setView('new')">Work New →</button></div>`;
   if(urgCt>0)a1+=`<div class="alert-strip red"><div class="as-icon">🚨</div><div class="as-txt"><div class="as-main">${urgCt} leads with auction in 14 days</div><div class="as-sub">Act before auction date passes</div></div><button class="as-btn red" onclick="showView('work');setView('urgent')">Work Urgent →</button></div>`;
+  if(onMarketCt>0)a1+=`<div class="alert-strip red" style="background:var(--amber-bg);border-color:var(--amber-mid)"><div class="as-icon">🏷️</div><div class="as-txt"><div class="as-main" style="color:var(--amber-dk)">${onMarketCt} lead${onMarketCt>1?'s':''} already listed for sale</div><div class="as-sub">Someone beat you to it — verify before spending time here</div></div><button class="as-btn red" style="background:var(--amber-dk)" onclick="showView('work');setView('onmarket')">Review →</button></div>`;
   if(alerts)alerts.innerHTML=a1;
   a2+=`<div class="alert-box amber" style="margin-bottom:6px"><span>⚠</span><div style="flex:1"><div class="ab-title amber">GHL API key expires late July</div><div class="ab-sub">Rotate before expiry to avoid outage</div></div><button class="ab-btn amber" onclick="openSettings()">Rotate</button></div>`;
   if(alerts2)alerts2.innerHTML=a2;
@@ -1053,12 +1056,13 @@ function renderNewLeadsBar(){const newLeads=allLeads.filter(l=>l.is_new&&!auctio
 
 function renderHotStrip(){const hot=allLeads.filter(l=>l.days_until_sale!=null&&l.days_until_sale<=30&&!auctionPassed(l)&&!LS(l.doc_number).phone).slice(0,10);const strip=document.getElementById('hot-strip');if(!hot.length){if(strip)strip.style.display='none';return;}if(strip)strip.style.display='flex';const hc=document.getElementById('hot-cards');if(hc)hc.innerHTML=hot.map(l=>`<div class="hcard ${l.days_until_sale<=14?'urg':'soon'}" onclick="selectLead('${l.doc_number}')"><div class="hc-tag">AUCTION ${l.days_until_sale}d</div><div class="hc-name">${l.owner||'—'}</div></div>`).join('');}
 
-function updateAllCounts(){const newCt=allLeads.filter(l=>l.is_new).length;const urgCt=allLeads.filter(l=>isUrgent(l)&&!auctionPassed(l)).length;const jarvisCt=getJarvisCount();const pushedTodayCt=getPushedTodayCount();const pushedWeekCt=getPushedWeekCount();const vbpCt=allLeads.filter(l=>isVBP(l)||isStacked(l)).length;const unsearch=allLeads.filter(l=>!LS(l.doc_number).phone&&!LS(l.doc_number).skipped).length;
+function updateAllCounts(){const newCt=allLeads.filter(l=>l.is_new).length;const urgCt=allLeads.filter(l=>isUrgent(l)&&!auctionPassed(l)).length;const jarvisCt=getJarvisCount();const pushedTodayCt=getPushedTodayCount();const pushedWeekCt=getPushedWeekCount();const vbpCt=allLeads.filter(l=>isVBP(l)||isStacked(l)).length;const unsearch=allLeads.filter(l=>!LS(l.doc_number).phone&&!LS(l.doc_number).skipped).length;const onMarketCt=allLeads.filter(l=>l.on_market).length;
 set('tt-new',newCt);set('tt-urg',urgCt);set('tt-all',allLeads.length);set('tt-fore',allLeads.filter(l=>isForeclosure(l)&&!isAged(l)).length);set('tt-aged',allLeads.filter(isAged).length);set('tt-vbp',vbpCt);set('tt-lp',allLeads.filter(isLP).length);set('tt-appt',allLeads.filter(isAppt).length);set('tt-jarvis',jarvisCt);
 set('fc-pushed-today',pushedTodayCt+' leads');set('fc-pushed-week',pushedWeekCt+' leads');
 const sbn=document.getElementById('sb-new-badge');if(sbn){sbn.textContent=newCt;sbn.style.display=newCt>0?'block':'none';}
 const sbu=document.getElementById('sb-urg-badge');if(sbu){sbu.textContent=urgCt;sbu.style.display=urgCt>0?'block':'none';}
-set('fc-new',newCt+' leads');set('fc-urgent',urgCt+' leads');set('fc-today',getTodayList().length+' leads');set('fc-unsearched',unsearch+' leads');set('fc-jarvis',jarvisCt+' leads');set('fc-all',allLeads.length+' leads');set('fc-fore',allLeads.filter(l=>isForeclosure(l)&&!isAged(l)).length+' leads');set('fc-vbp',vbpCt+' leads');set('fc-lp',allLeads.filter(isLP).length+' leads');set('fc-appt',allLeads.filter(isAppt).length+' leads');set('fc-aged',allLeads.filter(isAged).length+' leads');}
+const sbom=document.getElementById('sb-onmarket-badge');if(sbom){sbom.textContent=onMarketCt;sbom.style.display=onMarketCt>0?'block':'none';}
+set('fc-new',newCt+' leads');set('fc-urgent',urgCt+' leads');set('fc-today',getTodayList().length+' leads');set('fc-unsearched',unsearch+' leads');set('fc-jarvis',jarvisCt+' leads');set('fc-all',allLeads.length+' leads');set('fc-fore',allLeads.filter(l=>isForeclosure(l)&&!isAged(l)).length+' leads');set('fc-vbp',vbpCt+' leads');set('fc-lp',allLeads.filter(isLP).length+' leads');set('fc-appt',allLeads.filter(isAppt).length+' leads');set('fc-aged',allLeads.filter(isAged).length+' leads');set('fc-onmarket',onMarketCt+' leads');}
 
 function updateEmptyStats(){set('es-new',allLeads.filter(l=>l.is_new).length);set('es-urg',allLeads.filter(l=>isUrgent(l)&&!auctionPassed(l)).length);set('es-unsearch',allLeads.filter(l=>!LS(l.doc_number).phone&&!LS(l.doc_number).skipped).length);}
 
@@ -1098,6 +1102,7 @@ function filterLeads(){
     case'vbp': list=list.filter(l=>isVBP(l)||isStacked(l));break;
     case'lp': list=list.filter(isLP);break;
     case'appt': list=list.filter(isAppt);break;
+    case'onmarket': list=list.filter(l=>l.on_market);break;
     case'all': default: break;
   }
   if(searchQ)list=list.filter(l=>(l.owner||'').toLowerCase().includes(searchQ)||(l.address||'').toLowerCase().includes(searchQ)||(l.zip||'').includes(searchQ)||(l.city||'').toLowerCase().includes(searchQ)||(l.ce_reason||'').toLowerCase().includes(searchQ));
@@ -1138,6 +1143,7 @@ function renderItem(lead,idx){
   else if(isAppt(lead))b.push(`<span class="badge" style="background:var(--red-bg);color:var(--red-dk);border:1px solid var(--red-mid)">⚡PRE</span>`);
   else{if(lead.absentee)b.push(`<span class="badge b-abs">ABS</span>`);b.push(lead.type==='TAX'?`<span class="badge b-tax">TAX</span>`:`<span class="badge b-nof">NOF</span>`);}
   if(isLongHeld(lead))b.push(`<span class="badge b-longheld">LONG HELD</span>`);
+  if(lead.on_market)b.push(`<span class="badge" style="background:var(--amber-bg);color:var(--amber-dk);border:1px solid var(--amber-mid)">🏷️ ON MARKET</span>`);
   if(ls.ghl_pushed)b.push(`<span class="badge b-ghl">GHL✓</span>`);
   if(ls.phone)b.push(`<span class="b-phone">📞</span>`);
   if(dispo!=='new'&&dispo!=='contacted')b.push(`<span class="badge" style="background:var(--purple-bg);color:var(--purple-dk);border:1px solid var(--purple-mid)">${dispo}</span>`);
@@ -1178,6 +1184,7 @@ function populateDetail(lead){
   document.getElementById('d-meta').textContent=ce?`Case: ${lead.ce_case_id||lead.doc_number} · Opened: ${fmtDate(lead.opened_date)}`:`Doc: ${lead.doc_number} · Filed: ${fmtDate(lead.date_filed)}${lead.sale_date?' · Sale: '+fmtDate(lead.sale_date):''}`;
   const b=[];
   if(isNew)b.push(`<span class="badge b-new" style="padding:2px 9px;font-size:10px">✨ NEW</span>`);
+  if(lead.on_market)b.push(`<span class="badge" style="background:var(--amber-bg);color:var(--amber-dk);border:1px solid var(--amber-mid);padding:2px 9px;font-size:10px">🏷️ ON MARKET${lead.on_market_status?' ('+lead.on_market_status+')':''}</span>`);
   if(stacked){b.push(`<span class="badge b-stacked" style="padding:2px 9px;font-size:10px">STACKED</span>`);if(isVBPDangerous(lead))b.push(`<span class="badge b-dang" style="padding:2px 9px;font-size:10px">🔴 Dangerous</span>`);}
   else if(vbp)b.push(`<span class="badge b-vbp" style="padding:2px 9px;font-size:10px">VBP</span>`);
   else if(ce)b.push(`<span class="badge b-ce" style="padding:2px 9px;font-size:10px">⚠ CE</span>`);

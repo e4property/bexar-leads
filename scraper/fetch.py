@@ -66,6 +66,9 @@ CODE_ENFORCE_URL   = (
 BCAD_DETAIL_URL    = "https://bexar.trueautomation.com/clientdb/Property.aspx?cid=110&prop_id={prop_id}"
 DEED_FETCH_LIMIT   = 30   # max leads to hit BCAD detail page per run
 ARV_FETCH_LIMIT    = 30   # max leads to look up via HomeHarvest/Realtor.com per run
+ON_MARKET_STATUSES     = {"FOR_SALE", "PENDING", "FOR_RENT"}
+ON_MARKET_REFRESH_DAYS = 7    # re-check a lead's market status at most this often
+ON_MARKET_REFRESH_LIMIT = 30  # max already-checked leads to re-check per run
 
 LAYERS = [
     {"index": 0, "type": "NOF", "label": "Mortgage Foreclosure"},
@@ -1644,23 +1647,30 @@ def fetch_arv_homeharvest(records):
         full_addr = f"{rec['address']}, {rec.get('city', '')}, TX {rec.get('zip', '')}".strip(", ")
         try:
             df = scrape_property(location=full_addr)
+            now_iso = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
 
             if df is None or len(df) == 0:
                 log.info(f"  ARV [{rec.get('doc_number')}] {full_addr}: no match on Realtor.com")
+                rec["on_market_checked_at"] = now_iso
                 continue
 
             row = df.iloc[0]
+            status = clean(row.get("status")) or ""
+            rec["on_market"]            = status in ON_MARKET_STATUSES
+            rec["on_market_status"]     = status
+            rec["on_market_checked_at"] = now_iso
+
             est = clean(row.get("estimated_value"))
             if est is not None:
                 rec["arv_estimate"]   = int(est)
-                rec["arv_status"]     = clean(row.get("status")) or ""
+                rec["arv_status"]     = status
                 sqft_val = clean(row.get("sqft"))
                 rec["arv_sqft"]       = int(sqft_val) if sqft_val is not None else None
-                rec["arv_fetched_at"] = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+                rec["arv_fetched_at"] = now_iso
                 fetched += 1
-                log.info(f"  ARV [{rec.get('doc_number')}] {full_addr}: ${int(est):,} (status={rec['arv_status']})")
+                log.info(f"  ARV [{rec.get('doc_number')}] {full_addr}: ${int(est):,} (status={status})")
             else:
-                log.info(f"  ARV [{rec.get('doc_number')}] {full_addr}: matched but no estimated_value")
+                log.info(f"  ARV [{rec.get('doc_number')}] {full_addr}: matched but no estimated_value (status={status})")
         except Exception as e:
             # Per-record guard — one bad row (pandas NA quirks, unexpected
             # schema, network blip) must never take the rest of the batch
@@ -1671,6 +1681,79 @@ def fetch_arv_homeharvest(records):
             time.sleep(1)
 
     log.info(f"ARV (HomeHarvest): {fetched} enriched, {errors} errors out of {len(candidates)} candidates")
+    return records
+
+
+def refresh_on_market_status(records):
+    """
+    Re-checks on-market status for leads that already went through the ARV
+    pass above (so they were excluded from those candidates) but haven't
+    had a fresh on-market check in ON_MARKET_REFRESH_DAYS — a lead can get
+    listed by someone else weeks after we first looked it up, and the ARV
+    step only ever looks at a lead once (gated on `not arv_estimate`).
+    Same soft-dependency handling as fetch_arv_homeharvest: any failure
+    just skips that lead, never breaks the run.
+    """
+    import pandas as pd
+    from homeharvest import scrape_property
+
+    def clean(val):
+        if val is None or pd.isna(val):
+            return None
+        s = str(val).strip()
+        return None if s in ("", "nan", "<NA>", "None") else val
+
+    cutoff = datetime.utcnow() - timedelta(days=ON_MARKET_REFRESH_DAYS)
+
+    def needs_refresh(r):
+        if not r.get("address") or not r.get("arv_estimate"):
+            return False  # never-checked leads are handled by the ARV pass
+        checked_at = r.get("on_market_checked_at")
+        if not checked_at:
+            return True
+        try:
+            return datetime.strptime(checked_at, "%Y-%m-%dT%H:%M:%SZ") < cutoff
+        except Exception:
+            return True
+
+    candidates = [r for r in records if needs_refresh(r)]
+    candidates = candidates[:ON_MARKET_REFRESH_LIMIT]
+
+    if not candidates:
+        log.info("On-market refresh: no eligible leads — skipping")
+        return records
+
+    log.info(f"On-market refresh: {len(candidates)} leads to re-check (cap={ON_MARKET_REFRESH_LIMIT})")
+    changed = 0
+    errors  = 0
+
+    for rec in candidates:
+        full_addr = f"{rec['address']}, {rec.get('city', '')}, TX {rec.get('zip', '')}".strip(", ")
+        try:
+            df = scrape_property(location=full_addr)
+            now_iso = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+            was_on_market = bool(rec.get("on_market"))
+
+            if df is None or len(df) == 0:
+                rec["on_market_checked_at"] = now_iso
+                continue
+
+            status = clean(df.iloc[0].get("status")) or ""
+            rec["on_market"]            = status in ON_MARKET_STATUSES
+            rec["on_market_status"]     = status
+            rec["on_market_checked_at"] = now_iso
+
+            if rec["on_market"] != was_on_market:
+                changed += 1
+                log.info(f"  On-market [{rec.get('doc_number')}] {full_addr}: "
+                         f"{was_on_market} -> {rec['on_market']} (status={status})")
+        except Exception as e:
+            log.warning(f"  On-market [{rec.get('doc_number')}] {full_addr}: error: {e}")
+            errors += 1
+        finally:
+            time.sleep(1)
+
+    log.info(f"On-market refresh: {changed} status changes, {errors} errors out of {len(candidates)} candidates")
     return records
 
 
@@ -1951,6 +2034,12 @@ if __name__ == "__main__":
         records = fetch_arv_homeharvest(records)
     except Exception as e:
         log.warning(f"ARV (HomeHarvest) error: {e}")
+
+    # ── Step 6d: on-market status refresh for leads already checked once ──
+    try:
+        records = refresh_on_market_status(records)
+    except Exception as e:
+        log.warning(f"On-market refresh error: {e}")
 
     # ── Step 7: Duplicate detection ───────────────────────────────────────────
     records = detect_duplicates(records)
