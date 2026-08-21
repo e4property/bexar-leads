@@ -68,7 +68,11 @@ DEED_FETCH_LIMIT   = 30   # max leads to hit BCAD detail page per run
 ARV_FETCH_LIMIT    = 30   # max leads to look up via HomeHarvest/Realtor.com per run
 ON_MARKET_STATUSES     = {"FOR_SALE", "PENDING", "FOR_RENT"}
 ON_MARKET_REFRESH_DAYS = 7    # re-check a lead's market status at most this often
-ON_MARKET_REFRESH_LIMIT = 30  # max already-checked leads to re-check per run
+# 2026-08-21: a single run doing ARV(30) then refresh(30) back-to-back hit a
+# hard Realtor.com AuthenticationError wall after ~27 consecutive requests
+# that never recovered for the rest of the run (all 30 refresh calls failed).
+# Keeping this pass small so the combined per-run total stays under that.
+ON_MARKET_REFRESH_LIMIT = 15  # max already-checked leads to re-check per run
 
 LAYERS = [
     {"index": 0, "type": "NOF", "label": "Mortgage Foreclosure"},
