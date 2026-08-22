@@ -1672,7 +1672,7 @@
     "ghl_id": "UQT3afkVpo18uf0ICyhl",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-22T15:22:20Z"
+    "on_market_checked_at": "2026-08-22T20:25:48Z"
   },
   {
     "type": "NOF",
@@ -2326,7 +2326,10 @@
     "arv_estimate": 295649,
     "arv_status": "SOLD",
     "arv_sqft": 1362,
-    "arv_fetched_at": "2026-08-11T00:11:44Z"
+    "arv_fetched_at": "2026-08-11T00:11:44Z",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-22T20:31:18Z"
   },
   {
     "type": "NOF",
@@ -2390,7 +2393,10 @@
     "arv_estimate": 219031,
     "arv_status": "SOLD",
     "arv_sqft": 1414,
-    "arv_fetched_at": "2026-08-11T00:11:45Z"
+    "arv_fetched_at": "2026-08-11T00:11:45Z",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-22T20:31:20Z"
   },
   {
     "type": "NOF",
@@ -2454,7 +2460,10 @@
     "arv_estimate": 460700,
     "arv_status": "SOLD",
     "arv_sqft": 2926,
-    "arv_fetched_at": "2026-08-11T00:11:47Z"
+    "arv_fetched_at": "2026-08-11T00:11:47Z",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-22T20:31:22Z"
   },
   {
     "type": "NOF",
@@ -2518,7 +2527,10 @@
     "arv_estimate": 314488,
     "arv_status": "SOLD",
     "arv_sqft": 2005,
-    "arv_fetched_at": "2026-08-11T00:11:48Z"
+    "arv_fetched_at": "2026-08-11T00:11:48Z",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-22T20:31:23Z"
   },
   {
     "type": "NOF",
@@ -2578,7 +2590,10 @@
     "arv_estimate": 452700,
     "arv_status": "SOLD",
     "arv_sqft": 3048,
-    "arv_fetched_at": "2026-08-11T00:11:50Z"
+    "arv_fetched_at": "2026-08-11T00:11:50Z",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-22T20:31:25Z"
   },
   {
     "type": "NOF",
@@ -2642,7 +2657,10 @@
     "arv_estimate": 246516,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 2575,
-    "arv_fetched_at": "2026-08-11T00:11:52Z"
+    "arv_fetched_at": "2026-08-11T00:11:52Z",
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-08-22T20:31:26Z"
   },
   {
     "type": "NOF",
@@ -2702,7 +2720,10 @@
     "arv_estimate": 310000,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 1537,
-    "arv_fetched_at": "2026-08-11T00:11:54Z"
+    "arv_fetched_at": "2026-08-11T00:11:54Z",
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-08-22T20:31:28Z"
   },
   {
     "type": "NOF",
@@ -2766,7 +2787,10 @@
     "arv_estimate": 283000,
     "arv_status": "SOLD",
     "arv_sqft": 2114,
-    "arv_fetched_at": "2026-08-11T00:11:56Z"
+    "arv_fetched_at": "2026-08-11T00:11:56Z",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-22T20:31:30Z"
   },
   {
     "type": "NOF",
@@ -2826,7 +2850,10 @@
     "arv_estimate": 214200,
     "arv_status": "SOLD",
     "arv_sqft": 1414,
-    "arv_fetched_at": "2026-08-11T00:11:59Z"
+    "arv_fetched_at": "2026-08-11T00:11:59Z",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-22T20:31:31Z"
   },
   {
     "type": "NOF",
@@ -2886,7 +2913,7 @@
     "days_until_sale": 9,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-22T15:22:33Z"
+    "on_market_checked_at": "2026-08-22T20:26:01Z"
   },
   {
     "type": "NOF",
@@ -2946,7 +2973,10 @@
     "arv_estimate": 250000,
     "arv_status": "PENDING",
     "arv_sqft": 2241,
-    "arv_fetched_at": "2026-08-11T00:12:11Z"
+    "arv_fetched_at": "2026-08-11T00:12:11Z",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-22T20:31:33Z"
   },
   {
     "type": "NOF",
@@ -3010,7 +3040,10 @@
     "arv_estimate": 349000,
     "arv_status": "SOLD",
     "arv_sqft": 3026,
-    "arv_fetched_at": "2026-08-11T00:12:13Z"
+    "arv_fetched_at": "2026-08-11T00:12:13Z",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-22T20:31:35Z"
   },
   {
     "type": "NOF",
@@ -3071,7 +3104,10 @@
     "arv_estimate": 684570,
     "arv_status": "SOLD",
     "arv_sqft": 3922,
-    "arv_fetched_at": "2026-08-11T00:12:15Z"
+    "arv_fetched_at": "2026-08-11T00:12:15Z",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-22T20:31:36Z"
   },
   {
     "type": "NOF",
@@ -3132,7 +3168,10 @@
     "arv_estimate": 294000,
     "arv_status": "SOLD",
     "arv_sqft": 1857,
-    "arv_fetched_at": "2026-08-11T01:43:21Z"
+    "arv_fetched_at": "2026-08-11T01:43:21Z",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-22T20:31:38Z"
   },
   {
     "type": "NOF",
@@ -3192,7 +3231,7 @@
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-07T15:02:03.758Z",
     "ghl_id": "a4WHXE1Q98vajwsLHrqs",
-    "on_market_checked_at": "2026-08-22T15:22:34Z"
+    "on_market_checked_at": "2026-08-22T20:26:03Z"
   },
   {
     "type": "NOF",
@@ -3252,7 +3291,10 @@
     "arv_estimate": 226700,
     "arv_status": "FOR_SALE",
     "arv_sqft": 1421,
-    "arv_fetched_at": "2026-08-11T01:43:24Z"
+    "arv_fetched_at": "2026-08-11T01:43:24Z",
+    "on_market": true,
+    "on_market_status": "FOR_SALE",
+    "on_market_checked_at": "2026-08-22T20:31:40Z"
   },
   {
     "type": "NOF",
@@ -3312,7 +3354,10 @@
     "arv_estimate": 241650,
     "arv_status": "SOLD",
     "arv_sqft": 2086,
-    "arv_fetched_at": "2026-08-11T01:43:25Z"
+    "arv_fetched_at": "2026-08-11T01:43:25Z",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-22T20:31:41Z"
   },
   {
     "type": "NOF",
@@ -7263,7 +7308,7 @@
     "days_until_sale": 9,
     "on_market": true,
     "on_market_status": "PENDING",
-    "on_market_checked_at": "2026-08-22T15:22:36Z"
+    "on_market_checked_at": "2026-08-22T20:26:05Z"
   },
   {
     "type": "NOF",
@@ -8852,7 +8897,7 @@
     "days_until_sale": 9,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-22T15:22:53Z"
+    "on_market_checked_at": "2026-08-22T20:26:22Z"
   },
   {
     "type": "NOF",
@@ -8972,7 +9017,7 @@
     "days_until_sale": 9,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-22T15:23:13Z"
+    "on_market_checked_at": "2026-08-22T20:26:45Z"
   },
   {
     "type": "NOF",
@@ -9031,7 +9076,7 @@
     "days_until_sale": 9,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-22T15:23:15Z"
+    "on_market_checked_at": "2026-08-22T20:26:46Z"
   },
   {
     "type": "NOF",
@@ -9393,7 +9438,7 @@
     "days_until_sale": 9,
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-08-22T15:23:17Z"
+    "on_market_checked_at": "2026-08-22T20:26:48Z"
   },
   {
     "type": "NOF",
@@ -9938,7 +9983,7 @@
     "days_until_sale": 9,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-22T15:23:28Z"
+    "on_market_checked_at": "2026-08-22T20:26:58Z"
   },
   {
     "type": "NOF",
@@ -9998,7 +10043,7 @@
     "days_until_sale": 9,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-22T15:23:45Z"
+    "on_market_checked_at": "2026-08-22T20:27:14Z"
   },
   {
     "type": "NOF",
@@ -10118,7 +10163,7 @@
     "days_until_sale": 9,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-22T15:24:06Z"
+    "on_market_checked_at": "2026-08-22T20:27:37Z"
   },
   {
     "type": "NOF",
@@ -11594,7 +11639,7 @@
     "stacked": false,
     "score": 7,
     "days_until_sale": 9,
-    "on_market_checked_at": "2026-08-22T15:24:07Z"
+    "on_market_checked_at": "2026-08-22T20:27:38Z"
   },
   {
     "type": "NOF",
@@ -12377,7 +12422,7 @@
     "days_until_sale": 9,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-22T15:24:09Z"
+    "on_market_checked_at": "2026-08-22T20:27:40Z"
   },
   {
     "type": "NOF",
@@ -12437,7 +12482,7 @@
     "days_until_sale": 9,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-22T15:24:31Z"
+    "on_market_checked_at": "2026-08-22T20:28:04Z"
   },
   {
     "type": "NOF",
@@ -12556,7 +12601,7 @@
     "days_until_sale": 9,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-22T15:24:49Z"
+    "on_market_checked_at": "2026-08-22T20:28:20Z"
   },
   {
     "type": "NOF",
@@ -12919,7 +12964,7 @@
     "days_until_sale": 9,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-22T15:25:28Z"
+    "on_market_checked_at": "2026-08-22T20:28:59Z"
   },
   {
     "type": "NOF",
@@ -13461,7 +13506,7 @@
     "days_until_sale": 9,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-22T15:25:30Z"
+    "on_market_checked_at": "2026-08-22T20:29:01Z"
   },
   {
     "type": "NOF",
@@ -13581,7 +13626,7 @@
     "days_until_sale": 9,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-22T15:25:35Z"
+    "on_market_checked_at": "2026-08-22T20:29:06Z"
   },
   {
     "type": "NOF",
@@ -13701,7 +13746,7 @@
     "days_until_sale": 9,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-22T15:25:41Z"
+    "on_market_checked_at": "2026-08-22T20:29:12Z"
   },
   {
     "type": "NOF",
@@ -13761,7 +13806,7 @@
     "days_until_sale": 9,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-22T15:25:46Z"
+    "on_market_checked_at": "2026-08-22T20:29:17Z"
   },
   {
     "type": "NOF",
@@ -14608,7 +14653,7 @@
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:15:52.012Z",
     "ghl_id": "rDoT5l461CcaoQVAAzVg",
-    "on_market_checked_at": "2026-08-22T15:25:48Z"
+    "on_market_checked_at": "2026-08-22T20:29:19Z"
   },
   {
     "type": "NOF",
@@ -15042,7 +15087,7 @@
     "days_until_sale": 9,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-22T15:26:16Z"
+    "on_market_checked_at": "2026-08-22T20:29:50Z"
   },
   {
     "type": "NOF",
@@ -16402,7 +16447,7 @@
     "days_until_sale": 9,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-22T15:26:33Z"
+    "on_market_checked_at": "2026-08-22T20:30:09Z"
   },
   {
     "type": "NOF",
@@ -18103,7 +18148,7 @@
     "days_until_sale": 9,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-22T15:26:49Z"
+    "on_market_checked_at": "2026-08-22T20:30:26Z"
   },
   {
     "type": "NOF",
@@ -19552,7 +19597,7 @@
     "days_until_sale": 9,
     "on_market": true,
     "on_market_status": "FOR_SALE",
-    "on_market_checked_at": "2026-08-22T15:26:51Z"
+    "on_market_checked_at": "2026-08-22T20:30:28Z"
   },
   {
     "type": "NOF",
@@ -19669,7 +19714,7 @@
     "stacked": false,
     "score": 7,
     "days_until_sale": 9,
-    "on_market_checked_at": "2026-08-22T15:26:53Z"
+    "on_market_checked_at": "2026-08-22T20:30:29Z"
   },
   {
     "type": "NOF",
@@ -20389,7 +20434,7 @@
     "days_until_sale": 9,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-22T15:27:34Z"
+    "on_market_checked_at": "2026-08-22T20:31:11Z"
   },
   {
     "type": "NOF",
@@ -20817,7 +20862,7 @@
     "stacked": false,
     "score": 7,
     "days_until_sale": 9,
-    "on_market_checked_at": "2026-08-22T15:27:36Z"
+    "on_market_checked_at": "2026-08-22T20:31:13Z"
   },
   {
     "type": "NOF",
@@ -20999,7 +21044,14 @@
     "land_value": "66640.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 9
+    "days_until_sale": 9,
+    "on_market": false,
+    "on_market_status": "CONTINGENT",
+    "on_market_checked_at": "2026-08-22T20:31:14Z",
+    "arv_estimate": 267379,
+    "arv_status": "CONTINGENT",
+    "arv_sqft": 2029,
+    "arv_fetched_at": "2026-08-22T20:31:14Z"
   },
   {
     "type": "NOF",
@@ -21055,7 +21107,14 @@
     "land_value": "71960.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 9
+    "days_until_sale": 9,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-22T20:31:16Z",
+    "arv_estimate": 220000,
+    "arv_status": "SOLD",
+    "arv_sqft": 1428,
+    "arv_fetched_at": "2026-08-22T20:31:16Z"
   },
   {
     "type": "NOF",
