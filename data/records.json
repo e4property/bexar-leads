@@ -57,7 +57,7 @@
     "arv_fetched_at": "2026-08-12T14:50:49Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "on_market": false,
     "on_market_status": "SOLD",
     "on_market_checked_at": "2026-08-21T20:58:26Z"
@@ -120,7 +120,7 @@
     "arv_fetched_at": "2026-08-12T14:51:30Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "on_market": true,
     "on_market_status": "FOR_RENT",
     "on_market_checked_at": "2026-08-21T20:58:27Z"
@@ -184,7 +184,7 @@
     "arv_fetched_at": "2026-08-12T14:51:31Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "on_market": false,
     "on_market_status": "SOLD",
     "on_market_checked_at": "2026-08-21T20:58:29Z"
@@ -247,7 +247,7 @@
     "arv_fetched_at": "2026-08-12T14:51:33Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_id": "RC4i53jjdUBvkGmDn6TJ",
     "ghl_pushed_at": "2026-08-13T20:27:09.740Z",
@@ -313,7 +313,7 @@
     "arv_fetched_at": "2026-08-11T20:51:14Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "on_market": true,
     "on_market_status": "FOR_RENT",
     "on_market_checked_at": "2026-08-21T20:59:12Z"
@@ -377,7 +377,7 @@
     "arv_fetched_at": "2026-08-11T20:51:21Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "on_market": false,
     "on_market_status": "SOLD",
     "on_market_checked_at": "2026-08-21T20:59:14Z"
@@ -441,7 +441,7 @@
     "arv_fetched_at": "2026-08-11T20:51:30Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "on_market": false,
     "on_market_status": "SOLD",
     "on_market_checked_at": "2026-08-21T20:59:15Z"
@@ -501,7 +501,7 @@
     "land_value": "82290.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 289300,
     "arv_status": "SOLD",
     "arv_sqft": 2111,
@@ -565,7 +565,7 @@
     "land_value": "36600.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 177657,
     "arv_status": "SOLD",
     "arv_sqft": 1186,
@@ -629,7 +629,7 @@
     "land_value": "261320.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 517047,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 1516,
@@ -693,7 +693,7 @@
     "land_value": "46960.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 181362,
     "arv_status": "SOLD",
     "arv_sqft": 1536,
@@ -757,7 +757,7 @@
     "land_value": "58730.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 145400,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 1176,
@@ -821,7 +821,7 @@
     "land_value": "122850.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 401497,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 1987,
@@ -885,7 +885,7 @@
     "land_value": "34010.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 178200,
     "arv_status": "SOLD",
     "arv_sqft": 1799,
@@ -948,7 +948,7 @@
     "land_value": "73290.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 243942,
     "arv_status": "SOLD",
     "arv_sqft": 2197,
@@ -1012,7 +1012,7 @@
     "land_value": "215010.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 308000,
     "arv_status": "SOLD",
     "arv_sqft": 1108,
@@ -1075,7 +1075,7 @@
     "land_value": "129730.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 285000,
     "arv_status": "FOR_SALE",
     "arv_sqft": 1282,
@@ -1139,12 +1139,15 @@
     "land_value": "56640.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:05:59.572Z",
     "ghl_id": "9xjWkhRLuddVaausS973",
     "arv_estimate": 286000,
-    "arv_status": "SOLD"
+    "arv_status": "SOLD",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-22T15:27:42Z"
   },
   {
     "type": "NOF",
@@ -1201,14 +1204,17 @@
     "land_value": "45130.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:06:23.422Z",
     "ghl_id": "x8wGjTUyQzLl8Sm5Bs3M",
     "arv_estimate": 230000,
     "arv_status": "SOLD",
     "arv_sqft": 1339,
-    "arv_fetched_at": "2026-08-11T00:11:03Z"
+    "arv_fetched_at": "2026-08-11T00:11:03Z",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-22T15:27:43Z"
   },
   {
     "type": "NOF",
@@ -1265,7 +1271,7 @@
     "land_value": "43420.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:06:51.828Z",
     "ghl_id": "EUuLr1APbJk36giFXJOX",
@@ -1332,7 +1338,7 @@
     "land_value": "89930.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:07:27.582Z",
     "ghl_id": "sTuIOjbhm6IG3WmRtXSJ",
@@ -1398,11 +1404,14 @@
     "land_value": "85500.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 250100,
     "arv_status": "SOLD",
     "arv_sqft": 1234,
-    "arv_fetched_at": "2026-08-11T00:11:09Z"
+    "arv_fetched_at": "2026-08-11T00:11:09Z",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-22T15:27:46Z"
   },
   {
     "type": "NOF",
@@ -1459,14 +1468,17 @@
     "land_value": "62030.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:12:36.742Z",
     "ghl_id": "oBuTjwWaB4wI3sEN6P2i",
     "arv_estimate": 243597,
     "arv_status": "SOLD",
     "arv_sqft": 1326,
-    "arv_fetched_at": "2026-08-11T00:11:12Z"
+    "arv_fetched_at": "2026-08-11T00:11:12Z",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-22T15:27:48Z"
   },
   {
     "type": "NOF",
@@ -1523,11 +1535,14 @@
     "land_value": "77250.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 52785,
     "arv_status": "OFF_MARKET",
     "arv_sqft": null,
-    "arv_fetched_at": "2026-08-11T00:11:14Z"
+    "arv_fetched_at": "2026-08-11T00:11:14Z",
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-08-22T15:27:49Z"
   },
   {
     "type": "NOF",
@@ -1584,14 +1599,17 @@
     "land_value": "117980.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 235000,
     "arv_status": "SOLD",
     "arv_sqft": 1571,
     "arv_fetched_at": "2026-08-11T00:11:16Z",
     "ghl_pushed": true,
     "ghl_id": "epmWQzCcpjylA5ZQoNmk",
-    "ghl_pushed_at": "2026-08-05T15:53:13.327Z"
+    "ghl_pushed_at": "2026-08-05T15:53:13.327Z",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-22T15:27:51Z"
   },
   {
     "type": "NOF",
@@ -1648,13 +1666,13 @@
     "land_value": "3255010.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-06T00:00:44.755Z",
     "ghl_id": "UQT3afkVpo18uf0ICyhl",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-21T20:53:10Z"
+    "on_market_checked_at": "2026-08-22T15:22:20Z"
   },
   {
     "type": "NOF",
@@ -1710,14 +1728,17 @@
     "land_value": "57320.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 234400,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 1348,
     "arv_fetched_at": "2026-08-11T00:11:28Z",
     "ghl_pushed": true,
     "ghl_id": "b2om3ldghdRpQoiQT7z0",
-    "ghl_pushed_at": "2026-08-05T15:47:37.308Z"
+    "ghl_pushed_at": "2026-08-05T15:47:37.308Z",
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-08-22T15:27:53Z"
   },
   {
     "type": "NOF",
@@ -1773,14 +1794,17 @@
     "land_value": "55570.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 207900,
     "arv_status": "SOLD",
     "arv_sqft": 1089,
     "arv_fetched_at": "2026-08-11T00:11:29Z",
     "ghl_pushed": true,
     "ghl_id": "ySH3MZfGkKpg52efHMyE",
-    "ghl_pushed_at": "2026-08-05T15:54:44.120Z"
+    "ghl_pushed_at": "2026-08-05T15:54:44.120Z",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-22T15:27:55Z"
   },
   {
     "type": "NOF",
@@ -1836,14 +1860,17 @@
     "land_value": "53460.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-05T17:41:12.543Z",
     "ghl_id": "OqRwhN57qPIq1dJCmVOk",
     "arv_estimate": 307500,
     "arv_status": "SOLD",
     "arv_sqft": null,
-    "arv_fetched_at": "2026-08-11T00:11:31Z"
+    "arv_fetched_at": "2026-08-11T00:11:31Z",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-22T15:27:56Z"
   },
   {
     "type": "NOF",
@@ -1899,14 +1926,17 @@
     "land_value": "54010.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:51:36.945Z",
     "ghl_id": "RbkBVZTUnKXIUqQf034d",
     "arv_estimate": 239100,
     "arv_status": "PENDING",
     "arv_sqft": 1653,
-    "arv_fetched_at": "2026-08-11T00:11:33Z"
+    "arv_fetched_at": "2026-08-11T00:11:33Z",
+    "on_market": true,
+    "on_market_status": "PENDING",
+    "on_market_checked_at": "2026-08-22T15:27:58Z"
   },
   {
     "type": "NOF",
@@ -1962,14 +1992,17 @@
     "land_value": "68110.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:51:57.678Z",
     "ghl_id": "9j2gW7WKbaBWAl9Htq5u",
     "arv_estimate": 297367,
     "arv_status": "FOR_SALE",
     "arv_sqft": 2768,
-    "arv_fetched_at": "2026-08-11T00:11:35Z"
+    "arv_fetched_at": "2026-08-11T00:11:35Z",
+    "on_market": true,
+    "on_market_status": "FOR_SALE",
+    "on_market_checked_at": "2026-08-22T15:28:00Z"
   },
   {
     "type": "NOF",
@@ -2025,11 +2058,14 @@
     "land_value": "61680.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 243315,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 1632,
-    "arv_fetched_at": "2026-08-11T00:11:37Z"
+    "arv_fetched_at": "2026-08-11T00:11:37Z",
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-08-22T15:28:01Z"
   },
   {
     "type": "NOF",
@@ -2086,14 +2122,17 @@
     "land_value": "52280.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-07T14:49:22.105Z",
     "ghl_id": "DK3kKPIMODZsM6ka10iE",
     "arv_estimate": 323000,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 2541,
-    "arv_fetched_at": "2026-08-11T00:11:38Z"
+    "arv_fetched_at": "2026-08-11T00:11:38Z",
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-08-22T15:28:03Z"
   },
   {
     "type": "NOF",
@@ -2149,14 +2188,17 @@
     "land_value": "120330.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:53:24.218Z",
     "ghl_id": "H7xmKihfbZQOEsynDjkC",
     "arv_estimate": 600908,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 1782,
-    "arv_fetched_at": "2026-08-11T00:11:40Z"
+    "arv_fetched_at": "2026-08-11T00:11:40Z",
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-08-22T15:28:05Z"
   },
   {
     "type": "NOF",
@@ -2213,14 +2255,17 @@
     "land_value": "55520.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:54:30.176Z",
     "ghl_id": "J6y89aZcjSWxUuinhNlX",
     "arv_estimate": 229300,
     "arv_status": "SOLD",
     "arv_sqft": 1413,
-    "arv_fetched_at": "2026-08-11T00:11:41Z"
+    "arv_fetched_at": "2026-08-11T00:11:41Z",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-22T15:28:07Z"
   },
   {
     "type": "NOF",
@@ -2277,7 +2322,7 @@
     "land_value": "78090.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 295649,
     "arv_status": "SOLD",
     "arv_sqft": 1362,
@@ -2338,7 +2383,7 @@
     "land_value": "71580.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-07T14:53:51.732Z",
     "ghl_id": "XEr7Dz7aJMoHItAQiq46",
@@ -2402,7 +2447,7 @@
     "land_value": "94830.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-06T21:27:10.984Z",
     "ghl_id": "5ggdCGUKmpVgIxVyvsUW",
@@ -2466,7 +2511,7 @@
     "land_value": "35600.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-06T21:10:26.423Z",
     "ghl_id": "q4EUxTq69Xip1MyEB1LB",
@@ -2529,7 +2574,7 @@
     "land_value": "81720.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 452700,
     "arv_status": "SOLD",
     "arv_sqft": 3048,
@@ -2590,7 +2635,7 @@
     "land_value": "39330.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-06T21:18:06.212Z",
     "ghl_id": "xOf9RiP6pauXk7AYrJCN",
@@ -2653,7 +2698,7 @@
     "land_value": "80320.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 310000,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 1537,
@@ -2714,7 +2759,7 @@
     "land_value": "66840.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-07T14:55:17.162Z",
     "ghl_id": "VFZQKK4RowmSe07ZtoTR",
@@ -2777,7 +2822,7 @@
     "land_value": "85500.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 214200,
     "arv_status": "SOLD",
     "arv_sqft": 1414,
@@ -2838,10 +2883,10 @@
     "land_value": "49520.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-21T20:53:21Z"
+    "on_market_checked_at": "2026-08-22T15:22:33Z"
   },
   {
     "type": "NOF",
@@ -2897,7 +2942,7 @@
     "land_value": "49220.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 250000,
     "arv_status": "PENDING",
     "arv_sqft": 2241,
@@ -2958,7 +3003,7 @@
     "land_value": "62460.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-06T21:31:54.098Z",
     "ghl_id": "u1cB2GugPYPFq87j7zJH",
@@ -3022,7 +3067,7 @@
     "land_value": "111580.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 684570,
     "arv_status": "SOLD",
     "arv_sqft": 3922,
@@ -3083,7 +3128,7 @@
     "land_value": "64660.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 294000,
     "arv_status": "SOLD",
     "arv_sqft": 1857,
@@ -3143,11 +3188,11 @@
     "land_value": "49630.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-07T15:02:03.758Z",
     "ghl_id": "a4WHXE1Q98vajwsLHrqs",
-    "on_market_checked_at": "2026-08-21T20:53:22Z"
+    "on_market_checked_at": "2026-08-22T15:22:34Z"
   },
   {
     "type": "NOF",
@@ -3203,7 +3248,7 @@
     "land_value": "42050.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 226700,
     "arv_status": "FOR_SALE",
     "arv_sqft": 1421,
@@ -3263,7 +3308,7 @@
     "land_value": "45690.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 241650,
     "arv_status": "SOLD",
     "arv_sqft": 2086,
@@ -3324,7 +3369,7 @@
     "land_value": "45230.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 218600,
     "arv_status": "SOLD",
     "arv_sqft": 1661,
@@ -3385,7 +3430,7 @@
     "land_value": "85880.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-06T21:20:28.178Z",
     "ghl_id": "yMfCi5PSQirZ83uV9d5d",
@@ -3448,7 +3493,7 @@
     "land_value": "54420.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 204569,
     "arv_status": "SOLD",
     "arv_sqft": 1512,
@@ -3508,7 +3553,7 @@
     "land_value": "154650.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 626800,
     "arv_status": "SOLD",
     "arv_sqft": 3202,
@@ -3570,7 +3615,7 @@
     "land_value": "74700.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 203000,
     "arv_status": "SOLD",
     "arv_sqft": 1178,
@@ -3633,7 +3678,7 @@
     "land_value": "62120.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 223757,
     "arv_status": "SOLD",
     "arv_sqft": 1459,
@@ -3696,7 +3741,7 @@
     "land_value": "61340.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 276300,
     "arv_status": "SOLD",
     "arv_sqft": 2141,
@@ -3759,7 +3804,7 @@
     "land_value": "50340.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 274076,
     "arv_status": "SOLD",
     "arv_sqft": 2538,
@@ -3822,7 +3867,7 @@
     "land_value": "46410.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 193614,
     "arv_status": "SOLD",
     "arv_sqft": 1606,
@@ -3885,7 +3930,7 @@
     "land_value": "48150.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 256300,
     "arv_status": "SOLD",
     "arv_sqft": 1620,
@@ -3948,7 +3993,7 @@
     "land_value": "55110.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 346200,
     "arv_status": "SOLD",
     "arv_sqft": 2543,
@@ -4013,7 +4058,7 @@
     "land_value": "48000.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 234000,
     "arv_status": "SOLD",
     "arv_sqft": 1909,
@@ -4076,7 +4121,7 @@
     "land_value": "81100.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 373100,
     "arv_status": "SOLD",
     "arv_sqft": 3288,
@@ -4140,7 +4185,7 @@
     "land_value": "55270.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-06T21:14:08.697Z",
     "ghl_id": "Uqi0RgTCUVcipReUgMME",
@@ -4203,7 +4248,7 @@
     "land_value": "90970.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 273254,
     "arv_status": "SOLD",
     "arv_sqft": 1425,
@@ -4267,7 +4312,7 @@
     "land_value": "45770.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 148924,
     "arv_status": "SOLD",
     "arv_sqft": 984,
@@ -4330,7 +4375,7 @@
     "land_value": "42710.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 357100,
     "arv_status": "SOLD",
     "arv_sqft": 864,
@@ -4394,7 +4439,7 @@
     "land_value": "105000.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-07T14:57:07.480Z",
     "ghl_id": "2RzGieFopCeowW3eMpn0",
@@ -4457,7 +4502,7 @@
     "land_value": "60910.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 264000,
     "arv_status": "SOLD",
     "arv_sqft": 1672,
@@ -4521,7 +4566,7 @@
     "land_value": "42490.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 276500,
     "arv_status": "SOLD",
     "arv_sqft": 2571,
@@ -4585,7 +4630,7 @@
     "land_value": "76200.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 359000,
     "arv_status": "FOR_SALE",
     "arv_sqft": 1245,
@@ -4648,7 +4693,7 @@
     "land_value": "52850.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 119818,
     "arv_status": "SOLD",
     "arv_sqft": 640,
@@ -4712,7 +4757,7 @@
     "land_value": "41520.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 219927,
     "arv_status": "SOLD",
     "arv_sqft": 1880,
@@ -4776,7 +4821,7 @@
     "land_value": "112720.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 529000,
     "arv_status": "SOLD",
     "arv_sqft": 2991,
@@ -4836,7 +4881,7 @@
     "land_value": "57120.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 309500,
     "arv_status": "SOLD",
     "arv_sqft": 2416,
@@ -4897,7 +4942,7 @@
     "land_value": "60440.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 246600,
     "arv_status": "SOLD",
     "arv_sqft": 1770,
@@ -4961,7 +5006,7 @@
     "land_value": "47190.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-06T21:29:43.537Z",
     "ghl_id": "VCpLzVy54ObvPqtv3PSc",
@@ -5024,7 +5069,7 @@
     "land_value": "48000.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 297800,
     "arv_status": "SOLD",
     "arv_sqft": 1929,
@@ -5088,7 +5133,7 @@
     "land_value": "74620.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-06T21:24:32.304Z",
     "ghl_id": "EUhQQestOuB7Fzu6iXxA",
@@ -5152,7 +5197,7 @@
     "land_value": "65740.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-07T14:51:29.830Z",
     "ghl_id": "C2asQ5wmD2IbzvrMk0Ta",
@@ -5216,7 +5261,7 @@
     "land_value": "80270.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 357000,
     "arv_status": "SOLD",
     "arv_sqft": 2108,
@@ -5279,7 +5324,7 @@
     "land_value": "49530.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 203155,
     "arv_status": "SOLD",
     "arv_sqft": 1514,
@@ -5342,7 +5387,7 @@
     "land_value": "51670.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 277307,
     "arv_status": "SOLD",
     "arv_sqft": 1814,
@@ -5404,7 +5449,7 @@
     "land_value": "58100.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-06T21:26:22.448Z",
     "ghl_id": "F6aJTraxpNsRfz5Z9b5T",
@@ -5469,7 +5514,7 @@
     "land_value": "72500.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 257200,
     "arv_status": "SOLD",
     "arv_sqft": 1782,
@@ -5533,7 +5578,7 @@
     "land_value": "37630.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 176000,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 1189,
@@ -5598,7 +5643,7 @@
     "land_value": "50880.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 226885,
     "arv_status": "SOLD",
     "arv_sqft": 1638,
@@ -5663,7 +5708,7 @@
     "land_value": "74700.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 203000,
     "arv_status": "SOLD",
     "arv_sqft": 1178,
@@ -5727,7 +5772,7 @@
     "land_value": "41990.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 199900,
     "arv_status": "SOLD",
     "arv_sqft": 1247,
@@ -5791,7 +5836,7 @@
     "land_value": "50040.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 276900,
     "arv_status": "SOLD",
     "arv_sqft": 2145,
@@ -5854,7 +5899,7 @@
     "land_value": "46600.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 223400,
     "arv_status": "SOLD",
     "arv_sqft": 2243,
@@ -5917,7 +5962,7 @@
     "land_value": "75740.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 293100,
     "arv_status": "SOLD",
     "arv_sqft": 1703,
@@ -5978,7 +6023,7 @@
     "land_value": "79660.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-06T21:37:37.678Z",
     "ghl_id": "wZLqvstNY285ZOyFSFZ3",
@@ -6041,7 +6086,7 @@
     "land_value": "59490.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 265900,
     "arv_status": "SOLD",
     "arv_sqft": 2675,
@@ -6102,7 +6147,7 @@
     "land_value": "56750.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 234000,
     "arv_status": "SOLD",
     "arv_sqft": 1698,
@@ -6165,7 +6210,7 @@
     "land_value": "80830.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-07T14:56:12.029Z",
     "ghl_id": "g1UTtvRSfrP8EfZWOdOM",
@@ -6229,7 +6274,7 @@
     "land_value": "79000.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 347029,
     "arv_status": "SOLD",
     "arv_sqft": 2155,
@@ -6291,7 +6336,7 @@
     "land_value": "51210.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 337300,
     "arv_status": "SOLD",
     "arv_sqft": 3288,
@@ -6352,7 +6397,7 @@
     "land_value": "44440.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 189561,
     "arv_status": "SOLD",
     "arv_sqft": 1398,
@@ -6415,7 +6460,7 @@
     "land_value": "70950.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 260592,
     "arv_status": "SOLD",
     "arv_sqft": 1675,
@@ -6475,7 +6520,7 @@
     "land_value": "124830.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 677300,
     "arv_status": "SOLD",
     "arv_sqft": 4649,
@@ -6535,7 +6580,7 @@
     "land_value": "49660.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 201554,
     "arv_status": "SOLD",
     "arv_sqft": 1417,
@@ -6584,7 +6629,7 @@
     "land_value": "51520.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-06T21:17:13.437Z",
     "ghl_id": "olr6vjNE8WoifuOvayqF",
@@ -6634,7 +6679,7 @@
     "land_value": "36740.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 260100,
     "arv_status": "SOLD",
     "arv_sqft": 2694,
@@ -6683,7 +6728,7 @@
     "land_value": "35160.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 202801,
     "arv_status": "SOLD",
     "arv_sqft": 1384,
@@ -6731,7 +6776,7 @@
     "land_value": "93290.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 469274,
     "arv_status": "SOLD",
     "arv_sqft": 3000,
@@ -6777,7 +6822,7 @@
     "land_value": "41810.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 202900,
     "arv_status": "SOLD",
     "arv_sqft": 1409,
@@ -6826,7 +6871,7 @@
     "land_value": "60860.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 193302,
     "arv_status": "SOLD",
     "arv_sqft": 1056,
@@ -6875,7 +6920,7 @@
     "land_value": "43060.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 198300,
     "arv_status": "SOLD",
     "arv_sqft": 1839,
@@ -6921,7 +6966,7 @@
     "land_value": "57940.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 282058,
     "arv_status": "SOLD",
     "arv_sqft": 1948,
@@ -6967,7 +7012,7 @@
     "land_value": "66110.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 235600,
     "arv_status": "SOLD",
     "arv_sqft": 1730,
@@ -7012,7 +7057,7 @@
     "land_value": "35940.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 261334,
     "arv_status": "SOLD",
     "arv_sqft": 1773,
@@ -7060,7 +7105,7 @@
     "land_value": "50560.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 236177,
     "arv_status": "SOLD",
     "arv_sqft": 1871,
@@ -7106,7 +7151,7 @@
     "land_value": "60990.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 287243,
     "arv_status": "SOLD",
     "arv_sqft": 1114,
@@ -7152,7 +7197,7 @@
     "land_value": "40550.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-07T14:48:27.117Z",
     "ghl_id": "ojO7V6fii03qdjb7yQPJ",
@@ -7215,10 +7260,10 @@
     "land_value": "116700.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "on_market": true,
     "on_market_status": "PENDING",
-    "on_market_checked_at": "2026-08-21T20:53:24Z"
+    "on_market_checked_at": "2026-08-22T15:22:36Z"
   },
   {
     "type": "NOF",
@@ -7275,7 +7320,7 @@
     "land_value": "52920.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-07T14:57:56.154Z",
     "ghl_id": "pKrcMr2Dex7MMJXuknjY",
@@ -7339,7 +7384,7 @@
     "land_value": "46310.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-07T14:47:04.134Z",
     "ghl_id": "PNsbPpTTQUVC5BwcM7yz",
@@ -7403,7 +7448,7 @@
     "land_value": "55250.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 158600,
     "arv_status": "SOLD",
     "arv_sqft": 972,
@@ -7451,7 +7496,7 @@
     "land_value": "0.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 308000,
     "arv_status": "SOLD",
     "arv_sqft": 1170,
@@ -7513,7 +7558,7 @@
     "land_value": "54440.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 237360,
     "arv_status": "SOLD",
     "arv_sqft": 1714,
@@ -7573,7 +7618,7 @@
     "land_value": "54910.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 391000,
     "arv_status": "SOLD",
     "arv_sqft": 1782,
@@ -7633,7 +7678,7 @@
     "land_value": "41240.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 175139,
     "arv_status": "SOLD",
     "arv_sqft": 1046,
@@ -7694,7 +7739,7 @@
     "land_value": "51150.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-07T14:50:44.163Z",
     "ghl_id": "cNxCdYGUXwdHnQzDlPKM",
@@ -7757,7 +7802,7 @@
     "land_value": "60980.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 271898,
     "arv_status": "SOLD",
     "arv_sqft": 1579,
@@ -7817,7 +7862,7 @@
     "land_value": "45500.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 147534,
     "arv_status": "SOLD",
     "arv_sqft": 1036,
@@ -7877,7 +7922,7 @@
     "land_value": "94310.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 535113,
     "arv_status": "SOLD",
     "arv_sqft": 2053,
@@ -7937,7 +7982,7 @@
     "land_value": "44450.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 180000,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 1230,
@@ -7998,7 +8043,7 @@
     "land_value": "51570.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-06-16T23:04:30.881Z",
     "arv_estimate": 256100,
@@ -8061,7 +8106,7 @@
     "land_value": "42100.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 192089,
     "arv_status": "SOLD",
     "arv_sqft": 1312,
@@ -8122,7 +8167,7 @@
     "land_value": "60620.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-07T14:52:11.747Z",
     "ghl_id": "Sn67MFmisXc1N4YqMHam",
@@ -8185,7 +8230,7 @@
     "land_value": "77550.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-07T15:00:48.301Z",
     "ghl_id": "MIaqn0CbJ4HQ8ZgqB3KG",
@@ -8249,7 +8294,7 @@
     "land_value": "63070.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-06T21:30:23.099Z",
     "ghl_id": "IQA56SnG3F42326QUeGQ",
@@ -8313,7 +8358,7 @@
     "land_value": "91780.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 404612,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 3568,
@@ -8373,7 +8418,7 @@
     "land_value": "54790.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-08T15:51:49.081Z",
     "ghl_id": "vOd6MlRx6BmDlIQVf9DC",
@@ -8437,7 +8482,7 @@
     "land_value": "288150.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 116500,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 49073,
@@ -8502,7 +8547,7 @@
     "arv_fetched_at": "2026-08-11T20:50:07Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_id": "Mm8SXqmOlck9RkG5ICNg",
     "ghl_pushed_at": "2026-07-16T21:38:02.602Z"
@@ -8562,7 +8607,7 @@
     "land_value": "52960.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 244429,
     "arv_status": "SOLD",
     "arv_sqft": 1668,
@@ -8623,7 +8668,7 @@
     "land_value": "58460.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 327500,
     "arv_status": "SOLD",
     "arv_sqft": 3015,
@@ -8684,7 +8729,7 @@
     "land_value": "35180.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 140700,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 1092,
@@ -8744,7 +8789,7 @@
     "land_value": "54760.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 548500,
     "arv_status": "FOR_SALE",
     "arv_sqft": null,
@@ -8804,10 +8849,10 @@
     "land_value": "4095860.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-21T20:53:40Z"
+    "on_market_checked_at": "2026-08-22T15:22:53Z"
   },
   {
     "type": "NOF",
@@ -8863,7 +8908,7 @@
     "land_value": "74300.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 317725,
     "arv_status": "FOR_SALE",
     "arv_sqft": 1570,
@@ -8924,10 +8969,10 @@
     "land_value": "2448470.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-21T20:54:00Z"
+    "on_market_checked_at": "2026-08-22T15:23:13Z"
   },
   {
     "type": "NOF",
@@ -8983,10 +9028,10 @@
     "land_value": "1690210.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-21T20:54:02Z"
+    "on_market_checked_at": "2026-08-22T15:23:15Z"
   },
   {
     "type": "NOF",
@@ -9043,7 +9088,7 @@
     "land_value": "96520.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 360261,
     "arv_status": "SOLD",
     "arv_sqft": 1700,
@@ -9104,7 +9149,7 @@
     "land_value": "90090.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 292575,
     "arv_status": "SOLD",
     "arv_sqft": 2027,
@@ -9165,7 +9210,7 @@
     "land_value": "50120.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 142500,
     "arv_status": "SOLD",
     "arv_sqft": 1434,
@@ -9225,7 +9270,7 @@
     "land_value": "48480.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 167500,
     "arv_status": "SOLD",
     "arv_sqft": 1160,
@@ -9285,7 +9330,7 @@
     "land_value": "351100.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 831700,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 3095,
@@ -9345,10 +9390,10 @@
     "land_value": "990590.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-08-21T20:54:04Z"
+    "on_market_checked_at": "2026-08-22T15:23:17Z"
   },
   {
     "type": "NOF",
@@ -9405,7 +9450,7 @@
     "land_value": "63690.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 256849,
     "arv_status": "SOLD",
     "arv_sqft": 1992,
@@ -9465,7 +9510,7 @@
     "land_value": "53570.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 299900,
     "arv_status": "SOLD",
     "arv_sqft": 3024,
@@ -9526,7 +9571,7 @@
     "land_value": "117290.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 377000,
     "arv_status": "SOLD",
     "arv_sqft": 1836,
@@ -9586,7 +9631,7 @@
     "land_value": "115110.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 565900,
     "arv_status": "SOLD",
     "arv_sqft": 2547,
@@ -9646,7 +9691,7 @@
     "land_value": "129290.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 502300,
     "arv_status": "SOLD",
     "arv_sqft": 2119,
@@ -9707,7 +9752,7 @@
     "land_value": "54700.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 271000,
     "arv_status": "FOR_RENT",
     "arv_sqft": 2563,
@@ -9768,7 +9813,7 @@
     "land_value": "55940.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 1158139,
     "arv_status": "SOLD",
     "arv_sqft": 4449,
@@ -9829,7 +9874,7 @@
     "land_value": "36390.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 177146,
     "arv_status": "SOLD",
     "arv_sqft": 1279,
@@ -9890,10 +9935,10 @@
     "land_value": "1477030.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-21T20:54:14Z"
+    "on_market_checked_at": "2026-08-22T15:23:28Z"
   },
   {
     "type": "NOF",
@@ -9950,10 +9995,10 @@
     "land_value": "35000.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-21T20:54:30Z"
+    "on_market_checked_at": "2026-08-22T15:23:45Z"
   },
   {
     "type": "NOF",
@@ -10009,7 +10054,7 @@
     "land_value": "67320.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 233500,
     "arv_status": "SOLD",
     "arv_sqft": 1552,
@@ -10070,10 +10115,10 @@
     "land_value": "2583650.0",
     "stacked": false,
     "score": 9,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-21T20:54:50Z"
+    "on_market_checked_at": "2026-08-22T15:24:06Z"
   },
   {
     "type": "NOF",
@@ -10126,7 +10171,7 @@
     "land_value": "2882840.0",
     "stacked": false,
     "score": 9,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 226000,
     "arv_status": "SOLD",
     "arv_sqft": 1573,
@@ -10187,7 +10232,7 @@
     "land_value": "68920.0",
     "stacked": false,
     "score": 9,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 476600,
     "arv_status": "FOR_RENT",
     "arv_sqft": null,
@@ -10248,7 +10293,7 @@
     "land_value": "49020.0",
     "stacked": false,
     "score": 9,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 244600,
     "arv_status": "SOLD",
     "arv_sqft": 1360,
@@ -10288,7 +10333,7 @@
     "land_value": "45920.0",
     "stacked": false,
     "score": 9,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 168678,
     "arv_status": "SOLD",
     "arv_sqft": 1170,
@@ -10331,7 +10376,7 @@
     "land_value": "64290.0",
     "stacked": false,
     "score": 9,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 253443,
     "arv_status": "SOLD",
     "arv_sqft": 1590,
@@ -10374,7 +10419,7 @@
     "land_value": "55490.0",
     "stacked": false,
     "score": 9,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 174912,
     "arv_status": "SOLD",
     "arv_sqft": 1620,
@@ -10414,7 +10459,7 @@
     "land_value": "38200.0",
     "stacked": false,
     "score": 9,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 211000,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 1356,
@@ -10457,7 +10502,7 @@
     "land_value": "54760.0",
     "stacked": false,
     "score": 9,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 234000,
     "arv_status": "SOLD",
     "arv_sqft": 1190,
@@ -10642,7 +10687,7 @@
     "arv_fetched_at": "2026-08-12T14:50:47Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_id": "b0MuKi8124mfmoHkw3PC",
     "ghl_pushed_at": "2026-07-09T18:13:41.023Z"
@@ -10705,7 +10750,7 @@
     "arv_fetched_at": "2026-08-12T14:50:51Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_id": "RwmtylIQObsmw3lPkWMQ",
     "ghl_pushed_at": "2026-05-13T19:04:18.017Z"
@@ -10768,7 +10813,7 @@
     "arv_fetched_at": "2026-08-12T14:50:52Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -10828,7 +10873,7 @@
     "arv_fetched_at": "2026-08-12T14:50:53Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -10888,7 +10933,7 @@
     "arv_fetched_at": "2026-08-12T14:50:55Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -10948,7 +10993,7 @@
     "arv_fetched_at": "2026-08-12T14:50:57Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -11008,7 +11053,7 @@
     "arv_fetched_at": "2026-08-12T14:51:28Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -11064,7 +11109,7 @@
     "arv_fetched_at": "2026-08-12T14:51:44Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -11124,7 +11169,7 @@
     "arv_fetched_at": "2026-08-11T20:50:11Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_id": "LPaKfVn41op8TFny52d5",
     "ghl_pushed_at": "2026-08-12T20:52:15.656Z"
@@ -11187,7 +11232,7 @@
     "arv_fetched_at": "2026-08-11T20:50:24Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -11247,7 +11292,7 @@
     "arv_fetched_at": "2026-08-11T20:50:32Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -11307,7 +11352,7 @@
     "arv_fetched_at": "2026-08-11T20:51:19Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -11367,7 +11412,7 @@
     "arv_fetched_at": "2026-08-11T20:51:23Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -11428,7 +11473,7 @@
     "arv_fetched_at": "2026-08-11T20:51:24Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_id": "WKTm6EbVdFJBn3TTGqid",
     "ghl_pushed_at": "2026-07-20T04:39:49.045Z"
@@ -11492,7 +11537,7 @@
     "arv_fetched_at": "2026-08-11T20:51:28Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -11548,8 +11593,8 @@
     "land_value": "38330.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
-    "on_market_checked_at": "2026-08-21T20:54:52Z"
+    "days_until_sale": 9,
+    "on_market_checked_at": "2026-08-22T15:24:07Z"
   },
   {
     "type": "NOF",
@@ -11609,7 +11654,7 @@
     "arv_fetched_at": "2026-08-11T20:51:36Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -11669,7 +11714,7 @@
     "arv_fetched_at": "2026-08-11T20:51:41Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -11725,7 +11770,7 @@
     "land_value": "49780.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 233000,
     "arv_status": "FOR_RENT",
     "arv_sqft": 1470,
@@ -11785,7 +11830,7 @@
     "land_value": "95520.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 247000,
     "arv_status": "SOLD",
     "arv_sqft": 1641,
@@ -11846,7 +11891,7 @@
     "land_value": "72560.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 188400,
     "arv_status": "SOLD",
     "arv_sqft": 1176,
@@ -11906,7 +11951,7 @@
     "land_value": "42170.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 203000,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 1339,
@@ -11966,7 +12011,7 @@
     "land_value": "45700.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 265831,
     "arv_status": "SOLD",
     "arv_sqft": 3093,
@@ -12026,7 +12071,7 @@
     "land_value": "249260.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 219393,
     "arv_status": "FOR_SALE",
     "arv_sqft": 1681,
@@ -12086,7 +12131,7 @@
     "land_value": "51550.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 191558,
     "arv_status": "FOR_SALE",
     "arv_sqft": 1450,
@@ -12147,7 +12192,7 @@
     "land_value": "44060.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 214600,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 2018,
@@ -12208,7 +12253,7 @@
     "land_value": "63970.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 257721,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 1136,
@@ -12268,7 +12313,7 @@
     "land_value": "46570.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 354000,
     "arv_status": "SOLD",
     "arv_sqft": 1775,
@@ -12329,10 +12374,10 @@
     "land_value": "5374420.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-21T20:54:53Z"
+    "on_market_checked_at": "2026-08-22T15:24:09Z"
   },
   {
     "type": "NOF",
@@ -12389,10 +12434,10 @@
     "land_value": "5238900.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-21T20:55:15Z"
+    "on_market_checked_at": "2026-08-22T15:24:31Z"
   },
   {
     "type": "NOF",
@@ -12448,7 +12493,7 @@
     "land_value": "56590.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 198725,
     "arv_status": "SOLD",
     "arv_sqft": 1259,
@@ -12508,10 +12553,10 @@
     "land_value": "562190.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-21T20:55:32Z"
+    "on_market_checked_at": "2026-08-22T15:24:49Z"
   },
   {
     "type": "NOF",
@@ -12568,7 +12613,7 @@
     "land_value": "2428000.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 344000,
     "arv_status": "FOR_RENT",
     "arv_sqft": null,
@@ -12629,7 +12674,7 @@
     "land_value": "2428000.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 344000,
     "arv_status": "FOR_RENT",
     "arv_sqft": null,
@@ -12690,7 +12735,7 @@
     "land_value": "2428000.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 344000,
     "arv_status": "FOR_RENT",
     "arv_sqft": null,
@@ -12750,7 +12795,7 @@
     "land_value": "37550.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 122900,
     "arv_status": "SOLD",
     "arv_sqft": 966,
@@ -12810,7 +12855,7 @@
     "land_value": "38230.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 121600,
     "arv_status": "SOLD",
     "arv_sqft": 1200,
@@ -12871,10 +12916,10 @@
     "land_value": "67760.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-21T20:56:10Z"
+    "on_market_checked_at": "2026-08-22T15:25:28Z"
   },
   {
     "type": "NOF",
@@ -12930,7 +12975,7 @@
     "land_value": "39240.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 92000,
     "arv_status": "SOLD",
     "arv_sqft": 600,
@@ -12990,7 +13035,7 @@
     "land_value": "56440.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 218741,
     "arv_status": "CONTINGENT",
     "arv_sqft": 1450,
@@ -13051,7 +13096,7 @@
     "land_value": "386740.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 600472,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 3525,
@@ -13111,7 +13156,7 @@
     "land_value": "55120.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 238100,
     "arv_status": "SOLD",
     "arv_sqft": 1296,
@@ -13171,7 +13216,7 @@
     "land_value": "18860.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 277800,
     "arv_status": "SOLD",
     "arv_sqft": null,
@@ -13231,7 +13276,7 @@
     "land_value": "54380.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 270100,
     "arv_status": "SOLD",
     "arv_sqft": 2395,
@@ -13292,7 +13337,7 @@
     "land_value": "50630.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 204000,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 1018,
@@ -13353,7 +13398,7 @@
     "land_value": "43280.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 180900,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 1466,
@@ -13413,10 +13458,10 @@
     "land_value": "4001800.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-21T20:56:11Z"
+    "on_market_checked_at": "2026-08-22T15:25:30Z"
   },
   {
     "type": "NOF",
@@ -13472,7 +13517,7 @@
     "land_value": "49520.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 148085,
     "arv_status": "SOLD",
     "arv_sqft": 1056,
@@ -13533,10 +13578,10 @@
     "land_value": "575350.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-21T20:56:16Z"
+    "on_market_checked_at": "2026-08-22T15:25:35Z"
   },
   {
     "type": "NOF",
@@ -13592,7 +13637,7 @@
     "land_value": "60330.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 223900,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 1671,
@@ -13653,10 +13698,10 @@
     "land_value": "363620.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-21T20:56:22Z"
+    "on_market_checked_at": "2026-08-22T15:25:41Z"
   },
   {
     "type": "NOF",
@@ -13713,10 +13758,10 @@
     "land_value": "575350.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-21T20:56:27Z"
+    "on_market_checked_at": "2026-08-22T15:25:46Z"
   },
   {
     "type": "NOF",
@@ -13772,7 +13817,7 @@
     "land_value": "40850.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 82300,
     "arv_status": "SOLD",
     "arv_sqft": 448,
@@ -13832,7 +13877,7 @@
     "land_value": "69410.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 352000,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 2490,
@@ -13892,7 +13937,7 @@
     "land_value": "98250.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 699000,
     "arv_status": "CONTINGENT",
     "arv_sqft": 3372,
@@ -13952,7 +13997,7 @@
     "land_value": "50600.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 168000,
     "arv_status": "SOLD",
     "arv_sqft": 1079,
@@ -14013,7 +14058,7 @@
     "land_value": "29880.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 144000,
     "arv_status": "SOLD",
     "arv_sqft": 1235,
@@ -14073,7 +14118,7 @@
     "land_value": "42690.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 141000,
     "arv_status": "SOLD",
     "arv_sqft": 960,
@@ -14133,7 +14178,7 @@
     "land_value": "72470.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 94600,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 960,
@@ -14193,7 +14238,7 @@
     "land_value": "58870.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 199000,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 1216,
@@ -14253,7 +14298,7 @@
     "land_value": "40190.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 241500,
     "arv_status": "SOLD",
     "arv_sqft": 2173,
@@ -14313,7 +14358,7 @@
     "land_value": "63690.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 150800,
     "arv_status": "FOR_RENT",
     "arv_sqft": 1748,
@@ -14373,7 +14418,7 @@
     "land_value": "53150.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 190600,
     "arv_status": "SOLD",
     "arv_sqft": 1212,
@@ -14433,7 +14478,7 @@
     "land_value": "44580.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-05-13T20:34:58.986Z",
     "arv_estimate": 209051,
@@ -14496,7 +14541,7 @@
     "land_value": "65860.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:15:21.158Z",
     "ghl_id": "CIl3FOxkDy7RI6IpIv7I",
@@ -14559,11 +14604,11 @@
     "land_value": "44950.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:15:52.012Z",
     "ghl_id": "rDoT5l461CcaoQVAAzVg",
-    "on_market_checked_at": "2026-08-21T20:56:28Z"
+    "on_market_checked_at": "2026-08-22T15:25:48Z"
   },
   {
     "type": "NOF",
@@ -14619,7 +14664,7 @@
     "land_value": "47690.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:16:31.176Z",
     "ghl_id": "abCsjYeVQtWVrDTgHZei",
@@ -14682,7 +14727,7 @@
     "land_value": "223810.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 388500,
     "arv_status": "CONTINGENT",
     "arv_sqft": 1172,
@@ -14742,7 +14787,7 @@
     "land_value": "52710.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:19:12.764Z",
     "ghl_id": "4WdtfzPTCkR7aHiWIS3o",
@@ -14805,7 +14850,7 @@
     "land_value": "42510.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:19:41.687Z",
     "ghl_id": "u92h9WPLqWoHumLMCVbU",
@@ -14868,7 +14913,7 @@
     "land_value": "67270.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:20:18.510Z",
     "ghl_id": "A3kMKFLjbDaW23Ul7Hoy",
@@ -14931,7 +14976,7 @@
     "land_value": "90540.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:23:09.481Z",
     "ghl_id": "V2laMPNs5su83pIKpuc9",
@@ -14994,10 +15039,10 @@
     "land_value": "322800.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-21T20:56:59Z"
+    "on_market_checked_at": "2026-08-22T15:26:16Z"
   },
   {
     "type": "NOF",
@@ -15054,7 +15099,7 @@
     "land_value": "113800.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 261180,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 1452,
@@ -15114,7 +15159,7 @@
     "land_value": "56810.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:23:43.199Z",
     "ghl_id": "qPBBGudzJRmKfm5j46Ym",
@@ -15177,7 +15222,7 @@
     "land_value": "36820.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:24:17.921Z",
     "ghl_id": "VjIydvHlSatfZeMezrYe",
@@ -15240,7 +15285,7 @@
     "land_value": "60280.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 206200,
     "arv_status": "SOLD",
     "arv_sqft": 1234,
@@ -15300,7 +15345,7 @@
     "land_value": "54480.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 378400,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 1920,
@@ -15360,7 +15405,7 @@
     "land_value": "50630.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:24:48.732Z",
     "ghl_id": "rlgtVCfEr3pUhuP6vdI7",
@@ -15423,7 +15468,7 @@
     "land_value": "132070.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:25:29.040Z",
     "ghl_id": "ZfPPZ7cMZSJ2RTNZpCHL",
@@ -15486,7 +15531,7 @@
     "land_value": "57590.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:25:54.734Z",
     "ghl_id": "rpGhweS1MS0QiKMY3OEo",
@@ -15549,7 +15594,7 @@
     "land_value": "45780.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:26:58.245Z",
     "ghl_id": "mkcqR1mIMvRH3Nq8m04e",
@@ -15612,7 +15657,7 @@
     "land_value": "37830.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 218741,
     "arv_status": "CONTINGENT",
     "arv_sqft": 1450,
@@ -15673,7 +15718,7 @@
     "land_value": "105000.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-05T17:38:49.390Z",
     "arv_estimate": 239000,
@@ -15735,7 +15780,7 @@
     "land_value": "46270.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 299000,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 1533,
@@ -15796,7 +15841,7 @@
     "land_value": "77660.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 218000,
     "arv_status": "FOR_SALE",
     "arv_sqft": 1580,
@@ -15857,7 +15902,7 @@
     "land_value": "120050.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 530700,
     "arv_status": "FOR_SALE",
     "arv_sqft": 1899,
@@ -15918,7 +15963,7 @@
     "land_value": "96020.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 437100,
     "arv_status": "FOR_SALE",
     "arv_sqft": 2436,
@@ -15978,7 +16023,7 @@
     "land_value": "77870.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 258800,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 2041,
@@ -16038,7 +16083,7 @@
     "land_value": "65150.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:55:02.597Z",
     "ghl_id": "hkqmicn0L1Z4RNJIfxyD",
@@ -16101,7 +16146,7 @@
     "land_value": "43690.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T17:05:09.370Z",
     "ghl_id": "izyX5bIeSUBd4cKIlibM",
@@ -16164,7 +16209,7 @@
     "land_value": "50490.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T17:05:40.407Z",
     "ghl_id": "S0yzHFrTQIedPQXY6rKc",
@@ -16227,7 +16272,7 @@
     "land_value": "55830.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T17:06:24.221Z",
     "ghl_id": "WSTzTu4y9Fm7rDC7DqLZ",
@@ -16290,7 +16335,7 @@
     "land_value": "53070.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T17:08:18.438Z",
     "ghl_id": "FpVNCAyLzqBkzIxoNTaJ",
@@ -16354,10 +16399,10 @@
     "land_value": "46380.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-21T20:57:16Z"
+    "on_market_checked_at": "2026-08-22T15:26:33Z"
   },
   {
     "type": "NOF",
@@ -16413,7 +16458,7 @@
     "land_value": "60280.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 212671,
     "arv_status": "SOLD",
     "arv_sqft": 1324,
@@ -16473,7 +16518,7 @@
     "land_value": "66410.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 375000,
     "arv_status": "FOR_SALE",
     "arv_sqft": 2802,
@@ -16533,7 +16578,7 @@
     "land_value": "68480.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T17:13:16.745Z",
     "ghl_id": "sanSrBpwRoNYttFv3JNw",
@@ -16596,7 +16641,7 @@
     "land_value": "57730.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 275200,
     "arv_status": "SOLD",
     "arv_sqft": 1839,
@@ -16656,7 +16701,7 @@
     "land_value": "58870.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T17:13:59.139Z",
     "ghl_id": "i1HVeHUDplUZ5SmAxPjF",
@@ -16719,7 +16764,7 @@
     "land_value": "40300.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T17:14:44.228Z",
     "ghl_id": "rTO6b9Lm3ZaXcJCFb1ej",
@@ -16782,7 +16827,7 @@
     "land_value": "74500.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 255000,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 1468,
@@ -16842,7 +16887,7 @@
     "land_value": "34580.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T17:15:10.702Z",
     "ghl_id": "parwwe0bGyhK6C5rUX0p",
@@ -16905,7 +16950,7 @@
     "land_value": "59440.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T17:15:34.478Z",
     "ghl_id": "HJwQItjWYCv9ywIowTr3",
@@ -16969,7 +17014,7 @@
     "land_value": "44060.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 141789,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 1020,
@@ -17029,7 +17074,7 @@
     "land_value": "51200.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 264737,
     "arv_status": "OFF_MARKET",
     "arv_sqft": null,
@@ -17089,7 +17134,7 @@
     "land_value": "60910.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 285300,
     "arv_status": "SOLD",
     "arv_sqft": 1801,
@@ -17149,7 +17194,7 @@
     "land_value": "60660.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 225000,
     "arv_status": "SOLD",
     "arv_sqft": 1705,
@@ -17209,7 +17254,7 @@
     "land_value": "85830.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 394200,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 2666,
@@ -17270,7 +17315,7 @@
     "land_value": "59600.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 338914,
     "arv_status": "SOLD",
     "arv_sqft": 2290,
@@ -17334,7 +17379,7 @@
     "land_value": "57320.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 236100,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 2305,
@@ -17394,7 +17439,7 @@
     "land_value": "44330.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 162000,
     "arv_status": "SOLD",
     "arv_sqft": 1152,
@@ -17454,7 +17499,7 @@
     "land_value": "51350.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 151632,
     "arv_status": "SOLD",
     "arv_sqft": 1088,
@@ -17514,7 +17559,7 @@
     "land_value": "105720.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 502000,
     "arv_status": "SOLD",
     "arv_sqft": 2579,
@@ -17574,7 +17619,7 @@
     "land_value": "142210.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 45000,
     "arv_status": "FOR_SALE",
     "arv_sqft": 1034,
@@ -17634,7 +17679,7 @@
     "land_value": "42660.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 191900,
     "arv_status": "SOLD",
     "arv_sqft": 1021,
@@ -17695,7 +17740,7 @@
     "land_value": "47880.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 239959,
     "arv_status": "SOLD",
     "arv_sqft": 1934,
@@ -17755,7 +17800,7 @@
     "land_value": "51390.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 237400,
     "arv_status": "SOLD",
     "arv_sqft": 1516,
@@ -17815,7 +17860,7 @@
     "land_value": "43160.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 228000,
     "arv_status": "SOLD",
     "arv_sqft": 1460,
@@ -17875,7 +17920,7 @@
     "land_value": "92670.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 724107,
     "arv_status": "FOR_SALE",
     "arv_sqft": 4724,
@@ -17935,7 +17980,7 @@
     "land_value": "83190.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 353600,
     "arv_status": "FOR_SALE",
     "arv_sqft": 3635,
@@ -17995,7 +18040,7 @@
     "land_value": "50510.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 148400,
     "arv_status": "SOLD",
     "arv_sqft": 732,
@@ -18055,10 +18100,10 @@
     "land_value": "92780.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-21T20:57:32Z"
+    "on_market_checked_at": "2026-08-22T15:26:49Z"
   },
   {
     "type": "NOF",
@@ -18114,7 +18159,7 @@
     "land_value": "71240.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 219800,
     "arv_status": "FOR_SALE",
     "arv_sqft": 1568,
@@ -18175,7 +18220,7 @@
     "land_value": "44060.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 141789,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 1020,
@@ -18235,7 +18280,7 @@
     "land_value": "47090.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 192900,
     "arv_status": "SOLD",
     "arv_sqft": 1356,
@@ -18295,7 +18340,7 @@
     "land_value": "53070.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 193000,
     "arv_status": "PENDING",
     "arv_sqft": 1970,
@@ -18356,7 +18401,7 @@
     "land_value": "67060.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 353000,
     "arv_status": "SOLD",
     "arv_sqft": 3305,
@@ -18416,7 +18461,7 @@
     "land_value": "45270.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 209000,
     "arv_status": "SOLD",
     "arv_sqft": 1354,
@@ -18476,7 +18521,7 @@
     "land_value": "52610.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 220117,
     "arv_status": "SOLD",
     "arv_sqft": 1282,
@@ -18536,7 +18581,7 @@
     "land_value": "58770.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 232091,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 1182,
@@ -18596,7 +18641,7 @@
     "land_value": "90360.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 432100,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 2855,
@@ -18656,7 +18701,7 @@
     "land_value": "48730.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 463700,
     "arv_status": "FOR_SALE",
     "arv_sqft": 1489,
@@ -18716,7 +18761,7 @@
     "land_value": "189890.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 445000,
     "arv_status": "FOR_SALE",
     "arv_sqft": 2350,
@@ -18776,7 +18821,7 @@
     "land_value": "63670.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 367800,
     "arv_status": "FOR_SALE",
     "arv_sqft": 2142,
@@ -18836,7 +18881,7 @@
     "land_value": "38190.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 286000,
     "arv_status": "SOLD",
     "arv_sqft": 2518,
@@ -18896,7 +18941,7 @@
     "land_value": "46380.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 138743,
     "arv_status": "SOLD",
     "arv_sqft": 780,
@@ -18959,7 +19004,7 @@
     "land_value": "43700.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 245854,
     "arv_status": "SOLD",
     "arv_sqft": 1848,
@@ -19022,7 +19067,7 @@
     "land_value": "70780.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 421539,
     "arv_status": "SOLD",
     "arv_sqft": 2966,
@@ -19082,7 +19127,7 @@
     "land_value": "73210.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 398000,
     "arv_status": "SOLD",
     "arv_sqft": 2598,
@@ -19142,7 +19187,7 @@
     "land_value": "57070.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 362000,
     "arv_status": "SOLD",
     "arv_sqft": 3288,
@@ -19202,7 +19247,7 @@
     "land_value": "240800.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 469700,
     "arv_status": "SOLD",
     "arv_sqft": 2020,
@@ -19262,7 +19307,7 @@
     "land_value": "113040.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 527800,
     "arv_status": "PENDING",
     "arv_sqft": 2875,
@@ -19322,7 +19367,7 @@
     "land_value": "58950.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 353915,
     "arv_status": "SOLD",
     "arv_sqft": 2413,
@@ -19383,7 +19428,7 @@
     "land_value": "146580.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 742000,
     "arv_status": "FOR_SALE",
     "arv_sqft": 2689,
@@ -19444,7 +19489,7 @@
     "land_value": "52980.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 376000,
     "arv_status": "SOLD",
     "arv_sqft": 2723,
@@ -19504,10 +19549,10 @@
     "land_value": "528480.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "on_market": true,
     "on_market_status": "FOR_SALE",
-    "on_market_checked_at": "2026-08-21T20:57:34Z"
+    "on_market_checked_at": "2026-08-22T15:26:51Z"
   },
   {
     "type": "NOF",
@@ -19563,7 +19608,7 @@
     "land_value": "53030.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 219600,
     "arv_status": "SOLD",
     "arv_sqft": 1708,
@@ -19623,8 +19668,8 @@
     "land_value": "57550.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
-    "on_market_checked_at": "2026-08-21T20:57:35Z"
+    "days_until_sale": 9,
+    "on_market_checked_at": "2026-08-22T15:26:53Z"
   },
   {
     "type": "NOF",
@@ -19680,7 +19725,7 @@
     "land_value": "77800.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 334000,
     "arv_status": "SOLD",
     "arv_sqft": 1771,
@@ -19741,7 +19786,7 @@
     "land_value": "52920.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 176290,
     "arv_status": "SOLD",
     "arv_sqft": 1152,
@@ -19801,7 +19846,7 @@
     "land_value": "52920.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 196544,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 1740,
@@ -19861,7 +19906,7 @@
     "land_value": "55190.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 241000,
     "arv_status": "SOLD",
     "arv_sqft": 1633,
@@ -19921,7 +19966,7 @@
     "land_value": "42970.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 203718,
     "arv_status": "FOR_SALE",
     "arv_sqft": 1439,
@@ -19981,7 +20026,7 @@
     "land_value": "60650.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 301132,
     "arv_status": "SOLD",
     "arv_sqft": 1974,
@@ -20041,7 +20086,7 @@
     "land_value": "43690.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 297500,
     "arv_status": "SOLD",
     "arv_sqft": 2179,
@@ -20101,7 +20146,7 @@
     "land_value": "52740.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 388700,
     "arv_status": "SOLD",
     "arv_sqft": 2721,
@@ -20161,7 +20206,7 @@
     "land_value": "40440.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 218000,
     "arv_status": "SOLD",
     "arv_sqft": 1401,
@@ -20221,7 +20266,7 @@
     "land_value": "48150.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 324600,
     "arv_status": "SOLD",
     "arv_sqft": 2226,
@@ -20281,7 +20326,7 @@
     "land_value": "59210.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 216781,
     "arv_status": "SOLD",
     "arv_sqft": 1474,
@@ -20341,10 +20386,10 @@
     "land_value": "51200.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-21T20:58:20Z"
+    "on_market_checked_at": "2026-08-22T15:27:34Z"
   },
   {
     "type": "NOF",
@@ -20400,7 +20445,7 @@
     "land_value": "61680.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 245400,
     "arv_status": "SOLD",
     "arv_sqft": 1965,
@@ -20460,7 +20505,7 @@
     "land_value": "93180.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 232500,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 1642,
@@ -20520,7 +20565,7 @@
     "land_value": "48810.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "arv_estimate": 194900,
     "arv_status": "FOR_SALE",
     "arv_sqft": 1073,
@@ -20580,7 +20625,7 @@
     "land_value": "72550.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "on_market": true,
     "on_market_status": "FOR_SALE",
     "on_market_checked_at": "2026-08-21T20:58:21Z",
@@ -20644,7 +20689,7 @@
     "land_value": "97600.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "on_market": false,
     "on_market_status": "SOLD",
     "on_market_checked_at": "2026-08-21T20:58:22Z",
@@ -20708,7 +20753,7 @@
     "land_value": "100280.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "on_market": false,
     "on_market_status": "SOLD",
     "on_market_checked_at": "2026-08-21T20:58:24Z",
@@ -20771,7 +20816,8 @@
     "land_value": "62290.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9,
+    "on_market_checked_at": "2026-08-22T15:27:36Z"
   },
   {
     "type": "NOF",
@@ -20827,7 +20873,14 @@
     "land_value": "45020.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9,
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-08-22T15:27:38Z",
+    "arv_estimate": 219638,
+    "arv_status": "OFF_MARKET",
+    "arv_sqft": null,
+    "arv_fetched_at": "2026-08-22T15:27:38Z"
   },
   {
     "type": "NOF",
@@ -20883,7 +20936,14 @@
     "land_value": "50600.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-22T15:27:40Z",
+    "arv_estimate": 248500,
+    "arv_status": "SOLD",
+    "arv_sqft": 1839,
+    "arv_fetched_at": "2026-08-22T15:27:40Z"
   },
   {
     "type": "NOF",
@@ -20939,7 +20999,7 @@
     "land_value": "66640.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -20995,7 +21055,7 @@
     "land_value": "71960.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -21052,7 +21112,7 @@
     "land_value": "71780.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -21108,7 +21168,7 @@
     "land_value": "79230.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -21164,7 +21224,7 @@
     "land_value": "158770.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -21220,7 +21280,7 @@
     "land_value": "61530.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -21276,7 +21336,7 @@
     "land_value": "37040.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -21332,7 +21392,7 @@
     "land_value": "81090.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -21388,7 +21448,7 @@
     "land_value": "53540.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -21444,7 +21504,7 @@
     "land_value": "108690.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_id": "rBE7Nm9BeG2qbYazlvHw",
     "ghl_pushed_at": "2026-07-01T20:10:32.051Z"
@@ -21503,7 +21563,7 @@
     "land_value": "63460.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_id": "PIDaS1kTVn6nBeDxI9Ju",
     "ghl_pushed_at": "2026-07-01T20:11:11.397Z"
@@ -21547,7 +21607,7 @@
     "land_value": "59180.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_id": "C9JizSEldRMXML9kSKwY",
     "ghl_pushed_at": "2026-06-29T21:52:40.815Z"
@@ -21591,7 +21651,7 @@
     "land_value": "77570.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_id": "YQRAO6S1A0Uks5hS1VGu",
     "ghl_pushed_at": "2026-06-29T21:55:32.005Z"
@@ -21635,7 +21695,7 @@
     "land_value": "73320.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -21676,7 +21736,7 @@
     "land_value": "65310.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -21717,7 +21777,7 @@
     "land_value": "52010.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_id": "cjeooHuM2Y86G3gfTUND",
     "ghl_pushed_at": "2026-06-29T22:18:57.295Z"
@@ -21761,7 +21821,7 @@
     "land_value": "38450.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_id": "EiUmuTMSO4OflW40WBXu",
     "ghl_pushed_at": "2026-06-29T22:19:25.848Z"
@@ -21805,7 +21865,7 @@
     "land_value": "38400.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_id": "WtubpCunmgP1AjV94wDx",
     "ghl_pushed_at": "2026-06-25T21:13:27.384Z"
@@ -21849,7 +21909,7 @@
     "land_value": "76490.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_id": "6qSLgPhDu4QB4W32dLm0",
     "ghl_pushed_at": "2026-06-25T21:14:39.953Z"
@@ -21893,7 +21953,7 @@
     "land_value": "60340.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_id": "P6ZefB47rovkWidoI5tb",
     "ghl_pushed_at": "2026-06-25T21:16:11.092Z"
@@ -21937,7 +21997,7 @@
     "land_value": "46190.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -21978,7 +22038,7 @@
     "land_value": "66860.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -22019,7 +22079,7 @@
     "land_value": "50570.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -22060,7 +22120,7 @@
     "land_value": "78820.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -22101,7 +22161,7 @@
     "land_value": "49830.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -22142,7 +22202,7 @@
     "land_value": "79970.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -22177,7 +22237,7 @@
     "land_value": "65570.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_id": "AoVp2VATb5V1gJfsUU8s",
     "ghl_pushed_at": "2026-06-23T21:38:39.173Z"
@@ -22215,7 +22275,7 @@
     "land_value": "64290.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_id": "6l6Zz6oRWV06S2gI3cBn",
     "ghl_pushed_at": "2026-06-23T21:37:31.206Z"
@@ -22254,7 +22314,7 @@
     "land_value": "47270.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_id": "1VNV82N704ZI5vrA7xHG",
     "ghl_pushed_at": "2026-06-23T21:39:28.423Z"
@@ -22292,7 +22352,7 @@
     "land_value": "39010.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_id": "V2z22mMdJyPFvU6u6OFt",
     "ghl_pushed_at": "2026-06-23T21:40:25.110Z"
@@ -22330,7 +22390,7 @@
     "land_value": "44890.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_id": "AUKXlbsP0khxlS7XU93G",
     "ghl_pushed_at": "2026-06-23T21:41:19.059Z"
@@ -22368,7 +22428,7 @@
     "land_value": "148620.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_id": "1mGxw4qmumt9UXXUfQAu",
     "ghl_pushed_at": "2026-06-23T21:42:14.003Z"
@@ -22406,7 +22466,7 @@
     "land_value": "40630.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_id": "hDTLSOKV8kOcytD9AnUa",
     "ghl_pushed_at": "2026-06-23T21:43:40.891Z"
@@ -22444,7 +22504,7 @@
     "land_value": "48930.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -22479,7 +22539,7 @@
     "land_value": "36920.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -22515,7 +22575,7 @@
     "land_value": "47270.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -22550,7 +22610,7 @@
     "land_value": "49690.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -22585,7 +22645,7 @@
     "land_value": "91670.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -22620,7 +22680,7 @@
     "land_value": "88870.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -22655,7 +22715,7 @@
     "land_value": "78110.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_id": "TqwUvRZSN3uQwKA5tsz9",
     "ghl_pushed_at": "2026-06-18T18:56:38.512Z"
@@ -22693,7 +22753,7 @@
     "land_value": "48840.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -22728,7 +22788,7 @@
     "land_value": "41810.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -22764,7 +22824,7 @@
     "land_value": "81500.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -22799,7 +22859,7 @@
     "land_value": "44750.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_id": "JLJSUCtFBbT4mVGbRmIt",
     "ghl_pushed_at": "2026-06-18T19:14:40.304Z"
@@ -22837,7 +22897,7 @@
     "land_value": "40350.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_id": "7fEpi0z19JQY1JFTVHXE",
     "ghl_pushed_at": "2026-06-18T19:15:45.091Z"
@@ -22875,7 +22935,7 @@
     "land_value": "35350.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_id": "wGTNK6f4Q3KnNNOF16PQ",
     "ghl_pushed_at": "2026-06-18T18:59:48.606Z"
@@ -22913,7 +22973,7 @@
     "land_value": "33050.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -22948,7 +23008,7 @@
     "land_value": "53120.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -22983,7 +23043,7 @@
     "land_value": "40740.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_id": "pboQVX5TK9fkEV62S0D8",
     "ghl_pushed_at": "2026-06-18T19:01:30.537Z"
@@ -23021,7 +23081,7 @@
     "land_value": "44590.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_id": "QW8xIzN55CtSSyT5ePES",
     "ghl_pushed_at": "2026-06-18T19:07:32.784Z"
@@ -23059,7 +23119,7 @@
     "land_value": "52470.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -23095,7 +23155,7 @@
     "land_value": "59410.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -23130,7 +23190,7 @@
     "land_value": "47300.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -23165,7 +23225,7 @@
     "land_value": "117860.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -23200,7 +23260,7 @@
     "land_value": "55680.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10,
+    "days_until_sale": 9,
     "ghl_pushed": true,
     "ghl_id": "m0VPthPKpTwW9HhL64pP",
     "ghl_pushed_at": "2026-06-18T19:03:07.918Z"
@@ -23238,7 +23298,7 @@
     "land_value": "89040.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -23273,7 +23333,7 @@
     "land_value": "48830.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -23308,7 +23368,7 @@
     "land_value": "60190.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -23343,7 +23403,7 @@
     "land_value": "57840.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -23378,7 +23438,7 @@
     "land_value": "59780.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -23413,7 +23473,7 @@
     "land_value": "65060.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -23448,7 +23508,7 @@
     "land_value": "39780.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -23483,7 +23543,7 @@
     "land_value": "55050.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -23519,7 +23579,7 @@
     "land_value": "50680.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -23554,7 +23614,7 @@
     "land_value": "77280.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -23589,7 +23649,7 @@
     "land_value": "46090.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -23624,7 +23684,7 @@
     "land_value": "42000.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -23660,7 +23720,7 @@
     "land_value": "64690.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -23700,7 +23760,7 @@
     "appr_trend": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -23738,7 +23798,7 @@
     "last_sale_amt": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -23779,7 +23839,7 @@
     "appr_trend": "",
     "stacked": false,
     "score": 4,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -23820,7 +23880,7 @@
     "appr_trend": "",
     "stacked": false,
     "score": 4,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -23861,7 +23921,7 @@
     "appr_trend": "",
     "stacked": false,
     "score": 4,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -23902,7 +23962,7 @@
     "appr_trend": "",
     "stacked": false,
     "score": 4,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -23935,7 +23995,7 @@
     "trustee": "",
     "stacked": false,
     "score": 4,
-    "days_until_sale": 10
+    "days_until_sale": 9
   },
   {
     "type": "NOF",
@@ -23993,7 +24053,7 @@
     "arv_fetched_at": "2026-08-21T14:48:52Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -24048,7 +24108,7 @@
     "land_value": "50890.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -24107,7 +24167,7 @@
     "arv_fetched_at": "2026-08-21T14:48:56Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -24166,7 +24226,7 @@
     "arv_fetched_at": "2026-08-21T14:49:01Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -24225,7 +24285,7 @@
     "arv_fetched_at": "2026-08-21T14:49:04Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -24283,7 +24343,7 @@
     "arv_fetched_at": "2026-08-21T14:49:29Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -24341,7 +24401,7 @@
     "arv_fetched_at": "2026-08-21T14:49:32Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -24400,7 +24460,7 @@
     "arv_fetched_at": "2026-08-21T14:49:36Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -24455,7 +24515,7 @@
     "land_value": "45100.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -24510,7 +24570,7 @@
     "land_value": "37760.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "arv_estimate": 166000,
     "arv_status": "SOLD",
     "arv_sqft": 1098,
@@ -24568,7 +24628,7 @@
     "land_value": "115420.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "arv_estimate": 299700,
     "arv_status": "SOLD",
     "arv_sqft": null,
@@ -24626,7 +24686,7 @@
     "land_value": "40360.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "arv_estimate": 209800,
     "arv_status": "SOLD",
     "arv_sqft": 1886,
@@ -24684,7 +24744,7 @@
     "land_value": "117600.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "arv_estimate": 445991,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 2661,
@@ -24742,7 +24802,7 @@
     "land_value": "51590.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "arv_estimate": 236300,
     "arv_status": "SOLD",
     "arv_sqft": 1625,
@@ -24801,7 +24861,7 @@
     "land_value": "47130.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "arv_estimate": 208356,
     "arv_status": "SOLD",
     "arv_sqft": 1145,
@@ -24859,7 +24919,7 @@
     "land_value": "64150.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "arv_estimate": 266500,
     "arv_status": "SOLD",
     "arv_sqft": 2084,
@@ -24918,7 +24978,7 @@
     "land_value": "42870.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "arv_estimate": 191900,
     "arv_status": "SOLD",
     "arv_sqft": 1240,
@@ -24977,7 +25037,7 @@
     "land_value": "59980.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -25035,7 +25095,7 @@
     "arv_fetched_at": "2026-08-13T16:05:07Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -25094,7 +25154,7 @@
     "arv_fetched_at": "2026-08-13T16:05:13Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_id": "cmS4a0Ik3wS3bM44U8Bb",
     "ghl_pushed_at": "2026-08-13T19:56:55.715Z"
@@ -25156,7 +25216,7 @@
     "arv_fetched_at": "2026-08-13T16:05:15Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_id": "m9Uyr5uXK2p1vECF3XxU",
     "ghl_pushed_at": "2026-08-13T19:58:00.109Z"
@@ -25218,7 +25278,7 @@
     "arv_fetched_at": "2026-08-13T16:05:16Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_id": "dCcuvYYxLUP1Ub6WzBdG",
     "ghl_pushed_at": "2026-08-13T19:59:26.752Z"
@@ -25280,7 +25340,7 @@
     "arv_fetched_at": "2026-08-13T16:05:19Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_id": "RwE92s568vjgoGi3zOaL",
     "ghl_pushed_at": "2026-08-13T20:00:08.265Z"
@@ -25341,7 +25401,7 @@
     "arv_fetched_at": "2026-08-13T16:05:23Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -25401,7 +25461,7 @@
     "arv_fetched_at": "2026-08-13T16:05:24Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_id": "XJFgHnP64UWijUlYs56h",
     "ghl_pushed_at": "2026-08-13T20:02:32.962Z"
@@ -25463,7 +25523,7 @@
     "arv_fetched_at": "2026-08-13T16:05:28Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_id": "8ABmp5ZievYqq4J05Jjo",
     "ghl_pushed_at": "2026-08-13T20:03:39.123Z"
@@ -25524,7 +25584,7 @@
     "arv_fetched_at": "2026-08-13T16:05:52Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_id": "NUzaNXXFpiXzenPDZY9h",
     "ghl_pushed_at": "2026-08-13T20:04:38.859Z"
@@ -25585,7 +25645,7 @@
     "arv_fetched_at": "2026-08-13T16:05:54Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -25645,7 +25705,7 @@
     "arv_fetched_at": "2026-08-13T16:05:59Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -25703,7 +25763,7 @@
     "arv_fetched_at": "2026-08-13T16:06:01Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -25762,7 +25822,7 @@
     "arv_fetched_at": "2026-08-13T16:06:04Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -25821,7 +25881,7 @@
     "arv_fetched_at": "2026-08-13T16:06:05Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_id": "b8Vm9ln5RqsXnUDyxB3h",
     "ghl_pushed_at": "2026-08-13T20:07:34.586Z"
@@ -25882,7 +25942,7 @@
     "arv_fetched_at": "2026-08-13T16:06:11Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_id": "XcQJ3XdV4VCBynIN82fJ",
     "ghl_pushed_at": "2026-08-13T20:08:30.547Z"
@@ -25940,7 +26000,7 @@
     "land_value": "44440.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "arv_estimate": 189561,
     "arv_status": "SOLD",
     "arv_sqft": 1398,
@@ -26005,7 +26065,7 @@
     "arv_fetched_at": "2026-08-11T20:50:23Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -26063,7 +26123,7 @@
     "arv_fetched_at": "2026-08-11T20:50:26Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -26121,7 +26181,7 @@
     "arv_fetched_at": "2026-08-11T20:50:29Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_id": "47czEfblhl218RFOO2Pe",
     "ghl_pushed_at": "2026-06-16T22:27:42.259Z"
@@ -26182,7 +26242,7 @@
     "arv_fetched_at": "2026-08-11T20:51:26Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -26241,7 +26301,7 @@
     "arv_fetched_at": "2026-08-11T20:51:33Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -26295,7 +26355,7 @@
     "land_value": "56710.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -26350,7 +26410,7 @@
     "land_value": "42870.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:28:34.148Z",
     "ghl_id": "0ts9IjgX3U26BZVEdRLa"
@@ -26407,7 +26467,7 @@
     "land_value": "50260.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:29:00.407Z",
     "ghl_id": "tazfGXTuB8JBlOqGFYZc"
@@ -26465,7 +26525,7 @@
     "land_value": "86710.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:29:51.478Z",
     "ghl_id": "blbpv8HEpvxHK3mq1qpN"
@@ -26522,7 +26582,7 @@
     "land_value": "48140.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:33:06.184Z",
     "ghl_id": "nS6mJKzKw7znCg8cfTAV"
@@ -26579,7 +26639,7 @@
     "land_value": "87690.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:33:31.489Z",
     "ghl_id": "BIrKOhyaRMRlNXfuJzgO"
@@ -26637,7 +26697,7 @@
     "land_value": "45440.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -26691,7 +26751,7 @@
     "land_value": "51400.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:35:12.955Z",
     "ghl_id": "1SPMpMWItRF5uJj74MNv"
@@ -26748,7 +26808,7 @@
     "land_value": "62790.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -26802,7 +26862,7 @@
     "land_value": "38660.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:35:57.353Z",
     "ghl_id": "0takxxp3toLxE9gKOE8A"
@@ -26859,7 +26919,7 @@
     "land_value": "53640.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:36:33.647Z",
     "ghl_id": "ULP23uqSYtNCy4YsWGoc"
@@ -26917,7 +26977,7 @@
     "land_value": "42170.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -26971,7 +27031,7 @@
     "land_value": "40610.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:37:32.187Z",
     "ghl_id": "snSXA33vyrHcr2p3XBjY"
@@ -27028,7 +27088,7 @@
     "land_value": "44920.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -27084,7 +27144,7 @@
     "land_value": "38920.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T17:17:12.946Z",
     "ghl_id": "uYnmIFXfz3dWzY62P47J"
@@ -27142,7 +27202,7 @@
     "land_value": "67390.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -27197,7 +27257,7 @@
     "land_value": "58160.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T17:19:51.426Z",
     "ghl_id": "YyNxVyECK1VbIdZPaI9n"
@@ -27254,7 +27314,7 @@
     "land_value": "83920.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T17:20:36.623Z",
     "ghl_id": "IYH433YTVbKO6fzQjYt2"
@@ -27313,7 +27373,7 @@
     "land_value": "41890.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T17:21:01.897Z",
     "ghl_id": "4FgkLUhH9t4k96qZU5zy"
@@ -27371,7 +27431,7 @@
     "land_value": "79650.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -27426,7 +27486,7 @@
     "land_value": "74680.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T17:21:57.037Z",
     "ghl_id": "8MR5xmXQtAdTYLr3CzMb"
@@ -27483,7 +27543,7 @@
     "land_value": "50150.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T17:22:26.508Z",
     "ghl_id": "TUNLpAUmF0i8iVD7eZLU"
@@ -27540,7 +27600,7 @@
     "land_value": "45120.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T17:33:39.897Z",
     "ghl_id": "tIxOQTUJtzH3E75djzNA"
@@ -27597,7 +27657,7 @@
     "land_value": "53240.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -27651,7 +27711,7 @@
     "land_value": "46330.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -27705,7 +27765,7 @@
     "land_value": "79050.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -27759,7 +27819,7 @@
     "land_value": "27020.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -27813,7 +27873,7 @@
     "land_value": "44470.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -27869,7 +27929,7 @@
     "land_value": "41770.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_id": "Rmdzs8zqwkb0n3MZzVUo",
     "ghl_pushed_at": "2026-07-21T18:56:34.776Z"
@@ -27927,7 +27987,7 @@
     "land_value": "59910.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -27982,7 +28042,7 @@
     "land_value": "45340.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_id": "Wkw01CfOxMSNqAPgL3xf",
     "ghl_pushed_at": "2026-07-20T04:46:10.862Z"
@@ -28040,7 +28100,7 @@
     "land_value": "51750.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_id": "BxrQL4PeN5NKLUvZTOVA",
     "ghl_pushed_at": "2026-07-20T16:48:23.711Z"
@@ -28098,7 +28158,7 @@
     "land_value": "42240.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_id": "za8AOHNsVlRpNY3Ow1QX",
     "ghl_pushed_at": "2026-07-20T04:46:39.543Z"
@@ -28156,7 +28216,7 @@
     "land_value": "43160.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_id": "FtCKu6WQfUhoxILeg9Ee",
     "ghl_pushed_at": "2026-07-20T04:47:11.002Z"
@@ -28213,7 +28273,7 @@
     "land_value": "31000.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_id": "JWmixMsD3WCqmS6k7Vi5",
     "ghl_pushed_at": "2026-07-16T21:36:09.777Z"
@@ -28271,7 +28331,7 @@
     "land_value": "61850.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_id": "pJLaWJFVIaomQs7wc4CO",
     "ghl_pushed_at": "2026-07-16T22:26:24.664Z"
@@ -28328,7 +28388,7 @@
     "land_value": "67680.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_id": "nNv1DaCKKwnRxINtsanN",
     "ghl_pushed_at": "2026-07-16T22:26:56.151Z"
@@ -28385,7 +28445,7 @@
     "land_value": "53580.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -28440,7 +28500,7 @@
     "land_value": "42060.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -28494,7 +28554,7 @@
     "land_value": "77510.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -28548,7 +28608,7 @@
     "land_value": "63660.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -28603,7 +28663,7 @@
     "land_value": "62870.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -28659,7 +28719,7 @@
     "land_value": "71240.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_id": "J10CFW75p73L4J7wpPoK",
     "ghl_pushed_at": "2026-08-10T17:24:19.762Z"
@@ -28717,7 +28777,7 @@
     "land_value": "43770.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -28771,7 +28831,7 @@
     "land_value": "23759.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -28825,7 +28885,7 @@
     "land_value": "71780.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -28879,7 +28939,7 @@
     "land_value": "52230.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -28933,7 +28993,7 @@
     "land_value": "147840.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -28987,7 +29047,7 @@
     "land_value": "44980.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -29041,7 +29101,7 @@
     "land_value": "50890.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -29096,7 +29156,7 @@
     "land_value": "73430.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -29150,7 +29210,7 @@
     "land_value": "60570.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -29204,7 +29264,7 @@
     "land_value": "64330.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -29259,7 +29319,7 @@
     "land_value": "46980.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -29315,7 +29375,7 @@
     "land_value": "39630.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -29369,7 +29429,7 @@
     "land_value": "50490.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -29424,7 +29484,7 @@
     "land_value": "70430.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -29478,7 +29538,7 @@
     "land_value": "85240.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -29532,7 +29592,7 @@
     "land_value": "50230.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T17:22:55.905Z",
     "ghl_id": "xGX58xCsxxpOJA04BiCl"
@@ -29590,7 +29650,7 @@
     "land_value": "126110.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T17:23:23.790Z",
     "ghl_id": "7vUUBPtzDeGTqecyUhAF"
@@ -29649,7 +29709,7 @@
     "land_value": "71240.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T17:24:20.430Z",
     "ghl_id": "J10CFW75p73L4J7wpPoK"
@@ -29706,7 +29766,7 @@
     "land_value": "83020.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -29761,7 +29821,7 @@
     "land_value": "51050.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -29816,7 +29876,7 @@
     "land_value": "36660.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -29871,7 +29931,7 @@
     "land_value": "49340.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T17:25:56.694Z",
     "ghl_id": "0Ol4wKSP7v4ZoFaixMz8"
@@ -29929,7 +29989,7 @@
     "land_value": "55510.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T17:26:23.880Z",
     "ghl_id": "sT42ifDWWtfebBM5JdXV"
@@ -29987,7 +30047,7 @@
     "land_value": "62020.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T17:26:49.021Z",
     "ghl_id": "nk66b2HoAAr0lX92lnVe"
@@ -30044,7 +30104,7 @@
     "land_value": "54030.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:38:00.975Z",
     "ghl_id": "7KhyQF7iKKuTwOsUsSV6"
@@ -30102,7 +30162,7 @@
     "land_value": "62760.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -30156,7 +30216,7 @@
     "land_value": "48960.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_id": "ytDIzWBwheKfpek4zaTU",
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:38:41.192Z"
@@ -30214,7 +30274,7 @@
     "land_value": "51710.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_id": "Qz9BBMlMqjtCT16W6GK5",
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:39:16.176Z"
@@ -30272,7 +30332,7 @@
     "land_value": "38200.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:40:11.510Z",
     "ghl_id": "0S1sFfRCidoj2v9R2TRB"
@@ -30329,7 +30389,7 @@
     "land_value": "44610.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:43:41.337Z",
     "ghl_id": "1QK84DNinqGC1lMfqDNS"
@@ -30390,7 +30450,7 @@
     "arv_fetched_at": "2026-08-21T14:49:00Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 73
+    "days_until_sale": 72
   },
   {
     "type": "NOF",
@@ -30448,7 +30508,7 @@
     "arv_fetched_at": "2026-08-21T14:49:09Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 73
+    "days_until_sale": 72
   },
   {
     "type": "NOF",
@@ -30503,7 +30563,7 @@
     "land_value": "40230.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 73
+    "days_until_sale": 72
   },
   {
     "type": "NOF",
@@ -30561,7 +30621,7 @@
     "arv_fetched_at": "2026-08-21T14:49:31Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 73
+    "days_until_sale": 72
   },
   {
     "type": "NOF",
@@ -30620,7 +30680,7 @@
     "arv_fetched_at": "2026-08-21T14:49:35Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 73
+    "days_until_sale": 72
   },
   {
     "type": "NOF",
@@ -30679,7 +30739,7 @@
     "arv_fetched_at": "2026-08-13T16:05:51Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 73
+    "days_until_sale": 72
   },
   {
     "type": "NOF",
@@ -30738,7 +30798,7 @@
     "arv_fetched_at": "2026-08-13T16:06:08Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 73
+    "days_until_sale": 72
   },
   {
     "type": "NOF",
@@ -30796,7 +30856,7 @@
     "arv_fetched_at": "2026-08-11T20:51:18Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 73
+    "days_until_sale": 72
   },
   {
     "type": "NOF",
@@ -30851,7 +30911,7 @@
     "land_value": "33070.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 73
+    "days_until_sale": 72
   },
   {
     "type": "NOF",
@@ -30905,7 +30965,7 @@
     "land_value": "55010.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 73,
+    "days_until_sale": 72,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T17:27:15.080Z",
     "ghl_id": "6kgV3pPyaS7hAIR9UfhN"
@@ -30963,7 +31023,7 @@
     "land_value": "40620.0",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 101,
+    "days_until_sale": 100,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T17:28:21.545Z",
     "ghl_id": "a0nQbdNtrivFGuCt5n83"
@@ -39143,7 +39203,7 @@
     "arv_fetched_at": "2026-08-21T14:48:57Z",
     "stacked": false,
     "score": 9,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -39202,7 +39262,7 @@
     "arv_fetched_at": "2026-08-19T01:18:40Z",
     "stacked": false,
     "score": 9,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_id": "IRilaxjIfGLLaqH4PJj1",
     "ghl_pushed_at": "2026-08-19T14:36:57.808Z"
@@ -39264,7 +39324,7 @@
     "arv_fetched_at": "2026-08-11T20:51:39Z",
     "stacked": false,
     "score": 9,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -39319,7 +39379,7 @@
     "land_value": "42340.0",
     "stacked": false,
     "score": 9,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -39374,7 +39434,7 @@
     "land_value": "66030.0",
     "stacked": false,
     "score": 9,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -39429,7 +39489,7 @@
     "land_value": "38470.0",
     "stacked": false,
     "score": 9,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -39463,7 +39523,7 @@
     "land_value": "44100.0",
     "stacked": false,
     "score": 9,
-    "days_until_sale": 101
+    "days_until_sale": 100
   },
   {
     "doc_number": "20260161096",
@@ -40643,7 +40703,7 @@
     "arv_fetched_at": "2026-08-21T14:48:07Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -40701,7 +40761,7 @@
     "arv_fetched_at": "2026-08-21T14:48:08Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -40756,7 +40816,7 @@
     "land_value": "54570.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -40814,7 +40874,7 @@
     "arv_fetched_at": "2026-08-21T14:48:50Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -40872,7 +40932,7 @@
     "arv_fetched_at": "2026-08-21T14:48:53Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -40930,7 +40990,7 @@
     "arv_fetched_at": "2026-08-21T14:48:59Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -40988,7 +41048,7 @@
     "arv_fetched_at": "2026-08-21T14:49:03Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -41046,7 +41106,7 @@
     "arv_fetched_at": "2026-08-21T14:49:06Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -41105,7 +41165,7 @@
     "arv_fetched_at": "2026-08-21T14:49:07Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -41163,7 +41223,7 @@
     "arv_fetched_at": "2026-08-21T14:49:28Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -41221,7 +41281,7 @@
     "arv_fetched_at": "2026-08-21T14:49:34Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -41280,7 +41340,7 @@
     "arv_fetched_at": "2026-08-21T14:49:38Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -41338,7 +41398,7 @@
     "arv_fetched_at": "2026-08-21T14:49:39Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -41396,7 +41456,7 @@
     "arv_fetched_at": "2026-08-21T14:49:41Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -41450,7 +41510,7 @@
     "land_value": "67260.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "arv_estimate": 295600,
     "arv_status": "SOLD",
     "arv_sqft": 1881,
@@ -41508,7 +41568,7 @@
     "land_value": "75570.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "arv_estimate": 220000,
     "arv_status": "SOLD",
     "arv_sqft": 1151,
@@ -41566,7 +41626,7 @@
     "land_value": "40830.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "arv_estimate": 292200,
     "arv_status": "FOR_SALE",
     "arv_sqft": 2780,
@@ -41624,7 +41684,7 @@
     "land_value": "51550.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "arv_estimate": 249900,
     "arv_status": "SOLD",
     "arv_sqft": 1606,
@@ -41683,7 +41743,7 @@
     "land_value": "47880.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "arv_estimate": 239959,
     "arv_status": "SOLD",
     "arv_sqft": 1934,
@@ -41745,7 +41805,7 @@
     "arv_fetched_at": "2026-08-18T19:33:00Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -41799,7 +41859,7 @@
     "land_value": "2512240.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -41857,7 +41917,7 @@
     "arv_fetched_at": "2026-08-13T16:05:05Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -41915,7 +41975,7 @@
     "arv_fetched_at": "2026-08-13T16:05:09Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -41973,7 +42033,7 @@
     "arv_fetched_at": "2026-08-13T16:05:10Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -42031,7 +42091,7 @@
     "arv_fetched_at": "2026-08-13T16:05:12Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -42089,7 +42149,7 @@
     "arv_fetched_at": "2026-08-13T16:05:18Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -42147,7 +42207,7 @@
     "arv_fetched_at": "2026-08-13T16:05:21Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -42206,7 +42266,7 @@
     "arv_fetched_at": "2026-08-13T16:05:26Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -42264,7 +42324,7 @@
     "arv_fetched_at": "2026-08-13T16:05:29Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -42322,7 +42382,7 @@
     "arv_fetched_at": "2026-08-13T16:05:56Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -42380,7 +42440,7 @@
     "arv_fetched_at": "2026-08-13T16:05:57Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -42438,7 +42498,7 @@
     "arv_fetched_at": "2026-08-13T16:06:03Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -42496,7 +42556,7 @@
     "arv_fetched_at": "2026-08-13T16:06:07Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -42554,7 +42614,7 @@
     "arv_fetched_at": "2026-08-13T16:06:10Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -42609,7 +42669,7 @@
     "land_value": "54570.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -42667,7 +42727,7 @@
     "arv_fetched_at": "2026-08-11T20:50:09Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -42725,7 +42785,7 @@
     "arv_fetched_at": "2026-08-11T20:50:27Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -42783,7 +42843,7 @@
     "arv_fetched_at": "2026-08-11T20:50:33Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -42841,7 +42901,7 @@
     "arv_fetched_at": "2026-08-11T20:51:16Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -42899,7 +42959,7 @@
     "arv_fetched_at": "2026-08-11T20:51:27Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -42957,7 +43017,7 @@
     "arv_fetched_at": "2026-08-11T20:51:32Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -43015,7 +43075,7 @@
     "arv_fetched_at": "2026-08-11T20:51:38Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -43073,7 +43133,7 @@
     "arv_fetched_at": "2026-08-11T20:51:43Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -43114,7 +43174,7 @@
     "land_value": "40990.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -43155,7 +43215,7 @@
     "land_value": "89820.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -43196,7 +43256,7 @@
     "land_value": "61050.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -43237,7 +43297,7 @@
     "land_value": "61490.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -43278,7 +43338,7 @@
     "land_value": "35680.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -43319,7 +43379,7 @@
     "land_value": "53540.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -43360,7 +43420,7 @@
     "land_value": "67280.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -43401,7 +43461,7 @@
     "land_value": "46970.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -43442,7 +43502,7 @@
     "land_value": "46620.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_id": "a4KbP4AQ3oQdwi33rpxb",
     "ghl_pushed_at": "2026-06-18T17:49:21.030Z"
@@ -43486,7 +43546,7 @@
     "land_value": "44820.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -43527,7 +43587,7 @@
     "land_value": "63380.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -43581,7 +43641,7 @@
     "land_value": "54480.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -43636,7 +43696,7 @@
     "land_value": "64690.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -43690,7 +43750,7 @@
     "land_value": "55320.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:44:48.905Z",
     "ghl_id": "jW2XMpBMQQnNEkBt1ZEE"
@@ -43748,7 +43808,7 @@
     "land_value": "63690.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -43802,7 +43862,7 @@
     "land_value": "52580.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:45:16.486Z",
     "ghl_id": "5DAUBnB7UiuoYJnqFXN2"
@@ -43859,7 +43919,7 @@
     "land_value": "62360.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:45:42.105Z",
     "ghl_id": "m2QTOOYbMNP5vkgnoT5F"
@@ -43916,7 +43976,7 @@
     "land_value": "60860.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -43970,7 +44030,7 @@
     "land_value": "22870.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:46:31.796Z",
     "ghl_id": "zm1nazOUumUEjlBRkeas"
@@ -44027,7 +44087,7 @@
     "land_value": "69820.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:46:55.092Z",
     "ghl_id": "jz5EiN9JjIixF9loxT3m"
@@ -44084,7 +44144,7 @@
     "land_value": "57720.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -44138,7 +44198,7 @@
     "land_value": "52010.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -44192,7 +44252,7 @@
     "land_value": "29650.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:47:53.200Z",
     "ghl_id": "vC2plCGnzhEcdwAvG3P6"
@@ -44250,7 +44310,7 @@
     "land_value": "39490.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -44304,7 +44364,7 @@
     "land_value": "36220.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:50:23.613Z",
     "ghl_id": "WXHQoporfZXeA0Tva5Kh"
@@ -44361,7 +44421,7 @@
     "land_value": "38690.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T17:28:47.244Z",
     "ghl_id": "BWXof9fyql0pU2IjkerI"
@@ -44418,7 +44478,7 @@
     "land_value": "79150.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T17:29:18.679Z",
     "ghl_id": "wMLyZPL0YxmyZLYR7jjv"
@@ -44475,7 +44535,7 @@
     "land_value": "44630.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -44529,7 +44589,7 @@
     "land_value": "85850.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -44583,7 +44643,7 @@
     "land_value": "74570.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -44637,7 +44697,7 @@
     "land_value": "47700.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T17:30:05.887Z",
     "ghl_id": "LFlRNTVTYb5IQvFFnhIa"
@@ -44690,7 +44750,7 @@
     "land_value": "34280.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -44744,7 +44804,7 @@
     "land_value": "34760.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T17:31:07.997Z",
     "ghl_id": "c171kCC2Ior6nmAD7hD9"
@@ -44801,7 +44861,7 @@
     "land_value": "40850.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -44855,7 +44915,7 @@
     "land_value": "65810.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -44909,7 +44969,7 @@
     "land_value": "43340.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T17:32:48.324Z",
     "ghl_id": "QuCn2olNl4yYqIxkGQWf"
@@ -44966,7 +45026,7 @@
     "land_value": "57340.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -45020,7 +45080,7 @@
     "land_value": "44680.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-06T00:42:08.793Z",
     "ghl_id": "aUuKsaTVvlKqB3DcGH6z"
@@ -45077,7 +45137,7 @@
     "land_value": "3841160.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -45131,7 +45191,7 @@
     "land_value": "54520.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-06T00:55:05.391Z",
     "ghl_id": "ayBXxx9p6Tz4WsPu9iRh"
@@ -45188,7 +45248,7 @@
     "land_value": "54550.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -45242,7 +45302,7 @@
     "land_value": "31720.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -45296,7 +45356,7 @@
     "land_value": "53930.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -45351,7 +45411,7 @@
     "land_value": "52340.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -45405,7 +45465,7 @@
     "land_value": "51260.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -45459,7 +45519,7 @@
     "land_value": "47890.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -45513,7 +45573,7 @@
     "land_value": "43690.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -45567,7 +45627,7 @@
     "land_value": "80660.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -45621,7 +45681,7 @@
     "land_value": "57720.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -45675,7 +45735,7 @@
     "land_value": "69090.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -45729,7 +45789,7 @@
     "land_value": "53870.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -45783,7 +45843,7 @@
     "land_value": "102050.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -45837,7 +45897,7 @@
     "land_value": "52500.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -45891,7 +45951,7 @@
     "land_value": "42690.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -45945,7 +46005,7 @@
     "land_value": "61850.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -45999,7 +46059,7 @@
     "land_value": "37030.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -46053,7 +46113,7 @@
     "land_value": "57960.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -46107,7 +46167,7 @@
     "land_value": "46270.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -46161,7 +46221,7 @@
     "land_value": "70170.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -46215,7 +46275,7 @@
     "land_value": "61850.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -46269,7 +46329,7 @@
     "land_value": "97300.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -46323,7 +46383,7 @@
     "land_value": "60200.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -46377,7 +46437,7 @@
     "land_value": "41060.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -46431,7 +46491,7 @@
     "land_value": "39360.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -46486,7 +46546,7 @@
     "land_value": "59180.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -46540,7 +46600,7 @@
     "land_value": "44550.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -46594,7 +46654,7 @@
     "land_value": "45790.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -46648,7 +46708,7 @@
     "land_value": "108580.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -46702,7 +46762,7 @@
     "land_value": "60280.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -46756,7 +46816,7 @@
     "land_value": "65070.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -46810,7 +46870,7 @@
     "land_value": "33480.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -46843,7 +46903,7 @@
     "land_value": "44300.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45,
+    "days_until_sale": 44,
     "ghl_pushed": true,
     "ghl_id": "CT4IHtBFWtU77tOeH2hJ",
     "ghl_pushed_at": "2026-06-18T19:16:51.280Z"
@@ -46884,7 +46944,7 @@
     "appr_trend": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 45
+    "days_until_sale": 44
   },
   {
     "type": "NOF",
@@ -46942,7 +47002,7 @@
     "arv_fetched_at": "2026-08-21T15:34:28Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 73
+    "days_until_sale": 72
   },
   {
     "type": "NOF",
@@ -47000,7 +47060,7 @@
     "arv_fetched_at": "2026-08-21T14:48:10Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 73
+    "days_until_sale": 72
   },
   {
     "type": "NOF",
@@ -47058,7 +47118,7 @@
     "arv_fetched_at": "2026-08-21T14:49:43Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 73
+    "days_until_sale": 72
   },
   {
     "type": "NOF",
@@ -47112,7 +47172,7 @@
     "land_value": "52700.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 73,
+    "days_until_sale": 72,
     "arv_estimate": 252400,
     "arv_status": "SOLD",
     "arv_sqft": 2269,
@@ -47170,7 +47230,7 @@
     "land_value": "44630.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 73,
+    "days_until_sale": 72,
     "arv_estimate": 219390,
     "arv_status": "SOLD",
     "arv_sqft": 1582,
@@ -47229,7 +47289,7 @@
     "land_value": "100280.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 73,
+    "days_until_sale": 72,
     "arv_estimate": 375400,
     "arv_status": "SOLD",
     "arv_sqft": 2702,
@@ -47287,7 +47347,7 @@
     "land_value": "52880.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 73,
+    "days_until_sale": 72,
     "arv_estimate": 269100,
     "arv_status": "FOR_SALE",
     "arv_sqft": 2153,
@@ -47345,7 +47405,7 @@
     "land_value": "48230.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 73,
+    "days_until_sale": 72,
     "arv_estimate": 663000,
     "arv_status": "SOLD",
     "arv_sqft": 2622,
@@ -47403,7 +47463,7 @@
     "land_value": "54920.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 73,
+    "days_until_sale": 72,
     "arv_estimate": 272900,
     "arv_status": "SOLD",
     "arv_sqft": 1651,
@@ -47461,7 +47521,7 @@
     "land_value": "85500.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 73,
+    "days_until_sale": 72,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:48:20.831Z",
     "ghl_id": "oEwjcY0GwH4wVvcgdeV4"
@@ -47518,7 +47578,7 @@
     "land_value": "65490.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 73
+    "days_until_sale": 72
   },
   {
     "type": "NOF",
@@ -47551,7 +47611,7 @@
     "land_value": "41360.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 73
+    "days_until_sale": 72
   },
   {
     "doc_number": "20260153999",
@@ -48185,7 +48245,7 @@
     "land_value": "48260.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 13131
+    "days_until_sale": 13130
   },
   {
     "doc_number": "20260159700",
@@ -71867,7 +71927,79 @@
     "appr_trend": "",
     "stacked": false,
     "score": 4,
-    "days_until_sale": 45
+    "days_until_sale": 44
+  },
+  {
+    "doc_number": "20260161835",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Garza Anthony",
+    "address": "",
+    "city": "SAN ANTONIO",
+    "zip": "",
+    "date_filed": "8/2026",
+    "month": "8",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-08-22T12:51:39Z",
+    "score": 3,
+    "flags": [],
+    "absentee": false,
+    "duplicate": false,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "",
+    "annual_taxes": "",
+    "mail_addr": "",
+    "prop_id": "",
+    "land_value": "",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false,
+    "appt_converted": false,
+    "appt_stale": false
+  },
+  {
+    "doc_number": "20260161713",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Martinelli Brent W",
+    "address": "",
+    "city": "SAN ANTONIO",
+    "zip": "",
+    "date_filed": "8/2026",
+    "month": "8",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-08-22T12:51:39Z",
+    "score": 3,
+    "flags": [],
+    "absentee": false,
+    "duplicate": false,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "",
+    "annual_taxes": "",
+    "mail_addr": "",
+    "prop_id": "",
+    "land_value": "",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false,
+    "appt_converted": false,
+    "appt_stale": false
   },
   {
     "doc_number": "20260160930",
