@@ -1496,6 +1496,13 @@ async function pushGHL(lead,phone){
       toast(`Blocked push — this lead's owner name looks like a placeholder ("${(lead.owner||'').slice(0,60)}"), not a real name. Look up the real owner (county appraisal district) and enter it in the First/Last fields before pushing.`,true);
       return null;
     }
+    // 2026-08-22: block push if the lead is already flagged on_market -- user
+    // instruction is to only SMS off-market leads for now. Same guard added
+    // to all three county dashboards.
+    if(lead.on_market){
+      toast(`Blocked push — this lead is already on market${lead.on_market_status?' ('+lead.on_market_status+')':''}. Not sending SMS to on-market leads right now.`,true);
+      return null;
+    }
     const vbp=isVBP(lead),stacked=isStacked(lead),ce=isCEOnly(lead),lp=isLP(lead),appt=isAppt(lead);const ghlTag=getGHLTag(lead);
   // v4.2 fix: APPT leads must NOT get bexar_lead tag — it triggers wrong workflow
   const baseTags=appt?['forewarn_searched']:['bexar_lead','forewarn_searched'];
