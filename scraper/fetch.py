@@ -872,7 +872,7 @@ def login_publicsearch(driver):
         return False
     try:
         driver.set_page_load_timeout(20)
-        driver.get(f"{PUBLICSEARCH_BASE}/login")
+        driver.get(f"{PUBLICSEARCH_BASE}/signin")
         time.sleep(4)
         log.info(f"Login page title: {driver.title} | url: {driver.current_url}")
 
