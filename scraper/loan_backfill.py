@@ -2,8 +2,8 @@
 loan_backfill.py
 Backfills loan_amount/loan_date/lender/trustee for existing NOF/TAX records
 in records.json that were never enriched because fetch_doc_details() relied
-on a broken href-based doc-ID lookup (see fetch.py goto_doc_by_click / v28.21
-fix). This is a one-time catch-up for the historical backlog; the daily
+on a broken href-based doc-ID lookup (see fetch.py goto_doc_by_docnumber /
+v28.21 fix). This is a one-time catch-up for the historical backlog; the daily
 scraper now handles newly-filed leads on its own via the same click-through.
 
 Resumable: only ever touches records still missing loan_amount, capped at
@@ -18,7 +18,6 @@ import json
 import logging
 import sys
 import time
-import urllib.parse
 from pathlib import Path
 
 logging.basicConfig(
@@ -29,18 +28,12 @@ log = logging.getLogger(__name__)
 
 sys.path.insert(0, str(Path(__file__).parent))
 
-from fetch import get_driver, goto_doc_by_click, extract_loan_details, login_publicsearch, PUBLICSEARCH_BASE
+from fetch import get_driver, goto_doc_by_docnumber, extract_loan_details, login_publicsearch
 
 RECORDS_PATH  = Path("dashboard/records.json")
 DATA_PATH     = Path("data/records.json")
 MAX_PER_RUN   = 100
 SAVE_EVERY    = 15  # checkpoint so a timeout/crash mid-run doesn't lose everything
-
-
-def search_url_for(doc_number):
-    q = urllib.parse.quote(doc_number, safe="")
-    return (f"{PUBLICSEARCH_BASE}/results?department=FC"
-            f"&limit=10&offset=0&sort=desc&sortBy=recordedDate&docNumber={q}")
 
 
 def save_records(records):
@@ -82,10 +75,9 @@ def main():
     try:
         for rec in batch:
             doc_num = rec["doc_number"]
-            url = search_url_for(doc_num)
             log.info(f"  Doc [{doc_num}] locating via row click")
 
-            if not goto_doc_by_click(driver, url, doc_num):
+            if not goto_doc_by_docnumber(driver, doc_num):
                 log.info(f"  Doc [{doc_num}] click-through failed — skipping")
                 continue
 
