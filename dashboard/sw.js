@@ -23,12 +23,18 @@ self.addEventListener('activate', e => {
 
 // Fetch strategy:
 // - records.json: network first (always want fresh leads), fall back to cache
-// - everything else: cache first, fall back to network
+// - leads.html: network first too -- this is the app code itself (bug
+//   fixes, feature changes), and CACHE never changes version between
+//   deploys, so a pure cache-first strategy here meant a phone's
+//   home-screen install could keep serving stale/buggy JS indefinitely
+//   with no way to pick up a fix short of manually clearing site data.
+//   Network-first fixes that without needing a version bump on every push.
+// - everything else (fonts, manifest): cache first, fall back to network
 self.addEventListener('fetch', e => {
   const url = e.request.url;
 
-  if (url.includes('records.json')) {
-    // Network first for lead data
+  if (url.includes('records.json') || url.includes('leads.html')) {
+    // Network first
     e.respondWith(
       fetch(e.request)
         .then(res => {
