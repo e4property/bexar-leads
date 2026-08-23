@@ -1002,7 +1002,15 @@ def search_and_ocr_referenced_doc(driver, doc_number, timeout=20):
     from selenium.webdriver.support.ui import WebDriverWait
     from selenium.webdriver.support import expected_conditions as EC
 
-    today_str = TODAY_NAIVE.strftime("%Y%m%d")
+    # v28.40: end date capped 3 days behind real today -- confirmed live
+    # 2026-08-23 (same root cause found on the Nueces scraper) that
+    # recordedDateRange's end date can't exceed PublicSearch's own
+    # "Certified through" date (runs ~1-2 days behind real today) or the
+    # search returns "No Results Found" even for a document well inside
+    # the range. This alone was silently zeroing out every loan_backfill
+    # run even after login was fixed. Costs nothing here since every doc
+    # being looked up was already recorded in the past.
+    today_str = (TODAY_NAIVE - timedelta(days=3)).strftime("%Y%m%d")
     url = QUICK_SEARCH_URL_TMPL.format(today=today_str, doc_number=doc_number)
 
     try:
@@ -1042,7 +1050,15 @@ def goto_doc_by_docnumber(driver, doc_number, timeout=20):
     from selenium.webdriver.support.ui import WebDriverWait
     from selenium.webdriver.support import expected_conditions as EC
 
-    today_str = TODAY_NAIVE.strftime("%Y%m%d")
+    # v28.40: end date capped 3 days behind real today -- confirmed live
+    # 2026-08-23 (same root cause found on the Nueces scraper) that
+    # recordedDateRange's end date can't exceed PublicSearch's own
+    # "Certified through" date (runs ~1-2 days behind real today) or the
+    # search returns "No Results Found" even for a document well inside
+    # the range. This alone was silently zeroing out every loan_backfill
+    # run even after login was fixed. Costs nothing here since every doc
+    # being looked up was already recorded in the past.
+    today_str = (TODAY_NAIVE - timedelta(days=3)).strftime("%Y%m%d")
     url = QUICK_SEARCH_URL_TMPL.format(today=today_str, doc_number=doc_number)
 
     try:
