@@ -29,7 +29,7 @@ log = logging.getLogger(__name__)
 
 sys.path.insert(0, str(Path(__file__).parent))
 
-from fetch import get_driver, goto_doc_by_click, extract_loan_details, PUBLICSEARCH_BASE
+from fetch import get_driver, goto_doc_by_click, extract_loan_details, login_publicsearch, PUBLICSEARCH_BASE
 
 RECORDS_PATH  = Path("dashboard/records.json")
 DATA_PATH     = Path("data/records.json")
@@ -76,6 +76,8 @@ def main():
         return
 
     driver = get_driver()
+    if not login_publicsearch(driver):
+        log.warning("PublicSearch login failed or was skipped — doc lookups will likely fail")
     fetched = 0
     try:
         for rec in batch:
