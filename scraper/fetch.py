@@ -1075,7 +1075,20 @@ def goto_doc_by_docnumber(driver, doc_number, timeout=20):
         time.sleep(1.5)
         return True
     except Exception as e:
-        log.warning(f"  goto_doc_by_docnumber: lookup failed for {doc_number}: {e}")
+        # v28.41: dump what's actually on the page -- the date-range fix
+        # (v28.40) didn't move this off 0/100, same blank "Message: " as
+        # before with no way to tell whether it's a real timeout, a "No
+        # Results" state, or a bot-challenge interstitial headless Chrome
+        # hits that an interactive session doesn't (already documented
+        # behavior on the Nueces scraper's analogous function).
+        try:
+            src = driver.page_source
+            log.warning(f"  goto_doc_by_docnumber: lookup failed for {doc_number} "
+                        f"(url={driver.current_url!r}, title={driver.title!r}): {e} | "
+                        f"page_source len={len(src)} snippet={src[:600]!r}")
+        except Exception as e2:
+            log.warning(f"  goto_doc_by_docnumber: lookup failed for {doc_number}: {e} "
+                        f"| could not read page_source: {e2}")
         return False
 
 
