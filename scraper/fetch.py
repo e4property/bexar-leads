@@ -1016,9 +1016,18 @@ def search_and_ocr_referenced_doc(driver, doc_number, timeout=20):
     try:
         driver.set_page_load_timeout(timeout)
         driver.get(url)
+        # v28.42: same fix as goto_doc_by_docnumber -- a genuine "No Results"
+        # page renders its own <h1> with a hashed CSS-in-JS class, never a
+        # stable one, so a plain "table tr td" wait spins the full timeout
+        # on every zero-match lookup. XPath text match catches it either way.
         WebDriverWait(driver, timeout).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, "table tr td"))
+            EC.presence_of_element_located(
+                (By.XPATH, "//table//tr/td | //h1[contains(text(),'No Results')]")
+            )
         )
+        if driver.find_elements(By.XPATH, "//h1[contains(text(),'No Results')]"):
+            log.info(f"  search_and_ocr_referenced_doc: no results for {doc_number}")
+            return ""
         time.sleep(1)
 
         row = driver.find_element(By.CSS_SELECTOR, "table tbody tr")
@@ -1050,23 +1059,55 @@ def goto_doc_by_docnumber(driver, doc_number, timeout=20):
     from selenium.webdriver.support.ui import WebDriverWait
     from selenium.webdriver.support import expected_conditions as EC
 
-    # v28.40: end date capped 3 days behind real today -- confirmed live
-    # 2026-08-23 (same root cause found on the Nueces scraper) that
-    # recordedDateRange's end date can't exceed PublicSearch's own
-    # "Certified through" date (runs ~1-2 days behind real today) or the
-    # search returns "No Results Found" even for a document well inside
-    # the range. This alone was silently zeroing out every loan_backfill
-    # run even after login was fixed. Costs nothing here since every doc
-    # being looked up was already recorded in the past.
-    today_str = (TODAY_NAIVE - timedelta(days=3)).strftime("%Y%m%d")
-    url = QUICK_SEARCH_URL_TMPL.format(today=today_str, doc_number=doc_number)
+    # v28.43: this doesn't share QUICK_SEARCH_URL_TMPL (department=RP,
+    # recordedDateRange) with search_and_ocr_referenced_doc anymore -- that
+    # was the actual root cause of the 0/100 backfill, found live 2026-08-23
+    # via the site's own Advanced Search UI: NOF/TAX foreclosure notices are
+    # filed under the "Foreclosures" department (code FC), not "Land
+    # Records" (RP) -- confirmed with a real doc (20260900427), which only
+    # ever matched under department=FC. RP+recordedDateRange (the v28.40/
+    # 28.41 fixes) was correct for the Deed-of-Trust hop, which does live
+    # under RP -- just wrong for locating the original Notice itself.
+    #
+    # instrumentDateRange's bounds are oddly brittle -- live-verified
+    # 2026-08-23 that ONLY the exact pair the site's own Advanced Search UI
+    # auto-filled for the Foreclosures department (20000404, 20261201)
+    # returns results for a real, confirmed-existing doc; every other
+    # logically-wider-or-equivalent range tried (1990/2020 starts, a
+    # dynamically-computed today+30d end) returned "No Results Found" for
+    # the SAME document, including ranges that fully contain it. Not a real
+    # date-boundary rule as far as could be determined -- reads as a site
+    # quirk/bug tied to these specific values. Hardcoded rather than
+    # computed for now since it reliably works and every current backlog
+    # doc falls well inside it; the end bound will need revisiting before
+    # 2026-12-01 (re-derive fresh values from the site's own Advanced
+    # Search UI with department=Foreclosures selected, doc number blank).
+    doc_json = urllib.parse.quote(f'["{doc_number}"]')
+    url = (
+        f"{PUBLICSEARCH_BASE}/results?department=FC"
+        f"&documentNumberRange={doc_json}"
+        f"&instrumentDateRange=20000404%2C20261201"
+        f"&searchType=advancedSearch"
+    )
 
     try:
         driver.set_page_load_timeout(timeout)
         driver.get(url)
+        # v28.42: same fix as search_and_ocr_referenced_doc -- a genuine
+        # "No Results" page renders its own <h1> with a hashed CSS-in-JS
+        # class, never a stable one, so a plain "table tr td" wait spins
+        # the full timeout on every zero-match lookup. XPath text match
+        # catches it either way -- live-verified 2026-08-23 (interactive,
+        # non-headless) this is why goto_doc_by_docnumber never moved off
+        # 0/100 even after the date-range fix.
         WebDriverWait(driver, timeout).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, "table tr td"))
+            EC.presence_of_element_located(
+                (By.XPATH, "//table//tr/td | //h1[contains(text(),'No Results')]")
+            )
         )
+        if driver.find_elements(By.XPATH, "//h1[contains(text(),'No Results')]"):
+            log.info(f"  goto_doc_by_docnumber: no results for {doc_number}")
+            return False
         time.sleep(1)
 
         row = driver.find_element(By.CSS_SELECTOR, "table tbody tr")
