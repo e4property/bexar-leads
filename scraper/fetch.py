@@ -1765,6 +1765,25 @@ def fetch_arv_homeharvest(records):
             # down with it, which is exactly what happened here before.
             log.warning(f"  ARV [{rec.get('doc_number')}] {full_addr}: error: {e}")
             errors += 1
+            # v28.44: fall back to BCAD's own appraised_value rather than
+            # leaving arv_estimate permanently blank when Realtor.com blocks
+            # the request (see refresh_on_market_status's v28.44 note --
+            # this function needs extra_property_data=True for
+            # estimated_value, which is exactly what's being blocked, so
+            # there's no equivalent unblocking fix available here). County
+            # appraised value is a real, if more conservative, value signal
+            # -- BCAD deed+ARV already runs before this and populates it.
+            # arv_status "APPRAISED_FALLBACK" marks it as lower-confidence
+            # than a true Realtor.com estimate so downstream code/dashboard
+            # can tell the two apart.
+            bcad_value = rec.get("appraised_value")
+            if bcad_value and not rec.get("arv_estimate"):
+                try:
+                    rec["arv_estimate"]   = int(float(bcad_value))
+                    rec["arv_status"]     = "APPRAISED_FALLBACK"
+                    rec["arv_fetched_at"] = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+                except (TypeError, ValueError):
+                    pass
         finally:
             time.sleep(1)
 
@@ -1781,6 +1800,19 @@ def refresh_on_market_status(records):
     step only ever looks at a lead once (gated on `not arv_estimate`).
     Same soft-dependency handling as fetch_arv_homeharvest: any failure
     just skips that lead, never breaks the run.
+
+    v28.44: extra_property_data=False. Found live 2026-08-26 (100% of both
+    this and the ARV pass started failing with AuthenticationError that
+    morning, up from occasional failures the night before) that HomeHarvest's
+    own GitHub issue #149 documents this exact failure mode: Realtor.com
+    (AWS WAF/PerimeterX) specifically blocks the *deeper* per-property calls
+    that extra_property_data=True triggers -- the base search still works.
+    This function only ever reads `status`, which survives without it;
+    estimated_value (needed by fetch_arv_homeharvest, not this function)
+    does not, so that function still needs extra_property_data=True and
+    still eats the block. Confirmed via the library's own default
+    (extra_property_data: bool = True) that we were opted into the blocked
+    path by default without ever setting it explicitly.
     """
     import pandas as pd
     from homeharvest import scrape_property
@@ -1818,7 +1850,7 @@ def refresh_on_market_status(records):
     for rec in candidates:
         full_addr = f"{rec['address']}, {rec.get('city', '')}, TX {rec.get('zip', '')}".strip(", ")
         try:
-            df = scrape_property(location=full_addr)
+            df = scrape_property(location=full_addr, extra_property_data=False)
             now_iso = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
             was_on_market = bool(rec.get("on_market"))
 
