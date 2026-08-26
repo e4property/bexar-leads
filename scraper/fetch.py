@@ -251,7 +251,21 @@ def tenure_bonus(tenure_years):
 
 
 # ── RECORD FILTER ─────────────────────────────────────────────────────────────
+STRUCK_OFF_DOC_RE = re.compile(r"^\d{4}TA\d+$")
+
 def should_keep(rec):
+    # Found 2026-08-26: 42 records with a doc_number like "2019TA100098" turned
+    # out to be a mis-scraped Land Records DEED where COUNTY OF BEXAR is both
+    # grantor and grantee -- the county formally taking ownership of a
+    # property struck off at a PAST tax sale (nobody bid). The doc_number
+    # field here was never actually a document number; it's the old tax-suit
+    # cause number sitting in the Legal Description column, misread as the
+    # doc number by whatever path produced these. There's no homeowner left
+    # to work -- the county already owns it. 10 of the 42 had already been
+    # pushed to Jarvis with a phone on file before this was caught. Reject
+    # unconditionally regardless of what else looks populated on the record.
+    if STRUCK_OFF_DOC_RE.match(rec.get("doc_number", "") or ""):
+        return False
     addr = rec.get("address", "").strip().upper()
     if not addr and not rec.get("owner") and not rec.get("sale_date"):
         return False
