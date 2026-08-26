@@ -1686,7 +1686,7 @@
     "ghl_id": "UQT3afkVpo18uf0ICyhl",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-26T02:49:35Z"
+    "on_market_checked_at": "2026-08-26T04:03:45Z"
   },
   {
     "type": "NOF",
@@ -2951,7 +2951,7 @@
     "days_until_sale": 5,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-26T02:49:45Z"
+    "on_market_checked_at": "2026-08-26T04:03:57Z"
   },
   {
     "type": "NOF",
@@ -3273,7 +3273,7 @@
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-07T15:02:03.758Z",
     "ghl_id": "a4WHXE1Q98vajwsLHrqs",
-    "on_market_checked_at": "2026-08-26T02:49:46Z"
+    "on_market_checked_at": "2026-08-26T04:03:58Z"
   },
   {
     "type": "NOF",
@@ -7603,7 +7603,7 @@
     "days_until_sale": 5,
     "on_market": true,
     "on_market_status": "PENDING",
-    "on_market_checked_at": "2026-08-26T02:49:48Z"
+    "on_market_checked_at": "2026-08-26T04:04:00Z"
   },
   {
     "type": "NOF",
@@ -9285,7 +9285,7 @@
     "days_until_sale": 5,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-26T02:50:03Z"
+    "on_market_checked_at": "2026-08-26T04:04:18Z"
   },
   {
     "type": "NOF",
@@ -9408,7 +9408,7 @@
     "days_until_sale": 5,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-26T02:50:23Z"
+    "on_market_checked_at": "2026-08-26T04:04:38Z"
   },
   {
     "type": "NOF",
@@ -9467,7 +9467,7 @@
     "days_until_sale": 5,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-26T02:50:24Z"
+    "on_market_checked_at": "2026-08-26T04:04:40Z"
   },
   {
     "type": "NOF",
@@ -9844,7 +9844,7 @@
     "days_until_sale": 5,
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-08-26T02:50:26Z"
+    "on_market_checked_at": "2026-08-26T04:04:41Z"
   },
   {
     "type": "NOF",
@@ -10413,7 +10413,7 @@
     "days_until_sale": 5,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-26T02:50:36Z"
+    "on_market_checked_at": "2026-08-26T04:04:52Z"
   },
   {
     "type": "NOF",
@@ -10473,7 +10473,7 @@
     "days_until_sale": 5,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-26T02:50:51Z"
+    "on_market_checked_at": "2026-08-26T04:05:08Z"
   },
   {
     "type": "NOF",
@@ -10596,7 +10596,7 @@
     "days_until_sale": 5,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-26T02:51:10Z"
+    "on_market_checked_at": "2026-08-26T04:05:28Z"
   },
   {
     "type": "NOF",
@@ -11515,7 +11515,10 @@
     "arv_fetched_at": "2026-08-12T14:51:44Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 5
+    "days_until_sale": 5,
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-08-26T04:07:55Z"
   },
   {
     "type": "NOF",
@@ -11579,7 +11582,10 @@
     "ghl_pushed": true,
     "ghl_id": "LPaKfVn41op8TFny52d5",
     "ghl_pushed_at": "2026-08-12T20:52:15.656Z",
-    "dash_phone": "2103550524"
+    "dash_phone": "2103550524",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-26T04:07:57Z"
   },
   {
     "type": "NOF",
@@ -11639,7 +11645,10 @@
     "arv_fetched_at": "2026-08-11T20:50:24Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 5
+    "days_until_sale": 5,
+    "on_market": true,
+    "on_market_status": "FOR_SALE",
+    "on_market_checked_at": "2026-08-26T04:07:58Z"
   },
   {
     "type": "NOF",
@@ -11699,7 +11708,10 @@
     "arv_fetched_at": "2026-08-11T20:50:32Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 5
+    "days_until_sale": 5,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-26T04:08:00Z"
   },
   {
     "type": "NOF",
@@ -11759,7 +11771,10 @@
     "arv_fetched_at": "2026-08-11T20:51:19Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 5
+    "days_until_sale": 5,
+    "on_market": true,
+    "on_market_status": "FOR_SALE",
+    "on_market_checked_at": "2026-08-26T04:08:02Z"
   },
   {
     "type": "NOF",
@@ -11819,7 +11834,10 @@
     "arv_fetched_at": "2026-08-11T20:51:23Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 5
+    "days_until_sale": 5,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-26T04:08:03Z"
   },
   {
     "type": "NOF",
@@ -11884,7 +11902,10 @@
     "ghl_pushed": true,
     "ghl_id": "WKTm6EbVdFJBn3TTGqid",
     "ghl_pushed_at": "2026-07-20T04:39:49.045Z",
-    "dash_phone": "9097087124"
+    "dash_phone": "9097087124",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-26T04:08:05Z"
   },
   {
     "type": "NOF",
@@ -11945,7 +11966,10 @@
     "arv_fetched_at": "2026-08-11T20:51:28Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 5
+    "days_until_sale": 5,
+    "on_market": true,
+    "on_market_status": "FOR_SALE",
+    "on_market_checked_at": "2026-08-26T04:08:07Z"
   },
   {
     "type": "NOF",
@@ -12002,7 +12026,7 @@
     "stacked": false,
     "score": 7,
     "days_until_sale": 5,
-    "on_market_checked_at": "2026-08-26T02:51:12Z"
+    "on_market_checked_at": "2026-08-26T04:05:29Z"
   },
   {
     "type": "NOF",
@@ -12062,7 +12086,10 @@
     "arv_fetched_at": "2026-08-11T20:51:36Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 5
+    "days_until_sale": 5,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-26T04:08:08Z"
   },
   {
     "type": "NOF",
@@ -12122,7 +12149,10 @@
     "arv_fetched_at": "2026-08-11T20:51:41Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 5
+    "days_until_sale": 5,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-26T04:08:10Z"
   },
   {
     "type": "NOF",
@@ -12182,7 +12212,10 @@
     "arv_estimate": 233000,
     "arv_status": "FOR_RENT",
     "arv_sqft": 1470,
-    "arv_fetched_at": "2026-08-12T16:04:10Z"
+    "arv_fetched_at": "2026-08-12T16:04:10Z",
+    "on_market": true,
+    "on_market_status": "FOR_RENT",
+    "on_market_checked_at": "2026-08-26T04:08:11Z"
   },
   {
     "type": "NOF",
@@ -12242,7 +12275,10 @@
     "arv_estimate": 247000,
     "arv_status": "SOLD",
     "arv_sqft": 1641,
-    "arv_fetched_at": "2026-08-12T16:04:14Z"
+    "arv_fetched_at": "2026-08-12T16:04:14Z",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-26T04:08:15Z"
   },
   {
     "type": "NOF",
@@ -12303,7 +12339,10 @@
     "arv_estimate": 188400,
     "arv_status": "SOLD",
     "arv_sqft": 1176,
-    "arv_fetched_at": "2026-08-12T16:04:16Z"
+    "arv_fetched_at": "2026-08-12T16:04:16Z",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-26T04:08:20Z"
   },
   {
     "type": "NOF",
@@ -12363,7 +12402,10 @@
     "arv_estimate": 203000,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 1339,
-    "arv_fetched_at": "2026-08-12T16:04:17Z"
+    "arv_fetched_at": "2026-08-12T16:04:17Z",
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-08-26T04:08:22Z"
   },
   {
     "type": "NOF",
@@ -12423,7 +12465,10 @@
     "arv_estimate": 265831,
     "arv_status": "SOLD",
     "arv_sqft": 3093,
-    "arv_fetched_at": "2026-08-12T16:04:19Z"
+    "arv_fetched_at": "2026-08-12T16:04:19Z",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-26T04:08:25Z"
   },
   {
     "type": "NOF",
@@ -12785,7 +12830,7 @@
     "days_until_sale": 5,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-26T02:51:13Z"
+    "on_market_checked_at": "2026-08-26T04:05:31Z"
   },
   {
     "type": "NOF",
@@ -12845,7 +12890,7 @@
     "days_until_sale": 5,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-26T02:51:34Z"
+    "on_market_checked_at": "2026-08-26T04:05:54Z"
   },
   {
     "type": "NOF",
@@ -12964,7 +13009,7 @@
     "days_until_sale": 5,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-26T02:51:49Z"
+    "on_market_checked_at": "2026-08-26T04:06:10Z"
   },
   {
     "type": "NOF",
@@ -13327,7 +13372,7 @@
     "days_until_sale": 5,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-26T02:52:24Z"
+    "on_market_checked_at": "2026-08-26T04:06:49Z"
   },
   {
     "type": "NOF",
@@ -13869,7 +13914,7 @@
     "days_until_sale": 5,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-26T02:52:25Z"
+    "on_market_checked_at": "2026-08-26T04:06:51Z"
   },
   {
     "type": "NOF",
@@ -13989,7 +14034,7 @@
     "days_until_sale": 5,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-26T02:52:30Z"
+    "on_market_checked_at": "2026-08-26T04:06:55Z"
   },
   {
     "type": "NOF",
@@ -14109,7 +14154,7 @@
     "days_until_sale": 5,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-26T02:52:34Z"
+    "on_market_checked_at": "2026-08-26T04:06:59Z"
   },
   {
     "type": "NOF",
@@ -14169,7 +14214,7 @@
     "days_until_sale": 5,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-26T02:52:39Z"
+    "on_market_checked_at": "2026-08-26T04:07:05Z"
   },
   {
     "type": "NOF",
@@ -15022,7 +15067,7 @@
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:15:52.012Z",
     "ghl_id": "rDoT5l461CcaoQVAAzVg",
-    "on_market_checked_at": "2026-08-26T02:52:40Z"
+    "on_market_checked_at": "2026-08-26T04:07:06Z"
   },
   {
     "type": "NOF",
@@ -18562,7 +18607,7 @@
     "days_until_sale": 5,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-26T02:53:37Z"
+    "on_market_checked_at": "2026-08-26T04:07:44Z"
   },
   {
     "type": "NOF",
@@ -20013,7 +20058,7 @@
     "days_until_sale": 5,
     "on_market": true,
     "on_market_status": "FOR_SALE",
-    "on_market_checked_at": "2026-08-26T02:53:39Z"
+    "on_market_checked_at": "2026-08-26T04:07:46Z"
   },
   {
     "type": "NOF",
@@ -20130,7 +20175,7 @@
     "stacked": false,
     "score": 7,
     "days_until_sale": 5,
-    "on_market_checked_at": "2026-08-26T02:53:40Z"
+    "on_market_checked_at": "2026-08-26T04:07:47Z"
   },
   {
     "type": "NOF",
@@ -21282,7 +21327,7 @@
     "stacked": false,
     "score": 7,
     "days_until_sale": 5,
-    "on_market_checked_at": "2026-08-26T02:53:41Z"
+    "on_market_checked_at": "2026-08-26T04:07:49Z"
   },
   {
     "type": "NOF",
@@ -22611,7 +22656,14 @@
     "land_value": "46190.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 5
+    "days_until_sale": 5,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-26T04:07:50Z",
+    "arv_estimate": 223618,
+    "arv_status": "SOLD",
+    "arv_sqft": 1296,
+    "arv_fetched_at": "2026-08-26T04:07:50Z"
   },
   {
     "type": "NOF",
@@ -22652,7 +22704,8 @@
     "land_value": "66860.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 5
+    "days_until_sale": 5,
+    "on_market_checked_at": "2026-08-26T04:07:52Z"
   },
   {
     "type": "NOF",
@@ -22693,7 +22746,14 @@
     "land_value": "50570.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 5
+    "days_until_sale": 5,
+    "on_market": true,
+    "on_market_status": "PENDING",
+    "on_market_checked_at": "2026-08-26T04:07:53Z",
+    "arv_estimate": 201197,
+    "arv_status": "PENDING",
+    "arv_sqft": 1323,
+    "arv_fetched_at": "2026-08-26T04:07:53Z"
   },
   {
     "type": "NOF",
@@ -31394,6 +31454,122 @@
   },
   {
     "type": "NOF",
+    "address": "3119 MISSION BELL",
+    "owner": "MEZA MANUEL & MARIA",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20261000113",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78224",
+    "school_dist": "",
+    "date_filed": "8/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-08-24T20:22:37Z",
+    "flags": [
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 8,
+    "tenure_score_bonus": 5,
+    "prop_id": "1216052.0",
+    "deed_date": "1/17/2018",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 267440
+      },
+      {
+        "year": "2025",
+        "appraised": 299830
+      },
+      {
+        "year": "2024",
+        "appraised": 312550
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "299830.0",
+    "annual_taxes": "",
+    "land_value": "54830.0",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-24T20:29:51Z",
+    "arv_estimate": 289800,
+    "arv_status": "SOLD",
+    "arv_sqft": 2413,
+    "arv_fetched_at": "2026-08-24T20:29:51Z",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 40
+  },
+  {
+    "type": "NOF",
+    "address": "9639 SPRING HARVEST",
+    "owner": "TRISTAN MIGUEL A & AISSA L",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260900383",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78254",
+    "school_dist": "",
+    "date_filed": "8/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-08-11T20:31:50Z",
+    "flags": [
+      "HAS SALE DATE",
+      "LONG HELD"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 10,
+    "tenure_score_bonus": 15,
+    "prop_id": "729264.0",
+    "deed_date": "12/23/2015",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 254390
+      },
+      {
+        "year": "2025",
+        "appraised": 254390
+      },
+      {
+        "year": "2024",
+        "appraised": 252890
+      }
+    ],
+    "appr_trend": "flat",
+    "appraised_value": "254390.0",
+    "annual_taxes": "",
+    "land_value": "61050.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 40
+  },
+  {
+    "type": "NOF",
     "address": "105 KIMBERLY DR",
     "owner": "BEANE GRACIE S",
     "mail_addr": "",
@@ -33305,588 +33481,6 @@
     "appr_trend": "down",
     "appt_converted": false,
     "appt_stale": false
-  },
-  {
-    "type": "TAX",
-    "address": "3320 LINN RD",
-    "owner": "DELEON DEBBIE LEE",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "2019TA100098",
-    "year": "2026",
-    "month": "9",
-    "city": "SAN ANTONIO",
-    "zip": "78223",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "9/2026",
-    "sale_date": "",
-    "run_ts": "2026-08-09T15:22:01Z",
-    "flags": [
-      "TAX FORE",
-      "LONG HELD"
-    ],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": 16,
-    "tenure_score_bonus": 25,
-    "prop_id": "445908.0",
-    "deed_date": "4/24/2010",
-    "last_sale_amt": "",
-    "appraised_value": "137970.0",
-    "annual_taxes": "",
-    "land_value": "34580.0",
-    "appr_history": [
-      {
-        "year": "2026",
-        "appraised": 134490
-      },
-      {
-        "year": "2025",
-        "appraised": 137970
-      },
-      {
-        "year": "2024",
-        "appraised": 138280
-      }
-    ],
-    "appr_trend": "down",
-    "stacked": false,
-    "score": 10,
-    "days_until_sale": null,
-    "dash_phone": "2103269561",
-    "dash_searched_at": "2026-08-10T15:36:14.951Z",
-    "ghl_pushed": true,
-    "ghl_pushed_at": "2026-08-10T15:36:14.954Z",
-    "ghl_id": "lQPBRSJbnVJlbRD01gja"
-  },
-  {
-    "type": "TAX",
-    "address": "142 STOLNET ST",
-    "owner": "EZELL DAMARION &",
-    "mail_addr": "EZELL CLOVIS EST OF SAN ANTONIO 78249",
-    "absentee": true,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "2020TA102055",
-    "year": "2026",
-    "month": "9",
-    "city": "SAN ANTONIO",
-    "zip": "78220",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "9/2026",
-    "sale_date": "",
-    "run_ts": "2026-08-09T15:22:01Z",
-    "flags": [
-      "TAX FORE",
-      "ABSENTEE"
-    ],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": 6,
-    "tenure_score_bonus": 5,
-    "prop_id": "461293.0",
-    "deed_date": "12/11/2019",
-    "last_sale_amt": "",
-    "appraised_value": "123970.0",
-    "annual_taxes": "",
-    "land_value": "43470.0",
-    "appr_history": [
-      {
-        "year": "2026",
-        "appraised": 119590
-      },
-      {
-        "year": "2025",
-        "appraised": 123970
-      },
-      {
-        "year": "2024",
-        "appraised": 126550
-      }
-    ],
-    "appr_trend": "down",
-    "stacked": false,
-    "score": 10,
-    "days_until_sale": null,
-    "dash_phone": "(210) 382-2182",
-    "dash_searched_at": "2026-08-10T15:37:21.089Z",
-    "ghl_pushed": true,
-    "ghl_pushed_at": "2026-08-10T15:37:21.089Z",
-    "ghl_id": "mmgjwR54bBLFkLD7nVRL"
-  },
-  {
-    "type": "TAX",
-    "address": "602 E LANGLEY BLVD",
-    "owner": "PILKENTON MARGUERITE A",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "2021TA100054",
-    "year": "2026",
-    "month": "9",
-    "city": "UNIVERSAL CITY",
-    "zip": "78148",
-    "school_dist": "Schertz-Cibolo-Universal City ISD",
-    "date_filed": "9/2026",
-    "sale_date": "",
-    "run_ts": "2026-08-09T15:22:01Z",
-    "flags": [
-      "TAX FORE",
-      "LONG HELD"
-    ],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": 20,
-    "tenure_score_bonus": 25,
-    "prop_id": "308913.0",
-    "deed_date": "8/29/2005",
-    "last_sale_amt": "",
-    "appraised_value": "220130.0",
-    "annual_taxes": "",
-    "land_value": "65980.0",
-    "appr_history": [
-      {
-        "year": "2026",
-        "appraised": 207290
-      },
-      {
-        "year": "2025",
-        "appraised": 220130
-      },
-      {
-        "year": "2024",
-        "appraised": 222460
-      }
-    ],
-    "appr_trend": "down",
-    "stacked": false,
-    "score": 10,
-    "days_until_sale": null
-  },
-  {
-    "type": "TAX",
-    "address": "605 LINARES ST",
-    "owner": "BARAHONA PATRICIA & FLORENCIO ANTONIO",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": true,
-    "is_new": false,
-    "doc_number": "2021TA100345",
-    "year": "2026",
-    "month": "9",
-    "city": "SAN ANTONIO",
-    "zip": "78225",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "9/2026",
-    "sale_date": "",
-    "run_ts": "2026-08-09T15:22:01Z",
-    "flags": [
-      "TAX FORE",
-      "DUPLICATE",
-      "LONG HELD"
-    ],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": 18,
-    "tenure_score_bonus": 25,
-    "prop_id": "431634.0",
-    "deed_date": "3/18/2008",
-    "last_sale_amt": "",
-    "appraised_value": "134340.0",
-    "annual_taxes": "",
-    "land_value": "38440.0",
-    "appr_history": [
-      {
-        "year": "2026",
-        "appraised": 115020
-      },
-      {
-        "year": "2025",
-        "appraised": 134340
-      },
-      {
-        "year": "2024",
-        "appraised": 139670
-      }
-    ],
-    "appr_trend": "down",
-    "stacked": false,
-    "score": 10,
-    "days_until_sale": null,
-    "dash_phone": "2107766845",
-    "dash_searched_at": "2026-08-10T15:38:54.896Z",
-    "ghl_pushed": true,
-    "ghl_pushed_at": "2026-08-10T15:38:54.896Z",
-    "ghl_id": "A3tL6ylkeDFioPM6wUEt"
-  },
-  {
-    "type": "TAX",
-    "address": "314 WILCOX AVE",
-    "owner": "PEREZ NOE SANCHEZ",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "2021TA101124",
-    "year": "2026",
-    "month": "9",
-    "city": "SAN ANTONIO",
-    "zip": "78211",
-    "school_dist": "South San Antonio ISD",
-    "date_filed": "9/2026",
-    "sale_date": "",
-    "run_ts": "2026-08-09T15:22:01Z",
-    "flags": [
-      "TAX FORE"
-    ],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": 8,
-    "tenure_score_bonus": 5,
-    "prop_id": "425839.0",
-    "deed_date": "1/15/2018",
-    "last_sale_amt": "",
-    "appraised_value": "101190.0",
-    "annual_taxes": "",
-    "land_value": "41160.0",
-    "appr_history": [
-      {
-        "year": "2026",
-        "appraised": 91820
-      },
-      {
-        "year": "2025",
-        "appraised": 101190
-      },
-      {
-        "year": "2024",
-        "appraised": 101940
-      }
-    ],
-    "appr_trend": "down",
-    "stacked": false,
-    "score": 10,
-    "days_until_sale": null
-  },
-  {
-    "type": "TAX",
-    "address": "310 E DREXEL AVE",
-    "owner": "ESTATE OF THATCHER ESTELLA D",
-    "mail_addr": "% BRENDA BARRAZA SAN ANTONIO 78210",
-    "absentee": true,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "2021TA101210",
-    "year": "2026",
-    "month": "9",
-    "city": "SAN ANTONIO",
-    "zip": "78210",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "9/2026",
-    "sale_date": "",
-    "run_ts": "2026-08-09T15:22:01Z",
-    "flags": [
-      "TAX FORE",
-      "ABSENTEE",
-      "LONG HELD"
-    ],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": 10,
-    "tenure_score_bonus": 15,
-    "prop_id": "143603.0",
-    "deed_date": "12/30/2015",
-    "last_sale_amt": "",
-    "appraised_value": "161940.0",
-    "annual_taxes": "",
-    "land_value": "61300.0",
-    "appr_history": [
-      {
-        "year": "2026",
-        "appraised": 55080
-      },
-      {
-        "year": "2025",
-        "appraised": 161940
-      },
-      {
-        "year": "2024",
-        "appraised": 161230
-      }
-    ],
-    "appr_trend": "down",
-    "stacked": false,
-    "score": 10,
-    "days_until_sale": null
-  },
-  {
-    "type": "TAX",
-    "address": "926 ALAMETOS",
-    "owner": "BARAHONA PATRICIA & FLORENCIO ANTONIO",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": true,
-    "is_new": false,
-    "doc_number": "2022TA100455",
-    "year": "2026",
-    "month": "9",
-    "city": "SAN ANTONIO",
-    "zip": "78201",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "9/2026",
-    "sale_date": "",
-    "run_ts": "2026-08-09T15:22:01Z",
-    "flags": [
-      "TAX FORE",
-      "DUPLICATE",
-      "LONG HELD"
-    ],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": 20,
-    "tenure_score_bonus": 25,
-    "prop_id": "389247.0",
-    "deed_date": "3/3/2006",
-    "last_sale_amt": "",
-    "appraised_value": "160660.0",
-    "annual_taxes": "",
-    "land_value": "32590.0",
-    "appr_history": [
-      {
-        "year": "2026",
-        "appraised": 141510
-      },
-      {
-        "year": "2025",
-        "appraised": 160660
-      },
-      {
-        "year": "2024",
-        "appraised": 160660
-      }
-    ],
-    "appr_trend": "down",
-    "stacked": false,
-    "score": 10,
-    "days_until_sale": null
-  },
-  {
-    "type": "TAX",
-    "address": "1251 CHALMERS AVE",
-    "owner": "AGUILAR MARIA VIRGINIA",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "2022TA100496",
-    "year": "2026",
-    "month": "9",
-    "city": "SAN ANTONIO",
-    "zip": "78211",
-    "school_dist": "Harlandale ISD",
-    "date_filed": "9/2026",
-    "sale_date": "",
-    "run_ts": "2026-08-09T15:22:01Z",
-    "flags": [
-      "TAX FORE",
-      "LONG HELD"
-    ],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": 12,
-    "tenure_score_bonus": 15,
-    "prop_id": "404552.0",
-    "deed_date": "4/30/2014",
-    "last_sale_amt": "",
-    "appraised_value": "116340.0",
-    "annual_taxes": "",
-    "land_value": "49940.0",
-    "appr_history": [
-      {
-        "year": "2026",
-        "appraised": 111170
-      },
-      {
-        "year": "2025",
-        "appraised": 116340
-      },
-      {
-        "year": "2024",
-        "appraised": 122580
-      }
-    ],
-    "appr_trend": "down",
-    "stacked": false,
-    "score": 10,
-    "days_until_sale": null,
-    "dash_phone": "210-433-5242",
-    "dash_searched_at": "2026-08-10T15:45:15.453Z",
-    "ghl_pushed": true,
-    "ghl_pushed_at": "2026-08-10T15:45:15.453Z",
-    "ghl_id": "4fCWHaCZwtFD7Fep0tjZ"
-  },
-  {
-    "type": "TAX",
-    "address": "14932 FORWARD PASS",
-    "owner": "FRANCO-VACA OSCAR",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "2022TA101370",
-    "year": "2026",
-    "month": "9",
-    "city": "SAN ANTONIO",
-    "zip": "78248",
-    "school_dist": "Northeast ISD",
-    "date_filed": "9/2026",
-    "sale_date": "",
-    "run_ts": "2026-08-09T15:22:01Z",
-    "flags": [
-      "TAX FORE"
-    ],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": 5,
-    "tenure_score_bonus": 5,
-    "prop_id": "654989.0",
-    "deed_date": "9/4/2020",
-    "last_sale_amt": "",
-    "appraised_value": "472440.0",
-    "annual_taxes": "",
-    "land_value": "93200.0",
-    "appr_history": [
-      {
-        "year": "2026",
-        "appraised": 464190
-      },
-      {
-        "year": "2025",
-        "appraised": 472440
-      },
-      {
-        "year": "2024",
-        "appraised": 462480
-      }
-    ],
-    "appr_trend": "flat",
-    "stacked": false,
-    "score": 10,
-    "days_until_sale": null,
-    "dash_phone": "(210) 442-8944",
-    "dash_searched_at": "2026-08-10T15:48:40.745Z",
-    "ghl_pushed": true,
-    "ghl_pushed_at": "2026-08-10T15:48:40.745Z",
-    "ghl_id": "gCREbaeObOQhXrV0XGMW"
-  },
-  {
-    "type": "TAX",
-    "address": "1909 S HACKBERRY",
-    "owner": "ARREDONDO CHRISTINE",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "2022TA102042",
-    "year": "2026",
-    "month": "9",
-    "city": "SAN ANTONIO",
-    "zip": "78210",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "9/2026",
-    "sale_date": "",
-    "run_ts": "2026-08-09T15:22:01Z",
-    "flags": [
-      "TAX FORE",
-      "LONG HELD"
-    ],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": 10,
-    "tenure_score_bonus": 15,
-    "prop_id": "141510.0",
-    "deed_date": "6/6/2016",
-    "last_sale_amt": "",
-    "appraised_value": "434120.0",
-    "annual_taxes": "",
-    "land_value": "153520.0",
-    "appr_history": [
-      {
-        "year": "2026",
-        "appraised": 475260
-      },
-      {
-        "year": "2025",
-        "appraised": 434120
-      },
-      {
-        "year": "2024",
-        "appraised": 408280
-      }
-    ],
-    "appr_trend": "up",
-    "stacked": false,
-    "score": 10,
-    "days_until_sale": null,
-    "dash_phone": "9515512315",
-    "dash_searched_at": "2026-08-10T15:49:23.870Z",
-    "ghl_pushed": true,
-    "ghl_pushed_at": "2026-08-10T15:49:23.870Z",
-    "ghl_id": "TV7NC5LmVTL2xCOUm8PJ"
-  },
-  {
-    "type": "TAX",
-    "address": "8423 STANDING ROCK ST",
-    "owner": "GONZALEZ FRANCISCO N JR &",
-    "mail_addr": "GEORGINA S SAN ANTONIO 78242",
-    "absentee": true,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "2016TA101132",
-    "year": "2026",
-    "month": "9",
-    "city": "SAN ANTONIO",
-    "zip": "78242",
-    "school_dist": "Southwest ISD",
-    "date_filed": "9/2026",
-    "sale_date": "",
-    "run_ts": "2026-08-09T15:22:01Z",
-    "flags": [
-      "TAX FORE",
-      "ABSENTEE",
-      "LONG HELD"
-    ],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": 25,
-    "tenure_score_bonus": 25,
-    "prop_id": "601748.0",
-    "deed_date": "4/3/2001",
-    "last_sale_amt": "",
-    "appraised_value": "106540.0",
-    "annual_taxes": "",
-    "land_value": "32270.0",
-    "appr_history": [
-      {
-        "year": "2026",
-        "appraised": 95720
-      },
-      {
-        "year": "2025",
-        "appraised": 106540
-      },
-      {
-        "year": "2024",
-        "appraised": 106540
-      }
-    ],
-    "appr_trend": "down",
-    "stacked": false,
-    "score": 10,
-    "days_until_sale": null
   },
   {
     "doc_number": "20260152308",
@@ -37101,458 +36695,6 @@
     "appt_stale": false
   },
   {
-    "type": "TAX",
-    "address": "1137 MILVID AVE #1",
-    "owner": "MEDINA MARTIN C",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "2019TA102373",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78211",
-    "school_dist": "Harlandale ISD",
-    "date_filed": "8/2026",
-    "sale_date": "",
-    "run_ts": "2026-07-12T15:51:28Z",
-    "flags": [
-      "TAX FORE",
-      "LONG HELD"
-    ],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": 19,
-    "tenure_score_bonus": 25,
-    "prop_id": "405441.0",
-    "deed_date": "5/21/2007",
-    "last_sale_amt": "",
-    "appraised_value": "100340.0",
-    "annual_taxes": "",
-    "land_value": "44060.0",
-    "appr_history": [
-      {
-        "year": "2026",
-        "appraised": 95970
-      },
-      {
-        "year": "2025",
-        "appraised": 100340
-      },
-      {
-        "year": "2024",
-        "appraised": 105460
-      }
-    ],
-    "appr_trend": "down",
-    "stacked": false,
-    "score": 10,
-    "days_until_sale": null,
-    "ghl_pushed": true,
-    "ghl_id": "QkGvsGpmjAeDrGQEy0A9",
-    "ghl_pushed_at": "2026-07-16T21:55:07.004Z",
-    "dash_phone": "2107879213"
-  },
-  {
-    "type": "TAX",
-    "address": "319 GAIETY LN",
-    "owner": "POULIOT VANESSA RAMIREZ",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": true,
-    "is_new": false,
-    "doc_number": "2024TA100375",
-    "year": "2026",
-    "month": "8",
-    "city": "KIRBY",
-    "zip": "78219",
-    "school_dist": "Judson ISD",
-    "date_filed": "8/2026",
-    "sale_date": "",
-    "run_ts": "2026-07-12T15:51:28Z",
-    "flags": [
-      "TAX FORE",
-      "DUPLICATE"
-    ],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": 7,
-    "tenure_score_bonus": 5,
-    "prop_id": "338553.0",
-    "deed_date": "5/20/2019",
-    "last_sale_amt": "",
-    "appraised_value": "123000.0",
-    "annual_taxes": "",
-    "land_value": "34940.0",
-    "appr_history": [
-      {
-        "year": "2026",
-        "appraised": 115000
-      },
-      {
-        "year": "2025",
-        "appraised": 123000
-      },
-      {
-        "year": "2024",
-        "appraised": 127950
-      }
-    ],
-    "appr_trend": "down",
-    "stacked": false,
-    "score": 10,
-    "days_until_sale": null
-  },
-  {
-    "type": "TAX",
-    "address": "3102 W CESAR E CHAVEZ BLVD",
-    "owner": "DALMEIDA MARY M  EST OF",
-    "mail_addr": "C/O WILLIAM M DALMEIDA SAN ANTONIO 78207",
-    "absentee": true,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "2024TA100634",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78207",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "8/2026",
-    "sale_date": "",
-    "run_ts": "2026-07-12T15:51:28Z",
-    "flags": [
-      "TAX FORE",
-      "ABSENTEE"
-    ],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "100580.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appraised_value": "145830.0",
-    "annual_taxes": "",
-    "land_value": "55620.0",
-    "appr_history": [
-      {
-        "year": "2026",
-        "appraised": 120780
-      },
-      {
-        "year": "2025",
-        "appraised": 145830
-      },
-      {
-        "year": "2024",
-        "appraised": 151730
-      }
-    ],
-    "appr_trend": "down",
-    "stacked": false,
-    "score": 10,
-    "days_until_sale": null
-  },
-  {
-    "type": "TAX",
-    "address": "2644 ACKERMAN RD",
-    "owner": "KIRBY COUNTRY OAKS LLC",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "2024TA101719",
-    "year": "2026",
-    "month": "8",
-    "city": "KIRBY",
-    "zip": "78219",
-    "school_dist": "Judson ISD",
-    "date_filed": "8/2026",
-    "sale_date": "",
-    "run_ts": "2026-07-12T15:51:28Z",
-    "flags": [
-      "TAX FORE"
-    ],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": 8,
-    "tenure_score_bonus": 5,
-    "prop_id": "327671.0",
-    "deed_date": "1/12/2018",
-    "last_sale_amt": "",
-    "appraised_value": "3999000.0",
-    "annual_taxes": "",
-    "land_value": "428940.0",
-    "appr_history": [
-      {
-        "year": "2026",
-        "appraised": 3934500
-      },
-      {
-        "year": "2025",
-        "appraised": 3999000
-      },
-      {
-        "year": "2024",
-        "appraised": 3870000
-      }
-    ],
-    "appr_trend": "flat",
-    "stacked": false,
-    "score": 10,
-    "days_until_sale": null
-  },
-  {
-    "type": "TAX",
-    "address": "1000 EL PASO ST",
-    "owner": "LONGORIA JIM & LONGORIA DAIVD & LONGORIA MATT & LONGORIA ALEX",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "2024TA101862",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78207",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "8/2026",
-    "sale_date": "",
-    "run_ts": "2026-07-12T15:51:28Z",
-    "flags": [
-      "TAX FORE"
-    ],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": 7,
-    "tenure_score_bonus": 5,
-    "prop_id": "438964.0",
-    "deed_date": "2/18/2019",
-    "last_sale_amt": "",
-    "appraised_value": "125000.0",
-    "annual_taxes": "",
-    "land_value": "55800.0",
-    "appr_history": [
-      {
-        "year": "2026",
-        "appraised": 123050
-      },
-      {
-        "year": "2025",
-        "appraised": 125000
-      },
-      {
-        "year": "2024",
-        "appraised": 125000
-      }
-    ],
-    "appr_trend": "flat",
-    "stacked": false,
-    "score": 10,
-    "days_until_sale": null
-  },
-  {
-    "type": "TAX",
-    "address": "17255 E GABLE RD",
-    "owner": "KENO VOLELLIS",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "2017TA101078",
-    "year": "2026",
-    "month": "8",
-    "city": "SAINT HEDWIG",
-    "zip": "78152",
-    "school_dist": "East Central ISD",
-    "date_filed": "8/2026",
-    "sale_date": "",
-    "run_ts": "2026-07-12T15:51:28Z",
-    "flags": [
-      "TAX FORE",
-      "LONG HELD"
-    ],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": 16,
-    "tenure_score_bonus": 25,
-    "prop_id": "329265.0",
-    "deed_date": "5/10/2010",
-    "last_sale_amt": "",
-    "appraised_value": "121200.0",
-    "annual_taxes": "",
-    "land_value": "121200.0",
-    "appr_history": [
-      {
-        "year": "2026",
-        "appraised": 121200
-      },
-      {
-        "year": "2025",
-        "appraised": 121200
-      },
-      {
-        "year": "2024",
-        "appraised": 104000
-      }
-    ],
-    "appr_trend": "flat",
-    "stacked": false,
-    "score": 10,
-    "days_until_sale": null
-  },
-  {
-    "type": "TAX",
-    "address": "1819 W WILDWOOD DR",
-    "owner": "CORPUS ROSARIO",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "2015TA104409",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78201",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "8/2026",
-    "sale_date": "",
-    "run_ts": "2026-07-12T15:51:28Z",
-    "flags": [
-      "TAX FORE",
-      "LONG HELD"
-    ],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": 19,
-    "tenure_score_bonus": 25,
-    "prop_id": "423584.0",
-    "deed_date": "5/22/2007",
-    "last_sale_amt": "",
-    "appraised_value": "225700.0",
-    "annual_taxes": "",
-    "land_value": "46380.0",
-    "appr_history": [
-      {
-        "year": "2026",
-        "appraised": 202640
-      },
-      {
-        "year": "2025",
-        "appraised": 225700
-      },
-      {
-        "year": "2024",
-        "appraised": 225700
-      }
-    ],
-    "appr_trend": "down",
-    "stacked": false,
-    "score": 10,
-    "days_until_sale": null
-  },
-  {
-    "type": "TAX",
-    "address": "1013 S SAN JOAQINS AVE",
-    "owner": "TORRES JOSE R",
-    "mail_addr": "C/O JUAN TORRES SAN ANTONIO 78237",
-    "absentee": true,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "2012TA102987",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78237",
-    "school_dist": "Edgewood ISD (Bexar)",
-    "date_filed": "8/2026",
-    "sale_date": "",
-    "run_ts": "2026-07-12T15:51:28Z",
-    "flags": [
-      "TAX FORE",
-      "ABSENTEE"
-    ],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "417211.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appraised_value": "13380.0",
-    "annual_taxes": "",
-    "land_value": "13380.0",
-    "appr_history": [
-      {
-        "year": "2026",
-        "appraised": 12030
-      },
-      {
-        "year": "2025",
-        "appraised": 13380
-      },
-      {
-        "year": "2024",
-        "appraised": 13380
-      }
-    ],
-    "appr_trend": "down",
-    "stacked": false,
-    "score": 10,
-    "days_until_sale": null
-  },
-  {
-    "type": "TAX",
-    "address": "1139 GLADSTONE",
-    "owner": "ROMAN SANTIAGO O JR",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "2014TA100203",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78225",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "8/2026",
-    "sale_date": "",
-    "run_ts": "2026-07-12T15:51:28Z",
-    "flags": [
-      "TAX FORE",
-      "LONG HELD"
-    ],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": 21,
-    "tenure_score_bonus": 25,
-    "prop_id": "370277.0",
-    "deed_date": "5/23/2005",
-    "last_sale_amt": "",
-    "appraised_value": "175890.0",
-    "annual_taxes": "",
-    "land_value": "42580.0",
-    "appr_history": [
-      {
-        "year": "2026",
-        "appraised": 168710
-      },
-      {
-        "year": "2025",
-        "appraised": 175890
-      },
-      {
-        "year": "2024",
-        "appraised": 184540
-      }
-    ],
-    "appr_trend": "down",
-    "stacked": false,
-    "score": 10,
-    "days_until_sale": null
-  },
-  {
     "doc_number": "20260129625",
     "ps_doc_id": "",
     "type": "APPT",
@@ -40585,315 +39727,6 @@
     "appr_trend": "flat"
   },
   {
-    "type": "TAX",
-    "address": "719 SEWANEE ST",
-    "owner": "MITCHELL UTTIES & JOSIE MAE",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "2013TA100758",
-    "year": "2026",
-    "month": "9",
-    "city": "SAN ANTONIO",
-    "zip": "78210",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "9/2026",
-    "sale_date": "",
-    "run_ts": "2026-08-09T15:22:01Z",
-    "flags": [
-      "TAX FORE"
-    ],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "453815.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appraised_value": "130310.0",
-    "annual_taxes": "",
-    "land_value": "50880.0",
-    "appr_history": [
-      {
-        "year": "2026",
-        "appraised": 122450
-      },
-      {
-        "year": "2025",
-        "appraised": 130310
-      },
-      {
-        "year": "2024",
-        "appraised": 130310
-      }
-    ],
-    "appr_trend": "down",
-    "stacked": false,
-    "score": 8,
-    "days_until_sale": null
-  },
-  {
-    "type": "TAX",
-    "address": "415 HEARNE AVE",
-    "owner": "RUIZ MARY ESTHER",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "2021TA100099",
-    "year": "2026",
-    "month": "9",
-    "city": "SAN ANTONIO",
-    "zip": "78225",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "9/2026",
-    "sale_date": "",
-    "run_ts": "2026-08-09T15:22:01Z",
-    "flags": [
-      "TAX FORE"
-    ],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "145891.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appraised_value": "237340.0",
-    "annual_taxes": "",
-    "land_value": "48380.0",
-    "appr_history": [
-      {
-        "year": "2026",
-        "appraised": 232460
-      },
-      {
-        "year": "2025",
-        "appraised": 237340
-      },
-      {
-        "year": "2024",
-        "appraised": 236300
-      }
-    ],
-    "appr_trend": "down",
-    "stacked": false,
-    "score": 8,
-    "days_until_sale": null,
-    "dash_phone": "2104645814",
-    "dash_searched_at": "2026-08-10T15:59:03.307Z",
-    "ghl_pushed": true,
-    "ghl_pushed_at": "2026-08-10T15:59:03.307Z",
-    "ghl_id": "6VtqkmBL9i46aZHXCGGm"
-  },
-  {
-    "type": "TAX",
-    "address": "111 F ST",
-    "owner": "GONZALEZ CONCEPCION",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "2022TA100483",
-    "year": "2026",
-    "month": "9",
-    "city": "SAN ANTONIO",
-    "zip": "78210",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "9/2026",
-    "sale_date": "",
-    "run_ts": "2026-08-09T15:22:01Z",
-    "flags": [
-      "TAX FORE"
-    ],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": 2,
-    "tenure_score_bonus": 0,
-    "prop_id": "466972.0",
-    "deed_date": "11/7/2023",
-    "last_sale_amt": "",
-    "appraised_value": "152560.0",
-    "annual_taxes": "",
-    "land_value": "36720.0",
-    "appr_history": [
-      {
-        "year": "2026",
-        "appraised": 141260
-      },
-      {
-        "year": "2025",
-        "appraised": 152560
-      },
-      {
-        "year": "2024",
-        "appraised": 155910
-      }
-    ],
-    "appr_trend": "down",
-    "stacked": false,
-    "score": 8,
-    "days_until_sale": null,
-    "dash_phone": "2105775934",
-    "dash_searched_at": "2026-08-10T16:04:01.805Z",
-    "ghl_pushed": true,
-    "ghl_pushed_at": "2026-08-10T16:04:01.805Z",
-    "ghl_id": "9dX9f5aHSWmYorSuZY6B"
-  },
-  {
-    "type": "TAX",
-    "address": "409 NOPAL ST",
-    "owner": "TARIN FELICITAS G",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": true,
-    "is_new": false,
-    "doc_number": "2025TA100194",
-    "year": "2026",
-    "month": "9",
-    "city": "SAN ANTONIO",
-    "zip": "78210",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "9/2026",
-    "sale_date": "",
-    "run_ts": "2026-08-09T15:22:01Z",
-    "flags": [
-      "TAX FORE",
-      "DUPLICATE"
-    ],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "118134.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appraised_value": "237120.0",
-    "annual_taxes": "",
-    "land_value": "137030.0",
-    "appr_history": [
-      {
-        "year": "2026",
-        "appraised": 223390
-      },
-      {
-        "year": "2025",
-        "appraised": 237120
-      },
-      {
-        "year": "2024",
-        "appraised": 237120
-      }
-    ],
-    "appr_trend": "down",
-    "stacked": false,
-    "score": 8,
-    "days_until_sale": null,
-    "dash_phone": "(210) 533-8836",
-    "dash_searched_at": "2026-08-10T16:05:00.959Z",
-    "ghl_pushed": false,
-    "ghl_pushed_at": null
-  },
-  {
-    "type": "TAX",
-    "address": "647 YUCCA ST",
-    "owner": "GLENN FANNIE L",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "2015TA103095",
-    "year": "2026",
-    "month": "9",
-    "city": "SAN ANTONIO",
-    "zip": "78220",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "9/2026",
-    "sale_date": "",
-    "run_ts": "2026-08-09T15:22:01Z",
-    "flags": [
-      "TAX FORE"
-    ],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "441654.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appraised_value": "169730.0",
-    "annual_taxes": "",
-    "land_value": "36170.0",
-    "appr_history": [
-      {
-        "year": "2026",
-        "appraised": 158130
-      },
-      {
-        "year": "2025",
-        "appraised": 169730
-      },
-      {
-        "year": "2024",
-        "appraised": 171310
-      }
-    ],
-    "appr_trend": "down",
-    "stacked": false,
-    "score": 8,
-    "days_until_sale": null
-  },
-  {
-    "type": "TAX",
-    "address": "635 YUCCA ST",
-    "owner": "CALVARY CEMETERY",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "2011TA100395",
-    "year": "2026",
-    "month": "9",
-    "city": "SAN ANTONIO",
-    "zip": "78220",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "9/2026",
-    "sale_date": "",
-    "run_ts": "2026-08-09T15:22:01Z",
-    "flags": [
-      "TAX FORE"
-    ],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "441660.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appraised_value": "36170.0",
-    "annual_taxes": "",
-    "land_value": "36170.0",
-    "appr_history": [
-      {
-        "year": "2026",
-        "appraised": 32510
-      },
-      {
-        "year": "2025",
-        "appraised": 36170
-      },
-      {
-        "year": "2024",
-        "appraised": 36170
-      }
-    ],
-    "appr_trend": "down",
-    "stacked": false,
-    "score": 8,
-    "days_until_sale": null
-  },
-  {
     "doc_number": "20260140953",
     "ps_doc_id": "",
     "type": "APPT",
@@ -41006,55 +39839,6 @@
     "ghl_id": "QvOcgeRrQcYjGTZFkwSL",
     "ghl_pushed_at": "2026-07-06T18:34:30.769Z",
     "dash_phone": "2105015347"
-  },
-  {
-    "type": "TAX",
-    "address": "418 E HART AVE",
-    "owner": "GIDEON FLOYD H",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "2017TA100496",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78214",
-    "school_dist": "Harlandale ISD",
-    "date_filed": "8/2026",
-    "sale_date": "",
-    "run_ts": "2026-07-12T15:51:28Z",
-    "flags": [
-      "TAX FORE"
-    ],
-    "source": "arcgis",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "400137.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appraised_value": "67190.0",
-    "annual_taxes": "",
-    "land_value": "47930.0",
-    "appr_history": [
-      {
-        "year": "2026",
-        "appraised": 62390
-      },
-      {
-        "year": "2025",
-        "appraised": 67190
-      },
-      {
-        "year": "2024",
-        "appraised": 72070
-      }
-    ],
-    "appr_trend": "down",
-    "stacked": false,
-    "score": 8,
-    "days_until_sale": null
   },
   {
     "doc_number": "20260129685",
@@ -41234,429 +40018,6 @@
     "appt_stale": false
   },
   {
-    "type": "TAX",
-    "address": "206 E WHITE",
-    "owner": "HENRY ADAM & RENTERIA HARMONY M",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "2015TA103055",
-    "year": "2026",
-    "month": "6",
-    "city": "SAN ANTONIO",
-    "zip": "78214",
-    "school_dist": "Harlandale ISD",
-    "date_filed": "6/2026",
-    "sale_date": "",
-    "run_ts": "2026-05-17T16:02:08Z",
-    "flags": [
-      "TAX FORE"
-    ],
-    "source": "arcgis",
-    "appraised_value": "119530.0",
-    "annual_taxes": "",
-    "land_value": "49990.0",
-    "stacked": false,
-    "score": 8,
-    "days_until_sale": null
-  },
-  {
-    "type": "TAX",
-    "address": "354 THOMPSON PL",
-    "owner": "PEREZ MARGARITA L",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "2017TA101415",
-    "year": "2026",
-    "month": "6",
-    "city": "SAN ANTONIO",
-    "zip": "78225",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "6/2026",
-    "sale_date": "",
-    "run_ts": "2026-05-17T16:02:08Z",
-    "flags": [
-      "TAX FORE"
-    ],
-    "source": "arcgis",
-    "appraised_value": "152510.0",
-    "annual_taxes": "",
-    "land_value": "40630.0",
-    "stacked": false,
-    "score": 8,
-    "days_until_sale": null
-  },
-  {
-    "type": "TAX",
-    "address": "1640 AMANDA ST",
-    "owner": "RODRIGUEZ MANUEL E",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "2018TA102181",
-    "year": "2026",
-    "month": "6",
-    "city": "SAN ANTONIO",
-    "zip": "78210",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "6/2026",
-    "sale_date": "",
-    "run_ts": "2026-05-17T16:02:08Z",
-    "flags": [
-      "TAX FORE"
-    ],
-    "source": "arcgis",
-    "appraised_value": "48230.0",
-    "annual_taxes": "",
-    "land_value": "48230.0",
-    "stacked": false,
-    "score": 8,
-    "days_until_sale": null
-  },
-  {
-    "type": "TAX",
-    "address": "439 BUCKINGHAM AVE",
-    "owner": "GARZA MARCELLO S",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": true,
-    "is_new": false,
-    "doc_number": "2022TA100856",
-    "year": "2026",
-    "month": "6",
-    "city": "SAN ANTONIO",
-    "zip": "78210",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "6/2026",
-    "sale_date": "",
-    "run_ts": "2026-05-17T16:02:08Z",
-    "flags": [
-      "TAX FORE",
-      "DUPLICATE"
-    ],
-    "source": "arcgis",
-    "appraised_value": "53510.0",
-    "annual_taxes": "",
-    "land_value": "53510.0",
-    "stacked": false,
-    "score": 8,
-    "days_until_sale": null
-  },
-  {
-    "type": "TAX",
-    "address": "814 S MESQUITE ST",
-    "owner": "GARZA MARCELLO S",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": true,
-    "is_new": false,
-    "doc_number": "2022TA101085",
-    "year": "2026",
-    "month": "6",
-    "city": "SAN ANTONIO",
-    "zip": "78203",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "6/2026",
-    "sale_date": "",
-    "run_ts": "2026-05-17T16:02:08Z",
-    "flags": [
-      "TAX FORE",
-      "DUPLICATE"
-    ],
-    "source": "arcgis",
-    "appraised_value": "112250.0",
-    "annual_taxes": "",
-    "land_value": "99330.0",
-    "stacked": false,
-    "score": 8,
-    "days_until_sale": null
-  },
-  {
-    "type": "TAX",
-    "address": "8618 GLEN BREEZE",
-    "owner": "HERNANDEZ JAVIER & MARIA CARMEN",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "2022TA101136",
-    "year": "2026",
-    "month": "6",
-    "city": "SAN ANTONIO",
-    "zip": "78239",
-    "school_dist": "Northeast ISD",
-    "date_filed": "6/2026",
-    "sale_date": "",
-    "run_ts": "2026-05-17T16:02:08Z",
-    "flags": [
-      "TAX FORE"
-    ],
-    "source": "arcgis",
-    "appraised_value": "227450.0",
-    "annual_taxes": "",
-    "land_value": "54110.0",
-    "stacked": false,
-    "score": 8,
-    "days_until_sale": null
-  },
-  {
-    "type": "TAX",
-    "address": "911 BURLESON",
-    "owner": "VILLARREAL ANTONIO M",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": true,
-    "is_new": false,
-    "doc_number": "2022TA101941",
-    "year": "2026",
-    "month": "6",
-    "city": "SAN ANTONIO",
-    "zip": "78202",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "6/2026",
-    "sale_date": "",
-    "run_ts": "2026-05-17T16:02:08Z",
-    "flags": [
-      "TAX FORE",
-      "DUPLICATE"
-    ],
-    "source": "arcgis",
-    "appraised_value": "159880.0",
-    "annual_taxes": "",
-    "land_value": "146680.0",
-    "stacked": false,
-    "score": 8,
-    "days_until_sale": null
-  },
-  {
-    "type": "TAX",
-    "address": "1111 VICKERS AVE #2",
-    "owner": "COLUMBIA HEIGHTS COMMUNITY TEMPLE",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "2023TA100662",
-    "year": "2026",
-    "month": "6",
-    "city": "SAN ANTONIO",
-    "zip": "78211",
-    "school_dist": "Harlandale ISD",
-    "date_filed": "6/2026",
-    "sale_date": "",
-    "run_ts": "2026-05-17T16:02:08Z",
-    "flags": [
-      "TAX FORE"
-    ],
-    "source": "arcgis",
-    "appraised_value": "50000.0",
-    "annual_taxes": "",
-    "land_value": "50000.0",
-    "stacked": false,
-    "score": 8,
-    "days_until_sale": null
-  },
-  {
-    "type": "TAX",
-    "address": "1665 E LOOP 1604",
-    "owner": "ARMIJO YEDID DAVID TRISTAN",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "2024TA100778",
-    "year": "2026",
-    "month": "6",
-    "city": "SAN ANTONIO",
-    "zip": "78221",
-    "school_dist": "Southside ISD",
-    "date_filed": "6/2026",
-    "sale_date": "",
-    "run_ts": "2026-05-17T16:02:08Z",
-    "flags": [
-      "TAX FORE"
-    ],
-    "source": "arcgis",
-    "appraised_value": "235540.0",
-    "annual_taxes": "",
-    "land_value": "235540.0",
-    "stacked": false,
-    "score": 8,
-    "days_until_sale": null
-  },
-  {
-    "type": "TAX",
-    "address": "807 TOPEKA BLVD",
-    "owner": "ROBLES DOLORES G",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "2025TA100175",
-    "year": "2026",
-    "month": "6",
-    "city": "SAN ANTONIO",
-    "zip": "78210",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "6/2026",
-    "sale_date": "",
-    "run_ts": "2026-05-17T16:02:08Z",
-    "flags": [
-      "TAX FORE"
-    ],
-    "source": "arcgis",
-    "appraised_value": "170410.0",
-    "annual_taxes": "",
-    "land_value": "53360.0",
-    "stacked": false,
-    "score": 8,
-    "days_until_sale": null
-  },
-  {
-    "type": "TAX",
-    "address": "7465 W LOOP 1604",
-    "owner": "ABUNDES RICARDO",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "2021TA100476",
-    "year": "2026",
-    "month": "6",
-    "city": "SOMERSET",
-    "zip": "78073",
-    "school_dist": "Somerset ISD",
-    "date_filed": "6/2026",
-    "sale_date": "",
-    "run_ts": "2026-05-17T16:02:08Z",
-    "flags": [
-      "TAX FORE"
-    ],
-    "source": "arcgis",
-    "appraised_value": "92430.0",
-    "annual_taxes": "",
-    "land_value": "92430.0",
-    "stacked": false,
-    "score": 8,
-    "days_until_sale": null
-  },
-  {
-    "type": "TAX",
-    "address": "25896 LIVE OAK RD",
-    "owner": "LIRA LARRY",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "2022TA100894",
-    "year": "2026",
-    "month": "6",
-    "city": "SAN ANTONIO",
-    "zip": "78264",
-    "school_dist": "Northside ISD (Bexar)",
-    "date_filed": "6/2026",
-    "sale_date": "",
-    "run_ts": "2026-05-17T16:02:08Z",
-    "flags": [
-      "TAX FORE"
-    ],
-    "source": "arcgis",
-    "appraised_value": "225430.0",
-    "annual_taxes": "",
-    "land_value": "82350.0",
-    "stacked": false,
-    "score": 8,
-    "days_until_sale": null
-  },
-  {
-    "type": "TAX",
-    "address": "155 YUCCA ST",
-    "owner": "RINCON SANTOS & ANASTACIA P",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "2013TA100023",
-    "year": "2026",
-    "month": "6",
-    "city": "SAN ANTONIO",
-    "zip": "78203",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "6/2026",
-    "sale_date": "",
-    "run_ts": "2026-05-17T16:02:08Z",
-    "flags": [
-      "TAX FORE"
-    ],
-    "source": "arcgis",
-    "appraised_value": "91670.0",
-    "annual_taxes": "",
-    "land_value": "61880.0",
-    "stacked": false,
-    "score": 8,
-    "days_until_sale": null
-  },
-  {
-    "type": "TAX",
-    "address": "419 MERRIMAC",
-    "owner": "VEGA FRANCISCO M & MARIBEL N",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "2011TA102021",
-    "year": "2026",
-    "month": "6",
-    "city": "SAN ANTONIO",
-    "zip": "78223",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "6/2026",
-    "sale_date": "",
-    "run_ts": "2026-05-17T16:02:08Z",
-    "flags": [
-      "TAX FORE"
-    ],
-    "source": "arcgis",
-    "appraised_value": "40530.0",
-    "annual_taxes": "",
-    "land_value": "40530.0",
-    "stacked": false,
-    "score": 8,
-    "days_until_sale": null
-  },
-  {
-    "type": "TAX",
-    "address": "407 MCKAY AVE",
-    "owner": "MOJICA MATIAS S",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "2014TA100941",
-    "year": "2026",
-    "month": "6",
-    "city": "SAN ANTONIO",
-    "zip": "78204",
-    "school_dist": "San Antonio ISD",
-    "date_filed": "6/2026",
-    "sale_date": "",
-    "run_ts": "2026-05-17T16:02:08Z",
-    "flags": [
-      "TAX FORE"
-    ],
-    "source": "arcgis",
-    "appraised_value": "144110.0",
-    "annual_taxes": "",
-    "land_value": "63980.0",
-    "stacked": false,
-    "score": 8,
-    "days_until_sale": null
-  },
-  {
     "type": "NOF",
     "address": "7039 SAN PEDRO",
     "owner": "NORTHVIEW TOWER CONDOMINIUM",
@@ -41709,67 +40070,6 @@
     "on_market": true,
     "on_market_status": "FOR_RENT",
     "on_market_checked_at": "2026-08-25T16:02:00Z",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 40
-  },
-  {
-    "type": "NOF",
-    "address": "3119 MISSION BELL",
-    "owner": "MEZA MANUEL & MARIA",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20261000113",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78224",
-    "school_dist": "",
-    "date_filed": "8/2026",
-    "sale_date": "10/06/2026",
-    "run_ts": "2026-08-24T20:22:37Z",
-    "flags": [
-      "HAS SALE DATE"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "1216052.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [
-      {
-        "year": "2026",
-        "appraised": 267440
-      },
-      {
-        "year": "2025",
-        "appraised": 299830
-      },
-      {
-        "year": "2024",
-        "appraised": 312550
-      }
-    ],
-    "appr_trend": "down",
-    "appraised_value": "299830.0",
-    "annual_taxes": "",
-    "land_value": "54830.0",
-    "on_market": false,
-    "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-24T20:29:51Z",
-    "arv_estimate": 289800,
-    "arv_status": "SOLD",
-    "arv_sqft": 2413,
-    "arv_fetched_at": "2026-08-24T20:29:51Z",
     "stacked": false,
     "score": 7,
     "days_until_sale": 40
@@ -44289,13 +42589,26 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 4,
     "tenure_score_bonus": 0,
     "prop_id": "407055.0",
-    "deed_date": "",
+    "deed_date": "4/14/2022",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 127390
+      },
+      {
+        "year": "2025",
+        "appraised": 130870
+      },
+      {
+        "year": "2024",
+        "appraised": 141550
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "130870.0",
     "annual_taxes": "",
     "land_value": "40990.0",
@@ -44330,57 +42643,29 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 4,
     "tenure_score_bonus": 0,
     "prop_id": "1043051.0",
-    "deed_date": "",
+    "deed_date": "7/14/2022",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 533180
+      },
+      {
+        "year": "2025",
+        "appraised": 563070
+      },
+      {
+        "year": "2024",
+        "appraised": 564950
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "563070.0",
     "annual_taxes": "",
     "land_value": "89820.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 40
-  },
-  {
-    "type": "NOF",
-    "address": "9639 SPRING HARVEST",
-    "owner": "TRISTAN MIGUEL A & AISSA L",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260900383",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78254",
-    "school_dist": "",
-    "date_filed": "8/2026",
-    "sale_date": "10/06/2026",
-    "run_ts": "2026-08-11T20:31:50Z",
-    "flags": [
-      "HAS SALE DATE"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "729264.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "254390.0",
-    "annual_taxes": "",
-    "land_value": "61050.0",
     "stacked": false,
     "score": 7,
     "days_until_sale": 40
