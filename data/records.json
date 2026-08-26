@@ -1686,7 +1686,7 @@
     "ghl_id": "UQT3afkVpo18uf0ICyhl",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-26T16:18:59Z"
+    "on_market_checked_at": "2026-08-26T20:57:01Z"
   },
   {
     "type": "NOF",
@@ -2951,7 +2951,7 @@
     "days_until_sale": 5,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-26T16:19:11Z"
+    "on_market_checked_at": "2026-08-26T20:57:12Z"
   },
   {
     "type": "NOF",
@@ -3273,7 +3273,7 @@
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-07T15:02:03.758Z",
     "ghl_id": "a4WHXE1Q98vajwsLHrqs",
-    "on_market_checked_at": "2026-08-26T16:19:12Z"
+    "on_market_checked_at": "2026-08-26T20:57:13Z"
   },
   {
     "type": "NOF",
@@ -7602,8 +7602,8 @@
     "score": 10,
     "days_until_sale": 5,
     "on_market": true,
-    "on_market_status": "PENDING",
-    "on_market_checked_at": "2026-08-26T16:19:14Z"
+    "on_market_status": "FOR_RENT",
+    "on_market_checked_at": "2026-08-26T20:57:29Z"
   },
   {
     "type": "NOF",
@@ -9285,7 +9285,7 @@
     "days_until_sale": 5,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-26T16:19:30Z"
+    "on_market_checked_at": "2026-08-26T20:57:46Z"
   },
   {
     "type": "NOF",
@@ -9408,7 +9408,7 @@
     "days_until_sale": 5,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-26T16:19:50Z"
+    "on_market_checked_at": "2026-08-26T20:58:06Z"
   },
   {
     "type": "NOF",
@@ -9467,7 +9467,7 @@
     "days_until_sale": 5,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-26T16:19:52Z"
+    "on_market_checked_at": "2026-08-26T20:58:08Z"
   },
   {
     "type": "NOF",
@@ -9844,7 +9844,7 @@
     "days_until_sale": 5,
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-08-26T16:19:53Z"
+    "on_market_checked_at": "2026-08-26T20:58:09Z"
   },
   {
     "type": "NOF",
@@ -10413,7 +10413,7 @@
     "days_until_sale": 5,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-26T16:20:03Z"
+    "on_market_checked_at": "2026-08-26T20:58:20Z"
   },
   {
     "type": "NOF",
@@ -10473,7 +10473,7 @@
     "days_until_sale": 5,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-26T16:20:21Z"
+    "on_market_checked_at": "2026-08-26T20:58:36Z"
   },
   {
     "type": "NOF",
@@ -10596,7 +10596,7 @@
     "days_until_sale": 5,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-26T16:20:41Z"
+    "on_market_checked_at": "2026-08-26T20:58:57Z"
   },
   {
     "type": "NOF",
@@ -12026,7 +12026,7 @@
     "stacked": false,
     "score": 7,
     "days_until_sale": 5,
-    "on_market_checked_at": "2026-08-26T16:20:42Z"
+    "on_market_checked_at": "2026-08-26T20:58:58Z"
   },
   {
     "type": "NOF",
@@ -12528,7 +12528,10 @@
     "arv_estimate": 219393,
     "arv_status": "FOR_SALE",
     "arv_sqft": 1681,
-    "arv_fetched_at": "2026-08-12T16:04:39Z"
+    "arv_fetched_at": "2026-08-12T16:04:39Z",
+    "on_market": true,
+    "on_market_status": "FOR_SALE",
+    "on_market_checked_at": "2026-08-26T21:01:49Z"
   },
   {
     "type": "NOF",
@@ -12588,7 +12591,10 @@
     "arv_estimate": 191558,
     "arv_status": "FOR_SALE",
     "arv_sqft": 1450,
-    "arv_fetched_at": "2026-08-12T16:04:40Z"
+    "arv_fetched_at": "2026-08-12T16:04:40Z",
+    "on_market": true,
+    "on_market_status": "FOR_SALE",
+    "on_market_checked_at": "2026-08-26T21:01:51Z"
   },
   {
     "type": "NOF",
@@ -12830,7 +12836,7 @@
     "days_until_sale": 5,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-26T16:20:44Z"
+    "on_market_checked_at": "2026-08-26T20:58:59Z"
   },
   {
     "type": "NOF",
@@ -12890,7 +12896,7 @@
     "days_until_sale": 5,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-26T16:21:05Z"
+    "on_market_checked_at": "2026-08-26T20:59:22Z"
   },
   {
     "type": "NOF",
@@ -13009,7 +13015,7 @@
     "days_until_sale": 5,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-26T16:21:21Z"
+    "on_market_checked_at": "2026-08-26T20:59:38Z"
   },
   {
     "type": "NOF",
@@ -13252,7 +13258,10 @@
     "arv_estimate": 122900,
     "arv_status": "SOLD",
     "arv_sqft": 966,
-    "arv_fetched_at": "2026-08-12T20:52:24Z"
+    "arv_fetched_at": "2026-08-12T20:52:24Z",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-26T21:02:24Z"
   },
   {
     "type": "NOF",
@@ -13312,7 +13321,10 @@
     "arv_estimate": 121600,
     "arv_status": "SOLD",
     "arv_sqft": 1200,
-    "arv_fetched_at": "2026-08-12T20:52:25Z"
+    "arv_fetched_at": "2026-08-12T20:52:25Z",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-26T21:02:26Z"
   },
   {
     "type": "NOF",
@@ -13372,7 +13384,7 @@
     "days_until_sale": 5,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-26T16:21:58Z"
+    "on_market_checked_at": "2026-08-26T21:00:17Z"
   },
   {
     "type": "NOF",
@@ -13432,7 +13444,10 @@
     "arv_estimate": 92000,
     "arv_status": "SOLD",
     "arv_sqft": 600,
-    "arv_fetched_at": "2026-08-12T20:53:09Z"
+    "arv_fetched_at": "2026-08-12T20:53:09Z",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-26T21:02:27Z"
   },
   {
     "type": "NOF",
@@ -13682,7 +13697,10 @@
     "arv_estimate": 277800,
     "arv_status": "SOLD",
     "arv_sqft": null,
-    "arv_fetched_at": "2026-08-12T20:53:30Z"
+    "arv_fetched_at": "2026-08-12T20:53:30Z",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-26T21:02:28Z"
   },
   {
     "type": "NOF",
@@ -13742,7 +13760,10 @@
     "arv_estimate": 270100,
     "arv_status": "SOLD",
     "arv_sqft": 2395,
-    "arv_fetched_at": "2026-08-12T20:53:32Z"
+    "arv_fetched_at": "2026-08-12T20:53:32Z",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-26T21:02:30Z"
   },
   {
     "type": "NOF",
@@ -13803,7 +13824,10 @@
     "arv_estimate": 204000,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 1018,
-    "arv_fetched_at": "2026-08-13T19:32:31Z"
+    "arv_fetched_at": "2026-08-13T19:32:31Z",
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-08-26T21:02:32Z"
   },
   {
     "type": "NOF",
@@ -13923,7 +13947,7 @@
     "days_until_sale": 5,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-26T16:22:00Z"
+    "on_market_checked_at": "2026-08-26T21:00:19Z"
   },
   {
     "type": "NOF",
@@ -14043,7 +14067,7 @@
     "days_until_sale": 5,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-26T16:22:02Z"
+    "on_market_checked_at": "2026-08-26T21:00:25Z"
   },
   {
     "type": "NOF",
@@ -14163,7 +14187,7 @@
     "days_until_sale": 5,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-26T16:22:07Z"
+    "on_market_checked_at": "2026-08-26T21:00:29Z"
   },
   {
     "type": "NOF",
@@ -14223,7 +14247,7 @@
     "days_until_sale": 5,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-26T16:22:11Z"
+    "on_market_checked_at": "2026-08-26T21:00:34Z"
   },
   {
     "type": "NOF",
@@ -15076,7 +15100,7 @@
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-10T16:15:52.012Z",
     "ghl_id": "rDoT5l461CcaoQVAAzVg",
-    "on_market_checked_at": "2026-08-26T16:22:13Z"
+    "on_market_checked_at": "2026-08-26T21:00:35Z"
   },
   {
     "type": "NOF",
@@ -15520,7 +15544,7 @@
     "days_until_sale": 5,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-26T16:22:42Z"
+    "on_market_checked_at": "2026-08-26T21:01:04Z"
   },
   {
     "type": "NOF",
@@ -16904,7 +16928,7 @@
     "days_until_sale": 5,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-26T16:22:59Z"
+    "on_market_checked_at": "2026-08-26T21:01:20Z"
   },
   {
     "type": "NOF",
@@ -22818,7 +22842,14 @@
     "land_value": "78820.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 5
+    "days_until_sale": 5,
+    "on_market": true,
+    "on_market_status": "PENDING",
+    "on_market_checked_at": "2026-08-26T21:01:22Z",
+    "arv_estimate": 450329,
+    "arv_status": "PENDING",
+    "arv_sqft": 2127,
+    "arv_fetched_at": "2026-08-26T21:01:22Z"
   },
   {
     "type": "NOF",
@@ -22859,7 +22890,14 @@
     "land_value": "49830.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 5
+    "days_until_sale": 5,
+    "on_market": true,
+    "on_market_status": "FOR_SALE",
+    "on_market_checked_at": "2026-08-26T21:01:23Z",
+    "arv_estimate": 188000,
+    "arv_status": "FOR_SALE",
+    "arv_sqft": 1237,
+    "arv_fetched_at": "2026-08-26T21:01:23Z"
   },
   {
     "type": "NOF",
@@ -22900,7 +22938,14 @@
     "land_value": "79970.0",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 5
+    "days_until_sale": 5,
+    "on_market": true,
+    "on_market_status": "PENDING",
+    "on_market_checked_at": "2026-08-26T21:01:25Z",
+    "arv_estimate": 236100,
+    "arv_status": "PENDING",
+    "arv_sqft": 1650,
+    "arv_fetched_at": "2026-08-26T21:01:25Z"
   },
   {
     "type": "NOF",
@@ -22939,7 +22984,14 @@
     "ghl_pushed": true,
     "ghl_id": "AoVp2VATb5V1gJfsUU8s",
     "ghl_pushed_at": "2026-06-23T21:38:39.173Z",
-    "dash_phone": "3616961426"
+    "dash_phone": "3616961426",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-26T21:01:26Z",
+    "arv_estimate": 345100,
+    "arv_status": "SOLD",
+    "arv_sqft": 2863,
+    "arv_fetched_at": "2026-08-26T21:01:26Z"
   },
   {
     "type": "NOF",
@@ -22978,7 +23030,14 @@
     "ghl_pushed": true,
     "ghl_id": "6l6Zz6oRWV06S2gI3cBn",
     "ghl_pushed_at": "2026-06-23T21:37:31.206Z",
-    "dash_phone": "8063681342"
+    "dash_phone": "8063681342",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-26T21:01:28Z",
+    "arv_estimate": 237800,
+    "arv_status": "SOLD",
+    "arv_sqft": 1211,
+    "arv_fetched_at": "2026-08-26T21:01:28Z"
   },
   {
     "type": "NOF",
@@ -23018,7 +23077,14 @@
     "ghl_pushed": true,
     "ghl_id": "1VNV82N704ZI5vrA7xHG",
     "ghl_pushed_at": "2026-06-23T21:39:28.423Z",
-    "dash_phone": "2108837295"
+    "dash_phone": "2108837295",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-26T21:01:29Z",
+    "arv_estimate": 281300,
+    "arv_status": "SOLD",
+    "arv_sqft": 1756,
+    "arv_fetched_at": "2026-08-26T21:01:29Z"
   },
   {
     "type": "NOF",
@@ -23057,7 +23123,14 @@
     "ghl_pushed": true,
     "ghl_id": "V2z22mMdJyPFvU6u6OFt",
     "ghl_pushed_at": "2026-06-23T21:40:25.110Z",
-    "dash_phone": "2106097542"
+    "dash_phone": "2106097542",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-26T21:01:31Z",
+    "arv_estimate": 219872,
+    "arv_status": "SOLD",
+    "arv_sqft": 1390,
+    "arv_fetched_at": "2026-08-26T21:01:31Z"
   },
   {
     "type": "NOF",
@@ -31759,6 +31832,118 @@
   },
   {
     "type": "NOF",
+    "address": "6322 SOVEREIGN ST",
+    "owner": "6322 LIMITED PARTNERSHIP",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20261000122",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78229",
+    "school_dist": "",
+    "date_filed": "8/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-08-26T14:12:34Z",
+    "flags": [
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 8,
+    "tenure_score_bonus": 5,
+    "prop_id": "538374.0",
+    "deed_date": "2/15/2018",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 3650000
+      },
+      {
+        "year": "2025",
+        "appraised": 3650000
+      },
+      {
+        "year": "2024",
+        "appraised": 4050000
+      }
+    ],
+    "appr_trend": "flat",
+    "appraised_value": "3650000.0",
+    "annual_taxes": "",
+    "land_value": "1473270.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 40,
+    "on_market": true,
+    "on_market_status": "FOR_RENT",
+    "on_market_checked_at": "2026-08-26T16:18:48Z"
+  },
+  {
+    "type": "NOF",
+    "address": "6026 UPLAND VW",
+    "owner": "KELLY OLIVIA",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20260900348",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78244",
+    "school_dist": "",
+    "date_filed": "8/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-08-11T20:31:50Z",
+    "flags": [
+      "HAS SALE DATE",
+      "LONG HELD"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 10,
+    "tenure_score_bonus": 15,
+    "prop_id": "1075382.0",
+    "deed_date": "6/22/2016",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 225660
+      },
+      {
+        "year": "2025",
+        "appraised": 259060
+      },
+      {
+        "year": "2024",
+        "appraised": 261320
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "259060.0",
+    "annual_taxes": "",
+    "land_value": "46970.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 40
+  },
+  {
+    "type": "NOF",
     "address": "105 KIMBERLY DR",
     "owner": "BEANE GRACIE S",
     "mail_addr": "",
@@ -40208,63 +40393,6 @@
   },
   {
     "type": "NOF",
-    "address": "6322 SOVEREIGN ST",
-    "owner": "6322 LIMITED PARTNERSHIP",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20261000122",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78229",
-    "school_dist": "",
-    "date_filed": "8/2026",
-    "sale_date": "10/06/2026",
-    "run_ts": "2026-08-26T14:12:34Z",
-    "flags": [
-      "HAS SALE DATE"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "538374.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [
-      {
-        "year": "2026",
-        "appraised": 3650000
-      },
-      {
-        "year": "2025",
-        "appraised": 3650000
-      },
-      {
-        "year": "2024",
-        "appraised": 4050000
-      }
-    ],
-    "appr_trend": "flat",
-    "appraised_value": "3650000.0",
-    "annual_taxes": "",
-    "land_value": "1473270.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 40,
-    "on_market": true,
-    "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-26T16:18:48Z"
-  },
-  {
-    "type": "NOF",
     "address": "1809 W SOUTHCROSS BLVD",
     "owner": "PENNYSTONE INVESTMENTS LLC",
     "mail_addr": "",
@@ -43004,57 +43132,29 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 3,
     "tenure_score_bonus": 0,
     "prop_id": "620266.0",
-    "deed_date": "",
+    "deed_date": "2/17/2023",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 236340
+      },
+      {
+        "year": "2025",
+        "appraised": 253530
+      },
+      {
+        "year": "2024",
+        "appraised": 251710
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "253530.0",
     "annual_taxes": "",
     "land_value": "67280.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 40
-  },
-  {
-    "type": "NOF",
-    "address": "6026 UPLAND VW",
-    "owner": "KELLY OLIVIA",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20260900348",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78244",
-    "school_dist": "",
-    "date_filed": "8/2026",
-    "sale_date": "10/06/2026",
-    "run_ts": "2026-08-11T20:31:50Z",
-    "flags": [
-      "HAS SALE DATE"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "1075382.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "259060.0",
-    "annual_taxes": "",
-    "land_value": "46970.0",
     "stacked": false,
     "score": 7,
     "days_until_sale": 40
@@ -43086,13 +43186,26 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 0,
     "tenure_score_bonus": 0,
     "prop_id": "439020.0",
-    "deed_date": "",
+    "deed_date": "9/11/2025",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 88210
+      },
+      {
+        "year": "2025",
+        "appraised": 92900
+      },
+      {
+        "year": "2024",
+        "appraised": 96330
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "92900.0",
     "annual_taxes": "",
     "land_value": "46620.0",
