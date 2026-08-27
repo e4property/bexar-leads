@@ -1717,10 +1717,28 @@ def fetch_arv_homeharvest(records):
         s = str(val).strip()
         return None if s in ("", "nan", "<NA>", "None") else val
 
-    candidates = [
+    all_eligible = [
         r for r in records
         if r.get("address") and not r.get("arv_estimate")
     ]
+    # 2026-08-27: VBP leads were starving forever behind the NOF/TAX
+    # backlog -- confirmed live, 0 of 394 VBP leads had ever been checked
+    # despite this function covering them with no type filter, since
+    # candidates were taken in plain list order out of 1300+ records.
+    # But NOF/TAX have their own real backlog too (449 unchecked, some
+    # auction-driven) -- fully displacing them to clear VBP would just
+    # trade one starved queue for another. Split the existing budget
+    # instead: up to half reserved for VBP (newest first, so a fresh
+    # weekly drop gets checked promptly), the rest fills from everyone
+    # else in original order. Realtor.com hard-blocks after ~27
+    # consecutive requests per run (see ON_MARKET_REFRESH_LIMIT note
+    # below) -- this doesn't raise the total request count, just
+    # reallocates the same capped budget.
+    vbp_pool = [r for r in all_eligible if r.get("type") == "VBP"]
+    vbp_pool.sort(key=lambda r: r.get("date_filed", ""), reverse=True)
+    other_pool = [r for r in all_eligible if r.get("type") != "VBP"]
+    vbp_share = min(len(vbp_pool), ARV_FETCH_LIMIT // 2)
+    candidates = vbp_pool[:vbp_share] + other_pool[:ARV_FETCH_LIMIT - vbp_share]
     candidates = candidates[:ARV_FETCH_LIMIT]
 
     if not candidates:
