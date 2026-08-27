@@ -1277,7 +1277,40 @@ if(ls.ghl_pushed)ev.push({dot:'ok',text:`<strong>Pushed to GHL/Jarvis</strong>`,
 if(ls.dispo&&ls.dispo!=='new')ev.push({dot:'warn',text:`Dispo → <strong>${ls.dispo}</strong>`,time:''});
 document.getElementById('timeline').innerHTML=ev.reverse().map(e=>`<div class="tl-item"><div class="tl-dot ${e.dot}"></div><div><div class="tl-content">${e.text}</div><div class="tl-time">${e.time}</div></div></div>`).join('')||'<div style="color:var(--dim);font-size:11px;font-family:DM Mono,monospace">No activity yet</div>';}
 
-async function writeBackToRepo(doc_number,updates){if(!S.ghToken)return;try{const repoPath='dashboard/records.json';const apiBase=`https://api.github.com/repos/${GH_REPO}/contents/${repoPath}`;const getRes=await fetch(apiBase,{headers:{'Authorization':'Bearer '+S.ghToken,'Accept':'application/vnd.github+json'}});if(!getRes.ok)return;const fileData=await getRes.json();const sha=fileData.sha;const currentJson=JSON.parse(atob(fileData.content.replace(/\n/g,'')));let changed=false;for(const rec of currentJson){if(rec.doc_number===doc_number){Object.assign(rec,updates);changed=true;break;}}if(!changed)return;const newContent=btoa(unescape(encodeURIComponent(JSON.stringify(currentJson))));await fetch(apiBase,{method:'PUT',headers:{'Authorization':'Bearer '+S.ghToken,'Accept':'application/vnd.github+json','Content-Type':'application/json'},body:JSON.stringify({message:`dash: update lead ${doc_number}`,content:newContent,sha:sha})});}catch(e){console.warn('writeBackToRepo:',e);}}
+async function writeBackToRepo(doc_number,updates,attempt=1){
+  // v2 (2026-08-27): PUT had no conflict handling -- two writes close
+  // together (GET sha, then PUT) race, GitHub 409s the loser, and the
+  // old code never checked the PUT response. The GHL contact still gets
+  // created fine (separate API call in pushGHL), but ghl_pushed silently
+  // never persists to records.json -- lead stays looking unworked forever
+  // in the dashboard (never dulls) even though it's live in Jarvis.
+  // Confirmed live: 179 Bexar/Nueces/Guadalupe leads already in Jarvis but
+  // flagged unpushed locally. Retry with a fresh sha up to 5x before
+  // giving up.
+  if(!S.ghToken)return;
+  try{
+    const repoPath='dashboard/records.json';
+    const apiBase=`https://api.github.com/repos/${GH_REPO}/contents/${repoPath}`;
+    const getRes=await fetch(apiBase,{headers:{'Authorization':'Bearer '+S.ghToken,'Accept':'application/vnd.github+json'}});
+    if(!getRes.ok)return;
+    const fileData=await getRes.json();
+    const sha=fileData.sha;
+    const currentJson=JSON.parse(atob(fileData.content.replace(/\n/g,'')));
+    let changed=false;
+    for(const rec of currentJson){if(rec.doc_number===doc_number){Object.assign(rec,updates);changed=true;break;}}
+    if(!changed)return;
+    const newContent=btoa(unescape(encodeURIComponent(JSON.stringify(currentJson))));
+    const putRes=await fetch(apiBase,{method:'PUT',headers:{'Authorization':'Bearer '+S.ghToken,'Accept':'application/vnd.github+json','Content-Type':'application/json'},body:JSON.stringify({message:`dash: update lead ${doc_number}`,content:newContent,sha:sha})});
+    if(!putRes.ok){
+      if(attempt<5){await new Promise(r=>setTimeout(r,300*attempt));return writeBackToRepo(doc_number,updates,attempt+1);}
+      console.warn(`writeBackToRepo: gave up after ${attempt} attempts for ${doc_number} (HTTP ${putRes.status})`);
+      toast('⚠ Sync failed for this lead after retries — it may show unworked until next refresh',true);
+    }
+  }catch(e){
+    if(attempt<5){await new Promise(r=>setTimeout(r,300*attempt));return writeBackToRepo(doc_number,updates,attempt+1);}
+    console.warn('writeBackToRepo:',e);
+  }
+}
 
 async function savePhone(){
   // ForeWarn budget is a counter only — no hard stop
@@ -1503,6 +1536,35 @@ async function pushGHL(lead,phone){
       toast(`Blocked push — this lead is already on market${lead.on_market_status?' ('+lead.on_market_status+')':''}. Not sending SMS to on-market leads right now.`,true);
       return null;
     }
+    // 2026-08-27: block push if this ADDRESS already has a Jarvis contact,
+    // even under a different doc_number/lead entirely -- root cause of a
+    // confirmed live incident (179 Bexar/Nueces/Guadalupe leads already
+    // pushed to Jarvis but not flagged locally, some already worked,
+    // re-sent anyway). GHL's own create-contact call doesn't dedupe on
+    // address, only sometimes on phone -- a freshly ForeWarn'd number for
+    // an already-contacted property sails right through as a "new"
+    // contact. GHL has no address-filter search API (confirmed: /contacts/
+    // ?query= only matches name/email/phone, POST /contacts/search
+    // rejects address1 as a field) -- so this queries by last name (the
+    // best available proxy) and confirms with an exact normalized-address
+    // match client-side, the same approach used to build the pre-push
+    // leads.csv backstop the same day.
+    try{
+      const normAddr=s=>(s||'').toUpperCase().replace(/[.,#]/g,' ').replace(/\s+/g,' ').trim().replace(/\b(APT|UNIT|STE|SUITE)\b.*$/,'').trim();
+      const targetAddr=normAddr(addrTitle);
+      if(targetAddr&&S.ghlApiKey){
+        const qName=encodeURIComponent(last||first);
+        const dupRes=await fetch(`https://services.leadconnectorhq.com/contacts/?locationId=${S.ghlLocationId}&limit=20&query=${qName}`,{headers:{'Authorization':'Bearer '+S.ghlApiKey,'Version':'2021-07-28','Accept':'application/json'}});
+        if(dupRes.ok){
+          const dupData=await dupRes.json();
+          const dup=(dupData.contacts||[]).find(c=>normAddr(c.address1)===targetAddr);
+          if(dup){
+            toast(`Blocked push — ${targetAddr} already in Jarvis as "${dup.contactName||dup.firstName+' '+dup.lastName}" (added ${dup.dateAdded?new Date(dup.dateAdded).toLocaleDateString():'—'}). Open that contact instead of creating a duplicate.`,true);
+            return null;
+          }
+        }
+      }
+    }catch(e){/* dedupe check is best-effort -- a network hiccup here shouldn't block a legitimately new lead */}
     const vbp=isVBP(lead),stacked=isStacked(lead),ce=isCEOnly(lead),lp=isLP(lead),appt=isAppt(lead);const ghlTag=getGHLTag(lead);
   // v4.2 fix: APPT leads must NOT get bexar_lead tag — it triggers wrong workflow
   const baseTags=appt?['forewarn_searched']:['bexar_lead','forewarn_searched'];
