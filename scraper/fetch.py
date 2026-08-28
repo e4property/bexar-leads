@@ -374,6 +374,7 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
     page       = 0
     offset     = 0
     zero_new_streak = 0
+    prev_page_was_full = False  # 2026-08-28: safeguard, see "No rows" break below
 
     while True:
         url = search_url.replace("offset=0", f"offset={offset}")
@@ -462,8 +463,33 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
                             pass
 
         if not rows:
+            if prev_page_was_full:
+                # 2026-08-28: this exact signature -- a full 50-row page
+                # immediately followed by "no rows" on the very next page --
+                # is what silently dropped 34 real leads in one week before
+                # anyone noticed. A full page strongly implies more data
+                # exists; stopping right after it is suspicious, not a
+                # normal end-of-results case (which trails off gradually).
+                # Surface this loudly instead of a routine one-line log so
+                # it can't hide in normal output again.
+                warn_msg = (
+                    f"SUSPICIOUS STOP: page {page} was a full 50-row page, "
+                    f"but page {page+1} for [{start_str}-{end_str}] found "
+                    f"nothing. This is the exact pattern that silently "
+                    f"dropped real leads on 2026-08-27 -- verify manually "
+                    f"against the live site before trusting this run."
+                )
+                log.warning(f"    {warn_msg}")
+                try:
+                    summary_path = os.environ.get("GITHUB_STEP_SUMMARY")
+                    if summary_path:
+                        with open(summary_path, "a", encoding="utf-8") as f:
+                            f.write(f"\n⚠️ **{warn_msg}**\n")
+                except Exception:
+                    pass
             log.info("    No rows — stopping chunk")
             break
+        prev_page_was_full = len(rows) >= 48
 
         page_new   = 0
         page_old   = 0
