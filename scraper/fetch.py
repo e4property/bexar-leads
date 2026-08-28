@@ -346,16 +346,28 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
     start_str = start_dt.strftime("%Y%m%d")
     end_str   = end_dt.strftime("%Y%m%d")
 
+    # 2026-08-28 v3: switched from instrumentDateRange to recordedDateRange.
+    # instrumentDateRange started returning inconsistent/incomplete results
+    # for this department -- confirmed live across 3 consecutive scrape
+    # runs, the exact same 14 doc numbers (a contiguous, oldest-in-window
+    # cluster) never surfaced no matter how the "no rows" detection was
+    # hardened, and a clean UI-driven reproduction (not a direct-nav cold
+    # load) showed 0 results for instrumentDateRange on this exact window
+    # while recordedDateRange correctly returned and fully paginated
+    # through all 63 real records for the same week. Also added
+    # searchType=advancedSearch, present on every URL the site's own UI
+    # generates but missing from this scraper's construction.
     search_url = (
         f"{PUBLICSEARCH_BASE}/results"
         f"?department=FC"
-        f"&instrumentDateRange={start_str}%2C{end_str}"
+        f"&recordedDateRange={start_str}%2C{end_str}"
         f"&keywordSearch=false"
         f"&limit=50"
         f"&offset=0"
         f"&sort=desc"
         f"&sortBy=recordedDate"
         f"&sortDir=desc"
+        f"&searchType=advancedSearch"
     )
 
     records    = []
