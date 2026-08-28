@@ -425,6 +425,30 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
                 except Exception:
                     pass
 
+        # 2026-08-28 v2: the wait condition above can resolve true on a
+        # still-rendering page (an early skeleton/placeholder satisfies one
+        # of the OR branches) before the real <tr> rows have finished
+        # painting -- confirmed live, this let a genuine-looking "no rows"
+        # false-stop still slip through intermittently even after the
+        # substring-match fix, converging only after several re-runs rather
+        # than failing outright. Only trust "no rows" immediately when a
+        # real No-Results heading is actually present; otherwise give the
+        # page one more real chance to finish rendering before concluding
+        # the chunk is exhausted.
+        if not rows:
+            confirmed_empty = driver.find_elements(By.XPATH, "//h1[contains(text(),'No Results')]")
+            if not confirmed_empty:
+                time.sleep(3)
+                rows = driver.find_elements(By.CSS_SELECTOR, "table tbody tr")
+                if not rows:
+                    col3s = driver.find_elements(By.CSS_SELECTOR, "td.col-3")
+                    rows  = []
+                    for cell in col3s:
+                        try:
+                            rows.append(cell.find_element(By.XPATH, ".."))
+                        except Exception:
+                            pass
+
         if not rows:
             log.info("    No rows — stopping chunk")
             break
