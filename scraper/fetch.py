@@ -373,11 +373,28 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
                 driver.set_page_load_timeout(PAGE_TIMEOUT)
                 driver.get(url)
                 try:
+                    # 2026-08-28: the old check used `"no results" in
+                    # d.page_source.lower()` -- a substring match against the
+                    # ENTIRE raw page source, not a scoped element check. The
+                    # page's static/hidden markup (help text, a collapsed
+                    # "No Results" container that's always in the DOM, just
+                    # CSS-hidden until needed) contains that phrase on every
+                    # page load, results or not -- so this condition was true
+                    # from the instant the page started loading, before the
+                    # real <tr> rows ever rendered. WebDriverWait returned
+                    # immediately, the code checked for rows before they
+                    # existed, found none, and wrongly concluded "no more
+                    # results" -- confirmed live: page 2 of the current-week
+                    # chunk falsely stopped this way, silently dropping 34 of
+                    # 53 real NOF filings recorded 8/27/2026. Same fix as the
+                    # other functions in this file: only trust a genuine,
+                    # properly-scoped "No Results" <h1>, not a raw substring
+                    # match against the whole page.
                     WebDriverWait(driver, PAGE_TIMEOUT).until(
                         lambda d: (
                             d.find_elements(By.CSS_SELECTOR, "table tbody tr") or
                             d.find_elements(By.CSS_SELECTOR, "td.col-3") or
-                            "no results" in d.page_source.lower()
+                            d.find_elements(By.XPATH, "//h1[contains(text(),'No Results')]")
                         )
                     )
                     time.sleep(1.5)
