@@ -46,6 +46,16 @@ jobs:
           CLERK_PASSWORD: "${{ secrets.CLERK_PASSWORD }}"
         run: python scraper/fetch.py
 
+      # 2026-08-28: this script existed but was never actually wired into
+      # anything -- its own docstring said "run manually via
+      # workflow_dispatch," but it was never dispatched either. 520 dead,
+      # already-past-auction leads piled up silently over time and only
+      # became visible all at once when the scraper backlog-recovery fix
+      # (recordedDateRange switch) surfaced them as "new" leads. Runs now
+      # every scrape so this can't recur.
+      - name: Purge past-auction leads
+        run: python scraper/purge_past_auctions.py
+
       - name: Commit records
         run: |
           git config user.name "github-actions"

@@ -1,7 +1,11 @@
 """
 purge_past_auctions.py
 Removes leads where sale_date (auction date) has already passed.
-Run manually via GitHub Actions workflow_dispatch — NOT part of regular scrape.
+
+2026-08-28: now runs automatically as its own step in scrape.yml, every
+scrape. Previously this was manual-only and, in practice, never actually
+run -- 520 dead leads piled up silently before the backlog-recovery fix
+surfaced them all at once as "new."
 
 Also removes:
 - NOF/TAX leads with no sale_date older than 180 days (auction passed unknown)
