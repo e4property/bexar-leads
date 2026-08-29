@@ -117,10 +117,23 @@ def scrape_probate(known_docs, get_driver_fn, run_timestamp):
             if m:
                 log.info(f"Probate results: {m.group(0)}")
 
-            # Check for no results
-            if "no results" in src.lower() or "0 results" in src.lower():
-                log.info(f"Probate offset={offset} | no results — stopping")
-                break
+            # 2026-08-28: `"no results" in src.lower()` is a substring match
+            # against the ENTIRE raw page source, not a scoped element check
+            # -- confirmed the identical bug live in fetch.py's own FC-dept
+            # scraper, silently dropping real leads while reporting success.
+            # Only trust "no results" if there's truly no data row AND a
+            # genuine No-Results heading is present.
+            rows_check = re.findall(r"<tr[^>]*>(.*?)</tr>", src, re.DOTALL | re.IGNORECASE)
+            data_rows_present = any(
+                not re.search(r"<th|thead|DOC.TYPE|RECORDED|GRANTOR|GRANTEE", row, re.IGNORECASE)
+                for row in rows_check
+            )
+            if not data_rows_present:
+                if driver.find_elements(By.XPATH, "//h1[contains(text(),'No Results')]"):
+                    log.info(f"Probate offset={offset} | no results — stopping")
+                    break
+                time.sleep(3)
+                src = driver.page_source
 
             page_records = []
 
