@@ -55682,7 +55682,10 @@
     "days_until_sale": null,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-29T18:28:56Z"
+    "on_market_checked_at": "2026-08-29T18:28:56Z",
+    "arv_estimate": 866000,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-08-29T22:37:54Z"
   },
   {
     "doc_number": "VBP-103-MADISON-78205",
@@ -55734,7 +55737,10 @@
     "days_until_sale": null,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-29T18:29:00Z"
+    "on_market_checked_at": "2026-08-29T18:29:00Z",
+    "arv_estimate": 56110,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-08-29T22:37:59Z"
   },
   {
     "doc_number": "VBP-1246-LEAL-ST-78207",
@@ -56091,7 +56097,10 @@
     "days_until_sale": null,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-29T18:29:12Z"
+    "on_market_checked_at": "2026-08-29T18:29:12Z",
+    "arv_estimate": 180400,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-08-29T22:38:03Z"
   },
   {
     "doc_number": "VBP-210-N-MESQUITE-LN-78202",
@@ -73224,7 +73233,10 @@
     "days_until_sale": null,
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-08-29T18:29:26Z"
+    "on_market_checked_at": "2026-08-29T18:29:26Z",
+    "arv_estimate": 334980,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-08-29T22:38:07Z"
   },
   {
     "doc_number": "VBP-922-S-LAREDO-78204",
@@ -73276,7 +73288,10 @@
     "days_until_sale": null,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-29T18:29:32Z"
+    "on_market_checked_at": "2026-08-29T18:29:32Z",
+    "arv_estimate": 154000,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-08-29T22:38:12Z"
   },
   {
     "doc_number": "VBP-1102-N-ELMENDORF-ST-78207",
@@ -76359,7 +76374,10 @@
     "dash_searched_at": "2026-02-18T20:06:40.994Z",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-29T18:29:36Z"
+    "on_market_checked_at": "2026-08-29T18:29:36Z",
+    "arv_estimate": 441630,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-08-29T22:38:16Z"
   },
   {
     "doc_number": "VBP-509-E-CARSON-ST-78208",
@@ -76411,7 +76429,10 @@
     "days_until_sale": null,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-29T18:29:41Z"
+    "on_market_checked_at": "2026-08-29T18:29:41Z",
+    "arv_estimate": 236890,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-08-29T22:38:21Z"
   },
   {
     "doc_number": "VBP-719-E-CARSON-78208",
@@ -76463,7 +76484,10 @@
     "days_until_sale": null,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-29T18:29:45Z"
+    "on_market_checked_at": "2026-08-29T18:29:45Z",
+    "arv_estimate": 517600,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-08-29T22:38:25Z"
   },
   {
     "doc_number": "VBP-3534-AVENUE-B-78209",
@@ -78217,7 +78241,10 @@
     "trustee": "",
     "annual_taxes": "",
     "ps_doc_id": "",
-    "days_until_sale": null
+    "days_until_sale": null,
+    "arv_estimate": 196660,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-08-29T22:38:30Z"
   },
   {
     "doc_number": "VBP-352-MCKAY-AVE-78204",
@@ -78270,7 +78297,10 @@
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-02-18T20:07:25.546Z",
     "ghl_id": "w8eu1WKmlzk7fYKOuMYK",
-    "dash_searched_at": "2026-02-18T20:07:25.546Z"
+    "dash_searched_at": "2026-02-18T20:07:25.546Z",
+    "arv_estimate": 90000,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-08-29T22:38:34Z"
   },
   {
     "doc_number": "VBP-118-LAZA-ST-78207",
@@ -78327,7 +78357,10 @@
     "trustee": "",
     "annual_taxes": "",
     "ps_doc_id": "",
-    "days_until_sale": null
+    "days_until_sale": null,
+    "arv_estimate": 65920,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-08-29T22:38:39Z"
   },
   {
     "doc_number": "VBP-1222-W-POPLAR-ST-78207",
@@ -78376,7 +78409,10 @@
     "trustee": "",
     "annual_taxes": "",
     "ps_doc_id": "",
-    "days_until_sale": null
+    "days_until_sale": null,
+    "arv_estimate": 164000,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-08-29T22:38:43Z"
   },
   {
     "doc_number": "VBP-1617-W-COMMERCE-ST-78207",
@@ -78433,7 +78469,10 @@
     "trustee": "",
     "annual_taxes": "",
     "ps_doc_id": "",
-    "days_until_sale": null
+    "days_until_sale": null,
+    "arv_estimate": 200670,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-08-29T22:38:48Z"
   },
   {
     "doc_number": "VBP-1803-EL-PASO-ST-78207",
@@ -78482,7 +78521,10 @@
     "trustee": "",
     "annual_taxes": "",
     "ps_doc_id": "",
-    "days_until_sale": null
+    "days_until_sale": null,
+    "arv_estimate": 387430,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-08-29T22:38:52Z"
   },
   {
     "doc_number": "VBP-215-S-MINTER-ST-78207",
@@ -78547,7 +78589,10 @@
     "trustee": "",
     "annual_taxes": "",
     "ps_doc_id": "",
-    "days_until_sale": null
+    "days_until_sale": null,
+    "arv_estimate": 137330,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-08-29T22:38:56Z"
   },
   {
     "doc_number": "VBP-2218-POTOSI-ST-78207",
