@@ -46147,7 +46147,10 @@
     "arv_fetched_at": "2026-08-21T14:49:34Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 37
+    "days_until_sale": 37,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-29T01:13:57Z"
   },
   {
     "type": "NOF",
@@ -46206,7 +46209,10 @@
     "arv_fetched_at": "2026-08-21T14:49:38Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 37
+    "days_until_sale": 37,
+    "on_market": true,
+    "on_market_status": "FOR_SALE",
+    "on_market_checked_at": "2026-08-29T01:13:59Z"
   },
   {
     "type": "NOF",
@@ -46268,7 +46274,10 @@
     "days_until_sale": 37,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-21T17:22:57.680Z",
-    "ghl_id": "NkUiYbxIKdNzZumHsDfB"
+    "ghl_id": "NkUiYbxIKdNzZumHsDfB",
+    "on_market": true,
+    "on_market_status": "PENDING",
+    "on_market_checked_at": "2026-08-29T01:14:00Z"
   },
   {
     "type": "NOF",
@@ -46329,7 +46338,10 @@
     "days_until_sale": 37,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-21T17:23:33.986Z",
-    "ghl_id": "Sy4tPRXonrxK2e1Nf79K"
+    "ghl_id": "Sy4tPRXonrxK2e1Nf79K",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-29T01:14:02Z"
   },
   {
     "type": "NOF",
@@ -46390,7 +46402,10 @@
     "arv_fetched_at": "2026-08-21T15:34:51Z",
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-21T17:25:00.206Z",
-    "ghl_id": "7j3orJvPXbGTkhfa6aQm"
+    "ghl_id": "7j3orJvPXbGTkhfa6aQm",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-29T01:14:04Z"
   },
   {
     "type": "NOF",
@@ -46451,7 +46466,10 @@
     "arv_fetched_at": "2026-08-21T15:34:52Z",
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-21T17:29:21.557Z",
-    "ghl_id": "lOQU76b7sjVP3yIRzDkE"
+    "ghl_id": "lOQU76b7sjVP3yIRzDkE",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-29T01:14:05Z"
   },
   {
     "type": "NOF",
@@ -46512,7 +46530,10 @@
     "arv_fetched_at": "2026-08-21T15:34:54Z",
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-21T17:58:42.965Z",
-    "ghl_id": "rHtzBMmokqjnVsQjY86x"
+    "ghl_id": "rHtzBMmokqjnVsQjY86x",
+    "on_market": true,
+    "on_market_status": "FOR_SALE",
+    "on_market_checked_at": "2026-08-29T01:14:06Z"
   },
   {
     "type": "NOF",
@@ -46574,7 +46595,10 @@
     "arv_fetched_at": "2026-08-21T15:35:06Z",
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-06-29T22:17:38.819Z",
-    "ghl_id": "PfglTNfLGqWjMz5qTG6O"
+    "ghl_id": "PfglTNfLGqWjMz5qTG6O",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-29T01:14:08Z"
   },
   {
     "type": "NOF",
@@ -46636,7 +46660,10 @@
     "arv_fetched_at": "2026-08-21T15:35:14Z",
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-21T18:00:27.969Z",
-    "ghl_id": "Kdmfus4suGA13gGeg8gg"
+    "ghl_id": "Kdmfus4suGA13gGeg8gg",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-29T01:14:09Z"
   },
   {
     "type": "NOF",
@@ -46697,7 +46724,10 @@
     "days_until_sale": 37,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-21T18:04:33.661Z",
-    "ghl_id": "7vBUeVX2IyUOlEJbuhSu"
+    "ghl_id": "7vBUeVX2IyUOlEJbuhSu",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-29T01:14:11Z"
   },
   {
     "type": "NOF",
@@ -46809,7 +46839,10 @@
     "arv_fetched_at": "2026-08-13T16:05:05Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 37
+    "days_until_sale": 37,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-29T01:14:13Z"
   },
   {
     "type": "NOF",
@@ -46868,7 +46901,10 @@
     "arv_fetched_at": "2026-08-13T16:05:09Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 37
+    "days_until_sale": 37,
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-08-29T01:14:14Z"
   },
   {
     "type": "NOF",
@@ -46927,7 +46963,10 @@
     "arv_fetched_at": "2026-08-13T16:05:10Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 37
+    "days_until_sale": 37,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-29T01:14:16Z"
   },
   {
     "type": "NOF",
@@ -46985,7 +47024,10 @@
     "arv_fetched_at": "2026-08-13T16:05:12Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 37
+    "days_until_sale": 37,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-29T01:14:17Z"
   },
   {
     "type": "NOF",
@@ -47043,7 +47085,10 @@
     "arv_fetched_at": "2026-08-13T16:05:18Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 37
+    "days_until_sale": 37,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-29T01:14:19Z"
   },
   {
     "type": "NOF",
@@ -53450,6 +53495,78 @@
     "days_until_sale": 13123
   },
   {
+    "doc_number": "20260166579",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Perez Noel Chapa",
+    "address": "604 RAYBURN DR",
+    "city": "SAN ANTONIO",
+    "zip": "78210",
+    "date_filed": "8/2026",
+    "month": "8",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-08-29T00:42:59Z",
+    "score": 6,
+    "flags": [],
+    "absentee": false,
+    "duplicate": false,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "234580.0",
+    "annual_taxes": "",
+    "mail_addr": "",
+    "prop_id": "144631.0",
+    "land_value": "",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false,
+    "appt_converted": false,
+    "appt_stale": false
+  },
+  {
+    "doc_number": "20260166465",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Guzman Marlene",
+    "address": "205  DEL VALLE ALLEY",
+    "city": "SAN ANTONIO",
+    "zip": "77007",
+    "date_filed": "8/2026",
+    "month": "8",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-08-29T00:42:59Z",
+    "score": 6,
+    "flags": [],
+    "absentee": false,
+    "duplicate": false,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "231130.0",
+    "annual_taxes": "",
+    "mail_addr": "",
+    "prop_id": "1088370.0",
+    "land_value": "",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false,
+    "appt_converted": false,
+    "appt_stale": false
+  },
+  {
     "doc_number": "20260165636",
     "ps_doc_id": "",
     "type": "APPT",
@@ -54992,7 +55109,7 @@
     "days_until_sale": null,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-29T00:23:25Z"
+    "on_market_checked_at": "2026-08-29T01:12:23Z"
   },
   {
     "doc_number": "VBP-103-MADISON-78205",
@@ -55044,7 +55161,7 @@
     "days_until_sale": null,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-29T00:23:29Z"
+    "on_market_checked_at": "2026-08-29T01:12:26Z"
   },
   {
     "doc_number": "VBP-1246-LEAL-ST-78207",
@@ -55397,7 +55514,7 @@
     "days_until_sale": null,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-29T00:23:44Z"
+    "on_market_checked_at": "2026-08-29T01:12:38Z"
   },
   {
     "doc_number": "VBP-210-N-MESQUITE-LN-78202",
@@ -72134,7 +72251,7 @@
     "days_until_sale": null,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-29T00:24:00Z"
+    "on_market_checked_at": "2026-08-29T01:12:51Z"
   },
   {
     "doc_number": "VBP-221-GREENLAWN-DR-78201",
@@ -72363,7 +72480,7 @@
     "days_until_sale": null,
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-08-29T00:24:02Z"
+    "on_market_checked_at": "2026-08-29T01:12:52Z"
   },
   {
     "doc_number": "VBP-922-S-LAREDO-78204",
@@ -72415,7 +72532,7 @@
     "days_until_sale": null,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-29T00:24:09Z"
+    "on_market_checked_at": "2026-08-29T01:13:00Z"
   },
   {
     "doc_number": "VBP-1102-N-ELMENDORF-ST-78207",
@@ -75467,7 +75584,7 @@
     "ghl_id": "VEVh3XmR0LpgwAFQXvFj",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-29T00:24:14Z"
+    "on_market_checked_at": "2026-08-29T01:13:05Z"
   },
   {
     "doc_number": "VBP-509-E-CARSON-ST-78208",
@@ -75519,7 +75636,7 @@
     "days_until_sale": null,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-29T00:24:19Z"
+    "on_market_checked_at": "2026-08-29T01:13:09Z"
   },
   {
     "doc_number": "VBP-719-E-CARSON-78208",
@@ -75571,7 +75688,7 @@
     "days_until_sale": null,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-29T00:24:23Z"
+    "on_market_checked_at": "2026-08-29T01:13:13Z"
   },
   {
     "doc_number": "VBP-3534-AVENUE-B-78209",
@@ -76265,7 +76382,14 @@
     "trustee": "",
     "annual_taxes": "",
     "ps_doc_id": "",
-    "days_until_sale": null
+    "days_until_sale": null,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-29T01:13:15Z",
+    "arv_estimate": 69000,
+    "arv_status": "SOLD",
+    "arv_sqft": 480,
+    "arv_fetched_at": "2026-08-29T01:13:15Z"
   },
   {
     "doc_number": "VBP-209-E-MALONE-AVE-78214",
@@ -76322,7 +76446,14 @@
     "trustee": "",
     "annual_taxes": "",
     "ps_doc_id": "",
-    "days_until_sale": null
+    "days_until_sale": null,
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-08-29T01:13:16Z",
+    "arv_estimate": 140800,
+    "arv_status": "OFF_MARKET",
+    "arv_sqft": 872,
+    "arv_fetched_at": "2026-08-29T01:13:16Z"
   },
   {
     "doc_number": "VBP-316-E-YOUNG-78214",
@@ -76371,7 +76502,14 @@
     "trustee": "",
     "annual_taxes": "",
     "ps_doc_id": "",
-    "days_until_sale": null
+    "days_until_sale": null,
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-08-29T01:13:18Z",
+    "arv_estimate": 106100,
+    "arv_status": "OFF_MARKET",
+    "arv_sqft": 768,
+    "arv_fetched_at": "2026-08-29T01:13:18Z"
   },
   {
     "doc_number": "VBP-325-E-HARDING-BLVD-78214",
@@ -76427,7 +76565,14 @@
     "trustee": "",
     "annual_taxes": "",
     "ps_doc_id": "",
-    "days_until_sale": null
+    "days_until_sale": null,
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-08-29T01:13:19Z",
+    "arv_estimate": 241000,
+    "arv_status": "OFF_MARKET",
+    "arv_sqft": 2182,
+    "arv_fetched_at": "2026-08-29T01:13:19Z"
   },
   {
     "doc_number": "VBP-430-E-HUFF-AVE-78214",
@@ -76476,7 +76621,14 @@
     "trustee": "",
     "annual_taxes": "",
     "ps_doc_id": "",
-    "days_until_sale": null
+    "days_until_sale": null,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-29T01:13:21Z",
+    "arv_estimate": 111155,
+    "arv_status": "SOLD",
+    "arv_sqft": 844,
+    "arv_fetched_at": "2026-08-29T01:13:21Z"
   },
   {
     "doc_number": "VBP-315-E-VILLARET-BLVD-78221",
@@ -76528,7 +76680,14 @@
     "days_until_sale": null,
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-02-18T20:07:05.821Z",
-    "ghl_id": "83jUDmYIk9kr6T3Iz4zH"
+    "ghl_id": "83jUDmYIk9kr6T3Iz4zH",
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-08-29T01:13:24Z",
+    "arv_estimate": 166200,
+    "arv_status": "OFF_MARKET",
+    "arv_sqft": 1216,
+    "arv_fetched_at": "2026-08-29T01:13:24Z"
   },
   {
     "doc_number": "VBP-747-MCCAULEY-BLVD-78221",
