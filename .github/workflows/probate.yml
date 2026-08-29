@@ -1,7 +1,15 @@
 name: Probate Scrape and Deploy
+# 2026-08-29: schedule disabled -- confirmed via diagnostic audit that
+# department=PR isn't a valid department on this PublicSearch instance for
+# Bexar (it doesn't even appear as a selectable option in the site's own
+# Advanced Search UI, and every live request against it times out without
+# resolving to either real results or a genuine "No Results" state). Zero
+# probate records have ever been captured, ever, across the life of this
+# scraper -- it's been running daily for nothing. Left as workflow_dispatch
+# only so it can be re-enabled once/if a real data source for Bexar probate
+# records is found (likely a separate Probate Court system, not this
+# County Clerk recording portal).
 on:
-  schedule:
-    - cron: '0 11 * * *'   # 6am CDT (11:00 UTC) daily
   workflow_dispatch:
 
 permissions:
