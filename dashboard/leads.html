@@ -1279,16 +1279,24 @@ if(ls.ghl_pushed)ev.push({dot:'ok',text:`<strong>Pushed to GHL/Jarvis</strong>`,
 if(ls.dispo&&ls.dispo!=='new')ev.push({dot:'warn',text:`Dispo → <strong>${ls.dispo}</strong>`,time:''});
 document.getElementById('timeline').innerHTML=ev.reverse().map(e=>`<div class="tl-item"><div class="tl-dot ${e.dot}"></div><div><div class="tl-content">${e.text}</div><div class="tl-time">${e.time}</div></div></div>`).join('')||'<div style="color:var(--dim);font-size:11px;font-family:DM Mono,monospace">No activity yet</div>';}
 
-async function writeBackToRepo(doc_number,updates,attempt=1){
-  // v2 (2026-08-27): PUT had no conflict handling -- two writes close
-  // together (GET sha, then PUT) race, GitHub 409s the loser, and the
-  // old code never checked the PUT response. The GHL contact still gets
-  // created fine (separate API call in pushGHL), but ghl_pushed silently
-  // never persists to records.json -- lead stays looking unworked forever
-  // in the dashboard (never dulls) even though it's live in Jarvis.
-  // Confirmed live: 179 Bexar/Nueces/Guadalupe leads already in Jarvis but
-  // flagged unpushed locally. Retry with a fresh sha up to 5x before
-  // giving up.
+// v3 (2026-08-31): the v2 retry-on-409 logic above still lost the race
+// under sustained fast lead-working -- savePhone() never awaited this
+// call, so working through leads faster than one GET+PUT round trip
+// (~½s) queued up many overlapping GET-sha/PUT cycles at once. 5 retries
+// with backoff wasn't enough headroom against that much concurrency.
+// Confirmed live: 108 Bexar + 3 Guadalupe leads pushed to Jarvis the
+// night of 2026-08-30 never got ghl_pushed/dash_phone persisted here,
+// even though the GHL contact creation itself always succeeded.
+// Root-caused rather than just retried harder: force every write through
+// a single-file promise chain so GET+PUT cycles for this file can never
+// overlap in the first place -- each save now waits for the previous
+// one to fully land before its own GET reads the sha.
+let _writeBackQueue=Promise.resolve();
+function writeBackToRepo(doc_number,updates){
+  _writeBackQueue=_writeBackQueue.then(()=>_writeBackToRepoImpl(doc_number,updates)).catch(e=>console.warn('writeBackToRepo (queued):',e));
+  return _writeBackQueue;
+}
+async function _writeBackToRepoImpl(doc_number,updates,attempt=1){
   if(!S.ghToken)return;
   try{
     const repoPath='dashboard/records.json';
@@ -1304,12 +1312,12 @@ async function writeBackToRepo(doc_number,updates,attempt=1){
     const newContent=btoa(unescape(encodeURIComponent(JSON.stringify(currentJson))));
     const putRes=await fetch(apiBase,{method:'PUT',headers:{'Authorization':'Bearer '+S.ghToken,'Accept':'application/vnd.github+json','Content-Type':'application/json'},body:JSON.stringify({message:`dash: update lead ${doc_number}`,content:newContent,sha:sha})});
     if(!putRes.ok){
-      if(attempt<5){await new Promise(r=>setTimeout(r,300*attempt));return writeBackToRepo(doc_number,updates,attempt+1);}
+      if(attempt<5){await new Promise(r=>setTimeout(r,300*attempt));return _writeBackToRepoImpl(doc_number,updates,attempt+1);}
       console.warn(`writeBackToRepo: gave up after ${attempt} attempts for ${doc_number} (HTTP ${putRes.status})`);
       toast('⚠ Sync failed for this lead after retries — it may show unworked until next refresh',true);
     }
   }catch(e){
-    if(attempt<5){await new Promise(r=>setTimeout(r,300*attempt));return writeBackToRepo(doc_number,updates,attempt+1);}
+    if(attempt<5){await new Promise(r=>setTimeout(r,300*attempt));return _writeBackToRepoImpl(doc_number,updates,attempt+1);}
     console.warn('writeBackToRepo:',e);
   }
 }
