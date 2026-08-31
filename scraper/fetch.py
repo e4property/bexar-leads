@@ -1813,11 +1813,22 @@ def fetch_arv_homeharvest(records):
     # consecutive requests per run (see ON_MARKET_REFRESH_LIMIT note
     # below) -- this doesn't raise the total request count, just
     # reallocates the same capped budget.
+    #
+    # 2026-08-31: APPT had the exact same starvation problem -- confirmed
+    # live, only 15/166 pre-foreclosure leads had ever gotten an ARV
+    # check despite the "no type filter" comment above, because APPT was
+    # lumped into other_pool and simply never survived the NOF/TAX queue
+    # in plain list order. Give APPT its own reserved share too, same
+    # reasoning as VBP: pre-fore is a live sales focus, it can't be stuck
+    # behind an 850+ record NOF/TAX backlog indefinitely.
     vbp_pool = [r for r in all_eligible if r.get("type") == "VBP"]
     vbp_pool.sort(key=lambda r: r.get("date_filed", ""), reverse=True)
-    other_pool = [r for r in all_eligible if r.get("type") != "VBP"]
-    vbp_share = min(len(vbp_pool), ARV_FETCH_LIMIT // 2)
-    candidates = vbp_pool[:vbp_share] + other_pool[:ARV_FETCH_LIMIT - vbp_share]
+    appt_pool = [r for r in all_eligible if r.get("type") == "APPT"]
+    other_pool = [r for r in all_eligible if r.get("type") not in ("VBP", "APPT")]
+    vbp_share = min(len(vbp_pool), ARV_FETCH_LIMIT // 3)
+    appt_share = min(len(appt_pool), ARV_FETCH_LIMIT // 3)
+    other_share = ARV_FETCH_LIMIT - vbp_share - appt_share
+    candidates = vbp_pool[:vbp_share] + appt_pool[:appt_share] + other_pool[:other_share]
     candidates = candidates[:ARV_FETCH_LIMIT]
 
     if not candidates:
