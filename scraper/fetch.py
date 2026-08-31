@@ -1755,6 +1755,16 @@ def fetch_deed_and_arv(records, driver):
         rec["tenure_score_bonus"] = tenure_bonus(tenure_yrs)
         rec["appr_history"]       = appr_history   # v28.35: roll value history
         rec["appr_trend"]         = appr_trend     # v28.35: "up"/"down"/"flat"
+        # 2026-08-31: appraised_value comes from a SEPARATE lookup
+        # (enrich_owners' ArcGIS TotVal, often the last-certified year) and
+        # was never reconciled with appr_history (this BCAD roll scrape,
+        # which correctly orders by year including the current not-yet-
+        # certified figure) -- confirmed live on 549 of 684 enriched
+        # records the dashboard's headline "APPRAISED" stat disagreed with
+        # its own year-by-year table below it. appr_history is the more
+        # current source when both exist -- always defer to it here.
+        if appr_history:
+            rec["appraised_value"] = str(appr_history[0]["appraised"])
         fetched += 1
 
         log.info(f"  → deed={deed_date or '—'} tenure={tenure_yrs}yr "
