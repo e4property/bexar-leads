@@ -1183,7 +1183,7 @@ function populateDetail(lead){
   const dName=stacked?(lead.owner||'Vacant+CE Property'):vbp?(lead.owner||'Vacant Property'):ce&&!lead.owner?(lead.ce_cat_label||'Code Enforcement'):lp&&!lead.owner?'Lis Pendens':appt&&!lead.owner?'Pre-Foreclosure':(lead.owner||'—');
   set('d-name',dName);
   document.getElementById('d-addr').innerHTML=`<span>${lead.address||''}${lead.city?', '+lead.city:''} TX ${lead.zip||''}</span>`+(lead.address?`<button class="act-btn" style="padding:2px 8px;font-size:11px" onclick="openStreetView()">🗺️ Street View</button>`:'');
-  document.getElementById('d-meta').textContent=ce?`Case: ${lead.ce_case_id||lead.doc_number} · Opened: ${fmtDate(lead.opened_date)}`:`Doc: ${lead.doc_number} · Filed: ${fmtDate(lead.date_filed)}${lead.sale_date?' · Sale: '+fmtDate(lead.sale_date):''}`;
+  document.getElementById('d-meta').textContent=ce?`Case: ${lead.ce_case_id||lead.doc_number} · Opened: ${fmtDate(lead.opened_date)}`:`Doc: ${lead.doc_number} · ${lead.date_recorded?'Recorded: '+fmtDate(lead.date_recorded):'Filed: '+fmtDate(lead.date_filed)}${lead.sale_date?' · Sale: '+fmtDate(lead.sale_date):''}`;
   const b=[];
   if(isNew)b.push(`<span class="badge b-new" style="padding:2px 9px;font-size:10px">✨ NEW</span>`);
   if(lead.on_market)b.push(`<span class="badge" style="background:var(--amber-bg);color:var(--amber-dk);border:1px solid var(--amber-mid);padding:2px 9px;font-size:10px">🏷️ ON MARKET${lead.on_market_status?' ('+lead.on_market_status+')':''}</span>`);
@@ -1264,7 +1264,7 @@ function populateDetail(lead){
   else if(ce){info=`Source: Code Enforcement\nViolation: ${lead.ce_reason||'—'}\nStatus: ${lead.ce_status||'—'}\nGHL Tag: bexar_ce`;}
   else if(lp){info=`Source: Lis Pendens (PublicSearch RP)\nAddress: ${lead.address||'—'}\nFiled: ${fmtDate(lead.date_filed)}\nGHL Tag: bexar_lp\nNote: LP filings often precede NOF by weeks/months.`;}
   else if(appt){info=`Source: Appointment of Substitute Trustee\nAddress: ${lead.address||'—'}\nFiled: ${fmtDate(lead.date_filed)}\nGHL Tag: bexar_prefore\nNote: Filed 2-4 weeks before NOF — earliest signal.`;}
-  else{info=`Type: ${lead.type} · Score: ${lead.score}${tenureBonus>0?' (+'+tenureBonus+'pts tenure)':''}\nFiled: ${fmtDate(lead.date_filed)}\nGHL Tag: bexar_lead\nAbsentee: ${lead.absentee?'Yes':'No'}\nMail: ${lead.mail_addr||'—'}`;if(lead.sale_date)info+=`\nSale Date: ${fmtDate(lead.sale_date)}`;if(appr)info+=`\nAppraised: $${appr.toLocaleString()}`;if(tenureYrs!=null)info+=`\nYrs Owned: ${tenureYrs} yrs (deed: ${fmtDate(lead.deed_date)})`;if(lastSale)info+=`\nLast Sale: ${lastSale}`;}
+  else{info=`Type: ${lead.type} · Score: ${lead.score}${tenureBonus>0?' (+'+tenureBonus+'pts tenure)':''}\n${lead.date_recorded?'Recorded: '+fmtDate(lead.date_recorded):'Filed: '+fmtDate(lead.date_filed)}\nGHL Tag: bexar_lead\nAbsentee: ${lead.absentee?'Yes':'No'}\nMail: ${lead.mail_addr||'—'}`;if(lead.sale_date)info+=`\nSale Date: ${fmtDate(lead.sale_date)}`;if(appr)info+=`\nAppraised: $${appr.toLocaleString()}`;if(tenureYrs!=null)info+=`\nYrs Owned: ${tenureYrs} yrs (deed: ${fmtDate(lead.deed_date)})`;if(lastSale)info+=`\nLast Sale: ${lastSale}`;}
   document.getElementById('lead-info-grid').textContent=info;
   updateStats();
 }
