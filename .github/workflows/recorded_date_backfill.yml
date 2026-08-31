@@ -1,0 +1,64 @@
+name: Recorded Date Backfill
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+    timeout-minutes: 40
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install selenium webdriver-manager --break-system-packages -q
+
+      - name: Run recorded date backfill
+        working-directory: scraper
+        env:
+          CLERK_EMAIL: ${{ secrets.CLERK_EMAIL }}
+          CLERK_PASSWORD: ${{ secrets.CLERK_PASSWORD }}
+        run: python recorded_date_backfill.py
+
+      - name: Commit results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add dashboard/records.json data/records.json
+          git diff --cached --quiet && echo "No changes" && exit 0
+          git commit -m "backfill: recorded dates for existing NOF/TAX leads"
+          for i in 1 2 3; do
+            git fetch origin main
+            git rebase -X ours origin/main || git rebase --abort
+            git push origin main && echo "Push succeeded" && break
+            echo "Push attempt $i failed, retrying..."
+            sleep 3
+          done
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dashboard
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
