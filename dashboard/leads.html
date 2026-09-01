@@ -1147,6 +1147,7 @@ function renderItem(lead,idx){
   else if(isAppt(lead))b.push(`<span class="badge" style="background:var(--red-bg);color:var(--red-dk);border:1px solid var(--red-mid)">⚡PRE</span>`);
   else{if(lead.absentee)b.push(`<span class="badge b-abs">ABS</span>`);b.push(lead.type==='TAX'?`<span class="badge b-tax">TAX</span>`:`<span class="badge b-nof">NOF</span>`);}
   if(isLongHeld(lead))b.push(`<span class="badge b-longheld">LONG HELD</span>`);
+  if(lead.source_verify_status==='mismatch')b.push(`<span class="badge" style="background:var(--red-bg);color:var(--red-dk);border:1px solid var(--red-mid)">⚠️ VERIFY ADDRESS</span>`);
   if(lead.on_market)b.push(`<span class="badge" style="background:var(--amber-bg);color:var(--amber-dk);border:1px solid var(--amber-mid)">🏷️ ON MARKET</span>`);
   if(ls.ghl_pushed)b.push(`<span class="badge b-ghl">GHL✓</span>`);
   if(ls.phone)b.push(`<span class="b-phone">📞</span>`);
@@ -1196,6 +1197,7 @@ function populateDetail(lead){
   else if(appt)b.push(`<span class="badge" style="background:var(--red-bg);color:var(--red-dk);border:1px solid var(--red-mid);padding:2px 9px;font-size:10px">⚡ Pre-Fore</span>`);
   else{if(lead.absentee)b.push(`<span class="badge b-abs" style="padding:2px 9px;font-size:10px">Absentee</span>`);b.push(lead.type==='TAX'?`<span class="badge b-tax" style="padding:2px 9px;font-size:10px">Tax Fore</span>`:`<span class="badge b-nof" style="padding:2px 9px;font-size:10px">NOF</span>`);}
   if(isLongHeld(lead))b.push(`<span class="badge b-longheld" style="padding:2px 9px;font-size:10px">🏠 Long Held ${lead.tenure_years}yr</span>`);
+  if(lead.source_verify_status==='mismatch')b.push(`<span class="badge" style="background:var(--red-bg);color:var(--red-dk);border:1px solid var(--red-mid);padding:2px 9px;font-size:10px">⚠️ Address doesn't match county doc — verify before working</span>`);
   if(ls.ghl_pushed)b.push(`<span class="badge b-ghl" style="padding:2px 9px;font-size:10px">In Jarvis</span>`);
   const d=lead.days_until_sale;
   if(d!=null&&!auctionPassed(lead)){if(d<=14)b.push(`<span class="dh-aucbadge urg">🚨 AUCTION IN ${d}d</span>`);else if(d<=30)b.push(`<span class="dh-aucbadge soon">⏰ AUCTION IN ${d}d</span>`);}
