@@ -14,13 +14,23 @@ Also removes:
 import json, logging, re
 from datetime import datetime
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 log = logging.getLogger(__name__)
 
 RECORDS_PATH = Path("dashboard/records.json")
 DATA_PATH    = Path("data/records.json")
-TODAY = datetime.now()
+# 2026-09-01: TODAY = datetime.now() used the GitHub Actions runner's clock,
+# which is UTC -- Bexar auctions run on Central time, so every 09/01 lead
+# got treated as "auction_passed" the instant UTC crossed midnight into
+# 9/1 (7pm CDT on 8/31, still the evening BEFORE the actual auction).
+# 418 leads got purged hours early, including 158 that were already
+# pushed to Jarvis, because should_purge() purges auction_passed leads
+# even if worked -- confirmed live via the push-tracking regression CI
+# check (ghl_pushed 555 -> 397) and reverted same night. Use the actual
+# Central-time date instead so this can't fire early again.
+TODAY = datetime.now(ZoneInfo("America/Chicago")).replace(tzinfo=None)
 
 def parse_date(s):
     if not s:
@@ -78,7 +88,13 @@ def should_purge(rec):
         sale_date = rec.get("sale_date", "")
         if sale_date:
             dt = parse_date(sale_date)
-            if dt and dt < TODAY:
+            # Compare calendar dates, not date-vs-datetime -- auctions run
+            # late morning/afternoon Central, so a lead is only "passed"
+            # once we're a full day PAST the sale date, not the instant
+            # the clock crosses into the sale date itself (same bug class
+            # as the UTC/Central mismatch above, just same-day instead of
+            # a day early).
+            if dt and dt.date() < TODAY.date():
                 # Auction passed — purge even if worked in GHL, it's already
                 # in Jarvis and doesn't need to also live in the dash.
                 return True, f"auction_passed ({sale_date})"
