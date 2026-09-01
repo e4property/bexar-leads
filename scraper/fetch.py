@@ -2267,9 +2267,21 @@ def days_until_sale(sale_date_str):
         return None
 
 
+# 2026-09-01: doc 20261000205 ("11311 TUBA TRAIL", address confirmed
+# nonexistent in the county's own search at any date range) has now
+# reappeared with IDENTICAL doc_number+address on two separate fresh
+# scrape runs after being manually removed each time -- too precise a
+# match to be independent corruption, more likely a deterministic bug
+# (pagination off-by-one, stale/template row) that hasn't been found
+# yet. Blocklisting as an immediate stopgap so it stops reaching the
+# live dashboard while the real root cause is still open.
+KNOWN_BAD_DOC_NUMBERS = {"20261000205"}
+
+
 # ── DASHBOARD ─────────────────────────────────────────────────────────────────
 def build_dashboard(records):
     os.makedirs("dashboard", exist_ok=True)
+    records = [r for r in records if r.get("doc_number") not in KNOWN_BAD_DOC_NUMBERS]
     clean    = [{k: v for k, v in r.items() if not k.startswith("_")} for r in records]
     json_str = json.dumps(clean, separators=(",", ":"), ensure_ascii=True)
     with open("dashboard/records.json", "w", encoding="utf-8") as f:
@@ -2505,6 +2517,7 @@ if __name__ == "__main__":
     # strip it so it doesn't bloat records.json or leak into the dashboard.
     for r in records:
         r.pop("_source_url", None)
+    records = [r for r in records if r.get("doc_number") not in KNOWN_BAD_DOC_NUMBERS]
 
     with open("data/records.json", "w", encoding="utf-8") as f:
         json.dump(records, f, indent=2)
