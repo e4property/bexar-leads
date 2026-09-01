@@ -668,6 +668,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
         <span class="sc on" id="sort-recent" onclick="setSort('recent',this)">Recent</span>
         <span class="sc" id="sort-filed" onclick="setSort('filed',this)">Filed</span>
         <span class="sc" id="sort-urgency" onclick="setSort('urgency',this)">Urgency</span>
+        <span class="sc" id="sort-saledate" onclick="setSort('saledate',this)">Sale Date</span>
         <span class="sc" id="sort-score" onclick="setSort('score',this)">Score</span>
         <span class="sc" id="sort-equity" onclick="setSort('equity',this)">Equity</span>
       </div>
@@ -1116,6 +1117,7 @@ function filterLeads(){
     if(currentSort==='filed')return filedToNum(b)-filedToNum(a);
     if(currentSort==='score')return(b.score||0)-(a.score||0);
     if(currentSort==='equity'){const ae=getEquity(a),be=getEquity(b);if(!ae&&!be)return 0;if(!ae)return 1;if(!be)return-1;return be.equity-ae.equity;}
+    if(currentSort==='saledate'){const ad=a.days_until_sale,bd=b.days_until_sale;if(ad==null&&bd==null)return(a.owner||'').localeCompare(b.owner||'');if(ad==null)return 1;if(bd==null)return-1;if(ad!==bd)return ad-bd;return(a.owner||'').localeCompare(b.owner||'');}
     const aghl=LS(a.doc_number).ghl_pushed?1:0,bghl=LS(b.doc_number).ghl_pushed?1:0;if(aghl!==bghl)return aghl-bghl;const ad=a.days_until_sale??9999,bd=b.days_until_sale??9999;if(ad!==bd)return ad-bd;return(b.score||0)-(a.score||0);
   });
   filteredLeads=list;selectedIdx=filteredLeads.findIndex(l=>l.doc_number===selectedDoc);renderList();
