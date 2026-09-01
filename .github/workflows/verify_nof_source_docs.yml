@@ -1,0 +1,61 @@
+name: Verify NOF Source Documents (Oct+ Audit)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_PAT }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Tesseract OCR
+        run: sudo apt-get update && sudo apt-get install -y tesseract-ocr
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4 lxml selenium pytesseract pillow
+
+      - name: Run source-document audit
+        env:
+          CLERK_EMAIL: "${{ secrets.CLERK_EMAIL }}"
+          CLERK_PASSWORD: "${{ secrets.CLERK_PASSWORD }}"
+        run: python scraper/verify_nof_source_docs.py
+
+      - name: Write summary
+        if: always()
+        run: |
+          if [ -f scraper/nof_source_audit_report.json ]; then
+            python -c "
+          import json
+          d = json.load(open('scraper/nof_source_audit_report.json'))
+          print('## NOF Source Document Audit')
+          print()
+          for k,v in d['counts'].items():
+              print(f'- **{k}**: {v}')
+          print()
+          print('Flagged records (doc_not_found / address_mismatch / ocr_no_address):')
+          for r in d['results']:
+              if r['status'] != 'match':
+                  print(f\"- \`{r['doc_number']}\` {r['stored_address']!r} -> {r['status']}\" + (f\" (real: {r.get('real_address','')!r})\" if r.get('real_address') else ''))
+          " >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Upload report + checkpoint
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nof-source-audit-report
+          path: |
+            scraper/nof_source_audit_report.json
+            scraper/nof_source_audit_checkpoint.json
+          if-no-files-found: ignore
