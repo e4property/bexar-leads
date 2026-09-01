@@ -1358,6 +1358,13 @@ def fetch_doc_details(records, driver):
 
 
 # ── OWNER ENRICHMENT ──────────────────────────────────────────────────────────
+# BCAD's Situs field sometimes carries a directional prefix (N/S/E/W) that
+# the county's own foreclosure-notice text doesn't -- e.g. our address
+# "836 SAN EDUARDO" vs BCAD's "836 S SAN EDUARDO AVE". Tried as an optional
+# prefix during owner matching rather than silently causing a false no-match.
+DIRECTIONALS = {"N","S","E","W","NE","NW","SE","SW"}
+
+
 def parse_address_parts(address):
     if not address:
         return None
@@ -1371,6 +1378,10 @@ def parse_address_parts(address):
         "HWY","LOOP","PASS","CV","PT","HLS","TRAIL","GROVE","RIDGE","CREEK",
         "LAKE","PARK","GLEN","RUN","XING","STREET","AVENUE","DRIVE","ROAD",
         "LANE","COURT","CIRCLE","BOULEVARD","PARKWAY","HIGHWAY",
+        "COVE","POINT","HILLS","PLACE","CROSSING","TRACE","TERRACE","WALK",
+        "BEND","LNDG","LANDING","VW","VIEW","BLUFF","MEADOWS","HOLLOW",
+        "SPRINGS","VALLEY","VISTA","GATE","COVE","MNR","MANOR","SQ","SQUARE",
+        "FALLS","FLS","MDW","BRK","TOP","VIS","MEADOW","BROOK",
     }
     words  = rest[:]
     suffix = ""
@@ -1380,7 +1391,7 @@ def parse_address_parts(address):
             "suffix": suffix, "full": address.strip().upper()}
 
 
-def match_features(feats, num, required_word=None):
+def match_features(feats, num, required_word=None, full_prefix=None):
     OWNER_FIELDS    = ["Owner","OWNER","owner","OwnerName","OWNER_NAME"]
     SITUS_FIELDS    = ["Situs","SITUS","situs","SitusAddress","SITUS_ADDRESS","Address","ADDRESS"]
     ADDR1_FIELDS    = ["AddrLn1","ADDR_LN1","MailAddr1","MAIL_ADDR1","MailAddress","MAIL_ADDRESS"]
@@ -1420,7 +1431,17 @@ def match_features(feats, num, required_word=None):
         situs_norm = normalize(situs)
         if not situs_norm.startswith(num + " "):
             continue
-        if required_word and required_word not in situs_norm:
+        # v29: full_prefix requires the ENTIRE parsed street name to match,
+        # in order, right after the house number -- e.g. "6018 SUNRISE BEND"
+        # not just "6018 ... SUNRISE ...". A single required_word let two
+        # unrelated streets sharing a house number + one word (e.g. "6018
+        # HIDDEN SUNRISE DR" vs "6018 SUNRISE BEND DR") cross-match and
+        # attach the wrong owner. See: BORG RYNN E incorrectly matched to
+        # 6018 SUNRISE BEND DR (real owner: HUERTA RICHARD), 2026-08-31.
+        if full_prefix:
+            if not situs_norm.startswith(full_prefix):
+                continue
+        elif required_word and required_word not in situs_norm:
             continue
 
         mail_addr = ""
@@ -1448,44 +1469,52 @@ def match_features(feats, num, required_word=None):
 
 
 def lookup_owner(address, zipcode=""):
+    """
+    v29: strict full-street-name matching only. Previously this fell
+    through a series of increasingly loose tiers -- down to "house number
+    + any one word appears anywhere in the situs" -- which cross-matched
+    unrelated streets sharing a house number and a common word (e.g. "6018
+    HIDDEN SUNRISE DR" vs "6018 SUNRISE BEND DR" both contain "SUNRISE").
+    That attached a real but WRONG owner name to the lead. Per standing
+    rule: no owner shown is better than a wrong owner shown -- if we can't
+    confidently match the full street name, return {} and leave it blank
+    (flagged "NO OWNER" downstream) rather than guess.
+    """
     parsed = parse_address_parts(address)
     if not parsed:
         return {}
-    num        = parsed["num"]
-    words      = parsed["words"]
-    first_word = words[0] if words else ""
+    num   = parsed["num"]
+    words = parsed["words"]
+    if not words:
+        return {}
     FIELDS = "*"
+    # BCAD's Situs field has inconsistent spacing after the house number
+    # (often a double space) -- query broadly by house number only (SQL-side
+    # wildcard absorbs any spacing) and let normalize() + full_prefix do the
+    # real, whitespace-safe matching in Python.
+    full_prefix = normalize(f"{num} {' '.join(words)}")
 
-    if len(words) >= 2:
-        r = match_features(
-            arcgis_query(PARCELS_URL, f"Situs LIKE '{num} {words[0]} {words[1]}%'",
-                         fields=FIELDS, limit=50), num, first_word)
-        if r: r["method"] = "s1_two_word"; return r
+    feats = arcgis_query(PARCELS_URL, f"Situs LIKE '{num}%'", fields=FIELDS, limit=500)
+    r = match_features(feats, num, full_prefix=full_prefix)
+    if r:
+        r["method"] = "strict_full_street"
+        return r
 
-    if first_word and len(first_word) >= 3:
-        r = match_features(
-            arcgis_query(PARCELS_URL, f"Situs LIKE '{num} {first_word}%'",
-                         fields=FIELDS, limit=100), num, first_word)
-        if r: r["method"] = "s2_first_word"; return r
-
-    r = match_features(
-        arcgis_query(PARCELS_URL, f"Situs LIKE '{num} %'",
-                     fields=FIELDS, limit=200), num, first_word or None)
-    if r: r["method"] = "s3_num_only"; return r
+    # retry allowing a directional prefix BCAD carries but our address
+    # text doesn't (e.g. "836 SAN EDUARDO" -> BCAD's "836 S SAN EDUARDO")
+    for d in DIRECTIONALS:
+        alt_prefix = normalize(f"{num} {d} {' '.join(words)}")
+        r = match_features(feats, num, full_prefix=alt_prefix)
+        if r:
+            r["method"] = "strict_full_street_directional"
+            return r
 
     if zipcode and len(zipcode) >= 5:
-        r = match_features(
-            arcgis_query(PARCELS_URL, f"Zip = '{zipcode[:5]}'",
-                         fields=FIELDS, limit=1000), num, None)
-        if r: r["method"] = "s4_zip_scan"; return r
-
-    for word in words[1:]:
-        if len(word) < 4:
-            continue
-        r = match_features(
-            arcgis_query(PARCELS_URL, f"Situs LIKE '{num} %{word}%'",
-                         fields=FIELDS, limit=100), num, word)
-        if r: r["method"] = "s5_alt_word"; return r
+        feats = arcgis_query(PARCELS_URL, f"Zip = '{zipcode[:5]}'", fields=FIELDS, limit=2000)
+        r = match_features(feats, num, full_prefix=full_prefix)
+        if r:
+            r["method"] = "strict_full_street_zip_scan"
+            return r
 
     return {}
 
