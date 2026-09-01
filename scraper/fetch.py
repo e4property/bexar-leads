@@ -497,30 +497,55 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
 
         for row in rows:
             try:
-                def get_col(row, cls):
-                    try:
-                        el = row.find_element(By.CSS_SELECTOR, f"td.{cls}")
-                        return driver.execute_script(
-                            "return arguments[0].innerText;", el
-                        ).strip()
-                    except Exception:
-                        return ""
+                # v29: read every column for this row in ONE atomic
+                # execute_script call instead of 5 separate Python round-trips
+                # (find_element + execute_script per column). If this table
+                # virtualizes rows (recycles a DOM node's content as new data
+                # scrolls/paginates in -- common in SPA data grids), the old
+                # per-column reads left a window where doc_number could be
+                # read from the row as it was, and address_raw read moments
+                # later from the SAME DOM node after it got recycled to a
+                # different logical row -- a Frankenstein row pairing a real
+                # doc number with a different row's address. Confirmed live:
+                # doc 20261000205 (addr "11311 YUBA TRAIL") does not exist
+                # anywhere in the county's own search, at any date range --
+                # a fabricated row, not a real filing. Reading all columns
+                # from the same node in one synchronous JS pass makes this
+                # atomic and closes that window.
+                try:
+                    cols = driver.execute_script(
+                        """
+                        const row = arguments[0];
+                        const classes = arguments[1];
+                        const out = {};
+                        for (const c of classes) {
+                            const el = row.querySelector('td.' + c);
+                            out[c] = el ? el.innerText : '';
+                        }
+                        const tds = row.querySelectorAll('td');
+                        out['_tds'] = Array.from(tds).map(td => td.innerText);
+                        return out;
+                        """,
+                        row, ["col-3", "col-4", "col-5", "col-6", "col-8"]
+                    ) or {}
+                except Exception:
+                    cols = {}
 
-                doc_type_text = get_col(row, "col-3")
-                recorded_date = get_col(row, "col-4")
-                sale_date     = get_col(row, "col-5")
-                doc_number    = get_col(row, "col-6")
-                address_raw   = get_col(row, "col-8")
+                doc_type_text = (cols.get("col-3") or "").strip()
+                recorded_date = (cols.get("col-4") or "").strip()
+                sale_date     = (cols.get("col-5") or "").strip()
+                doc_number    = (cols.get("col-6") or "").strip()
+                address_raw   = (cols.get("col-8") or "").strip()
 
                 if not doc_number:
-                    tds = row.find_elements(By.TAG_NAME, "td")
+                    tds = cols.get("_tds") or []
                     if len(tds) >= 6:
-                        doc_type_text = doc_type_text or tds[2].text.strip()
-                        recorded_date = recorded_date or tds[3].text.strip()
-                        sale_date     = sale_date or tds[4].text.strip()
-                        doc_number    = doc_number or tds[5].text.strip()
+                        doc_type_text = doc_type_text or tds[2].strip()
+                        recorded_date = recorded_date or tds[3].strip()
+                        sale_date     = sale_date or tds[4].strip()
+                        doc_number    = doc_number or tds[5].strip()
                         if len(tds) >= 9:
-                            address_raw = address_raw or tds[8].text.strip()
+                            address_raw = address_raw or tds[8].strip()
 
                 doc_number = doc_number.strip()
                 sale_date  = sale_date.strip() if sale_date.strip() not in ("N/A", "") else ""
