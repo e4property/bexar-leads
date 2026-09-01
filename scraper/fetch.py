@@ -118,12 +118,12 @@ DOC_FETCH_LIMIT = 8    # max leads to OCR for loan/lender detail per run -- was 
 
 
 # ── HELPERS ───────────────────────────────────────────────────────────────────
-def fetch_json(url, retries=3):
+def fetch_json(url, retries=3, timeout=25):
     for attempt in range(retries):
         try:
             req = urllib.request.Request(
                 url, headers={"User-Agent": "BexarScraper/28.32", "Accept": "application/json"})
-            with urllib.request.urlopen(req, timeout=25) as r:
+            with urllib.request.urlopen(req, timeout=timeout) as r:
                 return json.loads(r.read().decode("utf-8", errors="replace"))
         except Exception as e:
             if attempt < retries - 1:
@@ -1387,7 +1387,39 @@ def fetch_doc_details(records, driver):
 # the county's own foreclosure-notice text doesn't -- e.g. our address
 # "836 SAN EDUARDO" vs BCAD's "836 S SAN EDUARDO AVE". Tried as an optional
 # prefix during owner matching rather than silently causing a false no-match.
-DIRECTIONALS = {"N","S","E","W","NE","NW","SE","SW"}
+# ordered (not a set) -- cardinal directions are overwhelmingly more common
+# than diagonals in real addresses, and each untried entry costs a full
+# slow-query timeout on the HGO lookup path, so trying the likely ones
+# first meaningfully cuts expected latency on the retry loop.
+DIRECTIONALS = ["N", "S", "E", "W", "NE", "NW", "SE", "SW"]
+
+# v29.1: maps every abbreviated/full-word variant of a street-type suffix
+# to ONE canonical short code, e.g. ST/STREET -> "ST", DR/DRIVE -> "DR".
+# Matching used to strip the suffix off entirely and ignore it -- fine for
+# "St" vs "Street" (same street, different spelling), but that also meant
+# "946 MEADOW ST" and "946 MEADOW DR" -- two genuinely different real
+# streets that happen to share a house number and a core name -- couldn't
+# be told apart, since the suffix carrying that distinction was discarded
+# before matching. Canonicalizing lets the comparison tolerate spelling
+# variants while still catching a real street-TYPE mismatch.
+SUFFIX_CANON = {}
+for _group in [
+    ("ST","STREET"), ("DR","DRIVE"), ("AVE","AVENUE"), ("RD","ROAD"),
+    ("LN","LANE"), ("CT","COURT"), ("CIR","CIRCLE"), ("BLVD","BOULEVARD"),
+    ("WAY",), ("PL","PLACE"), ("TRL","TRAIL"), ("PKWY","PARKWAY"),
+    ("HWY","HIGHWAY"), ("LOOP",), ("PASS",), ("CV","COVE"), ("PT","POINT"),
+    ("HLS","HILLS"), ("GROVE",), ("RIDGE",), ("CREEK",), ("LAKE",),
+    ("PARK",), ("GLEN",), ("RUN",), ("XING","CROSSING"), ("TRACE",),
+    ("TER","TERRACE"), ("WALK",), ("BEND",), ("LNDG","LANDING"),
+    ("VW","VIEW"), ("BLUFF",), ("MDWS","MEADOWS"), ("HOLW","HOLLOW"),
+    ("SPGS","SPRINGS"), ("VLY","VALLEY"), ("VIS","VISTA"), ("GATE",),
+    ("MNR","MANOR"), ("SQ","SQUARE"), ("FLS","FALLS"), ("MDW","MEADOW"),
+    ("BRK","BROOK"), ("TOP",),
+]:
+    canon = _group[0]
+    for variant in _group:
+        SUFFIX_CANON[variant] = canon
+SUFFIXES = set(SUFFIX_CANON.keys())
 
 
 def parse_address_parts(address):
@@ -1398,25 +1430,16 @@ def parse_address_parts(address):
         return None
     num  = parts[0]
     rest = parts[1:]
-    SUFFIXES = {
-        "ST","AVE","DR","RD","LN","CT","CIR","BLVD","WAY","PL","TRL","PKWY",
-        "HWY","LOOP","PASS","CV","PT","HLS","TRAIL","GROVE","RIDGE","CREEK",
-        "LAKE","PARK","GLEN","RUN","XING","STREET","AVENUE","DRIVE","ROAD",
-        "LANE","COURT","CIRCLE","BOULEVARD","PARKWAY","HIGHWAY",
-        "COVE","POINT","HILLS","PLACE","CROSSING","TRACE","TERRACE","WALK",
-        "BEND","LNDG","LANDING","VW","VIEW","BLUFF","MEADOWS","HOLLOW",
-        "SPRINGS","VALLEY","VISTA","GATE","COVE","MNR","MANOR","SQ","SQUARE",
-        "FALLS","FLS","MDW","BRK","TOP","VIS","MEADOW","BROOK",
-    }
     words  = rest[:]
     suffix = ""
     if words and words[-1] in SUFFIXES:
         suffix = words.pop()
     return {"num": num, "street": " ".join(rest), "words": words,
-            "suffix": suffix, "full": address.strip().upper()}
+            "suffix": suffix, "suffix_canon": SUFFIX_CANON.get(suffix, ""),
+            "full": address.strip().upper()}
 
 
-def match_features(feats, num, required_word=None, full_prefix=None):
+def match_features(feats, num, required_word=None, full_prefix=None, expected_suffix_canon=None):
     OWNER_FIELDS    = ["Owner","OWNER","owner","OwnerName","OWNER_NAME"]
     SITUS_FIELDS    = ["Situs","SITUS","situs","SitusAddress","SITUS_ADDRESS","Address","ADDRESS"]
     ADDR1_FIELDS    = ["AddrLn1","ADDR_LN1","MailAddr1","MAIL_ADDR1","MailAddress","MAIL_ADDRESS"]
@@ -1466,6 +1489,24 @@ def match_features(feats, num, required_word=None, full_prefix=None):
         if full_prefix:
             if not situs_norm.startswith(full_prefix):
                 continue
+            # v29.1: full_prefix matches the core street NAME but says
+            # nothing about street TYPE -- "946 MEADOW ST" and "946 MEADOW
+            # DR" both satisfy startswith("946 MEADOW") since the suffix
+            # was stripped before building full_prefix. If our address
+            # parsed a recognizable suffix, require the candidate's own
+            # next token (whatever immediately follows the matched name)
+            # to canonicalize to the same street type when IT also has a
+            # recognizable one -- tolerates "St" vs "Street" spelling
+            # differences while still rejecting a genuine street-type
+            # mismatch. Leniently skipped when either side has no
+            # recognizable suffix at all (rather than reject), since not
+            # every situs value includes one.
+            if expected_suffix_canon:
+                remainder = situs_norm[len(full_prefix):].split()
+                candidate_suffix = remainder[0] if remainder else ""
+                candidate_canon = SUFFIX_CANON.get(candidate_suffix, "")
+                if candidate_canon and candidate_canon != expected_suffix_canon:
+                    continue
         elif required_word and required_word not in situs_norm:
             continue
 
@@ -1493,17 +1534,32 @@ def match_features(feats, num, required_word=None, full_prefix=None):
     return None
 
 
+HGO_SEARCH_URL = "https://hgo.harrisgovern.com/bexar/api/property/property-search/property-basic-search-results"
+
+
 def lookup_owner(address, zipcode=""):
     """
-    v29: strict full-street-name matching only. Previously this fell
-    through a series of increasingly loose tiers -- down to "house number
-    + any one word appears anywhere in the situs" -- which cross-matched
-    unrelated streets sharing a house number and a common word (e.g. "6018
-    HIDDEN SUNRISE DR" vs "6018 SUNRISE BEND DR" both contain "SUNRISE").
-    That attached a real but WRONG owner name to the lead. Per standing
-    rule: no owner shown is better than a wrong owner shown -- if we can't
-    confidently match the full street name, return {} and leave it blank
-    (flagged "NO OWNER" downstream) rather than guess.
+    v30: BCAD's old ArcGIS parcel service (maps.bexar.org, used by every
+    prior version of this function) went down entirely 2026-09-01 --
+    confirmed live: every query, including a trivial "1=1", returned a
+    400 "Failed to execute query" error. BCAD has migrated to the Harris
+    Govern platform (hgo.harrisgovern.com/bexar); this calls their public
+    property-search API directly. No login, no browser -- plain JSON.
+
+    Quoted phrase search ("6018 Sunrise Bend") does its own reliable
+    street-name disambiguation server-side -- confirmed live against
+    every collision case the old ArcGIS matcher got wrong (6018 Sunrise
+    Bend vs 6018 Hidden Sunrise, 836 San Eduardo vs San Augustine, 6223
+    Ridge Glade vs Ridge Oak, 1511 Villa Flores vs Villa Del Luna), all
+    resolved correctly. Suffix (St/Dr/etc) deliberately left OUT of the
+    query -- the site's own phrase match already disambiguates by street
+    name, and including a suffix that's abbreviated differently between
+    our source and BCAD's (e.g. our "Cove" vs their "Cv") just causes
+    false negatives.
+
+    Per standing rule: no owner shown is better than a wrong owner shown
+    -- if nothing comes back, return {} and leave it blank (flagged
+    "NO OWNER" downstream) rather than guess.
     """
     parsed = parse_address_parts(address)
     if not parsed:
@@ -1512,34 +1568,87 @@ def lookup_owner(address, zipcode=""):
     words = parsed["words"]
     if not words:
         return {}
-    FIELDS = "*"
-    # BCAD's Situs field has inconsistent spacing after the house number
-    # (often a double space) -- query broadly by house number only (SQL-side
-    # wildcard absorbs any spacing) and let normalize() + full_prefix do the
-    # real, whitespace-safe matching in Python.
+
     full_prefix = normalize(f"{num} {' '.join(words)}")
 
-    feats = arcgis_query(PARCELS_URL, f"Situs LIKE '{num}%'", fields=FIELDS, limit=500)
-    r = match_features(feats, num, full_prefix=full_prefix)
-    if r:
-        r["method"] = "strict_full_street"
-        return r
+    def pick(results, require_full_prefix=None):
+        for res in results or []:
+            situs = normalize((res.get("SitusAddress") or "").replace("\r", " ").replace("\n", " "))
+            if require_full_prefix:
+                if not situs.startswith(require_full_prefix):
+                    continue
+            elif not situs.startswith(num + " "):
+                continue
+            owner = (res.get("OwnerFullName") or "").strip()
+            if owner:
+                return res, owner
+        return None, None
+
+    def build_result(res, owner, method):
+        appraised = res.get("AppraisedValue")
+        return {
+            "owner":              owner.upper(),
+            "mail_addr":          "",
+            "absentee":           False,
+            "appraised_value":    str(appraised) if appraised is not None else "",
+            "land_value":         "",
+            "improvement_value":  "",
+            "annual_taxes":       "",
+            "sale_date_arcgis":   "",
+            "tenure_years":       None,
+            "tenure_score_bonus": 0,
+            "prop_id":            str(res.get("PropertyId", "")),
+            "method":             method,
+        }
+
+    core_query = f"{num} {' '.join(words)}"
+
+    # v30.2: quoted-phrase search is the ACCURATE path -- confirmed live
+    # it always eventually returns the right property, verified against
+    # every known case including "836 San Eduardo" and "206 N San
+    # Joaquin". Latency just varies a lot: under 1s for most addresses,
+    # up to ~25s for phrases containing a very common word ("SAN" is in
+    # every row's "SAN ANTONIO" city text). An 8s cutoff was cutting off
+    # real, correct, still-in-flight matches -- confirmed live: "206 N
+    # San Joaquin" needs ~25s and got missed entirely at 8s, then the
+    # (unquoted, relevance-ranked) fallback ALSO failed to surface the
+    # real match even at take=100. Give the accurate path room to finish
+    # rather than leaning on a fallback proven less reliable.
+    params = urllib.parse.urlencode({"searchText": f'"{core_query}"', "skip": 0, "take": 5})
+    results = fetch_json(f"{HGO_SEARCH_URL}?{params}", retries=1, timeout=35)
+    if results and isinstance(results, list):
+        res, owner = pick(results)
+        if res:
+            return build_result(res, owner, "hgo_phrase")
 
     # retry allowing a directional prefix BCAD carries but our address
     # text doesn't (e.g. "836 SAN EDUARDO" -> BCAD's "836 S SAN EDUARDO")
+    # -- only reached when the core query came back with no match, so
+    # this doesn't multiply latency for the common (no-directional-needed)
+    # case.
+    for d in DIRECTIONALS:
+        alt_query = f"{num} {d} {' '.join(words)}"
+        params = urllib.parse.urlencode({"searchText": f'"{alt_query}"', "skip": 0, "take": 5})
+        results = fetch_json(f"{HGO_SEARCH_URL}?{params}", retries=1, timeout=35)
+        if results and isinstance(results, list):
+            res, owner = pick(results)
+            if res:
+                return build_result(res, owner, "hgo_phrase_directional")
+
+    # last-resort fallback: unquoted + wide take + strict client-side
+    # prefix check. Proven less reliable than the quoted path (relevance
+    # ranking can bury the real match past take=100) but costs nothing
+    # extra to try if everything above found nothing.
+    params = urllib.parse.urlencode({"searchText": core_query, "skip": 0, "take": 100})
+    results = fetch_json(f"{HGO_SEARCH_URL}?{params}", retries=1, timeout=15)
+    res, owner = pick(results, require_full_prefix=full_prefix)
+    if res:
+        return build_result(res, owner, "hgo_unquoted_strict")
     for d in DIRECTIONALS:
         alt_prefix = normalize(f"{num} {d} {' '.join(words)}")
-        r = match_features(feats, num, full_prefix=alt_prefix)
-        if r:
-            r["method"] = "strict_full_street_directional"
-            return r
-
-    if zipcode and len(zipcode) >= 5:
-        feats = arcgis_query(PARCELS_URL, f"Zip = '{zipcode[:5]}'", fields=FIELDS, limit=2000)
-        r = match_features(feats, num, full_prefix=full_prefix)
-        if r:
-            r["method"] = "strict_full_street_zip_scan"
-            return r
+        res, owner = pick(results, require_full_prefix=alt_prefix)
+        if res:
+            return build_result(res, owner, "hgo_unquoted_strict_directional")
 
     return {}
 
@@ -1550,15 +1659,6 @@ def enrich_owners(records):
                and r.get("address", "").strip().upper() not in ("", "N/A", "NA")]
     log.info(f"Owner enrichment: {len(missing)} records need lookup")
     found = 0
-
-    if missing:
-        try:
-            probe = fetch_json(f"{PARCELS_URL}/query?where=1%3D1&outFields=*&resultRecordCount=1&f=json")
-            feat0 = probe.get("features", [{}])[0]
-            actual_fields = list((feat0.get("attributes") or {}).keys())
-            log.info(f"BCAD actual fields: {actual_fields[:20]}")
-        except Exception as e:
-            log.debug(f"BCAD probe failed: {e}")
 
     for i, rec in enumerate(missing):
         addr = rec.get("address", "")
