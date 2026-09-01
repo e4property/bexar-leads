@@ -1,8 +1,14 @@
 name: Verify NOF Source Documents (Nightly)
 
 on:
-  schedule:
-    - cron: '30 22 * * *'
+  # 2026-09-01: DISABLED pending a fix. The one-time audit this was built
+  # from just returned 383/383 "doc not found" -- a 100% false-positive
+  # rate, almost certainly the same headless-Chrome bot-detection issue
+  # already documented against loan_backfill.yml (100/100 click-throughs
+  # failed there too). This job auto-deletes on "not found" -- running it
+  # as-is would wipe out real, live leads (some already pushed to Jarvis).
+  # Do not re-enable the schedule until goto_doc_by_docnumber is confirmed
+  # working from an actual Actions runner, not just interactively.
   workflow_dispatch:
 
 permissions:
