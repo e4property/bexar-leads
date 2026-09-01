@@ -75,12 +75,16 @@ def scrape_dates_for_window(driver, start, end):
             not re.search(r"<th|thead|DOC.TYPE|RECORDED|SALE.DATE", row, re.IGNORECASE)
             for row in rows
         )
+        log.info(f"  DEBUG offset={offset} page_source_len={len(src)} rows_found={len(rows)} data_rows_present={data_rows_present} url={url}")
         if not data_rows_present:
-            if driver.find_elements(By.XPATH, "//h1[contains(text(),'No Results')]"):
+            no_results_el = driver.find_elements(By.XPATH, "//h1[contains(text(),'No Results')]")
+            log.info(f"  DEBUG no_results_h1_found={bool(no_results_el)}")
+            if no_results_el:
                 break
             time.sleep(3)
             src = driver.page_source
             rows = re.findall(r"<tr[^>]*>(.*?)</tr>", src, re.DOTALL | re.IGNORECASE)
+            log.info(f"  DEBUG after retry: rows_found={len(rows)}")
 
         page_count = 0
         for row in rows:
