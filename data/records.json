@@ -2097,7 +2097,7 @@
     "land_value": "44960.0",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-25T15:41:49Z",
+    "on_market_checked_at": "2026-09-02T19:49:15Z",
     "arv_estimate": 230300,
     "arv_status": "SOLD",
     "arv_sqft": 2278,
@@ -17979,7 +17979,7 @@
     "days_until_sale": 33,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-26T16:18:49Z",
+    "on_market_checked_at": "2026-09-02T19:49:17Z",
     "arv_estimate": 126800,
     "arv_status": "SOLD",
     "arv_sqft": 962,
@@ -28639,7 +28639,10 @@
     "arv_sqft": 1282,
     "arv_fetched_at": "2026-08-12T14:53:30Z",
     "appt_converted": false,
-    "appt_stale": false
+    "appt_stale": false,
+    "on_market": true,
+    "on_market_status": "FOR_SALE",
+    "on_market_checked_at": "2026-09-02T19:50:53Z"
   },
   {
     "doc_number": "VBP-114-E-MAIN-PLAZA-78204",
