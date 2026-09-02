@@ -298,7 +298,12 @@
     "on_market_checked_at": "2026-08-31T23:44:42Z",
     "arv_estimate": 313700,
     "arv_status": "SOLD",
-    "arv_sqft": 1936
+    "arv_sqft": 1936,
+    "dash_phone": "210) 661-3789",
+    "dash_searched_at": "2026-09-02T15:03:21.671Z",
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-09-02T15:03:21.671Z",
+    "ghl_id": "zARSlbFKQXEP3amLlt0E"
   },
   {
     "type": "NOF",
@@ -358,7 +363,12 @@
     "on_market_checked_at": "2026-08-31T23:44:50Z",
     "arv_estimate": 154700,
     "arv_status": "SOLD",
-    "arv_sqft": 1312
+    "arv_sqft": 1312,
+    "dash_phone": "2108968572",
+    "dash_searched_at": "2026-09-02T15:08:43.089Z",
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-09-02T15:08:43.089Z",
+    "ghl_id": "FBL1ojkEijEcY42MZMqK"
   },
   {
     "type": "NOF",
@@ -2471,7 +2481,12 @@
     "days_until_sale": 33,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-28T15:15:20Z"
+    "on_market_checked_at": "2026-08-28T15:15:20Z",
+    "dash_phone": "7148647056",
+    "dash_searched_at": "2026-09-02T14:48:33.124Z",
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-09-02T14:48:33.124Z",
+    "ghl_id": "6EgrxoofHZCnArDBVzVu"
   },
   {
     "type": "NOF",
@@ -11470,7 +11485,7 @@
     "dash_phone": "2102860338",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-02T14:31:05Z"
+    "on_market_checked_at": "2026-09-02T18:56:22Z"
   },
   {
     "doc_number": "20260138241",
@@ -14431,11 +14446,11 @@
     "appr_trend": "",
     "on_market": true,
     "on_market_status": "FOR_SALE",
-    "on_market_checked_at": "2026-09-02T14:31:44Z",
-    "arv_estimate": 212600,
+    "on_market_checked_at": "2026-09-02T18:57:03Z",
+    "arv_estimate": 289888,
     "arv_status": "FOR_SALE",
-    "arv_sqft": 1176,
-    "arv_fetched_at": "2026-09-02T14:31:44Z"
+    "arv_sqft": 2128,
+    "arv_fetched_at": "2026-09-02T18:57:03Z"
   },
   {
     "type": "NOF",
@@ -15606,7 +15621,12 @@
     "arv_fetched_at": "2026-08-31T20:56:07Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 33
+    "days_until_sale": 33,
+    "dash_phone": "(210)523-1612",
+    "dash_searched_at": "2026-09-02T14:55:34.328Z",
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-09-02T14:55:34.328Z",
+    "ghl_id": "tDmumItdbEtgHtKHWFTd"
   },
   {
     "type": "NOF",
@@ -16824,7 +16844,7 @@
     "owner": "SUNSHINE PROPERTIES RLB LLC",
     "mail_addr": "",
     "absentee": false,
-    "duplicate": false,
+    "duplicate": true,
     "is_new": false,
     "doc_number": "20261000040",
     "ps_doc_id": "",
@@ -16837,6 +16857,7 @@
     "sale_date": "10/06/2026",
     "run_ts": "2026-08-28T15:58:20Z",
     "flags": [
+      "DUPLICATE",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -17646,7 +17667,11 @@
     "on_market_checked_at": "2026-09-01T00:00:07Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 33
+    "days_until_sale": 33,
+    "dash_phone": "8323436936",
+    "dash_searched_at": "2026-09-02T15:01:35.235Z",
+    "ghl_pushed": false,
+    "ghl_pushed_at": null
   },
   {
     "type": "NOF",
@@ -20076,7 +20101,12 @@
     "days_until_sale": 33,
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-08-29T03:08:30Z"
+    "on_market_checked_at": "2026-08-29T03:08:30Z",
+    "dash_phone": "2104207414",
+    "dash_searched_at": "2026-09-02T14:46:52.166Z",
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-09-02T14:46:52.166Z",
+    "ghl_id": "2A493D15CCd6MnXv43rW"
   },
   {
     "type": "NOF",
@@ -20199,7 +20229,12 @@
     "days_until_sale": 33,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-29T03:08:34Z"
+    "on_market_checked_at": "2026-08-29T03:08:34Z",
+    "dash_phone": "210-723-7141",
+    "dash_searched_at": "2026-09-02T14:57:44.868Z",
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-09-02T14:57:44.868Z",
+    "ghl_id": "B9fetMiZavFiffbAD21U"
   },
   {
     "type": "NOF",
@@ -20325,7 +20360,12 @@
     "days_until_sale": 33,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-29T03:08:35Z"
+    "on_market_checked_at": "2026-08-29T03:08:35Z",
+    "dash_phone": "2102735903",
+    "dash_searched_at": "2026-09-02T14:45:00.861Z",
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-09-02T14:45:00.862Z",
+    "ghl_id": "I0rPM3t19PSAKLLF95Rw"
   },
   {
     "type": "NOF",
@@ -20632,7 +20672,12 @@
     "days_until_sale": 33,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-29T03:08:43Z"
+    "on_market_checked_at": "2026-08-29T03:08:43Z",
+    "dash_phone": "210-818-6795",
+    "dash_searched_at": "2026-09-02T14:52:40.691Z",
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-09-02T14:52:40.691Z",
+    "ghl_id": "TjMmdmQLUquWsLP3l2LW"
   },
   {
     "type": "NOF",
@@ -21095,7 +21140,12 @@
     "on_market_checked_at": "2026-09-01T00:01:00Z",
     "arv_estimate": 217600,
     "arv_status": "SOLD",
-    "arv_sqft": 1484
+    "arv_sqft": 1484,
+    "dash_phone": "2104630150",
+    "dash_searched_at": "2026-09-02T14:53:39.100Z",
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-09-02T14:53:39.100Z",
+    "ghl_id": "qIyACENJuZjRXKQat6Yy"
   },
   {
     "type": "NOF",
@@ -25961,7 +26011,10 @@
     "ghl_pushed_at": "2026-08-21T18:00:59.890Z",
     "ghl_id": "ZhunJ1LV4mlrw3JPzSvD",
     "dash_phone": "+17262618646",
-    "dash_searched_at": "2026-08-21T18:00:59.890Z"
+    "dash_searched_at": "2026-08-21T18:00:59.890Z",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-02T19:00:36Z"
   },
   {
     "type": "NOF",
@@ -26024,7 +26077,10 @@
     "ghl_pushed_at": "2026-08-21T18:01:23.170Z",
     "ghl_id": "7QwvKXtSZ7DTlEWCEeuY",
     "dash_phone": "+12104540346",
-    "dash_searched_at": "2026-08-21T18:01:23.170Z"
+    "dash_searched_at": "2026-08-21T18:01:23.170Z",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-02T19:00:38Z"
   },
   {
     "type": "NOF",
@@ -26087,7 +26143,10 @@
     "ghl_pushed_at": "2026-08-21T18:02:33.255Z",
     "ghl_id": "bmoO932T5ThLKhmIKkHE",
     "dash_phone": "+12107050574",
-    "dash_searched_at": "2026-08-21T18:02:33.255Z"
+    "dash_searched_at": "2026-08-21T18:02:33.255Z",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-02T19:00:40Z"
   },
   {
     "type": "NOF",
@@ -26151,7 +26210,10 @@
     "ghl_pushed_at": "2026-08-21T18:03:02.707Z",
     "ghl_id": "LgJVKK3Mcxt096NiRHnZ",
     "dash_phone": "+12106018348",
-    "dash_searched_at": "2026-08-21T18:03:02.707Z"
+    "dash_searched_at": "2026-08-21T18:03:02.707Z",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-02T19:00:41Z"
   },
   {
     "type": "NOF",
@@ -26214,7 +26276,10 @@
     "ghl_pushed_at": "2026-08-21T18:03:44.890Z",
     "ghl_id": "p23ZZyHwVMnGlJDaChKy",
     "dash_phone": "+12109053481",
-    "dash_searched_at": "2026-08-21T18:03:44.890Z"
+    "dash_searched_at": "2026-08-21T18:03:44.890Z",
+    "on_market": true,
+    "on_market_status": "FOR_SALE",
+    "on_market_checked_at": "2026-09-02T19:00:43Z"
   },
   {
     "type": "NOF",
@@ -26317,7 +26382,10 @@
     "arv_estimate": 272900,
     "arv_status": "SOLD",
     "arv_sqft": 1651,
-    "arv_fetched_at": "2026-08-13T19:27:05Z"
+    "arv_fetched_at": "2026-08-13T19:27:05Z",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-02T19:00:45Z"
   },
   {
     "type": "NOF",
@@ -26657,7 +26725,7 @@
     "appt_stale": true,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-02T14:32:12Z"
+    "on_market_checked_at": "2026-09-02T18:57:32Z"
   },
   {
     "doc_number": "20260134634",
@@ -26717,7 +26785,7 @@
     "appt_stale": true,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-02T14:32:41Z"
+    "on_market_checked_at": "2026-09-02T18:58:04Z"
   },
   {
     "doc_number": "20260153999",
@@ -26779,7 +26847,7 @@
     "converted_doc_number": "20260900301",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-02T14:32:58Z"
+    "on_market_checked_at": "2026-09-02T18:58:21Z"
   },
   {
     "type": "NOF",
@@ -26840,6 +26908,88 @@
     "arv_estimate": 288000,
     "arv_status": "SOLD",
     "arv_sqft": 2328
+  },
+  {
+    "doc_number": "20260168232",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Orozco Joseph Anthony",
+    "address": "1511  SAN CASIMIRO",
+    "city": "SAN ANTONIO",
+    "zip": "78214",
+    "date_filed": "8/2026",
+    "month": "8",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-09-02T16:24:46Z",
+    "score": 6,
+    "flags": [],
+    "absentee": false,
+    "duplicate": false,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "110000.0",
+    "annual_taxes": "",
+    "mail_addr": "",
+    "prop_id": "582904.0",
+    "land_value": "",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-02T18:55:21Z",
+    "arv_estimate": 124600,
+    "arv_status": "SOLD",
+    "arv_sqft": 846,
+    "arv_fetched_at": "2026-09-02T18:55:21Z",
+    "appt_converted": false,
+    "appt_stale": false
+  },
+  {
+    "doc_number": "20260168069",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Jackson Roy",
+    "address": "5915 LAKE FALLS",
+    "city": "SAN ANTONIO",
+    "zip": "78223",
+    "date_filed": "8/2026",
+    "month": "8",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-09-02T16:24:46Z",
+    "score": 6,
+    "flags": [],
+    "absentee": false,
+    "duplicate": false,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "178010.0",
+    "annual_taxes": "",
+    "mail_addr": "",
+    "prop_id": "469914.0",
+    "land_value": "",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false,
+    "on_market": true,
+    "on_market_status": "FOR_RENT",
+    "on_market_checked_at": "2026-09-02T18:55:52Z",
+    "appt_converted": false,
+    "appt_stale": false
   },
   {
     "doc_number": "20260167869",
@@ -27072,7 +27222,7 @@
     "appt_stale": false,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-02T14:33:15Z",
+    "on_market_checked_at": "2026-09-02T18:58:40Z",
     "arv_estimate": "",
     "arv_status": "",
     "arv_sqft": "",
@@ -27172,7 +27322,7 @@
     "appt_stale": false,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-02T14:33:31Z",
+    "on_market_checked_at": "2026-09-02T18:58:59Z",
     "arv_estimate": "",
     "arv_status": "",
     "arv_sqft": "",
@@ -27223,11 +27373,11 @@
     "appt_stale": false,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-01T22:49:45Z",
-    "arv_estimate": 50440,
-    "arv_status": "APPRAISED_FALLBACK",
+    "on_market_checked_at": "2026-09-02T18:59:16Z",
+    "arv_estimate": "",
+    "arv_status": "",
     "arv_sqft": "",
-    "arv_fetched_at": "2026-09-02T14:33:35Z"
+    "arv_fetched_at": ""
   },
   {
     "doc_number": "20260152809",
@@ -27273,9 +27423,9 @@
     "on_market": true,
     "on_market_status": "FOR_RENT",
     "on_market_checked_at": "2026-09-01T22:50:05Z",
-    "arv_estimate": 266880,
-    "arv_status": "APPRAISED_FALLBACK",
-    "arv_fetched_at": "2026-09-02T14:33:39Z",
+    "arv_estimate": "",
+    "arv_status": "",
+    "arv_fetched_at": "",
     "arv_sqft": ""
   },
   {
@@ -27371,10 +27521,10 @@
     "on_market": false,
     "on_market_status": "SOLD",
     "on_market_checked_at": "2026-08-31T16:11:57Z",
-    "arv_estimate": 274520,
-    "arv_status": "APPRAISED_FALLBACK",
+    "arv_estimate": "",
+    "arv_status": "",
     "arv_sqft": "",
-    "arv_fetched_at": "2026-09-02T14:33:43Z"
+    "arv_fetched_at": ""
   },
   {
     "type": "NOF",
@@ -27965,7 +28115,7 @@
     "appr_trend": "down",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-23T20:25:25Z",
+    "on_market_checked_at": "2026-09-02T19:00:46Z",
     "arv_estimate": 111035,
     "arv_status": "SOLD",
     "arv_sqft": 768,
@@ -28363,7 +28513,10 @@
     "arv_sqft": 624,
     "arv_fetched_at": "2026-08-12T14:52:01Z",
     "appt_converted": false,
-    "appt_stale": false
+    "appt_stale": false,
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-09-02T19:00:48Z"
   },
   {
     "doc_number": "20260154120",
@@ -28424,7 +28577,10 @@
     "arv_sqft": 1282,
     "arv_fetched_at": "2026-08-12T14:52:34Z",
     "appt_converted": false,
-    "appt_stale": false
+    "appt_stale": false,
+    "on_market": true,
+    "on_market_status": "FOR_SALE",
+    "on_market_checked_at": "2026-09-02T19:01:27Z"
   },
   {
     "doc_number": "20260154001",
@@ -32902,7 +33058,7 @@
     "land_value": "3558720.0",
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-09-02T14:30:00Z"
+    "on_market_checked_at": "2026-09-02T18:54:39Z"
   },
   {
     "doc_number": "VBP-233-W-TRAVIS-ST-78205",
@@ -32950,7 +33106,7 @@
     "land_value": "481389.0",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-02T14:30:02Z"
+    "on_market_checked_at": "2026-09-02T18:54:41Z"
   },
   {
     "doc_number": "VBP-310-W-COMMERCE-ST-78205",
@@ -33581,7 +33737,7 @@
     "land_value": "359060.0",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-02T14:30:17Z"
+    "on_market_checked_at": "2026-09-02T18:54:59Z"
   },
   {
     "doc_number": "VBP-164-EL-MONTE-BLVD-78212",
@@ -33690,7 +33846,7 @@
     "land_value": "244630.0",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-02T14:30:33Z"
+    "on_market_checked_at": "2026-09-02T18:55:16Z"
   },
   {
     "doc_number": "VBP-206-E-FREDERICKSBURG-RD-78212",
@@ -33796,11 +33952,11 @@
     "dash_searched_at": "2026-02-18T20:05:55.155Z",
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-09-02T14:30:35Z",
+    "on_market_checked_at": "2026-09-02T18:55:18Z",
     "arv_estimate": 445600,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 2268,
-    "arv_fetched_at": "2026-09-02T14:30:35Z"
+    "arv_fetched_at": "2026-09-02T18:55:18Z"
   },
   {
     "doc_number": "VBP-215-W-MARIPOSA-DR-78212",
@@ -33863,11 +34019,11 @@
     "land_value": "66980.0",
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-09-02T14:30:36Z",
+    "on_market_checked_at": "2026-09-02T18:55:20Z",
     "arv_estimate": 215000,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 1206,
-    "arv_fetched_at": "2026-09-02T14:30:36Z"
+    "arv_fetched_at": "2026-09-02T18:55:20Z"
   },
   {
     "doc_number": "VBP-218-E-PARK-AVE-78212",
@@ -50071,7 +50227,10 @@
     "days_until_sale": null,
     "arv_estimate": 196660,
     "arv_status": "APPRAISED_FALLBACK",
-    "arv_fetched_at": "2026-08-29T22:38:30Z"
+    "arv_fetched_at": "2026-08-29T22:38:30Z",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-02T19:01:36Z"
   },
   {
     "doc_number": "VBP-352-MCKAY-AVE-78204",
@@ -50127,7 +50286,10 @@
     "dash_searched_at": "2026-02-18T20:07:25.546Z",
     "arv_estimate": 90000,
     "arv_status": "APPRAISED_FALLBACK",
-    "arv_fetched_at": "2026-08-29T22:38:34Z"
+    "arv_fetched_at": "2026-08-29T22:38:34Z",
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-09-02T19:01:38Z"
   },
   {
     "doc_number": "VBP-118-LAZA-ST-78207",
@@ -50527,7 +50689,7 @@
     "days_until_sale": null,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-02T14:29:14Z"
+    "on_market_checked_at": "2026-09-02T18:53:49Z"
   },
   {
     "doc_number": "VBP-2902-W-COMMERCE-ST-78207",
@@ -50691,7 +50853,7 @@
     "days_until_sale": null,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-02T14:29:26Z"
+    "on_market_checked_at": "2026-09-02T18:54:03Z"
   },
   {
     "doc_number": "VBP-858-ANGELA-ST-78207",
@@ -50917,7 +51079,7 @@
     "days_until_sale": null,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-02T14:29:37Z"
+    "on_market_checked_at": "2026-09-02T18:54:15Z"
   },
   {
     "doc_number": "VBP-338-CORDELIA-ST-78237",
@@ -51081,7 +51243,7 @@
     "days_until_sale": null,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-02T14:29:58Z"
+    "on_market_checked_at": "2026-09-02T18:54:37Z"
   },
   {
     "doc_number": "VBP-1903-W-WOODLAWN-AVE-78201",
@@ -51622,6 +51784,159 @@
     "arv_status": "",
     "arv_sqft": "",
     "arv_fetched_at": ""
+  },
+  {
+    "doc_number": "20260154000",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "251 W MAYFIELD LAND TRUST",
+    "address": "251 W MAYFIELD BLVD",
+    "city": "SAN ANTONIO",
+    "zip": "78223",
+    "date_filed": "8/2026",
+    "month": "8",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-08-11T23:12:35Z",
+    "score": 6,
+    "flags": [
+      "DUPLICATE"
+    ],
+    "absentee": false,
+    "duplicate": true,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "140060.0",
+    "annual_taxes": "",
+    "mail_addr": "",
+    "prop_id": "401962.0",
+    "land_value": "50600.0",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false,
+    "deed_date": "6/22/2012",
+    "last_sale_amt": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "appr_history": [],
+    "appr_trend": "",
+    "appt_converted": false,
+    "appt_stale": false,
+    "on_market": true,
+    "on_market_status": "FOR_RENT",
+    "on_market_checked_at": "2026-08-31T23:50:26Z",
+    "arv_estimate": "",
+    "arv_status": "",
+    "arv_sqft": "",
+    "arv_fetched_at": "",
+    "converted_doc_number": "20260900302"
+  },
+  {
+    "doc_number": "20260154002",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "MARKICH CHRISTIAN",
+    "address": "642 FERRIS AVE",
+    "city": "SAN ANTONIO",
+    "zip": "78223",
+    "date_filed": "8/2026",
+    "month": "8",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-08-11T23:12:35Z",
+    "score": 6,
+    "flags": [
+      "DUPLICATE"
+    ],
+    "absentee": false,
+    "duplicate": true,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "137480.0",
+    "annual_taxes": "",
+    "mail_addr": "",
+    "prop_id": "461980.0",
+    "land_value": "42690.0",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false,
+    "deed_date": "2/26/2019",
+    "last_sale_amt": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "appr_history": [],
+    "appr_trend": "",
+    "appt_converted": false,
+    "appt_stale": false,
+    "on_market_checked_at": "2026-08-31T23:50:51Z",
+    "on_market": true,
+    "on_market_status": "FOR_RENT",
+    "arv_estimate": "",
+    "arv_status": "",
+    "arv_sqft": "",
+    "arv_fetched_at": "",
+    "converted_doc_number": "20260900304"
+  },
+  {
+    "doc_number": "20260153998",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "DOSS SHEILA M",
+    "address": "14251 IDEAL AVE",
+    "city": "SAN ANTONIO",
+    "zip": "78221",
+    "date_filed": "8/2026",
+    "month": "8",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-08-11T23:12:35Z",
+    "score": 6,
+    "flags": [
+      "DUPLICATE"
+    ],
+    "absentee": false,
+    "duplicate": true,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "94740.0",
+    "annual_taxes": "",
+    "mail_addr": "",
+    "prop_id": "365821.0",
+    "land_value": "72470.0",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false,
+    "deed_date": "12/3/2025",
+    "last_sale_amt": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "appr_history": [],
+    "appr_trend": "",
+    "arv_estimate": "",
+    "arv_status": "",
+    "arv_sqft": "",
+    "arv_fetched_at": "",
+    "appt_converted": false,
+    "appt_stale": false,
+    "converted_doc_number": "20260900300"
   },
   {
     "doc_number": "20260141291",
@@ -52799,112 +53114,6 @@
     "on_market_status": "FOR_SALE",
     "on_market_checked_at": "2026-08-28T16:29:55Z",
     "converted_doc_number": "20261000020"
-  },
-  {
-    "doc_number": "20260154000",
-    "ps_doc_id": "",
-    "type": "APPT",
-    "source": "publicsearch",
-    "county": "bexar",
-    "owner": "251 W MAYFIELD LAND TRUST",
-    "address": "251 W MAYFIELD BLVD",
-    "city": "SAN ANTONIO",
-    "zip": "78223",
-    "date_filed": "8/2026",
-    "month": "8",
-    "year": "2026",
-    "sale_date": "",
-    "is_new": false,
-    "run_ts": "2026-08-11T23:12:35Z",
-    "score": 2,
-    "flags": [
-      "DUPLICATE",
-      "CONVERTED TO NOF"
-    ],
-    "absentee": false,
-    "duplicate": true,
-    "days_until_sale": null,
-    "loan_amount": "",
-    "loan_date": "",
-    "lender": "",
-    "trustee": "",
-    "appraised_value": "140060.0",
-    "annual_taxes": "",
-    "mail_addr": "",
-    "prop_id": "401962.0",
-    "land_value": "50600.0",
-    "improvement_value": "",
-    "stacked": false,
-    "ce_violations": false,
-    "deed_date": "6/22/2012",
-    "last_sale_amt": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "appr_history": [],
-    "appr_trend": "",
-    "appt_converted": true,
-    "appt_stale": false,
-    "on_market": true,
-    "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-31T23:50:26Z",
-    "arv_estimate": "",
-    "arv_status": "",
-    "arv_sqft": "",
-    "arv_fetched_at": "",
-    "converted_doc_number": "20260900302"
-  },
-  {
-    "doc_number": "20260154002",
-    "ps_doc_id": "",
-    "type": "APPT",
-    "source": "publicsearch",
-    "county": "bexar",
-    "owner": "MARKICH CHRISTIAN",
-    "address": "642 FERRIS AVE",
-    "city": "SAN ANTONIO",
-    "zip": "78223",
-    "date_filed": "8/2026",
-    "month": "8",
-    "year": "2026",
-    "sale_date": "",
-    "is_new": false,
-    "run_ts": "2026-08-11T23:12:35Z",
-    "score": 2,
-    "flags": [
-      "DUPLICATE",
-      "CONVERTED TO NOF"
-    ],
-    "absentee": false,
-    "duplicate": true,
-    "days_until_sale": null,
-    "loan_amount": "",
-    "loan_date": "",
-    "lender": "",
-    "trustee": "",
-    "appraised_value": "137480.0",
-    "annual_taxes": "",
-    "mail_addr": "",
-    "prop_id": "461980.0",
-    "land_value": "42690.0",
-    "improvement_value": "",
-    "stacked": false,
-    "ce_violations": false,
-    "deed_date": "2/26/2019",
-    "last_sale_amt": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "appr_history": [],
-    "appr_trend": "",
-    "appt_converted": true,
-    "appt_stale": false,
-    "on_market_checked_at": "2026-08-31T23:50:51Z",
-    "on_market": true,
-    "on_market_status": "FOR_RENT",
-    "arv_estimate": "",
-    "arv_status": "",
-    "arv_sqft": "",
-    "arv_fetched_at": "",
-    "converted_doc_number": "20260900304"
   },
   {
     "doc_number": "20260153917",
@@ -54873,56 +55082,6 @@
     "converted_doc_number": "20260900305"
   },
   {
-    "doc_number": "20260153998",
-    "ps_doc_id": "",
-    "type": "APPT",
-    "source": "publicsearch",
-    "county": "bexar",
-    "owner": "DOSS SHEILA M",
-    "address": "14251 IDEAL AVE",
-    "city": "SAN ANTONIO",
-    "zip": "78221",
-    "date_filed": "8/2026",
-    "month": "8",
-    "year": "2026",
-    "sale_date": "",
-    "is_new": false,
-    "run_ts": "2026-08-11T23:12:35Z",
-    "score": 2,
-    "flags": [
-      "DUPLICATE",
-      "CONVERTED TO NOF"
-    ],
-    "absentee": false,
-    "duplicate": true,
-    "days_until_sale": null,
-    "loan_amount": "",
-    "loan_date": "",
-    "lender": "",
-    "trustee": "",
-    "appraised_value": "94740.0",
-    "annual_taxes": "",
-    "mail_addr": "",
-    "prop_id": "365821.0",
-    "land_value": "72470.0",
-    "improvement_value": "",
-    "stacked": false,
-    "ce_violations": false,
-    "deed_date": "12/3/2025",
-    "last_sale_amt": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "appr_history": [],
-    "appr_trend": "",
-    "arv_estimate": "",
-    "arv_status": "",
-    "arv_sqft": "",
-    "arv_fetched_at": "",
-    "appt_converted": true,
-    "appt_stale": false,
-    "converted_doc_number": "20260900300"
-  },
-  {
     "doc_number": "20260150652",
     "ps_doc_id": "",
     "type": "APPT",
@@ -55322,7 +55481,7 @@
     "score": 2,
     "flags": [
       "DUPLICATE",
-      "CONVERTED TO NOF"
+      "LIKELY RESOLVED"
     ],
     "absentee": false,
     "duplicate": true,
@@ -55345,8 +55504,8 @@
     "tenure_score_bonus": 0,
     "appr_history": [],
     "appr_trend": "",
-    "appt_converted": true,
-    "appt_stale": false,
+    "appt_converted": false,
+    "appt_stale": true,
     "on_market": true,
     "on_market_status": "FOR_RENT",
     "on_market_checked_at": "2026-08-31T16:36:37Z",
@@ -56714,7 +56873,7 @@
     "score": 2,
     "flags": [
       "DUPLICATE",
-      "CONVERTED TO NOF"
+      "LIKELY RESOLVED"
     ],
     "absentee": false,
     "duplicate": true,
@@ -56731,8 +56890,8 @@
     "improvement_value": "",
     "stacked": false,
     "ce_violations": false,
-    "appt_converted": true,
-    "appt_stale": false,
+    "appt_converted": false,
+    "appt_stale": true,
     "converted_doc_number": "20260900124",
     "on_market": true,
     "on_market_status": "FOR_SALE",
