@@ -1306,7 +1306,18 @@ async function _writeBackToRepoImpl(doc_number,updates,attempt=1){
     const repoPath='dashboard/records.json';
     const apiBase=`https://api.github.com/repos/${GH_REPO}/contents/${repoPath}`;
     const getRes=await fetch(apiBase,{headers:{'Authorization':'Bearer '+S.ghToken,'Accept':'application/vnd.github+json'}});
-    if(!getRes.ok)return;
+    if(!getRes.ok){
+      // fix 2026-09-02: this used to silently give up here with no retry and
+      // no toast at all -- the most likely source of writeBackToRepo's "silent"
+      // failures (confirmed live on bexar-leads and nueces-leads: a push
+      // succeeded in Jarvis but records.json never got the ghl_pushed flag,
+      // with nothing telling the user why). Now retries and warns the same
+      // way a failed PUT does.
+      if(attempt<10){await new Promise(r=>setTimeout(r,Math.min(300*attempt,2500)));return _writeBackToRepoImpl(doc_number,updates,attempt+1);}
+      console.warn(`writeBackToRepo: GET failed after ${attempt} attempts for ${doc_number} (HTTP ${getRes.status})`);
+      toast('⚠ Sync failed for this lead after retries — it may show unworked until next refresh',true);
+      return;
+    }
     const fileData=await getRes.json();
     const sha=fileData.sha;
     const currentJson=JSON.parse(atob(fileData.content.replace(/\n/g,'')));
@@ -1316,12 +1327,12 @@ async function _writeBackToRepoImpl(doc_number,updates,attempt=1){
     const newContent=btoa(unescape(encodeURIComponent(JSON.stringify(currentJson))));
     const putRes=await fetch(apiBase,{method:'PUT',headers:{'Authorization':'Bearer '+S.ghToken,'Accept':'application/vnd.github+json','Content-Type':'application/json'},body:JSON.stringify({message:`dash: update lead ${doc_number}`,content:newContent,sha:sha})});
     if(!putRes.ok){
-      if(attempt<5){await new Promise(r=>setTimeout(r,300*attempt));return _writeBackToRepoImpl(doc_number,updates,attempt+1);}
+      if(attempt<10){await new Promise(r=>setTimeout(r,Math.min(300*attempt,2500)));return _writeBackToRepoImpl(doc_number,updates,attempt+1);}
       console.warn(`writeBackToRepo: gave up after ${attempt} attempts for ${doc_number} (HTTP ${putRes.status})`);
       toast('⚠ Sync failed for this lead after retries — it may show unworked until next refresh',true);
     }
   }catch(e){
-    if(attempt<5){await new Promise(r=>setTimeout(r,300*attempt));return _writeBackToRepoImpl(doc_number,updates,attempt+1);}
+    if(attempt<10){await new Promise(r=>setTimeout(r,Math.min(300*attempt,2500)));return _writeBackToRepoImpl(doc_number,updates,attempt+1);}
     console.warn('writeBackToRepo:',e);
   }
 }
