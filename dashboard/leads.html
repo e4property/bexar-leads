@@ -1624,7 +1624,21 @@ async function pushGHL(lead,phone){
     S.leads[lead.doc_number].ghlId=id;S.leads[lead.doc_number].ghl_pushed=true;
     if(offerLow!=null){S.leads[lead.doc_number].botOfferEnabled=true;S.leads[lead.doc_number].botOfferLow=offerLow;S.leads[lead.doc_number].botOfferHigh=offerHigh;S.leads[lead.doc_number].botOfferAt=Date.now();}
     saveState();setGhlDot(true);return id;
-  }else{setGhlDot(false);return null;}}catch(e){setGhlDot(false);return null;}
+  }else{
+    // fix 2026-09-02: same silent-failure gap found and fixed in nueces-leads
+    // -- ported here since this is the identical function. GHL rejects a
+    // create when the phone already belongs to another contact in this
+    // location, returning the existing contact's id in the error body --
+    // treat that the same as the address-dedupe check above instead of a
+    // dead-end failure.
+    const dupId=data?.meta?.contactId||(typeof data?.message==='string'&&(data.message.match(/duplicated contact id:?\s*([a-zA-Z0-9]+)/i)||[])[1]);
+    if(dupId){
+      toast(`Blocked push — this phone number is already on a Jarvis contact (id ${dupId}). Open that contact instead of creating a duplicate.`,true);
+      S.leads[lead.doc_number].ghlId=dupId;saveState();setGhlDot(true);return dupId;
+    }
+    toast(`GHL push failed: ${data?.message||res.status+' '+res.statusText||'unknown error'}`,true);
+    setGhlDot(false);return null;
+  }}catch(e){toast(`GHL push failed: ${e.message||e}`,true);setGhlDot(false);return null;}
 }
 
 async function updateGHLTag(contactId,dispo){const tagMap={contacted:'dispo_contacted',responded:'dispo_responded',deal:'dispo_deal',dead:'dispo_dead'},tag=tagMap[dispo];if(!tag)return;try{await fetch(`https://services.leadconnectorhq.com/contacts/${contactId}/tags/`,{method:'POST',headers:{'Authorization':'Bearer '+S.ghlApiKey,'Content-Type':'application/json','Version':'2021-07-28'},body:JSON.stringify({tags:[tag]})});}catch(e){}}
