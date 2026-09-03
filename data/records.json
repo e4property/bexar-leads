@@ -6,7 +6,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000218",
     "ps_doc_id": "",
     "year": "2026",
@@ -19,7 +19,6 @@
     "sale_date": "10/06/2026",
     "run_ts": "2026-09-03T18:15:37Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -56,7 +55,10 @@
     "arv_fetched_at": "2026-09-03T19:11:36Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 32
+    "days_until_sale": 32,
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-09-03T23:04:50Z"
   },
   {
     "type": "NOF",
@@ -65,7 +67,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000214",
     "ps_doc_id": "",
     "year": "2026",
@@ -78,7 +80,6 @@
     "sale_date": "10/06/2026",
     "run_ts": "2026-09-03T18:15:37Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "LONG HELD"
     ],
@@ -128,7 +129,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000221",
     "ps_doc_id": "",
     "year": "2026",
@@ -141,7 +142,6 @@
     "sale_date": "10/06/2026",
     "run_ts": "2026-09-03T18:15:37Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -9093,7 +9093,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000223",
     "ps_doc_id": "",
     "year": "2026",
@@ -9106,7 +9106,6 @@
     "sale_date": "11/03/2026",
     "run_ts": "2026-09-03T18:15:37Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "LONG HELD"
     ],
@@ -9144,7 +9143,10 @@
     "arv_fetched_at": "2026-09-03T19:11:40Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 60
+    "days_until_sale": 60,
+    "on_market": true,
+    "on_market_status": "FOR_RENT",
+    "on_market_checked_at": "2026-09-03T23:05:10Z"
   },
   {
     "type": "NOF",
@@ -9153,7 +9155,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000215",
     "ps_doc_id": "",
     "year": "2026",
@@ -9166,7 +9168,6 @@
     "sale_date": "11/03/2026",
     "run_ts": "2026-09-03T18:15:37Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -11614,7 +11615,7 @@
     "ghl_pushed_at": "2026-07-20T04:45:04.824Z",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-03T19:08:47Z"
+    "on_market_checked_at": "2026-09-03T22:59:58Z"
   },
   {
     "doc_number": "20260138241",
@@ -14559,7 +14560,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000222",
     "ps_doc_id": "",
     "year": "2026",
@@ -14572,7 +14573,6 @@
     "sale_date": "10/06/2026",
     "run_ts": "2026-09-03T18:15:37Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -14621,7 +14621,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000220",
     "ps_doc_id": "",
     "year": "2026",
@@ -14634,7 +14634,6 @@
     "sale_date": "10/06/2026",
     "run_ts": "2026-09-03T18:15:37Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -25143,7 +25142,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000217",
     "ps_doc_id": "",
     "year": "2026",
@@ -25156,7 +25155,6 @@
     "sale_date": "11/03/2026",
     "run_ts": "2026-09-03T18:15:37Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -26798,7 +26796,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261000219",
     "ps_doc_id": "",
     "year": "2026",
@@ -26811,7 +26809,6 @@
     "sale_date": "01/05/2027",
     "run_ts": "2026-09-03T18:15:37Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -26976,7 +26973,7 @@
     "appt_stale": true,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-03T19:09:16Z"
+    "on_market_checked_at": "2026-09-03T23:00:26Z"
   },
   {
     "doc_number": "20260134634",
@@ -27036,7 +27033,7 @@
     "appt_stale": true,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-03T19:09:45Z"
+    "on_market_checked_at": "2026-09-03T23:00:55Z"
   },
   {
     "doc_number": "20260153999",
@@ -27098,7 +27095,7 @@
     "converted_doc_number": "20260900301",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-03T19:10:03Z"
+    "on_market_checked_at": "2026-09-03T23:01:12Z"
   },
   {
     "type": "NOF",
@@ -27281,7 +27278,7 @@
     "ce_violations": false,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-03T19:10:32Z",
+    "on_market_checked_at": "2026-09-03T23:01:41Z",
     "appt_converted": false,
     "appt_stale": false
   },
@@ -27516,7 +27513,7 @@
     "appt_stale": false,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-03T19:10:48Z",
+    "on_market_checked_at": "2026-09-03T23:01:57Z",
     "arv_estimate": "",
     "arv_status": "",
     "arv_sqft": "",
@@ -27616,7 +27613,7 @@
     "appt_stale": false,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-03T19:11:06Z",
+    "on_market_checked_at": "2026-09-03T23:02:15Z",
     "arv_estimate": "",
     "arv_status": "",
     "arv_sqft": "",
@@ -27667,7 +27664,7 @@
     "appt_stale": false,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-03T19:11:23Z",
+    "on_market_checked_at": "2026-09-03T23:02:31Z",
     "arv_estimate": "",
     "arv_status": "",
     "arv_sqft": "",
@@ -27814,11 +27811,11 @@
     "appt_stale": false,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-31T16:11:57Z",
-    "arv_estimate": "",
-    "arv_status": "",
-    "arv_sqft": "",
-    "arv_fetched_at": ""
+    "on_market_checked_at": "2026-09-03T23:02:33Z",
+    "arv_estimate": 270000,
+    "arv_status": "SOLD",
+    "arv_sqft": 2214,
+    "arv_fetched_at": "2026-09-03T23:02:33Z"
   },
   {
     "type": "NOF",
@@ -27906,11 +27903,11 @@
     "appt_stale": false,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-31T16:20:17Z",
-    "arv_estimate": "",
-    "arv_status": "",
-    "arv_sqft": "",
-    "arv_fetched_at": ""
+    "on_market_checked_at": "2026-09-03T23:02:34Z",
+    "arv_estimate": 280500,
+    "arv_status": "SOLD",
+    "arv_sqft": 2301,
+    "arv_fetched_at": "2026-09-03T23:02:34Z"
   },
   {
     "doc_number": "20260150274",
@@ -29099,7 +29096,7 @@
     "ghl_id": "jBnobbhdbvzRe3o4yv9Z",
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-08-27T15:39:20Z",
+    "on_market_checked_at": "2026-09-03T23:05:16Z",
     "arv_estimate": 110400,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 858,
@@ -29155,7 +29152,7 @@
     "days_until_sale": null,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-27T15:39:21Z",
+    "on_market_checked_at": "2026-09-03T23:05:17Z",
     "arv_estimate": 322034,
     "arv_status": "SOLD",
     "arv_sqft": 1788,
@@ -29218,7 +29215,7 @@
     "days_until_sale": null,
     "on_market": true,
     "on_market_status": "PENDING",
-    "on_market_checked_at": "2026-08-27T15:39:23Z",
+    "on_market_checked_at": "2026-09-03T23:05:19Z",
     "arv_estimate": 517000,
     "arv_status": "PENDING",
     "arv_sqft": 2982,
@@ -29281,7 +29278,7 @@
     "days_until_sale": null,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-27T15:39:24Z",
+    "on_market_checked_at": "2026-09-03T23:05:20Z",
     "arv_estimate": 538800,
     "arv_status": "SOLD",
     "arv_sqft": 3660,
@@ -29340,7 +29337,7 @@
     "ghl_id": "RdEO4bM8mw80Rv9Io83e",
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-08-27T15:39:26Z",
+    "on_market_checked_at": "2026-09-03T23:05:22Z",
     "arv_estimate": 190800,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 1154,
@@ -29455,7 +29452,7 @@
     "ghl_id": "lbaAcDt1VPmSJZklfoPX",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-27T15:39:43Z",
+    "on_market_checked_at": "2026-09-03T23:05:24Z",
     "arv_estimate": 235868,
     "arv_status": "SOLD",
     "arv_sqft": 1224,
@@ -33311,7 +33308,7 @@
     "land_value": "3558720.0",
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-09-03T19:07:37Z"
+    "on_market_checked_at": "2026-09-03T22:58:37Z"
   },
   {
     "doc_number": "VBP-233-W-TRAVIS-ST-78205",
@@ -33359,7 +33356,7 @@
     "land_value": "481389.0",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-03T19:07:39Z"
+    "on_market_checked_at": "2026-09-03T22:58:39Z"
   },
   {
     "doc_number": "VBP-310-W-COMMERCE-ST-78205",
@@ -33986,7 +33983,7 @@
     "land_value": "359060.0",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-03T19:07:54Z"
+    "on_market_checked_at": "2026-09-03T22:58:55Z"
   },
   {
     "doc_number": "VBP-164-EL-MONTE-BLVD-78212",
@@ -34095,7 +34092,7 @@
     "land_value": "244630.0",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-03T19:08:11Z"
+    "on_market_checked_at": "2026-09-03T22:59:11Z"
   },
   {
     "doc_number": "VBP-206-E-FREDERICKSBURG-RD-78212",
@@ -34422,7 +34419,14 @@
     "land_value": "38830.0",
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-02-18T20:05:56.871Z",
-    "ghl_id": "52LRRKvsvXiSw2A0dKFm"
+    "ghl_id": "52LRRKvsvXiSw2A0dKFm",
+    "on_market": true,
+    "on_market_status": "FOR_SALE",
+    "on_market_checked_at": "2026-09-03T22:59:13Z",
+    "arv_estimate": 74568,
+    "arv_status": "FOR_SALE",
+    "arv_sqft": 600,
+    "arv_fetched_at": "2026-09-03T22:59:13Z"
   },
   {
     "doc_number": "VBP-312-MARSHALL-ST-78212",
@@ -34485,7 +34489,10 @@
     "land_value": "72280.0",
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-02-18T20:05:58.032Z",
-    "ghl_id": "LQVLCDbPv8R5Ozz2Pg6I"
+    "ghl_id": "LQVLCDbPv8R5Ozz2Pg6I",
+    "on_market": true,
+    "on_market_status": "FOR_RENT",
+    "on_market_checked_at": "2026-09-03T22:59:29Z"
   },
   {
     "doc_number": "VBP-314-W-MAGNOLIA-AVE-78212",
@@ -50790,7 +50797,7 @@
     "days_until_sale": null,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-03T19:06:49Z"
+    "on_market_checked_at": "2026-09-03T22:57:49Z"
   },
   {
     "doc_number": "VBP-2902-W-COMMERCE-ST-78207",
@@ -50954,7 +50961,7 @@
     "days_until_sale": null,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-03T19:07:01Z"
+    "on_market_checked_at": "2026-09-03T22:58:01Z"
   },
   {
     "doc_number": "VBP-858-ANGELA-ST-78207",
@@ -51178,7 +51185,7 @@
     "days_until_sale": null,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-03T19:07:13Z"
+    "on_market_checked_at": "2026-09-03T22:58:12Z"
   },
   {
     "doc_number": "VBP-338-CORDELIA-ST-78237",
@@ -51342,7 +51349,7 @@
     "days_until_sale": null,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-03T19:07:35Z"
+    "on_market_checked_at": "2026-09-03T22:58:35Z"
   },
   {
     "doc_number": "VBP-1903-W-WOODLAWN-AVE-78201",
@@ -52034,6 +52041,54 @@
     "appt_converted": false,
     "appt_stale": false,
     "converted_doc_number": "20260900300"
+  },
+  {
+    "type": "NOF",
+    "address": "5154 MAYSPRING",
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20261000216",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "9",
+    "city": "SAN ANTONIO",
+    "zip": "78217",
+    "school_dist": "",
+    "date_filed": "9/2026",
+    "date_recorded": "9/3/2026",
+    "sale_date": "11/03/2026",
+    "run_ts": "2026-09-03T22:08:48Z",
+    "flags": [
+      "NEW",
+      "NO OWNER",
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "prop_id": "",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "appr_history": [],
+    "appr_trend": "",
+    "on_market": true,
+    "on_market_status": "FOR_SALE",
+    "on_market_checked_at": "2026-09-03T23:03:12Z",
+    "arv_estimate": 289888,
+    "arv_status": "FOR_SALE",
+    "arv_sqft": 2128,
+    "arv_fetched_at": "2026-09-03T23:03:12Z",
+    "stacked": false,
+    "score": 4,
+    "days_until_sale": 60
   },
   {
     "doc_number": "20260141291",
