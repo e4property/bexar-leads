@@ -1573,8 +1573,13 @@ async function pushGHL(lead,phone){
     // instruction is to only SMS off-market leads for now. Same guard added
     // to all three county dashboards.
     if(lead.on_market){
-      toast(`Blocked push — this lead is already on market${lead.on_market_status?' ('+lead.on_market_status+')':''}. Not sending SMS to on-market leads right now.`,true);
-      return null;
+      // fix 2026-09-04: downgraded from a hard block to a warning -- the
+      // on_market flag comes from a scraper-run snapshot (HomeHarvest/
+      // Realtor.com match) that can be stale or a bad match, and there was
+      // no way to override it even when the operator could see in front of
+      // them that the lead wasn't actually on market. Still surfaced loudly
+      // so a genuinely on-market lead doesn't get pushed by accident.
+      toast(`⚠ Flagged as on market${lead.on_market_status?' ('+lead.on_market_status+')':''} — pushing anyway. Double-check before texting if this looks wrong.`,true);
     }
     // 2026-08-27: block push if this ADDRESS already has a Jarvis contact,
     // even under a different doc_number/lead entirely -- root cause of a
