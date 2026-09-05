@@ -3068,7 +3068,7 @@
     "dash_searched_at": "2026-08-21T16:54:55.714Z",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-28T15:15:26Z"
+    "on_market_checked_at": "2026-09-05T17:50:46Z"
   },
   {
     "type": "NOF",
@@ -3135,7 +3135,7 @@
     "dash_searched_at": "2026-08-21T16:57:37.009Z",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-28T15:15:27Z"
+    "on_market_checked_at": "2026-09-05T17:50:47Z"
   },
   {
     "type": "NOF",
@@ -3197,7 +3197,7 @@
     "arv_fetched_at": "2026-08-21T15:35:11Z",
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-08-28T15:15:29Z",
+    "on_market_checked_at": "2026-09-05T17:50:49Z",
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-31T01:01:08.154Z",
     "ghl_id": "OiAiLiOABnPR4SoP4qnu",
@@ -3268,7 +3268,7 @@
     "dash_searched_at": "2026-08-21T16:59:22.481Z",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-28T15:15:30Z"
+    "on_market_checked_at": "2026-09-05T17:50:50Z"
   },
   {
     "type": "NOF",
@@ -3336,7 +3336,7 @@
     "dash_searched_at": "2026-08-21T17:00:00.585Z",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-28T15:15:32Z"
+    "on_market_checked_at": "2026-09-05T17:50:52Z"
   },
   {
     "type": "NOF",
@@ -3403,7 +3403,7 @@
     "dash_searched_at": "2026-08-21T17:00:34.757Z",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-28T15:15:33Z"
+    "on_market_checked_at": "2026-09-05T17:50:53Z"
   },
   {
     "type": "NOF",
@@ -3471,7 +3471,7 @@
     "dash_searched_at": "2026-08-13T20:03:39.123Z",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-28T15:15:35Z"
+    "on_market_checked_at": "2026-09-05T17:50:55Z"
   },
   {
     "type": "NOF",
@@ -3602,7 +3602,7 @@
     "dash_searched_at": "2026-08-20T22:35:25.692Z",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-28T15:15:36Z"
+    "on_market_checked_at": "2026-09-05T17:50:56Z"
   },
   {
     "type": "NOF",
@@ -3669,7 +3669,7 @@
     "dash_phone": "2109293237",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-28T15:15:38Z"
+    "on_market_checked_at": "2026-09-05T17:50:58Z"
   },
   {
     "type": "NOF",
@@ -23527,7 +23527,7 @@
     "dash_phone": "2102860338",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-05T04:05:17Z"
+    "on_market_checked_at": "2026-09-05T17:47:28Z"
   },
   {
     "doc_number": "20260138241",
@@ -27766,7 +27766,11 @@
     "appt_stale": true,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-05T04:05:45Z"
+    "on_market_checked_at": "2026-09-05T17:47:57Z",
+    "arv_estimate": 102700,
+    "arv_status": "FOR_RENT",
+    "arv_sqft": null,
+    "arv_fetched_at": "2026-09-05T17:47:57Z"
   },
   {
     "doc_number": "20260134634",
@@ -27826,7 +27830,7 @@
     "appt_stale": true,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-05T04:06:15Z"
+    "on_market_checked_at": "2026-09-05T17:48:26Z"
   },
   {
     "doc_number": "20260153999",
@@ -27888,7 +27892,7 @@
     "converted_doc_number": "20260900301",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-05T04:06:31Z"
+    "on_market_checked_at": "2026-09-05T17:48:43Z"
   },
   {
     "type": "NOF",
@@ -27951,6 +27955,137 @@
     "arv_sqft": 2328
   },
   {
+    "doc_number": "20260173338",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Colon Cassandra",
+    "address": "9710  FROST PLAIN DR",
+    "city": "SAN ANTONIO",
+    "zip": "78245",
+    "date_filed": "9/2026",
+    "month": "9",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-09-05T14:58:41Z",
+    "score": 6,
+    "flags": [],
+    "absentee": false,
+    "duplicate": false,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "264000.0",
+    "annual_taxes": "",
+    "mail_addr": "",
+    "prop_id": "195341.0",
+    "land_value": "",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-05T17:46:56Z",
+    "arv_estimate": 234180,
+    "arv_status": "SOLD",
+    "arv_sqft": 2180,
+    "arv_fetched_at": "2026-09-05T17:46:56Z",
+    "appt_converted": false,
+    "appt_stale": false
+  },
+  {
+    "doc_number": "20260173262",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Goss Pascuala Balleza",
+    "address": "10511  CENIZO FLD",
+    "city": "SAN ANTONIO",
+    "zip": "78023",
+    "date_filed": "9/2026",
+    "month": "9",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-09-05T14:58:41Z",
+    "score": 6,
+    "flags": [],
+    "absentee": false,
+    "duplicate": false,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "406210.0",
+    "annual_taxes": "",
+    "mail_addr": "",
+    "prop_id": "1063347.0",
+    "land_value": "",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-05T17:46:57Z",
+    "arv_estimate": 402000,
+    "arv_status": "SOLD",
+    "arv_sqft": 3185,
+    "arv_fetched_at": "2026-09-05T17:46:57Z",
+    "appt_converted": false,
+    "appt_stale": false
+  },
+  {
+    "doc_number": "20260172946",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Woodall Shanna-Marie",
+    "address": "3522  LE BLANC ST",
+    "city": "SAN ANTONIO",
+    "zip": "78247",
+    "date_filed": "9/2026",
+    "month": "9",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-09-05T14:58:41Z",
+    "score": 6,
+    "flags": [
+      "DUPLICATE"
+    ],
+    "absentee": false,
+    "duplicate": true,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "318150.0",
+    "annual_taxes": "",
+    "mail_addr": "",
+    "prop_id": "678129.0",
+    "land_value": "",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-05T17:46:59Z",
+    "arv_estimate": 317200,
+    "arv_status": "SOLD",
+    "arv_sqft": 2005,
+    "arv_fetched_at": "2026-09-05T17:46:59Z",
+    "appt_converted": false,
+    "appt_stale": false
+  },
+  {
     "doc_number": "20260172164",
     "ps_doc_id": "",
     "type": "APPT",
@@ -27985,7 +28120,7 @@
     "ce_violations": false,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-05T04:06:53Z",
+    "on_market_checked_at": "2026-09-05T17:49:06Z",
     "appt_converted": false,
     "appt_stale": false
   },
@@ -28198,7 +28333,7 @@
     "ce_violations": false,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-05T04:07:22Z",
+    "on_market_checked_at": "2026-09-05T17:49:36Z",
     "appt_converted": false,
     "appt_stale": false
   },
@@ -28433,7 +28568,7 @@
     "appt_stale": false,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-05T04:07:39Z",
+    "on_market_checked_at": "2026-09-05T17:49:54Z",
     "arv_estimate": "",
     "arv_status": "",
     "arv_sqft": "",
@@ -34272,7 +34407,7 @@
     "land_value": "3558720.0",
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-09-05T04:03:42Z"
+    "on_market_checked_at": "2026-09-05T17:45:49Z"
   },
   {
     "doc_number": "VBP-233-W-TRAVIS-ST-78205",
@@ -34320,7 +34455,7 @@
     "land_value": "481389.0",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-05T04:03:43Z"
+    "on_market_checked_at": "2026-09-05T17:45:50Z"
   },
   {
     "doc_number": "VBP-310-W-COMMERCE-ST-78205",
@@ -34951,7 +35086,7 @@
     "land_value": "359060.0",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-05T04:03:59Z"
+    "on_market_checked_at": "2026-09-05T17:46:06Z"
   },
   {
     "doc_number": "VBP-164-EL-MONTE-BLVD-78212",
@@ -35060,7 +35195,7 @@
     "land_value": "244630.0",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-05T04:04:15Z"
+    "on_market_checked_at": "2026-09-05T17:46:21Z"
   },
   {
     "doc_number": "VBP-206-E-FREDERICKSBURG-RD-78212",
@@ -35466,7 +35601,7 @@
     "dash_searched_at": "2026-02-18T20:05:58.032Z",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-05T04:04:31Z"
+    "on_market_checked_at": "2026-09-05T17:46:38Z"
   },
   {
     "doc_number": "VBP-314-W-MAGNOLIA-AVE-78212",
@@ -35514,7 +35649,7 @@
     "land_value": "234140.0",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-05T04:04:47Z"
+    "on_market_checked_at": "2026-09-05T17:46:54Z"
   },
   {
     "doc_number": "VBP-354-E-HUISACHE-AVE-78212",
@@ -51935,7 +52070,7 @@
     "days_until_sale": null,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-05T04:02:55Z"
+    "on_market_checked_at": "2026-09-05T17:45:03Z"
   },
   {
     "doc_number": "VBP-2902-W-COMMERCE-ST-78207",
@@ -52099,7 +52234,7 @@
     "days_until_sale": null,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-05T04:03:07Z"
+    "on_market_checked_at": "2026-09-05T17:45:15Z"
   },
   {
     "doc_number": "VBP-858-ANGELA-ST-78207",
@@ -52325,7 +52460,7 @@
     "days_until_sale": null,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-05T04:03:18Z"
+    "on_market_checked_at": "2026-09-05T17:45:26Z"
   },
   {
     "doc_number": "VBP-338-CORDELIA-ST-78237",
@@ -52489,7 +52624,7 @@
     "days_until_sale": null,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-05T04:03:40Z"
+    "on_market_checked_at": "2026-09-05T17:45:47Z"
   },
   {
     "doc_number": "VBP-1903-W-WOODLAWN-AVE-78201",
@@ -53454,6 +53589,158 @@
     "arv_fetched_at": ""
   },
   {
+    "doc_number": "20260173145",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Krystinik Jay L",
+    "address": "",
+    "city": "SAN ANTONIO",
+    "zip": "",
+    "date_filed": "9/2026",
+    "month": "9",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-09-05T14:58:41Z",
+    "score": 3,
+    "flags": [
+      "DUPLICATE"
+    ],
+    "absentee": false,
+    "duplicate": true,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "",
+    "annual_taxes": "",
+    "mail_addr": "",
+    "prop_id": "",
+    "land_value": "",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false,
+    "appt_converted": false,
+    "appt_stale": false
+  },
+  {
+    "doc_number": "20260173142",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Krystinik Jay L",
+    "address": "",
+    "city": "SAN ANTONIO",
+    "zip": "",
+    "date_filed": "9/2026",
+    "month": "9",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-09-05T14:58:41Z",
+    "score": 3,
+    "flags": [
+      "DUPLICATE"
+    ],
+    "absentee": false,
+    "duplicate": true,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "",
+    "annual_taxes": "",
+    "mail_addr": "",
+    "prop_id": "",
+    "land_value": "",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false,
+    "appt_converted": false,
+    "appt_stale": false
+  },
+  {
+    "doc_number": "20260173136",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Krystinik Jay L",
+    "address": "",
+    "city": "SAN ANTONIO",
+    "zip": "",
+    "date_filed": "9/2026",
+    "month": "9",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-09-05T14:58:41Z",
+    "score": 3,
+    "flags": [
+      "DUPLICATE"
+    ],
+    "absentee": false,
+    "duplicate": true,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "",
+    "annual_taxes": "",
+    "mail_addr": "",
+    "prop_id": "",
+    "land_value": "",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false,
+    "appt_converted": false,
+    "appt_stale": false
+  },
+  {
+    "doc_number": "20260173127",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Krystinik Jay L",
+    "address": "",
+    "city": "SAN ANTONIO",
+    "zip": "",
+    "date_filed": "9/2026",
+    "month": "9",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-09-05T14:58:41Z",
+    "score": 3,
+    "flags": [
+      "DUPLICATE"
+    ],
+    "absentee": false,
+    "duplicate": true,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "",
+    "annual_taxes": "",
+    "mail_addr": "",
+    "prop_id": "",
+    "land_value": "",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false,
+    "appt_converted": false,
+    "appt_stale": false
+  },
+  {
     "doc_number": "20260172187",
     "ps_doc_id": "",
     "type": "APPT",
@@ -54022,9 +54309,11 @@
     "is_new": false,
     "run_ts": "2026-08-13T13:25:47Z",
     "score": 3,
-    "flags": [],
+    "flags": [
+      "DUPLICATE"
+    ],
     "absentee": false,
-    "duplicate": false,
+    "duplicate": true,
     "days_until_sale": null,
     "loan_amount": "",
     "loan_date": "",
