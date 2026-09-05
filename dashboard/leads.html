@@ -1304,7 +1304,7 @@ async function _writeBackToRepoImpl(doc_number,updates,attempt=1){
   if(!S.ghToken)return;
   try{
     const repoPath='dashboard/records.json';
-    const apiBase=`https://api.github.com/repos/${GH_REPO}/contents/${repoPath}`;
+    const apiBase=`https://api.github.com/repos/${repoForActiveCounty()}/contents/${repoPath}`;
     const getRes=await fetch(apiBase,{headers:{'Authorization':'Bearer '+S.ghToken,'Accept':'application/vnd.github+json'}});
     if(!getRes.ok){
       // fix 2026-09-02: this used to silently give up here with no retry and
@@ -1632,7 +1632,7 @@ async function pushGHL(lead,phone){
     const bottom=Math.max(0,top-OFFER_SPREAD);
     if(target>0&&bottom>0){offerLow=bottom;offerHigh=top;tags.push('bot_offer_enabled');}
   }
-  const body={firstName:first||'',lastName:last||addrTitle||'',phone,address1:addrTitle,city:cityTitle,state:'TX',postalCode:zipVal,tags,locationId:S.ghlLocationId,source:'bexar-leads'};
+  const body={firstName:first||'',lastName:last||addrTitle||'',phone,address1:addrTitle,city:cityTitle,state:'TX',postalCode:zipVal,tags,locationId:S.ghlLocationId,source:getActiveCounty().id+'-leads'};
   if(offerLow!=null)body.customFields=[{key:'offer_low',field_value:String(offerLow)},{key:'offer_high',field_value:String(offerHigh)}];
   const res=await fetch('https://services.leadconnectorhq.com/contacts/',{method:'POST',headers:{'Authorization':'Bearer '+S.ghlApiKey,'Content-Type':'application/json','Version':'2021-07-28'},body:JSON.stringify(body)});
   const data=await res.json(),id=data.contact?.id||data.id;
