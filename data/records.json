@@ -23527,7 +23527,7 @@
     "dash_phone": "2102860338",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-06T05:19:47Z"
+    "on_market_checked_at": "2026-09-06T19:30:01Z"
   },
   {
     "doc_number": "20260138241",
@@ -25763,6 +25763,47 @@
     "ghl_pushed_at": "2026-09-01T03:20:56.705Z",
     "ghl_id": "lgtIdku1K59A7GYzhvZV",
     "dash_phone": "5126969328"
+  },
+  {
+    "type": "MECHLN",
+    "address": "1036 GARRATY RD",
+    "owner": "Morello Nicole",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": true,
+    "is_new": true,
+    "doc_number": "20260166870",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78209",
+    "school_dist": "",
+    "date_filed": "8/2026",
+    "date_recorded": "8/26/2026",
+    "sale_date": "",
+    "run_ts": "2026-09-06T17:26:19Z",
+    "flags": [
+      "DUPLICATE",
+      "NEW"
+    ],
+    "source": "publicsearch_liens",
+    "lender": "Jefferson Bank",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "prop_id": "",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "appr_history": [],
+    "appr_trend": "",
+    "legal_desc": "Subdivision - Name: TERRELL HILLS Lot: 10 Block: 1 Reference - 1625/349",
+    "stacked": true,
+    "score": 9,
+    "days_until_sale": null
   },
   {
     "doc_number": "20260128208",
@@ -28326,7 +28367,7 @@
     "land_value": "3558720.0",
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-09-06T05:18:13Z"
+    "on_market_checked_at": "2026-09-06T19:28:22Z"
   },
   {
     "doc_number": "VBP-233-W-TRAVIS-ST-78205",
@@ -28374,7 +28415,7 @@
     "land_value": "481389.0",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-06T05:18:14Z"
+    "on_market_checked_at": "2026-09-06T19:28:24Z"
   },
   {
     "doc_number": "VBP-310-W-COMMERCE-ST-78205",
@@ -29005,7 +29046,7 @@
     "land_value": "359060.0",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-06T05:18:30Z"
+    "on_market_checked_at": "2026-09-06T19:28:40Z"
   },
   {
     "doc_number": "VBP-164-EL-MONTE-BLVD-78212",
@@ -29114,7 +29155,7 @@
     "land_value": "244630.0",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-06T05:18:46Z"
+    "on_market_checked_at": "2026-09-06T19:28:57Z"
   },
   {
     "doc_number": "VBP-206-E-FREDERICKSBURG-RD-78212",
@@ -29520,7 +29561,7 @@
     "dash_searched_at": "2026-02-18T20:05:58.032Z",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-06T05:19:02Z"
+    "on_market_checked_at": "2026-09-06T19:29:14Z"
   },
   {
     "doc_number": "VBP-314-W-MAGNOLIA-AVE-78212",
@@ -29568,7 +29609,7 @@
     "land_value": "234140.0",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-06T05:19:18Z"
+    "on_market_checked_at": "2026-09-06T19:29:30Z"
   },
   {
     "doc_number": "VBP-354-E-HUISACHE-AVE-78212",
@@ -45919,7 +45960,7 @@
     "days_until_sale": null,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-06T05:17:26Z"
+    "on_market_checked_at": "2026-09-06T19:27:35Z"
   },
   {
     "doc_number": "VBP-2902-W-COMMERCE-ST-78207",
@@ -46083,7 +46124,7 @@
     "days_until_sale": null,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-06T05:17:39Z"
+    "on_market_checked_at": "2026-09-06T19:27:47Z"
   },
   {
     "doc_number": "VBP-858-ANGELA-ST-78207",
@@ -46309,7 +46350,7 @@
     "days_until_sale": null,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-06T05:17:50Z"
+    "on_market_checked_at": "2026-09-06T19:27:59Z"
   },
   {
     "doc_number": "VBP-338-CORDELIA-ST-78237",
@@ -46473,7 +46514,7 @@
     "days_until_sale": null,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-06T05:18:11Z"
+    "on_market_checked_at": "2026-09-06T19:28:21Z"
   },
   {
     "doc_number": "VBP-1903-W-WOODLAWN-AVE-78201",
@@ -48874,7 +48915,7 @@
     "appt_stale": true,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-06T05:20:17Z"
+    "on_market_checked_at": "2026-09-06T19:30:30Z"
   },
   {
     "doc_number": "20260153999",
@@ -48936,7 +48977,7 @@
     "converted_doc_number": "20260900301",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-06T05:20:34Z"
+    "on_market_checked_at": "2026-09-06T19:30:47Z"
   },
   {
     "type": "NOF",
@@ -49000,12 +49041,53 @@
   },
   {
     "type": "MECHLN",
+    "address": "9852 MARBACH ROAD",
+    "owner": "Just A Closet #18",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20260158257",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78245",
+    "school_dist": "",
+    "date_filed": "8/2026",
+    "date_recorded": "8/14/2026",
+    "sale_date": "",
+    "run_ts": "2026-09-06T17:26:19Z",
+    "flags": [
+      "NEW"
+    ],
+    "source": "publicsearch_liens",
+    "lender": "Ace Concrete Co",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "prop_id": "",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "appr_history": [],
+    "appr_trend": "",
+    "legal_desc": "Subdivision - Name: MEDIO WEST VILLAGE Lot: 5 Block: 126 Reference - 20001/2378",
+    "appraised_value": "810970",
+    "stacked": false,
+    "score": 6,
+    "days_until_sale": null
+  },
+  {
+    "type": "MECHLN",
     "address": "327 JACKSON STREET",
     "owner": "Galatis Thomas",
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260172948",
     "ps_doc_id": "",
     "year": "2026",
@@ -49017,9 +49099,7 @@
     "date_recorded": "9/2/2026",
     "sale_date": "",
     "run_ts": "2026-09-06T03:19:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "publicsearch_liens",
     "lender": "Hpn Renocations Llc",
     "loan_amount": "",
@@ -49045,8 +49125,8 @@
     "owner": "Morello Nicole",
     "mail_addr": "",
     "absentee": false,
-    "duplicate": false,
-    "is_new": true,
+    "duplicate": true,
+    "is_new": false,
     "doc_number": "20260166868",
     "ps_doc_id": "",
     "year": "2026",
@@ -49059,7 +49139,7 @@
     "sale_date": "",
     "run_ts": "2026-09-06T03:19:03Z",
     "flags": [
-      "NEW"
+      "DUPLICATE"
     ],
     "source": "publicsearch_liens",
     "lender": "Jefferson Bank",
@@ -49087,7 +49167,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260165755",
     "ps_doc_id": "",
     "year": "2026",
@@ -49099,9 +49179,7 @@
     "date_recorded": "8/25/2026",
     "sale_date": "",
     "run_ts": "2026-09-06T03:19:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "publicsearch_liens",
     "lender": "Texas Family Exteriors-San Antonio Llc",
     "loan_amount": "",
@@ -49128,7 +49206,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260160053",
     "ps_doc_id": "",
     "year": "2026",
@@ -49140,9 +49218,7 @@
     "date_recorded": "8/17/2026",
     "sale_date": "",
     "run_ts": "2026-09-06T03:19:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "publicsearch_liens",
     "lender": "Gulfside Supply Inc",
     "loan_amount": "",
@@ -49169,7 +49245,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260159773",
     "ps_doc_id": "",
     "year": "2026",
@@ -49181,9 +49257,7 @@
     "date_recorded": "8/17/2026",
     "sale_date": "",
     "run_ts": "2026-09-06T03:19:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "publicsearch_liens",
     "lender": "Gl Hunt Company Inc",
     "loan_amount": "",
@@ -49210,7 +49284,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260159657",
     "ps_doc_id": "",
     "year": "2026",
@@ -49222,9 +49296,7 @@
     "date_recorded": "8/17/2026",
     "sale_date": "",
     "run_ts": "2026-09-06T03:19:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "publicsearch_liens",
     "lender": "Rhino Roofers And Construction Llc",
     "loan_amount": "",
@@ -49251,7 +49323,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20260158715",
     "ps_doc_id": "",
     "year": "2026",
@@ -49263,9 +49335,7 @@
     "date_recorded": "8/14/2026",
     "sale_date": "",
     "run_ts": "2026-09-06T03:19:03Z",
-    "flags": [
-      "NEW"
-    ],
+    "flags": [],
     "source": "publicsearch_liens",
     "lender": "Oneforce Restoration Atx Llc",
     "loan_amount": "",
@@ -49451,7 +49521,7 @@
     "ce_violations": false,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-06T05:20:56Z",
+    "on_market_checked_at": "2026-09-06T19:31:08Z",
     "appt_converted": false,
     "appt_stale": false
   },
@@ -49664,7 +49734,7 @@
     "ce_violations": false,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-06T05:21:25Z",
+    "on_market_checked_at": "2026-09-06T19:31:39Z",
     "appt_converted": false,
     "appt_stale": false
   },
@@ -49899,7 +49969,7 @@
     "appt_stale": false,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-06T05:21:42Z",
+    "on_market_checked_at": "2026-09-06T19:31:56Z",
     "arv_estimate": "",
     "arv_status": "",
     "arv_sqft": "",
@@ -49999,7 +50069,7 @@
     "appt_stale": false,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-06T05:21:58Z",
+    "on_market_checked_at": "2026-09-06T19:32:14Z",
     "arv_estimate": "",
     "arv_status": "",
     "arv_sqft": "",
@@ -50586,7 +50656,7 @@
     "appt_stale": false,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-06T05:22:06Z"
+    "on_market_checked_at": "2026-09-06T19:32:20Z"
   },
   {
     "doc_number": "20260163925",
@@ -50642,7 +50712,7 @@
     "appt_stale": false,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-06T05:22:13Z"
+    "on_market_checked_at": "2026-09-06T19:32:28Z"
   },
   {
     "doc_number": "20260163923",
@@ -50743,7 +50813,7 @@
     "appr_trend": "",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-31T16:29:27Z",
+    "on_market_checked_at": "2026-09-06T19:32:47Z",
     "appt_converted": false,
     "appt_stale": false,
     "arv_estimate": "",
