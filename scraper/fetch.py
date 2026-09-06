@@ -66,6 +66,18 @@ CODE_ENFORCE_URL   = (
 BCAD_DETAIL_URL    = "https://bexar.trueautomation.com/clientdb/Property.aspx?cid=110&prop_id={prop_id}"
 DEED_FETCH_LIMIT   = 30   # max leads to hit BCAD detail page per run
 ARV_FETCH_LIMIT    = 30   # max leads to look up via HomeHarvest/Realtor.com per run
+LIEN_ABSENTEE_CHECK_LIMIT = 40  # max non-stacked lien leads to run through lookup_owner() per run
+# 2026-09-05: reusing the full 90-day KEEP_DAYS window here (like NOF/TAX
+# use) produced 1,400+ raw rows before Chrome itself crashed the tab from
+# the sheer number of sequential page loads in one session -- MECHLN/JUDG/
+# FTL together are much higher-volume doc types than foreclosure notices.
+# A 90-day-old lien is also much less actionable than a fresh one. Keep
+# this window short; the daily run naturally accumulates coverage over
+# time via known_docs the same way every other scraper here does.
+LIEN_SCRAPE_DAYS = 30  # MECHLN-only now (see LIEN_DOC_TYPES) -- much lower
+                        # volume than the original MECHLN+JUDG+FTL mix, so a
+                        # wider window is safe now that JUDG/FTL are dropped
+LIEN_MAX_PAGES = 20  # hard safety cap -- ~1000 rows/run before filtering
 ON_MARKET_STATUSES     = {"FOR_SALE", "PENDING", "FOR_RENT"}
 ON_MARKET_REFRESH_DAYS = 7    # re-check a lead's market status at most this often
 # 2026-08-21: a single run doing ARV(30) then refresh(30) back-to-back hit a
@@ -707,6 +719,436 @@ def scrape_publicsearch(known_docs):
 
     log.info(f"PublicSearch: {len(all_records)} total new records")
     return all_records
+
+
+# ── LIEN/JUDGMENT SCRAPER (RP department, doc-type expansion) ───────────────
+# 2026-09-05: Bexar's Clerk portal exposes 16+ document types (see CLAUDE.md),
+# but production only ever pulled NOF/TAX from the FC (Foreclosures)
+# department. FC's own table has no grantor/grantee columns at all (owner
+# comes from the Harris Govern lookup by address, not this scrape) -- but the
+# RP (Land Records) department, filtered by docTypes, exposes a completely
+# different 12-column table that DOES carry grantor/grantee/legal
+# description/property address inline, no separate owner lookup needed.
+# Codes confirmed live via the site's own Advanced Search UI 2026-09-05
+# (typed into the Document Types filter, selected the checkbox, submitted,
+# read the resulting URL -- same technique already documented on
+# nueces-leads/travis-leads for their own doc-type discovery):
+#   MECHLN  = Mechanics Lien   (already validated worth pursuing per
+#             project_bexar_leadtype_sampling_results memory, never wired in)
+# JUDG (Judgment) and FTL (Federal Tax Lien) were tried and dropped after a
+# live pull 2026-09-05: of 250 raw rows (156 JUDG + 82 FTL + 12 MECHLN),
+# every single JUDG/FTL row came back with no property address at all in
+# this table (a judgment/tax lien records against a PERSON, not a specific
+# parcel) -- there's nothing for the stacking/absentee filter below to even
+# check. Only MECHLN reliably carries address+legal description, since a
+# mechanics lien is inherently tied to one property. Scraping JUDG/FTL cost
+# ~230 rows of pagination per run for ~0 usable leads -- not worth it.
+# Lis Pendens deliberately excluded here -- lp_scraper.py already has a
+# complete, working (if never-called) Lis Pendens scraper using its own
+# docTypes encoding (["LP","LP2"] as a JSON array, not this module's plain
+# comma format); wired in separately in main() below rather than duplicated.
+LIEN_DOC_TYPES = "MECHLN"
+LIEN_TYPE_LABELS = {
+    "MECHANICS LIEN": "MECHLN",
+}
+
+# Same purpose as nueces-leads' ENTITY_FILTER_KW (ported, extended with
+# construction/contractor names since mechanics-lien grantees are almost
+# always a contractor company, and IRS/US naming for federal tax liens where
+# the GRANTOR is the government, not the person -- is_entity_name() doesn't
+# assume a fixed grantor/grantee role, it just picks whichever side of the
+# pair isn't a company, which handles both orderings correctly).
+LIEN_ENTITY_FILTER_KW = [
+    "LLC", "L.L.C", "INC", "CORP", "BANK", "N.A.", "TRUST", "TRUSTEE",
+    "MORTGAGE", "LOAN SERVICING", "SERVICER", "FEDERAL", "SAVINGS",
+    "ASSOCIATION", "DEPARTMENT", "AGENCY", "COMMISSIONER",
+    "CONSTRUCTION", "CONTRACTING", "CONTRACTORS", "BUILDERS", "BUILDING",
+    "REMODELING", "ROOFING", "PLUMBING", "ELECTRIC", "POOLS", "POOL",
+    "SPAS", "HOMES", "SUPPLY", "SERVICES", "SERVICE", "ENTERPRISES",
+    "PROPERTIES", "INVESTMENTS", "HOLDINGS", "GROUP", "COMPANY", " CO",
+    "UNITED STATES", "INTERNAL REVENUE", "STATE OF TEXAS", "COUNTY OF",
+    "CITY OF", "HOA", "HOMEOWNERS ASSOCIATION",
+    # 2026-09-05: added after the first live pull flagged false negatives --
+    # "FOREVIEW VENTURES" (a builder, not a homeowner) and "AYLA AT CASTLE
+    # HILLS APARTMENTS" (a complex, not a person) both slipped through the
+    # original list since neither contains LLC/INC/CORP. Mechanics liens in
+    # particular are filed constantly against developers/builders on new
+    # construction and against apartment complexes -- routine
+    # contractor-vs-builder paperwork, not a distressed homeowner lead.
+    "VENTURES", "DEVELOPMENT", "DEVELOPERS", "DEVELOPMENT GROUP",
+    "PARTNERS", "PARTNERSHIP", "CAPITAL", "REALTY", "ESTATES",
+    "APARTMENTS", "APARTMENT", "COMMUNITIES", "COMMUNITY", "RESIDENCES",
+    "AT ", " HOA", "MANAGEMENT", "LEASING", "RENTALS", "STORAGE",
+]
+
+def is_lien_entity_name(name):
+    if not name:
+        return True
+    upper = name.upper()
+    if any(kw in upper for kw in LIEN_ENTITY_FILTER_KW):
+        return True
+    # 2026-09-05: "CINNAMON CREEK GARDENS LP" slipped through a live run --
+    # short suffixes like LP/LTD are too risky to substring-match (could
+    # false-positive inside a real word) but are unambiguous as a trailing
+    # whole word, same convention as LLC/INC just abbreviated further.
+    if re.search(r"\b(LP|LTD|LC|PLLC|PC)\b", upper):
+        return True
+    return False
+
+
+def scrape_bexar_liens(known_docs):
+    """
+    RP department, docTypes=LIEN_DOC_TYPES -- same chunked-by-date,
+    atomic-per-row-read approach as scrape_chunk()/scrape_publicsearch()
+    above, applied to the richer 12-column Land Records table instead of
+    the 5-column Foreclosures one. Table order confirmed live: GRANTOR,
+    GRANTEE, DOC TYPE, RECORDED DATE, DOC NUMBER, BOOK/VOLUME/PAGE, LEGAL
+    DESCRIPTION, LOT, BLOCK, NCB, COUNTY BLOCK, PROPERTY ADDRESS.
+    """
+    from selenium.webdriver.common.by import By
+    from selenium.webdriver.support.ui import WebDriverWait
+    import urllib.parse as _uparse
+
+    doc_types_q = _uparse.quote(LIEN_DOC_TYPES)
+    lien_cutoff = TODAY_NAIVE - timedelta(days=LIEN_SCRAPE_DAYS)
+    start_str = lien_cutoff.strftime("%Y%m%d")
+    end_str   = TODAY_NAIVE.strftime("%Y%m%d")
+
+    records = []
+    driver = None
+    try:
+        driver = get_driver()
+        offset = 0
+        page = 0
+        zero_new_streak = 0
+        while True:
+            url = (
+                f"{PUBLICSEARCH_BASE}/results"
+                f"?department=RP"
+                f"&docTypes={doc_types_q}"
+                f"&recordedDateRange={start_str}%2C{end_str}"
+                f"&keywordSearch=false"
+                f"&limit=50"
+                f"&offset={offset}"
+                f"&sort=desc"
+                f"&sortBy=recordedDate"
+                f"&searchType=advancedSearch"
+            )
+            log.info(f"  Liens page {page+1} (offset={offset})")
+            loaded = False
+            for attempt in range(2):
+                try:
+                    driver.set_page_load_timeout(PAGE_TIMEOUT)
+                    driver.get(url)
+                    WebDriverWait(driver, PAGE_TIMEOUT).until(
+                        lambda d: (
+                            d.find_elements(By.CSS_SELECTOR, "table tbody tr") or
+                            d.find_elements(By.XPATH, "//h1[contains(text(),'No Results')]")
+                        )
+                    )
+                    time.sleep(1.5)
+                    loaded = True
+                    break
+                except Exception:
+                    log.info(f"    Timeout attempt {attempt+1} — {'retrying' if attempt==0 else 'stopping'}")
+                    if attempt == 0:
+                        time.sleep(5)
+            if not loaded:
+                log.info("    Timeout — stopping liens scrape")
+                break
+
+            rows = driver.find_elements(By.CSS_SELECTOR, "table tbody tr")
+            if not rows:
+                if driver.find_elements(By.XPATH, "//h1[contains(text(),'No Results')]"):
+                    log.info("    No results — stopping")
+                else:
+                    time.sleep(3)
+                    rows = driver.find_elements(By.CSS_SELECTOR, "table tbody tr")
+            if not rows:
+                log.info("    No rows — stopping liens scrape")
+                break
+
+            page_new = 0
+            for row in rows:
+                try:
+                    # Atomic single-pass read (same rationale as the NOF
+                    # scraper's KNOWN_BAD_DOC_NUMBERS incident above): all
+                    # cells read from one DOM node in one JS call, never
+                    # split across separate Python round-trips.
+                    #
+                    # Live-verified 2026-09-05: the first 3 <td> cells are
+                    # blank checkbox/icon columns (matches the note already
+                    # in this repo's own CLAUDE.md: "First 3 columns are
+                    # checkbox/icon columns (empty headers)") -- confirmed
+                    # real row: ['', '', '', 'PHILIP B MINER DDS PA',
+                    # 'ITRIA VENTURES LLC', 'JUDGMENT', '9/2/2026',
+                    # '20260173293', '--/--/--', '2025CI25157', 'N/A',
+                    # 'N/A', 'N/A', 'N/A', 'N/A']. Real columns start at
+                    # index 3: GRANTOR, GRANTEE, DOC TYPE, RECORDED DATE,
+                    # DOC NUMBER, BOOK/VOL/PAGE, LEGAL DESC (or case # for
+                    # judgments), LOT, BLOCK, NCB, COUNTY BLOCK, ADDRESS.
+                    cells = driver.execute_script(
+                        "return Array.from(arguments[0].querySelectorAll('td')).map(td => td.innerText);",
+                        row
+                    ) or []
+                    if len(cells) < 8:
+                        continue
+                    grantor   = cells[3].strip()
+                    grantee   = cells[4].strip()
+                    doc_type_text = cells[5].strip().upper()
+                    recorded_date = cells[6].strip()
+                    doc_number    = cells[7].strip()
+                    legal_desc    = cells[9].strip() if len(cells) > 9 else ""
+                    property_addr = cells[14].strip() if len(cells) > 14 else ""
+
+                    if not doc_number or not re.match(r"^\d{6,12}$", doc_number):
+                        continue
+                    if doc_number in known_docs:
+                        continue
+
+                    rec_date = parse_recorded_date(recorded_date)
+                    if rec_date and rec_date < lien_cutoff:
+                        continue
+
+                    # Pick whichever of grantor/grantee is a real person, not
+                    # a company -- handles both orderings (mechanics liens:
+                    # grantor=homeowner; federal tax liens: grantee=taxpayer).
+                    if not is_lien_entity_name(grantor):
+                        owner, other_party = grantor, grantee
+                    elif not is_lien_entity_name(grantee):
+                        owner, other_party = grantee, grantor
+                    else:
+                        owner, other_party = "", (grantor or grantee)
+
+                    address = clean_address(property_addr) if property_addr and property_addr.upper() != "N/A" else ""
+                    city, zip_code = parse_city_zip(property_addr) if address else ("", "")
+                    month, year = parse_month_year(recorded_date)
+                    lead_type = LIEN_TYPE_LABELS.get(doc_type_text, "LIEN")
+
+                    rec = {
+                        "type":                lead_type,
+                        "address":             address,
+                        "owner":               owner.title() if owner else "",
+                        "mail_addr":           "",
+                        "absentee":            False,
+                        "duplicate":           False,
+                        "is_new":              True,
+                        "doc_number":          doc_number,
+                        "ps_doc_id":           "",
+                        "year":                year,
+                        "month":               month,
+                        "city":                city,
+                        "zip":                 zip_code,
+                        "school_dist":         "",
+                        "date_filed":          f"{month}/{year}".strip("/"),
+                        "date_recorded":       recorded_date,
+                        "sale_date":           "",
+                        "run_ts":              RUN_TIMESTAMP,
+                        "flags":               [],
+                        "source":              "publicsearch_liens",
+                        "lender":              other_party.title() if other_party and is_lien_entity_name(other_party) else "",
+                        "loan_amount":         "",
+                        "loan_date":           "",
+                        "trustee":             "",
+                        "sale_date_arcgis":    "",
+                        "tenure_years":        None,
+                        "tenure_score_bonus":  0,
+                        "prop_id":             "",
+                        "deed_date":           "",
+                        "last_sale_amt":       "",
+                        "appr_history":        [],
+                        "appr_trend":          "",
+                        "legal_desc":          legal_desc,
+                    }
+                    records.append(rec)
+                    known_docs.add(doc_number)
+                    page_new += 1
+                except Exception as e:
+                    log.debug(f"    Lien row parse error: {e}")
+
+            log.info(f"    Page {page+1}: {page_new} new")
+            zero_new_streak = zero_new_streak + 1 if page_new == 0 else 0
+            if zero_new_streak >= 2 and page > 0:
+                log.info("    2 consecutive empty pages — stopping")
+                break
+            if len(rows) < 48:
+                break
+            if page + 1 >= LIEN_MAX_PAGES:
+                # 2026-09-05: hard safety cap -- a real run hit a Chrome tab
+                # crash at page 29 (1,400+ rows) before this existed. The
+                # rest is picked up on the next run via known_docs same as
+                # every other backlog-style scrape in this file.
+                log.info(f"    Hit LIEN_MAX_PAGES={LIEN_MAX_PAGES} — stopping, rest deferred to next run")
+                break
+            offset += 50
+            page += 1
+            time.sleep(2)
+    except Exception as e:
+        log.error(f"Liens scrape error: {e}")
+    finally:
+        if driver:
+            try:
+                driver.quit()
+            except Exception:
+                pass
+
+    log.info(f"Liens (MECHLN/JUDG/LP/FTL): {len(records)} total new records")
+    return records
+
+
+LIEN_RECORD_DEFAULTS = {
+    "year": "", "month": "", "school_dist": "", "date_filed": "",
+    "date_recorded": "", "sale_date_arcgis": "", "tenure_years": None,
+    "tenure_score_bonus": 0, "prop_id": "", "deed_date": "",
+    "last_sale_amt": "", "appr_history": [], "appr_trend": "",
+    "appraised_value": "", "annual_taxes": "", "land_value": "",
+    "loan_amount": "", "loan_date": "", "trustee": "", "ps_doc_id": "",
+    "stacked": False,
+}
+
+def normalize_lien_record(rec):
+    """lp_scraper.py's records (built independently, years ago per its own
+    file) are missing several keys every other Bexar record has (deed_date,
+    appr_history, tenure_years, etc.) -- fill in defaults so downstream
+    code (build_dashboard, score_record, enrich_owners) that expects the
+    full schema doesn't KeyError on a lien/LP record specifically."""
+    for k, v in LIEN_RECORD_DEFAULTS.items():
+        rec.setdefault(k, v)
+    return rec
+
+
+def filter_lien_leads(lien_records, existing_records):
+    """
+    2026-09-05: the first live pull returned 388 mechanics liens alone in a
+    3-month window -- user's own reaction, correctly, was "too many, most of
+    these won't work for us." A raw lien filing is a weak signal on its own
+    (routine contractor billing disputes, builder-vs-sub paperwork on new
+    construction, etc.) -- it only means something as a MOTIVATED SELLER
+    lead when it lines up with an independent reason to think the owner is
+    actually distressed. Rather than invent a new signal, this runs each
+    lien against two things we already have:
+
+      1. STACKING -- cross-check owner name + address against every
+         existing lead already in the system (NOF/TAX/APPT/other liens).
+         A lien on a property we already have a foreclosure-type signal
+         for is a real, compounding distress indicator -- keep these
+         unconditionally and mark stacked=True (same concept the
+         Nueces/Travis dashboards already use for VBP+CE stacking).
+      2. STILL-CURRENT-OWNER CHECK, via the same Harris Govern
+         lookup_owner() the main NOF pipeline already calls -- confirms
+         BCAD's current owner-of-record still matches the lien's named
+         grantor. A mismatch means the property already changed hands
+         since the lien was filed (e.g. a builder's construction lien on
+         a project since transferred to the finished apartment complex's
+         holding entity) -- stale, not a real homeowner lead. A match
+         also picks up appraised_value and absentee/mail_addr when BCAD
+         has them, though that field isn't reliably populated by this
+         particular endpoint. Capped at LIEN_ABSENTEE_CHECK_LIMIT per run
+         (matches the existing DEED_FETCH_LIMIT/ARV_FETCH_LIMIT pattern)
+         -- leads is_new so uncapped ones are simply reconsidered next run.
+
+    Anything that's neither stacked nor a confirmed current-owner match is
+    dropped from this run's output entirely (not written to known_docs),
+    so it's naturally reconsidered if it stacks with a later-filed NOF.
+    """
+    def norm_key(owner, address):
+        o = re.sub(r"[^A-Z ]", "", (owner or "").upper()).split()
+        o_key = " ".join(o[:2])  # first two tokens -- tolerates middle names/suffixes
+        a_key = normalize(address) if address else ""
+        return o_key, a_key
+
+    known_owner_keys = set()
+    known_addr_keys = set()
+    for r in existing_records:
+        ok, ak = norm_key(r.get("owner", ""), r.get("address", ""))
+        if ok:
+            known_owner_keys.add(ok)
+        if ak:
+            known_addr_keys.add(ak)
+
+    stacked, needs_absentee_check, dropped_no_addr = [], [], 0
+    for rec in lien_records:
+        # lp_scraper.py sets address to the literal string "N/A" (not
+        # blank) when it can't find one -- treat both as "no address".
+        if not rec.get("address") or rec["address"].strip().upper() == "N/A":
+            dropped_no_addr += 1
+            continue
+        ok, ak = norm_key(rec.get("owner", ""), rec.get("address", ""))
+        if (ok and ok in known_owner_keys) or (ak and ak in known_addr_keys):
+            rec["stacked"] = True
+            rec["flags"] = list(set(rec.get("flags", []) + ["STACKED_LIEN"]))
+            stacked.append(rec)
+        else:
+            needs_absentee_check.append(rec)
+
+    # 2026-09-05 v2: originally required the OWNER to come back absentee via
+    # lookup_owner() before keeping a non-stacked lien. Live-tested against
+    # real addresses and found this can NEVER fire -- the HGO basic-search
+    # endpoint lookup_owner() calls doesn't return a mailing address field
+    # at all (confirmed: every real call came back mail_addr=''), so
+    # `absentee = bool(mail_addr) and ...` is always False by construction,
+    # not because these owners genuinely aren't absentee. 40/40 checked
+    # returning 0 was this bug, not a real finding.
+    #
+    # Swapped for something the data can actually support: does BCAD's
+    # CURRENT owner-of-record still reasonably match the lien's own named
+    # grantor? A spot-check turned up real cases where it doesn't -- e.g.
+    # a mechanics lien grantor "Foreview Ventures" against a property BCAD
+    # now shows owned by "Costa Mirada Apartments LP" (the lien was against
+    # a builder on new construction, the finished complex has since been
+    # transferred to its holding entity -- stale/irrelevant to any
+    # individual homeowner). A name match confirms the lien is live and
+    # the named person still actually owns the property today, regardless
+    # of whether they live there -- an owner-occupant who can't pay a
+    # contractor is a real distress signal too, not just an absentee
+    # landlord, so this isn't narrowed to absentee-only anymore.
+    kept_confirmed = []
+    checked = 0
+    for rec in needs_absentee_check:
+        if checked >= LIEN_ABSENTEE_CHECK_LIMIT:
+            break
+        checked += 1
+        try:
+            result = lookup_owner(rec["address"], rec.get("zip", ""))
+        except Exception as e:
+            log.debug(f"  Lien owner-match check error [{rec.get('doc_number')}]: {e}")
+            continue
+        if not result or not result.get("owner"):
+            continue
+        lien_owner_key, _ = norm_key(rec.get("owner", ""), "")
+        bcad_owner_key, _ = norm_key(result["owner"], "")
+        if lien_owner_key and bcad_owner_key and (
+            lien_owner_key in bcad_owner_key or bcad_owner_key in lien_owner_key
+        ):
+            rec["appraised_value"] = result.get("appraised_value", "")
+            if result.get("absentee"):
+                rec["absentee"] = True
+                rec["mail_addr"] = result.get("mail_addr", "")
+            kept_confirmed.append(rec)
+        time.sleep(0.5)
+
+    # Dedup by owner+address -- a real live run turned up the same person
+    # ("Morello Nicole", 1036 Garraty Rd) twice, once per separate
+    # doc_number (a lien and its amendment/correction, or a duplicate
+    # filing -- both real county records, but one lead for the operator).
+    seen_pairs = set()
+    deduped = []
+    for rec in stacked + kept_confirmed:
+        ok, ak = norm_key(rec.get("owner", ""), rec.get("address", ""))
+        pair = (ok, ak)
+        if pair in seen_pairs:
+            continue
+        seen_pairs.add(pair)
+        deduped.append(rec)
+    kept = deduped
+    log.info(
+        f"Lien filter: {len(lien_records)} scraped -> {dropped_no_addr} dropped (no address), "
+        f"{len(stacked)} kept (stacked with existing lead), "
+        f"{checked}/{len(needs_absentee_check)} checked against BCAD current owner "
+        f"({len(kept_confirmed)} kept, owner still matches), "
+        f"{len(kept)} total kept"
+    )
+    return kept
 
 
 # ── ADDRESS PARSING ───────────────────────────────────────────────────────────
@@ -2239,6 +2681,7 @@ def score_record(rec):
     if rec.get("owner"):                     s += 3
     if rec.get("type") == "TAX":             s += 2
     if rec.get("absentee"):                  s += 2
+    if rec.get("stacked"):                   s += 3
     if rec.get("sale_date"):                 s = min(s + 1, 10)
     if rec.get("source") == "code_enforcement":
         s += 1
@@ -2316,6 +2759,31 @@ if __name__ == "__main__":
 
     # ── Step 1: PublicSearch chunked scrape ───────────────────────────────────
     new_records = scrape_publicsearch(known_docs)
+
+    # ── Step 1a: Lien/Judgment scrape (RP department doc-type expansion) ─────
+    # 2026-09-05: MECHLN/JUDG/LP/FTL -- see scrape_bexar_liens() docstring.
+    # Filtered hard by filter_lien_leads() before merging in; a raw pull
+    # here was 388 mechanics liens alone in 3 months, mostly routine
+    # contractor paperwork, not motivated-seller signal on its own.
+    try:
+        lien_records = scrape_bexar_liens(known_docs)
+        lien_records = filter_lien_leads(lien_records, prev_records + new_records)
+        new_records.extend(lien_records)
+    except Exception as e:
+        log.error(f"Lien scrape/filter error: {e}")
+
+    # 2026-09-05: lp_scraper.py's Lis Pendens scraper was imported at module
+    # load but never actually called anywhere -- same "built, wired nowhere"
+    # pattern as the liens above. Run through the same filter_lien_leads()
+    # gate as MECHLN/JUDG/FTL -- LP filings are just as often a routine
+    # civil suit as a real-estate distress signal on their own.
+    try:
+        lp_records = scrape_lis_pendens(known_docs, get_driver, RUN_TIMESTAMP)
+        lp_records = [normalize_lien_record(r) for r in lp_records]
+        lp_records = filter_lien_leads(lp_records, prev_records + new_records)
+        new_records.extend(lp_records)
+    except Exception as e:
+        log.error(f"Lis Pendens scrape/filter error: {e}")
 
     # ── Step 1b: Doc detail fetch ─────────────────────────────────────────────
     doc_driver = None
