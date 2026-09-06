@@ -793,6 +793,12 @@ def is_lien_entity_name(name):
     # whole word, same convention as LLC/INC just abbreviated further.
     if re.search(r"\b(LP|LTD|LC|PLLC|PC)\b", upper):
         return True
+    # 2026-09-06: "JUST A CLOSET #18" (a storage-unit business) slipped
+    # through -- no keyword matched a creative business name like this.
+    # A "#" followed by digits is a suite/unit number, near-universal on
+    # a business/franchise name, essentially never on a person's name.
+    if re.search(r"#\s*\d", name):
+        return True
     return False
 
 
@@ -1059,14 +1065,25 @@ def filter_lien_leads(lien_records, existing_records):
 
     known_owner_keys = set()
     known_addr_keys = set()
+    existing_lien_pairs = set()
     for r in existing_records:
         ok, ak = norm_key(r.get("owner", ""), r.get("address", ""))
         if ok:
             known_owner_keys.add(ok)
         if ak:
             known_addr_keys.add(ak)
+        # 2026-09-06: "Morello Nicole" (1036 Garraty Rd) showed up twice in
+        # the live dashboard -- once per scrape run, each run's own dedup
+        # only checked its own fresh batch against itself, never against
+        # what a PRIOR run had already persisted (a second lien/amendment
+        # filed under a new doc_number for the same property). Track
+        # existing lien-type owner+address pairs separately so a repeat
+        # can be dropped outright instead of just not double-counted
+        # within one run.
+        if r.get("type") in ("MECHLN", "LP") and ok and ak:
+            existing_lien_pairs.add((ok, ak))
 
-    stacked, needs_absentee_check, dropped_no_addr = [], [], 0
+    stacked, needs_absentee_check, dropped_no_addr, dropped_dup = [], [], 0, 0
     for rec in lien_records:
         # lp_scraper.py sets address to the literal string "N/A" (not
         # blank) when it can't find one -- treat both as "no address".
@@ -1074,6 +1091,9 @@ def filter_lien_leads(lien_records, existing_records):
             dropped_no_addr += 1
             continue
         ok, ak = norm_key(rec.get("owner", ""), rec.get("address", ""))
+        if ok and ak and (ok, ak) in existing_lien_pairs:
+            dropped_dup += 1
+            continue
         if (ok and ok in known_owner_keys) or (ak and ak in known_addr_keys):
             rec["stacked"] = True
             rec["flags"] = list(set(rec.get("flags", []) + ["STACKED_LIEN"]))
@@ -1143,6 +1163,7 @@ def filter_lien_leads(lien_records, existing_records):
     kept = deduped
     log.info(
         f"Lien filter: {len(lien_records)} scraped -> {dropped_no_addr} dropped (no address), "
+        f"{dropped_dup} dropped (already a persisted lien lead), "
         f"{len(stacked)} kept (stacked with existing lead), "
         f"{checked}/{len(needs_absentee_check)} checked against BCAD current owner "
         f"({len(kept_confirmed)} kept, owner still matches), "
