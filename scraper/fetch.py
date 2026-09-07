@@ -388,7 +388,22 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
     zero_new_streak = 0
     prev_page_was_full = False  # 2026-08-28: safeguard, see "No rows" break below
 
+    # 2026-09-07: this loop had no absolute page cap, unlike scrape_lis_pendens()
+    # and scrape_bexar_liens() which both got MAX_PAGES after a prior hang. A
+    # 7-day chunk should only ever need 1-3 pages in real use (13 chunks total
+    # over the 90-day KEEP_DAYS window) -- a run stuck here for 1.5+ hours means
+    # something is forcing many consecutive full-page results (possibly the
+    # same class of date-filter bug that broke instrumentDateRange before, now
+    # maybe affecting recordedDateRange). Same fix, same pattern as the other
+    # two scrapers: cap it so a bad chunk can't hang the whole run.
+    MAX_PAGES = 15
+
     while True:
+        page_num = page + 1
+        if page_num > MAX_PAGES:
+            log.warning(f"    [{start_str}-{end_str}] hit MAX_PAGES={MAX_PAGES} — "
+                        f"stopping chunk, rest deferred to next run")
+            break
         url = search_url.replace("offset=0", f"offset={offset}")
         log.info(f"    [{start_str}-{end_str}] Page {page+1} (offset={offset})")
 
