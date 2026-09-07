@@ -54,8 +54,20 @@ def scrape_lis_pendens(known_docs, get_driver_fn, run_timestamp):
     new_records = []
     driver = None
     today = datetime.now(timezone.utc)
-    cutoff = (today - timedelta(days=21)).strftime("%Y%m%d")
+    cutoff_dt = today - timedelta(days=21)
+    cutoff = cutoff_dt.strftime("%Y%m%d")
     today_str = today.strftime("%Y%m%d")
+    # 2026-09-07: the site's own date-range filter isn't trustworthy here --
+    # this exact endpoint already returned 4,047 fake "new" records dated
+    # 2018/2023 once before, completely ignoring the requested 21-day
+    # window (see fetch.py's LP-disable comment from 2026-08-06). That
+    # incident is why LP was disabled for weeks, and the "client-side date
+    # safety filter" it called for never actually got built when this got
+    # wired back up. A generous 5-day grace buffer on both ends absorbs
+    # normal filing-date noise without letting a repeat of that failure
+    # back in.
+    date_floor = cutoff_dt - timedelta(days=5)
+    date_ceiling = today + timedelta(days=5)
 
     # fix 2026-09-07: this scraper had never actually run before this week's
     # integration, so known_docs starts empty for LP/LP2 -- on the real first
@@ -113,6 +125,17 @@ def scrape_lis_pendens(known_docs, get_driver_fn, run_timestamp):
                 if not doc_num or doc_num in known_docs:
                     continue
                 dates = [c for c in cells if re.match(r"^\d{1,2}/\d{1,2}/\d{4}$", c.strip())]
+                if dates:
+                    try:
+                        row_date = datetime.strptime(dates[0].strip(), "%m/%d/%Y")
+                    except ValueError:
+                        row_date = None
+                    if row_date and not (date_floor <= row_date <= date_ceiling):
+                        log.warning(f"LP: rejecting doc {doc_num} — filed date "
+                                    f"{dates[0]} is way outside the requested "
+                                    f"window, site's date filter is likely "
+                                    f"broken again")
+                        continue
                 owner = next(
                     (c for c in cells
                      if len(c) > 5
