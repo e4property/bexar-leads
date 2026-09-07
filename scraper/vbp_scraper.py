@@ -21,6 +21,17 @@ import os, re, json, time, logging, urllib.request, urllib.parse
 from datetime import datetime, timedelta
 from pathlib import Path
 
+# fix 2026-09-07: PARCELS_URL below pointed at maps.bexar.org's ArcGIS parcel
+# service, which went down 2026-09-01 -- every query, even a trivial "1=1",
+# returned a 400 error. The main pipeline (fetch.py) migrated to Harris
+# Govern (hgo.harrisgovern.com/bexar) for this exact reason weeks ago; this
+# script's own separate PARCELS_URL constant was never updated to match, so
+# appraised/land value lookups for VBP records have been silently returning
+# nothing this whole time. Reusing fetch.py's already-proven lookup_owner()
+# instead of reimplementing Harris Govern's query logic here -- it already
+# handles the address-disambiguation edge cases live-verified there.
+from fetch import lookup_owner as _hgo_lookup_owner
+
 logging.basicConfig(level=logging.INFO,
     format='%(asctime)s.%(msecs)03d [%(levelname)s] %(message)s',
     datefmt='%Y-%m-%d %H:%M:%S')
@@ -30,7 +41,6 @@ log = logging.getLogger(__name__)
 VBP_PDF_URL  = "https://docsonline.sanantonio.gov/DSDUploads/VBPInventory.pdf"
 RECORDS_PATH = Path("dashboard/records.json")
 STATE_PATH   = Path("data/vbp_state.json")
-PARCELS_URL  = "https://maps.bexar.org/arcgis/rest/services/Parcels/MapServer/0"
 
 MAX_SQ_FT = 6000
 
@@ -53,92 +63,26 @@ RUN_TIMESTAMP = datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
 
 
 # ── PARCEL LOOKUP ──────────────────────────────────────────────────────────────
-def arcgis_query(layer_url, where, fields="*", limit=50):
-    try:
-        params = urllib.parse.urlencode({
-            "where":             where,
-            "outFields":         fields,
-            "returnGeometry":    "false",
-            "resultRecordCount": limit,
-            "f":                 "json",
-        })
-        req = urllib.request.Request(
-            f"{layer_url}/query?{params}",
-            headers={"User-Agent": "BexarVBP/1.4", "Accept": "application/json"}
-        )
-        with urllib.request.urlopen(req, timeout=15) as r:
-            data = json.loads(r.read().decode("utf-8", errors="replace"))
-        if "error" in data:
-            return []
-        return data.get("features", [])
-    except Exception as e:
-        log.debug(f"ArcGIS query error: {e}")
-        return []
-
-
-def get_field(attrs, candidates):
-    for c in candidates:
-        v = attrs.get(c)
-        if v is not None and str(v).strip() not in ("", "None", "null", "<Null>", "NULL", "0"):
-            return str(v).strip()
-    return ""
-
-
 def lookup_appraised_value(address):
     """
-    Look up appraised value from Bexar CAD parcel layer for a VBP address.
-    Returns dict with appraised_value and land_value or empty dict.
+    Look up appraised value for a VBP address via Harris Govern (see the
+    module-level fix note above for why this no longer queries ArcGIS
+    directly). Returns dict with appraised_value and land_value or empty
+    dict -- land_value stays empty since HGO's basic-search response
+    doesn't expose it separately, same limitation fetch.py already
+    accepts for the main pipeline.
     """
-    parts = address.strip().upper().split()
-    if not parts or not parts[0].isdigit():
+    try:
+        result = _hgo_lookup_owner(address)
+    except Exception as e:
+        log.debug(f"HGO lookup error for '{address}': {e}")
         return {}
-
-    num        = parts[0]
-    words      = parts[1:]
-    first_word = words[0] if words else ""
-
-    APPR_FIELDS = ["TotVal", "TOT_VAL", "TotalVal", "TOTAL_VAL", "AppraisedVal",
-                   "APPRAISED_VAL", "AppraisedValue", "APPRAISED_VALUE", "MarketValue"]
-    LAND_FIELDS = ["LandVal", "LAND_VAL", "LandValue", "LAND_VALUE"]
-    SITUS_FIELDS = ["Situs", "SITUS", "SitusAddress", "SITUS_ADDRESS", "Address", "ADDRESS"]
-
-    def check_features(feats):
-        for feat in feats:
-            a = feat.get("attributes", {})
-            situs = get_field(a, SITUS_FIELDS)
-            situs_norm = " ".join(situs.upper().split())
-            if not situs_norm.startswith(num + " "):
-                continue
-            appr = get_field(a, APPR_FIELDS)
-            land = get_field(a, LAND_FIELDS)
-            if appr:
-                return {"appraised_value": appr, "land_value": land}
+    if not result:
         return {}
-
-    # Strategy 1: number + first two words
-    if len(words) >= 2:
-        feats = arcgis_query(PARCELS_URL,
-            f"Situs LIKE '{num} {words[0]} {words[1]}%'", limit=10)
-        result = check_features(feats)
-        if result:
-            return result
-
-    # Strategy 2: number + first word
-    if first_word and len(first_word) >= 3:
-        feats = arcgis_query(PARCELS_URL,
-            f"Situs LIKE '{num} {first_word}%'", limit=20)
-        result = check_features(feats)
-        if result:
-            return result
-
-    # Strategy 3: number only
-    feats = arcgis_query(PARCELS_URL,
-        f"Situs LIKE '{num} %'", limit=50)
-    result = check_features(feats)
-    if result:
-        return result
-
-    return {}
+    appr = result.get("appraised_value", "")
+    if not appr:
+        return {}
+    return {"appraised_value": appr, "land_value": result.get("land_value", "")}
 
 
 # ── PDF PARSER ─────────────────────────────────────────────────────────────────
