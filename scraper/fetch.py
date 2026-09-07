@@ -2781,17 +2781,19 @@ if __name__ == "__main__":
     # ── Step 1: PublicSearch chunked scrape ───────────────────────────────────
     new_records = scrape_publicsearch(known_docs)
 
-    # ── Step 1a: Lien/Judgment scrape (RP department doc-type expansion) ─────
-    # 2026-09-05: MECHLN/JUDG/LP/FTL -- see scrape_bexar_liens() docstring.
-    # Filtered hard by filter_lien_leads() before merging in; a raw pull
-    # here was 388 mechanics liens alone in 3 months, mostly routine
-    # contractor paperwork, not motivated-seller signal on its own.
-    try:
-        lien_records = scrape_bexar_liens(known_docs)
-        lien_records = filter_lien_leads(lien_records, prev_records + new_records)
-        new_records.extend(lien_records)
-    except Exception as e:
-        log.error(f"Lien scrape/filter error: {e}")
+    # ── Step 1a: Mechanics Lien scrape -- DISABLED 2026-09-07 ────────────────
+    # Live results after a week of real leads: mechanics liens skew toward
+    # nice, well-kept houses (a contractor dispute, not financial distress)
+    # and several had already sold by the time they were worked -- the
+    # stacking/absentee filter cuts volume but doesn't fix the underlying
+    # signal quality. Paused, not deleted -- uncomment to re-enable, and
+    # scrape_bexar_liens()/filter_lien_leads() are left in place below.
+    # try:
+    #     lien_records = scrape_bexar_liens(known_docs)
+    #     lien_records = filter_lien_leads(lien_records, prev_records + new_records)
+    #     new_records.extend(lien_records)
+    # except Exception as e:
+    #     log.error(f"Lien scrape/filter error: {e}")
 
     # 2026-09-05: lp_scraper.py's Lis Pendens scraper was imported at module
     # load but never actually called anywhere -- same "built, wired nowhere"
