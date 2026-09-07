@@ -44,7 +44,7 @@ jobs:
         env:
           CLERK_EMAIL: "${{ secrets.CLERK_EMAIL }}"
           CLERK_PASSWORD: "${{ secrets.CLERK_PASSWORD }}"
-        run: python scraper/test_lien_types.py
+        run: python scraper/fetch.py
 
       # 2026-08-28: this script existed but was never actually wired into
       # anything -- its own docstring said "run manually via
