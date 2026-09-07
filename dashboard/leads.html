@@ -1326,7 +1326,26 @@ async function _writeBackToRepoImpl(doc_number,updates,attempt=1){
     }
     const fileData=await getRes.json();
     const sha=fileData.sha;
-    const currentJson=JSON.parse(atob(fileData.content.replace(/\n/g,'')));
+    // fix 2026-09-07: records.json just crossed GitHub's ~1MB inline-content
+    // limit for the Contents API (confirmed live: 1,068,730 bytes) -- past
+    // that size the API returns encoding:'none' with an EMPTY content field
+    // instead of erroring, so atob('') + JSON.parse('') threw "Unexpected
+    // end of JSON input" on every single write-back, silently (this catch
+    // block had no toast). Fall back to the raw file URL, which has no such
+    // limit, whenever content isn't inlined.
+    let currentJson;
+    if(fileData.content&&fileData.encoding==='base64'){
+      currentJson=JSON.parse(atob(fileData.content.replace(/\n/g,'')));
+    }else{
+      const rawRes=await fetch(`https://raw.githubusercontent.com/${repoForActiveCounty()}/main/${repoPath}?t=${Date.now()}`);
+      if(!rawRes.ok){
+        if(attempt<10){await new Promise(r=>setTimeout(r,Math.min(300*attempt,2500)));return _writeBackToRepoImpl(doc_number,updates,attempt+1);}
+        console.warn(`writeBackToRepo: raw fallback fetch failed after ${attempt} attempts for ${doc_number} (HTTP ${rawRes.status})`);
+        toast('⚠ Sync failed for this lead after retries — it may show unworked until next refresh',true);
+        return false;
+      }
+      currentJson=await rawRes.json();
+    }
     let changed=false;
     for(const rec of currentJson){if(rec.doc_number===doc_number){Object.assign(rec,updates);changed=true;break;}}
     if(!changed)return true;
@@ -1341,7 +1360,12 @@ async function _writeBackToRepoImpl(doc_number,updates,attempt=1){
     return true;
   }catch(e){
     if(attempt<10){await new Promise(r=>setTimeout(r,Math.min(300*attempt,2500)));return _writeBackToRepoImpl(doc_number,updates,attempt+1);}
+    // fix 2026-09-07: this branch caught real failures (like the 1MB JSON
+    // parse error above) but only ever logged to console -- the user saw
+    // literally nothing, which is how the size-limit bug hid for as long as
+    // it did. Every give-up path now has to show a toast, no exceptions.
     console.warn('writeBackToRepo:',e);
+    toast(`⚠ Sync failed for this lead after retries (${e.message||e}) — it may show unworked until next refresh`,true);
     return false;
   }
 }
