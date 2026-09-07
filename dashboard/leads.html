@@ -1297,12 +1297,17 @@ document.getElementById('timeline').innerHTML=ev.reverse().map(e=>`<div class="t
 // overlap in the first place -- each save now waits for the previous
 // one to fully land before its own GET reads the sha.
 let _writeBackQueue=Promise.resolve();
+// v4.6: writeBackToRepo now resolves true/false instead of always resolving
+// silently -- callers that only fire-and-forget (clearPhone, savePhone, etc.)
+// are unaffected, but callers that need to know whether the save actually
+// landed (saveLeadInfo) can now await the real result instead of always
+// showing a success toast regardless of whether the write went through.
 function writeBackToRepo(doc_number,updates){
-  _writeBackQueue=_writeBackQueue.then(()=>_writeBackToRepoImpl(doc_number,updates)).catch(e=>console.warn('writeBackToRepo (queued):',e));
+  _writeBackQueue=_writeBackQueue.then(()=>_writeBackToRepoImpl(doc_number,updates)).catch(e=>{console.warn('writeBackToRepo (queued):',e);return false;});
   return _writeBackQueue;
 }
 async function _writeBackToRepoImpl(doc_number,updates,attempt=1){
-  if(!S.ghToken)return;
+  if(!S.ghToken)return false;
   try{
     const repoPath='dashboard/records.json';
     const apiBase=`https://api.github.com/repos/${repoForActiveCounty()}/contents/${repoPath}`;
@@ -1317,24 +1322,27 @@ async function _writeBackToRepoImpl(doc_number,updates,attempt=1){
       if(attempt<10){await new Promise(r=>setTimeout(r,Math.min(300*attempt,2500)));return _writeBackToRepoImpl(doc_number,updates,attempt+1);}
       console.warn(`writeBackToRepo: GET failed after ${attempt} attempts for ${doc_number} (HTTP ${getRes.status})`);
       toast('⚠ Sync failed for this lead after retries — it may show unworked until next refresh',true);
-      return;
+      return false;
     }
     const fileData=await getRes.json();
     const sha=fileData.sha;
     const currentJson=JSON.parse(atob(fileData.content.replace(/\n/g,'')));
     let changed=false;
     for(const rec of currentJson){if(rec.doc_number===doc_number){Object.assign(rec,updates);changed=true;break;}}
-    if(!changed)return;
+    if(!changed)return true;
     const newContent=btoa(unescape(encodeURIComponent(JSON.stringify(currentJson))));
     const putRes=await fetch(apiBase,{method:'PUT',headers:{'Authorization':'Bearer '+S.ghToken,'Accept':'application/vnd.github+json','Content-Type':'application/json'},body:JSON.stringify({message:`dash: update lead ${doc_number}`,content:newContent,sha:sha})});
     if(!putRes.ok){
       if(attempt<10){await new Promise(r=>setTimeout(r,Math.min(300*attempt,2500)));return _writeBackToRepoImpl(doc_number,updates,attempt+1);}
       console.warn(`writeBackToRepo: gave up after ${attempt} attempts for ${doc_number} (HTTP ${putRes.status})`);
       toast('⚠ Sync failed for this lead after retries — it may show unworked until next refresh',true);
+      return false;
     }
+    return true;
   }catch(e){
     if(attempt<10){await new Promise(r=>setTimeout(r,Math.min(300*attempt,2500)));return _writeBackToRepoImpl(doc_number,updates,attempt+1);}
     console.warn('writeBackToRepo:',e);
+    return false;
   }
 }
 
@@ -1365,7 +1373,7 @@ function useTracerfyPhone(){const lead=allLeads.find(l=>l.doc_number===selectedD
 // editable fields only persisted if you also entered a phone via savePhone(),
 // so a correction made with no phone yet (e.g. fixing a wrong owner before
 // you've found their number) silently reverted on next lead switch.
-function saveLeadInfo(){
+async function saveLeadInfo(){
   const lead=allLeads.find(l=>l.doc_number===selectedDoc);if(!lead)return;
   const firstInput=document.getElementById('sf-first'),lastInput=document.getElementById('sf-last');
   const addressInput=document.getElementById('sf-address'),cityInput=document.getElementById('sf-city'),zipInput=document.getElementById('sf-zip');
@@ -1378,9 +1386,19 @@ function saveLeadInfo(){
   if(city)updates.city=city.toUpperCase();
   if(zip)updates.zip=zip;
   if(!Object.keys(updates).length){toast('Nothing to save',true);return;}
+  if(!S.ghToken){toast('⚠ No GitHub token in Settings — can\'t save. Not just a display issue.',true);return;}
   Object.assign(lead,updates);
-  writeBackToRepo(selectedDoc,updates);
-  toast('✓ Info saved','ok');
+  // v4.6: this used to fire the success toast immediately, before the write
+  // to the repo was even attempted -- if writeBackToRepo's retries all failed,
+  // its own warning toast could appear many seconds later and easily be
+  // missed, so a save that actually failed still looked like it worked. Now
+  // waits for the real result before saying anything.
+  const btn=document.activeElement&&document.activeElement.tagName==='BUTTON'?document.activeElement:null;
+  if(btn){btn.disabled=true;}
+  const ok=await writeBackToRepo(selectedDoc,updates);
+  if(btn){btn.disabled=false;}
+  if(ok){toast('✓ Info saved','ok');}
+  // on failure, writeBackToRepo already showed its own "⚠ Sync failed" toast
   filterLeads();
 }
 // v4.5: Clear now resets the full push state, not just the phone -- if the
