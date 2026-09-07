@@ -57,12 +57,25 @@ def scrape_lis_pendens(known_docs, get_driver_fn, run_timestamp):
     cutoff = (today - timedelta(days=21)).strftime("%Y%m%d")
     today_str = today.strftime("%Y%m%d")
 
+    # fix 2026-09-07: this scraper had never actually run before this week's
+    # integration, so known_docs starts empty for LP/LP2 -- on the real first
+    # run it paged through the entire 21-day backlog with no circuit breaker
+    # (the loop only breaks on a partial or empty page, never on a full one),
+    # ran for 1.5+ hours, and hung the whole GitHub Actions job. Matching the
+    # LIEN_MAX_PAGES cap already used by scrape_bexar_liens() -- same fix,
+    # same reasoning: cap the run, defer the rest to next time.
+    MAX_PAGES = 20
     try:
         driver = get_driver_fn()
         offset = 0
         consecutive_empty = 0
+        page_num = 0
 
         while True:
+            page_num += 1
+            if page_num > MAX_PAGES:
+                log.info(f"LP hit MAX_PAGES={MAX_PAGES} — stopping, rest deferred to next run")
+                break
             url = (
                 f"{PUBLICSEARCH_BASE}/results"
                 f"?department=RP"
