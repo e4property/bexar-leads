@@ -786,6 +786,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
               <div class="fw-field"><div class="fw-lbl">City ✏️</div><input class="fw-val" id="sf-city" type="text" placeholder="City" style="cursor:text;font-family:'Inter',sans-serif"></div>
               <div class="fw-field"><div class="fw-lbl">ZIP ✏️</div><input class="fw-val" id="sf-zip" type="text" placeholder="ZIP" style="cursor:text;font-family:'Inter',sans-serif"></div>
             </div>
+            <button class="act-btn" style="width:100%;margin-top:6px" onclick="saveLeadInfo()">💾 Save Info</button>
             <div id="phone-saved-area" style="display:none">
               <div class="phone-saved"><div><div class="saved-num" id="saved-phone-display"></div><div class="saved-meta" id="saved-phone-meta"></div></div><button class="act-btn" style="margin-left:auto;flex:none;padding:4px 10px" onclick="clearPhone()">Clear</button></div>
             </div>
@@ -1360,7 +1361,33 @@ async function savePhone(){
 }
 
 function useTracerfyPhone(){const lead=allLeads.find(l=>l.doc_number===selectedDoc);if(!lead||!lead.tracerfy_phone)return;document.getElementById('phone-input').value=lead.tracerfy_phone;document.getElementById('phone-input').focus();toast('Tracerfy phone loaded — verify in ForeWarn then save');}
-function clearPhone(){if(!confirm('Clear phone?'))return;if(S.leads[selectedDoc]){S.leads[selectedDoc].phone='';S.leads[selectedDoc].searchedAt=null;saveState();}writeBackToRepo(selectedDoc,{dash_phone:'',dash_searched_at:null});const lead=allLeads.find(l=>l.doc_number===selectedDoc);if(lead)populateDetail(lead);filterLeads();}
+// v4.5: standalone save for name/address corrections -- previously these
+// editable fields only persisted if you also entered a phone via savePhone(),
+// so a correction made with no phone yet (e.g. fixing a wrong owner before
+// you've found their number) silently reverted on next lead switch.
+function saveLeadInfo(){
+  const lead=allLeads.find(l=>l.doc_number===selectedDoc);if(!lead)return;
+  const firstInput=document.getElementById('sf-first'),lastInput=document.getElementById('sf-last');
+  const addressInput=document.getElementById('sf-address'),cityInput=document.getElementById('sf-city'),zipInput=document.getElementById('sf-zip');
+  const first=(firstInput.value||'').trim(),last=(lastInput.value||'').trim();
+  const address=(addressInput.value||'').trim(),city=(cityInput.value||'').trim(),zip=(zipInput.value||'').trim();
+  const owner=[last,first].filter(Boolean).join(' ').toUpperCase();
+  const updates={};
+  if(owner)updates.owner=owner;
+  if(address)updates.address=address.toUpperCase();
+  if(city)updates.city=city.toUpperCase();
+  if(zip)updates.zip=zip;
+  if(!Object.keys(updates).length){toast('Nothing to save',true);return;}
+  Object.assign(lead,updates);
+  writeBackToRepo(selectedDoc,updates);
+  toast('✓ Info saved','ok');
+  filterLeads();
+}
+// v4.5: Clear now resets the full push state, not just the phone -- if the
+// saved contact/phone turns out to be wrong (e.g. a prior owner who already
+// sold), the record still showed ghl_pushed:true and blocked re-pushing a
+// corrected contact. Pair with saveLeadInfo() to fix the owner first.
+function clearPhone(){if(!confirm('Clear phone and push status? Use this when the saved contact was wrong (e.g. prior owner) so you can push a corrected one.'))return;if(S.leads[selectedDoc]){S.leads[selectedDoc].phone='';S.leads[selectedDoc].searchedAt=null;saveState();}const lead=allLeads.find(l=>l.doc_number===selectedDoc);if(lead){lead.ghl_pushed=false;lead.ghl_pushed_at=null;lead.ghl_id=null;}writeBackToRepo(selectedDoc,{dash_phone:'',dash_searched_at:null,ghl_pushed:false,ghl_pushed_at:null,ghl_id:null});if(lead)populateDetail(lead);filterLeads();}
 function skipLead(){if(!S.leads[selectedDoc])S.leads[selectedDoc]={};S.leads[selectedDoc].skipped=!S.leads[selectedDoc].skipped;saveState();filterLeads();toast('Skipped');setTimeout(()=>navNextUnworked(),300);}
 function setDispo(doc,dispo){if(!S.leads[doc])S.leads[doc]={};S.leads[doc].dispo=dispo;saveState();renderDispoTrack(doc,dispo);renderList();updateStats();if(S.ghlApiKey&&S.leads[doc]?.ghlId)updateGHLTag(S.leads[doc].ghlId,dispo);writeBackToRepo(doc,{dash_dispo:dispo});toast(`Dispo → ${dispo}`);}
 function saveNotes(){if(!selectedDoc)return;if(!S.leads[selectedDoc])S.leads[selectedDoc]={};const notes=document.getElementById('notes-area').value;S.leads[selectedDoc].notes=notes;saveState();writeBackToRepo(selectedDoc,{dash_notes:notes});}
