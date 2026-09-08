@@ -1137,12 +1137,32 @@ def filter_lien_leads(lien_records, existing_records):
     # of whether they live there -- an owner-occupant who can't pay a
     # contractor is a real distress signal too, not just an absentee
     # landlord, so this isn't narrowed to absentee-only anymore.
+    # 2026-09-08: this loop had a count cap (LIEN_ABSENTEE_CHECK_LIMIT) but
+    # no time cap and zero progress logging -- confirmed live, a batch of
+    # just 23 addresses took ~57 minutes with NOTHING in the log the whole
+    # time, looking exactly like a silent hang. Root cause: lookup_owner()
+    # falls through core query -> up to 8 directional-prefix retries ->
+    # unquoted fallback, each its own 15-35s network call, so a single
+    # no-match address can genuinely cost ~5.5 minutes worst case. A count
+    # cap alone doesn't bound wall-clock time if enough checks land on that
+    # slow path back-to-back. Add a time budget alongside the count cap --
+    # same "cap it, defer the rest to next run" pattern as everywhere else,
+    # since these leads stay is_new and get reconsidered next time anyway.
+    LIEN_ABSENTEE_TIME_BUDGET = 180  # seconds
     kept_confirmed = []
     checked = 0
+    _check_start = time.time()
     for rec in needs_absentee_check:
         if checked >= LIEN_ABSENTEE_CHECK_LIMIT:
             break
+        if time.time() - _check_start > LIEN_ABSENTEE_TIME_BUDGET:
+            log.warning(f"  Lien owner-match check hit {LIEN_ABSENTEE_TIME_BUDGET}s "
+                        f"time budget after {checked}/{len(needs_absentee_check)} — "
+                        f"stopping, rest deferred to next run")
+            break
         checked += 1
+        log.info(f"  Lien owner-match [{checked}/{min(len(needs_absentee_check), LIEN_ABSENTEE_CHECK_LIMIT)}] "
+                 f"checking {rec.get('address','—')}...")
         try:
             result = lookup_owner(rec["address"], rec.get("zip", ""))
         except Exception as e:
@@ -2138,7 +2158,19 @@ def enrich_owners(records):
     log.info(f"Owner enrichment: {len(missing)} records need lookup")
     found = 0
 
+    # 2026-09-08: same lookup_owner() worst-case-per-call exposure as
+    # filter_lien_leads() (see comment there) -- up to ~5.5min per address
+    # if it falls through every fallback stage with no match. This loop can
+    # run hundreds of candidates in one call, so it needs the same time
+    # budget, not just letting it run to completion no matter how long that
+    # takes. Records without an owner filled in just get retried next run.
+    ENRICH_OWNERS_TIME_BUDGET = 600  # seconds
+    _enrich_start = time.time()
     for i, rec in enumerate(missing):
+        if time.time() - _enrich_start > ENRICH_OWNERS_TIME_BUDGET:
+            log.warning(f"Owner enrichment hit {ENRICH_OWNERS_TIME_BUDGET}s time "
+                        f"budget after {i}/{len(missing)} — stopping, rest deferred to next run")
+            break
         addr = rec.get("address", "")
         zip_ = rec.get("zip", "")
         result = lookup_owner(addr, zip_)
