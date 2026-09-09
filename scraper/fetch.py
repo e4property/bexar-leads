@@ -2842,18 +2842,25 @@ if __name__ == "__main__":
     # except Exception as e:
     #     log.error(f"Lien scrape/filter error: {e}")
 
-    # 2026-09-05: lp_scraper.py's Lis Pendens scraper was imported at module
-    # load but never actually called anywhere -- same "built, wired nowhere"
-    # pattern as the liens above. Run through the same filter_lien_leads()
-    # gate as MECHLN/JUDG/FTL -- LP filings are just as often a routine
-    # civil suit as a real-estate distress signal on their own.
-    try:
-        lp_records = scrape_lis_pendens(known_docs, get_driver, RUN_TIMESTAMP)
-        lp_records = [normalize_lien_record(r) for r in lp_records]
-        lp_records = filter_lien_leads(lp_records, prev_records + new_records)
-        new_records.extend(lp_records)
-    except Exception as e:
-        log.error(f"Lis Pendens scrape/filter error: {e}")
+    # 2026-09-09: LP (Lis Pendens) scraping disabled per user decision --
+    # paused, not deleted, same pattern as the mechanics lien pause above.
+    # LP is a general "pending lawsuit" filing, only sometimes foreclosure-
+    # related, layered on the same fragile OCR'd legal-notice parsing that's
+    # needed three separate real fixes today alone (a 1.5hr hang from a
+    # missing page cap, a date-safety bug letting through fake 2018/2023
+    # records, then a datetime-comparison crash in that same fix). Bexar
+    # already has a clean, dedicated, working pre-foreclosure signal in the
+    # separate APPT pipeline (run_appointment.py / appointment.yml, tagged
+    # bexar_prefore) -- LP wasn't pulling its weight against the ongoing
+    # maintenance cost. Uncomment to re-enable if LP is ever wanted again.
+    # try:
+    #     lp_records = scrape_lis_pendens(known_docs, get_driver, RUN_TIMESTAMP)
+    #     lp_records = [normalize_lien_record(r) for r in lp_records]
+    #     lp_records = filter_lien_leads(lp_records, prev_records + new_records)
+    #     new_records.extend(lp_records)
+    # except Exception as e:
+    #     log.error(f"Lis Pendens scrape/filter error: {e}")
+    lp_records = []
 
     # ── Step 1b: Doc detail fetch ─────────────────────────────────────────────
     doc_driver = None
@@ -2881,15 +2888,6 @@ if __name__ == "__main__":
                 doc_driver.quit()
             except Exception:
                 pass
-
-    # 2026-09-07: removed a stale `lp_records = []` here left over from when
-    # LP was disabled (2026-08-06 - 2026-09-05, see git history for why).
-    # It silently reset this variable to empty right after the real scrape
-    # above populated it and merged it into new_records -- harmless in
-    # practice (the data was already merged by then) but confusing dead
-    # code that made LP look disabled when it's actually active. The
-    # date-safety filter that disable note called for is now implemented
-    # directly in lp_scraper.py's scrape_lis_pendens().
 
     # ── Step 2: ArcGIS weekly backfill (Sundays only) ────────────────────────
     arcgis_records = []
