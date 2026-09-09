@@ -1,6 +1,63 @@
 [
   {
     "type": "NOF",
+    "address": "8927 PALM CREST",
+    "owner": "CORTEZ RAUL JR & JENNIFER KAY",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20261000291",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "9",
+    "city": "SAN ANTONIO",
+    "zip": "78211",
+    "school_dist": "",
+    "date_filed": "9/2026",
+    "date_recorded": "9/9/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-09-09T22:09:48Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON",
+      "LONG HELD"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 10,
+    "tenure_score_bonus": 15,
+    "prop_id": "549409",
+    "deed_date": "7/1/2016",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 121150
+      },
+      {
+        "year": "2025",
+        "appraised": 146050
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "121150",
+    "annual_taxes": "",
+    "land_value": "",
+    "on_market": true,
+    "on_market_status": "FOR_RENT",
+    "on_market_checked_at": "2026-09-09T22:35:23Z",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 26
+  },
+  {
+    "type": "NOF",
     "address": "1701 JACKSON KELLER RD",
     "owner": "SOTO JOSE MIGUEL",
     "mail_addr": "",
@@ -2905,7 +2962,7 @@
     "land_value": "0.0",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-01T22:51:27Z",
+    "on_market_checked_at": "2026-09-09T22:35:34Z",
     "arv_estimate": 360000,
     "arv_status": "SOLD",
     "arv_sqft": 1170,
@@ -2967,7 +3024,7 @@
     "land_value": "44420.0",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-01T22:51:28Z",
+    "on_market_checked_at": "2026-09-09T22:35:35Z",
     "arv_estimate": 161000,
     "arv_status": "SOLD",
     "arv_sqft": 1540,
@@ -5377,7 +5434,7 @@
     "ghl_id": "tazfGXTuB8JBlOqGFYZc",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-31T23:46:24Z",
+    "on_market_checked_at": "2026-09-09T22:35:37Z",
     "arv_estimate": 230000,
     "arv_status": "SOLD",
     "arv_sqft": 1575
@@ -6701,7 +6758,7 @@
     "dash_phone": "+12106025536",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-31T23:48:03Z",
+    "on_market_checked_at": "2026-09-09T22:35:39Z",
     "arv_estimate": 224000,
     "arv_status": "SOLD",
     "arv_sqft": 1428
@@ -6766,7 +6823,7 @@
     "dash_phone": "+12105840297",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-31T23:48:06Z",
+    "on_market_checked_at": "2026-09-09T22:35:41Z",
     "arv_estimate": 144000,
     "arv_status": "SOLD",
     "arv_sqft": 912
@@ -7491,7 +7548,7 @@
     "dash_phone": "+15625361096",
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-08-31T23:48:38Z",
+    "on_market_checked_at": "2026-09-09T22:35:42Z",
     "arv_estimate": 203000,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 1547
@@ -7556,7 +7613,7 @@
     "dash_phone": "+15125071664",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-31T23:48:41Z",
+    "on_market_checked_at": "2026-09-09T22:35:44Z",
     "arv_estimate": 267000,
     "arv_status": "SOLD",
     "arv_sqft": 2084
@@ -7617,7 +7674,7 @@
     "days_until_sale": 26,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-31T23:48:59Z",
+    "on_market_checked_at": "2026-09-09T22:35:45Z",
     "arv_estimate": 555000,
     "arv_status": "SOLD",
     "arv_sqft": 3072
@@ -7684,7 +7741,7 @@
     "dash_phone": "2107104645",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-31T23:49:04Z",
+    "on_market_checked_at": "2026-09-09T22:35:47Z",
     "arv_estimate": 313124,
     "arv_status": "SOLD",
     "arv_sqft": 1941
@@ -7750,7 +7807,7 @@
     "dash_phone": "+1210264252",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-31T23:49:07Z",
+    "on_market_checked_at": "2026-09-09T22:35:49Z",
     "arv_estimate": 208300,
     "arv_status": "SOLD",
     "arv_sqft": 1487
@@ -7815,7 +7872,7 @@
     "dash_phone": "+12103547405",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-31T23:49:10Z",
+    "on_market_checked_at": "2026-09-09T22:35:50Z",
     "arv_estimate": 181000,
     "arv_status": "SOLD"
   },
@@ -7879,7 +7936,7 @@
     "dash_phone": "+19566454546",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-31T23:49:13Z",
+    "on_market_checked_at": "2026-09-09T22:35:52Z",
     "arv_estimate": 277081,
     "arv_status": "SOLD",
     "arv_sqft": 1900
@@ -7944,7 +8001,7 @@
     "dash_phone": "+18305079717",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-31T23:49:18Z",
+    "on_market_checked_at": "2026-09-09T22:35:53Z",
     "arv_estimate": 552500,
     "arv_status": "SOLD",
     "arv_sqft": 2621
@@ -8009,7 +8066,7 @@
     "dash_phone": "+18306403108",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-31T23:49:21Z",
+    "on_market_checked_at": "2026-09-09T22:35:55Z",
     "arv_estimate": 216839,
     "arv_status": "SOLD",
     "arv_sqft": 1716
@@ -8074,7 +8131,7 @@
     "dash_phone": "+19722792013",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-31T23:49:24Z",
+    "on_market_checked_at": "2026-09-09T22:35:56Z",
     "arv_estimate": 303000,
     "arv_status": "SOLD",
     "arv_sqft": 2806
@@ -10549,6 +10606,247 @@
     "on_market_checked_at": "2026-08-31T23:57:18Z",
     "arv_estimate": 237300,
     "arv_status": "SOLD"
+  },
+  {
+    "type": "NOF",
+    "address": "723 LARRY STREET",
+    "owner": "JONES SYLVIA J RODRIGUEZ",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": true,
+    "is_new": true,
+    "doc_number": "20261000293",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "9",
+    "city": "SAN ANTONIO",
+    "zip": "78202",
+    "school_dist": "",
+    "date_filed": "9/2026",
+    "date_recorded": "9/9/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-09-09T22:09:48Z",
+    "flags": [
+      "DUPLICATE",
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "prop_id": "112949",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 101710
+      },
+      {
+        "year": "2025",
+        "appraised": 108910
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "101710",
+    "annual_taxes": "",
+    "land_value": "",
+    "on_market": true,
+    "on_market_status": "FOR_SALE",
+    "on_market_checked_at": "2026-09-09T22:35:10Z",
+    "arv_estimate": 87018,
+    "arv_status": "FOR_SALE",
+    "arv_sqft": 1008,
+    "arv_fetched_at": "2026-09-09T22:35:10Z",
+    "stacked": false,
+    "score": 7,
+    "days_until_sale": 26
+  },
+  {
+    "type": "NOF",
+    "address": "9134 OCEAN GATE ST",
+    "owner": "LLANAS PROPERTIES LLC",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20261000292",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "9",
+    "city": "SAN ANTONIO",
+    "zip": "78242",
+    "school_dist": "",
+    "date_filed": "9/2026",
+    "date_recorded": "9/9/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-09-09T22:09:48Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 1,
+    "tenure_score_bonus": 0,
+    "prop_id": "658509",
+    "deed_date": "8/7/2025",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 186950
+      },
+      {
+        "year": "2025",
+        "appraised": 200410
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "186950",
+    "annual_taxes": "",
+    "land_value": "",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-09T22:35:12Z",
+    "arv_estimate": 233470,
+    "arv_status": "SOLD",
+    "arv_sqft": 1243,
+    "arv_fetched_at": "2026-09-09T22:35:12Z",
+    "stacked": false,
+    "score": 7,
+    "days_until_sale": 26
+  },
+  {
+    "type": "NOF",
+    "address": "7716 WINSFORD",
+    "owner": "ESCOBEDO GERARADO SALAS & ZUVIETA MARIA SALUD",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20261000289",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "9",
+    "city": "SAN ANTONIO",
+    "zip": "78239",
+    "school_dist": "",
+    "date_filed": "9/2026",
+    "date_recorded": "9/9/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-09-09T22:09:48Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 3,
+    "tenure_score_bonus": 0,
+    "prop_id": "315214",
+    "deed_date": "9/26/2022",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 109350
+      },
+      {
+        "year": "2025",
+        "appraised": 109770
+      }
+    ],
+    "appr_trend": "flat",
+    "appraised_value": "109350",
+    "annual_taxes": "",
+    "land_value": "",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-09T22:35:13Z",
+    "arv_estimate": 117638,
+    "arv_status": "SOLD",
+    "arv_sqft": 884,
+    "arv_fetched_at": "2026-09-09T22:35:13Z",
+    "stacked": false,
+    "score": 7,
+    "days_until_sale": 26
+  },
+  {
+    "type": "NOF",
+    "address": "7718 WINSFORD",
+    "owner": "ESCOBEDO GERARADO SALAS & ARVISU MA SALUD ZUVIETA",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20261000290",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "9",
+    "city": "SAN ANTONIO",
+    "zip": "78239",
+    "school_dist": "",
+    "date_filed": "9/2026",
+    "date_recorded": "9/9/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-09-09T22:09:48Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 4,
+    "tenure_score_bonus": 0,
+    "prop_id": "315213",
+    "deed_date": "11/3/2021",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 107400
+      },
+      {
+        "year": "2025",
+        "appraised": 107810
+      }
+    ],
+    "appr_trend": "flat",
+    "appraised_value": "107400",
+    "annual_taxes": "",
+    "land_value": "",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-09T22:35:25Z",
+    "arv_estimate": 127700,
+    "arv_status": "SOLD",
+    "arv_sqft": 884,
+    "arv_fetched_at": "2026-09-09T22:35:25Z",
+    "stacked": false,
+    "score": 7,
+    "days_until_sale": 26
   },
   {
     "type": "NOF",
@@ -30248,7 +30546,7 @@
     "land_value": "3558720.0",
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-09-09T18:33:49Z"
+    "on_market_checked_at": "2026-09-09T22:31:25Z"
   },
   {
     "doc_number": "VBP-233-W-TRAVIS-ST-78205",
@@ -30296,7 +30594,7 @@
     "land_value": "481389.0",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-09T18:33:50Z"
+    "on_market_checked_at": "2026-09-09T22:31:27Z"
   },
   {
     "doc_number": "VBP-310-W-COMMERCE-ST-78205",
@@ -30927,7 +31225,7 @@
     "land_value": "359060.0",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-09T18:34:05Z"
+    "on_market_checked_at": "2026-09-09T22:31:44Z"
   },
   {
     "doc_number": "VBP-164-EL-MONTE-BLVD-78212",
@@ -31036,7 +31334,7 @@
     "land_value": "244630.0",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-09T18:34:22Z"
+    "on_market_checked_at": "2026-09-09T22:32:00Z"
   },
   {
     "doc_number": "VBP-206-E-FREDERICKSBURG-RD-78212",
@@ -31442,7 +31740,7 @@
     "dash_searched_at": "2026-02-18T20:05:58.032Z",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-09T18:34:37Z"
+    "on_market_checked_at": "2026-09-09T22:32:15Z"
   },
   {
     "doc_number": "VBP-314-W-MAGNOLIA-AVE-78212",
@@ -31490,7 +31788,7 @@
     "land_value": "234140.0",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-09T18:34:54Z"
+    "on_market_checked_at": "2026-09-09T22:32:31Z"
   },
   {
     "doc_number": "VBP-354-E-HUISACHE-AVE-78212",
@@ -47841,7 +48139,7 @@
     "days_until_sale": null,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-09T18:33:03Z"
+    "on_market_checked_at": "2026-09-09T22:30:38Z"
   },
   {
     "doc_number": "VBP-2902-W-COMMERCE-ST-78207",
@@ -48005,7 +48303,7 @@
     "days_until_sale": null,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-09T18:33:14Z"
+    "on_market_checked_at": "2026-09-09T22:30:50Z"
   },
   {
     "doc_number": "VBP-858-ANGELA-ST-78207",
@@ -48231,7 +48529,7 @@
     "days_until_sale": null,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-09T18:33:25Z"
+    "on_market_checked_at": "2026-09-09T22:31:02Z"
   },
   {
     "doc_number": "VBP-338-CORDELIA-ST-78237",
@@ -48395,7 +48693,7 @@
     "days_until_sale": null,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-09T18:33:47Z"
+    "on_market_checked_at": "2026-09-09T22:31:24Z"
   },
   {
     "doc_number": "VBP-1903-W-WOODLAWN-AVE-78201",
@@ -52450,7 +52748,7 @@
     "ce_violations": false,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-09T18:35:18Z",
+    "on_market_checked_at": "2026-09-09T22:32:52Z",
     "appt_converted": false,
     "appt_stale": false
   },
@@ -52663,7 +52961,7 @@
     "ce_violations": false,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-09T18:35:46Z",
+    "on_market_checked_at": "2026-09-09T22:33:22Z",
     "appt_converted": false,
     "appt_stale": false
   },
@@ -52898,7 +53196,7 @@
     "appt_stale": false,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-09T03:18:55Z",
+    "on_market_checked_at": "2026-09-09T22:34:49Z",
     "arv_estimate": "",
     "arv_status": "",
     "arv_sqft": "",
@@ -53538,7 +53836,7 @@
     "appt_stale": false,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-09T18:36:31Z"
+    "on_market_checked_at": "2026-09-09T22:33:29Z"
   },
   {
     "doc_number": "20260163925",
@@ -53962,7 +54260,7 @@
     "appr_trend": "down",
     "appt_converted": false,
     "appt_stale": false,
-    "on_market_checked_at": "2026-09-09T18:37:16Z"
+    "on_market_checked_at": "2026-09-09T22:34:15Z"
   },
   {
     "doc_number": "20260156964",
@@ -56309,7 +56607,7 @@
     "appt_stale": false,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-09T18:37:15Z",
+    "on_market_checked_at": "2026-09-09T22:34:13Z",
     "tenure_years": null,
     "tenure_score_bonus": 0,
     "appr_history": [],
@@ -56791,7 +57089,7 @@
     "dash_phone": "+12104277314",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-09T18:36:59Z",
+    "on_market_checked_at": "2026-09-09T22:33:57Z",
     "arv_estimate": "",
     "arv_status": "",
     "arv_sqft": "",
@@ -58332,7 +58630,7 @@
     "dash_searched_at": "2026-08-22T04:10:42.286Z",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-01T17:34:39Z",
+    "on_market_checked_at": "2026-09-09T22:34:31Z",
     "arv_estimate": "",
     "arv_status": "",
     "arv_sqft": "",
@@ -58442,7 +58740,7 @@
     "dash_phone": "+12105273418",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-31T16:06:43Z",
+    "on_market_checked_at": "2026-09-09T22:35:06Z",
     "arv_estimate": "",
     "arv_status": "",
     "arv_sqft": "",
@@ -59689,7 +59987,7 @@
     "score": 2,
     "flags": [
       "DUPLICATE",
-      "LIKELY RESOLVED"
+      "CONVERTED TO NOF"
     ],
     "absentee": false,
     "duplicate": true,
@@ -59712,8 +60010,8 @@
     "tenure_score_bonus": 0,
     "appr_history": [],
     "appr_trend": "",
-    "appt_converted": false,
-    "appt_stale": true,
+    "appt_converted": true,
+    "appt_stale": false,
     "on_market": false,
     "on_market_status": "SOLD",
     "on_market_checked_at": "2026-08-31T16:23:08Z",
@@ -60203,11 +60501,11 @@
     "appt_stale": false,
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-08-31T16:29:40Z",
-    "arv_estimate": "",
-    "arv_status": "",
-    "arv_sqft": "",
-    "arv_fetched_at": "",
+    "on_market_checked_at": "2026-09-09T22:35:08Z",
+    "arv_estimate": 47000,
+    "arv_status": "OFF_MARKET",
+    "arv_sqft": null,
+    "arv_fetched_at": "2026-09-09T22:35:08Z",
     "converted_doc_number": "20260900421"
   },
   {
@@ -60316,7 +60614,7 @@
     "arv_status": "",
     "arv_sqft": "",
     "arv_fetched_at": "",
-    "converted_doc_number": "20260800375"
+    "converted_doc_number": "20261000293"
   },
   {
     "doc_number": "20260136832",
@@ -60777,7 +61075,7 @@
     "score": 2,
     "flags": [
       "DUPLICATE",
-      "LIKELY RESOLVED"
+      "CONVERTED TO NOF"
     ],
     "absentee": false,
     "duplicate": true,
@@ -60800,8 +61098,8 @@
     "tenure_score_bonus": 0,
     "appr_history": [],
     "appr_trend": "",
-    "appt_converted": false,
-    "appt_stale": true,
+    "appt_converted": true,
+    "appt_stale": false,
     "on_market": true,
     "on_market_status": "FOR_RENT",
     "on_market_checked_at": "2026-08-31T16:37:21Z",
@@ -61515,7 +61813,7 @@
     "arv_status": "",
     "arv_sqft": "",
     "arv_fetched_at": "",
-    "converted_doc_number": "20260800375"
+    "converted_doc_number": "20261000293"
   },
   {
     "doc_number": "20260134614",
