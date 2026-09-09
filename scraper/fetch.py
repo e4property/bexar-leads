@@ -2500,7 +2500,20 @@ def fetch_arv_homeharvest(records):
     vbp_pool = [r for r in all_eligible if r.get("type") == "VBP"]
     vbp_pool.sort(key=lambda r: r.get("date_filed", ""), reverse=True)
     appt_pool = [r for r in all_eligible if r.get("type") == "APPT"]
+    # 2026-09-09: appt_pool never got the newest-first sort vbp_pool has had
+    # since 2026-08-27, and other_pool (NOF/TAX -- the majority type) never
+    # got any sort at all, just plain list order. Confirmed live: a NOF
+    # lead added same-day (Jones Destinee, 5425 Cloves Cove) sat completely
+    # unchecked while this run spent its 30-slot budget on leads already
+    # sitting in the backlog for weeks. Same starvation bug as VBP had,
+    # just never fixed for the other two pools. Sorting by run_ts (an
+    # always-sortable ISO timestamp) rather than date_filed (a "MM/YYYY"
+    # string that sorts wrong across year boundaries, e.g. "09/2026" >
+    # "01/2027" lexicographically) so today's leads reliably win the slot
+    # over older backlog, without increasing total request volume at all.
+    appt_pool.sort(key=lambda r: r.get("run_ts", ""), reverse=True)
     other_pool = [r for r in all_eligible if r.get("type") not in ("VBP", "APPT")]
+    other_pool.sort(key=lambda r: r.get("run_ts", ""), reverse=True)
     vbp_share = min(len(vbp_pool), ARV_FETCH_LIMIT // 3)
     appt_share = min(len(appt_pool), ARV_FETCH_LIMIT // 3)
     other_share = ARV_FETCH_LIMIT - vbp_share - appt_share
