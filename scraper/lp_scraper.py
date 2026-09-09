@@ -127,7 +127,19 @@ def scrape_lis_pendens(known_docs, get_driver_fn, run_timestamp):
                 dates = [c for c in cells if re.match(r"^\d{1,2}/\d{1,2}/\d{4}$", c.strip())]
                 if dates:
                     try:
-                        row_date = datetime.strptime(dates[0].strip(), "%m/%d/%Y")
+                        # 2026-09-09: this crashed every single row with
+                        # "can't compare offset-naive and offset-aware
+                        # datetimes" -- date_floor/date_ceiling are aware
+                        # (derived from datetime.now(timezone.utc) above),
+                        # but strptime() always returns a naive datetime.
+                        # The whole date-safety filter added yesterday was
+                        # silently throwing on every comparison, caught by
+                        # the outer try/except, which stopped the scraper
+                        # early and logged it as a generic "LP scraper
+                        # error" with no hint it was this filter itself.
+                        row_date = datetime.strptime(
+                            dates[0].strip(), "%m/%d/%Y"
+                        ).replace(tzinfo=timezone.utc)
                     except ValueError:
                         row_date = None
                     if row_date and not (date_floor <= row_date <= date_ceiling):
