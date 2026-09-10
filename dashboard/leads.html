@@ -690,6 +690,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
         <div class="detail-hdr" id="detail-hdr">
           <div class="dh-name" id="d-name"></div>
           <div class="dh-addr" id="d-addr" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"></div>
+          <div class="dh-mail-addr" id="d-mail-addr" style="display:none;align-items:center;gap:8px;flex-wrap:wrap;margin-top:2px;color:var(--amber-dk)"></div>
           <div class="dh-meta" id="d-meta"></div>
           <div class="dh-badges" id="d-badges"></div>
         </div>
@@ -1187,6 +1188,11 @@ function populateDetail(lead){
   const dName=stacked?(lead.owner||'Vacant+CE Property'):vbp?(lead.owner||'Vacant Property'):ce&&!lead.owner?(lead.ce_cat_label||'Code Enforcement'):lp&&!lead.owner?'Lis Pendens':appt&&!lead.owner?'Pre-Foreclosure':(lead.owner||'—');
   set('d-name',dName);
   document.getElementById('d-addr').innerHTML=`<span>${lead.address||''}${lead.city?', '+lead.city:''} TX ${lead.zip||''}</span>`+(lead.address?`<button class="act-btn" style="padding:2px 8px;font-size:11px" onclick="openStreetView()">🗺️ Street View</button>`:'');
+  const mailEl=document.getElementById('d-mail-addr');
+  const propNorm=(lead.address||'').trim().toUpperCase();
+  const mailDiffers=lead.mail_addr&&!lead.mail_addr.toUpperCase().startsWith(propNorm);
+  if(lead.absentee&&mailDiffers){mailEl.style.display='flex';mailEl.innerHTML=`<span>📬 Mailing: ${lead.mail_addr}</span><button class="act-btn" style="padding:2px 8px;font-size:11px" onclick="copyMailAddress()">📋 Copy Mailing</button>`;}
+  else{mailEl.style.display='none';mailEl.innerHTML='';}
   document.getElementById('d-meta').textContent=ce?`Case: ${lead.ce_case_id||lead.doc_number} · Opened: ${fmtDate(lead.opened_date)}`:`Doc: ${lead.doc_number} · ${lead.date_recorded?'Recorded: '+fmtDate(lead.date_recorded):'Filed: '+fmtDate(lead.date_filed)}${lead.sale_date?' · Sale: '+fmtDate(lead.sale_date):''}`;
   const b=[];
   if(isNew)b.push(`<span class="badge b-new" style="padding:2px 9px;font-size:10px">✨ NEW</span>`);
@@ -1595,6 +1601,7 @@ function openStreetView(){
 }
 
 function copyAddress(){const lead=allLeads.find(l=>l.doc_number===selectedDoc);if(!lead)return;const addressInput=document.getElementById('sf-address'),cityInput=document.getElementById('sf-city'),zipInput=document.getElementById('sf-zip');const addr=(addressInput&&addressInput.value.trim())||toTitle(lead.address||'');const city=(cityInput&&cityInput.value.trim())||toTitle(lead.city||'');const zip=(zipInput&&zipInput.value.trim())||lead.zip;navigator.clipboard.writeText(`${addr}, ${city} TX ${zip}`);toast('Address copied');}
+function copyMailAddress(){const lead=allLeads.find(l=>l.doc_number===selectedDoc);if(!lead||!lead.mail_addr)return;navigator.clipboard.writeText(lead.mail_addr);toast('Mailing address copied');}
 function openGHL(){const ls=LS(selectedDoc);window.open(ls.ghlId?`https://app.justjarvis.com/v2/location/${S.ghlLocationId}/contacts/detail/${ls.ghlId}`:'https://app.justjarvis.com','_blank');}
 
 async function pushGHL(lead,phone){
