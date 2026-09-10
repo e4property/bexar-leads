@@ -685,7 +685,7 @@
     "arv_fetched_at": "2026-09-03T19:11:44Z",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-03T19:12:40Z",
+    "on_market_checked_at": "2026-09-10T22:07:31Z",
     "stacked": false,
     "score": 10,
     "days_until_sale": 25
@@ -747,7 +747,7 @@
     "arv_fetched_at": "2026-09-03T19:11:52Z",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-03T19:12:43Z",
+    "on_market_checked_at": "2026-09-10T22:07:33Z",
     "stacked": false,
     "score": 10,
     "days_until_sale": 25
@@ -2905,7 +2905,7 @@
     "land_value": "44960.0",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-03T19:12:50Z",
+    "on_market_checked_at": "2026-09-10T22:07:35Z",
     "arv_estimate": 230300,
     "arv_status": "SOLD",
     "arv_sqft": 2278,
@@ -9973,7 +9973,7 @@
     "dash_phone": "+12103264063",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-31T23:54:34Z",
+    "on_market_checked_at": "2026-09-10T22:07:36Z",
     "arv_estimate": 238679,
     "arv_status": "SOLD",
     "arv_sqft": 1840
@@ -10470,7 +10470,7 @@
     "dash_phone": "+16163375487",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-31T23:57:13Z",
+    "on_market_checked_at": "2026-09-10T22:08:18Z",
     "arv_estimate": 237000,
     "arv_status": "FOR_RENT"
   },
@@ -10535,7 +10535,7 @@
     "dash_phone": "+12104213421",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-31T23:57:16Z",
+    "on_market_checked_at": "2026-09-10T22:08:20Z",
     "arv_estimate": 373600,
     "arv_status": "SOLD",
     "arv_sqft": 2184
@@ -10602,7 +10602,7 @@
     "dash_searched_at": "2026-04-30T19:14:49.506Z",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-31T23:57:18Z",
+    "on_market_checked_at": "2026-09-10T22:08:21Z",
     "arv_estimate": 237300,
     "arv_status": "SOLD"
   },
@@ -11074,7 +11074,10 @@
     "arv_fetched_at": "2026-09-08T18:37:47Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 25,
+    "on_market": true,
+    "on_market_status": "FOR_RENT",
+    "on_market_checked_at": "2026-09-10T22:08:41Z"
   },
   {
     "type": "NOF",
@@ -11130,7 +11133,10 @@
     "arv_fetched_at": "2026-09-08T18:37:52Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 25
+    "days_until_sale": 25,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-10T22:08:43Z"
   },
   {
     "type": "NOF",
@@ -12006,7 +12012,7 @@
     "arv_fetched_at": "2026-09-03T19:11:56Z",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-03T19:12:45Z",
+    "on_market_checked_at": "2026-09-10T22:08:45Z",
     "stacked": false,
     "score": 7,
     "days_until_sale": 25,
@@ -12073,7 +12079,7 @@
     "arv_fetched_at": "2026-09-03T19:12:05Z",
     "on_market": true,
     "on_market_status": "PENDING",
-    "on_market_checked_at": "2026-09-03T19:12:48Z",
+    "on_market_checked_at": "2026-09-10T22:08:46Z",
     "stacked": false,
     "score": 7,
     "days_until_sale": 25
@@ -12133,7 +12139,7 @@
     "land_value": "",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-01T22:50:08Z",
+    "on_market_checked_at": "2026-09-10T22:08:48Z",
     "arv_estimate": 246600,
     "arv_status": "SOLD",
     "arv_sqft": 1920,
@@ -13157,7 +13163,7 @@
     "land_value": "39630.0",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-31T20:55:57Z",
+    "on_market_checked_at": "2026-09-10T22:08:50Z",
     "arv_estimate": 265953,
     "arv_status": "SOLD",
     "arv_sqft": 1600,
@@ -13223,7 +13229,7 @@
     "land_value": "46180.0",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-31T20:56:03Z",
+    "on_market_checked_at": "2026-09-10T22:08:51Z",
     "arv_estimate": 259700,
     "arv_status": "SOLD",
     "arv_sqft": 1401,
@@ -13290,7 +13296,7 @@
     "land_value": "54480.0",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-31T20:56:07Z",
+    "on_market_checked_at": "2026-09-10T22:08:54Z",
     "arv_estimate": 275400,
     "arv_status": "SOLD",
     "arv_sqft": 1993,
@@ -25868,7 +25874,14 @@
     "ghl_pushed": true,
     "ghl_id": "DhakFhUXQrccqz4kduAN",
     "ghl_pushed_at": "2026-07-20T04:06:51.277Z",
-    "dash_phone": "2109908958"
+    "dash_phone": "2109908958",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-10T22:04:38Z",
+    "arv_estimate": 247200,
+    "arv_status": "SOLD",
+    "arv_sqft": 1793,
+    "arv_fetched_at": "2026-09-10T22:04:38Z"
   },
   {
     "type": "NOF",
@@ -25917,7 +25930,14 @@
     "appr_trend": "down",
     "stacked": false,
     "score": 10,
-    "days_until_sale": null
+    "days_until_sale": null,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-10T22:04:40Z",
+    "arv_estimate": 342000,
+    "arv_status": "SOLD",
+    "arv_sqft": 1651,
+    "arv_fetched_at": "2026-09-10T22:04:40Z"
   },
   {
     "type": "NOF",
@@ -25970,7 +25990,14 @@
     "ghl_pushed": true,
     "ghl_id": "CiJAGDrI5cT9rEtzgTMA",
     "ghl_pushed_at": "2026-07-20T04:07:50.234Z",
-    "dash_phone": "2104151571"
+    "dash_phone": "2104151571",
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-09-10T22:04:42Z",
+    "arv_estimate": 217300,
+    "arv_status": "OFF_MARKET",
+    "arv_sqft": 1264,
+    "arv_fetched_at": "2026-09-10T22:04:42Z"
   },
   {
     "type": "NOF",
@@ -26019,7 +26046,14 @@
     "appr_trend": "down",
     "stacked": false,
     "score": 10,
-    "days_until_sale": null
+    "days_until_sale": null,
+    "on_market": true,
+    "on_market_status": "FOR_RENT",
+    "on_market_checked_at": "2026-09-10T22:05:24Z",
+    "arv_estimate": 237000,
+    "arv_status": "FOR_RENT",
+    "arv_sqft": null,
+    "arv_fetched_at": "2026-09-10T22:05:24Z"
   },
   {
     "type": "NOF",
@@ -26068,7 +26102,14 @@
     "appr_trend": "flat",
     "stacked": false,
     "score": 10,
-    "days_until_sale": null
+    "days_until_sale": null,
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-09-10T22:05:25Z",
+    "arv_estimate": 219426,
+    "arv_status": "OFF_MARKET",
+    "arv_sqft": 1850,
+    "arv_fetched_at": "2026-09-10T22:05:25Z"
   },
   {
     "type": "NOF",
@@ -26121,7 +26162,10 @@
     "ghl_pushed": true,
     "ghl_id": "Ymrib5t4zWRAvNEHt31S",
     "ghl_pushed_at": "2026-07-20T04:08:38.755Z",
-    "dash_phone": "2106399309"
+    "dash_phone": "2106399309",
+    "on_market": true,
+    "on_market_status": "FOR_RENT",
+    "on_market_checked_at": "2026-09-10T22:05:48Z"
   },
   {
     "type": "NOF",
@@ -26168,7 +26212,14 @@
     "appr_trend": "down",
     "stacked": false,
     "score": 10,
-    "days_until_sale": null
+    "days_until_sale": null,
+    "on_market": true,
+    "on_market_status": "FOR_RENT",
+    "on_market_checked_at": "2026-09-10T22:06:29Z",
+    "arv_estimate": 237000,
+    "arv_status": "FOR_RENT",
+    "arv_sqft": null,
+    "arv_fetched_at": "2026-09-10T22:06:29Z"
   },
   {
     "type": "NOF",
@@ -26221,7 +26272,14 @@
     "ghl_pushed": true,
     "ghl_id": "u4EmmYCWPLojXxAMTzgM",
     "ghl_pushed_at": "2026-07-20T04:09:16.903Z",
-    "dash_phone": "2106893119"
+    "dash_phone": "2106893119",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-10T22:06:31Z",
+    "arv_estimate": 185132,
+    "arv_status": "SOLD",
+    "arv_sqft": 1420,
+    "arv_fetched_at": "2026-09-10T22:06:31Z"
   },
   {
     "type": "NOF",
@@ -26274,7 +26332,14 @@
     "ghl_pushed": true,
     "ghl_id": "dXPKvF4UG3jvJmcVSF4L",
     "ghl_pushed_at": "2026-07-20T04:09:45.941Z",
-    "dash_phone": "2109953233"
+    "dash_phone": "2109953233",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-10T22:06:33Z",
+    "arv_estimate": 156000,
+    "arv_status": "SOLD",
+    "arv_sqft": 900,
+    "arv_fetched_at": "2026-09-10T22:06:33Z"
   },
   {
     "type": "NOF",
@@ -26321,7 +26386,14 @@
     "appr_trend": "down",
     "stacked": false,
     "score": 10,
-    "days_until_sale": null
+    "days_until_sale": null,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-10T22:06:34Z",
+    "arv_estimate": 500871,
+    "arv_status": "SOLD",
+    "arv_sqft": 2846,
+    "arv_fetched_at": "2026-09-10T22:06:34Z"
   },
   {
     "type": "NOF",
@@ -26373,7 +26445,14 @@
     "ghl_pushed_at": "2026-04-28T18:46:15.863Z",
     "ghl_id": "olROabUzyOo6HGzX3pdb",
     "dash_phone": "+12107749741",
-    "dash_searched_at": "2026-04-28T18:46:15.863Z"
+    "dash_searched_at": "2026-04-28T18:46:15.863Z",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-10T22:06:36Z",
+    "arv_estimate": 623000,
+    "arv_status": "SOLD",
+    "arv_sqft": 3408,
+    "arv_fetched_at": "2026-09-10T22:06:36Z"
   },
   {
     "type": "NOF",
@@ -26426,7 +26505,14 @@
     "ghl_pushed": true,
     "ghl_id": "1Q05hHWoar6olHvr3kd8",
     "ghl_pushed_at": "2026-07-20T04:12:02.016Z",
-    "dash_phone": "2819484665"
+    "dash_phone": "2819484665",
+    "on_market": true,
+    "on_market_status": "FOR_SALE",
+    "on_market_checked_at": "2026-09-10T22:06:38Z",
+    "arv_estimate": 89079,
+    "arv_status": "FOR_SALE",
+    "arv_sqft": null,
+    "arv_fetched_at": "2026-09-10T22:06:38Z"
   },
   {
     "type": "NOF",
@@ -26479,7 +26565,10 @@
     "ghl_pushed": true,
     "ghl_id": "ndUQkkg1m0tkWyIQ8ICL",
     "ghl_pushed_at": "2026-07-20T04:12:32.365Z",
-    "dash_phone": "2104886554"
+    "dash_phone": "2104886554",
+    "on_market": true,
+    "on_market_status": "FOR_RENT",
+    "on_market_checked_at": "2026-09-10T22:07:09Z"
   },
   {
     "type": "NOF",
@@ -26532,7 +26621,8 @@
     "ghl_pushed": true,
     "ghl_id": "CpiobkHmWcRTXwVu8oLc",
     "ghl_pushed_at": "2026-07-20T04:13:10.982Z",
-    "dash_phone": "2102370196"
+    "dash_phone": "2102370196",
+    "on_market_checked_at": "2026-09-10T22:07:11Z"
   },
   {
     "type": "NOF",
@@ -26579,7 +26669,14 @@
     "appr_trend": "up",
     "stacked": false,
     "score": 10,
-    "days_until_sale": null
+    "days_until_sale": null,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-10T22:07:12Z",
+    "arv_estimate": 390800,
+    "arv_status": "SOLD",
+    "arv_sqft": 2333,
+    "arv_fetched_at": "2026-09-10T22:07:12Z"
   },
   {
     "type": "NOF",
@@ -26628,7 +26725,14 @@
     "appr_trend": "down",
     "stacked": false,
     "score": 10,
-    "days_until_sale": null
+    "days_until_sale": null,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-10T22:07:14Z",
+    "arv_estimate": 542700,
+    "arv_status": "SOLD",
+    "arv_sqft": 3501,
+    "arv_fetched_at": "2026-09-10T22:07:14Z"
   },
   {
     "type": "NOF",
@@ -26677,7 +26781,14 @@
     "appr_trend": "flat",
     "stacked": false,
     "score": 10,
-    "days_until_sale": null
+    "days_until_sale": null,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-10T22:07:15Z",
+    "arv_estimate": 522900,
+    "arv_status": "SOLD",
+    "arv_sqft": 2832,
+    "arv_fetched_at": "2026-09-10T22:07:15Z"
   },
   {
     "type": "NOF",
@@ -32852,9 +32963,13 @@
     "days_until_sale": null,
     "stacked": true,
     "land_value": "302950.0",
-    "arv_estimate": 480000,
-    "arv_status": "APPRAISED_FALLBACK",
-    "arv_fetched_at": "2026-09-10T18:29:02Z"
+    "arv_estimate": 552000,
+    "arv_status": "OFF_MARKET",
+    "arv_fetched_at": "2026-09-10T22:03:47Z",
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-09-10T22:03:47Z",
+    "arv_sqft": 1554
   },
   {
     "doc_number": "VBP-3603-N-MAIN-AVE-78212",
@@ -32909,9 +33024,13 @@
     "ce_status": "OPEN",
     "opened_date": "05/27/2026",
     "ce_case_id": "",
-    "arv_estimate": 305590,
-    "arv_status": "APPRAISED_FALLBACK",
-    "arv_fetched_at": "2026-09-10T18:29:07Z"
+    "arv_estimate": 363326,
+    "arv_status": "OFF_MARKET",
+    "arv_fetched_at": "2026-09-10T22:03:49Z",
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-09-10T22:03:49Z",
+    "arv_sqft": 2067
   },
   {
     "doc_number": "VBP-409-E-MISTLETOE-AVE-78212",
@@ -32962,9 +33081,13 @@
     "ghl_id": "HkPfsE7Z8aX4hhxaXWIg",
     "dash_phone": "+12108600482",
     "dash_searched_at": "2026-02-18T20:05:58.671Z",
-    "arv_estimate": 381840,
-    "arv_status": "APPRAISED_FALLBACK",
-    "arv_fetched_at": "2026-09-10T18:29:11Z"
+    "arv_estimate": 516900,
+    "arv_status": "OFF_MARKET",
+    "arv_fetched_at": "2026-09-10T22:03:50Z",
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-09-10T22:03:50Z",
+    "arv_sqft": 1967
   },
   {
     "doc_number": "VBP-415-E-DEWEY-PL-78212",
@@ -33032,9 +33155,13 @@
     "days_until_sale": null,
     "stacked": true,
     "land_value": "233600.0",
-    "arv_estimate": 297980,
-    "arv_status": "APPRAISED_FALLBACK",
-    "arv_fetched_at": "2026-09-10T18:29:15Z"
+    "arv_estimate": 400000,
+    "arv_status": "OFF_MARKET",
+    "arv_fetched_at": "2026-09-10T22:03:52Z",
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-09-10T22:03:52Z",
+    "arv_sqft": 2260
   },
   {
     "doc_number": "VBP-417-E-EVERGREEN-78212",
@@ -33082,7 +33209,10 @@
     "land_value": "311950.0",
     "arv_estimate": 380000,
     "arv_status": "APPRAISED_FALLBACK",
-    "arv_fetched_at": "2026-09-10T18:29:19Z"
+    "arv_fetched_at": "2026-09-10T18:29:19Z",
+    "on_market": true,
+    "on_market_status": "FOR_RENT",
+    "on_market_checked_at": "2026-09-10T22:04:07Z"
   },
   {
     "doc_number": "VBP-422-E-PARK-AVE-78212",
@@ -33136,9 +33266,13 @@
     "days_until_sale": null,
     "stacked": true,
     "land_value": "261270.0",
-    "arv_estimate": 488810,
-    "arv_status": "APPRAISED_FALLBACK",
-    "arv_fetched_at": "2026-09-10T18:29:23Z"
+    "arv_estimate": 574000,
+    "arv_status": "OFF_MARKET",
+    "arv_fetched_at": "2026-09-10T22:04:09Z",
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-09-10T22:04:09Z",
+    "arv_sqft": 2520
   },
   {
     "doc_number": "VBP-426-E-CRAIG-PL-78212",
@@ -33192,9 +33326,13 @@
     "ce_status": "OPEN",
     "opened_date": "08/03/2026",
     "ce_case_id": "",
-    "arv_estimate": 215000,
-    "arv_status": "APPRAISED_FALLBACK",
-    "arv_fetched_at": "2026-09-10T18:29:27Z"
+    "arv_estimate": 246600,
+    "arv_status": "OFF_MARKET",
+    "arv_fetched_at": "2026-09-10T22:04:10Z",
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-09-10T22:04:10Z",
+    "arv_sqft": 749
   },
   {
     "doc_number": "VBP-431-W-MISTLETOE-AVE-78212",
@@ -33247,7 +33385,10 @@
     "dash_searched_at": "2026-02-18T20:05:59.925Z",
     "arv_estimate": 333920,
     "arv_status": "APPRAISED_FALLBACK",
-    "arv_fetched_at": "2026-09-10T18:29:31Z"
+    "arv_fetched_at": "2026-09-10T18:29:31Z",
+    "on_market": true,
+    "on_market_status": "FOR_RENT",
+    "on_market_checked_at": "2026-09-10T22:04:26Z"
   },
   {
     "doc_number": "VBP-4319-HOWARD-ST-78212",
@@ -49409,9 +49550,13 @@
     "annual_taxes": "",
     "ps_doc_id": "",
     "days_until_sale": null,
-    "arv_estimate": 387430,
-    "arv_status": "APPRAISED_FALLBACK",
-    "arv_fetched_at": "2026-08-29T22:38:52Z"
+    "arv_estimate": 70000,
+    "arv_status": "SOLD",
+    "arv_fetched_at": "2026-09-10T22:03:32Z",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-10T22:03:32Z",
+    "arv_sqft": 698
   },
   {
     "doc_number": "VBP-215-S-MINTER-ST-78207",
@@ -49479,7 +49624,10 @@
     "days_until_sale": null,
     "arv_estimate": 137330,
     "arv_status": "APPRAISED_FALLBACK",
-    "arv_fetched_at": "2026-08-29T22:38:56Z"
+    "arv_fetched_at": "2026-08-29T22:38:56Z",
+    "on_market": true,
+    "on_market_status": "FOR_RENT",
+    "on_market_checked_at": "2026-09-10T22:03:44Z"
   },
   {
     "doc_number": "VBP-2218-POTOSI-ST-78207",
@@ -57977,7 +58125,14 @@
     "ghl_pushed": true,
     "ghl_id": "S1TJVc0Q8dnzDQ3qx9MJ",
     "ghl_pushed_at": "2026-06-22T20:48:44.123Z",
-    "dash_phone": "7609051410"
+    "dash_phone": "7609051410",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-10T22:04:37Z",
+    "arv_estimate": 154000,
+    "arv_status": "SOLD",
+    "arv_sqft": 1230,
+    "arv_fetched_at": "2026-09-10T22:04:37Z"
   },
   {
     "type": "CE",
@@ -58012,7 +58167,8 @@
     "ce_cat_label": "Absentee Property Assessment",
     "score": 6,
     "days_until_sale": null,
-    "stacked": false
+    "stacked": false,
+    "on_market_checked_at": "2026-09-10T22:04:27Z"
   },
   {
     "type": "CE",
@@ -58047,7 +58203,14 @@
     "ce_cat_label": "Absentee Property Assessment",
     "score": 6,
     "days_until_sale": null,
-    "stacked": false
+    "stacked": false,
+    "on_market": true,
+    "on_market_status": "FOR_SALE",
+    "on_market_checked_at": "2026-09-10T22:04:35Z",
+    "arv_estimate": 460299,
+    "arv_status": "FOR_SALE",
+    "arv_sqft": 2880,
+    "arv_fetched_at": "2026-09-10T22:04:35Z"
   },
   {
     "doc_number": "20260161835",
@@ -62117,7 +62280,7 @@
     "score": 2,
     "flags": [
       "DUPLICATE",
-      "LIKELY RESOLVED"
+      "CONVERTED TO NOF"
     ],
     "absentee": false,
     "duplicate": true,
@@ -62140,8 +62303,8 @@
     "tenure_score_bonus": 0,
     "appr_history": [],
     "appr_trend": "",
-    "appt_converted": false,
-    "appt_stale": true,
+    "appt_converted": true,
+    "appt_stale": false,
     "on_market": true,
     "on_market_status": "FOR_RENT",
     "on_market_checked_at": "2026-08-31T16:25:48Z",
