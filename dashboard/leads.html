@@ -526,6 +526,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
   <div class="nav-r">
     <span class="upd" id="last-upd"></span>
     <div class="ghl-pill"><div class="ghl-dot" id="ghl-dot"></div><span id="ghl-txt">GHL</span></div>
+    <button class="nav-btn" id="btn-driveby" onclick="toggleDriveBy()">🚗 Drive-By</button>
     <button class="nav-btn" onclick="openSettings()">⚙ Settings</button>
     <button class="nav-btn run" id="btn-scrape" onclick="triggerScrape()">▶ Run Scrape</button>
   </div>
@@ -799,6 +800,8 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
                 <button class="act-btn" onclick="skipLead()">Skip</button>
                 <button class="act-btn" onclick="copyAddress()">Copy Addr</button>
                 <button class="act-btn" onclick="openStreetView()">🗺️ Street View</button>
+                <button class="act-btn" style="background:var(--red-bg);border-color:var(--red-mid);color:var(--red-dk)" onclick="tagDriveBy('VACANT')">✅ Vacant</button>
+                <button class="act-btn" onclick="tagDriveBy('OCCUPIED')">🏠 Occupied</button>
                 <button class="act-btn" onclick="openGHL()">GHL ↗</button>
               </div>
             </div>
@@ -914,7 +917,7 @@ function showView(v,el){
 }
 
 /* KEYS */
-function setupKeys(){document.addEventListener('keydown',e=>{if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA')return;if(e.key==='d'){showView('dash');return;}if(e.key==='w'){showView('work');return;}if(e.key==='j'||e.key==='ArrowDown'){e.preventDefault();navList(1);}else if(e.key==='k'||e.key==='ArrowUp'){e.preventDefault();navList(-1);}else if(e.key==='n'||e.key==='N'){e.preventDefault();navNextUnworked();}else if(e.key==='p'){e.preventDefault();const pi=document.getElementById('phone-input');if(pi&&pi.offsetParent!==null){pi.focus();pi.select();}}else if(e.key==='c'&&selectedDoc){copyAddress();}else if(e.key==='g'&&selectedDoc){openGHL();}});}
+function setupKeys(){document.addEventListener('keydown',e=>{if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA')return;if(e.key==='d'){showView('dash');return;}if(e.key==='w'){showView('work');return;}if(e.key==='j'||e.key==='ArrowDown'){e.preventDefault();navList(1);}else if(e.key==='k'||e.key==='ArrowUp'){e.preventDefault();navList(-1);}else if(e.key==='n'||e.key==='N'){e.preventDefault();navNextUnworked();}else if(e.key==='p'){e.preventDefault();const pi=document.getElementById('phone-input');if(pi&&pi.offsetParent!==null){pi.focus();pi.select();}}else if(e.key==='c'&&selectedDoc){copyAddress();}else if(e.key==='g'&&selectedDoc){openGHL();}else if(e.key==='v'&&selectedDoc&&driveByMode){e.preventDefault();tagDriveBy('VACANT');}else if(e.key==='o'&&selectedDoc&&driveByMode){e.preventDefault();tagDriveBy('OCCUPIED');}});}
 
 function navList(dir){const ni=Math.max(0,Math.min(filteredLeads.length-1,selectedIdx+dir));if(ni!==selectedIdx){selectedIdx=ni;const l=filteredLeads[ni];if(l){selectLead(l.doc_number);const items=document.querySelectorAll('.litem');if(items[ni])items[ni].scrollIntoView({block:'nearest'});}}}
 function navNextUnworked(){const start=selectedIdx>=0?selectedIdx+1:0;for(let i=start;i<filteredLeads.length;i++){const l=filteredLeads[i];const ls=LS(l.doc_number);if(!ls.phone&&!ls.skipped){selectedIdx=i;selectLead(l.doc_number);const items=document.querySelectorAll('.litem');if(items[i])items[i].scrollIntoView({block:'nearest'});toast('Next unworked','ok');return;}}for(let i=0;i<start;i++){const l=filteredLeads[i];const ls=LS(l.doc_number);if(!ls.phone&&!ls.skipped){selectedIdx=i;selectLead(l.doc_number);const items=document.querySelectorAll('.litem');if(items[i])items[i].scrollIntoView({block:'nearest'});toast('Next unworked (wrapped)','ok');return;}}toast('All leads worked!','ok');}
@@ -1167,7 +1170,38 @@ function renderItem(lead,idx){
 <div class="li-bot"><div class="li-badges">${b.join('')}</div><div class="li-right">${scrapedStr?`<span class="li-age ${scrapedCls}">⬇ ${scrapedStr}</span>`:''} ${ageStr?`<span class="li-age ${ageCls}">${ageStr}</span>`:''} ${lead.appr_trend?`<span class="li-trend ${trendClass(lead.appr_trend)}">${trendArrow(lead.appr_trend)}</span>`:''} ${eqStr?`<span class="li-eq">Eq <b>${eqStr}</b></span>`:''} ${dateStr?`<span class="li-date ${dateCls}">🔨${dateStr}</span>`:''}</div></div>
 </div>`;}
 
-function selectLead(doc){selectedDoc=doc;selectedIdx=filteredLeads.findIndex(l=>l.doc_number===doc);const lead=allLeads.find(l=>l.doc_number===doc);if(!lead)return;if(currentNavView==='dash')showView('work');renderList();populateDetail(lead);}
+function selectLead(doc){selectedDoc=doc;selectedIdx=filteredLeads.findIndex(l=>l.doc_number===doc);const lead=allLeads.find(l=>l.doc_number===doc);if(!lead)return;if(currentNavView==='dash')showView('work');renderList();populateDetail(lead);if(driveByMode)openStreetView();}
+let driveByMode=false;
+function toggleDriveBy(){
+  driveByMode=!driveByMode;
+  const btn=document.getElementById('btn-driveby');
+  btn.classList.toggle('run',driveByMode);
+  btn.textContent=driveByMode?'🚗 Drive-By: ON':'🚗 Drive-By';
+  if(driveByMode){
+    // Drive-by mode is built for eyeballing VBP+CE leads specifically --
+    // land on that filtered view so navList()/j/k walk through exactly
+    // the properties worth a visual check, not the whole NOF/TAX pile.
+    showView('work');setView('vbp');
+    toast('Drive-By mode on — j/k to move, v=vacant confirmed, o=occupied','ok');
+    if(selectedDoc)openStreetView();
+  } else {
+    toast('Drive-By mode off','ok');
+  }
+}
+function tagDriveBy(status){
+  if(!selectedDoc){toast('No lead selected',true);return;}
+  if(!S.leads[selectedDoc])S.leads[selectedDoc]={};
+  const ta=document.getElementById('notes-area');
+  const stamp=`[DRIVE-BY ${status} ${new Date().toLocaleDateString()}]`;
+  const existing=(ta.value||'').replace(/\[DRIVE-BY [A-Z]+ [\d/]+\]\s*/,'').trim();
+  const notes=(stamp+' '+existing).trim();
+  ta.value=notes;
+  S.leads[selectedDoc].notes=notes;
+  saveState();
+  writeBackToRepo(selectedDoc,{dash_notes:notes});
+  toast(status==='VACANT'?'✅ Confirmed vacant':'🏠 Marked occupied','ok');
+  navList(1);
+}
 
 function parseName(owner){if(!owner||!owner.trim())return{first:'',last:''};let c=owner.replace(/\s*&\s*$/,'').trim();if(c.includes('&'))c=c.split('&')[0].trim();c=c.replace(/\b(JR|SR|II|III|IV|V|EST OF|C\/T|ETAL|C\/O)\b/gi,'').replace(/\s+/g,' ').trim();const p=c.split(/\s+/).filter(Boolean);if(!p.length)return{first:'',last:''};if(p.length===1)return{first:toTitle(p[0]),last:''};return{first:toTitle(p.slice(1).join(' ')),last:toTitle(p[0])};}
 function fmtDate(raw){if(!raw)return'—';raw=raw.trim();const mdy=raw.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);if(mdy){const d=new Date(+mdy[3],+mdy[1]-1,+mdy[2]);return d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});}const my=raw.match(/^(\d{1,2})\/(\d{4})$/);if(my){const d=new Date(+my[2],+my[1]-1,1);return d.toLocaleDateString('en-US',{month:'short',year:'numeric'});}const iso=raw.match(/^(\d{4})-(\d{2})-(\d{2})/);if(iso){const d=new Date(+iso[1],+iso[2]-1,+iso[3]);return d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});}return raw;}
