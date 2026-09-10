@@ -9189,7 +9189,7 @@
     "ghl_id": "sT42ifDWWtfebBM5JdXV",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-31T23:50:38Z",
+    "on_market_checked_at": "2026-09-10T13:43:07Z",
     "arv_estimate": 239562,
     "arv_status": "SOLD",
     "arv_sqft": 1535
@@ -9256,7 +9256,7 @@
     "ghl_id": "nk66b2HoAAr0lX92lnVe",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-31T23:50:40Z",
+    "on_market_checked_at": "2026-09-10T13:43:08Z",
     "arv_estimate": 289000,
     "arv_status": "SOLD",
     "arv_sqft": 2529
@@ -9322,7 +9322,7 @@
     "ghl_id": "7KhyQF7iKKuTwOsUsSV6",
     "on_market": true,
     "on_market_status": "FOR_SALE",
-    "on_market_checked_at": "2026-08-31T23:50:48Z",
+    "on_market_checked_at": "2026-09-10T13:43:13Z",
     "arv_estimate": 637000,
     "arv_status": "FOR_SALE",
     "arv_sqft": 1711
@@ -9450,7 +9450,7 @@
     "dash_phone": "2104599210",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-31T23:51:09Z",
+    "on_market_checked_at": "2026-09-10T13:43:14Z",
     "arv_estimate": 243509,
     "arv_status": "SOLD",
     "arv_sqft": 2128
@@ -9516,7 +9516,7 @@
     "dash_phone": "2104096512",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-31T23:51:11Z",
+    "on_market_checked_at": "2026-09-10T13:43:16Z",
     "arv_estimate": 152880,
     "arv_status": "SOLD",
     "arv_sqft": 851
@@ -9583,7 +9583,7 @@
     "ghl_id": "0S1sFfRCidoj2v9R2TRB",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-31T23:52:15Z",
+    "on_market_checked_at": "2026-09-10T13:43:58Z",
     "arv_estimate": 237000,
     "arv_status": "FOR_RENT"
   },
@@ -9648,7 +9648,7 @@
     "ghl_id": "1QK84DNinqGC1lMfqDNS",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-31T23:52:17Z",
+    "on_market_checked_at": "2026-09-10T13:43:59Z",
     "arv_estimate": 275000,
     "arv_status": "SOLD",
     "arv_sqft": 2571
@@ -9714,7 +9714,7 @@
     "dash_phone": "+12108972481",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-31T23:52:20Z",
+    "on_market_checked_at": "2026-09-10T13:44:01Z",
     "arv_estimate": 256236,
     "arv_status": "SOLD",
     "arv_sqft": 1713
@@ -9780,7 +9780,7 @@
     "dash_phone": "+12104101791",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-31T23:53:24Z",
+    "on_market_checked_at": "2026-09-10T13:44:02Z",
     "arv_estimate": 185000,
     "arv_status": "SOLD",
     "arv_sqft": 1186
@@ -9845,8 +9845,8 @@
     "ghl_id": "aL5VMmNjDboFbXVO5AlV",
     "dash_phone": "+12105339527",
     "on_market": false,
-    "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-31T23:53:27Z",
+    "on_market_status": "CONTINGENT",
+    "on_market_checked_at": "2026-09-10T13:44:04Z",
     "arv_estimate": 152000,
     "arv_status": "SOLD",
     "arv_sqft": 980
@@ -9905,9 +9905,9 @@
     "stacked": false,
     "score": 10,
     "days_until_sale": 25,
-    "on_market": false,
-    "on_market_status": "CONTINGENT",
-    "on_market_checked_at": "2026-08-31T23:54:30Z",
+    "on_market": true,
+    "on_market_status": "FOR_SALE",
+    "on_market_checked_at": "2026-09-10T13:44:45Z",
     "arv_estimate": 286200,
     "arv_status": "CONTINGENT",
     "arv_sqft": 2570
@@ -28603,7 +28603,10 @@
     "trustee": "",
     "annual_taxes": "",
     "ps_doc_id": "",
-    "days_until_sale": null
+    "days_until_sale": null,
+    "on_market": true,
+    "on_market_status": "FOR_RENT",
+    "on_market_checked_at": "2026-09-10T13:40:06Z"
   },
   {
     "doc_number": "VBP-229-SHARER-ST-78208",
@@ -28654,7 +28657,14 @@
     "trustee": "",
     "annual_taxes": "",
     "ps_doc_id": "",
-    "days_until_sale": null
+    "days_until_sale": null,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-10T13:40:07Z",
+    "arv_estimate": 129038,
+    "arv_status": "SOLD",
+    "arv_sqft": 840,
+    "arv_fetched_at": "2026-09-10T13:40:07Z"
   },
   {
     "doc_number": "VBP-259-EDNA-78220",
@@ -28704,7 +28714,10 @@
     "trustee": "",
     "annual_taxes": "",
     "ps_doc_id": "",
-    "days_until_sale": null
+    "days_until_sale": null,
+    "on_market": true,
+    "on_market_status": "FOR_RENT",
+    "on_market_checked_at": "2026-09-10T13:40:18Z"
   },
   {
     "doc_number": "VBP-3023-ROOSEVELT-AVE-78214",
@@ -28754,7 +28767,10 @@
     "trustee": "",
     "annual_taxes": "",
     "ps_doc_id": "",
-    "days_until_sale": null
+    "days_until_sale": null,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-10T13:40:19Z"
   },
   {
     "doc_number": "VBP-2303-MONTEREY-ST-78207",
@@ -28804,7 +28820,14 @@
     "trustee": "",
     "annual_taxes": "",
     "ps_doc_id": "",
-    "days_until_sale": null
+    "days_until_sale": null,
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-09-10T13:40:21Z",
+    "arv_estimate": 309277,
+    "arv_status": "OFF_MARKET",
+    "arv_sqft": 3126,
+    "arv_fetched_at": "2026-09-10T13:40:21Z"
   },
   {
     "doc_number": "VBP-1422-W-HARLAN-AVE-78211",
@@ -28854,7 +28877,14 @@
     "trustee": "",
     "annual_taxes": "",
     "ps_doc_id": "",
-    "days_until_sale": null
+    "days_until_sale": null,
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-09-10T13:40:22Z",
+    "arv_estimate": 110300,
+    "arv_status": "OFF_MARKET",
+    "arv_sqft": 784,
+    "arv_fetched_at": "2026-09-10T13:40:22Z"
   },
   {
     "doc_number": "VBP-555-E-EDMONDS-AVE-78214",
@@ -28904,7 +28934,14 @@
     "trustee": "",
     "annual_taxes": "",
     "ps_doc_id": "",
-    "days_until_sale": null
+    "days_until_sale": null,
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-09-10T13:40:24Z",
+    "arv_estimate": 117000,
+    "arv_status": "OFF_MARKET",
+    "arv_sqft": 1029,
+    "arv_fetched_at": "2026-09-10T13:40:24Z"
   },
   {
     "doc_number": "20260128208",
@@ -49181,9 +49218,13 @@
     "annual_taxes": "",
     "ps_doc_id": "",
     "days_until_sale": null,
-    "arv_estimate": 65920,
-    "arv_status": "APPRAISED_FALLBACK",
-    "arv_fetched_at": "2026-08-29T22:38:39Z"
+    "arv_estimate": 284595,
+    "arv_status": "FOR_SALE",
+    "arv_fetched_at": "2026-09-10T13:41:04Z",
+    "on_market": true,
+    "on_market_status": "FOR_SALE",
+    "on_market_checked_at": "2026-09-10T13:41:04Z",
+    "arv_sqft": 2128
   },
   {
     "doc_number": "VBP-1222-W-POPLAR-ST-78207",
@@ -49235,7 +49276,10 @@
     "days_until_sale": null,
     "arv_estimate": 164000,
     "arv_status": "APPRAISED_FALLBACK",
-    "arv_fetched_at": "2026-08-29T22:38:43Z"
+    "arv_fetched_at": "2026-08-29T22:38:43Z",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-10T13:41:05Z"
   },
   {
     "doc_number": "VBP-1617-W-COMMERCE-ST-78207",
@@ -49285,9 +49329,13 @@
     "annual_taxes": "",
     "ps_doc_id": "",
     "days_until_sale": null,
-    "arv_estimate": 200670,
-    "arv_status": "APPRAISED_FALLBACK",
-    "arv_fetched_at": "2026-08-29T22:38:48Z"
+    "arv_estimate": 212294,
+    "arv_status": "SOLD",
+    "arv_fetched_at": "2026-09-10T13:41:07Z",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-10T13:41:07Z",
+    "arv_sqft": 825
   },
   {
     "doc_number": "VBP-1803-EL-PASO-ST-78207",
