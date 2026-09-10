@@ -82,7 +82,18 @@ def lookup_appraised_value(address):
     appr = result.get("appraised_value", "")
     if not appr:
         return {}
-    return {"appraised_value": appr, "land_value": result.get("land_value", "")}
+    # 2026-09-09: this discarded prop_id even though the HGO lookup already
+    # returns it -- confirmed live, 0 of 394 VBP leads had a prop_id at all,
+    # which is what fetch_deed_and_arv() needs to visit a lead's BCAD detail
+    # page. That page also has a real "Mailing Address" field sitting right
+    # next to the deed history fetch_deed_and_arv already reads -- passing
+    # prop_id through is what unlocks getting VBP leads' actual owner
+    # mailing address for postcards, not just a property-address guess.
+    return {
+        "appraised_value": appr,
+        "land_value": result.get("land_value", ""),
+        "prop_id": result.get("prop_id", ""),
+    }
 
 
 # ── PDF PARSER ─────────────────────────────────────────────────────────────────
@@ -324,6 +335,8 @@ def stamp_and_enrich_vbp_records(existing, confirmed_ce_addresses):
             if parcel.get("appraised_value"):
                 r["appraised_value"] = parcel["appraised_value"]
                 r["land_value"]      = parcel.get("land_value", "")
+                if parcel.get("prop_id") and not r.get("prop_id"):
+                    r["prop_id"] = parcel["prop_id"]
                 changed = True
             time.sleep(0.2)
 
@@ -542,6 +555,7 @@ def main():
                 "ce_case_id":      first["case_id"],
                 "appraised_value": parcel.get("appraised_value", ""),
                 "land_value":      parcel.get("land_value", ""),
+                "prop_id":         parcel.get("prop_id", ""),
                 "loan_amount":     "",
                 "loan_date":       "",
                 "lender":          "",

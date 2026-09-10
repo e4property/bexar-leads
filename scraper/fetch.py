@@ -2216,7 +2216,7 @@ def fetch_deed_and_arv(records, driver):
         r for r in records
         if r.get("prop_id")
         and not r.get("deed_date")
-        and r.get("type") in ("NOF", "TAX", "LP", "APPT")
+        and r.get("type") in ("NOF", "TAX", "LP", "APPT", "VBP")
     ]
     candidates = candidates[:DEED_FETCH_LIMIT]
 
@@ -2406,6 +2406,30 @@ def fetch_deed_and_arv(records, driver):
             log.warning(f"  BCAD [{prop_id}] parse error: {e}")
             errors += 1
             continue
+
+        # ── Read Owner section's Mailing Address ───────────────────────────
+        # 2026-09-09: this page has always had a real "Mailing Address" field
+        # right next to the deed history this function already reads --
+        # never extracted before. This is the actual owner mailing address
+        # (not a guess built from a different property's situs), and it's
+        # what makes a genuine postcard mailing to VBP/absentee owners
+        # possible instead of just mailing the vacant property itself.
+        # No accordion click needed -- confirmed live, Owner sits in the
+        # always-visible top table, unlike deed/roll history.
+        mail_addr = ""
+        try:
+            mail_cell = driver.find_element(
+                By.XPATH, "//td[contains(., 'Mailing Address')]/following-sibling::td[1]"
+            )
+            mail_addr = _re.sub(r"\s+", " ", (mail_cell.text or "")).strip()
+        except Exception as me:
+            log.debug(f"  BCAD [{prop_id}] mailing address read error: {me}")
+        situs_norm = _re.sub(r"\s+", " ", (rec.get("address","") or "")).strip().upper()
+        absentee = bool(mail_addr) and not mail_addr.upper().startswith(situs_norm.split(",")[0] if situs_norm else "\x00")
+        if mail_addr:
+            rec["mail_addr"] = mail_addr
+            rec["absentee"]  = absentee
+            log.info(f"  BCAD [{prop_id}] mailing address: {mail_addr} (absentee={absentee})")
 
         # ── Calculate tenure from deed_date ───────────────────────────────────
         if deed_date:
