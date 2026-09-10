@@ -2496,9 +2496,19 @@ def fetch_arv_homeharvest(records):
         s = str(val).strip()
         return None if s in ("", "nan", "<NA>", "None") else val
 
+    # 2026-09-10: was gated on `not arv_estimate`, not whether the lead had
+    # ever actually been checked. A lead that comes back SOLD, OFF_MARKET,
+    # or "matched but no estimated_value" never gets arv_estimate set, so
+    # it stayed "eligible" and got re-processed on every single run --
+    # burning slots that should go to leads that have genuinely never been
+    # touched at all. Confirmed live: 79 of 231 unpushed NOF leads were
+    # already correctly checked (SOLD/OFF_MARKET/CONTINGENT) but still
+    # eligible to be re-picked, while 102 others had literally never been
+    # checked once. Gate on on_market_checked_at instead -- "has this
+    # lead ever been looked at," not "did it get a number back."
     all_eligible = [
         r for r in records
-        if r.get("address") and not r.get("arv_estimate")
+        if r.get("address") and not r.get("on_market_checked_at")
     ]
     # 2026-08-27: VBP leads were starving forever behind the NOF/TAX
     # backlog -- confirmed live, 0 of 394 VBP leads had ever been checked
