@@ -2539,15 +2539,26 @@ def fetch_arv_homeharvest(records):
     # got any sort at all, just plain list order. Confirmed live: a NOF
     # lead added same-day (Jones Destinee, 5425 Cloves Cove) sat completely
     # unchecked while this run spent its 30-slot budget on leads already
-    # sitting in the backlog for weeks. Same starvation bug as VBP had,
-    # just never fixed for the other two pools. Sorting by run_ts (an
-    # always-sortable ISO timestamp) rather than date_filed (a "MM/YYYY"
-    # string that sorts wrong across year boundaries, e.g. "09/2026" >
-    # "01/2027" lexicographically) so today's leads reliably win the slot
-    # over older backlog, without increasing total request volume at all.
-    appt_pool.sort(key=lambda r: r.get("run_ts", ""), reverse=True)
+    # sitting in the backlog for weeks. Sorted newest-first at the time to
+    # fix that.
+    #
+    # 2026-09-10: that newest-first sort became the NEW bug once
+    # all_eligible switched to gating on on_market_checked_at instead of
+    # arv_estimate (see that fix's own comment above) -- with already-
+    # checked leads now correctly excluded from contention entirely, the
+    # remaining pool is 100% never-checked, and newest-first means any
+    # lead from a LATER run always outranks one from an earlier run,
+    # forever. Confirmed live across two consecutive runs: the exact same
+    # 102-lead batch from 2026-09-08 never moved at all, because every
+    # run's fresh leads kept winning the slot ahead of them -- a
+    # permanently-shifting frontier, not a shrinking backlog. Oldest-first
+    # (FIFO) is the correct order now that this pool is only ever
+    # genuinely-never-checked leads: it guarantees the whole backlog
+    # actually clears over successive runs instead of never reaching
+    # whatever's been waiting longest.
+    appt_pool.sort(key=lambda r: r.get("run_ts", ""))
     other_pool = [r for r in all_eligible if r.get("type") not in ("VBP", "APPT")]
-    other_pool.sort(key=lambda r: r.get("run_ts", ""), reverse=True)
+    other_pool.sort(key=lambda r: r.get("run_ts", ""))
     vbp_share = min(len(vbp_pool), ARV_FETCH_LIMIT // 3)
     appt_share = min(len(appt_pool), ARV_FETCH_LIMIT // 3)
     other_share = ARV_FETCH_LIMIT - vbp_share - appt_share
