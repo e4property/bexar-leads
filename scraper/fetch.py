@@ -2034,6 +2034,19 @@ def match_features(feats, num, required_word=None, full_prefix=None, expected_su
 
 HGO_SEARCH_URL = "https://hgo.harrisgovern.com/bexar/api/property/property-search/property-basic-search-results"
 
+# Incorporated cities/towns within Bexar County, longest name first so a
+# multi-word city (e.g. "UNIVERSAL CITY") is checked before any shorter
+# name that could otherwise false-match a substring of it. Used only to
+# strip a known city off the end of HGO's SitusAddress, which joins
+# street and city with no delimiter between them.
+BEXAR_AREA_CITIES = sorted([
+    "HILL COUNTRY VILLAGE", "BALCONES HEIGHTS", "UNIVERSAL CITY",
+    "SAN ANTONIO", "ALAMO HEIGHTS", "HOLLYWOOD PARK", "TERRELL HILLS",
+    "CASTLE HILLS", "SHAVANO PARK", "CHINA GROVE", "LEON VALLEY",
+    "OLMOS PARK", "WINDCREST", "CONVERSE", "ELMENDORF", "SOMERSET",
+    "CASTROVILLE", "CIBOLO", "SCHERTZ", "LIVE OAK", "SELMA", "LYTLE", "KIRBY",
+], key=len, reverse=True)
+
 
 def lookup_owner(address, zipcode=""):
     """
@@ -2149,6 +2162,159 @@ def lookup_owner(address, zipcode=""):
             return build_result(res, owner, "hgo_unquoted_strict_directional")
 
     return {}
+
+
+# 2026-09-10: appointment_scraper.py's own ENTITY_KEYWORDS has "FINANCIAL"
+# but not "FINANCE", and no bare "LP"/"FSB" suffix -- confirmed live,
+# "Selene Finance Lp" and "Wilmington Savings Fund Society Fsb" both got
+# through as if they were real homeowners and matched to random unrelated
+# properties by name search (the whole point of this being conservative
+# is defeated if an obvious lender name slips past the filter first).
+# Independent, redundant check here rather than trusting
+# owner_unverified alone -- that flag depends on appointment_scraper.py's
+# own is_entity_name() having actually run on this exact value, which
+# isn't reliable across every code path that can set owner.
+_ENTITY_OWNER_KEYWORDS = [
+    "LLC", "LLP", " LP", "L.L.C", "L.P.", "INC", "CORP", "FSB", "N.A.",
+    " NA ", "TRUST", "TRUSTEE", "BANK", "MORTGAGE", "FINANCE", "FINANCIAL",
+    "SERVICING", "SERVICES", "SAVINGS", "FUND", "SOCIETY", "HOLDINGS",
+    "CAPITAL", "FUNDING", "PARTNERS", "GROUP", "COMPANY", "ASSOCIATION",
+    "FEDERAL", "SYSTEMS", "SUBSTITUTE TRUSTEE", "ATTORNEY", "LAW FIRM",
+]
+
+
+def _looks_like_entity_owner(name):
+    upper = (name or "").upper()
+    return any(kw in upper for kw in _ENTITY_OWNER_KEYWORDS)
+
+
+def lookup_property_by_owner_name(owner_name):
+    """
+    Reverse lookup for APPT leads whose source filing has no machine-
+    readable property address at all (confirmed live: the underlying
+    legal notice sometimes genuinely doesn't carry one, same root cause
+    already documented for some Guadalupe county notices) -- the owner
+    name is the only thing on record, so search HGO's basic-search
+    endpoint by name instead of address. Confirmed live this endpoint
+    supports name search identically to address search.
+
+    Deliberately conservative per the standing "no owner shown is
+    better than a wrong owner shown" rule: common names return several
+    different real people at different addresses (confirmed live,
+    "Salazar Michelle" alone returns 7 distinct owners) -- this only
+    accepts a match when exactly one candidate's OwnerFullName equals
+    the input name (normalized), never a best-guess pick from several.
+    Also returns {} outright on a single-word name (e.g. an entity
+    fallback that slipped through) -- nothing useful to search on.
+    """
+    name = normalize(owner_name)
+    if not name or len(name.split()) < 2:
+        return {}
+    params = urllib.parse.urlencode({"searchText": f'"{name}"', "skip": 0, "take": 15})
+    results = fetch_json(f"{HGO_SEARCH_URL}?{params}", retries=1, timeout=35)
+    if not results or not isinstance(results, list):
+        return {}
+
+    def name_key(s):
+        return normalize(re.sub(r"[^A-Za-z ]", "", s or ""))
+
+    target = name_key(name)
+    exact = [r for r in results if name_key(r.get("OwnerFullName", "")) == target]
+    if len(exact) != 1:
+        return {}
+
+    res = exact[0]
+    situs = (res.get("SitusAddress") or "").replace("\r", " ").replace("\n", " ").strip()
+    situs = re.sub(r"\s+", " ", situs)
+    if not situs:
+        return {}
+    address, city, zip_code = situs, "", ""
+    if "," in situs:
+        # e.g. "4506 SHERWOOD WAY SAN ANTONIO, TX 78217" -- HGO joins
+        # street and city with no delimiter between them (only the
+        # trailing ", TX ZIP" is comma-separated), so the comma alone
+        # can't split street from city. Strip a known Bexar-area city
+        # name off the end of the pre-comma text instead -- covers the
+        # overwhelming majority of cases since this is a single-county
+        # search. Falls back to leaving the city name in the address
+        # rather than guessing wrong if it's an incorporated town not
+        # in this list.
+        before_comma, after_comma = situs.rsplit(",", 1)
+        before_comma = before_comma.strip()
+        # 2026-09-10: this searched the whole `situs` string, which
+        # starts with the house number -- confirmed live, "11303 VANCE
+        # JACKSON RD SAN ANTONIO, TX 78248" came back with zip="11303"
+        # because \d{5} matched the house number first, never reaching
+        # the real zip after the comma. Search only the part after the
+        # comma (the "TX ZIP" segment), never the address itself.
+        zip_m = re.search(r"\b(\d{5})\b", after_comma)
+        if zip_m:
+            zip_code = zip_m.group(1)
+        for known_city in BEXAR_AREA_CITIES:
+            if before_comma.upper().endswith(known_city):
+                address = before_comma[: -len(known_city)].strip()
+                city = known_city
+                break
+        else:
+            address = before_comma
+    return {
+        "address":         address,
+        "city":            city,
+        "zip":             zip_code,
+        "appraised_value": str(res.get("AppraisedValue")) if res.get("AppraisedValue") is not None else "",
+        "prop_id":         str(res.get("PropertyId", "")),
+    }
+
+
+def enrich_appt_by_owner_name(records):
+    """
+    Runs lookup_property_by_owner_name() for APPT leads that have a
+    real owner name but no address at all. Skips owner_unverified
+    records -- those have a lender/servicer name in the owner field
+    (the appointment_scraper.py fallback path when no personal grantor
+    name was found), not an actual homeowner, so a name search there
+    would never usefully match a property. Also runs its own
+    _looks_like_entity_owner() check regardless of that flag -- confirmed
+    live it isn't reliable enough alone ("Selene Finance Lp" and
+    "Wilmington Savings Fund Society Fsb" both had owner_unverified=False
+    and got matched to random unrelated properties before this was added).
+    """
+    candidates = [
+        r for r in records
+        if r.get("type") == "APPT"
+        and not r.get("owner_unverified")
+        and not _looks_like_entity_owner(r.get("owner"))
+        and (r.get("address", "") or "").strip() in ("", "N/A")
+        and r.get("owner")
+    ]
+    if not candidates:
+        log.info("APPT owner-name lookup: no eligible leads — skipping")
+        return records
+
+    log.info(f"APPT owner-name lookup: {len(candidates)} leads with no address, trying by name")
+    found = 0
+    for rec in candidates:
+        try:
+            result = lookup_property_by_owner_name(rec["owner"])
+        except Exception as e:
+            log.debug(f"  APPT owner-name lookup error [{rec.get('doc_number')}]: {e}")
+            continue
+        if not result or not result.get("address"):
+            continue
+        rec["address"] = result["address"]
+        if result.get("city"):
+            rec["city"] = result["city"]
+        if result.get("zip"):
+            rec["zip"] = result["zip"]
+        if result.get("appraised_value"):
+            rec["appraised_value"] = result["appraised_value"]
+        if result.get("prop_id"):
+            rec["prop_id"] = result["prop_id"]
+        found += 1
+        log.info(f"  APPT [{rec.get('doc_number')}] {rec['owner']} -> {rec['address']}")
+        time.sleep(0.3)
+    log.info(f"APPT owner-name lookup: {found}/{len(candidates)} resolved")
+    return records
 
 
 def enrich_owners(records):
@@ -3009,6 +3175,9 @@ if __name__ == "__main__":
 
     # ── Step 6: Owner enrichment ──────────────────────────────────────────────
     records = enrich_owners(records)
+
+    # ── Step 6a: APPT owner-name reverse lookup (no address on the filing at all)
+    records = enrich_appt_by_owner_name(records)
 
     # ── Step 6b: BCAD deed history + ARV (backfill-eligible: prop_id, no deed_date)
     bcad_driver = None
