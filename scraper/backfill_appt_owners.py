@@ -10,24 +10,43 @@ owner from the doc page's structured Parties table, not just when
 owner_unverified was already True) only ever applies to brand-new filings
 going forward -- it can't reach records already scraped in earlier runs,
 even though their doc detail page has the same correct data sitting on it
-right now. This walks that existing backlog directly via PublicSearch's
-quickSearch-by-doc-number URL (the same one already proven live for
-fetch.py's Deed-of-Trust hop, search_and_ocr_referenced_doc) instead of
-requiring re-discovery through a date-range page-by-page crawl.
+right now.
+
+v1 of this script (searching PublicSearch's quickSearch endpoint for
+each doc number individually) and v2 (a hand-rolled listing crawl) both
+came back empty on live runs, and hand-testing in a real browser turned
+up something stranger: ANY recordedDateRange with a real, non-"1800"
+start date returns "No Results Found" for this site -- confirmed even
+for a safely historical window (April 2023) known to contain real
+APPOINTMENT filings. Only the literal sentinel start "18000101" (the
+same value appointment_scraper.py's own PublicSearch quickSearch
+functions already always use for date-agnostic doc-number searches)
+actually returns results.
+
+v3 (this version) stops trying to reconstruct search URLs at all and
+just calls appointment_scraper.scrape_appointments() directly -- the
+exact function that runs daily in production and demonstrably works
+(every APPT record currently in records.json came from it) -- with a
+known_docs set that has the backfill targets removed and days_back
+widened past its normal 30-day window, so it "rediscovers" exactly
+those docs as new and reprocesses them through the real, tested
+pipeline (including the 2026-09-11 owner fix), leaving every other
+already-known record it passes in the same widened window untouched.
+Mirrors run_appointment.py's own call shape exactly, including running
+with no PublicSearch login (confirmed that's how the daily job already
+runs this scraper).
 
 workflow_dispatch-only, not scheduled -- this is a single retroactive
 pass over the current backlog, not a recurring job.
 """
 import json
 import logging
-import re
 import sys
-import time
-from datetime import timedelta
+from datetime import datetime, timezone
 
 sys.path.insert(0, "scraper")
-import fetch
 import appointment_scraper as aps
+from appointment_scraper import scrape_appointments
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 log = logging.getLogger(__name__)
@@ -36,156 +55,101 @@ log = logging.getLogger(__name__)
 # scraper/backfill_appt_owners.py), same as every other workflow step.
 RECORDS_PATH = "dashboard/records.json"
 
+# Target doc numbers span 7/2026-9/2026 in the current backlog; wide
+# margin since this only costs a slower crawl, not correctness.
+DAYS_BACK = 100
 
-def find_doc_and_extract(driver, doc_number):
-    from selenium.webdriver.common.by import By
-    from selenium.webdriver.support.ui import WebDriverWait
-    from selenium.webdriver.support import expected_conditions as EC
 
-    today_str = (fetch.TODAY_NAIVE - timedelta(days=3)).strftime("%Y%m%d")
-    url = fetch.QUICK_SEARCH_URL_TMPL.format(today=today_str, doc_number=doc_number)
+def get_driver():
+    """Same standalone Selenium setup run_appointment.py uses — no login,
+    confirmed that's how the daily appointment scrape already runs."""
+    from selenium import webdriver
+    from selenium.webdriver.chrome.options import Options
 
-    # 2026-09-12: first live run of this script got 0/62 -- every single
-    # doc, including 20260128148 (hand-verified to exist, real GRANTOR
-    # data confirmed live), came back "No Results Found" in ~1.3s flat,
-    # suspiciously uniform for a real SPA search. Confirmed via the
-    # Claude Browser tool that this exact URL pattern works fine, both
-    # through the site's own search form and a raw direct navigation --
-    # but only in a session that had already been browsing the site for
-    # a while. This script's driver goes straight from a fresh login
-    # into rapid-fire single-doc lookups with zero warm-up, unlike every
-    # other place this URL pattern is used in this codebase (always
-    # called after the driver's already been active on the site for a
-    # while). Added a real warm-up navigation before the loop starts,
-    # plus one retry per doc with a longer settle pause, as a defensive
-    # guard against whatever timing/session-state gap causes this.
-    for attempt in (1, 2):
-        try:
-            driver.set_page_load_timeout(20)
-            driver.get(url)
-            WebDriverWait(driver, 20).until(
-                EC.presence_of_element_located(
-                    (By.XPATH, "//table//tr/td | //h1[contains(text(),'No Results')]")
-                )
-            )
-            time.sleep(1.5)
-            if driver.find_elements(By.XPATH, "//h1[contains(text(),'No Results')]"):
-                if attempt == 1:
-                    log.info(f"  [{doc_number}] no results on attempt 1, retrying after pause...")
-                    time.sleep(4)
-                    continue
-                log.info(f"  [{doc_number}] no search results")
-                return None
-            row = driver.find_element(By.CSS_SELECTOR, "table tbody tr")
-            row.click()
-            WebDriverWait(driver, 20).until(EC.url_contains("/doc/"))
-            time.sleep(1.5)
-            break
-        except Exception as e:
-            if attempt == 1:
-                log.info(f"  [{doc_number}] attempt 1 failed ({e}), retrying...")
-                time.sleep(4)
-                continue
-            log.info(f"  [{doc_number}] search/click-through failed: {e}")
-            return None
+    opts = Options()
+    opts.add_argument("--headless=new")
+    opts.add_argument("--no-sandbox")
+    opts.add_argument("--disable-dev-shm-usage")
+    opts.add_argument("--disable-gpu")
+    opts.add_argument("--window-size=1920,1080")
+    opts.add_argument(
+        "--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+    )
+    opts.add_argument("--disable-blink-features=AutomationControlled")
+    opts.add_experimental_option("excludeSwitches", ["enable-automation"])
+    opts.add_experimental_option("useAutomationExtension", False)
+    opts.add_argument("--disable-web-security")
+    opts.add_argument("--allow-running-insecure-content")
 
-    page_src = driver.page_source
-    result = {}
+    try:
+        from selenium.webdriver.chrome.service import Service as ChromeService
+        from webdriver_manager.chrome import ChromeDriverManager
+        service = ChromeService(ChromeDriverManager().install())
+        driver = webdriver.Chrome(service=service, options=opts)
+    except Exception:
+        driver = webdriver.Chrome(options=opts)
 
-    # Address — same pattern already proven in appointment_scraper.py's
-    # Summary-detail-page fetch.
-    addr_match = re.search(
-        r"Property Address.*?(\d+\s+[A-Z0-9][^\n<]{5,60}(?:SAN ANTONIO|TEXAS|TX)[^\n<]{0,20})",
-        page_src, re.IGNORECASE | re.DOTALL)
-    if addr_match:
-        raw = re.sub(r"<[^>]+>", "", addr_match.group(1)).strip()
-        if aps._looks_like_address(raw):
-            if "," in raw:
-                parts = [p.strip() for p in raw.split(",")]
-                result["address"] = parts[0].upper()
-                if len(parts) >= 2:
-                    zip_m = re.search(r"\b(\d{5})\b", parts[1])
-                    if zip_m:
-                        result["zip"] = zip_m.group(1)
-                    city_c = re.sub(r"\b(TX|TEXAS)\b", "", parts[1]).strip()
-                    city_c = re.sub(r"\d{5}", "", city_c).strip()
-                    if city_c:
-                        result["city"] = city_c.upper()
-            else:
-                result["address"] = raw.upper()
-
-    # Owner — the same structured Parties-table parse now in
-    # appointment_scraper.py (data-testid="docPreviewParty": a run of
-    # <a>NAME</a><span class="...summary-group-label">ROLE</span> pairs).
-    party_pairs = re.findall(
-        r'<a[^>]*>([^<]+)</a>\s*<span class="doc-preview-group__summary-group-label">([^<]+)</span>',
-        page_src)
-    grantors = [n.strip() for n, role in party_pairs if role.strip().upper() == "GRANTOR"]
-    found_personal = next((g for g in grantors if g and not aps.is_entity_name(g)), "")
-    if found_personal:
-        result["owner"] = found_personal.title()
-
-    return result
+    driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
+        "source": """
+            Object.defineProperty(navigator, 'webdriver', {get: () => undefined});
+            Object.defineProperty(navigator, 'plugins', {get: () => [1,2,3]});
+            Object.defineProperty(navigator, 'languages', {get: () => ['en-US','en']});
+            window.chrome = {runtime: {}};
+        """
+    })
+    return driver
 
 
 def main():
     with open(RECORDS_PATH, encoding="utf-8") as f:
         data = json.load(f)
 
-    targets = [
-        r for r in data
+    by_doc = {r["doc_number"]: r for r in data if r.get("doc_number")}
+    targets = {
+        doc_number: r for doc_number, r in by_doc.items()
         if r.get("type") == "APPT"
         and (
             not (r.get("address") or "").strip()
             or (r.get("owner") and aps.is_entity_name(r.get("owner")))
         )
-    ]
+    }
     log.info(f"backfill candidates: {len(targets)}")
 
-    driver = fetch.get_driver()
+    # Every doc number EXCEPT the targets counts as "known" — scrape_appointments()
+    # will skip past everything else it re-walks in the widened window and
+    # only return fresh records for the ones we actually want reprocessed.
+    known_docs = set(by_doc.keys()) - set(targets.keys())
+
+    run_timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    new_appt = scrape_appointments(known_docs, get_driver, run_timestamp, days_back=DAYS_BACK)
+    log.info(f"scrape_appointments returned {len(new_appt)} records")
+
     fixed = 0
-    try:
-        logged_in = fetch.login_publicsearch(driver)
-        log.info(f"login: {logged_in}")
+    for new_rec in new_appt:
+        doc_number = new_rec.get("doc_number")
+        rec = targets.get(doc_number)
+        if not rec:
+            log.info(f"  [{doc_number}] returned but wasn't a backfill target — skipping")
+            continue
+        changed = False
+        if new_rec.get("owner") and new_rec["owner"] != rec.get("owner"):
+            log.info(f"  [{doc_number}] owner: {rec.get('owner')!r} -> {new_rec['owner']!r}")
+            rec["owner"] = new_rec["owner"]
+            changed = True
+        if new_rec.get("address") and not (rec.get("address") or "").strip():
+            log.info(f"  [{doc_number}] address: -> {new_rec['address']!r}")
+            rec["address"] = new_rec["address"]
+            if new_rec.get("city"):
+                rec["city"] = new_rec["city"]
+            if new_rec.get("zip"):
+                rec["zip"] = new_rec["zip"]
+            changed = True
+        if changed:
+            rec["score"] = aps.score_appt_record(rec)
+            fixed += 1
 
-        # Warm-up navigation — see the long comment in find_doc_and_extract.
-        # Every other caller of this URL pattern in this codebase only runs
-        # after the driver's already been active on the site for a while;
-        # this script's very first action otherwise would be the first
-        # per-doc search, straight off a fresh login.
-        try:
-            driver.set_page_load_timeout(20)
-            driver.get(f"{fetch.PUBLICSEARCH_BASE}/")
-            time.sleep(3)
-        except Exception as e:
-            log.info(f"warm-up navigation failed (continuing anyway): {e}")
-
-        for rec in targets:
-            doc_number = rec.get("doc_number")
-            result = find_doc_and_extract(driver, doc_number)
-            if not result:
-                time.sleep(1)
-                continue
-            changed = False
-            if result.get("owner") and result["owner"] != rec.get("owner"):
-                log.info(f"  [{doc_number}] owner: {rec.get('owner')!r} -> {result['owner']!r}")
-                rec["owner"] = result["owner"]
-                changed = True
-            if result.get("address") and not (rec.get("address") or "").strip():
-                log.info(f"  [{doc_number}] address: -> {result['address']!r}")
-                rec["address"] = result["address"]
-                if result.get("city"):
-                    rec["city"] = result["city"]
-                if result.get("zip"):
-                    rec["zip"] = result["zip"]
-                changed = True
-            if changed:
-                fixed += 1
-            time.sleep(1)
-
-        log.info(f"backfill: {fixed}/{len(targets)} records updated")
-    finally:
-        driver.quit()
+    log.info(f"backfill: {fixed}/{len(targets)} records updated")
 
     with open(RECORDS_PATH, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2)

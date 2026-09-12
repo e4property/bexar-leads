@@ -459,10 +459,20 @@ def _goto_doc_by_click(driver, source_url, doc_number, timeout=20):
 
 # ── Main scraper (v1.3 — click-through detail fetch replaces broken href) ─────
 
-def scrape_appointments(known_docs, get_driver_fn, run_timestamp):
+def scrape_appointments(known_docs, get_driver_fn, run_timestamp, days_back=30):
     """
     Scrape Appointment of Substitute Trustee filings from PublicSearch RP dept.
     v1.2: adds ArcGIS enrichment pass after PublicSearch scrape.
+
+    days_back: how far back the recordedDateRange window reaches (default
+    30, matching the daily run's own rolling window). Widened by
+    backfill_appt_owners.py to re-reach older doc numbers that are
+    already in known_docs for every OTHER purpose but need to be
+    re-processed for one specific fix -- pass a known_docs set that
+    excludes just the target doc numbers to make scrape_appointments()
+    treat them as new again within the wider window, without touching
+    every other still-correctly-known record it also walks past in the
+    same widened date range.
     """
     from selenium.webdriver.common.by import By
     from selenium.webdriver.support.ui import WebDriverWait
@@ -471,7 +481,7 @@ def scrape_appointments(known_docs, get_driver_fn, run_timestamp):
     new_records = []
     driver = None
     today = datetime.now(timezone.utc)
-    cutoff = (today - timedelta(days=30)).strftime("%Y%m%d")
+    cutoff = (today - timedelta(days=days_back)).strftime("%Y%m%d")
     today_str = today.strftime("%Y%m%d")
 
     try:
