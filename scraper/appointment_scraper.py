@@ -39,22 +39,27 @@ PARCELS_URL       = "https://maps.bexar.org/arcgis/rest/services/Parcels/MapServ
 
 # ── Entity filter ─────────────────────────────────────────────────────────────
 ENTITY_KEYWORDS = [
-    "LLC", "LLP", "L.L.C", "L.L.P", "INC", "CORP", "CORPORATION",
-    "LOAN SERVICING", "LOAN SERV", "MORTGAGE", "BANK", "N.A.", " NA ",
-    "TRUST", "TRUSTEE", "SERVICES", "SERVICING", "FINANCIAL",
+    "LLC", "LLP", "L.L.C", "L.L.P", "LP", "FSB", "INC", "CORP", "CORPORATION",
+    "LOAN SERVICING", "LOAN SERV", "MORTGAGE", "BANK", "N.A.", "NA",
+    "TRUST", "TRUSTEE", "SERVICES", "SERVICING", "FINANCIAL", "FINANCE",
     "AUCTION.COM", "AUCTION COM", "BARRETT DAFFIN", "FRAPPIER",
-    "TURNER", "ENGEL", "ASSOCIATION", "FEDERAL", "SAVINGS",
-    "HOLDINGS", "CAPITAL", "FUNDING", "PARTNERS", "GROUP",
-    "COMPANY", " CO ", "ATTORNEY", "LAW FIRM", "LAW OFFICE",
+    "TURNER", "ENGEL", "ASSOCIATION", "FEDERAL", "SAVINGS", "SOCIETY",
+    "HOLDINGS", "CAPITAL", "FUNDING", "FUND", "PARTNERS", "GROUP",
+    "COMPANY", "CO", "ATTORNEY", "LAW FIRM", "LAW OFFICE", "INSTITUTE",
     "SUBSTITUTE TRUSTEE", "DEPARTMENT", "AGENCY", "SYSTEMS",
     "FREDDIE MAC", "FANNIE MAE", "HUD", "VA LOAN", "USDA",
 ]
 
 def is_entity_name(name):
+    # 2026-09-11: switched from plain substring (kw in upper) to \b-bounded
+    # regex -- the old version needed manual space-padding (" NA ", " CO ")
+    # to avoid matching inside real words, which is exactly what let short
+    # additions like bare "LP"/"NA"/"CO" get left unpadded and risky. Word
+    # boundaries make that padding unnecessary and safe for all keywords.
     if not name:
         return True
     upper = name.upper()
-    return any(kw in upper for kw in ENTITY_KEYWORDS)
+    return any(re.search(r"\b" + re.escape(kw) + r"\b", upper) for kw in ENTITY_KEYWORDS)
 
 
 # ── Address sanity check ────────────────────────────────────────────────────
@@ -715,24 +720,40 @@ def scrape_appointments(known_docs, get_driver_fn, run_timestamp):
                                 if rec["address"]:
                                     log.info(f"  Got address for {rec['doc_number']}: {rec['address']}")
 
-                        if rec.get("owner_unverified") or not rec["owner"]:
-                            grantor_block = re.findall(
-                                r"([A-Z][A-Z\s\.\-']{3,50})\s*</[^>]+>\s*<[^>]*>\s*GRANTOR",
-                                page_src, re.IGNORECASE)
-                            if not grantor_block:
-                                grantor_block = re.findall(
-                                    r">([A-Z][A-Z\s\.\-']{3,50})<.*?GRANTOR",
-                                    page_src)
-                            found_personal = ""
-                            for cand in grantor_block:
-                                cand_clean = cand.strip()
-                                if not is_entity_name(cand_clean):
-                                    found_personal = cand_clean
-                                    break
-                            if found_personal:
+                        # 2026-09-11: previously only ran when owner_unverified was
+                        # already True -- but the row-level is_entity_name() check
+                        # that sets that flag isn't reliable on every cell format
+                        # (confirmed live: "Lakeview Loan Servicing, LLC by
+                        # LoanCare, LLC as Attorney in Fact..." on doc 20260128148
+                        # slipped through as owner_unverified=False, so the wrong
+                        # owner survived this whole pipeline untouched even though
+                        # we were already on this exact doc page fetching the
+                        # address). Now also re-checks the CURRENT owner with
+                        # is_entity_name() directly, independent of the flag, so a
+                        # bad owner gets a second chance here even when the earlier
+                        # check missed it. Also switched from free-text regex
+                        # against raw page HTML (unreliable — sometimes matched
+                        # copyright-footer text) to parsing the doc page's actual
+                        # structured Parties list: data-testid="docPreviewParty"
+                        # holds a run of <a>NAME</a><span class="doc-preview-
+                        # group__summary-group-label">ROLE</span> pairs — the
+                        # county's own party/role table, confirmed live via DOM
+                        # inspection on this exact page (bexar.tx.publicsearch.us
+                        # /doc/321217118: Lakeview/LoanCare tagged GRANTOR
+                        # alongside the real homeowners De Garcia and Garcia, also
+                        # tagged GRANTOR — the filing lists the servicer AND the
+                        # original grantors under the same role).
+                        if rec.get("owner_unverified") or not rec["owner"] or is_entity_name(rec["owner"]):
+                            party_pairs = re.findall(
+                                r'<a[^>]*>([^<]+)</a>\s*<span class="doc-preview-group__summary-group-label">([^<]+)</span>',
+                                page_src)
+                            grantors = [n.strip() for n, role in party_pairs if role.strip().upper() == "GRANTOR"]
+                            found_personal = next((g for g in grantors if g and not is_entity_name(g)), "")
+                            if found_personal and found_personal.title() != rec["owner"]:
+                                old_owner = rec["owner"]
                                 rec["owner"] = found_personal.title()
                                 rec["owner_unverified"] = False
-                                log.info(f"  Confirmed owner for {rec['doc_number']}: {rec['owner']}")
+                                log.info(f"  Corrected owner for {rec['doc_number']}: {old_owner!r} -> {rec['owner']}")
 
                         # Lender name — we're already on the doc page for
                         # address/owner, so pull this too while here. Useful
