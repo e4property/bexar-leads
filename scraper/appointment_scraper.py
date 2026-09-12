@@ -459,7 +459,8 @@ def _goto_doc_by_click(driver, source_url, doc_number, timeout=20):
 
 # ── Main scraper (v1.3 — click-through detail fetch replaces broken href) ─────
 
-def scrape_appointments(known_docs, get_driver_fn, run_timestamp, days_back=30):
+def scrape_appointments(known_docs, get_driver_fn, run_timestamp, days_back=30,
+                         stop_on_partial_page=True):
     """
     Scrape Appointment of Substitute Trustee filings from PublicSearch RP dept.
     v1.2: adds ArcGIS enrichment pass after PublicSearch scrape.
@@ -473,6 +474,19 @@ def scrape_appointments(known_docs, get_driver_fn, run_timestamp, days_back=30):
     treat them as new again within the wider window, without touching
     every other still-correctly-known record it also walks past in the
     same widened date range.
+
+    stop_on_partial_page: the "fewer than 50 NEW records on this page
+    means we've reached the end of results" heuristic below only holds
+    when nearly every row on a page is normally new, which is true for
+    the daily 30-day window this function was written for but false for
+    a backfill's widened window -- there, most rows on every page are
+    already-known (non-target) records, so a page with (say) 23 targets
+    out of a full 50 raw rows falsely reads as "the last page" and the
+    whole crawl stops after page one. Confirmed live 2026-09-12: exactly
+    this happened, 23/63 backfill targets resolved (all on page one)
+    before the crawl silently quit. Default True preserves the daily
+    job's existing behavior unchanged; the backfill passes False so it
+    only stops on a genuinely empty page or two, not a partially-new one.
     """
     from selenium.webdriver.common.by import By
     from selenium.webdriver.support.ui import WebDriverWait
@@ -804,7 +818,7 @@ def scrape_appointments(known_docs, get_driver_fn, run_timestamp, days_back=30):
                 log.info(f"Appointment done — {len(new_records)} new records")
                 break
 
-            if 0 < len(page_records) < 50:
+            if stop_on_partial_page and 0 < len(page_records) < 50:
                 log.info(f"Appointment done — {len(new_records)} new records (partial page)")
                 break
 
