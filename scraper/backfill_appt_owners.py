@@ -122,7 +122,8 @@ def main():
     known_docs = set(by_doc.keys()) - set(targets.keys())
 
     run_timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-    new_appt = scrape_appointments(known_docs, get_driver, run_timestamp, days_back=DAYS_BACK)
+    new_appt = scrape_appointments(known_docs, get_driver, run_timestamp,
+                                    days_back=DAYS_BACK, stop_on_partial_page=False)
     log.info(f"scrape_appointments returned {len(new_appt)} records")
 
     fixed = 0
