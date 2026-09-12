@@ -1,0 +1,62 @@
+name: Backfill APPT Owners
+
+# One-off retroactive pass — NOT scheduled. The daily scrape (scrape.yml)
+# only re-derives an APPT lead's owner/address on the run that first
+# discovers it (doc_number not yet in known_docs); it can't reach leads
+# already sitting in records.json from before the 2026-09-11 owner-
+# extraction fix. This walks that existing backlog directly by doc
+# number instead of requiring re-discovery through a date-range crawl.
+# See scraper/backfill_appt_owners.py for the full explanation.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4 lxml selenium pytesseract pillow homeharvest
+
+      - name: Run backfill
+        env:
+          CLERK_EMAIL: "${{ secrets.CLERK_EMAIL }}"
+          CLERK_PASSWORD: "${{ secrets.CLERK_PASSWORD }}"
+        run: python scraper/backfill_appt_owners.py
+
+      - name: Commit results
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add dashboard/records.json
+          git diff --cached --quiet && echo "No changes" && exit 0
+          git commit -m "chore: backfill APPT owner/address from doc Parties table"
+          for i in 1 2 3 4 5; do
+            sleep $((RANDOM % 10 + 2))
+            git fetch origin main
+            git add dashboard/records.json
+            git diff --cached --quiet || git commit --amend --no-edit
+            git rebase -X ours origin/main || git rebase --abort
+            git push origin main && echo "Push succeeded" && break
+            echo "Attempt $i failed, retrying..."
+          done
