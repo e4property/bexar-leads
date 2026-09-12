@@ -45,25 +45,49 @@ def find_doc_and_extract(driver, doc_number):
     today_str = (fetch.TODAY_NAIVE - timedelta(days=3)).strftime("%Y%m%d")
     url = fetch.QUICK_SEARCH_URL_TMPL.format(today=today_str, doc_number=doc_number)
 
-    try:
-        driver.set_page_load_timeout(20)
-        driver.get(url)
-        WebDriverWait(driver, 20).until(
-            EC.presence_of_element_located(
-                (By.XPATH, "//table//tr/td | //h1[contains(text(),'No Results')]")
+    # 2026-09-12: first live run of this script got 0/62 -- every single
+    # doc, including 20260128148 (hand-verified to exist, real GRANTOR
+    # data confirmed live), came back "No Results Found" in ~1.3s flat,
+    # suspiciously uniform for a real SPA search. Confirmed via the
+    # Claude Browser tool that this exact URL pattern works fine, both
+    # through the site's own search form and a raw direct navigation --
+    # but only in a session that had already been browsing the site for
+    # a while. This script's driver goes straight from a fresh login
+    # into rapid-fire single-doc lookups with zero warm-up, unlike every
+    # other place this URL pattern is used in this codebase (always
+    # called after the driver's already been active on the site for a
+    # while). Added a real warm-up navigation before the loop starts,
+    # plus one retry per doc with a longer settle pause, as a defensive
+    # guard against whatever timing/session-state gap causes this.
+    for attempt in (1, 2):
+        try:
+            driver.set_page_load_timeout(20)
+            driver.get(url)
+            WebDriverWait(driver, 20).until(
+                EC.presence_of_element_located(
+                    (By.XPATH, "//table//tr/td | //h1[contains(text(),'No Results')]")
+                )
             )
-        )
-        if driver.find_elements(By.XPATH, "//h1[contains(text(),'No Results')]"):
-            log.info(f"  [{doc_number}] no search results")
+            time.sleep(1.5)
+            if driver.find_elements(By.XPATH, "//h1[contains(text(),'No Results')]"):
+                if attempt == 1:
+                    log.info(f"  [{doc_number}] no results on attempt 1, retrying after pause...")
+                    time.sleep(4)
+                    continue
+                log.info(f"  [{doc_number}] no search results")
+                return None
+            row = driver.find_element(By.CSS_SELECTOR, "table tbody tr")
+            row.click()
+            WebDriverWait(driver, 20).until(EC.url_contains("/doc/"))
+            time.sleep(1.5)
+            break
+        except Exception as e:
+            if attempt == 1:
+                log.info(f"  [{doc_number}] attempt 1 failed ({e}), retrying...")
+                time.sleep(4)
+                continue
+            log.info(f"  [{doc_number}] search/click-through failed: {e}")
             return None
-        time.sleep(1)
-        row = driver.find_element(By.CSS_SELECTOR, "table tbody tr")
-        row.click()
-        WebDriverWait(driver, 20).until(EC.url_contains("/doc/"))
-        time.sleep(1.5)
-    except Exception as e:
-        log.info(f"  [{doc_number}] search/click-through failed: {e}")
-        return None
 
     page_src = driver.page_source
     result = {}
@@ -123,6 +147,18 @@ def main():
     try:
         logged_in = fetch.login_publicsearch(driver)
         log.info(f"login: {logged_in}")
+
+        # Warm-up navigation — see the long comment in find_doc_and_extract.
+        # Every other caller of this URL pattern in this codebase only runs
+        # after the driver's already been active on the site for a while;
+        # this script's very first action otherwise would be the first
+        # per-doc search, straight off a fresh login.
+        try:
+            driver.set_page_load_timeout(20)
+            driver.get(f"{fetch.PUBLICSEARCH_BASE}/")
+            time.sleep(3)
+        except Exception as e:
+            log.info(f"warm-up navigation failed (continuing anyway): {e}")
 
         for rec in targets:
             doc_number = rec.get("doc_number")
