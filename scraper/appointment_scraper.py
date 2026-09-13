@@ -46,6 +46,7 @@ ENTITY_KEYWORDS = [
     "TURNER", "ENGEL", "ASSOCIATION", "FEDERAL", "SAVINGS", "SOCIETY",
     "HOLDINGS", "CAPITAL", "FUNDING", "FUND", "PARTNERS", "GROUP",
     "COMPANY", "CO", "ATTORNEY", "LAW FIRM", "LAW OFFICE", "INSTITUTE",
+    "CREDIT UNION",
     "SUBSTITUTE TRUSTEE", "DEPARTMENT", "AGENCY", "SYSTEMS",
     "FREDDIE MAC", "FANNIE MAE", "HUD", "VA LOAN", "USDA",
 ]
@@ -60,6 +61,30 @@ def is_entity_name(name):
         return True
     upper = name.upper()
     return any(re.search(r"\b" + re.escape(kw) + r"\b", upper) for kw in ENTITY_KEYWORDS)
+
+
+def _looks_like_personal_name(name):
+    # 2026-09-13: is_entity_name() alone isn't enough -- confirmed live,
+    # the Parties-table owner-correction block below pulled clear garbage
+    # for filings with no real personal co-grantor: "Public" (a truncated
+    # fragment of "PUBLIC STORAGE INC" that doesn't contain any of its own
+    # keywords), a full street address ("1227 Tweed Willow, San Antonio,
+    # Texas, 78258"), and a legal-description snippet ("Subdivision - Name:
+    # Las Brisas Office Lot: 231 Reference - 9501/214") all got accepted as
+    # if they were homeowner names. A real name in this dataset is always
+    # 2+ words, has no digits, and has no comma/colon (addresses and legal
+    # descriptions always do) -- reject anything that doesn't look like one
+    # rather than accept a best-effort guess.
+    if not name:
+        return False
+    if any(ch.isdigit() for ch in name):
+        return False
+    if "," in name or ":" in name:
+        return False
+    words = name.split()
+    if len(words) < 2 or len(name) > 45:
+        return False
+    return True
 
 
 # ── Address sanity check ────────────────────────────────────────────────────
@@ -628,7 +653,7 @@ def scrape_appointments(known_docs, get_driver_fn, run_timestamp, days_back=30,
 
                 grantor = ""
                 for cand in name_candidates:
-                    if not is_entity_name(cand):
+                    if not is_entity_name(cand) and _looks_like_personal_name(cand):
                         grantor = cand
                         break
                 used_fallback_entity = False
@@ -799,7 +824,9 @@ def scrape_appointments(known_docs, get_driver_fn, run_timestamp, days_back=30,
                                 r'<a[^>]*>([^<]+)</a>\s*<span class="doc-preview-group__summary-group-label">([^<]+)</span>',
                                 page_src)
                             grantors = [n.strip() for n, role in party_pairs if role.strip().upper() == "GRANTOR"]
-                            found_personal = next((g for g in grantors if g and not is_entity_name(g)), "")
+                            found_personal = next(
+                                (g for g in grantors if g and not is_entity_name(g) and _looks_like_personal_name(g)),
+                                "")
                             if found_personal and found_personal.title() != rec["owner"]:
                                 old_owner = rec["owner"]
                                 rec["owner"] = found_personal.title()

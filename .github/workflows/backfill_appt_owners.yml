@@ -45,15 +45,29 @@ jobs:
         run: python scraper/backfill_appt_owners.py
 
       - name: Commit results
+        # 2026-09-13: first live run of this step silently lost the ENTIRE
+        # backfill (all 20 real fixes, both good and bad) -- reported
+        # "Push succeeded" but the rebase log showed "dropping ... patch
+        # contents already upstream" and none of it ever landed. Root
+        # cause: this step never called merge_dashboard_status.py, unlike
+        # scrape.yml/vbp.yml, which both needed that exact fix for the
+        # exact same reason (see that script's own docstring) -- the live
+        # dashboard commits directly to GitHub every time a lead is pushed
+        # to Jarvis, and this backfill ran a ~40min job during a window
+        # the user was actively pushing leads through the dashboard, so
+        # dashboard/records.json (a single giant file) always conflicts.
+        # Matching scrape.yml's proven pattern exactly now.
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
+          python scraper/merge_dashboard_status.py origin/main || true
           git add dashboard/records.json
           git diff --cached --quiet && echo "No changes" && exit 0
           git commit -m "chore: backfill APPT owner/address from doc Parties table"
           for i in 1 2 3 4 5; do
             sleep $((RANDOM % 10 + 2))
             git fetch origin main
+            python scraper/merge_dashboard_status.py origin/main || true
             git add dashboard/records.json
             git diff --cached --quiet || git commit --amend --no-edit
             git rebase -X ours origin/main || git rebase --abort
