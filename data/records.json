@@ -315,7 +315,10 @@
     "land_value": "",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 22
+    "days_until_sale": 22,
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-09-13T18:02:22.181Z",
+    "ghl_id": "oLVnsOKtnukv8AYbKJ97"
   },
   {
     "type": "NOF",
@@ -421,7 +424,10 @@
     "land_value": "",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 22
+    "days_until_sale": 22,
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-09-13T18:05:29.095Z",
+    "ghl_id": "toZTDM2KgMjUlSuqCPL4"
   },
   {
     "type": "NOF",
@@ -476,11 +482,11 @@
     "days_until_sale": 22,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-13T18:53:12Z",
+    "on_market_checked_at": "2026-09-13T22:34:25Z",
     "arv_estimate": 140200,
     "arv_status": "FOR_RENT",
     "arv_sqft": null,
-    "arv_fetched_at": "2026-09-13T18:53:12Z"
+    "arv_fetched_at": "2026-09-13T22:34:25Z"
   },
   {
     "type": "NOF",
@@ -534,9 +540,12 @@
     "stacked": false,
     "score": 10,
     "days_until_sale": 22,
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-09-13T18:19:30.540Z",
+    "ghl_id": "UUPyJjJ4xWQL6aUS5hsi",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-13T18:53:31Z"
+    "on_market_checked_at": "2026-09-13T22:34:44Z"
   },
   {
     "type": "NOF",
@@ -591,13 +600,7 @@
     "stacked": false,
     "score": 10,
     "days_until_sale": 22,
-    "on_market": false,
-    "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-09-13T18:53:33Z",
-    "arv_estimate": 823800,
-    "arv_status": "OFF_MARKET",
-    "arv_sqft": 3778,
-    "arv_fetched_at": "2026-09-13T18:53:33Z"
+    "on_market_checked_at": "2026-09-13T22:34:47Z"
   },
   {
     "type": "NOF",
@@ -654,7 +657,7 @@
     "days_until_sale": 22,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-13T18:53:49Z"
+    "on_market_checked_at": "2026-09-13T22:35:04Z"
   },
   {
     "type": "NOF",
@@ -709,11 +712,11 @@
     "days_until_sale": 22,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-13T18:53:50Z",
+    "on_market_checked_at": "2026-09-13T22:35:06Z",
     "arv_estimate": 248000,
     "arv_status": "SOLD",
     "arv_sqft": 2165,
-    "arv_fetched_at": "2026-09-13T18:53:50Z"
+    "arv_fetched_at": "2026-09-13T22:35:06Z"
   },
   {
     "type": "NOF",
@@ -765,14 +768,7 @@
     "land_value": "",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 22,
-    "on_market": false,
-    "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-13T18:53:52Z",
-    "arv_estimate": 191700,
-    "arv_status": "SOLD",
-    "arv_sqft": 1351,
-    "arv_fetched_at": "2026-09-13T18:53:52Z"
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -825,14 +821,7 @@
     "land_value": "",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 22,
-    "on_market": false,
-    "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-13T18:53:54Z",
-    "arv_estimate": 588900,
-    "arv_status": "SOLD",
-    "arv_sqft": 1940,
-    "arv_fetched_at": "2026-09-13T18:53:54Z"
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -884,14 +873,7 @@
     "land_value": "",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 22,
-    "on_market": false,
-    "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-13T18:53:55Z",
-    "arv_estimate": 332400,
-    "arv_status": "SOLD",
-    "arv_sqft": 2769,
-    "arv_fetched_at": "2026-09-13T18:53:55Z"
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -944,14 +926,7 @@
     "land_value": "",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 22,
-    "on_market": false,
-    "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-13T18:54:01Z",
-    "arv_estimate": 948000,
-    "arv_status": "SOLD",
-    "arv_sqft": 3905,
-    "arv_fetched_at": "2026-09-13T18:54:01Z"
+    "days_until_sale": 22
   },
   {
     "type": "NOF",
@@ -1004,7 +979,10 @@
     "land_value": "",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 22
+    "days_until_sale": 22,
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-09-13T18:37:00.402Z",
+    "ghl_id": "1Jy24BATeoGhfCjUQt4y"
   },
   {
     "type": "NOF",
@@ -3897,7 +3875,7 @@
     "land_value": "33210.0",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-13T18:54:03Z",
+    "on_market_checked_at": "2026-09-13T22:35:08Z",
     "arv_estimate": 285400,
     "arv_status": "SOLD",
     "arv_sqft": 2363,
@@ -4539,7 +4517,7 @@
     "ghl_id": "7iRW6qqVZyNdrjKeqYU7",
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-09-13T18:54:04Z"
+    "on_market_checked_at": "2026-09-13T22:35:09Z"
   },
   {
     "type": "NOF",
@@ -4667,7 +4645,7 @@
     "ghl_id": "RuzDHSQXxb3oWnfym8Ji",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-13T18:54:05Z"
+    "on_market_checked_at": "2026-09-13T22:35:10Z"
   },
   {
     "type": "NOF",
@@ -5058,7 +5036,7 @@
     "ghl_id": "e4jhzw3gChgfzJYtScR3",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-13T18:54:07Z"
+    "on_market_checked_at": "2026-09-13T22:35:12Z"
   },
   {
     "type": "NOF",
@@ -5124,7 +5102,7 @@
     "ghl_id": "8ABmp5ZievYqq4J05Jjo",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-13T18:54:08Z"
+    "on_market_checked_at": "2026-09-13T22:35:13Z"
   },
   {
     "type": "NOF",
@@ -5251,7 +5229,7 @@
     "ghl_id": "8yxtATnqlTypyG6T2zkY",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-13T18:54:10Z"
+    "on_market_checked_at": "2026-09-13T22:35:15Z"
   },
   {
     "type": "NOF",
@@ -5317,7 +5295,7 @@
     "ghl_pushed_at": "2026-08-13T19:56:55.715Z",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-13T18:54:12Z"
+    "on_market_checked_at": "2026-09-13T22:35:17Z"
   },
   {
     "type": "NOF",
@@ -5383,7 +5361,7 @@
     "ghl_pushed_at": "2026-08-13T19:58:00.109Z",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-13T18:54:13Z"
+    "on_market_checked_at": "2026-09-13T22:35:18Z"
   },
   {
     "type": "NOF",
@@ -5449,7 +5427,7 @@
     "ghl_pushed_at": "2026-08-13T20:00:08.265Z",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-13T18:54:15Z"
+    "on_market_checked_at": "2026-09-13T22:35:19Z"
   },
   {
     "type": "NOF",
@@ -5516,7 +5494,7 @@
     "ghl_pushed_at": "2026-08-13T20:02:32.962Z",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-13T18:54:16Z"
+    "on_market_checked_at": "2026-09-13T22:35:21Z"
   },
   {
     "type": "NOF",
@@ -5582,7 +5560,7 @@
     "ghl_pushed_at": "2026-08-13T20:03:39.123Z",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-13T18:54:18Z"
+    "on_market_checked_at": "2026-09-13T22:35:22Z"
   },
   {
     "type": "NOF",
@@ -5647,7 +5625,7 @@
     "ghl_pushed_at": "2026-08-13T20:04:38.859Z",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-13T18:54:19Z"
+    "on_market_checked_at": "2026-09-13T22:35:24Z"
   },
   {
     "type": "NOF",
@@ -5712,7 +5690,7 @@
     "ghl_id": "Wq2kRzNqhfMKWbhiNlSa",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-13T18:54:26Z"
+    "on_market_checked_at": "2026-09-13T22:35:25Z"
   },
   {
     "type": "NOF",
@@ -5776,7 +5754,7 @@
     "days_until_sale": 22,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-13T18:54:28Z",
+    "on_market_checked_at": "2026-09-13T22:35:27Z",
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-31T01:06:12.075Z",
     "ghl_id": "rHAw6dv6YjKXSlVbmYo3"
@@ -5845,7 +5823,7 @@
     "ghl_id": "c5TsIJ1BSwiKh9r7Oa8j",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-13T18:54:30Z"
+    "on_market_checked_at": "2026-09-13T22:35:29Z"
   },
   {
     "type": "NOF",
@@ -12251,7 +12229,10 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 22
+    "days_until_sale": 22,
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-09-13T17:51:19.432Z",
+    "ghl_id": "eyHS0PfQTkMScf9PAnyl"
   },
   {
     "type": "NOF",
@@ -12407,7 +12388,10 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 22
+    "days_until_sale": 22,
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-09-13T18:42:45.483Z",
+    "ghl_id": "h57sDNGOT9lariOc8rYf"
   },
   {
     "type": "NOF",
@@ -12580,7 +12564,9 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 22
+    "days_until_sale": 22,
+    "ghl_pushed": false,
+    "ghl_pushed_at": null
   },
   {
     "type": "NOF",
@@ -12796,7 +12782,10 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 22
+    "days_until_sale": 22,
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-09-13T18:52:32.269Z",
+    "ghl_id": "cuYLtsyaOVxi4Hyn7xde"
   },
   {
     "type": "NOF",
@@ -12839,7 +12828,10 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 22
+    "days_until_sale": 22,
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-09-13T19:12:01.962Z",
+    "ghl_id": "pegm9TKTu7Ne16TAHelt"
   },
   {
     "type": "NOF",
@@ -12970,7 +12962,10 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 22
+    "days_until_sale": 22,
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-09-13T19:39:22.824Z",
+    "ghl_id": "3B2VEd6yr3ec7pYiIeGe"
   },
   {
     "type": "NOF",
@@ -13642,7 +13637,10 @@
     "arv_fetched_at": "2026-09-09T22:35:25Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 22
+    "days_until_sale": 22,
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-09-13T19:29:05.970Z",
+    "ghl_id": "Y38MyZGRBmLASau4qd8S"
   },
   {
     "type": "NOF",
@@ -25930,7 +25928,10 @@
     "land_value": "",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 50
+    "days_until_sale": 50,
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-09-13T19:45:01.481Z",
+    "ghl_id": "jYnX0YZeEWHtcgYzayT0"
   },
   {
     "type": "NOF",
@@ -28268,10 +28269,10 @@
     "type": "APPT",
     "source": "publicsearch",
     "county": "bexar",
-    "owner": "Regenerative Medicine Institute Of South Texas Pa",
-    "address": "",
-    "city": "",
-    "zip": "78216",
+    "owner": "Mann David L",
+    "address": "439  HUB AVE",
+    "city": "SAN ANTONIO",
+    "zip": "78220",
     "date_filed": "8/2026",
     "month": "8",
     "year": "2026",
@@ -28317,7 +28318,14 @@
     ],
     "appr_trend": "down",
     "appt_converted": false,
-    "appt_stale": false
+    "appt_stale": false,
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-09-13T22:33:13Z",
+    "arv_estimate": 164819,
+    "arv_status": "OFF_MARKET",
+    "arv_sqft": 1566,
+    "arv_fetched_at": "2026-09-13T22:33:13Z"
   },
   {
     "doc_number": "20260155583",
@@ -40001,11 +40009,11 @@
     "land_value": "75860.0",
     "on_market": true,
     "on_market_status": "FOR_SALE",
-    "on_market_checked_at": "2026-09-13T18:52:00Z",
+    "on_market_checked_at": "2026-09-13T22:32:44Z",
     "arv_estimate": 84937,
     "arv_status": "FOR_SALE",
     "arv_sqft": 1300,
-    "arv_fetched_at": "2026-09-13T18:52:00Z"
+    "arv_fetched_at": "2026-09-13T22:32:44Z"
   },
   {
     "doc_number": "VBP-1526-N-NEW-BRAUNFELS-AVE-78208",
@@ -40064,7 +40072,7 @@
     "ce_case_id": "",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-13T18:52:05Z"
+    "on_market_checked_at": "2026-09-13T22:32:48Z"
   },
   {
     "doc_number": "VBP-1802-N-INTERSTATE-35-78208",
@@ -40116,11 +40124,11 @@
     "ce_case_id": "",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-13T18:52:06Z",
+    "on_market_checked_at": "2026-09-13T22:32:50Z",
     "arv_estimate": 321000,
     "arv_status": "SOLD",
     "arv_sqft": 2277,
-    "arv_fetched_at": "2026-09-13T18:52:06Z"
+    "arv_fetched_at": "2026-09-13T22:32:50Z"
   },
   {
     "doc_number": "VBP-1802-N-NEW-BRAUNFELS-AVE-78208",
@@ -40172,7 +40180,7 @@
     "ce_case_id": "",
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-09-13T18:52:08Z"
+    "on_market_checked_at": "2026-09-13T22:32:52Z"
   },
   {
     "doc_number": "VBP-207-E-CARSON-ST-78208",
@@ -40235,7 +40243,7 @@
     "land_value": "178520.0",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-13T18:52:21Z"
+    "on_market_checked_at": "2026-09-13T22:32:56Z"
   },
   {
     "doc_number": "VBP-222-BROOKS-ST-78208",
@@ -40290,11 +40298,11 @@
     "ce_case_id": "",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-13T18:52:23Z",
+    "on_market_checked_at": "2026-09-13T22:32:58Z",
     "arv_estimate": 39200,
     "arv_status": "SOLD",
     "arv_sqft": 1019,
-    "arv_fetched_at": "2026-09-13T18:52:23Z"
+    "arv_fetched_at": "2026-09-13T22:32:58Z"
   },
   {
     "doc_number": "VBP-418-CALHOUN-ST-78208",
@@ -40346,11 +40354,11 @@
     "ce_case_id": "",
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-09-13T18:52:25Z",
+    "on_market_checked_at": "2026-09-13T22:32:59Z",
     "arv_estimate": 106600,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 696,
-    "arv_fetched_at": "2026-09-13T18:52:25Z"
+    "arv_fetched_at": "2026-09-13T22:32:59Z"
   },
   {
     "doc_number": "VBP-725-ROPER-78208",
@@ -40401,7 +40409,7 @@
     "ghl_id": "jDW4vT2z8Uk4rNaOii0X",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-13T18:52:29Z"
+    "on_market_checked_at": "2026-09-13T22:33:05Z"
   },
   {
     "doc_number": "VBP-807-E-JOSEPHINE-78208",
@@ -40456,7 +40464,7 @@
     "ce_case_id": "",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-13T18:52:34Z"
+    "on_market_checked_at": "2026-09-13T22:33:09Z"
   },
   {
     "doc_number": "VBP-335-ELMHURST-AVE-78209",
@@ -40511,11 +40519,11 @@
     "land_value": "36420.0",
     "on_market": true,
     "on_market_status": "PENDING",
-    "on_market_checked_at": "2026-09-13T18:52:36Z",
+    "on_market_checked_at": "2026-09-13T22:33:10Z",
     "arv_estimate": 328917,
     "arv_status": "PENDING",
     "arv_sqft": 1167,
-    "arv_fetched_at": "2026-09-13T18:52:36Z"
+    "arv_fetched_at": "2026-09-13T22:33:10Z"
   },
   {
     "doc_number": "VBP-1307-DELAWARE-ST-78210",
@@ -54155,7 +54163,7 @@
     "type": "APPT",
     "source": "publicsearch",
     "county": "bexar",
-    "owner": "PUBLIC STORAGE INC",
+    "owner": "Villas At Presidio Condominium Community Inc",
     "address": "16639  SAN PEDRO AVE",
     "city": "SAN ANTONIO",
     "zip": "91221",
@@ -54403,7 +54411,9 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 50
+    "days_until_sale": 50,
+    "ghl_pushed": false,
+    "ghl_pushed_at": null
   },
   {
     "type": "NOF",
@@ -54742,7 +54752,9 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 50
+    "days_until_sale": 50,
+    "ghl_pushed": false,
+    "ghl_pushed_at": null
   },
   {
     "type": "NOF",
@@ -55164,7 +55176,10 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 50
+    "days_until_sale": 50,
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-09-13T20:03:45.476Z",
+    "ghl_id": "12i6LW7HJYzjFrj2oliq"
   },
   {
     "type": "NOF",
@@ -55501,7 +55516,9 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 50
+    "days_until_sale": 50,
+    "ghl_pushed": false,
+    "ghl_pushed_at": null
   },
   {
     "type": "NOF",
@@ -55543,7 +55560,9 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 50
+    "days_until_sale": 50,
+    "ghl_pushed": false,
+    "ghl_pushed_at": null
   },
   {
     "type": "NOF",
@@ -56564,10 +56583,10 @@
     "days_until_sale": 50,
     "arv_estimate": 266000,
     "arv_status": "SOLD",
-    "arv_fetched_at": "2026-09-13T18:52:44Z",
+    "arv_fetched_at": "2026-09-13T22:34:00Z",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-13T18:52:44Z",
+    "on_market_checked_at": "2026-09-13T22:34:00Z",
     "arv_sqft": 1760
   },
   {
@@ -56613,10 +56632,10 @@
     "days_until_sale": 50,
     "arv_estimate": 209500,
     "arv_status": "FOR_SALE",
-    "arv_fetched_at": "2026-09-13T18:52:46Z",
+    "arv_fetched_at": "2026-09-13T22:34:02Z",
     "on_market": true,
     "on_market_status": "FOR_SALE",
-    "on_market_checked_at": "2026-09-13T18:52:46Z",
+    "on_market_checked_at": "2026-09-13T22:34:02Z",
     "arv_sqft": 472
   },
   {
@@ -56662,10 +56681,10 @@
     "days_until_sale": 50,
     "arv_estimate": 268000,
     "arv_status": "SOLD",
-    "arv_fetched_at": "2026-09-13T18:52:47Z",
+    "arv_fetched_at": "2026-09-13T22:34:03Z",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-13T18:52:47Z",
+    "on_market_checked_at": "2026-09-13T22:34:03Z",
     "arv_sqft": 2307
   },
   {
@@ -56714,10 +56733,10 @@
     "ghl_id": "FMlgGGUHsU8itNkj7bKY",
     "arv_estimate": 221700,
     "arv_status": "SOLD",
-    "arv_fetched_at": "2026-09-13T18:52:49Z",
+    "arv_fetched_at": "2026-09-13T22:34:05Z",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-13T18:52:49Z",
+    "on_market_checked_at": "2026-09-13T22:34:05Z",
     "arv_sqft": 1369
   },
   {
@@ -56764,10 +56783,10 @@
     "days_until_sale": 50,
     "arv_estimate": 286422,
     "arv_status": "SOLD",
-    "arv_fetched_at": "2026-09-13T18:52:50Z",
+    "arv_fetched_at": "2026-09-13T22:34:07Z",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-13T18:52:50Z",
+    "on_market_checked_at": "2026-09-13T22:34:07Z",
     "arv_sqft": 1636
   },
   {
@@ -56813,10 +56832,10 @@
     "days_until_sale": 50,
     "arv_estimate": 196000,
     "arv_status": "SOLD",
-    "arv_fetched_at": "2026-09-13T18:52:52Z",
+    "arv_fetched_at": "2026-09-13T22:34:08Z",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-13T18:52:52Z",
+    "on_market_checked_at": "2026-09-13T22:34:08Z",
     "arv_sqft": 1056
   },
   {
@@ -56862,11 +56881,11 @@
     "days_until_sale": 50,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-13T18:52:54Z",
+    "on_market_checked_at": "2026-09-13T22:34:09Z",
     "arv_estimate": 222000,
     "arv_status": "SOLD",
     "arv_sqft": 1519,
-    "arv_fetched_at": "2026-09-13T18:52:54Z"
+    "arv_fetched_at": "2026-09-13T22:34:09Z"
   },
   {
     "type": "NOF",
@@ -56911,11 +56930,11 @@
     "days_until_sale": 50,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-13T18:52:56Z",
+    "on_market_checked_at": "2026-09-13T22:34:11Z",
     "arv_estimate": 169452,
     "arv_status": "SOLD",
     "arv_sqft": 1304,
-    "arv_fetched_at": "2026-09-13T18:52:56Z"
+    "arv_fetched_at": "2026-09-13T22:34:11Z"
   },
   {
     "type": "NOF",
@@ -56960,11 +56979,11 @@
     "days_until_sale": 50,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-13T18:52:57Z",
+    "on_market_checked_at": "2026-09-13T22:34:13Z",
     "arv_estimate": 218700,
     "arv_status": "SOLD",
     "arv_sqft": 1315,
-    "arv_fetched_at": "2026-09-13T18:52:57Z"
+    "arv_fetched_at": "2026-09-13T22:34:13Z"
   },
   {
     "type": "NOF",
@@ -58925,11 +58944,11 @@
     "days_until_sale": 169,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-13T18:53:01Z",
+    "on_market_checked_at": "2026-09-13T22:34:14Z",
     "arv_estimate": 222000,
     "arv_status": "SOLD",
     "arv_sqft": 1337,
-    "arv_fetched_at": "2026-09-13T18:53:01Z"
+    "arv_fetched_at": "2026-09-13T22:34:14Z"
   },
   {
     "type": "NOF",
@@ -60179,7 +60198,7 @@
     "type": "APPT",
     "source": "publicsearch",
     "county": "bexar",
-    "owner": "ALAMO CITY HOUSEBUYER INC",
+    "owner": "Neill Kyle E",
     "address": "3506  MOSS MDWS",
     "city": "",
     "zip": "78216",
@@ -63784,7 +63803,7 @@
     "type": "APPT",
     "source": "publicsearch",
     "county": "bexar",
-    "owner": "251 W MAYFIELD LAND TRUST",
+    "owner": "Machado Annahy Hernandez",
     "address": "251 W MAYFIELD BLVD",
     "city": "SAN ANTONIO",
     "zip": "78223",
@@ -63940,7 +63959,7 @@
     "type": "APPT",
     "source": "publicsearch",
     "county": "bexar",
-    "owner": "SAN PEDRO OFFICE SATX LLC",
+    "owner": "Jett Sharon Trustee",
     "address": "15600 SAN PEDRO AVENUE",
     "city": "SAN ANTONIO",
     "zip": "78247",
@@ -64314,6 +64333,144 @@
     "converted_doc_number": "20261000158"
   },
   {
+    "doc_number": "20260165228",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Thomas Tucker",
+    "address": "16111 SAN PEDRO AVE SAN ANTONIO TEXAS 78232",
+    "city": "SAN ANTONIO",
+    "zip": "78232",
+    "date_filed": "8/2026",
+    "month": "8",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-08-27T22:08:31Z",
+    "score": 6,
+    "flags": [
+      "DUPLICATE"
+    ],
+    "absentee": false,
+    "duplicate": true,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "",
+    "annual_taxes": "",
+    "mail_addr": "",
+    "prop_id": "",
+    "land_value": "",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false,
+    "appt_converted": false,
+    "appt_stale": false,
+    "on_market": true,
+    "on_market_status": "FOR_SALE",
+    "on_market_checked_at": "2026-09-13T22:33:54Z",
+    "arv_estimate": 284595,
+    "arv_status": "FOR_SALE",
+    "arv_sqft": 2128,
+    "arv_fetched_at": "2026-09-13T22:33:54Z"
+  },
+  {
+    "doc_number": "20260157676",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Escobar Rosa Ann",
+    "address": "135  MORNINGVIEW DR",
+    "city": "SAN ANTONIO",
+    "zip": "78220",
+    "date_filed": "8/2026",
+    "month": "8",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-08-25T12:59:12Z",
+    "score": 6,
+    "flags": [],
+    "absentee": false,
+    "duplicate": false,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "",
+    "annual_taxes": "",
+    "mail_addr": "",
+    "prop_id": "",
+    "land_value": "",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false,
+    "appt_converted": false,
+    "appt_stale": false,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-13T22:33:15Z",
+    "arv_estimate": 173000,
+    "arv_status": "SOLD",
+    "arv_sqft": 1411,
+    "arv_fetched_at": "2026-09-13T22:33:15Z"
+  },
+  {
+    "doc_number": "20260154454",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Schroeder Michael J",
+    "address": "2109 BANDERA RD",
+    "city": "SAN ANTONIO",
+    "zip": "78210",
+    "date_filed": "8/2026",
+    "month": "8",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-08-13T13:25:47Z",
+    "score": 6,
+    "flags": [
+      "DUPLICATE"
+    ],
+    "absentee": false,
+    "duplicate": true,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "2848950.0",
+    "annual_taxes": "",
+    "mail_addr": "",
+    "prop_id": "485813.0",
+    "land_value": "249260.0",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false,
+    "appt_converted": false,
+    "appt_stale": false,
+    "on_market": true,
+    "on_market_status": "FOR_RENT",
+    "on_market_checked_at": "2026-08-31T16:30:07Z",
+    "arv_estimate": "",
+    "arv_status": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "appr_history": [],
+    "appr_trend": "",
+    "arv_sqft": "",
+    "arv_fetched_at": "",
+    "converted_doc_number": "20260900390"
+  },
+  {
     "type": "NOF",
     "address": "3050 BEACON FIELD",
     "owner": "",
@@ -64573,7 +64730,7 @@
     "type": "APPT",
     "source": "publicsearch",
     "county": "bexar",
-    "owner": "PUBLIC STORAGE INC",
+    "owner": "Glenual Bryan And Frances Bryan Revocable Trust",
     "address": "16639  SAN PEDRO AVE",
     "city": "SAN ANTONIO",
     "zip": "91221",
@@ -64736,7 +64893,7 @@
     "type": "APPT",
     "source": "publicsearch",
     "county": "bexar",
-    "owner": "8307 Bordeaux Bay, San Antonio, Texas, 78255",
+    "owner": "Planet Home Lending Llc",
     "address": "",
     "city": "SAN ANTONIO",
     "zip": "",
@@ -64960,7 +65117,7 @@
     "type": "APPT",
     "source": "publicsearch",
     "county": "bexar",
-    "owner": "12206 Luckey Summit, San Antonio, Texas, 78252",
+    "owner": "Us Bank National Association",
     "address": "",
     "city": "SAN ANTONIO",
     "zip": "",
@@ -64971,9 +65128,11 @@
     "is_new": false,
     "run_ts": "2026-09-04T16:10:23Z",
     "score": 3,
-    "flags": [],
+    "flags": [
+      "DUPLICATE"
+    ],
     "absentee": false,
-    "duplicate": false,
+    "duplicate": true,
     "days_until_sale": null,
     "loan_amount": "",
     "loan_date": "",
@@ -65070,7 +65229,7 @@
     "type": "APPT",
     "source": "publicsearch",
     "county": "bexar",
-    "owner": "11439 Luckey Ledge, San Antonio, Texas, 78252",
+    "owner": "Us Bank National Association",
     "address": "",
     "city": "SAN ANTONIO",
     "zip": "",
@@ -65080,42 +65239,6 @@
     "sale_date": "",
     "is_new": false,
     "run_ts": "2026-09-03T16:15:16Z",
-    "score": 3,
-    "flags": [],
-    "absentee": false,
-    "duplicate": false,
-    "days_until_sale": null,
-    "loan_amount": "",
-    "loan_date": "",
-    "lender": "",
-    "trustee": "",
-    "appraised_value": "",
-    "annual_taxes": "",
-    "mail_addr": "",
-    "prop_id": "",
-    "land_value": "",
-    "improvement_value": "",
-    "stacked": false,
-    "ce_violations": false,
-    "appt_converted": false,
-    "appt_stale": false
-  },
-  {
-    "doc_number": "20260165228",
-    "ps_doc_id": "",
-    "type": "APPT",
-    "source": "publicsearch",
-    "county": "bexar",
-    "owner": "Thomas Tucker",
-    "address": "",
-    "city": "SAN ANTONIO",
-    "zip": "",
-    "date_filed": "8/2026",
-    "month": "8",
-    "year": "2026",
-    "sale_date": "",
-    "is_new": false,
-    "run_ts": "2026-08-27T22:08:31Z",
     "score": 3,
     "flags": [
       "DUPLICATE"
@@ -65182,7 +65305,7 @@
     "type": "APPT",
     "source": "publicsearch",
     "county": "bexar",
-    "owner": "4707 Silver River, San Antonio, Texas, 78222",
+    "owner": "Us Bank National Association",
     "address": "",
     "city": "SAN ANTONIO",
     "zip": "",
@@ -65193,9 +65316,11 @@
     "is_new": false,
     "run_ts": "2026-08-26T13:04:53Z",
     "score": 3,
-    "flags": [],
+    "flags": [
+      "DUPLICATE"
+    ],
     "absentee": false,
-    "duplicate": false,
+    "duplicate": true,
     "days_until_sale": null,
     "loan_amount": "",
     "loan_date": "",
@@ -65218,7 +65343,7 @@
     "type": "APPT",
     "source": "publicsearch",
     "county": "bexar",
-    "owner": "9923 Chantemar, San Antonio, Texas, 78250",
+    "owner": "Lakeview Loan Servicing Llc",
     "address": "",
     "city": "SAN ANTONIO",
     "zip": "",
@@ -65229,45 +65354,11 @@
     "is_new": false,
     "run_ts": "2026-08-25T12:59:12Z",
     "score": 3,
-    "flags": [],
+    "flags": [
+      "DUPLICATE"
+    ],
     "absentee": false,
-    "duplicate": false,
-    "days_until_sale": null,
-    "loan_amount": "",
-    "loan_date": "",
-    "lender": "",
-    "trustee": "",
-    "appraised_value": "",
-    "annual_taxes": "",
-    "mail_addr": "",
-    "prop_id": "",
-    "land_value": "",
-    "improvement_value": "",
-    "stacked": false,
-    "ce_violations": false,
-    "appt_converted": false,
-    "appt_stale": false
-  },
-  {
-    "doc_number": "20260157676",
-    "ps_doc_id": "",
-    "type": "APPT",
-    "source": "publicsearch",
-    "county": "bexar",
-    "owner": "Subdivision - Name: Westlakes #19 Lot: 27 Block: 25 Reference - 20001/494",
-    "address": "",
-    "city": "SAN ANTONIO",
-    "zip": "",
-    "date_filed": "8/2026",
-    "month": "8",
-    "year": "2026",
-    "sale_date": "",
-    "is_new": false,
-    "run_ts": "2026-08-25T12:59:12Z",
-    "score": 3,
-    "flags": [],
-    "absentee": false,
-    "duplicate": false,
+    "duplicate": true,
     "days_until_sale": null,
     "loan_amount": "",
     "loan_date": "",
@@ -65400,7 +65491,7 @@
     "type": "APPT",
     "source": "publicsearch",
     "county": "bexar",
-    "owner": "Selene Finance Lp",
+    "owner": "Martin Cassie",
     "address": "",
     "city": "",
     "zip": "",
@@ -66796,7 +66887,7 @@
     "type": "APPT",
     "source": "publicsearch",
     "county": "bexar",
-    "owner": "SAN PEDRO OFFICE SATX LLC",
+    "owner": "Jett Sharon",
     "address": "15600 SAN PEDRO AVENUE",
     "city": "SAN ANTONIO",
     "zip": "78247",
@@ -67492,7 +67583,7 @@
     "score": 2,
     "flags": [
       "DUPLICATE",
-      "LIKELY RESOLVED"
+      "CONVERTED TO NOF"
     ],
     "absentee": false,
     "duplicate": true,
@@ -67515,8 +67606,8 @@
     "tenure_score_bonus": 0,
     "appr_history": [],
     "appr_trend": "",
-    "appt_converted": false,
-    "appt_stale": true,
+    "appt_converted": true,
+    "appt_stale": false,
     "on_market": false,
     "on_market_status": "SOLD",
     "on_market_checked_at": "2026-08-31T16:23:08Z",
@@ -67691,7 +67782,7 @@
     "type": "APPT",
     "source": "publicsearch",
     "county": "bexar",
-    "owner": "TECHRIDGE SATX LLC",
+    "owner": "Jett Sharon",
     "address": "12668 SILICON DRIVE",
     "city": "SAN ANTONIO",
     "zip": "78108",
@@ -68007,57 +68098,6 @@
     "arv_sqft": null,
     "arv_fetched_at": "2026-09-09T22:35:08Z",
     "converted_doc_number": "20260900421"
-  },
-  {
-    "doc_number": "20260154454",
-    "ps_doc_id": "",
-    "type": "APPT",
-    "source": "publicsearch",
-    "county": "bexar",
-    "owner": "OAKBROOK CROSSING LLC",
-    "address": "2109 BANDERA RD",
-    "city": "SAN ANTONIO",
-    "zip": "78210",
-    "date_filed": "8/2026",
-    "month": "8",
-    "year": "2026",
-    "sale_date": "",
-    "is_new": false,
-    "run_ts": "2026-08-13T13:25:47Z",
-    "score": 2,
-    "flags": [
-      "DUPLICATE",
-      "CONVERTED TO NOF"
-    ],
-    "absentee": false,
-    "duplicate": true,
-    "days_until_sale": null,
-    "loan_amount": "",
-    "loan_date": "",
-    "lender": "",
-    "trustee": "",
-    "appraised_value": "2848950.0",
-    "annual_taxes": "",
-    "mail_addr": "",
-    "prop_id": "485813.0",
-    "land_value": "249260.0",
-    "improvement_value": "",
-    "stacked": false,
-    "ce_violations": false,
-    "appt_converted": true,
-    "appt_stale": false,
-    "on_market": true,
-    "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-31T16:30:07Z",
-    "arv_estimate": "",
-    "arv_status": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "appr_history": [],
-    "appr_trend": "",
-    "arv_sqft": "",
-    "arv_fetched_at": "",
-    "converted_doc_number": "20260900390"
   },
   {
     "doc_number": "20260150652",
@@ -68571,7 +68611,7 @@
     "score": 2,
     "flags": [
       "DUPLICATE",
-      "LIKELY RESOLVED"
+      "CONVERTED TO NOF"
     ],
     "absentee": false,
     "duplicate": true,
@@ -68594,8 +68634,8 @@
     "tenure_score_bonus": 0,
     "appr_history": [],
     "appr_trend": "",
-    "appt_converted": false,
-    "appt_stale": true,
+    "appt_converted": true,
+    "appt_stale": false,
     "on_market": true,
     "on_market_status": "FOR_RENT",
     "on_market_checked_at": "2026-08-31T16:37:21Z",
@@ -68611,7 +68651,7 @@
     "type": "APPT",
     "source": "publicsearch",
     "county": "bexar",
-    "owner": "GJMERY INVESTMENTS LLC",
+    "owner": "Martin Alexis",
     "address": "934  W LYNWOOD AVE",
     "city": "SAN ANTONIO",
     "zip": "78223",
@@ -68663,7 +68703,7 @@
     "type": "APPT",
     "source": "publicsearch",
     "county": "bexar",
-    "owner": "Centex Magnolia Lp",
+    "owner": "Vazquez Idsel",
     "address": "RANCHO ESCONDIDO",
     "city": "SAN ANTONIO",
     "zip": "78756",
@@ -68720,7 +68760,7 @@
     "type": "APPT",
     "source": "publicsearch",
     "county": "bexar",
-    "owner": "Centex Magnolia Lp",
+    "owner": "Vazquez Idsel",
     "address": "RANCHO ESCONDIDO",
     "city": "SAN ANTONIO",
     "zip": "78756",
@@ -69313,7 +69353,7 @@
     "type": "APPT",
     "source": "publicsearch",
     "county": "bexar",
-    "owner": "HOUSES 4 TEXAS LLC",
+    "owner": "Idaho Housing And Finance Association",
     "address": "5135 MORNING GRAZE",
     "city": "SAINT HEDWIG",
     "zip": "78023",
@@ -69532,7 +69572,7 @@
     "type": "APPT",
     "source": "publicsearch",
     "county": "bexar",
-    "owner": "REALTY OUTFIT LLC",
+    "owner": "Bogran John Paul",
     "address": "330 POOL DRIVE",
     "city": "SAN ANTONIO",
     "zip": "78223",
@@ -69871,17 +69911,17 @@
     "type": "APPT",
     "source": "publicsearch",
     "county": "bexar",
-    "owner": "Lakeview Loan Servicing Llc",
-    "address": "",
+    "owner": "Guzman Abigail P",
+    "address": "22043  GOLDCREST RUN",
     "city": "SAN ANTONIO",
-    "zip": "",
+    "zip": "78260",
     "date_filed": "7/2026",
     "month": "7",
     "year": "2026",
     "sale_date": "",
     "is_new": false,
     "run_ts": "2026-08-04T14:31:44Z",
-    "score": 0,
+    "score": 2,
     "flags": [
       "DUPLICATE",
       "LIKELY RESOLVED"
@@ -69902,7 +69942,14 @@
     "stacked": false,
     "ce_violations": false,
     "appt_converted": false,
-    "appt_stale": true
+    "appt_stale": true,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-13T22:33:12Z",
+    "arv_estimate": 284600,
+    "arv_status": "SOLD",
+    "arv_sqft": 1369,
+    "arv_fetched_at": "2026-09-13T22:33:12Z"
   },
   {
     "doc_number": "20260147554",
@@ -70233,10 +70280,11 @@
     "run_ts": "2026-07-15T13:57:41Z",
     "score": 0,
     "flags": [
+      "DUPLICATE",
       "LIKELY RESOLVED"
     ],
     "absentee": false,
-    "duplicate": false,
+    "duplicate": true,
     "days_until_sale": null,
     "loan_amount": "",
     "loan_date": "",
@@ -70259,7 +70307,7 @@
     "type": "APPT",
     "source": "publicsearch",
     "county": "bexar",
-    "owner": "Wildcar Lending Fund One Lp",
+    "owner": "Dortch Timothy Micah",
     "address": "",
     "city": "SAN ANTONIO",
     "zip": "",
@@ -70271,10 +70319,11 @@
     "run_ts": "2026-07-15T13:57:41Z",
     "score": 0,
     "flags": [
+      "DUPLICATE",
       "LIKELY RESOLVED"
     ],
     "absentee": false,
-    "duplicate": false,
+    "duplicate": true,
     "days_until_sale": null,
     "loan_amount": "",
     "loan_date": "",
@@ -70297,7 +70346,7 @@
     "type": "APPT",
     "source": "publicsearch",
     "county": "bexar",
-    "owner": "Selene Finance Lp",
+    "owner": "Martin Cassie",
     "address": "",
     "city": "SAN ANTONIO",
     "zip": "",
