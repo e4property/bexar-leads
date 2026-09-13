@@ -460,7 +460,8 @@ def _goto_doc_by_click(driver, source_url, doc_number, timeout=20):
 # ── Main scraper (v1.3 — click-through detail fetch replaces broken href) ─────
 
 def scrape_appointments(known_docs, get_driver_fn, run_timestamp, days_back=30,
-                         stop_on_partial_page=True):
+                         stop_on_partial_page=True, page_timeout=30,
+                         retry_sleep=5, max_page_retries=3, post_burst_cooldown=0):
     """
     Scrape Appointment of Substitute Trustee filings from PublicSearch RP dept.
     v1.2: adds ArcGIS enrichment pass after PublicSearch scrape.
@@ -521,19 +522,28 @@ def scrape_appointments(known_docs, get_driver_fn, run_timestamp, days_back=30,
 
             try:
                 driver.get(url)
-                WebDriverWait(driver, 30).until(
+                WebDriverWait(driver, page_timeout).until(
                     EC.presence_of_element_located(
                         (By.CSS_SELECTOR, "table tr td, .no-results, [class*='no-result']")
                     )
                 )
                 time.sleep(2)
             except Exception as e:
+                # 2026-09-12: backfill_appt_owners.py hit this exact block 3x
+                # in a row on offset=50, on TWO separate live runs, always
+                # right after a long burst of ~16-23 rapid detail-page visits
+                # on the prior page -- reads as a rate-limit window, not
+                # random flakiness, and the default 5s retry_sleep never
+                # gave it room to clear. page_timeout/retry_sleep/
+                # max_page_retries default to the daily job's original
+                # values (30/5/3) so its normal, much-less-bursty usage is
+                # unaffected; the backfill passes larger values instead.
                 log.warning(f"Appointment timeout offset={offset}: {e}")
                 consecutive_empty += 1
-                if consecutive_empty >= 3:
-                    log.info("3 consecutive timeouts — stopping appointment scrape")
+                if consecutive_empty >= max_page_retries:
+                    log.info(f"{max_page_retries} consecutive timeouts — stopping appointment scrape")
                     break
-                time.sleep(5)
+                time.sleep(retry_sleep)
                 continue
 
             src = driver.page_source
@@ -821,6 +831,15 @@ def scrape_appointments(known_docs, get_driver_fn, run_timestamp, days_back=30,
             if stop_on_partial_page and 0 < len(page_records) < 50:
                 log.info(f"Appointment done — {len(new_records)} new records (partial page)")
                 break
+
+            # A page with detail-fetch activity (need_summary was non-empty)
+            # is exactly when the offset=50 timeouts above were reproduced
+            # live, twice — a real cooldown window here, before the NEXT
+            # listing page load, gives a suspected rate-limit room to clear.
+            # 0 by default (daily job unaffected); the backfill passes a
+            # real value since its usage is far burstier than daily's.
+            if need_summary and post_burst_cooldown:
+                time.sleep(post_burst_cooldown)
 
             offset += 50
             time.sleep(1.5)

@@ -121,9 +121,18 @@ def main():
     # only return fresh records for the ones we actually want reprocessed.
     known_docs = set(by_doc.keys()) - set(targets.keys())
 
+    # Two live runs both hit 3 consecutive page-load timeouts on offset=50,
+    # right after the ~16-23-record detail-fetch burst on offset=0 — reads
+    # as a rate-limit window the daily job's much lighter usage never
+    # triggers. Wider timeout, longer retry backoff, more retries, and a
+    # real cooldown after every burst before moving to the next page.
     run_timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-    new_appt = scrape_appointments(known_docs, get_driver, run_timestamp,
-                                    days_back=DAYS_BACK, stop_on_partial_page=False)
+    new_appt = scrape_appointments(
+        known_docs, get_driver, run_timestamp,
+        days_back=DAYS_BACK, stop_on_partial_page=False,
+        page_timeout=45, retry_sleep=25, max_page_retries=6,
+        post_burst_cooldown=30,
+    )
     log.info(f"scrape_appointments returned {len(new_appt)} records")
 
     fixed = 0
