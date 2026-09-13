@@ -461,7 +461,8 @@ def _goto_doc_by_click(driver, source_url, doc_number, timeout=20):
 
 def scrape_appointments(known_docs, get_driver_fn, run_timestamp, days_back=30,
                          stop_on_partial_page=True, page_timeout=30,
-                         retry_sleep=5, max_page_retries=3, post_burst_cooldown=0):
+                         retry_sleep=5, max_page_retries=3, post_burst_cooldown=0,
+                         date_start=None, date_end=None):
     """
     Scrape Appointment of Substitute Trustee filings from PublicSearch RP dept.
     v1.2: adds ArcGIS enrichment pass after PublicSearch scrape.
@@ -488,6 +489,18 @@ def scrape_appointments(known_docs, get_driver_fn, run_timestamp, days_back=30,
     before the crawl silently quit. Default True preserves the daily
     job's existing behavior unchanged; the backfill passes False so it
     only stops on a genuinely empty page or two, not a partially-new one.
+
+    date_start/date_end: explicit YYYYMMDD strings overriding days_back's
+    computed window entirely, when either is given. offset=50 on this
+    search consistently times out no matter how generous the timeout/
+    retry/cooldown settings get -- confirmed live 2026-09-12/13 across
+    three separate runs (45s timeout, 25s backoff, 6 retries included),
+    always exactly at offset=50, reading as a genuine backend limit on
+    this specific broad-window query rather than transient flakiness.
+    The backfill instead runs several narrow date windows in sequence,
+    each with few enough total results to never need to page past
+    offset=0 at all -- the same page size the daily job almost always
+    stays within, which is presumably why this was never caught before.
     """
     from selenium.webdriver.common.by import By
     from selenium.webdriver.support.ui import WebDriverWait
@@ -495,9 +508,13 @@ def scrape_appointments(known_docs, get_driver_fn, run_timestamp, days_back=30,
 
     new_records = []
     driver = None
-    today = datetime.now(timezone.utc)
-    cutoff = (today - timedelta(days=days_back)).strftime("%Y%m%d")
-    today_str = today.strftime("%Y%m%d")
+    if date_start or date_end:
+        cutoff = date_start or "18000101"
+        today_str = date_end or datetime.now(timezone.utc).strftime("%Y%m%d")
+    else:
+        today = datetime.now(timezone.utc)
+        cutoff = (today - timedelta(days=days_back)).strftime("%Y%m%d")
+        today_str = today.strftime("%Y%m%d")
 
     try:
         driver = get_driver_fn()
