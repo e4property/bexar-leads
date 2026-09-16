@@ -1792,6 +1792,15 @@ def lookup_owner(address, zipcode=""):
 
     def pick(results, require_full_prefix=None):
         for res in results or []:
+            # 2026-09-16: confirmed live -- HGO can return a personal-property
+            # account (a vehicle, PropertyTypeCodeOnly "P") at the exact same
+            # SitusAddress as the real house ("R"), e.g. 9007 Ozalid St had
+            # both a $148,240 house under Nora Martinez Machado and an
+            # unrelated $5,000 vehicle account under Chavarria Arturo. Real
+            # impact: wrong owner name + garbage value got texted to the
+            # wrong person. Only real-property accounts are ever a lead.
+            if res.get("PropertyTypeCodeOnly") != "R":
+                continue
             situs = normalize((res.get("SitusAddress") or "").replace("\r", " ").replace("\n", " "))
             if require_full_prefix:
                 if not situs.startswith(require_full_prefix):
