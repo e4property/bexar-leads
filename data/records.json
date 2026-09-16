@@ -37011,9 +37011,9 @@
   {
     "type": "NOF",
     "address": "9007 OZALID ST",
-    "owner": "CHAVARRIA ARTURO",
-    "mail_addr": "ARTURO CHAVARRIA 9007 OZALID ST SAN ANTONIO, TX 78224",
-    "absentee": true,
+    "owner": "MACHADO NORA MARTINEZ",
+    "mail_addr": "NORA MARTINEZ MACHADO 9007 OZALID ST SAN ANTONIO, TX 78224",
+    "absentee": false,
     "duplicate": false,
     "is_new": false,
     "doc_number": "20261000479",
@@ -37028,37 +37028,33 @@
     "sale_date": "11/03/2026",
     "run_ts": "2026-09-15T22:38:14Z",
     "flags": [
-      "ABSENTEE",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
+    "lender": "The CIT Group/Consumer Finance Inc (assigned/serviced by NewRez/Shellpoint; currently US Bank Trust National Association as trustee for CVI LCF Mortgage Loan Trust I)",
+    "loan_amount": "64791.00",
+    "loan_date": "12/30/2005",
     "trustee": "",
     "sale_date_arcgis": "",
     "tenure_years": null,
     "tenure_score_bonus": 0,
-    "prop_id": "1366231",
+    "prop_id": "550895",
     "deed_date": "",
     "last_sale_amt": "",
     "appr_history": [
       {
         "year": "2026",
-        "appraised": 5000
-      },
-      {
-        "year": "2025",
-        "appraised": 5000
+        "appraised": 148240
       }
     ],
-    "appr_trend": "flat",
-    "appraised_value": "5000",
+    "appr_trend": "unknown",
+    "appraised_value": 148240,
     "annual_taxes": "",
     "land_value": "",
     "stacked": false,
     "score": 9,
-    "days_until_sale": 47
+    "days_until_sale": 47,
+    "dash_notes": " [2026-09-16] Corrected: scraper had matched a personal-property/vehicle tax account under Chavarria Arturo at same street address (BCAD Prop ID 1366231, $5k) instead of the real property account (Prop ID 550895). Real owner is Nora Martinez Machado. Original 2005 loan $64,791 to CIT Group; loan modified 2022, sold into CVI LCF Mortgage Loan Trust I (distressed-debt trust) via US Bank Trust Natl Assoc as trustee."
   },
   {
     "type": "NOF",
