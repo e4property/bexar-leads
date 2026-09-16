@@ -586,11 +586,11 @@
     "days_until_sale": 19,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-16T14:58:12Z",
+    "on_market_checked_at": "2026-09-16T16:33:23Z",
     "arv_estimate": 633587,
     "arv_status": "SOLD",
     "arv_sqft": 3878,
-    "arv_fetched_at": "2026-09-16T14:58:12Z"
+    "arv_fetched_at": "2026-09-16T16:33:23Z"
   },
   {
     "type": "NOF",
@@ -646,11 +646,11 @@
     "days_until_sale": 19,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-16T14:58:13Z",
+    "on_market_checked_at": "2026-09-16T16:33:25Z",
     "arv_estimate": 169000,
     "arv_status": "SOLD",
     "arv_sqft": 1050,
-    "arv_fetched_at": "2026-09-16T14:58:13Z"
+    "arv_fetched_at": "2026-09-16T16:33:25Z"
   },
   {
     "type": "NOF",
@@ -710,7 +710,7 @@
     "ghl_id": "XXZkOIVc1ooOhgZXjFv3",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-16T14:58:15Z"
+    "on_market_checked_at": "2026-09-16T16:33:26Z"
   },
   {
     "type": "NOF",
@@ -1039,9 +1039,9 @@
     "stacked": false,
     "score": 10,
     "days_until_sale": 19,
-    "on_market": true,
-    "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-16T14:57:06Z"
+    "arv_estimate": 115530,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-09-16T16:32:47Z"
   },
   {
     "type": "NOF",
@@ -1098,13 +1098,7 @@
     "dash_searched_at": "2026-09-15T03:29:43.393Z",
     "ghl_pushed": false,
     "ghl_pushed_at": null,
-    "on_market": false,
-    "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-16T14:57:08Z",
-    "arv_estimate": 90800,
-    "arv_status": "SOLD",
-    "arv_sqft": null,
-    "arv_fetched_at": "2026-09-16T14:57:08Z"
+    "on_market_checked_at": "2026-09-16T16:32:49Z"
   },
   {
     "type": "NOF",
@@ -1164,11 +1158,11 @@
     "ghl_id": "AmT6B9UeNgzAEgbJNkdi",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-16T14:57:09Z",
+    "on_market_checked_at": "2026-09-16T16:32:50Z",
     "arv_estimate": 374200,
     "arv_status": "SOLD",
     "arv_sqft": 2230,
-    "arv_fetched_at": "2026-09-16T14:57:09Z"
+    "arv_fetched_at": "2026-09-16T16:32:50Z"
   },
   {
     "type": "NOF",
@@ -1224,11 +1218,11 @@
     "days_until_sale": 19,
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-09-16T14:57:11Z",
+    "on_market_checked_at": "2026-09-16T16:32:52Z",
     "arv_estimate": 169000,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 1344,
-    "arv_fetched_at": "2026-09-16T14:57:11Z"
+    "arv_fetched_at": "2026-09-16T16:32:52Z"
   },
   {
     "type": "NOF",
@@ -1282,13 +1276,9 @@
     "stacked": false,
     "score": 10,
     "days_until_sale": 19,
-    "on_market": true,
-    "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-16T14:57:54Z",
-    "arv_estimate": 237000,
-    "arv_status": "FOR_RENT",
-    "arv_sqft": null,
-    "arv_fetched_at": "2026-09-16T14:57:54Z"
+    "arv_estimate": 334400,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-09-16T16:33:04Z"
   },
   {
     "type": "NOF",
@@ -12769,11 +12759,11 @@
     "days_until_sale": 19,
     "on_market": true,
     "on_market_status": "FOR_SALE",
-    "on_market_checked_at": "2026-09-16T14:57:55Z",
+    "on_market_checked_at": "2026-09-16T16:33:06Z",
     "arv_estimate": 349268,
     "arv_status": "FOR_SALE",
     "arv_sqft": 2237,
-    "arv_fetched_at": "2026-09-16T14:57:55Z"
+    "arv_fetched_at": "2026-09-16T16:33:06Z"
   },
   {
     "type": "NOF",
@@ -13653,7 +13643,7 @@
     "date_filed": "9/2026",
     "date_recorded": "9/15/2026",
     "sale_date": "10/06/2026",
-    "run_ts": "2026-09-16T14:37:13Z",
+    "run_ts": "2026-09-16T16:13:43Z",
     "flags": [
       "ABSENTEE",
       "NEW",
@@ -13707,7 +13697,7 @@
     "date_filed": "9/2026",
     "date_recorded": "9/15/2026",
     "sale_date": "10/06/2026",
-    "run_ts": "2026-09-16T14:37:13Z",
+    "run_ts": "2026-09-16T16:13:43Z",
     "flags": [
       "ABSENTEE",
       "DUPLICATE",
@@ -13762,7 +13752,7 @@
     "date_filed": "9/2026",
     "date_recorded": "9/15/2026",
     "sale_date": "10/06/2026",
-    "run_ts": "2026-09-16T14:37:13Z",
+    "run_ts": "2026-09-16T16:13:43Z",
     "flags": [
       "ABSENTEE",
       "DUPLICATE",
@@ -14926,11 +14916,11 @@
     "days_until_sale": 19,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-16T14:57:57Z",
+    "on_market_checked_at": "2026-09-16T16:33:07Z",
     "arv_estimate": 133000,
     "arv_status": "SOLD",
     "arv_sqft": 1764,
-    "arv_fetched_at": "2026-09-16T14:57:57Z"
+    "arv_fetched_at": "2026-09-16T16:33:07Z"
   },
   {
     "type": "NOF",
@@ -14986,11 +14976,11 @@
     "days_until_sale": 19,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-16T14:57:58Z",
+    "on_market_checked_at": "2026-09-16T16:33:09Z",
     "arv_estimate": 99000,
     "arv_status": "SOLD",
     "arv_sqft": 1200,
-    "arv_fetched_at": "2026-09-16T14:57:58Z"
+    "arv_fetched_at": "2026-09-16T16:33:09Z"
   },
   {
     "type": "NOF",
@@ -15046,11 +15036,11 @@
     "days_until_sale": 19,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-16T14:58:00Z",
+    "on_market_checked_at": "2026-09-16T16:33:10Z",
     "arv_estimate": 134467,
     "arv_status": "SOLD",
     "arv_sqft": 884,
-    "arv_fetched_at": "2026-09-16T14:58:00Z"
+    "arv_fetched_at": "2026-09-16T16:33:10Z"
   },
   {
     "type": "NOF",
@@ -15106,11 +15096,11 @@
     "days_until_sale": 19,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-16T14:58:01Z",
+    "on_market_checked_at": "2026-09-16T16:33:12Z",
     "arv_estimate": 965000,
     "arv_status": "SOLD",
     "arv_sqft": null,
-    "arv_fetched_at": "2026-09-16T14:58:01Z"
+    "arv_fetched_at": "2026-09-16T16:33:12Z"
   },
   {
     "type": "NOF",
@@ -15166,11 +15156,11 @@
     "days_until_sale": 19,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-16T14:58:03Z",
+    "on_market_checked_at": "2026-09-16T16:33:13Z",
     "arv_estimate": 159447,
     "arv_status": "SOLD",
     "arv_sqft": 972,
-    "arv_fetched_at": "2026-09-16T14:58:03Z"
+    "arv_fetched_at": "2026-09-16T16:33:13Z"
   },
   {
     "type": "NOF",
@@ -15226,11 +15216,11 @@
     "days_until_sale": 19,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-16T14:58:04Z",
+    "on_market_checked_at": "2026-09-16T16:33:15Z",
     "arv_estimate": 188000,
     "arv_status": "SOLD",
     "arv_sqft": 1602,
-    "arv_fetched_at": "2026-09-16T14:58:04Z"
+    "arv_fetched_at": "2026-09-16T16:33:15Z"
   },
   {
     "type": "NOF",
@@ -15286,11 +15276,11 @@
     "days_until_sale": 19,
     "on_market": true,
     "on_market_status": "FOR_SALE",
-    "on_market_checked_at": "2026-09-16T14:58:05Z",
+    "on_market_checked_at": "2026-09-16T16:33:16Z",
     "arv_estimate": 299200,
     "arv_status": "FOR_SALE",
     "arv_sqft": 1562,
-    "arv_fetched_at": "2026-09-16T14:58:05Z"
+    "arv_fetched_at": "2026-09-16T16:33:16Z"
   },
   {
     "type": "NOF",
@@ -17154,7 +17144,7 @@
     "land_value": "",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-16T14:58:29Z",
+    "on_market_checked_at": "2026-09-08T22:41:49Z",
     "arv_estimate": 480400,
     "arv_status": "FOR_RENT",
     "arv_sqft": null,
@@ -17273,7 +17263,7 @@
     "arv_fetched_at": "2026-09-08T18:37:43Z",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-16T14:58:46Z",
+    "on_market_checked_at": "2026-09-08T18:38:18Z",
     "stacked": false,
     "score": 9,
     "days_until_sale": 19
@@ -17351,7 +17341,7 @@
     "date_filed": "9/2026",
     "date_recorded": "9/15/2026",
     "sale_date": "10/06/2026",
-    "run_ts": "2026-09-16T14:37:13Z",
+    "run_ts": "2026-09-16T16:13:43Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -17808,11 +17798,11 @@
     "days_until_sale": 19,
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-09-16T14:58:08Z",
+    "on_market_checked_at": "2026-09-16T16:33:18Z",
     "arv_estimate": 402682,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 1917,
-    "arv_fetched_at": "2026-09-16T14:58:08Z"
+    "arv_fetched_at": "2026-09-16T16:33:18Z"
   },
   {
     "type": "NOF",
@@ -17867,11 +17857,11 @@
     "days_until_sale": 19,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-16T14:58:09Z",
+    "on_market_checked_at": "2026-09-16T16:33:20Z",
     "arv_estimate": 319900,
     "arv_status": "SOLD",
     "arv_sqft": 2399,
-    "arv_fetched_at": "2026-09-16T14:58:09Z"
+    "arv_fetched_at": "2026-09-16T16:33:20Z"
   },
   {
     "type": "NOF",
@@ -18835,7 +18825,7 @@
     "land_value": "",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-16T14:58:48Z",
+    "on_market_checked_at": "2026-09-16T16:34:08Z",
     "arv_estimate": 164477,
     "arv_status": "SOLD",
     "arv_sqft": 1054,
@@ -27792,7 +27782,7 @@
     "days_until_sale": 19,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-16T14:58:49Z",
+    "on_market_checked_at": "2026-09-16T16:34:10Z",
     "arv_estimate": 411500,
     "arv_status": "SOLD",
     "arv_sqft": 3216
@@ -27853,7 +27843,7 @@
     "days_until_sale": 19,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-16T14:58:51Z",
+    "on_market_checked_at": "2026-09-16T16:34:11Z",
     "arv_estimate": 467600,
     "arv_status": "SOLD",
     "arv_sqft": 2300
@@ -27919,7 +27909,7 @@
     "ghl_id": "LFlRNTVTYb5IQvFFnhIa",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-16T14:58:52Z",
+    "on_market_checked_at": "2026-09-16T16:34:13Z",
     "arv_estimate": 229400,
     "arv_status": "SOLD",
     "arv_sqft": 1547
@@ -27976,7 +27966,7 @@
     "days_until_sale": 19,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-16T14:58:54Z",
+    "on_market_checked_at": "2026-09-16T16:34:15Z",
     "arv_estimate": 201294,
     "arv_status": "SOLD",
     "arv_sqft": 1012
@@ -28042,7 +28032,7 @@
     "ghl_id": "c171kCC2Ior6nmAD7hD9",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-16T14:58:56Z",
+    "on_market_checked_at": "2026-09-16T16:34:16Z",
     "arv_estimate": 226394,
     "arv_status": "SOLD",
     "arv_sqft": 1950
@@ -28108,7 +28098,7 @@
     "dash_searched_at": "2026-08-20T22:31:12.138Z",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-16T14:59:20Z",
+    "on_market_checked_at": "2026-09-16T16:34:20Z",
     "arv_estimate": 146000,
     "arv_status": "FOR_RENT"
   },
@@ -28168,7 +28158,7 @@
     "days_until_sale": 19,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-16T14:59:21Z",
+    "on_market_checked_at": "2026-09-16T16:34:21Z",
     "arv_estimate": 414000,
     "arv_status": "SOLD",
     "arv_sqft": 2472
@@ -28234,7 +28224,7 @@
     "ghl_id": "QuCn2olNl4yYqIxkGQWf",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-16T14:59:23Z",
+    "on_market_checked_at": "2026-09-16T16:34:24Z",
     "arv_estimate": 249854,
     "arv_status": "SOLD",
     "arv_sqft": 1660
@@ -28295,7 +28285,7 @@
     "days_until_sale": 19,
     "on_market": true,
     "on_market_status": "FOR_SALE",
-    "on_market_checked_at": "2026-09-16T14:59:25Z",
+    "on_market_checked_at": "2026-09-16T16:34:26Z",
     "arv_estimate": 266800,
     "arv_status": "FOR_SALE",
     "arv_sqft": 1312
@@ -28361,7 +28351,7 @@
     "ghl_id": "aUuKsaTVvlKqB3DcGH6z",
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-09-16T14:59:26Z",
+    "on_market_checked_at": "2026-09-16T16:34:28Z",
     "arv_estimate": 311100,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 2435
@@ -28423,7 +28413,7 @@
     "days_until_sale": 19,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-16T14:59:28Z",
+    "on_market_checked_at": "2026-09-01T00:03:42Z",
     "arv_estimate": 146326,
     "arv_status": "SOLD",
     "arv_sqft": 758
@@ -28489,7 +28479,7 @@
     "ghl_id": "ayBXxx9p6Tz4WsPu9iRh",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-16T14:59:29Z",
+    "on_market_checked_at": "2026-09-01T00:03:45Z",
     "arv_estimate": 288249,
     "arv_status": "SOLD",
     "arv_sqft": 1666
@@ -30745,11 +30735,11 @@
     "days_until_sale": 19,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-16T14:58:11Z",
+    "on_market_checked_at": "2026-09-16T16:33:21Z",
     "arv_estimate": 156500,
     "arv_status": "SOLD",
     "arv_sqft": 1680,
-    "arv_fetched_at": "2026-09-16T14:58:11Z"
+    "arv_fetched_at": "2026-09-16T16:33:21Z"
   },
   {
     "type": "NOF",
@@ -31097,7 +31087,7 @@
     "date_filed": "9/2026",
     "date_recorded": "9/15/2026",
     "sale_date": "11/03/2026",
-    "run_ts": "2026-09-16T14:37:13Z",
+    "run_ts": "2026-09-16T16:13:43Z",
     "flags": [
       "NEW",
       "HAS SALE DATE",
@@ -31150,7 +31140,7 @@
     "date_filed": "9/2026",
     "date_recorded": "9/15/2026",
     "sale_date": "11/03/2026",
-    "run_ts": "2026-09-16T14:37:13Z",
+    "run_ts": "2026-09-16T16:13:43Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
@@ -31202,7 +31192,7 @@
     "date_filed": "9/2026",
     "date_recorded": "9/15/2026",
     "sale_date": "11/03/2026",
-    "run_ts": "2026-09-16T14:37:13Z",
+    "run_ts": "2026-09-16T16:13:43Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
@@ -31254,7 +31244,7 @@
     "date_filed": "9/2026",
     "date_recorded": "9/15/2026",
     "sale_date": "11/03/2026",
-    "run_ts": "2026-09-16T14:37:13Z",
+    "run_ts": "2026-09-16T16:13:43Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
@@ -31306,7 +31296,7 @@
     "date_filed": "9/2026",
     "date_recorded": "9/15/2026",
     "sale_date": "11/03/2026",
-    "run_ts": "2026-09-16T14:37:13Z",
+    "run_ts": "2026-09-16T16:13:43Z",
     "flags": [
       "ABSENTEE",
       "NEW",
@@ -31496,6 +31486,58 @@
     "stacked": false,
     "score": 10,
     "days_until_sale": 47
+  },
+  {
+    "type": "NOF",
+    "address": "9007 OZALID ST",
+    "owner": "MACHADO NORA MARTINEZ",
+    "mail_addr": "9007 OZALID ST SAN ANTONIO, TX 78224-2133",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20261000479",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "9",
+    "city": "SAN ANTONIO",
+    "zip": "78224",
+    "school_dist": "",
+    "date_filed": "9/2026",
+    "date_recorded": "9/15/2026",
+    "sale_date": "11/03/2026",
+    "run_ts": "2026-09-15T22:38:14Z",
+    "flags": [
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "The CIT Group/Consumer Finance Inc (assigned/serviced by NewRez/Shellpoint; currently US Bank Trust National Association as trustee for CVI LCF Mortgage Loan Trust I)",
+    "loan_amount": "64791.00",
+    "loan_date": "12/30/2005",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 6,
+    "tenure_score_bonus": 5,
+    "prop_id": "550895",
+    "deed_date": "8/25/2020",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 148240
+      },
+      {
+        "year": "2025",
+        "appraised": 179590
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "148240",
+    "annual_taxes": "",
+    "land_value": "",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 47,
+    "dash_notes": " [2026-09-16] Corrected: scraper had matched a personal-property/vehicle tax account under Chavarria Arturo at same street address (BCAD Prop ID 1366231, $5k) instead of the real property account (Prop ID 550895). Real owner is Nora Martinez Machado. Original 2005 loan $64,791 to CIT Group; loan modified 2022, sold into CVI LCF Mortgage Loan Trust I (distressed-debt trust) via US Bank Trust Natl Assoc as trustee."
   },
   {
     "type": "NOF",
@@ -33854,7 +33896,12 @@
     "land_value": "",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 75
+    "days_until_sale": 75,
+    "dash_phone": "2103242610",
+    "dash_searched_at": "2026-09-16T14:58:05.437Z",
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-09-16T14:58:05.438Z",
+    "ghl_id": "ullCCkP17AqSfMzLe7Zf"
   },
   {
     "type": "NOF",
@@ -37007,54 +37054,6 @@
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-09-16T14:12:28.438Z",
     "ghl_id": "Bvlt8XePRF7WIMrMpPq7"
-  },
-  {
-    "type": "NOF",
-    "address": "9007 OZALID ST",
-    "owner": "MACHADO NORA MARTINEZ",
-    "mail_addr": "NORA MARTINEZ MACHADO 9007 OZALID ST SAN ANTONIO, TX 78224",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20261000479",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "9",
-    "city": "SAN ANTONIO",
-    "zip": "78224",
-    "school_dist": "",
-    "date_filed": "9/2026",
-    "date_recorded": "9/15/2026",
-    "sale_date": "11/03/2026",
-    "run_ts": "2026-09-15T22:38:14Z",
-    "flags": [
-      "HAS SALE DATE"
-    ],
-    "source": "publicsearch",
-    "lender": "The CIT Group/Consumer Finance Inc (assigned/serviced by NewRez/Shellpoint; currently US Bank Trust National Association as trustee for CVI LCF Mortgage Loan Trust I)",
-    "loan_amount": "64791.00",
-    "loan_date": "12/30/2005",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "550895",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [
-      {
-        "year": "2026",
-        "appraised": 148240
-      }
-    ],
-    "appr_trend": "unknown",
-    "appraised_value": 148240,
-    "annual_taxes": "",
-    "land_value": "",
-    "stacked": false,
-    "score": 9,
-    "days_until_sale": 47,
-    "dash_notes": " [2026-09-16] Corrected: scraper had matched a personal-property/vehicle tax account under Chavarria Arturo at same street address (BCAD Prop ID 1366231, $5k) instead of the real property account (Prop ID 550895). Real owner is Nora Martinez Machado. Original 2005 loan $64,791 to CIT Group; loan modified 2022, sold into CVI LCF Mortgage Loan Trust I (distressed-debt trust) via US Bank Trust Natl Assoc as trustee."
   },
   {
     "type": "NOF",
@@ -50201,11 +50200,11 @@
     "land_value": "53360.0",
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-09-16T14:55:49Z",
+    "on_market_checked_at": "2026-09-16T16:32:02Z",
     "arv_estimate": 79000,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 611,
-    "arv_fetched_at": "2026-09-16T14:55:49Z"
+    "arv_fetched_at": "2026-09-16T16:32:02Z"
   },
   {
     "doc_number": "VBP-1411-MORALES-78207",
@@ -50257,7 +50256,7 @@
     "ce_case_id": "",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-16T14:56:03Z"
+    "on_market_checked_at": "2026-09-16T16:32:12Z"
   },
   {
     "doc_number": "VBP-1611-ELVIRA-ST-78207",
@@ -50309,11 +50308,11 @@
     "ce_case_id": "",
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-09-16T14:56:04Z",
+    "on_market_checked_at": "2026-09-16T16:32:13Z",
     "arv_estimate": 81800,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 816,
-    "arv_fetched_at": "2026-09-16T14:56:04Z"
+    "arv_fetched_at": "2026-09-16T16:32:13Z"
   },
   {
     "doc_number": "VBP-1654-SW-19TH-ST-78207",
@@ -50361,11 +50360,11 @@
     "land_value": "33070.0",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-16T14:56:06Z",
+    "on_market_checked_at": "2026-09-16T16:32:15Z",
     "arv_estimate": 97700,
     "arv_status": "SOLD",
     "arv_sqft": 984,
-    "arv_fetched_at": "2026-09-16T14:56:06Z"
+    "arv_fetched_at": "2026-09-16T16:32:15Z"
   },
   {
     "doc_number": "VBP-1716-MONTEREY-ST-78207",
@@ -50412,9 +50411,9 @@
     "days_until_sale": null,
     "stacked": true,
     "land_value": "96700.0",
-    "on_market": true,
-    "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-16T14:56:20Z"
+    "arv_estimate": 188260,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-09-16T16:32:16Z"
   },
   {
     "doc_number": "VBP-1808-GUADALUPE-ST-78207",
@@ -50466,11 +50465,11 @@
     "ce_case_id": "",
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-09-16T14:56:21Z",
+    "on_market_checked_at": "2026-09-16T16:32:18Z",
     "arv_estimate": 82082,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 528,
-    "arv_fetched_at": "2026-09-16T14:56:21Z"
+    "arv_fetched_at": "2026-09-16T16:32:18Z"
   },
   {
     "doc_number": "VBP-1822-MONTEREY-ST-78207",
@@ -50518,11 +50517,11 @@
     "land_value": "95550.0",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-16T14:56:24Z",
+    "on_market_checked_at": "2026-09-16T16:32:19Z",
     "arv_estimate": 272000,
     "arv_status": "SOLD",
     "arv_sqft": 1818,
-    "arv_fetched_at": "2026-09-16T14:56:24Z"
+    "arv_fetched_at": "2026-09-16T16:32:19Z"
   },
   {
     "doc_number": "VBP-1912-SAN-CARLOS-ST-78207",
@@ -50570,11 +50569,11 @@
     "land_value": "78740.0",
     "on_market": true,
     "on_market_status": "FOR_SALE",
-    "on_market_checked_at": "2026-09-16T14:56:25Z",
+    "on_market_checked_at": "2026-09-16T16:32:22Z",
     "arv_estimate": 431400,
     "arv_status": "FOR_SALE",
     "arv_sqft": 1515,
-    "arv_fetched_at": "2026-09-16T14:56:25Z"
+    "arv_fetched_at": "2026-09-16T16:32:22Z"
   },
   {
     "doc_number": "VBP-1913-MONTEZUMA-ST-78207",
@@ -50630,11 +50629,11 @@
     "land_value": "41760.0",
     "on_market": true,
     "on_market_status": "FOR_SALE",
-    "on_market_checked_at": "2026-09-16T14:56:27Z",
+    "on_market_checked_at": "2026-09-16T16:32:23Z",
     "arv_estimate": 100000,
     "arv_status": "FOR_SALE",
     "arv_sqft": 636,
-    "arv_fetched_at": "2026-09-16T14:56:27Z"
+    "arv_fetched_at": "2026-09-16T16:32:23Z"
   },
   {
     "doc_number": "VBP-2126-KECK-78207",
@@ -50690,7 +50689,7 @@
     "land_value": "113420.0",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-16T14:56:39Z"
+    "on_market_checked_at": "2026-09-16T16:32:32Z"
   },
   {
     "doc_number": "VBP-220-ANGELA-ST-78207",
@@ -60980,7 +60979,7 @@
     "date_filed": "9/2026",
     "date_recorded": "9/15/2026",
     "sale_date": "11/03/2026",
-    "run_ts": "2026-09-16T14:37:13Z",
+    "run_ts": "2026-09-16T16:13:43Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
@@ -61032,7 +61031,7 @@
     "date_filed": "9/2026",
     "date_recorded": "9/15/2026",
     "sale_date": "11/03/2026",
-    "run_ts": "2026-09-16T14:37:13Z",
+    "run_ts": "2026-09-16T16:13:43Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
@@ -61084,7 +61083,7 @@
     "date_filed": "9/2026",
     "date_recorded": "9/15/2026",
     "sale_date": "11/03/2026",
-    "run_ts": "2026-09-16T14:37:13Z",
+    "run_ts": "2026-09-16T16:13:43Z",
     "flags": [
       "DUPLICATE",
       "NEW",
@@ -66014,7 +66013,7 @@
     "date_filed": "9/2026",
     "date_recorded": "9/15/2026",
     "sale_date": "12/01/2026",
-    "run_ts": "2026-09-16T14:37:13Z",
+    "run_ts": "2026-09-16T16:13:43Z",
     "flags": [
       "NEW",
       "HAS SALE DATE"
@@ -71813,7 +71812,7 @@
     "date_filed": "9/2026",
     "date_recorded": "9/15/2026",
     "sale_date": "11/03/2026",
-    "run_ts": "2026-09-16T14:37:13Z",
+    "run_ts": "2026-09-16T16:13:43Z",
     "flags": [
       "NEW",
       "NO OWNER",
@@ -71854,7 +71853,7 @@
     "date_filed": "9/2026",
     "date_recorded": "9/15/2026",
     "sale_date": "11/03/2026",
-    "run_ts": "2026-09-16T14:37:13Z",
+    "run_ts": "2026-09-16T16:13:43Z",
     "flags": [
       "NEW",
       "NO OWNER",
