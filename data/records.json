@@ -3495,7 +3495,7 @@
     "arv_fetched_at": "2026-09-03T19:11:44Z",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-10T22:07:31Z",
+    "on_market_checked_at": "2026-09-17T22:55:18Z",
     "stacked": false,
     "score": 10,
     "days_until_sale": 18
@@ -3557,7 +3557,7 @@
     "arv_fetched_at": "2026-09-03T19:11:52Z",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-10T22:07:33Z",
+    "on_market_checked_at": "2026-09-17T22:55:19Z",
     "stacked": false,
     "score": 10,
     "days_until_sale": 18
@@ -5720,7 +5720,7 @@
     "land_value": "44960.0",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-10T22:07:35Z",
+    "on_market_checked_at": "2026-09-17T22:55:21Z",
     "arv_estimate": 230300,
     "arv_status": "SOLD",
     "arv_sqft": 2278,
@@ -12791,7 +12791,7 @@
     "dash_phone": "+12103264063",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-10T22:07:36Z",
+    "on_market_checked_at": "2026-09-17T22:55:23Z",
     "arv_estimate": 238679,
     "arv_status": "SOLD",
     "arv_sqft": 1840
@@ -14895,7 +14895,14 @@
     "land_value": "",
     "stacked": false,
     "score": 9,
-    "days_until_sale": 18
+    "days_until_sale": 18,
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-09-17T22:54:40Z",
+    "arv_estimate": 198000,
+    "arv_status": "OFF_MARKET",
+    "arv_sqft": 1120,
+    "arv_fetched_at": "2026-09-17T22:54:40Z"
   },
   {
     "type": "NOF",
@@ -17813,7 +17820,7 @@
     "dash_phone": "+16163375487",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-10T22:08:18Z",
+    "on_market_checked_at": "2026-09-17T22:56:00Z",
     "arv_estimate": 237000,
     "arv_status": "FOR_RENT"
   },
@@ -17878,7 +17885,7 @@
     "dash_phone": "+12104213421",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-10T22:08:20Z",
+    "on_market_checked_at": "2026-09-17T22:56:02Z",
     "arv_estimate": 373600,
     "arv_status": "SOLD",
     "arv_sqft": 2184
@@ -17945,7 +17952,7 @@
     "dash_searched_at": "2026-04-30T19:14:49.506Z",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-10T22:08:21Z",
+    "on_market_checked_at": "2026-09-17T22:56:03Z",
     "arv_estimate": 237300,
     "arv_status": "SOLD"
   },
@@ -18894,7 +18901,7 @@
     "land_value": "39630.0",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-10T22:08:50Z",
+    "on_market_checked_at": "2026-09-17T22:56:05Z",
     "arv_estimate": 265953,
     "arv_status": "SOLD",
     "arv_sqft": 1600,
@@ -18960,7 +18967,7 @@
     "days_until_sale": 18,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-10T22:45:26Z",
+    "on_market_checked_at": "2026-09-17T22:56:07Z",
     "arv_estimate": 285000,
     "arv_status": "SOLD",
     "arv_sqft": 7932
@@ -19256,7 +19263,7 @@
     "appr_trend": "up",
     "on_market": true,
     "on_market_status": "FOR_SALE",
-    "on_market_checked_at": "2026-08-28T15:15:15Z",
+    "on_market_checked_at": "2026-09-17T22:56:08Z",
     "arv_estimate": 1173000,
     "arv_status": "FOR_SALE",
     "arv_sqft": 3064,
@@ -19318,7 +19325,14 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 18
+    "days_until_sale": 18,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-17T22:54:41Z",
+    "arv_estimate": 268000,
+    "arv_status": "SOLD",
+    "arv_sqft": 1367,
+    "arv_fetched_at": "2026-09-17T22:54:41Z"
   },
   {
     "type": "NOF",
@@ -19370,7 +19384,14 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 18
+    "days_until_sale": 18,
+    "on_market": true,
+    "on_market_status": "FOR_SALE",
+    "on_market_checked_at": "2026-09-17T22:54:43Z",
+    "arv_estimate": 192787,
+    "arv_status": "FOR_SALE",
+    "arv_sqft": 890,
+    "arv_fetched_at": "2026-09-17T22:54:43Z"
   },
   {
     "type": "NOF",
@@ -20759,7 +20780,7 @@
     "days_until_sale": 18,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-10T22:08:41Z"
+    "on_market_checked_at": "2026-09-17T22:56:28Z"
   },
   {
     "type": "NOF",
@@ -20818,7 +20839,7 @@
     "days_until_sale": 18,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-10T22:08:43Z"
+    "on_market_checked_at": "2026-09-17T22:56:29Z"
   },
   {
     "type": "NOF",
@@ -21412,7 +21433,7 @@
     "arv_fetched_at": "2026-09-03T19:11:56Z",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-10T22:08:45Z",
+    "on_market_checked_at": "2026-09-17T22:56:31Z",
     "stacked": false,
     "score": 7,
     "days_until_sale": 18,
@@ -21479,7 +21500,7 @@
     "arv_fetched_at": "2026-09-03T19:12:05Z",
     "on_market": true,
     "on_market_status": "PENDING",
-    "on_market_checked_at": "2026-09-10T22:08:46Z",
+    "on_market_checked_at": "2026-09-17T22:56:33Z",
     "stacked": false,
     "score": 7,
     "days_until_sale": 18
@@ -21535,7 +21556,7 @@
     "land_value": "",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-10T22:08:48Z",
+    "on_market_checked_at": "2026-09-17T22:56:34Z",
     "arv_estimate": 246600,
     "arv_status": "SOLD",
     "arv_sqft": 1920,
@@ -31977,7 +31998,14 @@
     "land_value": "",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 46
+    "days_until_sale": 46,
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-09-17T22:55:01Z",
+    "arv_estimate": 133400,
+    "arv_status": "OFF_MARKET",
+    "arv_sqft": 1092,
+    "arv_fetched_at": "2026-09-17T22:55:01Z"
   },
   {
     "type": "NOF",
@@ -32029,7 +32057,14 @@
     "land_value": "",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 46
+    "days_until_sale": 46,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-17T22:54:45Z",
+    "arv_estimate": 265676,
+    "arv_status": "SOLD",
+    "arv_sqft": 2678,
+    "arv_fetched_at": "2026-09-17T22:54:45Z"
   },
   {
     "type": "NOF",
@@ -32080,7 +32115,14 @@
     "land_value": "",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 46
+    "days_until_sale": 46,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-17T22:54:46Z",
+    "arv_estimate": 301105,
+    "arv_status": "SOLD",
+    "arv_sqft": 2704,
+    "arv_fetched_at": "2026-09-17T22:54:46Z"
   },
   {
     "type": "NOF",
@@ -32131,7 +32173,14 @@
     "land_value": "",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 46
+    "days_until_sale": 46,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-17T22:54:48Z",
+    "arv_estimate": 250200,
+    "arv_status": "SOLD",
+    "arv_sqft": 1602,
+    "arv_fetched_at": "2026-09-17T22:54:48Z"
   },
   {
     "type": "NOF",
@@ -32182,7 +32231,14 @@
     "land_value": "",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 46
+    "days_until_sale": 46,
+    "on_market": true,
+    "on_market_status": "PENDING",
+    "on_market_checked_at": "2026-09-17T22:54:49Z",
+    "arv_estimate": 192800,
+    "arv_status": "PENDING",
+    "arv_sqft": 1730,
+    "arv_fetched_at": "2026-09-17T22:54:49Z"
   },
   {
     "type": "NOF",
@@ -32235,7 +32291,14 @@
     "land_value": "",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 46
+    "days_until_sale": 46,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-17T22:54:50Z",
+    "arv_estimate": 224800,
+    "arv_status": "SOLD",
+    "arv_sqft": 2278,
+    "arv_fetched_at": "2026-09-17T22:54:50Z"
   },
   {
     "type": "NOF",
@@ -38115,6 +38178,519 @@
     "appr_trend": "up"
   },
   {
+    "doc_number": "VBP-101-E-AGARITA-AVE-78212",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "101 E AGARITA AVE",
+    "city": "SAN ANTONIO",
+    "zip": "78212",
+    "date_filed": "2026-09",
+    "sale_date": "",
+    "owner": "TRIANON LLC",
+    "mail_addr": "801 E FERN AVE STE 153 MCALLEN, TX 78501",
+    "absentee": true,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-09-10T03:28:21",
+    "flags": [
+      "STACKED",
+      "ABSENTEE"
+    ],
+    "score": 10,
+    "sq_ft": 2060,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "08/10/2026",
+        "address": "101 E AGARITA AVE, SAN ANTONIO, TX 78212"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "08/10/2026",
+    "ce_case_id": "",
+    "appraised_value": "385000",
+    "land_value": "",
+    "prop_id": "119408",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-10T04:28:08Z",
+    "arv_estimate": 475470,
+    "arv_status": "SOLD",
+    "arv_sqft": 2060,
+    "arv_fetched_at": "2026-09-10T04:28:08Z",
+    "days_until_sale": null,
+    "deed_date": "11/6/2019",
+    "last_sale_amt": "",
+    "tenure_years": 6,
+    "tenure_score_bonus": 5,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 385000
+      },
+      {
+        "year": "2025",
+        "appraised": 400000
+      }
+    ],
+    "appr_trend": "down"
+  },
+  {
+    "doc_number": "VBP-1819-BLANCO-RD-78212",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "1819 BLANCO RD",
+    "city": "SAN ANTONIO",
+    "zip": "78212",
+    "date_filed": "2026-09",
+    "sale_date": "",
+    "owner": "JOSEPH G GONZALES",
+    "mail_addr": "220 AVONDALE AVE SAN ANTONIO, TX 78223-2544",
+    "absentee": true,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-09-10T03:28:21",
+    "flags": [
+      "STACKED",
+      "ABSENTEE",
+      "LONG HELD"
+    ],
+    "score": 10,
+    "sq_ft": 3000,
+    "is_sf": false,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Property Structure Concerns(Structure Exterior)",
+        "status": "OPEN",
+        "opened": "08/06/2026",
+        "address": "1819 BLANCO RD, SAN ANTONIO, TX 78201"
+      }
+    ],
+    "ce_viol_types": [
+      "Property Structure Concerns(Structure Exterior)"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Property Structure Concerns(Structure Exterior)",
+    "ce_status": "OPEN",
+    "opened_date": "08/06/2026",
+    "ce_case_id": "",
+    "appraised_value": "166000",
+    "land_value": "",
+    "prop_id": "140766",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "on_market": true,
+    "on_market_status": "FOR_RENT",
+    "on_market_checked_at": "2026-09-10T04:28:24Z",
+    "days_until_sale": null,
+    "deed_date": "7/19/2007",
+    "last_sale_amt": "",
+    "tenure_years": 19,
+    "tenure_score_bonus": 25,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 166000
+      },
+      {
+        "year": "2025",
+        "appraised": 166000
+      }
+    ],
+    "appr_trend": "flat"
+  },
+  {
+    "doc_number": "VBP-1827-N-ST-MARYS-ST-78212",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "1827 N ST MARYS ST",
+    "city": "SAN ANTONIO",
+    "zip": "78212",
+    "date_filed": "2026-09",
+    "sale_date": "",
+    "owner": "BRMK MANAGEMENT CORP",
+    "mail_addr": "1251 6TH AVE 50TH FL NEW YORK, NY 10020",
+    "absentee": true,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-09-10T03:28:21",
+    "flags": [
+      "STACKED",
+      "ABSENTEE"
+    ],
+    "score": 10,
+    "sq_ft": 1678,
+    "is_sf": false,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Dangerous Premise BSB Processed",
+        "status": "OPEN",
+        "opened": "08/19/2026",
+        "address": "1827 N OLIVE ST, SAN ANTONIO, TX 78208"
+      }
+    ],
+    "ce_viol_types": [
+      "Dangerous Premise BSB Processed"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Dangerous Premise BSB Processed",
+    "ce_status": "OPEN",
+    "opened_date": "08/19/2026",
+    "ce_case_id": "",
+    "appraised_value": "440400",
+    "land_value": "",
+    "prop_id": "1353666",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "on_market": true,
+    "on_market_status": "FOR_RENT",
+    "on_market_checked_at": "2026-09-10T04:28:39Z",
+    "days_until_sale": null,
+    "deed_date": "7/14/2023",
+    "last_sale_amt": "",
+    "tenure_years": 3,
+    "tenure_score_bonus": 0,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 440400
+      },
+      {
+        "year": "2025",
+        "appraised": 422360
+      }
+    ],
+    "appr_trend": "up"
+  },
+  {
+    "doc_number": "VBP-414-W-LAUREL-78212",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "414 W LAUREL",
+    "city": "SAN ANTONIO",
+    "zip": "78212",
+    "date_filed": "2026-09",
+    "sale_date": "",
+    "owner": "ALANIS ARTEMIO A JR & NANCY",
+    "mail_addr": "PO BOX 15524 SAN ANTONIO, TX 78212",
+    "absentee": true,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-09-10T03:28:21",
+    "flags": [
+      "STACKED",
+      "ABSENTEE",
+      "LONG HELD"
+    ],
+    "score": 10,
+    "sq_ft": 4714,
+    "is_sf": false,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "07/29/2026",
+        "address": "1414 W HARLAN AVE, SAN ANTONIO, TX 78211"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "07/29/2026",
+    "ce_case_id": "",
+    "appraised_value": "277180",
+    "land_value": "",
+    "prop_id": "103415",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-10T04:28:41Z",
+    "arv_estimate": 141600,
+    "arv_status": "SOLD",
+    "arv_sqft": 1416,
+    "arv_fetched_at": "2026-09-10T04:28:41Z",
+    "days_until_sale": null,
+    "deed_date": "2/20/1986",
+    "last_sale_amt": "",
+    "tenure_years": 40,
+    "tenure_score_bonus": 25,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 277180
+      },
+      {
+        "year": "2025",
+        "appraised": 277210
+      }
+    ],
+    "appr_trend": "flat"
+  },
+  {
+    "doc_number": "VBP-946-W-ASHBY-PL-78212",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "946 W ASHBY PL",
+    "city": "SAN ANTONIO",
+    "zip": "78212",
+    "date_filed": "2026-09",
+    "sale_date": "",
+    "owner": "DELAROSA JOSE F & BLANCA R",
+    "mail_addr": "942 W ASHBY PL SAN ANTONIO, TX 78212-3811",
+    "absentee": true,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-09-10T03:28:21",
+    "flags": [
+      "STACKED",
+      "ABSENTEE"
+    ],
+    "score": 10,
+    "sq_ft": 480,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Property Structure Concerns(Structure Exterior)",
+        "status": "OPEN",
+        "opened": "08/02/2026",
+        "address": "946 W ASHBY PLACE, SAN ANTONIO, TX 78212"
+      },
+      {
+        "case_id": "",
+        "typename": "Dangerous Premise BSB Processed",
+        "status": "OPEN",
+        "opened": "08/10/2026",
+        "address": "946 W ASHBY PLACE, SAN ANTONIO, TX 78212"
+      }
+    ],
+    "ce_viol_types": [
+      "Property Structure Concerns(Structure Exterior)",
+      "Dangerous Premise BSB Processed"
+    ],
+    "ce_count": 2,
+    "ce_cat_label": "Property Structure Concerns(Structure Exterior)",
+    "ce_status": "OPEN",
+    "opened_date": "08/02/2026",
+    "ce_case_id": "",
+    "appraised_value": "116860",
+    "land_value": "",
+    "prop_id": "380008",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-10T04:28:42Z",
+    "arv_estimate": 128497,
+    "arv_status": "SOLD",
+    "arv_sqft": 480,
+    "arv_fetched_at": "2026-09-10T04:28:42Z",
+    "days_until_sale": null,
+    "deed_date": "1/17/2026",
+    "last_sale_amt": "",
+    "tenure_years": 0,
+    "tenure_score_bonus": 0,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 116860
+      },
+      {
+        "year": "2025",
+        "appraised": 116860
+      }
+    ],
+    "appr_trend": "flat"
+  },
+  {
+    "doc_number": "VBP-814-AUGUSTA-ST-78215",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "814 AUGUSTA ST",
+    "city": "SAN ANTONIO",
+    "zip": "78215",
+    "date_filed": "2026-09",
+    "sale_date": "",
+    "owner": "VIKASH K & BINTU & PATEL KISHOR & MANUBEN PATEL",
+    "mail_addr": "900 BARNES DR STE 100 SAN MARCOS, TX 78666",
+    "absentee": true,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-09-10T03:28:21",
+    "flags": [
+      "STACKED",
+      "ABSENTEE"
+    ],
+    "score": 10,
+    "sq_ft": 2040,
+    "is_sf": false,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "08/04/2026",
+        "address": "814 AUGUSTA, SAN ANTONIO, TX 78215"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "08/04/2026",
+    "ce_case_id": "",
+    "appraised_value": "1500000",
+    "land_value": "",
+    "prop_id": "1296754",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-10T04:28:44Z",
+    "arv_estimate": 231900,
+    "arv_status": "SOLD",
+    "arv_sqft": 1850,
+    "arv_fetched_at": "2026-09-10T04:28:44Z",
+    "days_until_sale": null,
+    "deed_date": "2/2/2026",
+    "last_sale_amt": "",
+    "tenure_years": 0,
+    "tenure_score_bonus": 0,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 1500000
+      },
+      {
+        "year": "2025",
+        "appraised": 1400000
+      }
+    ],
+    "appr_trend": "up"
+  },
+  {
+    "doc_number": "VBP-542-GULF-78202",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "542 GULF",
+    "city": "SAN ANTONIO",
+    "zip": "78202",
+    "date_filed": "2026-09",
+    "sale_date": "",
+    "owner": "SALINAS FAMILY REVOCABLE TRUST & PEREZ-SALINAS INC",
+    "mail_addr": "15067 WENGATE ST SAN LEANDRO, CA 94579-1535",
+    "absentee": true,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-09-10T03:28:21",
+    "flags": [
+      "STACKED",
+      "ABSENTEE"
+    ],
+    "score": 10,
+    "sq_ft": 1404,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "07/29/2026",
+        "address": "542 GULF ST, SAN ANTONIO, TX 78202"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "07/29/2026",
+    "ce_case_id": "",
+    "appraised_value": "99000",
+    "land_value": "",
+    "prop_id": "375750",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-09-10T04:28:46Z",
+    "arv_estimate": 150000,
+    "arv_status": "OFF_MARKET",
+    "arv_sqft": 1404,
+    "arv_fetched_at": "2026-09-10T04:28:46Z",
+    "days_until_sale": null,
+    "deed_date": "11/30/2017",
+    "last_sale_amt": "",
+    "tenure_years": 8,
+    "tenure_score_bonus": 5,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 99000
+      },
+      {
+        "year": "2025",
+        "appraised": 98000
+      }
+    ],
+    "appr_trend": "flat"
+  },
+  {
     "type": "NOF",
     "address": "406 NORTHTRAIL DR",
     "owner": "SOTO JOSE MIGUEL",
@@ -38165,7 +38741,14 @@
     "land_value": "",
     "stacked": false,
     "score": 9,
-    "days_until_sale": 46
+    "days_until_sale": 46,
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-09-17T22:55:02Z",
+    "arv_estimate": 259951,
+    "arv_status": "OFF_MARKET",
+    "arv_sqft": 1136,
+    "arv_fetched_at": "2026-09-17T22:55:02Z"
   },
   {
     "type": "NOF",
@@ -38466,405 +39049,6 @@
     "appr_trend": "down"
   },
   {
-    "doc_number": "VBP-101-E-AGARITA-AVE-78212",
-    "type": "VBP",
-    "source": "vbp_ce",
-    "address": "101 E AGARITA AVE",
-    "city": "SAN ANTONIO",
-    "zip": "78212",
-    "date_filed": "2026-09",
-    "sale_date": "",
-    "owner": "TRIANON LLC",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "stacked": true,
-    "run_ts": "2026-09-10T03:28:21",
-    "flags": [
-      "STACKED"
-    ],
-    "score": 9,
-    "sq_ft": 2060,
-    "is_sf": true,
-    "ce_violations": [
-      {
-        "case_id": "",
-        "typename": "Vacant/Overgrown Property",
-        "status": "OPEN",
-        "opened": "08/10/2026",
-        "address": "101 E AGARITA AVE, SAN ANTONIO, TX 78212"
-      }
-    ],
-    "ce_viol_types": [
-      "Vacant/Overgrown Property"
-    ],
-    "ce_count": 1,
-    "ce_cat_label": "Vacant/Overgrown Property",
-    "ce_status": "OPEN",
-    "opened_date": "08/10/2026",
-    "ce_case_id": "",
-    "appraised_value": "385000",
-    "land_value": "",
-    "prop_id": "119408",
-    "loan_amount": "",
-    "loan_date": "",
-    "lender": "",
-    "trustee": "",
-    "annual_taxes": "",
-    "ps_doc_id": "",
-    "on_market": false,
-    "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-10T04:28:08Z",
-    "arv_estimate": 475470,
-    "arv_status": "SOLD",
-    "arv_sqft": 2060,
-    "arv_fetched_at": "2026-09-10T04:28:08Z",
-    "days_until_sale": null
-  },
-  {
-    "doc_number": "VBP-1819-BLANCO-RD-78212",
-    "type": "VBP",
-    "source": "vbp_ce",
-    "address": "1819 BLANCO RD",
-    "city": "SAN ANTONIO",
-    "zip": "78212",
-    "date_filed": "2026-09",
-    "sale_date": "",
-    "owner": "JOSEPH G GONZALES",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "stacked": true,
-    "run_ts": "2026-09-10T03:28:21",
-    "flags": [
-      "STACKED"
-    ],
-    "score": 9,
-    "sq_ft": 3000,
-    "is_sf": false,
-    "ce_violations": [
-      {
-        "case_id": "",
-        "typename": "Property Structure Concerns(Structure Exterior)",
-        "status": "OPEN",
-        "opened": "08/06/2026",
-        "address": "1819 BLANCO RD, SAN ANTONIO, TX 78201"
-      }
-    ],
-    "ce_viol_types": [
-      "Property Structure Concerns(Structure Exterior)"
-    ],
-    "ce_count": 1,
-    "ce_cat_label": "Property Structure Concerns(Structure Exterior)",
-    "ce_status": "OPEN",
-    "opened_date": "08/06/2026",
-    "ce_case_id": "",
-    "appraised_value": "166000",
-    "land_value": "",
-    "prop_id": "140766",
-    "loan_amount": "",
-    "loan_date": "",
-    "lender": "",
-    "trustee": "",
-    "annual_taxes": "",
-    "ps_doc_id": "",
-    "on_market": true,
-    "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-10T04:28:24Z",
-    "days_until_sale": null
-  },
-  {
-    "doc_number": "VBP-1827-N-ST-MARYS-ST-78212",
-    "type": "VBP",
-    "source": "vbp_ce",
-    "address": "1827 N ST MARYS ST",
-    "city": "SAN ANTONIO",
-    "zip": "78212",
-    "date_filed": "2026-09",
-    "sale_date": "",
-    "owner": "BRMK MANAGEMENT CORP",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "stacked": true,
-    "run_ts": "2026-09-10T03:28:21",
-    "flags": [
-      "STACKED"
-    ],
-    "score": 9,
-    "sq_ft": 1678,
-    "is_sf": false,
-    "ce_violations": [
-      {
-        "case_id": "",
-        "typename": "Dangerous Premise BSB Processed",
-        "status": "OPEN",
-        "opened": "08/19/2026",
-        "address": "1827 N OLIVE ST, SAN ANTONIO, TX 78208"
-      }
-    ],
-    "ce_viol_types": [
-      "Dangerous Premise BSB Processed"
-    ],
-    "ce_count": 1,
-    "ce_cat_label": "Dangerous Premise BSB Processed",
-    "ce_status": "OPEN",
-    "opened_date": "08/19/2026",
-    "ce_case_id": "",
-    "appraised_value": "440400",
-    "land_value": "",
-    "prop_id": "1353666",
-    "loan_amount": "",
-    "loan_date": "",
-    "lender": "",
-    "trustee": "",
-    "annual_taxes": "",
-    "ps_doc_id": "",
-    "on_market": true,
-    "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-10T04:28:39Z",
-    "days_until_sale": null
-  },
-  {
-    "doc_number": "VBP-414-W-LAUREL-78212",
-    "type": "VBP",
-    "source": "vbp_ce",
-    "address": "414 W LAUREL",
-    "city": "SAN ANTONIO",
-    "zip": "78212",
-    "date_filed": "2026-09",
-    "sale_date": "",
-    "owner": "ALANIS ARTEMIO A JR & NANCY",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "stacked": true,
-    "run_ts": "2026-09-10T03:28:21",
-    "flags": [
-      "STACKED"
-    ],
-    "score": 9,
-    "sq_ft": 4714,
-    "is_sf": false,
-    "ce_violations": [
-      {
-        "case_id": "",
-        "typename": "Vacant/Overgrown Property",
-        "status": "OPEN",
-        "opened": "07/29/2026",
-        "address": "1414 W HARLAN AVE, SAN ANTONIO, TX 78211"
-      }
-    ],
-    "ce_viol_types": [
-      "Vacant/Overgrown Property"
-    ],
-    "ce_count": 1,
-    "ce_cat_label": "Vacant/Overgrown Property",
-    "ce_status": "OPEN",
-    "opened_date": "07/29/2026",
-    "ce_case_id": "",
-    "appraised_value": "277180",
-    "land_value": "",
-    "prop_id": "103415",
-    "loan_amount": "",
-    "loan_date": "",
-    "lender": "",
-    "trustee": "",
-    "annual_taxes": "",
-    "ps_doc_id": "",
-    "on_market": false,
-    "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-10T04:28:41Z",
-    "arv_estimate": 141600,
-    "arv_status": "SOLD",
-    "arv_sqft": 1416,
-    "arv_fetched_at": "2026-09-10T04:28:41Z",
-    "days_until_sale": null
-  },
-  {
-    "doc_number": "VBP-946-W-ASHBY-PL-78212",
-    "type": "VBP",
-    "source": "vbp_ce",
-    "address": "946 W ASHBY PL",
-    "city": "SAN ANTONIO",
-    "zip": "78212",
-    "date_filed": "2026-09",
-    "sale_date": "",
-    "owner": "DELAROSA JOSE F & BLANCA R",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "stacked": true,
-    "run_ts": "2026-09-10T03:28:21",
-    "flags": [
-      "STACKED"
-    ],
-    "score": 9,
-    "sq_ft": 480,
-    "is_sf": true,
-    "ce_violations": [
-      {
-        "case_id": "",
-        "typename": "Property Structure Concerns(Structure Exterior)",
-        "status": "OPEN",
-        "opened": "08/02/2026",
-        "address": "946 W ASHBY PLACE, SAN ANTONIO, TX 78212"
-      },
-      {
-        "case_id": "",
-        "typename": "Dangerous Premise BSB Processed",
-        "status": "OPEN",
-        "opened": "08/10/2026",
-        "address": "946 W ASHBY PLACE, SAN ANTONIO, TX 78212"
-      }
-    ],
-    "ce_viol_types": [
-      "Property Structure Concerns(Structure Exterior)",
-      "Dangerous Premise BSB Processed"
-    ],
-    "ce_count": 2,
-    "ce_cat_label": "Property Structure Concerns(Structure Exterior)",
-    "ce_status": "OPEN",
-    "opened_date": "08/02/2026",
-    "ce_case_id": "",
-    "appraised_value": "116860",
-    "land_value": "",
-    "prop_id": "380008",
-    "loan_amount": "",
-    "loan_date": "",
-    "lender": "",
-    "trustee": "",
-    "annual_taxes": "",
-    "ps_doc_id": "",
-    "on_market": false,
-    "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-10T04:28:42Z",
-    "arv_estimate": 128497,
-    "arv_status": "SOLD",
-    "arv_sqft": 480,
-    "arv_fetched_at": "2026-09-10T04:28:42Z",
-    "days_until_sale": null
-  },
-  {
-    "doc_number": "VBP-814-AUGUSTA-ST-78215",
-    "type": "VBP",
-    "source": "vbp_ce",
-    "address": "814 AUGUSTA ST",
-    "city": "SAN ANTONIO",
-    "zip": "78215",
-    "date_filed": "2026-09",
-    "sale_date": "",
-    "owner": "VIKASH K & BINTU & PATEL KISHOR & MANUBEN PATEL",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "stacked": true,
-    "run_ts": "2026-09-10T03:28:21",
-    "flags": [
-      "STACKED"
-    ],
-    "score": 9,
-    "sq_ft": 2040,
-    "is_sf": false,
-    "ce_violations": [
-      {
-        "case_id": "",
-        "typename": "Vacant/Overgrown Property",
-        "status": "OPEN",
-        "opened": "08/04/2026",
-        "address": "814 AUGUSTA, SAN ANTONIO, TX 78215"
-      }
-    ],
-    "ce_viol_types": [
-      "Vacant/Overgrown Property"
-    ],
-    "ce_count": 1,
-    "ce_cat_label": "Vacant/Overgrown Property",
-    "ce_status": "OPEN",
-    "opened_date": "08/04/2026",
-    "ce_case_id": "",
-    "appraised_value": "1500000",
-    "land_value": "",
-    "prop_id": "1296754",
-    "loan_amount": "",
-    "loan_date": "",
-    "lender": "",
-    "trustee": "",
-    "annual_taxes": "",
-    "ps_doc_id": "",
-    "on_market": false,
-    "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-10T04:28:44Z",
-    "arv_estimate": 231900,
-    "arv_status": "SOLD",
-    "arv_sqft": 1850,
-    "arv_fetched_at": "2026-09-10T04:28:44Z",
-    "days_until_sale": null
-  },
-  {
-    "doc_number": "VBP-542-GULF-78202",
-    "type": "VBP",
-    "source": "vbp_ce",
-    "address": "542 GULF",
-    "city": "SAN ANTONIO",
-    "zip": "78202",
-    "date_filed": "2026-09",
-    "sale_date": "",
-    "owner": "SALINAS FAMILY REVOCABLE TRUST & PEREZ-SALINAS INC",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "stacked": true,
-    "run_ts": "2026-09-10T03:28:21",
-    "flags": [
-      "STACKED"
-    ],
-    "score": 9,
-    "sq_ft": 1404,
-    "is_sf": true,
-    "ce_violations": [
-      {
-        "case_id": "",
-        "typename": "Vacant/Overgrown Property",
-        "status": "OPEN",
-        "opened": "07/29/2026",
-        "address": "542 GULF ST, SAN ANTONIO, TX 78202"
-      }
-    ],
-    "ce_viol_types": [
-      "Vacant/Overgrown Property"
-    ],
-    "ce_count": 1,
-    "ce_cat_label": "Vacant/Overgrown Property",
-    "ce_status": "OPEN",
-    "opened_date": "07/29/2026",
-    "ce_case_id": "",
-    "appraised_value": "99000",
-    "land_value": "",
-    "prop_id": "375750",
-    "loan_amount": "",
-    "loan_date": "",
-    "lender": "",
-    "trustee": "",
-    "annual_taxes": "",
-    "ps_doc_id": "",
-    "on_market": false,
-    "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-09-10T04:28:46Z",
-    "arv_estimate": 150000,
-    "arv_status": "OFF_MARKET",
-    "arv_sqft": 1404,
-    "arv_fetched_at": "2026-09-10T04:28:46Z",
-    "days_until_sale": null
-  },
-  {
     "doc_number": "VBP-709-HAYS-78202",
     "type": "VBP",
     "source": "vbp_ce",
@@ -38874,7 +39058,7 @@
     "date_filed": "2026-09",
     "sale_date": "",
     "owner": "RAMOS SANTIAGO M & ROSA T",
-    "mail_addr": "",
+    "mail_addr": "709 HAYS ST SAN ANTONIO, TX 78202-1931",
     "absentee": false,
     "duplicate": false,
     "is_new": false,
@@ -38915,7 +39099,22 @@
     "days_until_sale": null,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-10T13:40:06Z"
+    "on_market_checked_at": "2026-09-10T13:40:06Z",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 197410
+      },
+      {
+        "year": "2025",
+        "appraised": 218170
+      }
+    ],
+    "appr_trend": "down"
   },
   {
     "doc_number": "VBP-229-SHARER-ST-78208",
@@ -54062,7 +54261,14 @@
     "ps_doc_id": "",
     "days_until_sale": null,
     "stacked": true,
-    "land_value": "47200.0"
+    "land_value": "47200.0",
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-09-17T22:54:07Z",
+    "arv_estimate": 224000,
+    "arv_status": "OFF_MARKET",
+    "arv_sqft": 1689,
+    "arv_fetched_at": "2026-09-17T22:54:07Z"
   },
   {
     "doc_number": "VBP-1415-TEXAS-AVE-78201",
@@ -54115,7 +54321,14 @@
     "ps_doc_id": "",
     "days_until_sale": null,
     "stacked": true,
-    "land_value": "53360.0"
+    "land_value": "53360.0",
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-09-17T22:54:08Z",
+    "arv_estimate": 152300,
+    "arv_status": "OFF_MARKET",
+    "arv_sqft": 1080,
+    "arv_fetched_at": "2026-09-17T22:54:08Z"
   },
   {
     "doc_number": "VBP-1808-W-KINGS-HWY-78201",
@@ -54160,7 +54373,14 @@
     "ps_doc_id": "",
     "days_until_sale": null,
     "stacked": true,
-    "land_value": "84190.0"
+    "land_value": "84190.0",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-17T22:54:10Z",
+    "arv_estimate": 266000,
+    "arv_status": "SOLD",
+    "arv_sqft": 1470,
+    "arv_fetched_at": "2026-09-17T22:54:10Z"
   },
   {
     "doc_number": "VBP-2054-W-MULBERRY-AVE-78201",
@@ -54228,7 +54448,14 @@
     "ps_doc_id": "",
     "days_until_sale": null,
     "stacked": true,
-    "land_value": "96180.0"
+    "land_value": "96180.0",
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-09-17T22:54:11Z",
+    "arv_estimate": 264909,
+    "arv_status": "OFF_MARKET",
+    "arv_sqft": 1437,
+    "arv_fetched_at": "2026-09-17T22:54:11Z"
   },
   {
     "doc_number": "VBP-2719-FREDERICKSBURG-RD-78201",
@@ -54277,7 +54504,10 @@
     "ce_cat_label": "Vacant/Overgrown Property",
     "ce_status": "OPEN",
     "opened_date": "04/13/2026",
-    "ce_case_id": ""
+    "ce_case_id": "",
+    "on_market": true,
+    "on_market_status": "FOR_RENT",
+    "on_market_checked_at": "2026-09-17T22:54:26Z"
   },
   {
     "doc_number": "VBP-344-MARY-LOUISE-DR-78201",
@@ -54326,7 +54556,14 @@
     "ce_cat_label": "Vacant/Overgrown Property",
     "ce_status": "OPEN",
     "opened_date": "07/22/2026",
-    "ce_case_id": ""
+    "ce_case_id": "",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-17T22:54:27Z",
+    "arv_estimate": 376800,
+    "arv_status": "SOLD",
+    "arv_sqft": 2064,
+    "arv_fetched_at": "2026-09-17T22:54:27Z"
   },
   {
     "doc_number": "VBP-443-DONALDSON-AVE-78201",
@@ -54371,7 +54608,14 @@
     "ps_doc_id": "",
     "days_until_sale": null,
     "stacked": true,
-    "land_value": "42960.0"
+    "land_value": "42960.0",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-17T22:54:29Z",
+    "arv_estimate": 249100,
+    "arv_status": "SOLD",
+    "arv_sqft": 1673,
+    "arv_fetched_at": "2026-09-17T22:54:29Z"
   },
   {
     "doc_number": "VBP-705-ROUSE-AVE-78201",
@@ -54420,7 +54664,14 @@
     "ce_cat_label": "Dangerous Premise BSB Processed",
     "ce_status": "OPEN",
     "opened_date": "06/04/2026",
-    "ce_case_id": ""
+    "ce_case_id": "",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-17T22:54:30Z",
+    "arv_estimate": 117000,
+    "arv_status": "SOLD",
+    "arv_sqft": 596,
+    "arv_fetched_at": "2026-09-17T22:54:30Z"
   },
   {
     "doc_number": "VBP-102-COMFORT-78228",
@@ -54473,7 +54724,14 @@
     "ps_doc_id": "",
     "days_until_sale": null,
     "stacked": true,
-    "land_value": "16609.0"
+    "land_value": "16609.0",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-17T22:54:32Z",
+    "arv_estimate": 201804,
+    "arv_status": "SOLD",
+    "arv_sqft": 1566,
+    "arv_fetched_at": "2026-09-17T22:54:32Z"
   },
   {
     "doc_number": "VBP-1238-HILLCREST-DR-78228",
@@ -54518,7 +54776,14 @@
     "ps_doc_id": "",
     "days_until_sale": null,
     "stacked": true,
-    "land_value": "72310.0"
+    "land_value": "72310.0",
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-09-17T22:54:33Z",
+    "arv_estimate": 225600,
+    "arv_status": "OFF_MARKET",
+    "arv_sqft": 1654,
+    "arv_fetched_at": "2026-09-17T22:54:33Z"
   },
   {
     "doc_number": "VBP-1310-HILLCREST-DR-78228",
@@ -62476,7 +62741,14 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 46
+    "days_until_sale": 46,
+    "on_market": true,
+    "on_market_status": "PENDING",
+    "on_market_checked_at": "2026-09-17T22:54:52Z",
+    "arv_estimate": 186000,
+    "arv_status": "PENDING",
+    "arv_sqft": 1296,
+    "arv_fetched_at": "2026-09-17T22:54:52Z"
   },
   {
     "type": "NOF",
@@ -62527,7 +62799,14 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 46
+    "days_until_sale": 46,
+    "on_market": true,
+    "on_market_status": "FOR_SALE",
+    "on_market_checked_at": "2026-09-17T22:54:54Z",
+    "arv_estimate": 243300,
+    "arv_status": "FOR_SALE",
+    "arv_sqft": 1662,
+    "arv_fetched_at": "2026-09-17T22:54:54Z"
   },
   {
     "type": "NOF",
@@ -62579,7 +62858,14 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 46
+    "days_until_sale": 46,
+    "on_market": true,
+    "on_market_status": "PENDING",
+    "on_market_checked_at": "2026-09-17T22:54:55Z",
+    "arv_estimate": 208700,
+    "arv_status": "PENDING",
+    "arv_sqft": 2439,
+    "arv_fetched_at": "2026-09-17T22:54:55Z"
   },
   {
     "type": "NOF",
@@ -67588,7 +67874,14 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 74
+    "days_until_sale": 74,
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-09-17T22:54:56Z",
+    "arv_estimate": 368900,
+    "arv_status": "OFF_MARKET",
+    "arv_sqft": 2473,
+    "arv_fetched_at": "2026-09-17T22:54:56Z"
   },
   {
     "type": "NOF",
@@ -73712,7 +74005,14 @@
     "appr_trend": "",
     "stacked": false,
     "score": 4,
-    "days_until_sale": 46
+    "days_until_sale": 46,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-17T22:54:58Z",
+    "arv_estimate": 262000,
+    "arv_status": "SOLD",
+    "arv_sqft": 1900,
+    "arv_fetched_at": "2026-09-17T22:54:58Z"
   },
   {
     "type": "NOF",
@@ -73752,7 +74052,14 @@
     "appr_trend": "",
     "stacked": false,
     "score": 4,
-    "days_until_sale": 46
+    "days_until_sale": 46,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-17T22:54:59Z",
+    "arv_estimate": 461200,
+    "arv_status": "SOLD",
+    "arv_sqft": 3276,
+    "arv_fetched_at": "2026-09-17T22:54:59Z"
   },
   {
     "type": "NOF",
