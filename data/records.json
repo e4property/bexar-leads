@@ -18599,7 +18599,7 @@
     "days_until_sale": 16,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-11T22:38:27Z",
+    "on_market_checked_at": "2026-09-19T22:21:23Z",
     "arv_estimate": 252000,
     "arv_status": "SOLD",
     "arv_sqft": 1896,
@@ -18664,7 +18664,7 @@
     "ghl_id": "rRqdjJUm9ozshdUI46uX",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-11T22:38:30Z",
+    "on_market_checked_at": "2026-09-19T22:21:25Z",
     "arv_estimate": 193915,
     "arv_status": "SOLD",
     "arv_sqft": 1386,
@@ -18725,7 +18725,7 @@
     "days_until_sale": 16,
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-09-11T22:38:31Z",
+    "on_market_checked_at": "2026-09-19T22:21:26Z",
     "arv_estimate": 250000,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 1468,
@@ -18785,7 +18785,7 @@
     "days_until_sale": 16,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-11T22:38:33Z",
+    "on_market_checked_at": "2026-09-19T22:21:28Z",
     "arv_estimate": 390700,
     "arv_status": "SOLD",
     "arv_sqft": 2518,
@@ -18845,7 +18845,7 @@
     "days_until_sale": 16,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-11T22:38:38Z",
+    "on_market_checked_at": "2026-09-19T22:21:29Z",
     "arv_estimate": 248400,
     "arv_status": "SOLD",
     "arv_sqft": 1526,
@@ -19153,7 +19153,7 @@
     "dash_phone": "+12104322222",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-11T22:39:16Z",
+    "on_market_checked_at": "2026-09-19T22:21:31Z",
     "arv_estimate": 342000,
     "arv_status": "SOLD",
     "arv_sqft": 1777
@@ -21138,7 +21138,7 @@
     "days_until_sale": 16,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-11T22:38:20Z",
+    "on_market_checked_at": "2026-09-19T22:21:32Z",
     "arv_estimate": 175000,
     "arv_status": "SOLD",
     "arv_sqft": 1276,
@@ -21198,7 +21198,7 @@
     "days_until_sale": 16,
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-09-11T22:38:22Z",
+    "on_market_checked_at": "2026-09-19T22:21:34Z",
     "arv_estimate": 261583,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 1452,
@@ -21257,7 +21257,7 @@
     "days_until_sale": 16,
     "on_market": true,
     "on_market_status": "FOR_SALE",
-    "on_market_checked_at": "2026-09-11T22:38:25Z",
+    "on_market_checked_at": "2026-09-19T22:21:35Z",
     "arv_estimate": 504925,
     "arv_status": "FOR_SALE",
     "arv_sqft": 3145,
@@ -21316,7 +21316,7 @@
     "days_until_sale": 16,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-11T22:38:28Z",
+    "on_market_checked_at": "2026-09-19T22:21:37Z",
     "arv_estimate": 459664,
     "arv_status": "SOLD",
     "arv_sqft": 2822,
@@ -25112,9 +25112,9 @@
     "stacked": false,
     "score": 7,
     "days_until_sale": 16,
-    "on_market": false,
-    "on_market_status": "CONTINGENT",
-    "on_market_checked_at": "2026-09-11T14:35:38Z"
+    "on_market": true,
+    "on_market_status": "PENDING",
+    "on_market_checked_at": "2026-09-19T22:21:38Z"
   },
   {
     "type": "NOF",
@@ -25177,7 +25177,7 @@
     "days_until_sale": 16,
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-09-11T14:35:40Z"
+    "on_market_checked_at": "2026-09-19T22:21:40Z"
   },
   {
     "type": "NOF",
@@ -25244,7 +25244,7 @@
     "dash_searched_at": "2026-08-21T17:21:52.456Z",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-11T14:35:41Z"
+    "on_market_checked_at": "2026-09-19T22:21:42Z"
   },
   {
     "type": "NOF",
@@ -25306,7 +25306,7 @@
     "days_until_sale": 16,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-11T14:35:43Z"
+    "on_market_checked_at": "2026-09-19T22:21:43Z"
   },
   {
     "type": "NOF",
@@ -25369,7 +25369,7 @@
     "days_until_sale": 16,
     "on_market": false,
     "on_market_status": "CONTINGENT",
-    "on_market_checked_at": "2026-09-11T14:35:45Z"
+    "on_market_checked_at": "2026-09-19T22:21:45Z"
   },
   {
     "type": "NOF",
@@ -40220,6 +40220,62 @@
     "arv_status": "FOR_SALE",
     "arv_sqft": 1664,
     "arv_fetched_at": "2026-09-17T19:01:58Z",
+    "appt_converted": false,
+    "appt_stale": false
+  },
+  {
+    "doc_number": "20260181843",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "J &Amp; L Homes Llc",
+    "address": "431 PRECIOUS DR",
+    "city": "SAN ANTONIO",
+    "zip": "94596",
+    "date_filed": "9/2026",
+    "month": "9",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-09-19T15:45:10Z",
+    "score": 10,
+    "flags": [
+      "ABSENTEE"
+    ],
+    "absentee": true,
+    "duplicate": false,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "213520",
+    "annual_taxes": "",
+    "mail_addr": "490 NORTH CIVIC DR APT 309 WALNUT CREEK, CA 94596",
+    "prop_id": "518843.0",
+    "land_value": "",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false,
+    "deed_date": "7/7/2020",
+    "last_sale_amt": "",
+    "tenure_years": 6,
+    "tenure_score_bonus": 5,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 213520
+      },
+      {
+        "year": "2025",
+        "appraised": 230070
+      }
+    ],
+    "appr_trend": "down",
+    "on_market": true,
+    "on_market_status": "FOR_RENT",
+    "on_market_checked_at": "2026-09-19T17:55:23Z",
     "appt_converted": false,
     "appt_stale": false
   },
@@ -64366,62 +64422,6 @@
     "arv_status": "SOLD",
     "arv_sqft": 2520,
     "arv_fetched_at": "2026-08-30T22:38:29Z"
-  },
-  {
-    "doc_number": "20260181843",
-    "ps_doc_id": "",
-    "type": "APPT",
-    "source": "publicsearch",
-    "county": "bexar",
-    "owner": "J &Amp; L Homes Llc",
-    "address": "431 PRECIOUS DR",
-    "city": "SAN ANTONIO",
-    "zip": "94596",
-    "date_filed": "9/2026",
-    "month": "9",
-    "year": "2026",
-    "sale_date": "",
-    "is_new": false,
-    "run_ts": "2026-09-19T15:45:10Z",
-    "score": 8,
-    "flags": [
-      "ABSENTEE"
-    ],
-    "absentee": true,
-    "duplicate": false,
-    "days_until_sale": null,
-    "loan_amount": "",
-    "loan_date": "",
-    "lender": "",
-    "trustee": "",
-    "appraised_value": "213520",
-    "annual_taxes": "",
-    "mail_addr": "490 NORTH CIVIC DR APT 309 WALNUT CREEK, CA 94596",
-    "prop_id": "518843.0",
-    "land_value": "",
-    "improvement_value": "",
-    "stacked": false,
-    "ce_violations": false,
-    "deed_date": "",
-    "last_sale_amt": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "appr_history": [
-      {
-        "year": "2026",
-        "appraised": 213520
-      },
-      {
-        "year": "2025",
-        "appraised": 230070
-      }
-    ],
-    "appr_trend": "down",
-    "on_market": true,
-    "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-19T17:55:23Z",
-    "appt_converted": false,
-    "appt_stale": false
   },
   {
     "doc_number": "20260179998",
