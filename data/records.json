@@ -57,7 +57,11 @@
     "arv_estimate": 332200,
     "arv_status": "FOR_SALE",
     "arv_sqft": 2400,
-    "arv_fetched_at": "2026-09-17T19:02:19Z"
+    "arv_fetched_at": "2026-09-17T19:02:19Z",
+    "dash_phone": "(210) 702-7666",
+    "dash_searched_at": "2026-09-21T19:11:20.874Z",
+    "ghl_pushed": false,
+    "ghl_pushed_at": null
   },
   {
     "type": "NOF",
@@ -1275,7 +1279,7 @@
   {
     "type": "NOF",
     "address": "17281 INTERSTATE 35 S",
-    "owner": "MI CASA HOUSING LTD",
+    "owner": "MI MI",
     "mail_addr": "17281 INTERSTATE 35 S ATASCOSA, TX 78002-5525",
     "absentee": false,
     "duplicate": false,
@@ -2431,7 +2435,7 @@
     "days_until_sale": 14,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-14T16:43:48Z",
+    "on_market_checked_at": "2026-09-21T20:08:40Z",
     "arv_estimate": 191700,
     "arv_status": "SOLD",
     "arv_sqft": 1351,
@@ -2492,7 +2496,7 @@
     "days_until_sale": 14,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-14T16:43:50Z",
+    "on_market_checked_at": "2026-09-21T20:08:41Z",
     "arv_estimate": 588900,
     "arv_status": "SOLD",
     "arv_sqft": 1940,
@@ -2552,7 +2556,7 @@
     "days_until_sale": 14,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-14T16:43:51Z",
+    "on_market_checked_at": "2026-09-21T20:08:43Z",
     "arv_estimate": 332400,
     "arv_status": "SOLD",
     "arv_sqft": 2769,
@@ -2613,7 +2617,7 @@
     "days_until_sale": 14,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-14T16:43:53Z",
+    "on_market_checked_at": "2026-09-21T20:08:45Z",
     "arv_estimate": 948000,
     "arv_status": "SOLD",
     "arv_sqft": 3905,
@@ -2679,7 +2683,7 @@
     "ghl_id": "1Jy24BATeoGhfCjUQt4y",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-14T16:43:55Z",
+    "on_market_checked_at": "2026-09-21T20:08:46Z",
     "arv_estimate": 169300,
     "arv_status": "SOLD",
     "arv_sqft": 1176,
@@ -2741,7 +2745,7 @@
     "days_until_sale": 14,
     "on_market": true,
     "on_market_status": "FOR_SALE",
-    "on_market_checked_at": "2026-09-14T16:44:02Z",
+    "on_market_checked_at": "2026-09-21T20:08:54Z",
     "arv_estimate": 538000,
     "arv_status": "FOR_SALE",
     "arv_sqft": 1662,
@@ -2802,7 +2806,7 @@
     "days_until_sale": 14,
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-09-14T16:44:03Z",
+    "on_market_checked_at": "2026-09-21T20:08:55Z",
     "arv_estimate": 247000,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 1405,
@@ -7778,7 +7782,7 @@
     "dash_searched_at": "2026-08-20T22:32:55.112Z",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-14T16:44:57Z"
+    "on_market_checked_at": "2026-09-21T20:08:57Z"
   },
   {
     "type": "NOF",
@@ -7846,7 +7850,7 @@
     "dash_phone": "2109220816",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-14T16:44:59Z"
+    "on_market_checked_at": "2026-09-21T20:08:59Z"
   },
   {
     "type": "NOF",
@@ -7914,7 +7918,7 @@
     "dash_phone": "2103225265",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-14T16:45:01Z"
+    "on_market_checked_at": "2026-09-21T20:09:00Z"
   },
   {
     "type": "NOF",
@@ -7977,7 +7981,7 @@
     "days_until_sale": 14,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-14T16:45:12Z"
+    "on_market_checked_at": "2026-09-21T20:09:12Z"
   },
   {
     "type": "NOF",
@@ -8045,7 +8049,7 @@
     "dash_searched_at": "2026-08-20T22:52:20.750Z",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-14T16:45:14Z"
+    "on_market_checked_at": "2026-09-21T20:09:14Z"
   },
   {
     "type": "NOF",
@@ -8113,7 +8117,7 @@
     "dash_phone": "2103737720",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-14T16:45:16Z"
+    "on_market_checked_at": "2026-09-21T20:09:16Z"
   },
   {
     "type": "NOF",
@@ -8181,7 +8185,7 @@
     "dash_searched_at": "2026-08-20T23:00:38.404Z",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-14T16:45:17Z"
+    "on_market_checked_at": "2026-09-21T20:09:18Z"
   },
   {
     "type": "NOF",
@@ -13236,7 +13240,7 @@
     "days_until_sale": 14,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-14T16:44:30Z",
+    "on_market_checked_at": "2026-09-21T20:09:19Z",
     "arv_estimate": 269419,
     "arv_status": "SOLD",
     "arv_sqft": 1299,
@@ -19274,7 +19278,12 @@
     "on_market_checked_at": "2026-09-17T22:56:07Z",
     "arv_estimate": 285000,
     "arv_status": "SOLD",
-    "arv_sqft": 7932
+    "arv_sqft": 7932,
+    "dash_phone": "(210) 494-2388",
+    "dash_searched_at": "2026-09-21T19:28:07.076Z",
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-09-21T19:28:07.076Z",
+    "ghl_id": "WPULQxBZAX5MonZqHeIB"
   },
   {
     "type": "NOF",
@@ -28516,7 +28525,12 @@
     "on_market_checked_at": "2026-09-14T20:01:40Z",
     "arv_estimate": 229800,
     "arv_status": "OFF_MARKET",
-    "arv_sqft": 1229
+    "arv_sqft": 1229,
+    "dash_phone": "(320) 805-0602",
+    "dash_searched_at": "2026-09-21T19:30:59.438Z",
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-09-21T19:30:59.438Z",
+    "ghl_id": "5aZb10GmC1K4iKg6HIC7"
   },
   {
     "type": "NOF",
@@ -33223,7 +33237,12 @@
     "arv_estimate": 301105,
     "arv_status": "SOLD",
     "arv_sqft": 2704,
-    "arv_fetched_at": "2026-09-17T22:54:46Z"
+    "arv_fetched_at": "2026-09-17T22:54:46Z",
+    "dash_phone": "(253) 227-8792",
+    "dash_searched_at": "2026-09-21T19:17:42.034Z",
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-09-21T19:17:42.034Z",
+    "ghl_id": "LZUNBqsOGOLzhLBwBIfw"
   },
   {
     "type": "NOF",
@@ -66158,7 +66177,12 @@
     "arv_fetched_at": "2026-09-18T18:19:45Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 42
+    "days_until_sale": 42,
+    "dash_phone": "8303446793",
+    "dash_searched_at": "2026-09-21T19:01:18.241Z",
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-09-21T19:01:18.241Z",
+    "ghl_id": "VZQMvYqHO6xpjJ1C9n6Q"
   },
   {
     "type": "NOF",
@@ -66216,7 +66240,12 @@
     "arv_estimate": 237000,
     "arv_status": "FOR_RENT",
     "arv_sqft": null,
-    "arv_fetched_at": "2026-09-18T19:56:35Z"
+    "arv_fetched_at": "2026-09-18T19:56:35Z",
+    "dash_phone": "(910) 381-0361",
+    "dash_searched_at": "2026-09-21T19:01:54.638Z",
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-09-21T19:01:54.638Z",
+    "ghl_id": "iClLnHqryYhHA7NYCCnS"
   },
   {
     "type": "NOF",
@@ -72100,7 +72129,12 @@
     "arv_estimate": 368900,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 2473,
-    "arv_fetched_at": "2026-09-17T22:54:56Z"
+    "arv_fetched_at": "2026-09-17T22:54:56Z",
+    "dash_phone": "9152531082",
+    "dash_searched_at": "2026-09-21T19:22:24.162Z",
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-09-21T19:22:24.162Z",
+    "ghl_id": "Yhq1OCbb8lSq8AuDROGB"
   },
   {
     "type": "NOF",
