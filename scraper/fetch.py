@@ -1554,6 +1554,20 @@ def fetch_doc_details(records, driver):
     ]
     log.info(f"Doc fetch: {len(candidates)} candidates missing loan data")
 
+    # v28.40: candidates were sliced in whatever order they landed in the
+    # records list -- no relation to urgency. With ~800 NOF candidates and
+    # only DOC_FETCH_LIMIT processed per run, a high-score/auction-soon lead
+    # (e.g. score 10, sale in 14 days) could sit behind hundreds of low-
+    # priority ones indefinitely and never get its loan/lender data filled
+    # in. score/days_until_sale carry over from the prior run's save (Step 8
+    # runs after this), so most candidates already have real values here.
+    # Sort urgent + high-score leads to the front of the capped batch.
+    def _priority(r):
+        d = r.get("days_until_sale")
+        return (d if isinstance(d, int) else 9999, -(r.get("score") or 0))
+
+    candidates.sort(key=_priority)
+
     recent = candidates[:DOC_FETCH_LIMIT]
     log.info(f"Doc fetch: {len(recent)} selected (capped at {DOC_FETCH_LIMIT})")
 
