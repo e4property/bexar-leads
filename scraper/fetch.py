@@ -2362,6 +2362,83 @@ def fetch_deed_and_arv(records, driver):
     return records
 
 
+STREET_SUFFIX_WORDS = {
+    "ST", "STREET", "DR", "DRIVE", "RD", "ROAD", "AVE", "AVENUE", "LN", "LANE",
+    "CT", "COURT", "BLVD", "BOULEVARD", "WAY", "CIR", "CIRCLE", "TRL", "TRAIL",
+    "PL", "PLACE", "PKWY", "PARKWAY", "LOOP", "RUN", "PASS", "XING", "CROSSING",
+    "COVE", "BND", "BEND", "VW", "VIEW", "HOLW", "HOLLOW", "RDG", "RIDGE",
+    "MDW", "MDWS", "MEADOW", "MEADOWS", "GLN", "GLEN", "HL", "HILL", "HLS",
+    "HILLS", "PT", "POINT", "SQ", "SQUARE", "TER", "TERRACE", "WALK", "GRV",
+    "GROVE", "VLY", "VALLEY", "N", "S", "E", "W", "NE", "NW", "SE", "SW",
+}
+
+
+def _street_core_tokens(street):
+    """Uppercase, strip punctuation, drop directional/suffix words -- leaves
+    just the house number + distinctive name word(s) so a county record's
+    abbreviated form ('4711 APPALOOSA RUN') compares cleanly against
+    Realtor.com's own formatting ('4711 Appaloosa Run').
+
+    `street` may be a pandas NA sentinel (from a DataFrame row), not just
+    None -- `pd.NA or ""` raises 'boolean value of NA is ambiguous' (the
+    same failure mode fetch_arv_homeharvest's own clean() helper already
+    guards against elsewhere). str() first sidesteps it without needing a
+    pandas import here."""
+    street = str(street) if street is not None else ""
+    if street in ("nan", "<NA>", "None"):
+        street = ""
+    s = re.sub(r"[^A-Z0-9 ]", " ", street.upper())
+    return [t for t in s.split() if t not in STREET_SUFFIX_WORDS]
+
+
+def address_matches(searched_addr, searched_zip, row_street, row_zip):
+    """
+    Verify a HomeHarvest/Realtor.com search result actually corresponds to
+    the property we searched for, before trusting its on-market status or
+    estimated value.
+
+    2026-09-22: scrape_property(location=...) silently returns its best
+    guess even when nothing real matches the address -- confirmed live
+    against two real Bexar leads. Searching "214 MUNIZ, SAN ANTONIO, TX
+    78223" returned an unrelated FOR_RENT listing on Dollarhide Ave, several
+    miles away, same zip only. Searching "22965 N ADDISON, SAN ANTONIO, TX"
+    matched a property in Quinque, VIRGINIA -- the search parser apparently
+    read the house number "22965" as a zip code. Both writes would have
+    silently corrupted on_market status (the whole point of the "no
+    on-market leads" rule depends on this being right) and arv_estimate.
+    Require the house number to match exactly, at least one distinctive
+    street-name word to overlap, and zip to match when both sides have one.
+    """
+    searched_tokens = _street_core_tokens(searched_addr)
+    row_tokens = _street_core_tokens(row_street)
+    if not searched_tokens or not row_tokens:
+        return False
+    searched_num = searched_tokens[0] if searched_tokens[0].isdigit() else None
+    row_num = row_tokens[0] if row_tokens[0].isdigit() else None
+    if not searched_num or searched_num != row_num:
+        return False
+    if not (set(searched_tokens[1:]) & set(row_tokens[1:])):
+        return False
+    sz = str(searched_zip) if searched_zip is not None else ""
+    rz = str(row_zip) if row_zip is not None else ""
+    sz = "" if sz in ("nan", "<NA>", "None") else sz.strip()[:5]
+    rz = "" if rz in ("nan", "<NA>", "None") else rz.strip()[:5]
+    if sz and rz and sz != rz:
+        return False
+    return True
+
+
+def _first_matching_row(df, searched_addr, searched_zip):
+    """Scan every row HomeHarvest returned (not just the first) for one that
+    actually verifies against the searched address. Returns None if none do
+    -- callers must treat that exactly like 'no results', not fall back to
+    an unverified guess."""
+    for _, row in df.iterrows():
+        if address_matches(searched_addr, searched_zip, row.get("street"), row.get("zip_code")):
+            return row
+    return None
+
+
 def fetch_arv_homeharvest(records):
     """
     Free ARV estimate via homeharvest (pip, MIT license) scraping Realtor.com's
@@ -2481,7 +2558,17 @@ def fetch_arv_homeharvest(records):
                 rec["on_market_checked_at"] = now_iso
                 continue
 
-            row = df.iloc[0]
+            row = _first_matching_row(df, rec["address"], rec.get("zip"))
+            if row is None:
+                # 2026-09-22: used to trust df.iloc[0] unconditionally --
+                # confirmed live this returns unrelated properties (wrong
+                # side of town, even wrong state) when nothing real matches.
+                # A verified non-match is the same as no results: mark
+                # checked, write nothing else.
+                log.info(f"  ARV [{rec.get('doc_number')}] {full_addr}: "
+                         f"{len(df)} result(s) returned but none verified against this address -- treating as no match")
+                rec["on_market_checked_at"] = now_iso
+                continue
             status = clean(row.get("status")) or ""
             rec["on_market"]            = status in ON_MARKET_STATUSES
             rec["on_market_status"]     = status
@@ -2597,7 +2684,14 @@ def refresh_on_market_status(records):
                 rec["on_market_checked_at"] = now_iso
                 continue
 
-            status = clean(df.iloc[0].get("status")) or ""
+            row = _first_matching_row(df, rec["address"], rec.get("zip"))
+            if row is None:
+                log.info(f"  On-market [{rec.get('doc_number')}] {full_addr}: "
+                         f"{len(df)} result(s) returned but none verified against this address -- treating as no match")
+                rec["on_market_checked_at"] = now_iso
+                continue
+
+            status = clean(row.get("status")) or ""
             rec["on_market"]            = status in ON_MARKET_STATUSES
             rec["on_market_status"]     = status
             rec["on_market_checked_at"] = now_iso
