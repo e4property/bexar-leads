@@ -67,7 +67,7 @@ BCAD_DETAIL_URL    = "https://bexar.trueautomation.com/clientdb/Property.aspx?ci
 DEED_FETCH_LIMIT   = 30   # max leads to hit BCAD detail page per run
 ARV_FETCH_LIMIT    = 30   # max leads to look up via HomeHarvest/Realtor.com per run
 LIEN_ABSENTEE_CHECK_LIMIT = 40  # max non-stacked lien leads to run through lookup_owner() per run
-ON_MARKET_STATUSES     = {"FOR_SALE", "PENDING", "FOR_RENT"}
+ON_MARKET_STATUSES     = {"FOR_SALE", "PENDING"}
 ON_MARKET_REFRESH_DAYS = 7    # re-check a lead's market status at most this often
 # 2026-08-21: a single run doing ARV(30) then refresh(30) back-to-back hit a
 # hard Realtor.com AuthenticationError wall after ~27 consecutive requests
@@ -2550,7 +2550,7 @@ def fetch_arv_homeharvest(records):
     for rec in candidates:
         full_addr = f"{rec['address']}, {rec.get('city', '')}, TX {rec.get('zip', '')}".strip(", ")
         try:
-            df = scrape_property(location=full_addr)
+            df = scrape_property(location=full_addr, listing_type=["for_sale", "pending"])
             now_iso = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
 
             if df is None or len(df) == 0:
@@ -2676,7 +2676,7 @@ def refresh_on_market_status(records):
     for rec in candidates:
         full_addr = f"{rec['address']}, {rec.get('city', '')}, TX {rec.get('zip', '')}".strip(", ")
         try:
-            df = scrape_property(location=full_addr, extra_property_data=False)
+            df = scrape_property(location=full_addr, extra_property_data=False, listing_type=["for_sale", "pending"])
             now_iso = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
             was_on_market = bool(rec.get("on_market"))
 
