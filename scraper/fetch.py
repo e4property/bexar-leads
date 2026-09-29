@@ -741,6 +741,33 @@ def scrape_publicsearch(known_docs):
     try:
         driver = get_driver()
 
+        # 2026-09-29: SUSPICIOUS STOP (page 1 full, page 2 empty -- the exact
+        # 2026-08-27 data-loss pattern) was confirmed firing on 15 of the
+        # last 16 runs, always on chunk 1's page 2 -- the very first
+        # multi-page request of a freshly-launched session, every single
+        # time. Reproduced live from an interactive browser: the identical
+        # URL/page works instantly, no retry needed, every time -- the site
+        # and the data are fine. A same-session full-reload retry (added
+        # earlier today) still failed twice in a row in CI, which rules out
+        # "page just needed longer to render" as the explanation and points
+        # at something session-cold-start-specific (rate limiting or bot
+        # scrutiny that eases after a session's first few requests land).
+        # Mitigation: burn one cheap, throwaway request on the site before
+        # chunk 1's real (and highest-value -- it's the current week) first
+        # pagination attempt, so that request is no longer the session's
+        # very first. Not proven to fully fix it -- this is the best
+        # evidence-based response to the observed pattern, not a confirmed
+        # root cause -- watch the next several runs' logs for whether
+        # SUSPICIOUS STOP still fires before trusting this closes the gap.
+        try:
+            log.info("Warm-up request before real scrape (see 2026-09-29 SUSPICIOUS STOP note)...")
+            driver.set_page_load_timeout(30)
+            driver.get(f"{PUBLICSEARCH_BASE}/results?department=FC&recordedDateRange=20260101%2C20260102"
+                       f"&keywordSearch=false&limit=5&offset=0&searchType=advancedSearch")
+            time.sleep(3)
+        except Exception as e:
+            log.info(f"Warm-up request failed (non-fatal, continuing anyway): {e}")
+
         for i, (cs, ce) in enumerate(chunks):
             log.info(f"Chunk {i+1}/{len(chunks)}: "
                      f"{cs.strftime('%Y-%m-%d')} → {ce.strftime('%Y-%m-%d')}")
