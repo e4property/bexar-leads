@@ -478,6 +478,45 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
                         except Exception:
                             pass
 
+        # 2026-09-29: the in-place DOM re-check above (sleep 3s + re-query)
+        # still wasn't enough -- confirmed live the exact SUSPICIOUS STOP
+        # pattern fired on this run's very first chunk (page 1 full, page 2
+        # empty), then manually re-loading the identical page 2 URL in a
+        # fresh browser session immediately afterward returned 56 real
+        # results, no retry needed. The DOM re-check can't recover from a
+        # request that never actually got real data back (vs. one that's
+        # just still rendering) -- only a genuine full page reload does. One
+        # more full reload-and-wait cycle, only when prev_page_was_full
+        # makes an empty page suspicious in the first place, before trusting
+        # it and potentially dropping real leads the way 8/27 did.
+        if not rows and prev_page_was_full:
+            log.info(f"    Page {page+1} still empty after DOM re-check but page {page} was full -- "
+                     f"doing one full reload before trusting it")
+            time.sleep(3)
+            try:
+                driver.get(url)
+                WebDriverWait(driver, PAGE_TIMEOUT).until(
+                    lambda d: (
+                        d.find_elements(By.CSS_SELECTOR, "table tbody tr") or
+                        d.find_elements(By.CSS_SELECTOR, "td.col-3") or
+                        d.find_elements(By.XPATH, "//h1[contains(text(),'No Results')]")
+                    )
+                )
+                time.sleep(2)
+                rows = driver.find_elements(By.CSS_SELECTOR, "table tbody tr")
+                if not rows:
+                    col3s = driver.find_elements(By.CSS_SELECTOR, "td.col-3")
+                    rows  = []
+                    for cell in col3s:
+                        try:
+                            rows.append(cell.find_element(By.XPATH, ".."))
+                        except Exception:
+                            pass
+                if rows:
+                    log.info(f"    Reload recovered {len(rows)} rows -- the DOM re-check alone would have missed these")
+            except Exception as e:
+                log.info(f"    Reload attempt failed: {e}")
+
         if not rows:
             if prev_page_was_full:
                 # 2026-08-28: this exact signature -- a full 50-row page
