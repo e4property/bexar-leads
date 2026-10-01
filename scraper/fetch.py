@@ -108,7 +108,22 @@ TODAY         = datetime.now(timezone.utc)
 TODAY_NAIVE   = datetime.now()
 IS_SUNDAY     = TODAY.weekday() == 6
 KEEP_DAYS     = 90
-CHUNK_DAYS    = 7
+# 2026-10-01: dropped from 7 to 2. Root-caused via git history (not another
+# guessed environmental fix) that page 2+ of a date-range chunk has been
+# reliably broken on the site's own advancedSearch mechanism since
+# sometime after 2026-09-07 (confirmed pagination worked fine as of that
+# date -- the bug back then was the OPPOSITE: too many real full pages
+# causing 1.5hr+ hangs, which is why MAX_PAGES got added). No code in the
+# pagination path changed between then and now, pointing at a site-side
+# change, not ours -- and tested three different environmental theories
+# (IP/location via self-hosted runner, headless detection, automation-
+# fingerprint masking) without success, all while page 1 of every single
+# chunk succeeded 100% of the time, every test, all day. Rather than keep
+# fighting a broken page-2+ mechanism, sidestep it: with Bexar averaging
+# ~100+ NOF filings/week recently, a 2-day chunk should almost always
+# stay under the 50-row single-page limit, so no chunk should ever need
+# page 2 at all.
+CHUNK_DAYS    = 2
 PAGE_TIMEOUT  = 180
 CUTOFF_DATE   = TODAY_NAIVE - timedelta(days=KEEP_DAYS)
 DOC_FETCH_LIMIT = 8    # max leads to OCR for loan/lender detail per run -- was 20, but each lead can

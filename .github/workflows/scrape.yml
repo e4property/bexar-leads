@@ -16,17 +16,21 @@ concurrency:
 
 jobs:
   scrape-and-deploy:
-    # 2026-10-01: moved from ubuntu-latest to a self-hosted runner on Xavi's
-    # own machine. Root-caused that the SUSPICIOUS STOP pagination failure
-    # (page 1 full, page 2 empty on the current week's chunk -- confirmed
-    # firing on essentially every run for a week straight) only happens from
-    # GitHub's hosted-runner IP pool -- the identical request, from this
-    # machine's own connection, has worked every single time it's been
-    # tested, including through a real GitHub Actions job (see
-    # test-selfhosted.yml). This machine must be on and this runner process
-    # running for the scrape to execute -- see runner_output.log in
-    # C:\gh-actions-runner\bexar-leads for its status.
-    runs-on: [self-hosted, Windows, local]
+    # 2026-10-01: reverted from a self-hosted runner back to ubuntu-latest.
+    # The SUSPICIOUS STOP pagination failure (page 1 full, page 2 empty)
+    # was NOT an environmental issue -- tested and ruled out IP/location
+    # (self-hosted runner on Xavi's own machine), headless detection
+    # (headed Chrome), and automation-fingerprint masking (plain Chrome,
+    # no spoofed UA/flags), all three still failed identically. Git
+    # history showed pagination worked fine as of 2026-09-07 (the bug back
+    # then was the OPPOSITE -- too many real full pages, not an empty one)
+    # with no code changes to the pagination path since, pointing at a
+    # site-side change to the advancedSearch mechanism's page-2+ behavior,
+    # not anything on our end. Real fix: CHUNK_DAYS dropped 7->2 (see that
+    # constant's comment) so no chunk should ever need page 2 at all.
+    # Self-hosted added a real downside (this machine has to stay on) for
+    # no benefit once the actual cause was found -- not worth keeping.
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
     timeout-minutes: 150
@@ -38,32 +42,22 @@ jobs:
           fetch-depth: 0
           token: "${{ secrets.GITHUB_TOKEN }}"
 
-      # 2026-10-01: Python/Chrome/Tesseract are already installed on this
-      # self-hosted machine (unlike a fresh ubuntu-latest VM each run) --
-      # setup-python and apt-get are neither needed nor available on
-      # Windows. Just register Tesseract's install directory on PATH for
-      # this job (GITHUB_PATH persists it across every step below).
-      - name: Register Tesseract on PATH
-        shell: bash
-        run: echo "/c/Program Files/Tesseract-OCR" >> "$GITHUB_PATH"
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install Tesseract OCR
+        run: sudo apt-get update && sudo apt-get install -y tesseract-ocr
 
       - name: Install dependencies
-        shell: bash
         run: pip install requests beautifulsoup4 lxml selenium pytesseract pillow homeharvest
 
       - name: Run python scraper/fetch.py
         id: scrape
-        shell: bash
         env:
           CLERK_EMAIL: "${{ secrets.CLERK_EMAIL }}"
           CLERK_PASSWORD: "${{ secrets.CLERK_PASSWORD }}"
-          # 2026-10-01: headed mode alone also did NOT fix SUSPICIOUS
-          # STOP (confirmed live) -- now testing whether the automation-
-          # masking flags themselves (spoofed UA, excludeSwitches, etc.)
-          # are the actual tell, since every successful manual test this
-          # session used a plain, unmodified browser.
-          SELENIUM_HEADLESS: "false"
-          SELENIUM_PLAIN: "true"
         run: python scraper/fetch.py
 
       # 2026-08-28: this script existed but was never actually wired into
@@ -74,11 +68,9 @@ jobs:
       # (recordedDateRange switch) surfaced them as "new" leads. Runs now
       # every scrape so this can't recur.
       - name: Purge past-auction leads
-        shell: bash
         run: python scraper/purge_past_auctions.py
 
       - name: Commit records
-        shell: bash
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
@@ -97,22 +89,16 @@ jobs:
             echo "Attempt $i failed, retrying..."
           done
 
-      # 2026-10-01: gh CLI isn't installed on this self-hosted Windows
-      # machine -- switched to the same curl + token pattern used
-      # elsewhere in this project instead of `gh api`.
       - name: Clean up stale github-pages artifacts
         if: always()
-        shell: bash
         env:
           GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
         run: |
-          curl -s -H "Authorization: token $GH_TOKEN" -H "Accept: application/vnd.github+json" \
-            "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts" \
-            | python3 -c "import json,sys; d=json.load(sys.stdin); [print(a['id']) for a in d['artifacts'] if a['name']=='github-pages']" | \
+          gh api "repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts" \
+            --jq '.artifacts[] | select(.name=="github-pages") | .id' | \
           while read -r id; do
             echo "Deleting stale github-pages artifact id=$id"
-            curl -s -X DELETE -H "Authorization: token $GH_TOKEN" -H "Accept: application/vnd.github+json" \
-              "https://api.github.com/repos/${{ github.repository }}/actions/artifacts/$id" || true
+            gh api -X DELETE "repos/${{ github.repository }}/actions/artifacts/$id" || true
           done
 
       - uses: actions/upload-pages-artifact@v3
