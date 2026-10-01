@@ -35620,7 +35620,7 @@
     "land_value": "64100.0",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-28T14:30:10Z",
+    "on_market_checked_at": "2026-10-01T04:05:49Z",
     "arv_estimate": 227300,
     "arv_status": "SOLD",
     "arv_sqft": 1478,
@@ -35686,7 +35686,7 @@
     "land_value": "36690.0",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-28T14:30:55Z",
+    "on_market_checked_at": "2026-10-01T04:05:50Z",
     "arv_estimate": 156530,
     "arv_status": "SOLD",
     "arv_sqft": 993,
@@ -35750,7 +35750,7 @@
     "land_value": "47880.0",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-28T14:31:41Z",
+    "on_market_checked_at": "2026-10-01T04:05:53Z",
     "arv_estimate": 233776,
     "arv_status": "SOLD",
     "arv_sqft": 2100,
@@ -35814,7 +35814,7 @@
     "land_value": "82200.0",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-28T14:29:57Z",
+    "on_market_checked_at": "2026-10-01T04:05:55Z",
     "arv_estimate": 298000,
     "arv_status": "SOLD",
     "arv_sqft": 2107,
@@ -35877,9 +35877,9 @@
     "appraised_value": "154790",
     "annual_taxes": "",
     "land_value": "54930.0",
-    "on_market": false,
-    "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-01T22:51:30Z",
+    "on_market": true,
+    "on_market_status": "FOR_SALE",
+    "on_market_checked_at": "2026-10-01T04:05:57Z",
     "arv_estimate": 297540,
     "arv_status": "SOLD",
     "arv_sqft": 1919,
@@ -35953,7 +35953,7 @@
     "ghl_id": "A6wOa8AVRuwyDTumZ49M",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-28T16:29:25Z"
+    "on_market_checked_at": "2026-10-01T04:05:59Z"
   },
   {
     "type": "NOF",
@@ -36017,7 +36017,7 @@
     "ghl_id": "QIZMFTj9ib9OXIBFHoLz",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-28T16:29:26Z"
+    "on_market_checked_at": "2026-10-01T04:06:01Z"
   },
   {
     "type": "NOF",
@@ -36075,7 +36075,7 @@
     "days_until_sale": 32,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-31T23:55:53Z",
+    "on_market_checked_at": "2026-10-01T04:06:02Z",
     "arv_estimate": 210000,
     "arv_status": "FOR_RENT"
   },
@@ -36141,7 +36141,7 @@
     "ghl_id": "AA8pcwD9cZsYM4X8X5go",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-28T16:29:28Z"
+    "on_market_checked_at": "2026-10-01T04:06:05Z"
   },
   {
     "type": "NOF",
@@ -36206,7 +36206,7 @@
     "ghl_id": "DZutgAYXbjhI77bTlj2I",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-28T16:29:29Z"
+    "on_market_checked_at": "2026-10-01T04:06:07Z"
   },
   {
     "type": "NOF",
@@ -36271,7 +36271,7 @@
     "ghl_id": "YNBGpd9yFfMqdLr7EviG",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-08-28T16:29:50Z"
+    "on_market_checked_at": "2026-10-01T04:06:09Z"
   },
   {
     "type": "NOF",
@@ -36336,7 +36336,7 @@
     "ghl_id": "lsJywme7hxsVv899DyRp",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-28T16:29:52Z"
+    "on_market_checked_at": "2026-10-01T04:06:11Z"
   },
   {
     "type": "NOF",
@@ -36397,7 +36397,7 @@
     "days_until_sale": 32,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-28T16:29:53Z",
+    "on_market_checked_at": "2026-10-01T04:06:13Z",
     "ghl_pushed": true,
     "ghl_pushed_at": "2026-08-31T03:37:41.916Z",
     "ghl_id": "QC0H9ScyCcYEjiCMIwGk"
@@ -36461,7 +36461,7 @@
     "ghl_id": "OAMpfgPjBHvdZSxB3vMl",
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-08-31T23:55:57Z",
+    "on_market_checked_at": "2026-10-01T04:06:14Z",
     "arv_estimate": 107259,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 868
@@ -36524,7 +36524,7 @@
     "ghl_id": "6kgV3pPyaS7hAIR9UfhN",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-31T23:56:00Z",
+    "on_market_checked_at": "2026-10-01T04:06:16Z",
     "arv_estimate": 175398,
     "arv_status": "SOLD",
     "arv_sqft": 964
@@ -68453,10 +68453,10 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 2,
     "tenure_score_bonus": 0,
     "prop_id": "1123921",
-    "deed_date": "",
+    "deed_date": "10/25/2023",
     "last_sale_amt": "",
     "appr_history": [
       {
