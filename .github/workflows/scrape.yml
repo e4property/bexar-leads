@@ -11,7 +11,14 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
+  # 2026-10-01: renamed from "pages" -- a self-hosted test run (id
+  # 36801135170) got orphaned when its runner was unregistered mid-job
+  # and is permanently stuck "in_progress" on GitHub's side; cancel was
+  # accepted (202) but never actually resolved it, and it was blocking
+  # every subsequent run behind it in the old group. New group name
+  # sidesteps that stuck entry. Pages concurrency protection itself is
+  # still intact, just under a fresh name.
+  group: pages-v2
   cancel-in-progress: false
 
 jobs:
