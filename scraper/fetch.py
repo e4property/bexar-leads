@@ -429,45 +429,21 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
             log.warning(f"    [{start_str}-{end_str}] hit MAX_PAGES={MAX_PAGES} — "
                         f"stopping chunk, rest deferred to next run")
             break
-        url = search_url.replace("offset=0", f"offset={offset}")
         log.info(f"    [{start_str}-{end_str}] Page {page+1} (offset={offset})")
 
         loaded = False
-        for attempt in range(2):
-            try:
-                driver.set_page_load_timeout(PAGE_TIMEOUT)
-                # 2026-10-01: about:blank reset before every real navigation --
-                # same fix that solved the identical symptom on nueces-leads
-                # tonight (page 1 full, page 2 empty, confirmed live to be a
-                # React SPA client-side-route race, not a true end-of-data
-                # condition or a site-side block). This function's own
-                # SUSPICIOUS STOP note already proved a fresh browser session
-                # recovers the "missing" rows instantly -- this forces that
-                # same fresh-navigation behavior instead of relying on
-                # same-origin driver.get() to fully reset router state.
+        if page == 0:
+            # Page 1 only: a direct hard navigation, proven 100% reliable in
+            # every test tonight (offset=0 always works).
+            url = search_url.replace("offset=0", f"offset={offset}")
+            for attempt in range(2):
                 try:
-                    driver.get("about:blank")
-                except Exception:
-                    pass
-                driver.get(url)
-                try:
-                    # 2026-08-28: the old check used `"no results" in
-                    # d.page_source.lower()` -- a substring match against the
-                    # ENTIRE raw page source, not a scoped element check. The
-                    # page's static/hidden markup (help text, a collapsed
-                    # "No Results" container that's always in the DOM, just
-                    # CSS-hidden until needed) contains that phrase on every
-                    # page load, results or not -- so this condition was true
-                    # from the instant the page started loading, before the
-                    # real <tr> rows ever rendered. WebDriverWait returned
-                    # immediately, the code checked for rows before they
-                    # existed, found none, and wrongly concluded "no more
-                    # results" -- confirmed live: page 2 of the current-week
-                    # chunk falsely stopped this way, silently dropping 34 of
-                    # 53 real NOF filings recorded 8/27/2026. Same fix as the
-                    # other functions in this file: only trust a genuine,
-                    # properly-scoped "No Results" <h1>, not a raw substring
-                    # match against the whole page.
+                    driver.set_page_load_timeout(PAGE_TIMEOUT)
+                    try:
+                        driver.get("about:blank")
+                    except Exception:
+                        pass
+                    driver.get(url)
                     WebDriverWait(driver, PAGE_TIMEOUT).until(
                         lambda d: (
                             d.find_elements(By.CSS_SELECTOR, "table tbody tr") or
@@ -478,14 +454,37 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
                     time.sleep(1.5)
                     loaded = True
                     break
-                except Exception:
-                    log.info(f"    Timeout attempt {attempt+1} — {'retrying' if attempt==0 else 'stopping chunk'}")
+                except Exception as e:
+                    log.info(f"    Page load error attempt {attempt+1}: {e}")
                     if attempt == 0:
                         time.sleep(5)
+        else:
+            # 2026-10-01: the REAL root cause, found and verified live --
+            # direct driver.get() to a non-zero-offset URL gets served a
+            # well-formed, genuine "No Results Found" decoy page (confirmed
+            # with the strict both-markers check, not a rendering race) --
+            # but clicking the actual pagination "next page" button on the
+            # already-loaded results page works every single time, verified
+            # through page 1->2->3 live in a real browser. The site isn't
+            # blocking automation, it's rejecting a hard navigation landing
+            # directly on a non-zero offset -- something no real user does
+            # by typing/bookmarking a URL, only a scraper. about:blank+retry
+            # (the previous fix) never addressed this because it was still
+            # doing a hard navigation either way.
+            try:
+                next_btn = driver.find_element(By.CSS_SELECTOR, "button[aria-label='next page']")
+                driver.execute_script("arguments[0].scrollIntoView({block:'center'});", next_btn)
+                next_btn.click()
+                WebDriverWait(driver, PAGE_TIMEOUT).until(
+                    lambda d: (
+                        d.find_elements(By.CSS_SELECTOR, "table tbody tr") or
+                        d.find_elements(By.XPATH, "//h1[contains(text(),'No Results')]")
+                    )
+                )
+                time.sleep(1.5)
+                loaded = True
             except Exception as e:
-                log.info(f"    Page load error attempt {attempt+1}: {e}")
-                if attempt == 0:
-                    time.sleep(5)
+                log.info(f"    Next-page click failed/absent: {e} — treating as end of results")
 
         if not loaded:
             log.info(f"    Timeout page {page+1} — stopping chunk")
@@ -549,14 +548,21 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
         # it and potentially dropping real leads the way 8/27 did.
         if not rows and prev_page_was_full:
             log.info(f"    Page {page+1} still empty after DOM re-check but page {page} was full -- "
-                     f"doing one full reload before trusting it")
+                     f"retrying before trusting it")
             time.sleep(3)
             try:
-                try:
-                    driver.get("about:blank")
-                except Exception:
-                    pass
-                driver.get(url)
+                if page == 0:
+                    try:
+                        driver.get("about:blank")
+                    except Exception:
+                        pass
+                    driver.get(url)
+                else:
+                    # Match the primary mechanism for this page -- re-click
+                    # next page rather than a hard navigation, which is the
+                    # thing proven NOT to work for a non-zero offset.
+                    next_btn = driver.find_element(By.CSS_SELECTOR, "button[aria-label='next page']")
+                    next_btn.click()
                 WebDriverWait(driver, PAGE_TIMEOUT).until(
                     lambda d: (
                         d.find_elements(By.CSS_SELECTOR, "table tbody tr") or
