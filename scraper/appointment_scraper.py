@@ -819,11 +819,36 @@ def scrape_appointments(known_docs, get_driver_fn, run_timestamp, days_back=30,
                         # alongside the real homeowners De Garcia and Garcia, also
                         # tagged GRANTOR — the filing lists the servicer AND the
                         # original grantors under the same role).
-                        if rec.get("owner_unverified") or not rec["owner"] or is_entity_name(rec["owner"]):
-                            party_pairs = re.findall(
-                                r'<a[^>]*>([^<]+)</a>\s*<span class="doc-preview-group__summary-group-label">([^<]+)</span>',
-                                page_src)
-                            grantors = [n.strip() for n, role in party_pairs if role.strip().upper() == "GRANTOR"]
+                        # 2026-09-30: was gated on owner_unverified/is_entity_name
+                        # -- confirmed live on doc 20260188224 (Sharples Rebecca
+                        # & Gabriel) that this misses a whole failure class: the
+                        # row-summary candidate-picker (earlier in this file)
+                        # doesn't track which COLUMN a name came from, so on an
+                        # Appointment of Substitute Trustee filing it can just as
+                        # easily grab a newly-appointed trustee's name off the
+                        # GRANTEE side (e.g. "Schwartz Kirk" -- one of six
+                        # individual trustees appointed alongside Auction.com
+                        # LLC) as the real homeowner off the GRANTOR side. A
+                        # trustee's name is a normal personal name too, so it
+                        # passed is_entity_name() clean and owner_unverified
+                        # never got set -- "looks like a real name" cannot tell
+                        # a distressed homeowner apart from a trustee individual
+                        # on this doc type. We're already on the doc detail page
+                        # for the address lookup regardless, so there's no extra
+                        # cost to always cross-check the owner here against the
+                        # page's own role-labeled Parties list rather than only
+                        # when an earlier heuristic already looked suspicious.
+                        party_pairs = re.findall(
+                            r'<a[^>]*>([^<]+)</a>\s*<span class="doc-preview-group__summary-group-label">([^<]+)</span>',
+                            page_src)
+                        grantors = [n.strip() for n, role in party_pairs if role.strip().upper() == "GRANTOR"]
+                        grantees = [n.strip() for n, role in party_pairs if role.strip().upper() == "GRANTEE"]
+                        current_owner_is_grantee = any(
+                            rec["owner"] and rec["owner"].strip().upper() == g.strip().upper()
+                            for g in grantees
+                        )
+                        if rec.get("owner_unverified") or not rec["owner"] or is_entity_name(rec["owner"]) \
+                                or current_owner_is_grantee:
                             found_personal = next(
                                 (g for g in grantors if g and not is_entity_name(g) and _looks_like_personal_name(g)),
                                 "")
@@ -831,7 +856,8 @@ def scrape_appointments(known_docs, get_driver_fn, run_timestamp, days_back=30,
                                 old_owner = rec["owner"]
                                 rec["owner"] = found_personal.title()
                                 rec["owner_unverified"] = False
-                                log.info(f"  Corrected owner for {rec['doc_number']}: {old_owner!r} -> {rec['owner']}")
+                                reason = "was a grantee (trustee), not the homeowner" if current_owner_is_grantee else "was unverified/entity"
+                                log.info(f"  Corrected owner for {rec['doc_number']}: {old_owner!r} -> {rec['owner']} ({reason})")
 
                         # Lender name — we're already on the doc page for
                         # address/owner, so pull this too while here. Useful
