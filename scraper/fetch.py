@@ -436,6 +436,19 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
         for attempt in range(2):
             try:
                 driver.set_page_load_timeout(PAGE_TIMEOUT)
+                # 2026-10-01: about:blank reset before every real navigation --
+                # same fix that solved the identical symptom on nueces-leads
+                # tonight (page 1 full, page 2 empty, confirmed live to be a
+                # React SPA client-side-route race, not a true end-of-data
+                # condition or a site-side block). This function's own
+                # SUSPICIOUS STOP note already proved a fresh browser session
+                # recovers the "missing" rows instantly -- this forces that
+                # same fresh-navigation behavior instead of relying on
+                # same-origin driver.get() to fully reset router state.
+                try:
+                    driver.get("about:blank")
+                except Exception:
+                    pass
                 driver.get(url)
                 try:
                     # 2026-08-28: the old check used `"no results" in
@@ -501,7 +514,16 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
         # page one more real chance to finish rendering before concluding
         # the chunk is exhausted.
         if not rows:
-            confirmed_empty = driver.find_elements(By.XPATH, "//h1[contains(text(),'No Results')]")
+            # 2026-10-01: require BOTH markers (matches nueces-leads' proven
+            # fix) -- a bare "No Results" h1 check alone can't tell a genuine
+            # empty page apart from a transient SPA-transition render that
+            # happens to show similar text before real rows load.
+            body_text_check = ""
+            try:
+                body_text_check = driver.find_element(By.TAG_NAME, "body").text
+            except Exception:
+                pass
+            confirmed_empty = "No Results Found" in body_text_check and "Suggestions:" in body_text_check
             if not confirmed_empty:
                 time.sleep(3)
                 rows = driver.find_elements(By.CSS_SELECTOR, "table tbody tr")
@@ -530,6 +552,10 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
                      f"doing one full reload before trusting it")
             time.sleep(3)
             try:
+                try:
+                    driver.get("about:blank")
+                except Exception:
+                    pass
                 driver.get(url)
                 WebDriverWait(driver, PAGE_TIMEOUT).until(
                     lambda d: (
