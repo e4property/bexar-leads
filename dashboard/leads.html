@@ -816,6 +816,9 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
                 <button class="act-btn" onclick="tagDriveBy('OCCUPIED')">🏠 Occupied</button>
                 <button class="act-btn" onclick="openGHL()">GHL ↗</button>
               </div>
+              <div class="act-row" style="margin-top:5px">
+                <button class="act-btn" style="width:100%" onclick="openSkipTraceLinks()">🔗 Skip Trace Links (free fallback)</button>
+              </div>
             </div>
           </div>
           <div class="dsec"><div class="dsec-lbl">Pipeline</div><div class="dispo-track" id="dispo-track"></div></div>
@@ -901,6 +904,16 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
     <div class="modal-actions">
       <button class="nav-btn" onclick="closeSettings()">Cancel</button>
       <button class="nav-btn run" onclick="saveSettings()">Save</button>
+    </div>
+  </div>
+</div>
+<div class="modal-overlay" id="skiptrace-modal">
+  <div class="modal">
+    <h3>🔗 Skip Trace Links</h3>
+    <div style="font-size:12px;color:var(--muted);margin-bottom:10px;line-height:1.5">Free fallback for when ForeWarn's budget runs out — opens each site's own search with the name/address pre-filled, click through manually (same as the address bar, no accounts or scraping involved).</div>
+    <div id="skiptrace-links" style="display:flex;flex-direction:column;gap:6px"></div>
+    <div class="modal-actions">
+      <button class="nav-btn" onclick="closeSkipTraceModal()">Close</button>
     </div>
   </div>
 </div>
@@ -1532,6 +1545,47 @@ async function saveLeadInfo(){
 function clearPhone(){if(!confirm('Clear phone and push status? Use this when the saved contact was wrong (e.g. prior owner) so you can push a corrected one.'))return;if(S.leads[selectedDoc]){S.leads[selectedDoc].phone='';S.leads[selectedDoc].searchedAt=null;saveState();}const lead=allLeads.find(l=>l.doc_number===selectedDoc);if(lead){lead.ghl_pushed=false;lead.ghl_pushed_at=null;lead.ghl_id=null;lead.dash_phone='';lead.dash_searched_at=null;}writeBackToRepo(selectedDoc,{dash_phone:'',dash_searched_at:null,ghl_pushed:false,ghl_pushed_at:null,ghl_id:null});if(lead)populateDetail(lead);filterLeads();}
 function skipLead(){if(!S.leads[selectedDoc])S.leads[selectedDoc]={};S.leads[selectedDoc].skipped=!S.leads[selectedDoc].skipped;saveState();filterLeads();toast('Skipped');setTimeout(()=>navNextUnworked(),300);}
 function setDispo(doc,dispo){if(!S.leads[doc])S.leads[doc]={};S.leads[doc].dispo=dispo;saveState();renderDispoTrack(doc,dispo);renderList();updateStats();if(S.ghlApiKey&&S.leads[doc]?.ghlId)updateGHLTag(S.leads[doc].ghlId,dispo);writeBackToRepo(doc,{dash_dispo:dispo});toast(`Dispo → ${dispo}`);}
+
+// ── Skip Trace Links (free fallback for when ForeWarn's budget is used up) ──
+// URL templates confirmed against each site's own real query format (not
+// guessed) -- 2026-10-01. Links only, no scraping: the user clicks through
+// manually on each site exactly like typing the search in by hand.
+function _skipTraceSlug(s){return (s||'').trim().toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');}
+function buildSkipTraceLinks(lead){
+  // owner is stored "Last First Middle" (county grantor-field convention,
+  // confirmed against real records, e.g. "Hernandez Tony J") -- reverse to
+  // "First Last" for these sites' own search format, dropping any middle
+  // initial/suffix tokens past the second word.
+  const ownerParts=(lead.owner||'').split(/\s+/).filter(Boolean);
+  const last=ownerParts[0]||'';
+  const first=ownerParts[1]||'';
+  const fullName=[first,last].filter(Boolean).join(' ');
+  const city=lead.city||'',zip=lead.zip||'',addr=lead.address||'';
+  const csz=[city,'TX',zip].filter(Boolean).join(' ');
+  const links=[];
+  if(fullName){
+    links.push({label:'TruePeopleSearch',url:`https://www.truepeoplesearch.com/results?name=${encodeURIComponent(fullName)}&citystatezip=${encodeURIComponent(csz)}`});
+    links.push({label:'FastPeopleSearch',url:`https://www.fastpeoplesearch.com/name/${_skipTraceSlug(fullName)}_${_skipTraceSlug(city+' TX')}`});
+    links.push({label:"That'sThem",url:`https://thatsthem.com/name/${fullName.trim().replace(/\s+/g,'-')}${city?'/'+city.replace(/\s+/g,'-')+'-TX':''}`});
+    links.push({label:'USPhoneBook',url:`https://www.usphonebook.com/${_skipTraceSlug(fullName)}${city?'/'+_skipTraceSlug(city+' TX'):''}`});
+  }
+  if(addr){
+    links.push({label:'TruePeopleSearch (by address)',url:`https://www.truepeoplesearch.com/results?streetaddress=${encodeURIComponent(addr)}&citystatezip=${encodeURIComponent(csz)}`});
+    links.push({label:'FastPeopleSearch (by address)',url:`https://www.fastpeoplesearch.com/address/${_skipTraceSlug(addr)}_${_skipTraceSlug(city+' TX')}`});
+  }
+  return links;
+}
+function openSkipTraceLinks(){
+  const lead=allLeads.find(l=>l.doc_number===selectedDoc);
+  if(!lead){toast('Select a lead first');return;}
+  const links=buildSkipTraceLinks(lead);
+  if(!links.length){toast('Need an owner name or address on this lead first');return;}
+  document.getElementById('skiptrace-links').innerHTML=links.map(l=>
+    `<a href="${l.url}" target="_blank" rel="noopener" class="act-btn" style="display:block;text-align:left;text-decoration:none">${l.label} ↗</a>`
+  ).join('');
+  document.getElementById('skiptrace-modal').classList.add('open');
+}
+function closeSkipTraceModal(){document.getElementById('skiptrace-modal').classList.remove('open');}
 
 // ── Smart Lists (saved filter presets) ──────────────────────────────────────
 function matchesSmartList(l,c){
