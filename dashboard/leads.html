@@ -650,6 +650,8 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
       <div class="sb-item" id="sf-lp" onclick="setView('lp',this)"><div class="sb-icon" style="background:var(--red-bg)">📜</div><div class="sb-info"><div class="sb-name">Lis Pendens</div><div class="sb-cnt" id="fc-lp">—</div></div></div>
       <div class="sb-item" id="sf-appt" onclick="setView('appt',this)"><div class="sb-icon" style="background:var(--red-bg)">⚡</div><div class="sb-info"><div class="sb-name">Pre-Fore</div><div class="sb-cnt" id="fc-appt">—</div></div></div>
       <div class="sb-item" id="sf-aged" onclick="setView('aged',this)"><div class="sb-icon" style="background:var(--bg3)">🗄</div><div class="sb-info"><div class="sb-name">Aged (60d+)</div><div class="sb-cnt" id="fc-aged">—</div></div></div>
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 10px 4px;margin-top:4px;border-top:1px solid var(--border)"><span style="font-size:10px;font-weight:700;letter-spacing:.05em;color:var(--muted);text-transform:uppercase">Smart Lists</span><button onclick="openSmartListModal()" title="New Smart List" style="border:none;background:var(--blue-bg);color:var(--blue-dk);width:20px;height:20px;border-radius:5px;cursor:pointer;font-size:13px;font-weight:700;line-height:1">+</button></div>
+      <div id="smartlist-container"></div>
     </div>
     <div class="resizer" id="resizer-sb"></div>
     <div class="midcol" id="midcol">
@@ -672,6 +674,16 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
         <span class="sc" id="sort-saledate" onclick="setSort('saledate',this)">Sale Date</span>
         <span class="sc" id="sort-score" onclick="setSort('score',this)">Score</span>
         <span class="sc" id="sort-equity" onclick="setSort('equity',this)">Equity</span>
+        <span class="sc" id="bulk-toggle" onclick="toggleBulkMode()" style="margin-left:auto">☑ Select</span>
+      </div>
+      <div id="bulk-bar" style="display:none;align-items:center;gap:8px;padding:7px 10px;background:var(--blue-bg);border-bottom:1px solid var(--border2);font-size:12px">
+        <span id="bulk-count" style="font-weight:700;color:var(--blue-dk)">0 selected</span>
+        <span style="cursor:pointer;color:var(--blue-dk);text-decoration:underline" onclick="bulkSelectAllVisible()">Select all visible</span>
+        <span style="cursor:pointer;color:var(--blue-dk);text-decoration:underline" onclick="bulkClearSelection()">Clear</span>
+        <span style="margin-left:auto;display:flex;gap:6px">
+          <button onclick="bulkSetDispo('cold')" style="padding:4px 10px;border-radius:5px;border:1px solid var(--border2);background:var(--surface);font-size:11px;cursor:pointer;font-weight:600">Mark Cold</button>
+          <button onclick="bulkSetDispo('skipped')" style="padding:4px 10px;border-radius:5px;border:1px solid var(--border2);background:var(--surface);font-size:11px;cursor:pointer;font-weight:600">Skip</button>
+        </span>
       </div>
       <div class="next-hint" id="next-hint" style="display:none">N=next · J/K=navigate · P=phone · C=copy · G=GHL</div>
       <div class="lead-list" id="lead-list"><div class="loading">Loading<span class="ld">.</span><span class="ld">.</span><span class="ld">.</span></div></div>
@@ -892,6 +904,32 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
     </div>
   </div>
 </div>
+<div class="modal-overlay" id="smartlist-modal">
+  <div class="modal">
+    <h3>⭐ New Smart List</h3>
+    <label>Name</label><input type="text" id="sl-name" placeholder="e.g. Absentee, high equity">
+    <label>Criteria (matches ALL checked)</label>
+    <div style="display:flex;flex-direction:column;gap:6px;margin:6px 0 10px;font-size:13px">
+      <label style="display:flex;align-items:center;gap:7px;font-weight:400"><input type="checkbox" id="sl-absentee">Absentee owner</label>
+      <label style="display:flex;align-items:center;gap:7px;font-weight:400"><input type="checkbox" id="sl-stacked">Stacked / VBP</label>
+      <label style="display:flex;align-items:center;gap:7px;font-weight:400"><input type="checkbox" id="sl-onmarket-excl" checked>Exclude already on-market</label>
+    </div>
+    <label>Minimum score (0 = any)</label><input type="number" id="sl-minscore" min="0" max="10" value="0">
+    <label>Minimum tenure, years (0 = any)</label><input type="number" id="sl-mintenure" min="0" value="0">
+    <label>Auction within N days (blank = any)</label><input type="number" id="sl-maxdays" min="0" placeholder="e.g. 30">
+    <label>Lead type</label>
+    <select id="sl-type" style="width:100%;padding:7px 9px;border-radius:6px;border:1px solid var(--border2);background:var(--surface);font-size:13px;color:var(--text)">
+      <option value="">Any</option>
+      <option value="NOF">Foreclosure (NOF/TAX)</option>
+      <option value="APPT">Pre-Foreclosure</option>
+      <option value="LP">Lis Pendens</option>
+    </select>
+    <div class="modal-actions">
+      <button class="nav-btn" onclick="closeSmartListModal()">Cancel</button>
+      <button class="nav-btn run" onclick="saveSmartList()">Save Smart List</button>
+    </div>
+  </div>
+</div>
 <div class="modal-overlay" id="delete-modal">
   <div class="modal">
     <h3 style="color:var(--red-dk)">🗑️ Delete Lead</h3>
@@ -909,7 +947,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
 const SK='bl_v6',REC_URL_DEFAULT='https://e4property.github.io/bexar-leads/records.json';
 const GH_REPO='e4property/bexar-leads',GH_WORKFLOW='scrape.yml';
 const AGED_DAYS=60;
-let S={ghlApiKey:'',ghlLocationId:'UAOJlgeerLu3GChP9jDJ',recordsUrl:REC_URL_DEFAULT,weekStart:sundayTs(),used:0,leads:{},ghToken:''};
+let S={ghlApiKey:'',ghlLocationId:'UAOJlgeerLu3GChP9jDJ',recordsUrl:REC_URL_DEFAULT,weekStart:sundayTs(),used:0,leads:{},ghToken:'',smartLists:[]};
 let allLeads=[],filteredLeads=[],selectedDoc=null,selectedIdx=-1;
 let currentView='all',currentSort='recent',searchQ='',currentNavView='dash';
 
@@ -1127,7 +1165,12 @@ function filterLeads(){
     case'lp': list=list.filter(isLP);break;
     case'appt': list=list.filter(isAppt);break;
     case'onmarket': list=list.filter(l=>l.on_market);break;
-    case'all': default: break;
+    case'all': default:
+      if(currentView&&currentView.startsWith('smart:')){
+        const sl=S.smartLists.find(s=>s.id===currentView.slice(6));
+        if(sl)list=list.filter(l=>matchesSmartList(l,sl.criteria));
+      }
+      break;
   }
   if(searchQ)list=list.filter(l=>(l.owner||'').toLowerCase().includes(searchQ)||(l.address||'').toLowerCase().includes(searchQ)||(l.zip||'').includes(searchQ)||(l.city||'').toLowerCase().includes(searchQ)||(l.ce_reason||'').toLowerCase().includes(searchQ));
   list.sort((a,b)=>{
@@ -1180,8 +1223,9 @@ function renderItem(lead,idx){
   const age=daysAgo(lead);const ageCls=age<=14?'fresh':age<=60?'mid':'old';const ageStr=age<999?(age===0?'today':age+'d ago'):'';
   const sd=scrapedDaysAgo(lead);const scrapedCls=sd===0?'fresh':sd<=7?'mid':'old';const scrapedStr=scrapedAgoStr(lead);
   const tenureHTML=tenureChipHTML(lead);
+  const bulkChk=bulkMode?`<input type="checkbox" onclick="event.stopPropagation();toggleBulkSelect('${lead.doc_number}')" ${bulkSelected.has(lead.doc_number)?'checked':''} style="margin-right:2px;flex-shrink:0">`:'';
   return`<div class="${cc}" onclick="selectLead('${lead.doc_number}')">
-<div class="li-top"><span class="li-rank">${idx+1}</span><span class="li-score ${sc}">${lead.score}</span>${tenureHTML}<span class="li-name">${displayName}</span>${isNew&&!isSel?'<span class="li-new-tag">NEW</span>':''}</div>
+<div class="li-top">${bulkChk}<span class="li-rank">${idx+1}</span><span class="li-score ${sc}">${lead.score}</span>${tenureHTML}<span class="li-name">${displayName}</span>${isNew&&!isSel?'<span class="li-new-tag">NEW</span>':''}</div>
 <div class="li-addr">${lead.address||''}${lead.zip?' '+lead.zip:''}</div>
 <div class="li-bot"><div class="li-badges">${b.join('')}</div><div class="li-right">${scrapedStr?`<span class="li-age ${scrapedCls}">⬇ ${scrapedStr}</span>`:''} ${ageStr?`<span class="li-age ${ageCls}">${ageStr}</span>`:''} ${lead.appr_trend?`<span class="li-trend ${trendClass(lead.appr_trend)}">${trendArrow(lead.appr_trend)}</span>`:''} ${eqStr?`<span class="li-eq">Eq <b>${eqStr}</b></span>`:''} ${dateStr?`<span class="li-date ${dateCls}">🔨${dateStr}</span>`:''}</div></div>
 </div>`;}
@@ -1488,6 +1532,68 @@ async function saveLeadInfo(){
 function clearPhone(){if(!confirm('Clear phone and push status? Use this when the saved contact was wrong (e.g. prior owner) so you can push a corrected one.'))return;if(S.leads[selectedDoc]){S.leads[selectedDoc].phone='';S.leads[selectedDoc].searchedAt=null;saveState();}const lead=allLeads.find(l=>l.doc_number===selectedDoc);if(lead){lead.ghl_pushed=false;lead.ghl_pushed_at=null;lead.ghl_id=null;lead.dash_phone='';lead.dash_searched_at=null;}writeBackToRepo(selectedDoc,{dash_phone:'',dash_searched_at:null,ghl_pushed:false,ghl_pushed_at:null,ghl_id:null});if(lead)populateDetail(lead);filterLeads();}
 function skipLead(){if(!S.leads[selectedDoc])S.leads[selectedDoc]={};S.leads[selectedDoc].skipped=!S.leads[selectedDoc].skipped;saveState();filterLeads();toast('Skipped');setTimeout(()=>navNextUnworked(),300);}
 function setDispo(doc,dispo){if(!S.leads[doc])S.leads[doc]={};S.leads[doc].dispo=dispo;saveState();renderDispoTrack(doc,dispo);renderList();updateStats();if(S.ghlApiKey&&S.leads[doc]?.ghlId)updateGHLTag(S.leads[doc].ghlId,dispo);writeBackToRepo(doc,{dash_dispo:dispo});toast(`Dispo → ${dispo}`);}
+
+// ── Smart Lists (saved filter presets) ──────────────────────────────────────
+function matchesSmartList(l,c){
+  if(c.absentee&&!l.absentee)return false;
+  if(c.stacked&&!(isStacked(l)||isVBP(l)))return false;
+  if(c.onmarketExcl&&l.on_market)return false;
+  if(c.minScore&&(l.score||0)<c.minScore)return false;
+  if(c.minTenure&&(l.tenure_years||0)<c.minTenure)return false;
+  if(c.maxDays!=null){const d=l.days_until_sale;if(d==null||d>c.maxDays||auctionPassed(l))return false;}
+  if(c.type==='NOF'&&!(l.type==='NOF'||l.type==='TAX'))return false;
+  if(c.type==='APPT'&&!isAppt(l))return false;
+  if(c.type==='LP'&&!isLP(l))return false;
+  return true;
+}
+function openSmartListModal(){document.getElementById('smartlist-modal').classList.add('open');document.getElementById('sl-name').focus();}
+function closeSmartListModal(){document.getElementById('smartlist-modal').classList.remove('open');['sl-name','sl-maxdays'].forEach(id=>document.getElementById(id).value='');['sl-absentee','sl-stacked'].forEach(id=>document.getElementById(id).checked=false);document.getElementById('sl-onmarket-excl').checked=true;document.getElementById('sl-minscore').value=0;document.getElementById('sl-mintenure').value=0;document.getElementById('sl-type').value='';}
+function saveSmartList(){
+  const name=document.getElementById('sl-name').value.trim();
+  if(!name){toast('Name it first');return;}
+  const criteria={
+    absentee:document.getElementById('sl-absentee').checked,
+    stacked:document.getElementById('sl-stacked').checked,
+    onmarketExcl:document.getElementById('sl-onmarket-excl').checked,
+    minScore:parseInt(document.getElementById('sl-minscore').value)||0,
+    minTenure:parseInt(document.getElementById('sl-mintenure').value)||0,
+    maxDays:document.getElementById('sl-maxdays').value?parseInt(document.getElementById('sl-maxdays').value):null,
+    type:document.getElementById('sl-type').value,
+  };
+  S.smartLists.push({id:'sl'+Date.now(),name,criteria});
+  saveState();renderSmartLists();closeSmartListModal();toast('Smart List saved');
+}
+function deleteSmartList(id,ev){ev.stopPropagation();S.smartLists=S.smartLists.filter(s=>s.id!==id);saveState();renderSmartLists();if(currentView==='smart:'+id)setView('all',document.getElementById('sf-all'));}
+function setSmartListView(id){currentView='smart:'+id;if(currentNavView==='dash')showView('work');document.querySelectorAll('.sidebar .sb-item').forEach(i=>i.classList.remove('on'));document.querySelectorAll('.type-tabs .ttab').forEach(t=>t.classList.remove('on'));const el=document.getElementById('sf-smart-'+id);if(el)el.classList.add('on');filterLeads();}
+function renderSmartLists(){
+  const el=document.getElementById('smartlist-container');if(!el)return;
+  if(!S.smartLists.length){el.innerHTML='<div style="padding:6px 10px;font-size:11px;color:var(--muted)">None yet — click + to save one</div>';return;}
+  el.innerHTML=S.smartLists.map(sl=>{
+    const cnt=allLeads.filter(l=>matchesSmartList(l,sl.criteria)).length;
+    return`<div class="sb-item" id="sf-smart-${sl.id}" onclick="setSmartListView('${sl.id}')"><div class="sb-icon" style="background:var(--purple-bg)">⭐</div><div class="sb-info"><div class="sb-name">${sl.name}</div><div class="sb-cnt">${cnt}</div></div><div class="sb-badge" style="background:transparent;cursor:pointer;color:var(--muted);font-weight:700" onclick="deleteSmartList('${sl.id}',event)">×</div></div>`;
+  }).join('');
+}
+
+// ── Bulk actions ──────────────────────────────────────────────────────────────
+let bulkMode=false,bulkSelected=new Set();
+function toggleBulkMode(){bulkMode=!bulkMode;if(!bulkMode)bulkSelected.clear();document.getElementById('bulk-toggle').classList.toggle('on',bulkMode);document.getElementById('bulk-bar').style.display=bulkMode?'flex':'none';updateBulkBar();renderList();}
+function toggleBulkSelect(doc){if(bulkSelected.has(doc))bulkSelected.delete(doc);else bulkSelected.add(doc);updateBulkBar();renderList();}
+function bulkSelectAllVisible(){filteredLeads.forEach(l=>bulkSelected.add(l.doc_number));updateBulkBar();renderList();}
+function bulkClearSelection(){bulkSelected.clear();updateBulkBar();renderList();}
+function updateBulkBar(){const c=document.getElementById('bulk-count');if(c)c.textContent=bulkSelected.size+' selected';}
+function bulkSetDispo(dispo){
+  if(!bulkSelected.size){toast('Nothing selected');return;}
+  const docs=[...bulkSelected];
+  for(const doc of docs){
+    if(!S.leads[doc])S.leads[doc]={};
+    if(dispo==='skipped')S.leads[doc].skipped=true;
+    else S.leads[doc].dispo=dispo;
+  }
+  saveState();
+  if(dispo!=='skipped')for(const doc of docs)writeBackToRepo(doc,{dash_dispo:dispo});
+  toast(`${docs.length} leads → ${dispo}`);
+  bulkSelected.clear();updateBulkBar();filterLeads();updateStats();
+}
 function saveNotes(){if(!selectedDoc)return;if(!S.leads[selectedDoc])S.leads[selectedDoc]={};const notes=document.getElementById('notes-area').value;S.leads[selectedDoc].notes=notes;saveState();writeBackToRepo(selectedDoc,{dash_notes:notes});}
 /* MAO Calculator — 2026-08-19, first build, testing for a week before
    trusting it fully. Base = arv_estimate when available (real sold-comp
@@ -1787,7 +1893,7 @@ async function pushGHL(lead,phone){
 async function updateGHLTag(contactId,dispo){const tagMap={contacted:'dispo_contacted',responded:'dispo_responded',deal:'dispo_deal',dead:'dispo_dead'},tag=tagMap[dispo];if(!tag)return;try{await fetch(`https://services.leadconnectorhq.com/contacts/${contactId}/tags/`,{method:'POST',headers:{'Authorization':'Bearer '+S.ghlApiKey,'Content-Type':'application/json','Version':'2021-07-28'},body:JSON.stringify({tags:[tag]})});}catch(e){}}
 function setGhlDot(ok){const dot=document.getElementById('ghl-dot'),txt=document.getElementById('ghl-txt');if(ok===null){dot.className='ghl-dot';txt.textContent='GHL';}else if(ok){dot.className='ghl-dot ok';txt.textContent='GHL ✓';}else{dot.className='ghl-dot err';txt.textContent='GHL ✗';}}
 
-function updateStats(){set('ov-total',allLeads.length);set('ov-new',allLeads.filter(l=>l.is_new).length);set('ov-urgent',allLeads.filter(l=>isUrgent(l)&&!auctionPassed(l)).length);set('ov-absentee',allLeads.filter(l=>l.absentee).length);set('ov-tax',allLeads.filter(l=>l.type==='TAX').length);set('ov-ce',allLeads.filter(isCEOnly).length);set('ov-vbp',allLeads.filter(l=>isVBP(l)||isStacked(l)).length);set('ov-searched',Object.values(S.leads).filter(l=>l.phone||l.ghl_pushed).length);set('ov-deals',Object.values(S.leads).filter(l=>l.dispo==='deal').length);const ls=Object.values(S.leads),cont=ls.filter(l=>l.dispo==='contacted').length,resp=ls.filter(l=>l.dispo==='responded').length,deal=ls.filter(l=>l.dispo==='deal').length,dead=ls.filter(l=>l.dispo==='dead').length;const tot=Math.max(Object.values(S.leads).filter(l=>l.phone).length,1),pct=n=>Math.round(n/tot*100)+'%';['pb-contacted','pb-responded','pb-deal','pb-dead'].forEach((id,i)=>{const el=document.getElementById(id);if(el)el.style.width=pct([cont,resp,deal,dead][i]);});set('pb-l-cont',cont+' contacted');set('pb-l-resp',resp+' responded');set('pb-l-deal',deal+' deals');set('pb-l-dead',dead+' dead');}
+function updateStats(){set('ov-total',allLeads.length);set('ov-new',allLeads.filter(l=>l.is_new).length);set('ov-urgent',allLeads.filter(l=>isUrgent(l)&&!auctionPassed(l)).length);set('ov-absentee',allLeads.filter(l=>l.absentee).length);set('ov-tax',allLeads.filter(l=>l.type==='TAX').length);set('ov-ce',allLeads.filter(isCEOnly).length);set('ov-vbp',allLeads.filter(l=>isVBP(l)||isStacked(l)).length);set('ov-searched',Object.values(S.leads).filter(l=>l.phone||l.ghl_pushed).length);set('ov-deals',Object.values(S.leads).filter(l=>l.dispo==='deal').length);const ls=Object.values(S.leads),cont=ls.filter(l=>l.dispo==='contacted').length,resp=ls.filter(l=>l.dispo==='responded').length,deal=ls.filter(l=>l.dispo==='deal').length,dead=ls.filter(l=>l.dispo==='dead').length;const tot=Math.max(Object.values(S.leads).filter(l=>l.phone).length,1),pct=n=>Math.round(n/tot*100)+'%';['pb-contacted','pb-responded','pb-deal','pb-dead'].forEach((id,i)=>{const el=document.getElementById(id);if(el)el.style.width=pct([cont,resp,deal,dead][i]);});set('pb-l-cont',cont+' contacted');set('pb-l-resp',resp+' responded');set('pb-l-deal',deal+' deals');set('pb-l-dead',dead+' dead');renderSmartLists();}
 
 // Derives the repo to hit from whichever county is ACTIVE in the switcher,
 // not a hardcoded constant -- this file gets copy-pasted across all three
