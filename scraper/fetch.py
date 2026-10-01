@@ -287,6 +287,18 @@ def should_keep(rec):
         return False
     if addr in ("N/A", "NA") and not rec.get("owner") and not rec.get("sale_date"):
         return False
+    # 2026-10-01: removed the date_filed/CUTOFF_DATE age check that used to
+    # live here. This function runs on EVERY scrape (not just the dedicated
+    # purge_past_auctions.py step), and unlike that script, had no
+    # has_ghl_activity exemption at all -- a worked, pushed-to-Jarvis APPT
+    # lead sitting past 90 days with no sale_date yet could get silently
+    # dropped from records.json by an ordinary scrape run, not a purge.
+    # purge_past_auctions.py already owns all age/staleness-based removal
+    # (180-day threshold for no-sale-date NOF/TAX, GHL-activity-aware,
+    # explicit APPT/VBP/CE exemptions) and runs as its own step right after
+    # this script in scrape.yml -- this function should only ever reject
+    # genuine garbage data (struck-off docs, completely empty records),
+    # never decide a real lead is "too old" to keep around.
     sale_date_str = rec.get("sale_date", "")
     if sale_date_str:
         try:
@@ -294,26 +306,6 @@ def should_keep(rec):
                 return True
         except Exception:
             pass
-    date_filed = rec.get("date_filed", "")
-    if date_filed:
-        try:
-            parts = date_filed.strip().split("/")
-            if len(parts) == 2:
-                filed_dt = datetime(int(parts[1]), int(parts[0]), 1)
-                return filed_dt >= CUTOFF_DATE
-        except Exception:
-            pass
-    if rec.get("source") == "code_enforcement":
-        opened = rec.get("opened_date", "")
-        if opened:
-            try:
-                opened_dt = datetime.strptime(opened, "%m/%d/%Y")
-                return opened_dt >= CUTOFF_DATE
-            except Exception:
-                pass
-        return True
-    if rec.get("source") == "vbp_ce" or rec.get("type") == "VBP":
-        return True
     return True
 
 
