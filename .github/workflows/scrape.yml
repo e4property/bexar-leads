@@ -57,11 +57,13 @@ jobs:
         env:
           CLERK_EMAIL: "${{ secrets.CLERK_EMAIL }}"
           CLERK_PASSWORD: "${{ secrets.CLERK_PASSWORD }}"
-          # 2026-10-01: testing whether SUSPICIOUS STOP is actually a
-          # headless-Chrome bot-challenge, not an IP/location issue (the
-          # self-hosted move alone didn't fix it) -- this machine can run
-          # a real visible Chrome window, unlike a cloud VM.
+          # 2026-10-01: headed mode alone also did NOT fix SUSPICIOUS
+          # STOP (confirmed live) -- now testing whether the automation-
+          # masking flags themselves (spoofed UA, excludeSwitches, etc.)
+          # are the actual tell, since every successful manual test this
+          # session used a plain, unmodified browser.
           SELENIUM_HEADLESS: "false"
+          SELENIUM_PLAIN: "true"
         run: python scraper/fetch.py
 
       # 2026-08-28: this script existed but was never actually wired into
