@@ -547,23 +547,40 @@ def scrape_appointments(known_docs, get_driver_fn, run_timestamp, days_back=30,
         consecutive_empty = 0
 
         while True:
-            url = (
-                f"{PUBLICSEARCH_BASE}/results"
-                f"?department=RP"
-                f"&keywordSearch=false"
-                f"&limit=50"
-                f"&offset={offset}"
-                f"&recordedDateRange={cutoff}%2C{today_str}"
-                f"&searchOcrText=false"
-                f"&searchType=quickSearch"
-                f"&searchValue=appointment"
-                f"&sort=desc"
-                f"&sortBy=recordedDate"
-            )
             log.info(f"Appointment offset={offset}")
 
+            # 2026-10-01: same root cause and fix confirmed live on
+            # bexar-leads' own FC scraper (and 5 other county scrapers)
+            # tonight -- a second-or-later hard navigation (driver.get) in
+            # one session gets served a genuine "No Results Found" decoy
+            # page on this PublicSearch platform. Page 1 (offset=0) keeps
+            # direct navigation; page 2+ clicks the pagination button on
+            # the already-loaded page instead.
+            if offset == 0:
+                url = (
+                    f"{PUBLICSEARCH_BASE}/results"
+                    f"?department=RP"
+                    f"&keywordSearch=false"
+                    f"&limit=50"
+                    f"&offset={offset}"
+                    f"&recordedDateRange={cutoff}%2C{today_str}"
+                    f"&searchOcrText=false"
+                    f"&searchType=quickSearch"
+                    f"&searchValue=appointment"
+                    f"&sort=desc"
+                    f"&sortBy=recordedDate"
+                )
             try:
-                driver.get(url)
+                if offset == 0:
+                    driver.get(url)
+                else:
+                    try:
+                        next_btn = driver.find_element(By.CSS_SELECTOR, "button[aria-label='next page']")
+                        driver.execute_script("arguments[0].scrollIntoView({block:'center'});", next_btn)
+                        next_btn.click()
+                    except Exception as click_e:
+                        log.info(f"  Next-page click failed/absent: {click_e} — treating as end of results")
+                        break
                 WebDriverWait(driver, page_timeout).until(
                     EC.presence_of_element_located(
                         (By.CSS_SELECTOR, "table tr td, .no-results, [class*='no-result']")
