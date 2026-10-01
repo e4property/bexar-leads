@@ -377,28 +377,34 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
     start_str = start_dt.strftime("%Y%m%d")
     end_str   = end_dt.strftime("%Y%m%d")
 
-    # 2026-08-28 v3: switched from instrumentDateRange to recordedDateRange.
-    # instrumentDateRange started returning inconsistent/incomplete results
-    # for this department -- confirmed live across 3 consecutive scrape
-    # runs, the exact same 14 doc numbers (a contiguous, oldest-in-window
-    # cluster) never surfaced no matter how the "no rows" detection was
-    # hardened, and a clean UI-driven reproduction (not a direct-nav cold
-    # load) showed 0 results for instrumentDateRange on this exact window
-    # while recordedDateRange correctly returned and fully paginated
-    # through all 63 real records for the same week. Also added
-    # searchType=advancedSearch, present on every URL the site's own UI
-    # generates but missing from this scraper's construction.
+    # 2026-10-01 v4: the real root-cause fix. recordedDateRange+advancedSearch
+    # (the 8/28 "fix" below) has been silently returning ZERO results for a
+    # full week -- confirmed live with Xavi tonight: NEITHER recordedDateRange
+    # NOR instrumentDateRange works via advancedSearch OR quickSearch for any
+    # NARROWED window on this site, no matter how the window is chosen (fresh
+    # tab, future end date, etc. all tested and ruled out) -- that's a dead
+    # end, not a bug to chase further. What DOES work, confirmed live and
+    # reproducible: department=FC + searchType=quickSearch + instrumentDateRange
+    # spanning the SITE'S OWN FULL INDEX (the exact start value 20000404
+    # already hardcoded elsewhere in this file for the analogous doc-number
+    # lookup -- not a coincidence, this is the tenant's real index boundary)
+    # -- sorted desc by recorded date, so real current leads are always on
+    # page 1-2 regardless of the window being "wide". This function's own
+    # row-parsing already skips anything older than CUTOFF_DATE client-side
+    # (see page_old below) and already early-stops on 2 consecutive
+    # all-known/all-old pages -- it never needed the SITE to narrow the
+    # window for us; start_dt/end_dt below are now only used for logging.
+    far_future = (TODAY_NAIVE + timedelta(days=180)).strftime("%Y%m%d")
     search_url = (
         f"{PUBLICSEARCH_BASE}/results"
         f"?department=FC"
-        f"&recordedDateRange={start_str}%2C{end_str}"
+        f"&instrumentDateRange=20000404%2C{far_future}"
         f"&keywordSearch=false"
         f"&limit=50"
         f"&offset=0"
         f"&sort=desc"
         f"&sortBy=recordedDate"
-        f"&sortDir=desc"
-        f"&searchType=advancedSearch"
+        f"&searchType=quickSearch"
     )
 
     records    = []
@@ -751,18 +757,19 @@ def scrape_chunk(driver, known_docs, start_dt, end_dt):
     return records
 
 
-# ── PUBLICSEARCH SCRAPER (chunked) ────────────────────────────────────────────
+# ── PUBLICSEARCH SCRAPER ───────────────────────────────────────────────────────
 def scrape_publicsearch(known_docs):
-    chunks    = []
-    chunk_end = TODAY_NAIVE + timedelta(days=1)
     cutoff    = TODAY_NAIVE - timedelta(days=KEEP_DAYS)
 
-    while chunk_end > cutoff:
-        chunk_start = max(chunk_end - timedelta(days=CHUNK_DAYS), cutoff)
-        chunks.append((chunk_start, chunk_end))
-        chunk_end = chunk_start
-
-    log.info(f"PublicSearch: {len(chunks)} x {CHUNK_DAYS}d chunks = {KEEP_DAYS}d | "
+    # 2026-10-01: chunking (CHUNK_DAYS-sized date windows) is gone. It existed
+    # to keep each query's result count small, but narrowing the site's own
+    # date-range params turned out to be fundamentally unreliable here (see
+    # scrape_chunk's v4 note) -- the real site-side fix is one wide-range
+    # query, sorted desc, relying on this function's own client-side
+    # CUTOFF_DATE filtering + early-stop-on-known/old (already built into
+    # scrape_chunk) to bound the work instead of a narrowed URL. start_dt/
+    # end_dt are passed through unchanged for logging only.
+    log.info(f"PublicSearch: single wide-range pass (site-side date narrowing doesn't work here) | "
              f"timeout={PAGE_TIMEOUT}s | cutoff={CUTOFF_DATE.strftime('%Y-%m-%d')}")
 
     all_records = []
@@ -770,43 +777,8 @@ def scrape_publicsearch(known_docs):
 
     try:
         driver = get_driver()
-
-        # 2026-09-29: SUSPICIOUS STOP (page 1 full, page 2 empty -- the exact
-        # 2026-08-27 data-loss pattern) was confirmed firing on 15 of the
-        # last 16 runs, always on chunk 1's page 2 -- the very first
-        # multi-page request of a freshly-launched session, every single
-        # time. Reproduced live from an interactive browser: the identical
-        # URL/page works instantly, no retry needed, every time -- the site
-        # and the data are fine. A same-session full-reload retry (added
-        # earlier today) still failed twice in a row in CI, which rules out
-        # "page just needed longer to render" as the explanation and points
-        # at something session-cold-start-specific (rate limiting or bot
-        # scrutiny that eases after a session's first few requests land).
-        # Mitigation: burn one cheap, throwaway request on the site before
-        # chunk 1's real (and highest-value -- it's the current week) first
-        # pagination attempt, so that request is no longer the session's
-        # very first. Not proven to fully fix it -- this is the best
-        # evidence-based response to the observed pattern, not a confirmed
-        # root cause -- watch the next several runs' logs for whether
-        # SUSPICIOUS STOP still fires before trusting this closes the gap.
-        try:
-            log.info("Warm-up request before real scrape (see 2026-09-29 SUSPICIOUS STOP note)...")
-            driver.set_page_load_timeout(30)
-            driver.get(f"{PUBLICSEARCH_BASE}/results?department=FC&recordedDateRange=20260101%2C20260102"
-                       f"&keywordSearch=false&limit=5&offset=0&searchType=advancedSearch")
-            time.sleep(3)
-        except Exception as e:
-            log.info(f"Warm-up request failed (non-fatal, continuing anyway): {e}")
-
-        for i, (cs, ce) in enumerate(chunks):
-            log.info(f"Chunk {i+1}/{len(chunks)}: "
-                     f"{cs.strftime('%Y-%m-%d')} → {ce.strftime('%Y-%m-%d')}")
-            chunk_recs = scrape_chunk(driver, known_docs, cs, ce)
-            all_records.extend(chunk_recs)
-            log.info(f"  Chunk {i+1} done: {len(chunk_recs)} new "
-                     f"(total so far: {len(all_records)})")
-            if i < len(chunks) - 1:
-                time.sleep(2)
+        all_records = scrape_chunk(driver, known_docs, cutoff, TODAY_NAIVE + timedelta(days=1))
+        log.info(f"PublicSearch pass done: {len(all_records)} new")
 
     except Exception as e:
         log.error(f"PublicSearch scrape error: {e}")
@@ -2958,7 +2930,7 @@ if __name__ == "__main__":
 
     log.info("=" * 60)
     log.info("Bexar County Lead Scraper v28.39 (Hybrid)")
-    log.info(f"Primary:   PublicSearch.us ({KEEP_DAYS}d window, {CHUNK_DAYS}d chunks, {PAGE_TIMEOUT}s timeout)")
+    log.info(f"Primary:   PublicSearch.us ({KEEP_DAYS}d window, single wide-range pass, {PAGE_TIMEOUT}s timeout)")
     log.info(f"Secondary: ArcGIS weekly backfill = {IS_SUNDAY}")
     log.info(f"Tertiary:  Code Enforcement 311 ({len(CE_CATEGORIES)} categories, {KEEP_DAYS}d window)")
     log.info(f"Doc fetch: OCR loan/lender detail (backfill-eligible, cap={DOC_FETCH_LIMIT})")
