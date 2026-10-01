@@ -733,11 +733,20 @@ def scrape_appointments(known_docs, get_driver_fn, run_timestamp, days_back=30,
 
             log.info(f"Appointment offset={offset} | {len(page_records)} on page")
 
-            # Summary detail fetch for missing address/owner — click-through
-            # via _source_url (ps_doc_id is never populated, see note above)
+            # Summary detail fetch for missing address/owner/lender — click-
+            # through via _source_url (ps_doc_id is never populated, see note
+            # above).
+            # 2026-10-01: was gated on address/owner only, so the lender
+            # extraction a few lines below (which ONLY ever runs as a side
+            # effect of this same detail-page visit) never fired for the
+            # ~80% of records that already had a good address+owner from the
+            # listing page alone -- confirmed live, 0/160 current pre-fore
+            # leads have a lender filled in. Added `not r.get("lender")` so
+            # every record gets a detail visit for this reason alone if
+            # nothing else already triggered one.
             need_summary = [
                 r for r in page_records
-                if (not r["address"] or r.get("owner_unverified"))
+                if (not r["address"] or r.get("owner_unverified") or not r.get("lender"))
                 and r.get("_source_url")
             ]
             if need_summary:
