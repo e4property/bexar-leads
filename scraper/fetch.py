@@ -308,7 +308,20 @@ def get_driver():
     from selenium.webdriver.chrome.options import Options
 
     opts = Options()
-    opts.add_argument("--headless=new")
+    # 2026-10-01: testing headed mode -- moving to a self-hosted runner
+    # didn't fix SUSPICIOUS STOP (still fired from this exact machine's own
+    # connection), which rules out IP/location as the cause. An existing
+    # comment on goto_doc_by_docnumber() already suspected "a bot-challenge
+    # interstitial headless Chrome hits that an interactive session
+    # doesn't" (same suspicion documented on Nueces's analogous function)
+    # -- every one of this session's successful manual tests used a real,
+    # non-headless browser. A self-hosted runner can actually run a real
+    # visible Chrome window (a cloud VM can't without a virtual display),
+    # so this is now testable for the first time. Controlled by an env var
+    # rather than deleting the flag outright, since a cloud/ubuntu-latest
+    # runner has no display server and MUST stay headless.
+    if os.environ.get("SELENIUM_HEADLESS", "true").lower() != "false":
+        opts.add_argument("--headless=new")
     opts.add_argument("--no-sandbox")
     opts.add_argument("--disable-dev-shm-usage")
     opts.add_argument("--disable-gpu")
