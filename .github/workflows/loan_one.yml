@@ -4,8 +4,13 @@ on:
   workflow_dispatch:
     inputs:
       doc_number:
-        description: "NOF document number to look up (e.g. 20261100114)"
-        required: true
+        description: "NOF (Foreclosures dept) doc number, e.g. 20261100114 (optional if ref_doc given)"
+        required: false
+        default: ""
+      ref_doc:
+        description: "Land Records doc number to capture, e.g. the Deed of Trust (optional)"
+        required: false
+        default: ""
 
 jobs:
   lookup:
@@ -26,9 +31,18 @@ jobs:
       - name: Install dependencies
         run: pip install requests beautifulsoup4 lxml selenium pytesseract pillow
 
-      - name: Look up loan terms
+      - name: Capture document pages
         env:
           CLERK_EMAIL: "${{ secrets.CLERK_EMAIL }}"
           CLERK_PASSWORD: "${{ secrets.CLERK_PASSWORD }}"
           DOC_NUMBER: "${{ github.event.inputs.doc_number }}"
+          REF_DOC: "${{ github.event.inputs.ref_doc }}"
         run: python scraper/loan_one.py
+
+      - name: Upload page images
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: doc-pages
+          path: out/
+          retention-days: 2
