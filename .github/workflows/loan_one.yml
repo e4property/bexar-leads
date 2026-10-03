@@ -1,0 +1,34 @@
+name: Loan Lookup (one doc)
+
+on:
+  workflow_dispatch:
+    inputs:
+      doc_number:
+        description: "NOF document number to look up (e.g. 20261100114)"
+        required: true
+
+jobs:
+  lookup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Tesseract OCR
+        run: sudo apt-get update && sudo apt-get install -y tesseract-ocr
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4 lxml selenium pytesseract pillow
+
+      - name: Look up loan terms
+        env:
+          CLERK_EMAIL: "${{ secrets.CLERK_EMAIL }}"
+          CLERK_PASSWORD: "${{ secrets.CLERK_PASSWORD }}"
+          DOC_NUMBER: "${{ github.event.inputs.doc_number }}"
+        run: python scraper/loan_one.py
