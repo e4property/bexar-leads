@@ -46,6 +46,16 @@ def snap_pages(driver, tag, max_pages=4):
     from selenium.webdriver.support import expected_conditions as EC
 
     texts = []
+    for _ in range(2):
+        try:
+            zo = driver.find_elements(
+                By.XPATH, "//*[(self::button or @role='button')][contains(translate(@aria-label,'ZOMUT','zomut'),'zoom out') "
+                          "or contains(translate(@title,'ZOMUT','zomut'),'zoom out')]")
+            if zo:
+                zo[0].click()
+                time.sleep(1)
+        except Exception as e:
+            log.info(f"zoom-out click failed: {e}")
     for p in range(1, max_pages + 1):
         try:
             el = WebDriverWait(driver, 15).until(EC.presence_of_element_located(
@@ -127,7 +137,7 @@ def main():
                     if re.search(r"(Deed of Trust|Lender|Borrower|principal|Document Number)", line, re.I):
                         log.info(f"NOTICE| {line.strip()[:300]}")
 
-        if ref:
+        for ref_one in [r.strip() for r in ref.split(",") if r.strip()]:
             driver.switch_to.new_window("tab")
             hires_driver_setup(driver)
             from fetch import QUICK_SEARCH_URL_TMPL, TODAY_NAIVE
@@ -136,20 +146,17 @@ def main():
             from selenium.webdriver.support.ui import WebDriverWait
             from selenium.webdriver.support import expected_conditions as EC
             today_str = (TODAY_NAIVE - timedelta(days=3)).strftime("%Y%m%d")
-            driver.get(QUICK_SEARCH_URL_TMPL.format(today=today_str, doc_number=ref))
+            driver.get(QUICK_SEARCH_URL_TMPL.format(today=today_str, doc_number=ref_one))
             WebDriverWait(driver, 20).until(EC.presence_of_element_located(
                 (By.XPATH, "//table//tr/td | //h1[contains(text(),'No Results')]")))
             if driver.find_elements(By.XPATH, "//h1[contains(text(),'No Results')]"):
-                log.error(f"no results for ref doc {ref}")
-            else:
-                time.sleep(1)
-                driver.find_element(By.CSS_SELECTOR, "table tbody tr").click()
-                WebDriverWait(driver, 20).until(EC.url_contains("/doc/"))
-                time.sleep(2)
-                text = snap_pages(driver, f"dot_{ref}", max_pages=4)
-                for line in text.splitlines():
-                    if re.search(r"(principal|interest|maturity|monthly|payable|FHA|VA|USDA|MERS)", line, re.I):
-                        log.info(f"DOT| {line.strip()[:300]}")
+                log.error(f"no results for ref doc {ref_one}")
+                continue
+            time.sleep(1)
+            driver.find_element(By.CSS_SELECTOR, "table tbody tr").click()
+            WebDriverWait(driver, 20).until(EC.url_contains("/doc/"))
+            time.sleep(2)
+            snap_pages(driver, f"dot_{ref_one}", max_pages=3)
     finally:
         try:
             driver.quit()
