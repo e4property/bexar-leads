@@ -50,7 +50,17 @@ def main():
     try:
         if not login_publicsearch(driver):
             log.warning("login failed or skipped")
-        if not goto_doc_by_docnumber(driver, doc):
+        # A repeat hard navigation to a results URL in an already-used tab gets
+        # served a decoy "No Results Found" page on this platform; a brand-new
+        # tab's first request to the same URL works. Retry in fresh tabs.
+        opened = False
+        for attempt in range(1, 4):
+            driver.switch_to.new_window("tab")
+            if goto_doc_by_docnumber(driver, doc):
+                opened = True
+                break
+            log.info(f"attempt {attempt}: not found in fresh tab, retrying")
+        if not opened:
             log.error(f"could not open doc {doc}")
             sys.exit(1)
 
