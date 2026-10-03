@@ -54,6 +54,25 @@ def snap_pages(driver, tag, max_pages=4):
             path = OUT / f"{tag}_p{p}.png"
             path.write_bytes(el.screenshot_as_png)
             log.info(f"saved {path} ({path.stat().st_size} bytes)")
+            # The element screenshot clips the right edge of the page on this
+            # viewer -- also dump the DOM geometry and a wide full-page capture.
+            try:
+                info = driver.execute_script(
+                    "const s=arguments[0];const r=s.getBoundingClientRect();"
+                    "const p=s.parentElement.getBoundingClientRect();"
+                    "return {w:r.width,h:r.height,x:r.x,y:r.y,parentW:p.width,parentH:p.height,"
+                    "vb:s.getAttribute('viewBox'),wa:s.getAttribute('width'),ha:s.getAttribute('height'),"
+                    "overflow:getComputedStyle(s.parentElement).overflow,innerW:window.innerWidth,"
+                    "scrollW:document.documentElement.scrollWidth};", el)
+                log.info(f"GEOM| {info}")
+                import base64
+                shot = driver.execute_cdp_cmd("Page.captureScreenshot", {
+                    "format": "png", "captureBeyondViewport": True,
+                    "clip": {"x": 0, "y": 0, "width": max(info["scrollW"], info["innerW"]),
+                             "height": min(info["y"] + info["h"] + 40, 6000), "scale": 1}})
+                (OUT / f"{tag}_p{p}_full.png").write_bytes(base64.b64decode(shot["data"]))
+            except Exception as e:
+                log.warning(f"geom/full capture failed: {e}")
             try:
                 import pytesseract
                 from PIL import Image
