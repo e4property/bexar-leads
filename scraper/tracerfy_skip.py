@@ -77,6 +77,14 @@ def trace_lead(lead, api_key):
         headers={
             "Authorization": f"Bearer {api_key}",
             "Content-Type": "application/json",
+            "Accept": "application/json",
+            # 2026-10-05: tracerfy.com sits behind Cloudflare, which rejects the
+            # default "Python-urllib" user agent with error 1010 (HTTP 403)
+            # before the API key is even checked -- confirmed live: this script
+            # returned 403 on every call and never traced a single lead while
+            # the workflow still reported success. A browser-style UA reaches
+            # the real API (401 for a bad key, as expected).
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0 Safari/537.36",
         },
         method="POST",
     )
@@ -85,7 +93,7 @@ def trace_lead(lead, api_key):
             data = json.loads(resp.read().decode("utf-8"))
     except Exception as e:
         log.warning(f"Tracerfy error for {address}: {e}")
-        return None, None, None
+        return None, None, "ERROR"
     if not data.get("hit"):
         log.info(f"  MISS: {address}")
         return None, None, None
@@ -122,16 +130,39 @@ def main():
 
     log.info(f"Loaded {len(records)} records")
 
-    # Find new NOF/TAX leads that haven't been traced yet
-    targets = [
-        r for r in records
-        if r.get("is_new")
-        and r.get("type") in ("NOF", "TAX")
-        and not r.get("tracerfy_phone")
-        and r.get("address")
-    ]
+    # Targets: (a) brand-new NOF/TAX leads, plus (b) backlog -- NOF/TAX leads
+    # with an upcoming auction, no phone yet (neither manual ForeWarn nor a
+    # prior Tracerfy attempt), not already flagged on-market. Each lead is only
+    # ever attempted once (tracerfy_ts is stamped on any real hit/miss) so
+    # credits are never re-spent. Soonest auction first, capped per run.
+    from datetime import date
+    today = date.today()
+    max_per_run = int(os.environ.get("TRACERFY_MAX_PER_RUN", "100"))
 
-    log.info(f"New NOF/TAX leads to trace: {len(targets)}")
+    def sale_dt(r):
+        try:
+            return datetime.strptime((r.get("sale_date") or "").strip(), "%m/%d/%Y").date()
+        except Exception:
+            return None
+
+    def eligible(r):
+        if r.get("type") not in ("NOF", "TAX") or not r.get("address"):
+            return False
+        if r.get("tracerfy_phone") or r.get("tracerfy_ts") or r.get("dash_phone"):
+            return False
+        if r.get("on_market"):
+            return False
+        d = sale_dt(r)
+        if d is not None and d <= today:
+            return False
+        return bool(r.get("is_new")) or d is not None
+
+    targets = sorted(
+        [r for r in records if eligible(r)],
+        key=lambda r: (0 if r.get("is_new") else 1, sale_dt(r) or date.max),
+    )[:max_per_run]
+
+    log.info(f"NOF/TAX leads to trace this run (cap {max_per_run}): {len(targets)}")
 
     if not targets:
         log.info("Nothing to trace — exiting")
@@ -140,9 +171,20 @@ def main():
 
     hits = 0
     misses = 0
+    errors = 0
+    consecutive_errors = 0
     for i, rec in enumerate(targets):
         log.info(f"[{i+1}/{len(targets)}] {rec.get('address')} ({rec.get('type')})")
         phone, name, dnc = trace_lead(rec, api_key)
+        if dnc == "ERROR":
+            errors += 1
+            consecutive_errors += 1
+            if consecutive_errors >= 5:
+                log.error("ABORT: 5 consecutive Tracerfy request errors (bad/expired key, out of credits, or blocked) -- stopping so credits and records aren't touched")
+                break
+            time.sleep(0.3)
+            continue
+        consecutive_errors = 0
         # Find and update the record in the full list
         for full_rec in records:
             if full_rec.get("doc_number") == rec.get("doc_number"):
@@ -158,7 +200,7 @@ def main():
         # Rate limit — 500 RPM = ~8/sec, stay well under
         time.sleep(0.3)
 
-    log.info(f"Tracerfy done: {hits} hits, {misses} misses out of {len(targets)} leads")
+    log.info(f"Tracerfy done: {hits} hits, {misses} misses, {errors} errors out of {len(targets)} leads")
 
     # Save
     tmp = RECORDS_PATH.with_suffix(".tmp")
@@ -167,7 +209,10 @@ def main():
     tmp.replace(RECORDS_PATH)
     log.info(f"Saved {len(records)} records ({len(json_str):,} bytes)")
     print(f"traced={hits}")
+    print(f"attempted={hits + misses}")
     log.info("Done.")
+    if errors and not (hits or misses):
+        sys.exit(1)
 
 
 if __name__ == "__main__":
