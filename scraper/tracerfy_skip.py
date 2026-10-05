@@ -15,6 +15,7 @@ import os
 import sys
 import time
 import urllib.request
+import urllib.error
 import urllib.parse
 from pathlib import Path
 from datetime import datetime, timezone
@@ -91,6 +92,12 @@ def trace_lead(lead, api_key):
     try:
         with urllib.request.urlopen(req, timeout=15) as resp:
             data = json.loads(resp.read().decode("utf-8"))
+    except urllib.error.HTTPError as e:
+        if e.code == 402:
+            # Out of Tracerfy credits -- not a code fault; handled in main()
+            return None, None, "NO_CREDITS"
+        log.warning(f"Tracerfy error for {address}: {e}")
+        return None, None, "ERROR"
     except Exception as e:
         log.warning(f"Tracerfy error for {address}: {e}")
         return None, None, "ERROR"
@@ -176,6 +183,21 @@ def main():
     for i, rec in enumerate(targets):
         log.info(f"[{i+1}/{len(targets)}] {rec.get('address')} ({rec.get('type')})")
         phone, name, dnc = trace_lead(rec, api_key)
+        if dnc == "NO_CREDITS":
+            msg = ("Tracerfy returned HTTP 402 Payment Required -- the account is out of credits. "
+                   "Skip trace skipped; no records were changed. It resumes automatically once credits are added.")
+            log.error(msg)
+            print(f"::warning title=Tracerfy out of credits::{msg}")
+            summary_path = os.environ.get("GITHUB_STEP_SUMMARY")
+            if summary_path:
+                try:
+                    with open(summary_path, "a", encoding="utf-8") as f:
+                        f.write("\nWARNING: " + msg + "\n")
+                except Exception:
+                    pass
+            print("traced=0")
+            print("attempted=0")
+            return
         if dnc == "ERROR":
             errors += 1
             consecutive_errors += 1
