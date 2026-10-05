@@ -14607,6 +14607,61 @@
   },
   {
     "type": "NOF",
+    "address": "8030 BROADWAY ST",
+    "owner": "MIMMS MOLLIE",
+    "mail_addr": "8030 BROADWAY STREET UNIT 202 E SAN ANTONIO, TX 78209-2677",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20261100261",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "10",
+    "city": "SAN ANTONIO",
+    "zip": "78209",
+    "school_dist": "",
+    "date_filed": "10/2026",
+    "date_recorded": "10/2/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-10-05T15:30:33Z",
+    "flags": [
+      "HAS SALE DATE",
+      "AUCTION SOON",
+      "URGENT",
+      "LONG HELD"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 11,
+    "tenure_score_bonus": 15,
+    "prop_id": "493572",
+    "deed_date": "12/1/2014",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 178420
+      },
+      {
+        "year": "2025",
+        "appraised": 185910
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "178420",
+    "annual_taxes": "",
+    "land_value": "",
+    "on_market_checked_at": "2026-10-05T15:48:30Z",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 0
+  },
+  {
+    "type": "NOF",
     "address": "9107 MUSTANG PASS",
     "owner": "UAMD LLC",
     "mail_addr": "18114 RANSOM HILL SAN ANTONIO, TX 78258",
@@ -19592,60 +19647,6 @@
     "appraised_value": "1151000",
     "annual_taxes": "",
     "land_value": ""
-  },
-  {
-    "type": "NOF",
-    "address": "8030 BROADWAY ST",
-    "owner": "MIMMS MOLLIE",
-    "mail_addr": "8030 BROADWAY STREET UNIT 202 E SAN ANTONIO, TX 78209-2677",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20261100261",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "10",
-    "city": "SAN ANTONIO",
-    "zip": "78209",
-    "school_dist": "",
-    "date_filed": "10/2026",
-    "date_recorded": "10/2/2026",
-    "sale_date": "10/06/2026",
-    "run_ts": "2026-10-05T15:30:33Z",
-    "flags": [
-      "HAS SALE DATE",
-      "AUCTION SOON",
-      "URGENT"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "493572",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [
-      {
-        "year": "2026",
-        "appraised": 178420
-      },
-      {
-        "year": "2025",
-        "appraised": 185910
-      }
-    ],
-    "appr_trend": "down",
-    "appraised_value": "178420",
-    "annual_taxes": "",
-    "land_value": "",
-    "on_market_checked_at": "2026-10-05T15:48:30Z",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 0
   },
   {
     "type": "NOF",
@@ -24995,7 +24996,7 @@
     "dash_phone": "+12103882226",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-27T15:50:29Z",
+    "on_market_checked_at": "2026-10-05T17:39:58Z",
     "arv_estimate": 352600,
     "arv_status": "SOLD",
     "arv_sqft": 2324
@@ -25057,7 +25058,7 @@
     "days_until_sale": 0,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-27T15:50:30Z",
+    "on_market_checked_at": "2026-10-05T17:40:00Z",
     "arv_estimate": 126800,
     "arv_status": "SOLD",
     "arv_sqft": 962,
@@ -25254,7 +25255,7 @@
     "dash_searched_at": "2026-08-21T18:05:15.661Z",
     "on_market": true,
     "on_market_status": "PENDING",
-    "on_market_checked_at": "2026-09-27T15:50:32Z"
+    "on_market_checked_at": "2026-10-05T17:40:02Z"
   },
   {
     "type": "NOF",
@@ -25322,7 +25323,7 @@
     "dash_searched_at": "2026-08-24T16:07:47.395Z",
     "on_market": true,
     "on_market_status": "FOR_SALE",
-    "on_market_checked_at": "2026-09-27T15:50:45Z"
+    "on_market_checked_at": "2026-10-05T17:40:15Z"
   },
   {
     "type": "NOF",
@@ -25390,7 +25391,7 @@
     "dash_searched_at": "2026-08-24T16:09:02.439Z",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-27T15:50:47Z"
+    "on_market_checked_at": "2026-10-05T17:40:16Z"
   },
   {
     "type": "NOF",
@@ -25451,9 +25452,9 @@
     "stacked": false,
     "score": 7,
     "days_until_sale": 0,
-    "on_market": true,
-    "on_market_status": "FOR_SALE",
-    "on_market_checked_at": "2026-09-27T15:50:48Z"
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-10-05T17:40:18Z"
   },
   {
     "type": "NOF",
@@ -25521,7 +25522,7 @@
     "dash_searched_at": "2026-08-21T17:19:21.166Z",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-27T15:50:50Z"
+    "on_market_checked_at": "2026-10-05T17:40:19Z"
   },
   {
     "type": "NOF",
@@ -25582,9 +25583,9 @@
     "stacked": false,
     "score": 7,
     "days_until_sale": 0,
-    "on_market": true,
-    "on_market_status": "PENDING",
-    "on_market_checked_at": "2026-09-27T15:50:52Z"
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-10-05T17:40:21Z"
   },
   {
     "type": "NOF",
@@ -25648,7 +25649,7 @@
     "days_until_sale": 0,
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-09-27T15:50:53Z"
+    "on_market_checked_at": "2026-10-05T17:40:22Z"
   },
   {
     "type": "NOF",
@@ -25716,7 +25717,7 @@
     "dash_searched_at": "2026-08-21T17:21:52.456Z",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-27T15:50:55Z"
+    "on_market_checked_at": "2026-10-05T17:40:24Z"
   },
   {
     "type": "NOF",
@@ -25779,7 +25780,7 @@
     "days_until_sale": 0,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-27T15:50:57Z"
+    "on_market_checked_at": "2026-10-05T17:40:25Z"
   },
   {
     "type": "NOF",
@@ -25843,7 +25844,7 @@
     "days_until_sale": 0,
     "on_market": false,
     "on_market_status": "CONTINGENT",
-    "on_market_checked_at": "2026-09-27T15:50:58Z"
+    "on_market_checked_at": "2026-10-05T17:40:27Z"
   },
   {
     "type": "NOF",
@@ -25912,7 +25913,7 @@
     "dash_searched_at": "2026-08-21T17:22:57.680Z",
     "on_market": true,
     "on_market_status": "PENDING",
-    "on_market_checked_at": "2026-09-27T23:05:40Z"
+    "on_market_checked_at": "2026-10-05T17:40:30Z"
   },
   {
     "type": "NOF",
@@ -25980,7 +25981,7 @@
     "dash_searched_at": "2026-08-21T17:23:33.986Z",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-27T23:05:42Z"
+    "on_market_checked_at": "2026-10-05T17:40:31Z"
   },
   {
     "type": "NOF",
@@ -26048,7 +26049,7 @@
     "dash_searched_at": "2026-08-21T17:25:00.206Z",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-27T23:05:43Z"
+    "on_market_checked_at": "2026-10-05T17:40:33Z"
   },
   {
     "type": "NOF",
@@ -41149,6 +41150,129 @@
   },
   {
     "type": "NOF",
+    "address": "828 S SAN EDUARDO",
+    "owner": "PRECIADO MICHAEL",
+    "mail_addr": "828 S SAN EDUARDO AVE SAN ANTONIO, TX 78237",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20261000250",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "9",
+    "city": "SAN ANTONIO",
+    "zip": "78237",
+    "school_dist": "",
+    "date_filed": "9/2026",
+    "date_recorded": "9/3/2026",
+    "sale_date": "11/03/2026",
+    "run_ts": "2026-09-08T18:12:32Z",
+    "flags": [
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 5,
+    "tenure_score_bonus": 5,
+    "prop_id": "1334192",
+    "deed_date": "12/22/2020",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 154690
+      },
+      {
+        "year": "2025",
+        "appraised": 157330
+      }
+    ],
+    "appr_trend": "flat",
+    "appraised_value": "154690",
+    "annual_taxes": "",
+    "land_value": "",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 28,
+    "arv_estimate": 46000,
+    "arv_status": "FOR_RENT",
+    "arv_fetched_at": "2026-09-12T22:24:15Z",
+    "on_market": true,
+    "on_market_status": "FOR_RENT",
+    "on_market_checked_at": "2026-09-12T22:24:15Z",
+    "arv_sqft": null,
+    "dash_phone": "(312) 737-6096",
+    "dash_searched_at": "2026-09-14T14:07:13.909Z",
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-09-14T14:07:13.909Z",
+    "ghl_id": "ymdmzHDFa9aWRtwyvC3b"
+  },
+  {
+    "type": "NOF",
+    "address": "540 ESSEX ST",
+    "owner": "EDGELL ANTHONY DAVID & NORVILL KYLIE MARIE",
+    "mail_addr": "540 ESSEX ST SAN ANTONIO, TX 78210",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20261000251",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "9",
+    "city": "SAN ANTONIO",
+    "zip": "78210",
+    "school_dist": "",
+    "date_filed": "9/2026",
+    "date_recorded": "9/3/2026",
+    "sale_date": "11/03/2026",
+    "run_ts": "2026-09-08T18:12:32Z",
+    "flags": [
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 7,
+    "tenure_score_bonus": 5,
+    "prop_id": "118724",
+    "deed_date": "5/15/2019",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 243460
+      },
+      {
+        "year": "2025",
+        "appraised": 266120
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "243460",
+    "annual_taxes": "",
+    "land_value": "",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 28,
+    "arv_estimate": 286200,
+    "arv_status": "OFF_MARKET",
+    "arv_fetched_at": "2026-09-12T22:24:17Z",
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-09-12T22:24:17Z",
+    "arv_sqft": 1600
+  },
+  {
+    "type": "NOF",
     "address": "9507 BRAUN SQUARE",
     "owner": "MITCHELL CHAD & MARY KATHERINE",
     "mail_addr": "9507 BRAUN SHORE SAN ANTONIO, TX 78250",
@@ -43119,6 +43243,70 @@
   },
   {
     "type": "NOF",
+    "address": "910 GOODHART",
+    "owner": "REYES CRYSTAL MARIE",
+    "mail_addr": "9506 KENTFIELD SAN ANTONIO, TX 78221",
+    "absentee": true,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20261000252",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "9",
+    "city": "SAN ANTONIO",
+    "zip": "78214",
+    "school_dist": "",
+    "date_filed": "9/2026",
+    "date_recorded": "9/3/2026",
+    "sale_date": "11/03/2026",
+    "run_ts": "2026-09-08T18:12:32Z",
+    "flags": [
+      "ABSENTEE",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 2,
+    "tenure_score_bonus": 0,
+    "prop_id": "1419110",
+    "deed_date": "8/6/2024",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 240720
+      },
+      {
+        "year": "2025",
+        "appraised": 235140
+      }
+    ],
+    "appr_trend": "up",
+    "appraised_value": "240720",
+    "annual_taxes": "",
+    "land_value": "",
+    "stacked": false,
+    "score": 9,
+    "days_until_sale": 28,
+    "dash_phone": "2105375234",
+    "dash_searched_at": "2026-09-09T15:30:22.185Z",
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-09-09T15:30:22.185Z",
+    "ghl_id": "7AA5yIqy3fIXP1fAxWZj",
+    "arv_estimate": 240720,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-09-12T03:25:52Z",
+    "on_market": true,
+    "on_market_status": "FOR_RENT",
+    "on_market_checked_at": "2026-09-12T22:24:03Z"
+  },
+  {
+    "type": "NOF",
     "address": "14310 LAVACA SPRINGS",
     "owner": "SANTOS AMARE DASHAUN & SANDIS CHRISTOPHER MANUEL",
     "mail_addr": "14310 LAVACA SPRINGS SAN ANTONIO, TX 78253",
@@ -43420,7 +43608,12 @@
     "arv_fetched_at": "2026-10-05T15:49:06Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 28
+    "days_until_sale": 28,
+    "dash_phone": "210) 310-8696",
+    "dash_searched_at": "2026-10-05T17:20:39.096Z",
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-10-05T17:20:39.096Z",
+    "ghl_id": "GHMTQF20Q20ZoUV1tLgz"
   },
   {
     "type": "NOF",
@@ -43704,7 +43897,14 @@
     "days_until_sale": 28,
     "appraised_value": "198440",
     "annual_taxes": "",
-    "land_value": ""
+    "land_value": "",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-10-05T17:39:07Z",
+    "arv_estimate": 187113,
+    "arv_status": "SOLD",
+    "arv_sqft": 1344,
+    "arv_fetched_at": "2026-10-05T17:39:07Z"
   },
   {
     "type": "NOF",
@@ -43756,7 +43956,14 @@
     "days_until_sale": 28,
     "appraised_value": "252010",
     "annual_taxes": "",
-    "land_value": ""
+    "land_value": "",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-10-05T17:39:09Z",
+    "arv_estimate": 233600,
+    "arv_status": "SOLD",
+    "arv_sqft": 1221,
+    "arv_fetched_at": "2026-10-05T17:39:09Z"
   },
   {
     "type": "NOF",
@@ -47685,168 +47892,9 @@
   },
   {
     "type": "NOF",
-    "address": "910 GOODHART",
-    "owner": "REYES CRYSTAL MARIE",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20261000252",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "9",
-    "city": "SAN ANTONIO",
-    "zip": "78214",
-    "school_dist": "",
-    "date_filed": "9/2026",
-    "date_recorded": "9/3/2026",
-    "sale_date": "11/03/2026",
-    "run_ts": "2026-09-08T18:12:32Z",
-    "flags": [
-      "HAS SALE DATE",
-      "AUCTION SOON"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "1419110",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "240720",
-    "annual_taxes": "",
-    "land_value": "",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 28,
-    "dash_phone": "2105375234",
-    "dash_searched_at": "2026-09-09T15:30:22.185Z",
-    "ghl_pushed": true,
-    "ghl_pushed_at": "2026-09-09T15:30:22.185Z",
-    "ghl_id": "7AA5yIqy3fIXP1fAxWZj",
-    "arv_estimate": 240720,
-    "arv_status": "APPRAISED_FALLBACK",
-    "arv_fetched_at": "2026-09-12T03:25:52Z",
-    "on_market": true,
-    "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-12T22:24:03Z"
-  },
-  {
-    "type": "NOF",
-    "address": "828 S SAN EDUARDO",
-    "owner": "PRECIADO MICHAEL",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20261000250",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "9",
-    "city": "SAN ANTONIO",
-    "zip": "78237",
-    "school_dist": "",
-    "date_filed": "9/2026",
-    "date_recorded": "9/3/2026",
-    "sale_date": "11/03/2026",
-    "run_ts": "2026-09-08T18:12:32Z",
-    "flags": [
-      "HAS SALE DATE",
-      "AUCTION SOON"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "1334192",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "154690",
-    "annual_taxes": "",
-    "land_value": "",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 28,
-    "arv_estimate": 46000,
-    "arv_status": "FOR_RENT",
-    "arv_fetched_at": "2026-09-12T22:24:15Z",
-    "on_market": true,
-    "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-12T22:24:15Z",
-    "arv_sqft": null,
-    "dash_phone": "(312) 737-6096",
-    "dash_searched_at": "2026-09-14T14:07:13.909Z",
-    "ghl_pushed": true,
-    "ghl_pushed_at": "2026-09-14T14:07:13.909Z",
-    "ghl_id": "ymdmzHDFa9aWRtwyvC3b"
-  },
-  {
-    "type": "NOF",
-    "address": "540 ESSEX ST",
-    "owner": "EDGELL ANTHONY DAVID & NORVILL KYLIE MARIE",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20261000251",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "9",
-    "city": "SAN ANTONIO",
-    "zip": "78210",
-    "school_dist": "",
-    "date_filed": "9/2026",
-    "date_recorded": "9/3/2026",
-    "sale_date": "11/03/2026",
-    "run_ts": "2026-09-08T18:12:32Z",
-    "flags": [
-      "HAS SALE DATE",
-      "AUCTION SOON"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "118724",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "243460",
-    "annual_taxes": "",
-    "land_value": "",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 28,
-    "arv_estimate": 286200,
-    "arv_status": "OFF_MARKET",
-    "arv_fetched_at": "2026-09-12T22:24:17Z",
-    "on_market": false,
-    "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-09-12T22:24:17Z",
-    "arv_sqft": 1600
-  },
-  {
-    "type": "NOF",
     "address": "2503 SUNVIEW OAKS",
     "owner": "BARBER JOAQUIN MIGUEL & SOBRINO NATIVIDAD ALONSO",
-    "mail_addr": "",
+    "mail_addr": "2503 SUNVIEW OAKS SAN ANTONIO, TX 78245-2895",
     "absentee": false,
     "duplicate": false,
     "is_new": false,
@@ -47871,13 +47919,22 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 2,
     "tenure_score_bonus": 0,
     "prop_id": "340532",
-    "deed_date": "",
+    "deed_date": "12/13/2023",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 262500
+      },
+      {
+        "year": "2025",
+        "appraised": 296320
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "262500",
     "annual_taxes": "",
     "land_value": "",
@@ -47896,7 +47953,7 @@
     "type": "NOF",
     "address": "10031 CRABAPPLE PASS",
     "owner": "JORDAN KYRA & JORDAN MICHELLE",
-    "mail_addr": "",
+    "mail_addr": "10031 CRABAPPLE PASS SAN ANTONIO, TX 78254",
     "absentee": false,
     "duplicate": true,
     "is_new": false,
@@ -47922,13 +47979,22 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 3,
     "tenure_score_bonus": 0,
     "prop_id": "1354361",
-    "deed_date": "",
+    "deed_date": "12/29/2022",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 247530
+      },
+      {
+        "year": "2025",
+        "appraised": 271040
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "247530",
     "annual_taxes": "",
     "land_value": "",
@@ -50601,7 +50667,14 @@
     "land_value": "",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 31
+    "days_until_sale": 31,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-10-05T17:39:10Z",
+    "arv_estimate": 254900,
+    "arv_status": "SOLD",
+    "arv_sqft": 2096,
+    "arv_fetched_at": "2026-10-05T17:39:10Z"
   },
   {
     "type": "NOF",
@@ -82533,7 +82606,14 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 56
+    "days_until_sale": 56,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-10-05T17:39:12Z",
+    "arv_estimate": 262000,
+    "arv_status": "SOLD",
+    "arv_sqft": 2323,
+    "arv_fetched_at": "2026-10-05T17:39:12Z"
   },
   {
     "type": "NOF",
@@ -82575,7 +82655,14 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 56
+    "days_until_sale": 56,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-10-05T17:39:13Z",
+    "arv_estimate": 215200,
+    "arv_status": "SOLD",
+    "arv_sqft": 1217,
+    "arv_fetched_at": "2026-10-05T17:39:13Z"
   },
   {
     "type": "NOF",
@@ -82617,7 +82704,14 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 56
+    "days_until_sale": 56,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-10-05T17:39:15Z",
+    "arv_estimate": 119222,
+    "arv_status": "SOLD",
+    "arv_sqft": 704,
+    "arv_fetched_at": "2026-10-05T17:39:15Z"
   },
   {
     "type": "NOF",
@@ -82659,7 +82753,14 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 56
+    "days_until_sale": 56,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-10-05T17:39:17Z",
+    "arv_estimate": 260000,
+    "arv_status": "SOLD",
+    "arv_sqft": 3177,
+    "arv_fetched_at": "2026-10-05T17:39:17Z"
   },
   {
     "type": "NOF",
@@ -82701,7 +82802,14 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 56
+    "days_until_sale": 56,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-10-05T17:39:18Z",
+    "arv_estimate": 285400,
+    "arv_status": "SOLD",
+    "arv_sqft": 1872,
+    "arv_fetched_at": "2026-10-05T17:39:18Z"
   },
   {
     "type": "NOF",
@@ -82743,7 +82851,14 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 56
+    "days_until_sale": 56,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-10-05T17:39:20Z",
+    "arv_estimate": 244800,
+    "arv_status": "SOLD",
+    "arv_sqft": 1458,
+    "arv_fetched_at": "2026-10-05T17:39:20Z"
   },
   {
     "type": "NOF",
@@ -82785,7 +82900,14 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 56
+    "days_until_sale": 56,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-10-05T17:39:22Z",
+    "arv_estimate": 268000,
+    "arv_status": "SOLD",
+    "arv_sqft": 2200,
+    "arv_fetched_at": "2026-10-05T17:39:22Z"
   },
   {
     "type": "NOF",
@@ -82827,7 +82949,14 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 56
+    "days_until_sale": 56,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-10-05T17:39:23Z",
+    "arv_estimate": 219800,
+    "arv_status": "SOLD",
+    "arv_sqft": 1310,
+    "arv_fetched_at": "2026-10-05T17:39:23Z"
   },
   {
     "type": "NOF",
@@ -82869,7 +82998,10 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 56
+    "days_until_sale": 56,
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-10-05T17:39:24Z"
   },
   {
     "type": "NOF",
@@ -82911,7 +83043,14 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 56
+    "days_until_sale": 56,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-10-05T17:39:26Z",
+    "arv_estimate": 367900,
+    "arv_status": "SOLD",
+    "arv_sqft": 2553,
+    "arv_fetched_at": "2026-10-05T17:39:26Z"
   },
   {
     "type": "NOF",
@@ -82953,7 +83092,14 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 56
+    "days_until_sale": 56,
+    "on_market": true,
+    "on_market_status": "FOR_SALE",
+    "on_market_checked_at": "2026-10-05T17:39:28Z",
+    "arv_estimate": 178237,
+    "arv_status": "FOR_SALE",
+    "arv_sqft": 1272,
+    "arv_fetched_at": "2026-10-05T17:39:28Z"
   },
   {
     "type": "NOF",
@@ -82996,7 +83142,14 @@
     "days_until_sale": 56,
     "appraised_value": "218000",
     "annual_taxes": "",
-    "land_value": ""
+    "land_value": "",
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-10-05T17:39:29Z",
+    "arv_estimate": 237000,
+    "arv_status": "OFF_MARKET",
+    "arv_sqft": 1487,
+    "arv_fetched_at": "2026-10-05T17:39:29Z"
   },
   {
     "type": "NOF",
@@ -83038,7 +83191,14 @@
     "days_until_sale": 56,
     "appraised_value": "400690",
     "annual_taxes": "",
-    "land_value": ""
+    "land_value": "",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-10-05T17:39:31Z",
+    "arv_estimate": 362800,
+    "arv_status": "SOLD",
+    "arv_sqft": 2814,
+    "arv_fetched_at": "2026-10-05T17:39:31Z"
   },
   {
     "type": "NOF",
@@ -83080,7 +83240,14 @@
     "days_until_sale": 56,
     "appraised_value": "178970",
     "annual_taxes": "",
-    "land_value": ""
+    "land_value": "",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-10-05T17:39:32Z",
+    "arv_estimate": 187800,
+    "arv_status": "SOLD",
+    "arv_sqft": 1232,
+    "arv_fetched_at": "2026-10-05T17:39:32Z"
   },
   {
     "type": "NOF",
@@ -83123,7 +83290,14 @@
     "days_until_sale": 56,
     "appraised_value": "241940",
     "annual_taxes": "",
-    "land_value": ""
+    "land_value": "",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-10-05T17:39:34Z",
+    "arv_estimate": 242000,
+    "arv_status": "SOLD",
+    "arv_sqft": 1614,
+    "arv_fetched_at": "2026-10-05T17:39:34Z"
   },
   {
     "type": "NOF",
@@ -83165,7 +83339,14 @@
     "days_until_sale": 56,
     "appraised_value": "308440",
     "annual_taxes": "",
-    "land_value": ""
+    "land_value": "",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-10-05T17:39:36Z",
+    "arv_estimate": 291200,
+    "arv_status": "SOLD",
+    "arv_sqft": 1502,
+    "arv_fetched_at": "2026-10-05T17:39:36Z"
   },
   {
     "type": "NOF",
@@ -83207,7 +83388,14 @@
     "days_until_sale": 56,
     "appraised_value": "138060",
     "annual_taxes": "",
-    "land_value": ""
+    "land_value": "",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-10-05T17:39:37Z",
+    "arv_estimate": 150000,
+    "arv_status": "SOLD",
+    "arv_sqft": 988,
+    "arv_fetched_at": "2026-10-05T17:39:37Z"
   },
   {
     "type": "NOF",
@@ -83249,7 +83437,14 @@
     "days_until_sale": 56,
     "appraised_value": "206730",
     "annual_taxes": "",
-    "land_value": ""
+    "land_value": "",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-10-05T17:39:39Z",
+    "arv_estimate": 230062,
+    "arv_status": "SOLD",
+    "arv_sqft": 1296,
+    "arv_fetched_at": "2026-10-05T17:39:39Z"
   },
   {
     "type": "NOF",
@@ -83291,7 +83486,14 @@
     "days_until_sale": 56,
     "appraised_value": "175100",
     "annual_taxes": "",
-    "land_value": ""
+    "land_value": "",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-10-05T17:39:40Z",
+    "arv_estimate": 189176,
+    "arv_status": "SOLD",
+    "arv_sqft": 1300,
+    "arv_fetched_at": "2026-10-05T17:39:40Z"
   },
   {
     "type": "NOF",
@@ -83333,7 +83535,8 @@
     "days_until_sale": 56,
     "appraised_value": "328330",
     "annual_taxes": "",
-    "land_value": ""
+    "land_value": "",
+    "on_market_checked_at": "2026-10-05T17:39:42Z"
   },
   {
     "type": "NOF",
@@ -83376,7 +83579,8 @@
     "days_until_sale": 56,
     "appraised_value": "275780",
     "annual_taxes": "",
-    "land_value": ""
+    "land_value": "",
+    "on_market_checked_at": "2026-10-05T17:39:45Z"
   },
   {
     "type": "NOF",
@@ -83419,7 +83623,14 @@
     "days_until_sale": 56,
     "appraised_value": "275000",
     "annual_taxes": "",
-    "land_value": ""
+    "land_value": "",
+    "on_market": true,
+    "on_market_status": "FOR_SALE",
+    "on_market_checked_at": "2026-10-05T17:39:46Z",
+    "arv_estimate": 279513,
+    "arv_status": "FOR_SALE",
+    "arv_sqft": 1792,
+    "arv_fetched_at": "2026-10-05T17:39:46Z"
   },
   {
     "type": "NOF",
@@ -89401,7 +89612,8 @@
     "appr_trend": "",
     "stacked": false,
     "score": 4,
-    "days_until_sale": 56
+    "days_until_sale": 56,
+    "on_market_checked_at": "2026-10-05T17:39:48Z"
   },
   {
     "type": "NOF",
@@ -89441,7 +89653,8 @@
     "appr_trend": "",
     "stacked": false,
     "score": 4,
-    "days_until_sale": 56
+    "days_until_sale": 56,
+    "on_market_checked_at": "2026-10-05T17:39:50Z"
   },
   {
     "type": "NOF",
@@ -89481,7 +89694,8 @@
     "appr_trend": "",
     "stacked": false,
     "score": 4,
-    "days_until_sale": 56
+    "days_until_sale": 56,
+    "on_market_checked_at": "2026-10-05T17:39:54Z"
   },
   {
     "type": "NOF",
@@ -89521,7 +89735,14 @@
     "appr_trend": "",
     "stacked": false,
     "score": 4,
-    "days_until_sale": 56
+    "days_until_sale": 56,
+    "on_market": false,
+    "on_market_status": "FOR_RENT",
+    "on_market_checked_at": "2026-10-05T17:39:55Z",
+    "arv_estimate": 267000,
+    "arv_status": "FOR_RENT",
+    "arv_sqft": 1286,
+    "arv_fetched_at": "2026-10-05T17:39:55Z"
   },
   {
     "type": "NOF",
@@ -89561,7 +89782,14 @@
     "appr_trend": "",
     "stacked": false,
     "score": 4,
-    "days_until_sale": 56
+    "days_until_sale": 56,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-10-05T17:39:57Z",
+    "arv_estimate": 292319,
+    "arv_status": "SOLD",
+    "arv_sqft": 1525,
+    "arv_fetched_at": "2026-10-05T17:39:57Z"
   },
   {
     "type": "NOF",
