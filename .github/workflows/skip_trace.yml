@@ -39,13 +39,16 @@ jobs:
         env:
           TRACERFY_API_KEY: ${{ secrets.TRACERFY_API_KEY }}
         run: |
+          set -o pipefail
           python scraper/tracerfy_skip.py 2>&1 | tee /tmp/trace.log
           TRACED=$(grep -oP '(?<=traced=)\d+' /tmp/trace.log | tail -1 || echo "0")
+          ATTEMPTED=$(grep -oP '(?<=attempted=)\d+' /tmp/trace.log | tail -1 || echo "0")
           echo "traced=${TRACED:-0}" >> $GITHUB_OUTPUT
+          echo "attempted=${ATTEMPTED:-0}" >> $GITHUB_OUTPUT
           echo "Summary: traced=${TRACED:-0}"
 
       - name: Commit results
-        if: steps.trace.outputs.traced != '0'
+        if: steps.trace.outputs.attempted != '0'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -66,11 +69,11 @@ jobs:
           done
 
       - name: Upload Pages artifact
-        if: steps.trace.outputs.traced != '0'
+        if: steps.trace.outputs.attempted != '0'
         uses: actions/upload-pages-artifact@v3
         with:
           path: dashboard
 
       - name: Deploy to GitHub Pages
-        if: steps.trace.outputs.traced != '0'
+        if: steps.trace.outputs.attempted != '0'
         uses: actions/deploy-pages@v4
