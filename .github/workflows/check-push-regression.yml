@@ -14,7 +14,7 @@ jobs:
     # A "dash: update lead <doc>" commit (the dashboard's per-lead write-back) changes exactly one lead,
     # so it can never trip this check's >5 drop threshold -- skipping them removes dozens of pointless runs a
     # day (and the failure emails whenever GitHub can't hand out a runner). Scraper/bulk commits still run it.
-    if: ${{ !startsWith(github.event.head_commit.message, 'dash: update lead') }}
+    if: "${{ !startsWith(github.event.head_commit.message, 'dash: update lead') }}"
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
