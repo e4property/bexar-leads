@@ -14667,7 +14667,7 @@
     "mail_addr": "12011 BOBBI WAY SAN ANTONIO, TX 78245",
     "absentee": true,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261100264",
     "ps_doc_id": "",
     "year": "2026",
@@ -14682,7 +14682,6 @@
     "flags": [
       "ABSENTEE",
       "DUPLICATE",
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON",
       "URGENT"
@@ -14693,10 +14692,10 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 0,
     "tenure_score_bonus": 0,
     "prop_id": "569537",
-    "deed_date": "",
+    "deed_date": "8/19/2026",
     "last_sale_amt": "",
     "appr_history": [
       {
@@ -14724,7 +14723,7 @@
     "mail_addr": "ERNESTINA 2730 LOMBRANO ST SAN ANTONIO, TX 78228-6331",
     "absentee": true,
     "duplicate": true,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261100265",
     "ps_doc_id": "",
     "year": "2026",
@@ -14739,7 +14738,6 @@
     "flags": [
       "ABSENTEE",
       "DUPLICATE",
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON",
       "URGENT"
@@ -18608,7 +18606,7 @@
     "owner": "YOUNG QUINTON SHERROD",
     "mail_addr": "16528 ROSEMARY RIDGE ELMENDORF, TX 78112",
     "absentee": true,
-    "duplicate": false,
+    "duplicate": true,
     "is_new": false,
     "doc_number": "20261000302",
     "ps_doc_id": "",
@@ -18623,6 +18621,7 @@
     "run_ts": "2026-09-11T14:04:48Z",
     "flags": [
       "ABSENTEE",
+      "DUPLICATE",
       "HAS SALE DATE",
       "AUCTION SOON",
       "URGENT"
@@ -27690,7 +27689,7 @@
     "days_until_sale": 0,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-29T16:36:11Z"
+    "on_market_checked_at": "2026-10-06T19:13:19Z"
   },
   {
     "type": "NOF",
@@ -27753,7 +27752,7 @@
     "days_until_sale": 0,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-29T16:36:13Z"
+    "on_market_checked_at": "2026-10-06T19:13:20Z"
   },
   {
     "type": "NOF",
@@ -27816,7 +27815,7 @@
     "days_until_sale": 0,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-29T16:36:14Z",
+    "on_market_checked_at": "2026-10-06T19:13:22Z",
     "dash_phone": "210-818-6795",
     "dash_searched_at": "2026-09-02T14:52:40.691Z",
     "ghl_pushed": true,
@@ -27884,7 +27883,7 @@
     "days_until_sale": 0,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-29T16:36:16Z",
+    "on_market_checked_at": "2026-10-06T19:13:24Z",
     "dash_phone": "9377769149",
     "dash_searched_at": "2026-09-04T14:54:03.212Z",
     "ghl_pushed": true,
@@ -27952,7 +27951,7 @@
     "days_until_sale": 0,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-29T16:36:18Z"
+    "on_market_checked_at": "2026-10-06T19:13:26Z"
   },
   {
     "type": "NOF",
@@ -29414,7 +29413,7 @@
     "days_until_sale": 0,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-27T15:51:00Z",
+    "on_market_checked_at": "2026-10-06T19:13:27Z",
     "arv_estimate": 411500,
     "arv_status": "SOLD",
     "arv_sqft": 3216
@@ -29476,7 +29475,7 @@
     "days_until_sale": 0,
     "on_market": true,
     "on_market_status": "FOR_SALE",
-    "on_market_checked_at": "2026-09-27T15:51:01Z",
+    "on_market_checked_at": "2026-10-06T19:13:29Z",
     "arv_estimate": 467600,
     "arv_status": "SOLD",
     "arv_sqft": 2300
@@ -29543,7 +29542,7 @@
     "ghl_id": "LFlRNTVTYb5IQvFFnhIa",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-27T15:51:03Z",
+    "on_market_checked_at": "2026-10-06T19:13:30Z",
     "arv_estimate": 229400,
     "arv_status": "SOLD",
     "arv_sqft": 1547
@@ -29601,7 +29600,7 @@
     "days_until_sale": 0,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-28T19:00:43Z",
+    "on_market_checked_at": "2026-10-06T19:13:32Z",
     "arv_estimate": 201294,
     "arv_status": "SOLD",
     "arv_sqft": 1012
@@ -29669,7 +29668,7 @@
     "ghl_id": "c171kCC2Ior6nmAD7hD9",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-28T19:00:45Z",
+    "on_market_checked_at": "2026-10-06T19:13:33Z",
     "arv_estimate": 226394,
     "arv_status": "SOLD",
     "arv_sqft": 1950
@@ -29736,7 +29735,7 @@
     "dash_searched_at": "2026-08-20T22:31:12.138Z",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-28T19:00:46Z",
+    "on_market_checked_at": "2026-10-06T19:13:35Z",
     "arv_estimate": 146000,
     "arv_status": "FOR_RENT"
   },
@@ -29797,7 +29796,7 @@
     "days_until_sale": 0,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-28T19:00:48Z",
+    "on_market_checked_at": "2026-10-06T19:13:37Z",
     "arv_estimate": 414000,
     "arv_status": "SOLD",
     "arv_sqft": 2472
@@ -29864,7 +29863,7 @@
     "ghl_id": "QuCn2olNl4yYqIxkGQWf",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-28T19:00:50Z",
+    "on_market_checked_at": "2026-10-06T19:13:38Z",
     "arv_estimate": 249854,
     "arv_status": "SOLD",
     "arv_sqft": 1660
@@ -29926,7 +29925,7 @@
     "days_until_sale": 0,
     "on_market": true,
     "on_market_status": "FOR_SALE",
-    "on_market_checked_at": "2026-09-28T19:00:51Z",
+    "on_market_checked_at": "2026-10-06T19:13:40Z",
     "arv_estimate": 266800,
     "arv_status": "FOR_SALE",
     "arv_sqft": 1312
@@ -29993,7 +29992,7 @@
     "ghl_id": "aUuKsaTVvlKqB3DcGH6z",
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-09-28T19:00:53Z",
+    "on_market_checked_at": "2026-10-06T19:13:41Z",
     "arv_estimate": 311100,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 2435
@@ -35253,7 +35252,7 @@
     "owner": "HENRY MIRIAM ALLESSE",
     "mail_addr": "1015 SHASTA DAISY SAN ANTONIO, TX 78245",
     "absentee": false,
-    "duplicate": false,
+    "duplicate": true,
     "is_new": false,
     "doc_number": "20261100003",
     "ps_doc_id": "",
@@ -35267,6 +35266,7 @@
     "sale_date": "11/03/2026",
     "run_ts": "2026-10-01T15:49:23Z",
     "flags": [
+      "DUPLICATE",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -53688,6 +53688,287 @@
     "ghl_pushed_at": "2026-10-01T20:12:57.274Z",
     "ghl_id": "HNdIispzmyvLKKJQeeoa",
     "on_market_checked_at": "2026-10-01T23:58:44Z"
+  },
+  {
+    "doc_number": "20260193372",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Guajardo Juan Manuel",
+    "address": "15826 BORWICK LN",
+    "city": "SCHERTZ",
+    "zip": "78232",
+    "date_filed": "10/2026",
+    "month": "10",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-10-06T18:13:47Z",
+    "score": 10,
+    "flags": [
+      "ABSENTEE",
+      "LONG HELD"
+    ],
+    "absentee": true,
+    "duplicate": false,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "453340",
+    "annual_taxes": "",
+    "mail_addr": "15826 LOFTY HGTS SAN ANTONIO, TX 78232",
+    "prop_id": "282724.0",
+    "land_value": "",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false,
+    "deed_date": "5/16/2007",
+    "last_sale_amt": "",
+    "tenure_years": 19,
+    "tenure_score_bonus": 25,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 453340
+      },
+      {
+        "year": "2025",
+        "appraised": 453340
+      }
+    ],
+    "appr_trend": "flat",
+    "on_market_checked_at": "2026-10-06T19:13:07Z",
+    "appt_converted": false,
+    "appt_stale": false
+  },
+  {
+    "doc_number": "20260192787",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Young Quinton Sherrod",
+    "address": "16528 ROSEMARY RIDGE",
+    "city": "ELMENDORF",
+    "zip": "78023",
+    "date_filed": "10/2026",
+    "month": "10",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-10-06T18:13:47Z",
+    "score": 10,
+    "flags": [
+      "ABSENTEE",
+      "DUPLICATE",
+      "LONG HELD"
+    ],
+    "absentee": true,
+    "duplicate": true,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "1562000",
+    "annual_taxes": "",
+    "mail_addr": "16528 REVELLO DR HELOTES, TX 78023-5160",
+    "prop_id": "241782.0",
+    "land_value": "",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false,
+    "deed_date": "12/13/2006",
+    "last_sale_amt": "",
+    "tenure_years": 19,
+    "tenure_score_bonus": 25,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 1562000
+      },
+      {
+        "year": "2025",
+        "appraised": 1575000
+      }
+    ],
+    "appr_trend": "flat",
+    "on_market_checked_at": "2026-10-06T19:13:09Z",
+    "appt_converted": false,
+    "appt_stale": false
+  },
+  {
+    "doc_number": "20260192757",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Planet Home Lending Llc",
+    "address": "6403 RIDGE CREEK DRIVE",
+    "city": "SAN ANTONIO",
+    "zip": "78263",
+    "date_filed": "10/2026",
+    "month": "10",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-10-06T18:13:47Z",
+    "score": 10,
+    "flags": [
+      "ABSENTEE",
+      "DUPLICATE",
+      "LONG HELD"
+    ],
+    "absentee": true,
+    "duplicate": true,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "292270",
+    "annual_taxes": "",
+    "mail_addr": "6403 FM 1628 SAN ANTONIO, TX 78263-6122",
+    "prop_id": "334554.0",
+    "land_value": "",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false,
+    "deed_date": "12/7/2001",
+    "last_sale_amt": "",
+    "tenure_years": 24,
+    "tenure_score_bonus": 25,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 292270
+      },
+      {
+        "year": "2025",
+        "appraised": 292290
+      }
+    ],
+    "appr_trend": "flat",
+    "on_market_checked_at": "2026-10-06T19:13:14Z",
+    "appt_converted": false,
+    "appt_stale": false
+  },
+  {
+    "doc_number": "20260192756",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Henry Miriam Allesse",
+    "address": "1015  SHASTA DAISY",
+    "city": "SAN ANTONIO",
+    "zip": "78245",
+    "date_filed": "10/2026",
+    "month": "10",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-10-06T18:13:47Z",
+    "score": 10,
+    "flags": [
+      "DUPLICATE"
+    ],
+    "absentee": false,
+    "duplicate": true,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "312390",
+    "annual_taxes": "",
+    "mail_addr": "1015 SHASTA DAISY SAN ANTONIO, TX 78245",
+    "prop_id": "1101021.0",
+    "land_value": "",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false,
+    "deed_date": "7/13/2020",
+    "last_sale_amt": "",
+    "tenure_years": 6,
+    "tenure_score_bonus": 5,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 312390
+      },
+      {
+        "year": "2025",
+        "appraised": 318490
+      }
+    ],
+    "appr_trend": "flat",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-10-06T19:13:16Z",
+    "arv_estimate": 299717,
+    "arv_status": "SOLD",
+    "arv_sqft": 2466,
+    "arv_fetched_at": "2026-10-06T19:13:16Z",
+    "appt_converted": false,
+    "appt_stale": false
+  },
+  {
+    "doc_number": "20260192755",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Schilleci Shelby Paige",
+    "address": "829 W BITTERS RD 303",
+    "city": "SAN ANTONIO",
+    "zip": "78232",
+    "date_filed": "10/2026",
+    "month": "10",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-10-06T18:13:47Z",
+    "score": 10,
+    "flags": [
+      "ABSENTEE"
+    ],
+    "absentee": true,
+    "duplicate": false,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "212300",
+    "annual_taxes": "",
+    "mail_addr": "829 W BITTERS RD UNIT 303 SAN ANTONIO, TX 78216",
+    "prop_id": "670387",
+    "land_value": "",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false,
+    "deed_date": "1/21/2021",
+    "last_sale_amt": "",
+    "tenure_years": 5,
+    "tenure_score_bonus": 5,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 212300
+      },
+      {
+        "year": "2025",
+        "appraised": 212300
+      }
+    ],
+    "appr_trend": "flat",
+    "on_market_checked_at": "2026-10-06T19:13:17Z",
+    "appt_converted": false,
+    "appt_stale": false
   },
   {
     "doc_number": "20260191981",
@@ -82032,6 +82313,114 @@
     "arv_fetched_at": "2026-08-30T22:38:29Z"
   },
   {
+    "doc_number": "20260193631",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Sanchez Narciso",
+    "address": "744 FITCH ST",
+    "city": "SAN ANTONIO",
+    "zip": "78210",
+    "date_filed": "10/2026",
+    "month": "10",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-10-06T18:13:47Z",
+    "score": 8,
+    "flags": [
+      "ABSENTEE"
+    ],
+    "absentee": true,
+    "duplicate": false,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "308580",
+    "annual_taxes": "",
+    "mail_addr": "744 KAYTON AVE SAN ANTONIO, TX 78210-3675",
+    "prop_id": "144497.0",
+    "land_value": "",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false,
+    "deed_date": "",
+    "last_sale_amt": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 308580
+      },
+      {
+        "year": "2025",
+        "appraised": 347470
+      }
+    ],
+    "appr_trend": "down",
+    "on_market_checked_at": "2026-10-06T19:13:05Z",
+    "appt_converted": false,
+    "appt_stale": false
+  },
+  {
+    "doc_number": "20260192758",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Kyles Josiah Dominique",
+    "address": "7631 STERLING MANOR",
+    "city": "CONVERSE",
+    "zip": "78112",
+    "date_filed": "10/2026",
+    "month": "10",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-10-06T18:13:47Z",
+    "score": 8,
+    "flags": [
+      "ABSENTEE"
+    ],
+    "absentee": true,
+    "duplicate": false,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "105410",
+    "annual_taxes": "",
+    "mail_addr": "7631 EDWARD TARIN DR ELMENDORF, TX 78112",
+    "prop_id": "159818.0",
+    "land_value": "",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false,
+    "deed_date": "1/12/2024",
+    "last_sale_amt": "",
+    "tenure_years": 2,
+    "tenure_score_bonus": 0,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 105410
+      },
+      {
+        "year": "2025",
+        "appraised": 105410
+      }
+    ],
+    "appr_trend": "flat",
+    "on_market_checked_at": "2026-10-06T19:13:12Z",
+    "appt_converted": false,
+    "appt_stale": false
+  },
+  {
     "doc_number": "20260192563",
     "ps_doc_id": "",
     "type": "APPT",
@@ -90971,9 +91360,11 @@
     "is_new": false,
     "run_ts": "2026-09-09T16:24:25Z",
     "score": 3,
-    "flags": [],
+    "flags": [
+      "DUPLICATE"
+    ],
     "absentee": false,
-    "duplicate": false,
+    "duplicate": true,
     "days_until_sale": null,
     "loan_amount": "",
     "loan_date": "",
