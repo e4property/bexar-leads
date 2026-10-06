@@ -23844,7 +23844,7 @@
     "land_value": "108390.0",
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-09-29T00:28:43Z",
+    "on_market_checked_at": "2026-10-06T01:21:26Z",
     "arv_estimate": 272000,
     "arv_status": "FOR_SALE",
     "arv_sqft": 1792,
@@ -23910,7 +23910,7 @@
     "land_value": "32800.0",
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-09-29T00:28:45Z",
+    "on_market_checked_at": "2026-10-06T01:21:28Z",
     "arv_estimate": 264155,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 1245,
@@ -24680,7 +24680,7 @@
     "ghl_id": "soVAIIiNIWFLsNH6CSwu",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-27T15:50:29Z",
+    "on_market_checked_at": "2026-10-06T01:21:29Z",
     "arv_estimate": 352600,
     "arv_status": "SOLD",
     "arv_sqft": 2324
@@ -24742,7 +24742,7 @@
     "days_until_sale": 0,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-27T15:50:30Z",
+    "on_market_checked_at": "2026-10-06T01:21:31Z",
     "arv_estimate": 126800,
     "arv_status": "SOLD",
     "arv_sqft": 962,
@@ -24935,7 +24935,7 @@
     "ghl_id": "Uo1etqrB8DSm7Br29uYj",
     "on_market": true,
     "on_market_status": "PENDING",
-    "on_market_checked_at": "2026-09-27T15:50:32Z"
+    "on_market_checked_at": "2026-10-06T01:21:32Z"
   },
   {
     "type": "NOF",
@@ -25001,7 +25001,7 @@
     "ghl_id": "VGoBtcgMHttVzjRgAxYp",
     "on_market": true,
     "on_market_status": "FOR_SALE",
-    "on_market_checked_at": "2026-09-27T15:50:45Z"
+    "on_market_checked_at": "2026-10-06T01:21:45Z"
   },
   {
     "type": "NOF",
@@ -25067,7 +25067,7 @@
     "ghl_id": "VHu9Noi8wMqC9QpcaVyE",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-27T15:50:47Z"
+    "on_market_checked_at": "2026-10-06T01:21:46Z"
   },
   {
     "type": "NOF",
@@ -25128,9 +25128,9 @@
     "stacked": false,
     "score": 7,
     "days_until_sale": 0,
-    "on_market": true,
-    "on_market_status": "FOR_SALE",
-    "on_market_checked_at": "2026-09-27T15:50:48Z"
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-10-06T01:21:48Z"
   },
   {
     "type": "NOF",
@@ -25196,7 +25196,7 @@
     "ghl_id": "72uSk9QaDOsPxvKuYl1m",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-27T15:50:50Z"
+    "on_market_checked_at": "2026-10-06T01:21:49Z"
   },
   {
     "type": "NOF",
@@ -25257,9 +25257,9 @@
     "stacked": false,
     "score": 7,
     "days_until_sale": 0,
-    "on_market": true,
-    "on_market_status": "PENDING",
-    "on_market_checked_at": "2026-09-27T15:50:52Z"
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-10-06T01:21:51Z"
   },
   {
     "type": "NOF",
@@ -25323,7 +25323,7 @@
     "days_until_sale": 0,
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-09-27T15:50:53Z"
+    "on_market_checked_at": "2026-10-06T01:21:52Z"
   },
   {
     "type": "NOF",
@@ -25389,7 +25389,7 @@
     "ghl_id": "TVSU6bo7LBM8HR3z5OQJ",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-27T15:50:55Z"
+    "on_market_checked_at": "2026-10-06T01:21:54Z"
   },
   {
     "type": "NOF",
@@ -25452,7 +25452,7 @@
     "days_until_sale": 0,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-27T15:50:57Z"
+    "on_market_checked_at": "2026-10-06T01:21:55Z"
   },
   {
     "type": "NOF",
@@ -25516,7 +25516,7 @@
     "days_until_sale": 0,
     "on_market": false,
     "on_market_status": "CONTINGENT",
-    "on_market_checked_at": "2026-09-27T15:50:58Z"
+    "on_market_checked_at": "2026-10-06T01:21:57Z"
   },
   {
     "type": "NOF",
@@ -25583,7 +25583,7 @@
     "ghl_id": "NkUiYbxIKdNzZumHsDfB",
     "on_market": true,
     "on_market_status": "PENDING",
-    "on_market_checked_at": "2026-09-27T23:05:40Z"
+    "on_market_checked_at": "2026-10-06T01:21:58Z"
   },
   {
     "type": "NOF",
@@ -41211,6 +41211,247 @@
   },
   {
     "type": "NOF",
+    "address": "5306 WINRIDGE DR",
+    "owner": "HAYNES DONALD W",
+    "mail_addr": "% CRIST LAW FIRM PLLC 5306 WINRIDGE DR SAN ANTONIO, TX 78228",
+    "absentee": true,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20261000217",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "9",
+    "city": "SAN ANTONIO",
+    "zip": "78228",
+    "school_dist": "",
+    "date_filed": "9/2026",
+    "date_recorded": "9/3/2026",
+    "sale_date": "11/03/2026",
+    "run_ts": "2026-09-03T18:15:37Z",
+    "flags": [
+      "ABSENTEE",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 7,
+    "tenure_score_bonus": 5,
+    "prop_id": "542961",
+    "deed_date": "5/1/2019",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 315320
+      },
+      {
+        "year": "2025",
+        "appraised": 338550
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "315320",
+    "annual_taxes": "",
+    "land_value": "",
+    "arv_estimate": 294298,
+    "arv_status": "OFF_MARKET",
+    "arv_fetched_at": "2026-09-11T18:31:44Z",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 27,
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-09-04T14:40:56.935Z",
+    "ghl_id": "sOjYqsOBREP9vFAE4Y4j",
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-09-11T18:31:44Z",
+    "arv_sqft": 2433
+  },
+  {
+    "type": "NOF",
+    "address": "3810 SOUTHERN GRV",
+    "owner": "SELLERS WENDY A",
+    "mail_addr": "3810 SOUTHERN GRV SAN ANTONIO, TX 78222-3430",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20261000038",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78222",
+    "school_dist": "",
+    "date_filed": "8/2026",
+    "sale_date": "11/03/2026",
+    "run_ts": "2026-08-28T15:58:20Z",
+    "flags": [
+      "HAS SALE DATE",
+      "AUCTION SOON",
+      "LONG HELD"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 11,
+    "tenure_score_bonus": 15,
+    "prop_id": "1046157.0",
+    "deed_date": "7/21/2015",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 265000
+      },
+      {
+        "year": "2025",
+        "appraised": 312010
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "265000",
+    "annual_taxes": "",
+    "land_value": "47550.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 27,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-08-31T23:57:21Z",
+    "arv_estimate": "",
+    "arv_status": "",
+    "arv_sqft": "",
+    "arv_fetched_at": ""
+  },
+  {
+    "type": "NOF",
+    "address": "11306 NEWKIRK",
+    "owner": "MARTINEZ ERIC & BRANDY J",
+    "mail_addr": "11306 NEWKIRK HELOTES, TX 78023-4348",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20261000149",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "8",
+    "city": "HELOTES",
+    "zip": "78023",
+    "school_dist": "",
+    "date_filed": "8/2026",
+    "sale_date": "11/03/2026",
+    "run_ts": "2026-08-31T20:31:36Z",
+    "flags": [
+      "HAS SALE DATE",
+      "AUCTION SOON",
+      "LONG HELD"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 12,
+    "tenure_score_bonus": 15,
+    "prop_id": "583835.0",
+    "deed_date": "8/27/2014",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 279880
+      },
+      {
+        "year": "2025",
+        "appraised": 296740
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "279880",
+    "annual_taxes": "",
+    "land_value": "59080.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 27,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-01T00:07:57Z",
+    "arv_estimate": 303400,
+    "arv_status": "SOLD",
+    "arv_sqft": 2124
+  },
+  {
+    "type": "NOF",
+    "address": "6822 TRESELLE LANE",
+    "owner": "PENA ROMAN",
+    "mail_addr": "6822 TRESELLE LN SAN ANTONIO, TX 78252-4449",
+    "absentee": true,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20261000147",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "8",
+    "city": "SAN ANTONIO",
+    "zip": "78245",
+    "school_dist": "",
+    "date_filed": "8/2026",
+    "sale_date": "11/03/2026",
+    "run_ts": "2026-08-31T20:31:36Z",
+    "flags": [
+      "ABSENTEE",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 8,
+    "tenure_score_bonus": 5,
+    "prop_id": "1275554.0",
+    "deed_date": "8/8/2018",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 303460
+      },
+      {
+        "year": "2025",
+        "appraised": 305990
+      }
+    ],
+    "appr_trend": "flat",
+    "appraised_value": "303460",
+    "annual_taxes": "",
+    "land_value": "62900.0",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 27,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-09-01T00:08:00Z",
+    "arv_estimate": 281500,
+    "arv_status": "SOLD",
+    "arv_sqft": 2571,
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-09-04T14:42:37.439Z",
+    "ghl_id": "YWZALCw89hTEeSFwVvw7"
+  },
+  {
+    "type": "NOF",
     "address": "415 TERRITORY OAK",
     "owner": "VIDAURRI DAVID A",
     "mail_addr": "415 TERRITORY OAK SAN ANTONIO, TX 78253-9204",
@@ -41299,10 +41540,10 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 3,
     "tenure_score_bonus": 0,
     "prop_id": "735332",
-    "deed_date": "",
+    "deed_date": "11/22/2022",
     "last_sale_amt": "",
     "appr_history": [
       {
@@ -48212,72 +48453,6 @@
   },
   {
     "type": "NOF",
-    "address": "5306 WINRIDGE DR",
-    "owner": "HAYNES DONALD W",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20261000217",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "9",
-    "city": "SAN ANTONIO",
-    "zip": "78228",
-    "school_dist": "",
-    "date_filed": "9/2026",
-    "date_recorded": "9/3/2026",
-    "sale_date": "11/03/2026",
-    "run_ts": "2026-09-03T18:15:37Z",
-    "flags": [
-      "HAS SALE DATE",
-      "AUCTION SOON"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "542961",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [
-      {
-        "year": "2026",
-        "appraised": 315320
-      },
-      {
-        "year": "2025",
-        "appraised": 338550
-      },
-      {
-        "year": "2024",
-        "appraised": 340340
-      }
-    ],
-    "appr_trend": "down",
-    "appraised_value": "315320",
-    "annual_taxes": "",
-    "land_value": "",
-    "arv_estimate": 294298,
-    "arv_status": "OFF_MARKET",
-    "arv_fetched_at": "2026-09-11T18:31:44Z",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 27,
-    "ghl_pushed": true,
-    "ghl_pushed_at": "2026-09-04T14:40:56.935Z",
-    "ghl_id": "sOjYqsOBREP9vFAE4Y4j",
-    "on_market": false,
-    "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-09-11T18:31:44Z",
-    "arv_sqft": 2433
-  },
-  {
-    "type": "NOF",
     "address": "8307 BORDEAUX BAY",
     "owner": "EDMONSON CHRISTIAN & MUNOS SKIE",
     "mail_addr": "",
@@ -48438,55 +48613,6 @@
     "stacked": false,
     "score": 7,
     "days_until_sale": 27
-  },
-  {
-    "type": "NOF",
-    "address": "3810 SOUTHERN GRV",
-    "owner": "SELLERS WENDY A",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20261000038",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78222",
-    "school_dist": "",
-    "date_filed": "8/2026",
-    "sale_date": "11/03/2026",
-    "run_ts": "2026-08-28T15:58:20Z",
-    "flags": [
-      "HAS SALE DATE",
-      "AUCTION SOON"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "1046157.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "312010.0",
-    "annual_taxes": "",
-    "land_value": "47550.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 27,
-    "on_market": false,
-    "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-08-31T23:57:21Z",
-    "arv_estimate": "",
-    "arv_status": "",
-    "arv_sqft": "",
-    "arv_fetched_at": ""
   },
   {
     "type": "NOF",
@@ -48678,108 +48804,9 @@
   },
   {
     "type": "NOF",
-    "address": "11306 NEWKIRK",
-    "owner": "MARTINEZ ERIC & BRANDY J",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20261000149",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "8",
-    "city": "HELOTES",
-    "zip": "78023",
-    "school_dist": "",
-    "date_filed": "8/2026",
-    "sale_date": "11/03/2026",
-    "run_ts": "2026-08-31T20:31:36Z",
-    "flags": [
-      "HAS SALE DATE",
-      "AUCTION SOON"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "583835.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "296740.0",
-    "annual_taxes": "",
-    "land_value": "59080.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 27,
-    "on_market": false,
-    "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-01T00:07:57Z",
-    "arv_estimate": 303400,
-    "arv_status": "SOLD",
-    "arv_sqft": 2124
-  },
-  {
-    "type": "NOF",
-    "address": "6822 TRESELLE LANE",
-    "owner": "PENA ROMAN",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "doc_number": "20261000147",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "8",
-    "city": "SAN ANTONIO",
-    "zip": "78245",
-    "school_dist": "",
-    "date_filed": "8/2026",
-    "sale_date": "11/03/2026",
-    "run_ts": "2026-08-31T20:31:36Z",
-    "flags": [
-      "HAS SALE DATE",
-      "AUCTION SOON"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "1275554.0",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "305990.0",
-    "annual_taxes": "",
-    "land_value": "62900.0",
-    "stacked": false,
-    "score": 7,
-    "days_until_sale": 27,
-    "on_market": false,
-    "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-01T00:08:00Z",
-    "arv_estimate": 281500,
-    "arv_status": "SOLD",
-    "arv_sqft": 2571,
-    "ghl_pushed": true,
-    "ghl_pushed_at": "2026-09-04T14:42:37.439Z",
-    "ghl_id": "YWZALCw89hTEeSFwVvw7"
-  },
-  {
-    "type": "NOF",
     "address": "7947 NESSIE TRAILS",
     "owner": "ESPARZA ISMAEL RAMON",
-    "mail_addr": "",
+    "mail_addr": "7947 NESSIE TRAILS SAN ANTONIO, TX 78227",
     "absentee": false,
     "duplicate": false,
     "is_new": false,
@@ -48803,10 +48830,10 @@
     "loan_date": "",
     "trustee": "",
     "sale_date_arcgis": "",
-    "tenure_years": null,
+    "tenure_years": 2,
     "tenure_score_bonus": 0,
     "prop_id": "1398192.0",
-    "deed_date": "",
+    "deed_date": "5/14/2024",
     "last_sale_amt": "",
     "appr_history": [
       {
@@ -48816,10 +48843,6 @@
       {
         "year": "2025",
         "appraised": 216830
-      },
-      {
-        "year": "2024",
-        "appraised": 16500
       }
     ],
     "appr_trend": "down",
