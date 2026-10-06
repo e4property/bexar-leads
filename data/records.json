@@ -14662,6 +14662,126 @@
   },
   {
     "type": "NOF",
+    "address": "146 AMBER VALLEY",
+    "owner": "ROMERO DEBORAH ANN & ROMERO MICHELLE GONZALEZ",
+    "mail_addr": "12011 BOBBI WAY SAN ANTONIO, TX 78245",
+    "absentee": true,
+    "duplicate": true,
+    "is_new": true,
+    "doc_number": "20261100264",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "10",
+    "city": "SAN ANTONIO",
+    "zip": "78227",
+    "school_dist": "",
+    "date_filed": "10/2026",
+    "date_recorded": "10/5/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-10-06T17:11:53Z",
+    "flags": [
+      "ABSENTEE",
+      "DUPLICATE",
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON",
+      "URGENT"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "prop_id": "569537",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 172570
+      },
+      {
+        "year": "2025",
+        "appraised": 172570
+      }
+    ],
+    "appr_trend": "flat",
+    "appraised_value": "172570",
+    "annual_taxes": "",
+    "land_value": "",
+    "on_market_checked_at": "2026-10-06T17:28:30Z",
+    "stacked": false,
+    "score": 9,
+    "days_until_sale": 0
+  },
+  {
+    "type": "NOF",
+    "address": "2730 LOMBRANO ST",
+    "owner": "GONZALEZ ALFREDO P &",
+    "mail_addr": "ERNESTINA 2730 LOMBRANO ST SAN ANTONIO, TX 78228-6331",
+    "absentee": true,
+    "duplicate": true,
+    "is_new": true,
+    "doc_number": "20261100265",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "10",
+    "city": "SAN ANTONIO",
+    "zip": "78228",
+    "school_dist": "",
+    "date_filed": "10/2026",
+    "date_recorded": "10/5/2026",
+    "sale_date": "10/06/2026",
+    "run_ts": "2026-10-06T17:11:53Z",
+    "flags": [
+      "ABSENTEE",
+      "DUPLICATE",
+      "NEW",
+      "HAS SALE DATE",
+      "AUCTION SOON",
+      "URGENT"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "prop_id": "425193",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 73880
+      },
+      {
+        "year": "2025",
+        "appraised": 82630
+      }
+    ],
+    "appr_trend": "down",
+    "appraised_value": "73880",
+    "annual_taxes": "",
+    "land_value": "",
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-10-06T17:28:32Z",
+    "arv_estimate": 103100,
+    "arv_status": "OFF_MARKET",
+    "arv_sqft": 442,
+    "arv_fetched_at": "2026-10-06T17:28:32Z",
+    "stacked": false,
+    "score": 9,
+    "days_until_sale": 0
+  },
+  {
+    "type": "NOF",
     "address": "9107 MUSTANG PASS",
     "owner": "UAMD LLC",
     "mail_addr": "18114 RANSOM HILL SAN ANTONIO, TX 78258",
@@ -17976,7 +18096,7 @@
     "owner": "GONZALEZ ALFREDO P &",
     "mail_addr": "ERNESTINA 2730 LOMBRANO ST SAN ANTONIO, TX 78228-6331",
     "absentee": true,
-    "duplicate": false,
+    "duplicate": true,
     "is_new": false,
     "doc_number": "20261000036",
     "ps_doc_id": "",
@@ -17990,6 +18110,7 @@
     "run_ts": "2026-08-19T01:05:02Z",
     "flags": [
       "ABSENTEE",
+      "DUPLICATE",
       "HAS SALE DATE",
       "AUCTION SOON",
       "URGENT"
@@ -18733,7 +18854,7 @@
     "owner": "ROMERO DEBORAH ANN & ROMERO MICHELLE GONZALEZ",
     "mail_addr": "12011 BOBBI WAY SAN ANTONIO, TX 78245",
     "absentee": true,
-    "duplicate": false,
+    "duplicate": true,
     "is_new": false,
     "doc_number": "20261000287",
     "ps_doc_id": "",
@@ -18748,6 +18869,7 @@
     "run_ts": "2026-09-08T18:12:32Z",
     "flags": [
       "ABSENTEE",
+      "DUPLICATE",
       "HAS SALE DATE",
       "AUCTION SOON",
       "URGENT"
@@ -24286,7 +24408,7 @@
     "land_value": "117670.0",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-29T16:35:45Z",
+    "on_market_checked_at": "2026-10-06T17:28:34Z",
     "arv_estimate": 480021,
     "arv_status": "SOLD",
     "arv_sqft": 2160,
@@ -24350,7 +24472,7 @@
     "land_value": "171060.0",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-29T16:35:46Z",
+    "on_market_checked_at": "2026-10-06T17:28:35Z",
     "arv_estimate": 1692000,
     "arv_status": "SOLD",
     "arv_sqft": 5593,
@@ -24417,7 +24539,7 @@
     "days_until_sale": 0,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-29T16:35:48Z",
+    "on_market_checked_at": "2026-10-06T17:28:37Z",
     "arv_estimate": 284000,
     "arv_status": "SOLD",
     "arv_sqft": 1526,
@@ -24484,7 +24606,7 @@
     "days_until_sale": 0,
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-09-29T16:35:50Z",
+    "on_market_checked_at": "2026-10-06T17:28:38Z",
     "arv_estimate": 226000,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 1664,
@@ -24544,7 +24666,7 @@
     "land_value": "3055560.0",
     "on_market": true,
     "on_market_status": "FOR_SALE",
-    "on_market_checked_at": "2026-09-29T16:36:02Z",
+    "on_market_checked_at": "2026-10-06T17:28:49Z",
     "arv_estimate": 45000,
     "arv_status": "FOR_SALE",
     "arv_sqft": 1034,
@@ -24797,7 +24919,7 @@
     "land_value": "94650.0",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-29T16:36:04Z",
+    "on_market_checked_at": "2026-10-06T17:28:51Z",
     "arv_estimate": 274688,
     "arv_status": "SOLD",
     "arv_sqft": 1304,
@@ -25186,7 +25308,7 @@
     "dash_searched_at": "2026-08-21T17:15:24.929Z",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-29T16:36:05Z"
+    "on_market_checked_at": "2026-10-06T17:28:52Z"
   },
   {
     "type": "NOF",
@@ -27048,9 +27170,9 @@
     "stacked": false,
     "score": 7,
     "days_until_sale": 0,
-    "on_market": true,
-    "on_market_status": "FOR_SALE",
-    "on_market_checked_at": "2026-09-28T19:00:35Z"
+    "on_market": false,
+    "on_market_status": "CONTINGENT",
+    "on_market_checked_at": "2026-10-06T17:28:54Z"
   },
   {
     "type": "NOF",
@@ -27113,7 +27235,7 @@
     "days_until_sale": 0,
     "on_market": true,
     "on_market_status": "FOR_SALE",
-    "on_market_checked_at": "2026-09-28T19:00:37Z"
+    "on_market_checked_at": "2026-10-06T17:28:56Z"
   },
   {
     "type": "NOF",
@@ -27172,7 +27294,7 @@
     "days_until_sale": 0,
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-09-28T19:00:38Z",
+    "on_market_checked_at": "2026-10-06T17:28:57Z",
     "dash_phone": "2104207414",
     "dash_searched_at": "2026-09-02T14:46:52.166Z",
     "ghl_pushed": true,
@@ -27240,7 +27362,7 @@
     "days_until_sale": 0,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-28T19:00:40Z"
+    "on_market_checked_at": "2026-10-06T17:28:59Z"
   },
   {
     "type": "NOF",
@@ -27304,7 +27426,7 @@
     "days_until_sale": 0,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-28T19:00:41Z",
+    "on_market_checked_at": "2026-10-06T17:29:01Z",
     "dash_phone": "210-723-7141",
     "dash_searched_at": "2026-09-02T14:57:44.868Z",
     "ghl_pushed": true,
@@ -27372,7 +27494,7 @@
     "days_until_sale": 0,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-29T16:36:07Z",
+    "on_market_checked_at": "2026-10-06T17:29:02Z",
     "dash_phone": "2102735903",
     "dash_searched_at": "2026-09-02T14:45:00.861Z",
     "ghl_pushed": true,
@@ -27441,7 +27563,7 @@
     "days_until_sale": 0,
     "on_market": true,
     "on_market_status": "FOR_SALE",
-    "on_market_checked_at": "2026-09-29T16:36:08Z"
+    "on_market_checked_at": "2026-10-06T17:29:04Z"
   },
   {
     "type": "NOF",
@@ -27504,7 +27626,7 @@
     "days_until_sale": 0,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-29T16:36:10Z"
+    "on_market_checked_at": "2026-10-06T17:29:05Z"
   },
   {
     "type": "NOF",
