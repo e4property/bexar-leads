@@ -1,0 +1,45 @@
+name: Post-Auction Check
+
+# Looks up what happened to contacted leads 2 and 7 days after their sale date, once a day.
+# Read-only: it never contacts anyone. Results land in data/post_auction/ (CSV + history + watch list).
+on:
+  schedule:
+    - cron: '30 14 * * *'   # 9:30 AM Central
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: post-auction-check
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run post-auction check
+        run: python scraper/post_auction_check.py --county bexar --records dashboard/records.json --date "$(TZ=America/Chicago date +%Y-%m-%d)"
+
+      - name: Commit results
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add data/post_auction 2>/dev/null || true
+          git diff --cached --quiet && echo "No changes" && exit 0
+          git commit -m "chore: post-auction check $(date -u +'%Y-%m-%d')"
+          for i in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase -X ours origin/main || git rebase --abort
+            git push origin main && echo "Push succeeded" && break
+            sleep $((RANDOM % 10 + 3))
+          done
