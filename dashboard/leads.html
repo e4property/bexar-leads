@@ -1209,7 +1209,7 @@ function renderItem(lead,idx){
   const vbp=isVBP(lead),stacked=isStacked(lead),ce=isCEOnly(lead),lp=isLP(lead),aged=isAged(lead),isNew=lead.is_new;
   let cc='litem';
   if(isSel){cc+=' sel';if(stacked||vbp)cc+=' vbp-lead';}
-  else if(isNew&&!ls.phone)cc+=' is-new-lead';
+  else if((isNew&&!ls.phone)||(lead.type==='NOF'&&!auctionPassed(lead)&&!ls.phone&&!ls.skipped&&!ls.ghl_pushed&&dispo==='new'))cc+=' is-new-lead';
   else if(ls.phone)cc+=' searched';
   else if(dispo!=='new')cc+=` dispo-${dispo}`;
   else if(!ls.phone&&!ls.skipped){if(lead.score>=8)cc+=' score-hot';else if(lead.score>=6)cc+=' score-warm';}
