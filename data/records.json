@@ -625,7 +625,12 @@
     "arv_estimate": 354000,
     "arv_status": "SOLD",
     "arv_sqft": 2862,
-    "arv_fetched_at": "2026-10-14T15:16:24Z"
+    "arv_fetched_at": "2026-10-14T15:16:24Z",
+    "dash_phone": "2107393899",
+    "dash_searched_at": "2026-10-15T17:03:21.724Z",
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-10-15T17:03:21.724Z",
+    "ghl_id": "2VHIdI5f5gCKDcxZdN0s"
   },
   {
     "type": "NOF",
@@ -1152,7 +1157,12 @@
     "arv_estimate": 160700,
     "arv_status": "SOLD",
     "arv_sqft": 1302,
-    "arv_fetched_at": "2026-10-13T23:58:04Z"
+    "arv_fetched_at": "2026-10-13T23:58:04Z",
+    "dash_phone": "2107925263",
+    "dash_searched_at": "2026-10-15T17:24:48.038Z",
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-10-15T17:24:48.038Z",
+    "ghl_id": "RCm60vkUegsvx1WckKLK"
   },
   {
     "type": "NOF",
@@ -4256,7 +4266,7 @@
     "land_value": "",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-10-08T17:19:29Z",
+    "on_market_checked_at": "2026-10-15T18:24:54Z",
     "arv_estimate": 395802,
     "arv_status": "SOLD",
     "arv_sqft": 2320,
@@ -4422,7 +4432,7 @@
     "land_value": "",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-10-08T17:19:30Z",
+    "on_market_checked_at": "2026-10-15T18:24:56Z",
     "arv_estimate": 553000,
     "arv_status": "SOLD",
     "arv_sqft": 2814,
@@ -4488,7 +4498,7 @@
     "land_value": "",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-10-08T17:19:32Z",
+    "on_market_checked_at": "2026-10-15T18:24:57Z",
     "arv_estimate": 143480,
     "arv_status": "SOLD",
     "arv_sqft": 946,
@@ -4547,7 +4557,7 @@
     "land_value": "",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-10-08T17:19:33Z",
+    "on_market_checked_at": "2026-10-15T18:24:59Z",
     "arv_estimate": 302000,
     "arv_status": "SOLD",
     "arv_sqft": 2217,
@@ -4612,7 +4622,7 @@
     "land_value": "",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-10-08T17:19:35Z",
+    "on_market_checked_at": "2026-10-15T18:25:00Z",
     "arv_estimate": 295000,
     "arv_status": "SOLD",
     "arv_sqft": 1753,
@@ -4726,7 +4736,7 @@
     "land_value": "",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-10-08T17:19:36Z",
+    "on_market_checked_at": "2026-10-15T18:25:01Z",
     "arv_estimate": 105000,
     "arv_status": "SOLD",
     "arv_sqft": 852,
@@ -4786,7 +4796,7 @@
     "land_value": "",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-10-08T17:19:39Z",
+    "on_market_checked_at": "2026-10-15T18:25:03Z",
     "arv_estimate": 383319,
     "arv_status": "SOLD",
     "arv_sqft": 2467,
@@ -7398,7 +7408,7 @@
     "days_until_sale": 18,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-10-08T14:04:42Z",
+    "on_market_checked_at": "2026-10-15T18:25:04Z",
     "arv_estimate": 301105,
     "arv_status": "SOLD",
     "arv_sqft": 2704,
@@ -7462,7 +7472,7 @@
     "days_until_sale": 18,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-10-08T14:04:43Z",
+    "on_market_checked_at": "2026-10-15T18:25:06Z",
     "arv_estimate": 250200,
     "arv_status": "SOLD",
     "arv_sqft": 1602,
@@ -7521,7 +7531,7 @@
     "days_until_sale": 18,
     "on_market": true,
     "on_market_status": "PENDING",
-    "on_market_checked_at": "2026-10-08T14:04:45Z",
+    "on_market_checked_at": "2026-10-15T18:25:07Z",
     "arv_estimate": 192800,
     "arv_status": "PENDING",
     "arv_sqft": 1730,
@@ -7582,7 +7592,7 @@
     "days_until_sale": 18,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-10-08T14:04:46Z",
+    "on_market_checked_at": "2026-10-15T18:25:09Z",
     "arv_estimate": 224800,
     "arv_status": "SOLD",
     "arv_sqft": 2278,
@@ -7643,7 +7653,7 @@
     "days_until_sale": 18,
     "on_market": true,
     "on_market_status": "FOR_SALE",
-    "on_market_checked_at": "2026-10-08T14:04:48Z",
+    "on_market_checked_at": "2026-10-15T18:25:12Z",
     "arv_estimate": 174230,
     "arv_status": "FOR_SALE",
     "arv_sqft": 1496,
@@ -7702,7 +7712,7 @@
     "days_until_sale": 18,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-10-08T14:04:50Z",
+    "on_market_checked_at": "2026-10-15T18:25:13Z",
     "arv_estimate": 356800,
     "arv_status": "SOLD",
     "arv_sqft": 2358,
@@ -7761,7 +7771,7 @@
     "days_until_sale": 18,
     "on_market": true,
     "on_market_status": "PENDING",
-    "on_market_checked_at": "2026-10-08T14:04:51Z",
+    "on_market_checked_at": "2026-10-15T18:25:15Z",
     "arv_estimate": 233110,
     "arv_status": "PENDING",
     "arv_sqft": 1653,
@@ -7825,7 +7835,7 @@
     "ghl_id": "jYnX0YZeEWHtcgYzayT0",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-10-08T14:04:53Z",
+    "on_market_checked_at": "2026-10-15T18:25:17Z",
     "arv_estimate": 177899,
     "arv_status": "SOLD",
     "arv_sqft": 1496,
@@ -10307,7 +10317,7 @@
     "owner": "RICARTE DANIEL R &",
     "mail_addr": "HERNANDEZ TERESA 3307 LASSES BLVD SAN ANTONIO, TX 78223-3860",
     "absentee": true,
-    "duplicate": false,
+    "duplicate": true,
     "is_new": false,
     "doc_number": "20261000319",
     "ps_doc_id": "",
@@ -10322,6 +10332,7 @@
     "run_ts": "2026-09-11T14:04:48Z",
     "flags": [
       "ABSENTEE",
+      "DUPLICATE",
       "HAS SALE DATE",
       "AUCTION SOON",
       "LONG HELD"
@@ -12529,7 +12540,12 @@
     "arv_estimate": 157500,
     "arv_status": "SOLD",
     "arv_sqft": 1088,
-    "arv_fetched_at": "2026-10-13T23:58:15Z"
+    "arv_fetched_at": "2026-10-13T23:58:15Z",
+    "dash_phone": "2104598436",
+    "dash_searched_at": "2026-10-15T17:29:47.615Z",
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-10-15T17:29:47.615Z",
+    "ghl_id": "w10amB6klxTIxXQNCPk5"
   },
   {
     "type": "NOF",
@@ -13784,7 +13800,12 @@
     "stacked": false,
     "score": 9,
     "days_until_sale": 18,
-    "on_market_checked_at": "2026-10-14T19:27:11Z"
+    "on_market_checked_at": "2026-10-14T19:27:11Z",
+    "dash_phone": "9567649375",
+    "dash_searched_at": "2026-10-15T17:07:49.907Z",
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-10-15T17:07:49.908Z",
+    "ghl_id": "WbLrKunfl7gUHIr2GSvp"
   },
   {
     "type": "NOF",
@@ -18794,7 +18815,12 @@
     "arv_estimate": 336000,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 2506,
-    "arv_fetched_at": "2026-10-14T19:27:30Z"
+    "arv_fetched_at": "2026-10-14T19:27:30Z",
+    "dash_phone": "4029803245",
+    "dash_searched_at": "2026-10-15T17:16:34.558Z",
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-10-15T17:16:34.558Z",
+    "ghl_id": "XS7SbZemWFAgenyqYHMU"
   },
   {
     "type": "NOF",
@@ -26360,7 +26386,7 @@
   {
     "type": "NOF",
     "address": "7807 CABALLO CANYON",
-    "owner": "",
+    "owner": "HONESTO DAVID",
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
@@ -26377,7 +26403,6 @@
     "sale_date": "11/03/2026",
     "run_ts": "2026-10-13T23:33:25Z",
     "flags": [
-      "NO OWNER",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -26395,7 +26420,7 @@
     "appr_history": [],
     "appr_trend": "",
     "stacked": false,
-    "score": 4,
+    "score": 7,
     "days_until_sale": 18,
     "on_market": false,
     "on_market_status": "SOLD",
@@ -26445,7 +26470,12 @@
     "stacked": false,
     "score": 4,
     "days_until_sale": 18,
-    "on_market_checked_at": "2026-10-14T19:27:36Z"
+    "on_market_checked_at": "2026-10-14T19:27:36Z",
+    "dash_phone": "2107777623",
+    "dash_searched_at": "2026-10-15T17:46:24.923Z",
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-10-15T17:46:24.923Z",
+    "ghl_id": "tinC3nataB82F8W1sG7u"
   },
   {
     "type": "NOF",
@@ -37321,13 +37351,6 @@
     "ce_violations": [
       {
         "case_id": "",
-        "typename": "Property Structure Concerns(Structure Exterior)",
-        "status": "OPEN",
-        "opened": "08/02/2026",
-        "address": "946 W ASHBY PLACE, SAN ANTONIO, TX 78212"
-      },
-      {
-        "case_id": "",
         "typename": "Dangerous Premise BSB Processed",
         "status": "OPEN",
         "opened": "08/10/2026",
@@ -37335,13 +37358,12 @@
       }
     ],
     "ce_viol_types": [
-      "Property Structure Concerns(Structure Exterior)",
       "Dangerous Premise BSB Processed"
     ],
-    "ce_count": 2,
-    "ce_cat_label": "Property Structure Concerns(Structure Exterior)",
+    "ce_count": 1,
+    "ce_cat_label": "Dangerous Premise BSB Processed",
     "ce_status": "OPEN",
-    "opened_date": "08/02/2026",
+    "opened_date": "08/10/2026",
     "ce_case_id": "",
     "appraised_value": "116860",
     "land_value": "",
@@ -40803,6 +40825,1543 @@
     "arv_fetched_at": "2026-09-15T15:47:19Z"
   },
   {
+    "doc_number": "VBP-414-UNIVERSITY-AVE-78201",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "414 UNIVERSITY AVE",
+    "city": "SAN ANTONIO",
+    "zip": "78201",
+    "date_filed": "2026-10",
+    "sale_date": "",
+    "owner": "OCOTLAN GARCIA",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-10-15T16:11:34",
+    "flags": [
+      "STACKED"
+    ],
+    "score": 9,
+    "sq_ft": 1008,
+    "is_sf": false,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "08/28/2026",
+        "address": "414 UNIVERSITY, SAN ANTONIO, TX 78201"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "08/28/2026",
+    "ce_case_id": "",
+    "appraised_value": "",
+    "land_value": "",
+    "prop_id": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "on_market_checked_at": "2026-10-15T18:24:34Z",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-1422-S-SAINT-MARYS-ST-78210",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "1422 S SAINT MARYS ST",
+    "city": "SAN ANTONIO",
+    "zip": "78210",
+    "date_filed": "2026-10",
+    "sale_date": "",
+    "owner": "LOCKWOOD CITY GROUP LLC",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-10-15T16:11:34",
+    "flags": [
+      "STACKED"
+    ],
+    "score": 9,
+    "sq_ft": 3050,
+    "is_sf": false,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Property Structure Concerns(Structure Exterior)",
+        "status": "OPEN",
+        "opened": "08/29/2026",
+        "address": "1422 SAN FERNANDO ST, SAN ANTONIO, TX 78207"
+      }
+    ],
+    "ce_viol_types": [
+      "Property Structure Concerns(Structure Exterior)"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Property Structure Concerns(Structure Exterior)",
+    "ce_status": "OPEN",
+    "opened_date": "08/29/2026",
+    "ce_case_id": "",
+    "appraised_value": "",
+    "land_value": "",
+    "prop_id": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-10-15T18:24:36Z",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-1005-N-FLORES-ST-78212",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "1005 N FLORES ST",
+    "city": "SAN ANTONIO",
+    "zip": "78212",
+    "date_filed": "2026-10",
+    "sale_date": "",
+    "owner": "MICHAEL MARTINEZ",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-10-15T16:11:34",
+    "flags": [
+      "STACKED"
+    ],
+    "score": 9,
+    "sq_ft": 1420,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "09/30/2026",
+        "address": "1005 N COLORADO ST, SAN ANTONIO, TX 78207"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "09/30/2026",
+    "ce_case_id": "",
+    "appraised_value": "260000",
+    "land_value": "",
+    "prop_id": "104607",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "appr_history": [],
+    "appr_trend": "",
+    "on_market_checked_at": "2026-10-15T18:24:38Z",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-203-UPSON-ST-78212",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "203 UPSON ST",
+    "city": "SAN ANTONIO",
+    "zip": "78212",
+    "date_filed": "2026-10",
+    "sale_date": "",
+    "owner": "CENTER FOR INTERCULTURAL COMMUNICATIONS INC",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-10-15T16:11:34",
+    "flags": [
+      "STACKED"
+    ],
+    "score": 9,
+    "sq_ft": 1686,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "10/05/2026",
+        "address": "203 UPSON, SAN ANTONIO, TX 78212"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "10/05/2026",
+    "ce_case_id": "",
+    "appraised_value": "200490",
+    "land_value": "",
+    "prop_id": "109311",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "appr_history": [],
+    "appr_trend": "",
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-10-15T18:24:39Z",
+    "arv_estimate": 247513,
+    "arv_status": "OFF_MARKET",
+    "arv_sqft": 1686,
+    "arv_fetched_at": "2026-10-15T18:24:39Z",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-234-ODELL-ST-78212",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "234 ODELL ST",
+    "city": "SAN ANTONIO",
+    "zip": "78212",
+    "date_filed": "2026-10",
+    "sale_date": "",
+    "owner": "BROWN MARY EUNEST JEAN",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-10-15T16:11:34",
+    "flags": [
+      "STACKED"
+    ],
+    "score": 9,
+    "sq_ft": 784,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "09/28/2026",
+        "address": "234 ODELL ST, SAN ANTONIO, TX 78212"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "09/28/2026",
+    "ce_case_id": "",
+    "appraised_value": "128750",
+    "land_value": "",
+    "prop_id": "392042",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "appr_history": [],
+    "appr_trend": "",
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-10-15T18:24:41Z",
+    "arv_estimate": 166685,
+    "arv_status": "OFF_MARKET",
+    "arv_sqft": 784,
+    "arv_fetched_at": "2026-10-15T18:24:41Z",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-2611-N-SAINT-MARYS-ST-78212",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "2611 N SAINT MARYS ST",
+    "city": "SAN ANTONIO",
+    "zip": "78212",
+    "date_filed": "2026-10",
+    "sale_date": "",
+    "owner": "VALDEZ CHRISTIAN",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-10-15T16:11:34",
+    "flags": [
+      "STACKED"
+    ],
+    "score": 9,
+    "sq_ft": 1516,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "09/09/2026",
+        "address": "2611 N ST MARYS ST, SAN ANTONIO, TX 78212"
+      },
+      {
+        "case_id": "",
+        "typename": "Dangerous Premise BSB Processed",
+        "status": "OPEN",
+        "opened": "09/09/2026",
+        "address": "2611 N ST MARYS ST, SAN ANTONIO, TX 78212"
+      }
+    ],
+    "ce_viol_types": [
+      "Dangerous Premise BSB Processed",
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 2,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "09/09/2026",
+    "ce_case_id": "",
+    "appraised_value": "",
+    "land_value": "",
+    "prop_id": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-10-15T18:24:42Z",
+    "arv_estimate": 345000,
+    "arv_status": "OFF_MARKET",
+    "arv_sqft": 1516,
+    "arv_fetched_at": "2026-10-15T18:24:42Z",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-403-CLOWER-78212",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "403 CLOWER",
+    "city": "SAN ANTONIO",
+    "zip": "78212",
+    "date_filed": "2026-10",
+    "sale_date": "",
+    "owner": "DANIEL D RAMIREZ",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-10-15T16:11:34",
+    "flags": [
+      "STACKED"
+    ],
+    "score": 9,
+    "sq_ft": 828,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "10/07/2026",
+        "address": "403 CLOWER, SAN ANTONIO, TX 78212"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "10/07/2026",
+    "ce_case_id": "",
+    "appraised_value": "173290",
+    "land_value": "",
+    "prop_id": "442919",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "appr_history": [],
+    "appr_trend": "",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-10-15T18:24:44Z",
+    "arv_estimate": 163600,
+    "arv_status": "SOLD",
+    "arv_sqft": 828,
+    "arv_fetched_at": "2026-10-15T18:24:44Z",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-620-W-AGARITA-AVE-78212",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "620 W AGARITA AVE",
+    "city": "SAN ANTONIO",
+    "zip": "78212",
+    "date_filed": "2026-10",
+    "sale_date": "",
+    "owner": "REYES PATRICIA STONE",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-10-15T16:11:34",
+    "flags": [
+      "STACKED"
+    ],
+    "score": 9,
+    "sq_ft": 958,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "10/09/2026",
+        "address": "13620 WOODSTONE WAY, SAN ANTONIO, TX 78233"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "10/09/2026",
+    "ce_case_id": "",
+    "appraised_value": "",
+    "land_value": "",
+    "prop_id": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-10-15T18:24:45Z",
+    "arv_estimate": 226325,
+    "arv_status": "OFF_MARKET",
+    "arv_sqft": 958,
+    "arv_fetched_at": "2026-10-15T18:24:45Z",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-1005-N-CHERRY-78202",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "1005 N CHERRY",
+    "city": "SAN ANTONIO",
+    "zip": "78202",
+    "date_filed": "2026-10",
+    "sale_date": "",
+    "owner": "MALDENADO JACQUELINE",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-10-15T16:11:34",
+    "flags": [
+      "STACKED"
+    ],
+    "score": 9,
+    "sq_ft": 621,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "09/30/2026",
+        "address": "1005 N COLORADO ST, SAN ANTONIO, TX 78207"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "09/30/2026",
+    "ce_case_id": "",
+    "appraised_value": "88840",
+    "land_value": "",
+    "prop_id": "105033",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "appr_history": [],
+    "appr_trend": "",
+    "on_market_checked_at": "2026-10-15T18:24:47Z",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-1222-BURLESON-78202",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "1222 BURLESON",
+    "city": "SAN ANTONIO",
+    "zip": "78202",
+    "date_filed": "2026-10",
+    "sale_date": "",
+    "owner": "LITOFSKY ANA & LITOFSKY MARTIN",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-10-15T16:11:34",
+    "flags": [
+      "STACKED"
+    ],
+    "score": 9,
+    "sq_ft": 742,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "09/21/2026",
+        "address": "1222 BURLESON ST, SAN ANTONIO, TX 78202"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "09/21/2026",
+    "ce_case_id": "",
+    "appraised_value": "76870",
+    "land_value": "",
+    "prop_id": "111345",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "appr_history": [],
+    "appr_trend": "",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-10-15T18:24:48Z",
+    "arv_estimate": 119000,
+    "arv_status": "SOLD",
+    "arv_sqft": 742,
+    "arv_fetched_at": "2026-10-15T18:24:48Z",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-425-N-PINE-ST-78202",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "425 N PINE ST",
+    "city": "SAN ANTONIO",
+    "zip": "78202",
+    "date_filed": "2026-10",
+    "sale_date": "",
+    "owner": "VALENCIA FRANCARLO J",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-10-15T16:11:34",
+    "flags": [
+      "STACKED"
+    ],
+    "score": 9,
+    "sq_ft": 1112,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Dangerous Premise BSB Processed",
+        "status": "OPEN",
+        "opened": "10/07/2026",
+        "address": "425 N PINE ST, SAN ANTONIO, TX 78202"
+      }
+    ],
+    "ce_viol_types": [
+      "Dangerous Premise BSB Processed"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Dangerous Premise BSB Processed",
+    "ce_status": "OPEN",
+    "opened_date": "10/07/2026",
+    "ce_case_id": "",
+    "appraised_value": "",
+    "land_value": "",
+    "prop_id": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-717-BURLESON-78202",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "717 BURLESON",
+    "city": "SAN ANTONIO",
+    "zip": "78202",
+    "date_filed": "2026-10",
+    "sale_date": "",
+    "owner": "FWC 23 01 LLC",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-10-15T16:11:34",
+    "flags": [
+      "STACKED"
+    ],
+    "score": 9,
+    "sq_ft": 946,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "10/03/2026",
+        "address": "717 BURLESON ST, SAN ANTONIO, TX 78202"
+      },
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "10/03/2026",
+        "address": "717 BURLESON ST, SAN ANTONIO, TX 78202"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 2,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "10/03/2026",
+    "ce_case_id": "",
+    "appraised_value": "171580",
+    "land_value": "",
+    "prop_id": "113555",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "appr_history": [],
+    "appr_trend": "",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-907-BURLESON-78202",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "907 BURLESON",
+    "city": "SAN ANTONIO",
+    "zip": "78202",
+    "date_filed": "2026-10",
+    "sale_date": "",
+    "owner": "QUINN JOHN J & KATHLEEN F REV TRUST",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-10-15T16:11:34",
+    "flags": [
+      "STACKED"
+    ],
+    "score": 9,
+    "sq_ft": 1370,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "09/25/2026",
+        "address": "907 BURLESON ST, SAN ANTONIO, TX 78202"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "09/25/2026",
+    "ce_case_id": "",
+    "appraised_value": "185315",
+    "land_value": "",
+    "prop_id": "113594",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "appr_history": [],
+    "appr_trend": "",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-202-DASHIELL-ST-78203",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "202 DASHIELL ST",
+    "city": "SAN ANTONIO",
+    "zip": "78203",
+    "date_filed": "2026-10",
+    "sale_date": "",
+    "owner": "JOHN W DILLMAN",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-10-15T16:11:34",
+    "flags": [
+      "STACKED"
+    ],
+    "score": 9,
+    "sq_ft": 924,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "09/10/2026",
+        "address": "202 DASHIELL ST, SAN ANTONIO, TX 78203"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "09/10/2026",
+    "ce_case_id": "",
+    "appraised_value": "",
+    "land_value": "",
+    "prop_id": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-627-NEVADA-ST-78203",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "627 NEVADA ST",
+    "city": "SAN ANTONIO",
+    "zip": "78203",
+    "date_filed": "2026-10",
+    "sale_date": "",
+    "owner": "CARSON WENDELL",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-10-15T16:11:34",
+    "flags": [
+      "STACKED"
+    ],
+    "score": 9,
+    "sq_ft": 858,
+    "is_sf": false,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "09/10/2026",
+        "address": "627 NEVADA, SAN ANTONIO, TX 78203"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "09/10/2026",
+    "ce_case_id": "",
+    "appraised_value": "70000",
+    "land_value": "",
+    "prop_id": "106784",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "appr_history": [],
+    "appr_trend": "",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-421-PIERCE-AVE-78208",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "421 PIERCE AVE",
+    "city": "SAN ANTONIO",
+    "zip": "78208",
+    "date_filed": "2026-10",
+    "sale_date": "",
+    "owner": "MOAT MANAGEMENT LLC",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-10-15T16:11:34",
+    "flags": [
+      "STACKED"
+    ],
+    "score": 9,
+    "sq_ft": 1656,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "10/05/2026",
+        "address": "421 PIERCE, SAN ANTONIO, TX 78208"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "10/05/2026",
+    "ce_case_id": "",
+    "appraised_value": "210330",
+    "land_value": "",
+    "prop_id": "1310838",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "appr_history": [],
+    "appr_trend": "",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-202-CHICAGO-BLVD-78210",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "202 CHICAGO BLVD",
+    "city": "SAN ANTONIO",
+    "zip": "78210",
+    "date_filed": "2026-10",
+    "sale_date": "",
+    "owner": "MICHAEL CHARLES ANZULAVICH",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-10-15T16:11:34",
+    "flags": [
+      "STACKED"
+    ],
+    "score": 9,
+    "sq_ft": 2458,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "10/02/2026",
+        "address": "202 CHICAGO BLVD, SAN ANTONIO, TX 78210"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "10/02/2026",
+    "ce_case_id": "",
+    "appraised_value": "223970",
+    "land_value": "",
+    "prop_id": "140025",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "appr_history": [],
+    "appr_trend": "",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-238-CHICAGO-BLVD-78210",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "238 CHICAGO BLVD",
+    "city": "SAN ANTONIO",
+    "zip": "78210",
+    "date_filed": "2026-10",
+    "sale_date": "",
+    "owner": "RAYMOND R & BEATRICE CASTILLO",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-10-15T16:11:34",
+    "flags": [
+      "STACKED"
+    ],
+    "score": 9,
+    "sq_ft": 1328,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "10/02/2026",
+        "address": "238 CHICAGO BLVD, SAN ANTONIO, TX 78210"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "10/02/2026",
+    "ce_case_id": "",
+    "appraised_value": "177760",
+    "land_value": "",
+    "prop_id": "140017",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "appr_history": [],
+    "appr_trend": "",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-255-BENITA-ST-78210",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "255 BENITA ST",
+    "city": "SAN ANTONIO",
+    "zip": "78210",
+    "date_filed": "2026-10",
+    "sale_date": "",
+    "owner": "CAMACHO CARLOS X L/E",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-10-15T16:11:34",
+    "flags": [
+      "STACKED"
+    ],
+    "score": 9,
+    "sq_ft": 1266,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "10/05/2026",
+        "address": "255 BENITA ST, SAN ANTONIO, TX 78210"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "10/05/2026",
+    "ce_case_id": "",
+    "appraised_value": "193100",
+    "land_value": "",
+    "prop_id": "155305",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "appr_history": [],
+    "appr_trend": "",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-5402-S-FLORES-ST-78214",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "5402 S FLORES ST",
+    "city": "SAN ANTONIO",
+    "zip": "78214",
+    "date_filed": "2026-10",
+    "sale_date": "",
+    "owner": "SALEH AMJAD & IBRAHM HUSAM",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-10-15T16:11:34",
+    "flags": [
+      "STACKED"
+    ],
+    "score": 9,
+    "sq_ft": 1498,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Property Structure Concerns(Water/Sewer Leak)",
+        "status": "OPEN",
+        "opened": "08/22/2026",
+        "address": "5402 STORMY TRAIL, SAN ANTONIO, TX 78247"
+      }
+    ],
+    "ce_viol_types": [
+      "Property Structure Concerns(Water/Sewer Leak)"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Property Structure Concerns(Water/Sewer Leak)",
+    "ce_status": "OPEN",
+    "opened_date": "08/22/2026",
+    "ce_case_id": "",
+    "appraised_value": "",
+    "land_value": "",
+    "prop_id": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-305-STRATFORD-CT-78223",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "305 STRATFORD CT",
+    "city": "SAN ANTONIO",
+    "zip": "78223",
+    "date_filed": "2026-10",
+    "sale_date": "",
+    "owner": "CARLOS GOMEZ",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-10-15T16:11:34",
+    "flags": [
+      "STACKED"
+    ],
+    "score": 9,
+    "sq_ft": 936,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "09/10/2026",
+        "address": "305 STRATFORD COURT, SAN ANTONIO, TX 78223"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "09/10/2026",
+    "ce_case_id": "",
+    "appraised_value": "94670",
+    "land_value": "",
+    "prop_id": "396517",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "appr_history": [],
+    "appr_trend": "",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-3307-LASSES-BLVD-78223",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "3307 LASSES BLVD",
+    "city": "SAN ANTONIO",
+    "zip": "78223",
+    "date_filed": "2026-10",
+    "sale_date": "",
+    "owner": "RICARTE DANIEL R &",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": true,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-10-15T16:11:34",
+    "flags": [
+      "STACKED",
+      "DUPLICATE"
+    ],
+    "score": 9,
+    "sq_ft": 744,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "09/24/2026",
+        "address": "3307 LASSES BLVD, SAN ANTONIO, TX 78223"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "09/24/2026",
+    "ce_case_id": "",
+    "appraised_value": "117770",
+    "land_value": "",
+    "prop_id": "445967",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "appr_history": [],
+    "appr_trend": "",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-211-SAINT-FRANCIS-78204",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "211 SAINT FRANCIS",
+    "city": "SAN ANTONIO",
+    "zip": "78204",
+    "date_filed": "2026-10",
+    "sale_date": "",
+    "owner": "DOMINIC GARCIA",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-10-15T16:11:34",
+    "flags": [
+      "STACKED"
+    ],
+    "score": 9,
+    "sq_ft": 1208,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "09/18/2026",
+        "address": "211 SAINT FRANCIS AVE, SAN ANTONIO, TX 78204"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "09/18/2026",
+    "ce_case_id": "",
+    "appraised_value": "162880",
+    "land_value": "",
+    "prop_id": "374151",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "appr_history": [],
+    "appr_trend": "",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-908-W-HOUSTON-ST-78207",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "908 W HOUSTON ST",
+    "city": "SAN ANTONIO",
+    "zip": "78207",
+    "date_filed": "2026-10",
+    "sale_date": "",
+    "owner": "SAHT 900 W HOUSTON LLC",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-10-15T16:11:34",
+    "flags": [
+      "STACKED"
+    ],
+    "score": 9,
+    "sq_ft": 4968,
+    "is_sf": false,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "09/19/2026",
+        "address": "908 W THOMPSON PLACE, SAN ANTONIO, TX 78226"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "09/19/2026",
+    "ce_case_id": "",
+    "appraised_value": "",
+    "land_value": "",
+    "prop_id": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-2647-LOMBRANO-ST-78228",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "2647 LOMBRANO ST",
+    "city": "SAN ANTONIO",
+    "zip": "78228",
+    "date_filed": "2026-10",
+    "sale_date": "",
+    "owner": "GUTIERREZ JANIE",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-10-15T16:11:34",
+    "flags": [
+      "STACKED"
+    ],
+    "score": 9,
+    "sq_ft": 801,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Dangerous Premise BSB Processed",
+        "status": "OPEN",
+        "opened": "10/09/2026",
+        "address": "2647 LOMBRANO ST, SAN ANTONIO, TX 78228"
+      },
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "10/09/2026",
+        "address": "2647 LOMBRANO ST, SAN ANTONIO, TX 78228"
+      }
+    ],
+    "ce_viol_types": [
+      "Dangerous Premise BSB Processed",
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 2,
+    "ce_cat_label": "Dangerous Premise BSB Processed",
+    "ce_status": "OPEN",
+    "opened_date": "10/09/2026",
+    "ce_case_id": "",
+    "appraised_value": "73050",
+    "land_value": "",
+    "prop_id": "425187",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "appr_history": [],
+    "appr_trend": "",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-1520-ALLENDE-DR-78237",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "1520 ALLENDE DR",
+    "city": "SAN ANTONIO",
+    "zip": "78237",
+    "date_filed": "2026-10",
+    "sale_date": "",
+    "owner": "SANCHEZ CARMEN",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": true,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-10-15T16:11:34",
+    "flags": [
+      "STACKED",
+      "DUPLICATE"
+    ],
+    "score": 9,
+    "sq_ft": 656,
+    "is_sf": false,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Property Structure Concerns(Water/Sewer Leak)",
+        "status": "OPEN",
+        "opened": "10/09/2026",
+        "address": "1520 ALLENDE, SAN ANTONIO, TX 78237"
+      }
+    ],
+    "ce_viol_types": [
+      "Property Structure Concerns(Water/Sewer Leak)"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Property Structure Concerns(Water/Sewer Leak)",
+    "ce_status": "OPEN",
+    "opened_date": "10/09/2026",
+    "ce_case_id": "",
+    "appraised_value": "65520",
+    "land_value": "",
+    "prop_id": "407886",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "appr_history": [],
+    "appr_trend": "",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-122-DONALDSON-AVE-78201",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "122 DONALDSON AVE",
+    "city": "SAN ANTONIO",
+    "zip": "78201",
+    "date_filed": "2026-10",
+    "sale_date": "",
+    "owner": "MARYLINDA RIOS",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-10-15T16:11:34",
+    "flags": [
+      "STACKED"
+    ],
+    "score": 9,
+    "sq_ft": 2100,
+    "is_sf": false,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "10/08/2026",
+        "address": "122 DONALDSON AVE, SAN ANTONIO, TX 78201"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "10/08/2026",
+    "ce_case_id": "",
+    "appraised_value": "390000",
+    "land_value": "",
+    "prop_id": "122435",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "appr_history": [],
+    "appr_trend": "",
+    "days_until_sale": null
+  },
+  {
     "doc_number": "VBP-2109-FRESNO-78201",
     "type": "VBP",
     "source": "vbp_ce",
@@ -41186,7 +42745,7 @@
         "case_id": "",
         "typename": "Vacant/Overgrown Property",
         "status": "OPEN",
-        "opened": "07/06/2026",
+        "opened": "09/22/2026",
         "address": "284 THORAIN BLVD, SAN ANTONIO, TX 78212"
       }
     ],
@@ -41196,7 +42755,7 @@
     "ce_count": 1,
     "ce_cat_label": "Vacant/Overgrown Property",
     "ce_status": "OPEN",
-    "opened_date": "07/06/2026",
+    "opened_date": "09/22/2026",
     "ce_case_id": "",
     "appraised_value": "327300.0",
     "land_value": "327300.0",
@@ -41244,12 +42803,19 @@
         "status": "OPEN",
         "opened": "05/04/2026",
         "address": "325 E COURTLAND PLACE, SAN ANTONIO, TX 78212"
+      },
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "09/08/2026",
+        "address": "325 E LOCUST, SAN ANTONIO, TX 78212"
       }
     ],
     "ce_viol_types": [
       "Vacant/Overgrown Property"
     ],
-    "ce_count": 1,
+    "ce_count": 2,
     "ce_cat_label": "Vacant/Overgrown Property",
     "ce_status": "OPEN",
     "opened_date": "05/04/2026",
@@ -41650,7 +43216,7 @@
         "case_id": "",
         "typename": "Vacant/Overgrown Property",
         "status": "OPEN",
-        "opened": "07/17/2026",
+        "opened": "09/23/2026",
         "address": "132 SPRUCE ST, SAN ANTONIO, TX 78203"
       }
     ],
@@ -41660,7 +43226,7 @@
     "ce_count": 1,
     "ce_cat_label": "Vacant/Overgrown Property",
     "ce_status": "OPEN",
-    "opened_date": "07/17/2026",
+    "opened_date": "09/23/2026",
     "ce_case_id": "",
     "appraised_value": "168000.0",
     "land_value": "38230.0",
@@ -41997,8 +43563,8 @@
         "case_id": "",
         "typename": "Vacant/Overgrown Property",
         "status": "OPEN",
-        "opened": "03/30/2026",
-        "address": "214 W HUISACHE AVE, SAN ANTONIO, TX 78212"
+        "opened": "09/30/2026",
+        "address": "2214 W HOUSTON ST, SAN ANTONIO, TX 78207"
       }
     ],
     "ce_viol_types": [
@@ -42007,7 +43573,7 @@
     "ce_count": 1,
     "ce_cat_label": "Vacant/Overgrown Property",
     "ce_status": "OPEN",
-    "opened_date": "03/30/2026",
+    "opened_date": "09/30/2026",
     "ce_case_id": "",
     "appraised_value": "540230.0",
     "land_value": "286140.0",
@@ -42500,9 +44066,9 @@
       {
         "case_id": "",
         "typename": "Vacant/Overgrown Property",
-        "status": "Open",
-        "opened": "1736553600000",
-        "address": " 1102 W HARLAN AVE, SAN ANTONIO, 78211"
+        "status": "OPEN",
+        "opened": "10/07/2026",
+        "address": "1102 W RUSSELL PLACE, SAN ANTONIO, TX 78201"
       }
     ],
     "ce_viol_types": [
@@ -42525,7 +44091,11 @@
     "arv_estimate": 263000,
     "arv_status": "SOLD",
     "arv_sqft": 1003,
-    "arv_fetched_at": "2026-08-31T14:05:54Z"
+    "arv_fetched_at": "2026-08-31T14:05:54Z",
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "10/07/2026",
+    "ce_case_id": ""
   },
   {
     "doc_number": "VBP-1107-HERMINE-BLVD-78201",
@@ -42617,8 +44187,8 @@
       }
     ],
     "ce_viol_types": [
-      "Vacant/Overgrown Property",
-      "Dangerous Premise BSB Processed"
+      "Dangerous Premise BSB Processed",
+      "Vacant/Overgrown Property"
     ],
     "ce_count": 2,
     "loan_amount": "",
@@ -42840,20 +44410,13 @@
         "typename": "Vacant/Overgrown Property",
         "status": "OPEN",
         "opened": "08/20/2026",
-        "address": "1515 W HILDEBRAND AVE, SAN ANTONIO, TX 78201"
-      },
-      {
-        "case_id": "",
-        "typename": "Vacant/Overgrown Property",
-        "status": "OPEN",
-        "opened": "08/20/2026",
         "address": "1515 W WILDWOOD, SAN ANTONIO, TX 78201"
       }
     ],
     "ce_viol_types": [
       "Vacant/Overgrown Property"
     ],
-    "ce_count": 2,
+    "ce_count": 1,
     "loan_amount": "",
     "loan_date": "",
     "lender": "",
@@ -42961,14 +44524,14 @@
     "ce_violations": [
       {
         "case_id": "",
-        "typename": "Dangerous Premise BSB Processed",
-        "status": "Open",
-        "opened": "1749081600000",
-        "address": " 1615 ALHAMBRA, SAN ANTONIO, 78201"
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "10/08/2026",
+        "address": "1615 ALHAMBRA, SAN ANTONIO, TX 78201"
       }
     ],
     "ce_viol_types": [
-      "Dangerous Premise BSB Processed"
+      "Vacant/Overgrown Property"
     ],
     "ce_count": 1,
     "loan_amount": "",
@@ -42992,7 +44555,11 @@
     "arv_estimate": 154500,
     "arv_status": "SOLD",
     "arv_sqft": 832,
-    "arv_fetched_at": "2026-08-31T14:06:07Z"
+    "arv_fetched_at": "2026-08-31T14:06:07Z",
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "10/08/2026",
+    "ce_case_id": ""
   },
   {
     "doc_number": "VBP-202-NEWSON-DR-78201",
@@ -43019,24 +44586,16 @@
     "ce_violations": [
       {
         "case_id": "",
-        "typename": "Dangerous Premise BSB Processed",
-        "status": "Open",
-        "opened": "1746748800000",
-        "address": " 202 NEWSON, SAN ANTONIO, 78201"
-      },
-      {
-        "case_id": "",
         "typename": "Vacant/Overgrown Property",
-        "status": "Open",
-        "opened": "1763596800000",
-        "address": " 202 NEWSON, SAN ANTONIO, 78201"
+        "status": "OPEN",
+        "opened": "10/05/2026",
+        "address": "202 NEWSON, SAN ANTONIO, TX 78201"
       }
     ],
     "ce_viol_types": [
-      "Dangerous Premise BSB Processed",
       "Vacant/Overgrown Property"
     ],
-    "ce_count": 2,
+    "ce_count": 1,
     "loan_amount": "",
     "loan_date": "",
     "lender": "",
@@ -43053,7 +44612,11 @@
     "arv_estimate": 220000,
     "arv_status": "SOLD",
     "arv_sqft": 1440,
-    "arv_fetched_at": "2026-08-31T20:52:52Z"
+    "arv_fetched_at": "2026-08-31T20:52:52Z",
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "10/05/2026",
+    "ce_case_id": ""
   },
   {
     "doc_number": "VBP-202-S-JOSEPHINE-TOBIN-DR-78201",
@@ -43368,10 +44931,10 @@
     "ce_violations": [
       {
         "case_id": "",
-        "typename": "Vacant/Overgrown Property",
+        "typename": "Property Structure Concerns(Structure Exterior)",
         "status": "OPEN",
-        "opened": "06/30/2026",
-        "address": "1903 W WINNIPEG AVE, SAN ANTONIO, TX 78225"
+        "opened": "09/21/2026",
+        "address": "1903 W WOODLAWN AVE, SAN ANTONIO, TX 78201"
       },
       {
         "case_id": "",
@@ -43379,13 +44942,28 @@
         "status": "OPEN",
         "opened": "07/06/2026",
         "address": "3903 W COMMERCE ST, SAN ANTONIO, TX 78207"
+      },
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "06/30/2026",
+        "address": "1903 W WINNIPEG AVE, SAN ANTONIO, TX 78225"
+      },
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "09/02/2026",
+        "address": "903 W KINGS HWY, SAN ANTONIO, TX 78201"
       }
     ],
     "ce_viol_types": [
+      "Overgrown Yard/Trash (Vacant Lot)",
       "Vacant/Overgrown Property",
-      "Overgrown Yard/Trash (Vacant Lot)"
+      "Property Structure Concerns(Structure Exterior)"
     ],
-    "ce_count": 2,
+    "ce_count": 4,
     "loan_amount": "",
     "loan_date": "",
     "lender": "",
@@ -43408,9 +44986,9 @@
     "arv_status": "OFF_MARKET",
     "arv_sqft": 2406,
     "arv_fetched_at": "2026-08-31T23:48:21Z",
-    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_cat_label": "Property Structure Concerns(Structure Exterior)",
     "ce_status": "OPEN",
-    "opened_date": "06/30/2026",
+    "opened_date": "09/21/2026",
     "ce_case_id": ""
   },
   {
@@ -43765,24 +45343,16 @@
     "ce_violations": [
       {
         "case_id": "",
-        "typename": "Dangerous Premise BSB Processed",
-        "status": "Open",
-        "opened": "1661385600000",
-        "address": " 1523 AMESTOY, SAN ANTONIO, 78207"
-      },
-      {
-        "case_id": "",
         "typename": "Vacant/Overgrown Property",
-        "status": "Open",
-        "opened": "1762473600000",
-        "address": " 1523 AMESTOY, SAN ANTONIO, 78207"
+        "status": "OPEN",
+        "opened": "10/05/2026",
+        "address": "1523 AMESTOY, SAN ANTONIO, TX 78207"
       }
     ],
     "ce_viol_types": [
-      "Dangerous Premise BSB Processed",
       "Vacant/Overgrown Property"
     ],
-    "ce_count": 2,
+    "ce_count": 1,
     "loan_amount": "",
     "loan_date": "",
     "lender": "",
@@ -43799,7 +45369,11 @@
     "arv_estimate": 121000,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 908,
-    "arv_fetched_at": "2026-09-01T17:33:16Z"
+    "arv_fetched_at": "2026-09-01T17:33:16Z",
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "10/05/2026",
+    "ce_case_id": ""
   },
   {
     "doc_number": "VBP-211-ALBERT-ST-78207",
@@ -43885,31 +45459,16 @@
     "ce_violations": [
       {
         "case_id": "",
-        "typename": "Dangerous Premise BSB Processed",
-        "status": "Open",
-        "opened": "1745366400000",
-        "address": " 2214 W HOUSTON ST, SAN ANTONIO, 78207"
-      },
-      {
-        "case_id": "",
-        "typename": "Property Structure Concerns(Structure Exterior)",
-        "status": "Open",
-        "opened": "1762214400000",
-        "address": " 2214 W HOUSTON ST, SAN ANTONIO, 78207"
-      },
-      {
-        "case_id": "",
-        "typename": "Property Structure Concerns(Structure Exterior)",
-        "status": "Open",
-        "opened": "1762214400000",
-        "address": " 2214 W HOUSTON ST, SAN ANTONIO, 78207"
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "09/30/2026",
+        "address": "2214 W HOUSTON ST, SAN ANTONIO, TX 78207"
       }
     ],
     "ce_viol_types": [
-      "Dangerous Premise BSB Processed",
-      "Property Structure Concerns(Structure Exterior)"
+      "Vacant/Overgrown Property"
     ],
-    "ce_count": 3,
+    "ce_count": 1,
     "loan_amount": "",
     "loan_date": "",
     "lender": "",
@@ -43931,7 +45490,11 @@
     "arv_estimate": 121160,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 1116,
-    "arv_fetched_at": "2026-09-01T17:33:19Z"
+    "arv_fetched_at": "2026-09-01T17:33:19Z",
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "09/30/2026",
+    "ce_case_id": ""
   },
   {
     "doc_number": "VBP-411-LOMBRANO-ST-78207",
@@ -44015,7 +45578,7 @@
         "case_id": "",
         "typename": "Vacant/Overgrown Property",
         "status": "OPEN",
-        "opened": "06/05/2026",
+        "opened": "09/22/2026",
         "address": "1506 STEVES AVE, SAN ANTONIO, TX 78210"
       }
     ],
@@ -44047,7 +45610,7 @@
     "arv_fetched_at": "2026-09-01T18:27:39Z",
     "ce_cat_label": "Vacant/Overgrown Property",
     "ce_status": "OPEN",
-    "opened_date": "06/05/2026",
+    "opened_date": "09/22/2026",
     "ce_case_id": ""
   },
   {
@@ -44243,9 +45806,9 @@
       {
         "case_id": "",
         "typename": "Vacant/Overgrown Property",
-        "status": "Open",
-        "opened": "1761868800000",
-        "address": " 164 EL MONTE BLVD, SAN ANTONIO, 78212"
+        "status": "OPEN",
+        "opened": "09/23/2026",
+        "address": "164 EL MONTE BLVD, SAN ANTONIO, TX 78212"
       }
     ],
     "ce_viol_types": [
@@ -44268,7 +45831,11 @@
     "arv_estimate": 162000,
     "arv_status": "SOLD",
     "arv_sqft": 854,
-    "arv_fetched_at": "2026-09-01T22:46:13Z"
+    "arv_fetched_at": "2026-09-01T22:46:13Z",
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "09/23/2026",
+    "ce_case_id": ""
   },
   {
     "doc_number": "VBP-202-E-LULLWOOD-AVE-78212",
@@ -44294,13 +45861,6 @@
     "ce_violations": [
       {
         "case_id": "",
-        "typename": "Property Structure Concerns(Structure Interior)",
-        "status": "OPEN",
-        "opened": "08/18/2026",
-        "address": "202 E ASHBY PLACE, SAN ANTONIO, TX 78212"
-      },
-      {
-        "case_id": "",
         "typename": "Overgrown Yard/Trash (Vacant Lot)",
         "status": "OPEN",
         "opened": "07/23/2026",
@@ -44308,10 +45868,9 @@
       }
     ],
     "ce_viol_types": [
-      "Property Structure Concerns(Structure Interior)",
       "Overgrown Yard/Trash (Vacant Lot)"
     ],
-    "ce_count": 2,
+    "ce_count": 1,
     "loan_amount": "",
     "loan_date": "",
     "lender": "",
@@ -44325,9 +45884,9 @@
     "on_market": true,
     "on_market_status": "FOR_RENT",
     "on_market_checked_at": "2026-09-09T22:32:00Z",
-    "ce_cat_label": "Property Structure Concerns(Structure Interior)",
+    "ce_cat_label": "Overgrown Yard/Trash (Vacant Lot)",
     "ce_status": "OPEN",
-    "opened_date": "08/18/2026",
+    "opened_date": "07/23/2026",
     "ce_case_id": ""
   },
   {
@@ -44354,6 +45913,13 @@
     "ce_violations": [
       {
         "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "09/28/2026",
+        "address": "206 E BONNER AVE, SAN ANTONIO, TX 78214"
+      },
+      {
+        "case_id": "",
         "typename": "Overgrown Yard/Trash (Vacant Lot)",
         "status": "OPEN",
         "opened": "05/18/2026",
@@ -44361,9 +45927,10 @@
       }
     ],
     "ce_viol_types": [
-      "Overgrown Yard/Trash (Vacant Lot)"
+      "Overgrown Yard/Trash (Vacant Lot)",
+      "Vacant/Overgrown Property"
     ],
-    "ce_count": 1,
+    "ce_count": 2,
     "loan_amount": "",
     "loan_date": "",
     "lender": "",
@@ -44381,9 +45948,9 @@
     "arv_status": "OFF_MARKET",
     "arv_sqft": 2694,
     "arv_fetched_at": "2026-09-01T22:46:30Z",
-    "ce_cat_label": "Overgrown Yard/Trash (Vacant Lot)",
+    "ce_cat_label": "Vacant/Overgrown Property",
     "ce_status": "OPEN",
-    "opened_date": "05/18/2026",
+    "opened_date": "09/28/2026",
     "ce_case_id": ""
   },
   {
@@ -44701,31 +46268,16 @@
     "ce_violations": [
       {
         "case_id": "",
-        "typename": "Dangerous Premise BSB Processed",
-        "status": "Open",
-        "opened": "1658966400000",
-        "address": " 312 MARSHALL ST, SAN ANTONIO, 78212"
-      },
-      {
-        "case_id": "",
-        "typename": "Property Structure Concerns(Structure Exterior)",
-        "status": "Open",
-        "opened": "1762214400000",
-        "address": " 312 MARSHALL ST, SAN ANTONIO, 78212"
-      },
-      {
-        "case_id": "",
-        "typename": "Property Structure Concerns(Structure Exterior)",
-        "status": "Open",
-        "opened": "1762214400000",
-        "address": " 312 MARSHALL ST, SAN ANTONIO, 78212"
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "10/05/2026",
+        "address": "312 MARSHALL ST, SAN ANTONIO, TX 78212"
       }
     ],
     "ce_viol_types": [
-      "Dangerous Premise BSB Processed",
-      "Property Structure Concerns(Structure Exterior)"
+      "Vacant/Overgrown Property"
     ],
-    "ce_count": 3,
+    "ce_count": 1,
     "loan_amount": "",
     "loan_date": "",
     "lender": "",
@@ -44743,7 +46295,11 @@
     "dash_searched_at": "2026-02-18T20:05:58.032Z",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-09T22:32:15Z"
+    "on_market_checked_at": "2026-09-09T22:32:15Z",
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "10/05/2026",
+    "ce_case_id": ""
   },
   {
     "doc_number": "VBP-314-W-MAGNOLIA-AVE-78212",
@@ -45061,16 +46617,23 @@
     "ce_violations": [
       {
         "case_id": "",
-        "typename": "Dangerous Premise BSB Processed",
-        "status": "Open",
-        "opened": "1736208000000",
-        "address": " 417 E EVERGREEN, SAN ANTONIO, 78212"
+        "typename": "Property Structure Concerns(Structure Exterior)",
+        "status": "OPEN",
+        "opened": "09/30/2026",
+        "address": "417 E EVERGREEN ST, SAN ANTONIO, TX 78212"
+      },
+      {
+        "case_id": "",
+        "typename": "Property Structure Concerns(Structure Exterior)",
+        "status": "OPEN",
+        "opened": "09/30/2026",
+        "address": "417 E EVERGREEN ST, SAN ANTONIO, TX 78212"
       }
     ],
     "ce_viol_types": [
-      "Dangerous Premise BSB Processed"
+      "Property Structure Concerns(Structure Exterior)"
     ],
-    "ce_count": 1,
+    "ce_count": 2,
     "loan_amount": "",
     "loan_date": "",
     "lender": "",
@@ -45086,7 +46649,11 @@
     "arv_fetched_at": "2026-09-10T18:29:19Z",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-10T22:04:07Z"
+    "on_market_checked_at": "2026-09-10T22:04:07Z",
+    "ce_cat_label": "Property Structure Concerns(Structure Exterior)",
+    "ce_status": "OPEN",
+    "opened_date": "09/30/2026",
+    "ce_case_id": ""
   },
   {
     "doc_number": "VBP-422-E-PARK-AVE-78212",
@@ -45233,9 +46800,9 @@
       {
         "case_id": "",
         "typename": "Overgrown Yard/Trash (Vacant Lot)",
-        "status": "Open",
-        "opened": "1763942400000",
-        "address": " 4431 W COMMERCE ST, SAN ANTONIO, 78237"
+        "status": "OPEN",
+        "opened": "09/07/2026",
+        "address": "4431 W COMMERCE ST, SAN ANTONIO, TX 78237"
       }
     ],
     "ce_viol_types": [
@@ -45262,7 +46829,11 @@
     "arv_fetched_at": "2026-09-10T18:29:31Z",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-10T22:04:26Z"
+    "on_market_checked_at": "2026-09-10T22:04:26Z",
+    "ce_cat_label": "Overgrown Yard/Trash (Vacant Lot)",
+    "ce_status": "OPEN",
+    "opened_date": "09/07/2026",
+    "ce_case_id": ""
   },
   {
     "doc_number": "VBP-4319-HOWARD-ST-78212",
@@ -45478,14 +47049,13 @@
       },
       {
         "case_id": "",
-        "typename": "Vacant/Overgrown Property",
+        "typename": "Overgrown Yard/Trash (Vacant Lot)",
         "status": "OPEN",
-        "opened": "08/08/2026",
-        "address": "511 W GLENN AVE, SAN ANTONIO, TX 78204"
+        "opened": "09/01/2026",
+        "address": "1511 WHITMAN AVE, SAN ANTONIO, TX 78211"
       }
     ],
     "ce_viol_types": [
-      "Vacant/Overgrown Property",
       "Overgrown Yard/Trash (Vacant Lot)"
     ],
     "ce_count": 2,
@@ -45583,38 +47153,16 @@
     "ce_violations": [
       {
         "case_id": "",
-        "typename": "Structure Maintenance Multi-Tenant (Interior)",
+        "typename": "Overgrown Yard/Trash (Vacant Lot)",
         "status": "OPEN",
-        "opened": "08/21/2026",
-        "address": "6515 W HAUSMAN RD, SAN ANTONIO, TX 78249"
-      },
-      {
-        "case_id": "",
-        "typename": "Vacant/Overgrown Property",
-        "status": "OPEN",
-        "opened": "08/20/2026",
-        "address": "1515 W HILDEBRAND AVE, SAN ANTONIO, TX 78201"
-      },
-      {
-        "case_id": "",
-        "typename": "Structure Maintenance Multi-Tenant (Interior)",
-        "status": "OPEN",
-        "opened": "07/21/2026",
-        "address": "6515 W HAUSMAN RD, SAN ANTONIO, TX 78249"
-      },
-      {
-        "case_id": "",
-        "typename": "Vacant/Overgrown Property",
-        "status": "OPEN",
-        "opened": "08/20/2026",
-        "address": "1515 W WILDWOOD, SAN ANTONIO, TX 78201"
+        "opened": "03/25/2026",
+        "address": "4515 W MARTIN ST, SAN ANTONIO, TX 78237"
       }
     ],
     "ce_viol_types": [
-      "Vacant/Overgrown Property",
-      "Structure Maintenance Multi-Tenant (Interior)"
+      "Overgrown Yard/Trash (Vacant Lot)"
     ],
-    "ce_count": 4,
+    "ce_count": 1,
     "loan_amount": "",
     "loan_date": "",
     "lender": "",
@@ -45625,9 +47173,9 @@
     "days_until_sale": null,
     "stacked": true,
     "land_value": "104940.0",
-    "ce_cat_label": "Structure Maintenance Multi-Tenant (Interior)",
+    "ce_cat_label": "Overgrown Yard/Trash (Vacant Lot)",
     "ce_status": "OPEN",
-    "opened_date": "08/21/2026",
+    "opened_date": "03/25/2026",
     "ce_case_id": "",
     "on_market": true,
     "on_market_status": "FOR_SALE",
@@ -45713,14 +47261,14 @@
     "ce_violations": [
       {
         "case_id": "",
-        "typename": "Dangerous Premise BSB Processed",
+        "typename": "Vacant/Overgrown Property",
         "status": "OPEN",
-        "opened": "07/21/2026",
-        "address": "1610 W CRAIG PLACE, SAN ANTONIO, TX 78201"
+        "opened": "10/08/2026",
+        "address": "1610 WHITMAN AVE, SAN ANTONIO, TX 78211"
       }
     ],
     "ce_viol_types": [
-      "Dangerous Premise BSB Processed"
+      "Vacant/Overgrown Property"
     ],
     "ce_count": 1,
     "loan_amount": "",
@@ -45738,9 +47286,9 @@
     "ghl_id": "z8ZfjUFExZnhqMN626nM",
     "dash_phone": "+19567407203",
     "dash_searched_at": "2026-01-29T21:39:13.288Z",
-    "ce_cat_label": "Dangerous Premise BSB Processed",
+    "ce_cat_label": "Vacant/Overgrown Property",
     "ce_status": "OPEN",
-    "opened_date": "07/21/2026",
+    "opened_date": "10/08/2026",
     "ce_case_id": "",
     "on_market": false,
     "on_market_status": "SOLD",
@@ -45963,20 +47511,12 @@
         "status": "OPEN",
         "opened": "08/19/2026",
         "address": "1823 WAVERLY, SAN ANTONIO, TX 78201"
-      },
-      {
-        "case_id": "",
-        "typename": "Overgrown Yard/Trash (Vacant Lot)",
-        "status": "OPEN",
-        "opened": "05/28/2026",
-        "address": "1823 W CRAIG PLACE, SAN ANTONIO, TX 78201"
       }
     ],
     "ce_viol_types": [
-      "Vacant/Overgrown Property",
-      "Overgrown Yard/Trash (Vacant Lot)"
+      "Vacant/Overgrown Property"
     ],
-    "ce_count": 2,
+    "ce_count": 1,
     "loan_amount": "",
     "loan_date": "",
     "lender": "",
@@ -46027,27 +47567,12 @@
         "status": "OPEN",
         "opened": "08/12/2026",
         "address": "826 WAVERLY, SAN ANTONIO, TX 78201"
-      },
-      {
-        "case_id": "",
-        "typename": "Overgrown Yard/Trash (Vacant Lot)",
-        "status": "OPEN",
-        "opened": "08/04/2026",
-        "address": "1826 W WILDWOOD, SAN ANTONIO, TX 78201"
-      },
-      {
-        "case_id": "",
-        "typename": "Overgrown Yard/Trash (Vacant Lot)",
-        "status": "OPEN",
-        "opened": "06/24/2026",
-        "address": "14826 WATSON RD, SAN ANTONIO, TX 78073"
       }
     ],
     "ce_viol_types": [
-      "Property Structure Concerns(Structure Exterior)",
-      "Overgrown Yard/Trash (Vacant Lot)"
+      "Property Structure Concerns(Structure Exterior)"
     ],
-    "ce_count": 3,
+    "ce_count": 1,
     "loan_amount": "",
     "loan_date": "",
     "lender": "",
@@ -46094,13 +47619,6 @@
     "ce_violations": [
       {
         "case_id": "",
-        "typename": "Overgrown Yard/Trash (Vacant Lot)",
-        "status": "OPEN",
-        "opened": "07/22/2026",
-        "address": "1830 W RIDGEWOOD COURT, SAN ANTONIO, TX 78201"
-      },
-      {
-        "case_id": "",
         "typename": "Vacant/Overgrown Property",
         "status": "OPEN",
         "opened": "05/06/2026",
@@ -46108,10 +47626,9 @@
       }
     ],
     "ce_viol_types": [
-      "Vacant/Overgrown Property",
-      "Overgrown Yard/Trash (Vacant Lot)"
+      "Vacant/Overgrown Property"
     ],
-    "ce_count": 2,
+    "ce_count": 1,
     "loan_amount": "",
     "loan_date": "",
     "lender": "",
@@ -46122,9 +47639,9 @@
     "days_until_sale": null,
     "stacked": true,
     "land_value": "81000.0",
-    "ce_cat_label": "Overgrown Yard/Trash (Vacant Lot)",
+    "ce_cat_label": "Vacant/Overgrown Property",
     "ce_status": "OPEN",
-    "opened_date": "07/22/2026",
+    "opened_date": "05/06/2026",
     "ce_case_id": "",
     "on_market": false,
     "on_market_status": "SOLD",
@@ -46158,13 +47675,6 @@
     "ce_violations": [
       {
         "case_id": "",
-        "typename": "Overgrown Yard/Trash (Vacant Lot)",
-        "status": "OPEN",
-        "opened": "07/22/2026",
-        "address": "1830 W RIDGEWOOD COURT, SAN ANTONIO, TX 78201"
-      },
-      {
-        "case_id": "",
         "typename": "Vacant/Overgrown Property",
         "status": "OPEN",
         "opened": "05/06/2026",
@@ -46172,10 +47682,9 @@
       }
     ],
     "ce_viol_types": [
-      "Vacant/Overgrown Property",
-      "Overgrown Yard/Trash (Vacant Lot)"
+      "Vacant/Overgrown Property"
     ],
-    "ce_count": 2,
+    "ce_count": 1,
     "loan_amount": "",
     "loan_date": "",
     "lender": "",
@@ -46186,9 +47695,9 @@
     "days_until_sale": null,
     "stacked": true,
     "land_value": "114890.0",
-    "ce_cat_label": "Overgrown Yard/Trash (Vacant Lot)",
+    "ce_cat_label": "Vacant/Overgrown Property",
     "ce_status": "OPEN",
-    "opened_date": "07/22/2026",
+    "opened_date": "05/06/2026",
     "ce_case_id": "",
     "on_market": false,
     "on_market_status": "SOLD",
@@ -46222,14 +47731,14 @@
     "ce_violations": [
       {
         "case_id": "",
-        "typename": "Overgrown Yard/Trash (Vacant Lot)",
-        "status": "Open",
-        "opened": "1738022400000",
-        "address": " 907 E CROCKETT ST, SAN ANTONIO, 78202"
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "08/26/2026",
+        "address": "907 ELKHORN DR, SAN ANTONIO, TX 78218"
       }
     ],
     "ce_viol_types": [
-      "Overgrown Yard/Trash (Vacant Lot)"
+      "Vacant/Overgrown Property"
     ],
     "ce_count": 1,
     "loan_amount": "",
@@ -46249,7 +47758,11 @@
     "dash_searched_at": "2026-02-18T20:06:07.041Z",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-11T03:23:23Z"
+    "on_market_checked_at": "2026-09-11T03:23:23Z",
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "08/26/2026",
+    "ce_case_id": ""
   },
   {
     "doc_number": "VBP-910-W-ASHBY-PL-78212",
@@ -46279,20 +47792,12 @@
         "status": "OPEN",
         "opened": "02/06/2026",
         "address": "1910 W MALONE, SAN ANTONIO, TX 78225"
-      },
-      {
-        "case_id": "",
-        "typename": "Vacant/Overgrown Property",
-        "status": "OPEN",
-        "opened": "08/03/2026",
-        "address": "6910 WESTFIELD, SAN ANTONIO, TX 78227"
       }
     ],
     "ce_viol_types": [
-      "Vacant/Overgrown Property",
       "Property Structure Concerns(Structure Exterior)"
     ],
-    "ce_count": 2,
+    "ce_count": 1,
     "loan_amount": "",
     "loan_date": "",
     "lender": "",
@@ -46501,16 +48006,16 @@
     "ce_violations": [
       {
         "case_id": "",
-        "typename": "Vacant/Overgrown Property",
+        "typename": "Property Structure Concerns(Structure Exterior)",
         "status": "OPEN",
-        "opened": "02/20/2026",
+        "opened": "01/16/2026",
         "address": "94 LEWIS ST, SAN ANTONIO, TX 78212"
       },
       {
         "case_id": "",
-        "typename": "Property Structure Concerns(Structure Exterior)",
+        "typename": "Vacant/Overgrown Property",
         "status": "OPEN",
-        "opened": "01/16/2026",
+        "opened": "02/20/2026",
         "address": "94 LEWIS ST, SAN ANTONIO, TX 78212"
       }
     ],
@@ -46534,9 +48039,9 @@
     "ghl_id": "4bGtIdhs9kI2mBSrI5tf",
     "dash_phone": "+12102500350",
     "dash_searched_at": "2026-02-18T20:06:07.937Z",
-    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_cat_label": "Property Structure Concerns(Structure Exterior)",
     "ce_status": "OPEN",
-    "opened_date": "02/20/2026",
+    "opened_date": "01/16/2026",
     "ce_case_id": "",
     "on_market": false,
     "on_market_status": "SOLD",
@@ -46961,14 +48466,14 @@
     "ce_violations": [
       {
         "case_id": "",
-        "typename": "Dangerous Premise BSB Processed",
-        "status": "Open",
-        "opened": "1739923200000",
-        "address": " 1022 E CROCKETT ST, SAN ANTONIO, 78202"
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "09/08/2026",
+        "address": "1022 E CROCKETT ST, SAN ANTONIO, TX 78202"
       }
     ],
     "ce_viol_types": [
-      "Dangerous Premise BSB Processed"
+      "Vacant/Overgrown Property"
     ],
     "ce_count": 1,
     "loan_amount": "",
@@ -46987,7 +48492,11 @@
     "arv_estimate": 159100,
     "arv_status": "SOLD",
     "arv_sqft": 1150,
-    "arv_fetched_at": "2026-09-11T14:33:28Z"
+    "arv_fetched_at": "2026-09-11T14:33:28Z",
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "09/08/2026",
+    "ce_case_id": ""
   },
   {
     "doc_number": "VBP-1022-SAINT-JAMES-78202",
@@ -47169,14 +48678,14 @@
     "ce_violations": [
       {
         "case_id": "",
-        "typename": "Vacant/Overgrown Property",
-        "status": "Open",
-        "opened": "1762214400000",
-        "address": " 1403 LAMAR ST, SAN ANTONIO, 78202"
+        "typename": "Dangerous Premise BSB Processed",
+        "status": "OPEN",
+        "opened": "10/02/2026",
+        "address": "1403 LAMAR ST, SAN ANTONIO, TX 78202"
       }
     ],
     "ce_viol_types": [
-      "Vacant/Overgrown Property"
+      "Dangerous Premise BSB Processed"
     ],
     "ce_count": 1,
     "loan_amount": "",
@@ -47196,7 +48705,11 @@
     "dash_searched_at": "2026-02-10T19:05:28.275Z",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-11T18:29:50Z"
+    "on_market_checked_at": "2026-09-11T18:29:50Z",
+    "ce_cat_label": "Dangerous Premise BSB Processed",
+    "ce_status": "OPEN",
+    "opened_date": "10/02/2026",
+    "ce_case_id": ""
   },
   {
     "doc_number": "VBP-1817-E-HOUSTON-ST-78202",
@@ -47330,12 +48843,27 @@
         "status": "OPEN",
         "opened": "05/28/2026",
         "address": "400 N MONUMENTAL, SAN ANTONIO, TX 78202"
+      },
+      {
+        "case_id": "",
+        "typename": "Structure Maintenance Multi-Tenant (Interior)",
+        "status": "OPEN",
+        "opened": "09/16/2026",
+        "address": "400 N FRIO ST, SAN ANTONIO, TX 78207"
+      },
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "09/23/2026",
+        "address": "8400 N NEW BRAUNFELS AVE, SAN ANTONIO, TX 78209"
       }
     ],
     "ce_viol_types": [
+      "Structure Maintenance Multi-Tenant (Interior)",
       "Vacant/Overgrown Property"
     ],
-    "ce_count": 1,
+    "ce_count": 3,
     "loan_amount": "",
     "loan_date": "",
     "lender": "",
@@ -48163,20 +49691,12 @@
         "status": "OPEN",
         "opened": "11/12/2025",
         "address": "311 SPRIGGSDALE, SAN ANTONIO, TX 78220"
-      },
-      {
-        "case_id": "",
-        "typename": "Structure Maintenance Multi-Tenant (Interior)",
-        "status": "OPEN",
-        "opened": "08/07/2026",
-        "address": "311 SPRIGGSDALE, SAN ANTONIO, TX 78220"
       }
     ],
     "ce_viol_types": [
-      "Structure Maintenance Multi-Tenant (Interior)",
       "Property Structure Concerns(Water/Sewer Leak)"
     ],
-    "ce_count": 2,
+    "ce_count": 1,
     "loan_amount": "",
     "loan_date": "",
     "lender": "",
@@ -48280,14 +49800,14 @@
     "ce_violations": [
       {
         "case_id": "",
-        "typename": "Overgrown Yard/Trash (Vacant Lot)",
-        "status": "Open",
-        "opened": "1740096000000",
-        "address": " 1417 S PINE ST, SAN ANTONIO, 78210"
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "09/23/2026",
+        "address": "417 S PINE ST, SAN ANTONIO, TX 78203"
       }
     ],
     "ce_viol_types": [
-      "Overgrown Yard/Trash (Vacant Lot)"
+      "Vacant/Overgrown Property"
     ],
     "ce_count": 1,
     "loan_amount": "",
@@ -48306,7 +49826,11 @@
     "on_market": false,
     "on_market_status": "SOLD",
     "on_market_checked_at": "2026-09-12T22:23:07Z",
-    "arv_sqft": 888
+    "arv_sqft": 888,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "09/23/2026",
+    "ce_case_id": ""
   },
   {
     "doc_number": "VBP-517-NEVADA-ST-78203",
@@ -48391,6 +49915,13 @@
       },
       {
         "case_id": "",
+        "typename": "Structure Maintenance Multi-Tenant (Exterior)",
+        "status": "OPEN",
+        "opened": "06/16/2026",
+        "address": "4535 SCHERTZ RD, SAN ANTONIO, TX 78233"
+      },
+      {
+        "case_id": "",
         "typename": "Structure Maintenance Multi-Tenant (Interior)",
         "status": "OPEN",
         "opened": "08/21/2026",
@@ -48405,18 +49936,26 @@
       },
       {
         "case_id": "",
-        "typename": "Property Structure Concerns(Structure Exterior)",
+        "typename": "Vacant/Overgrown Property",
         "status": "OPEN",
-        "opened": "08/21/2026",
-        "address": "2535 SW MILITARY DR, SAN ANTONIO, TX 78224"
+        "opened": "06/04/2026",
+        "address": "535 S SAN HORACIO AVE, SAN ANTONIO, TX 78237"
+      },
+      {
+        "case_id": "",
+        "typename": "Structure Maintenance Multi-Tenant (Exterior)",
+        "status": "OPEN",
+        "opened": "07/01/2026",
+        "address": "4535 SCHERTZ RD, SAN ANTONIO, TX 78233"
       }
     ],
     "ce_viol_types": [
-      "Property Structure Concerns(Structure Exterior)",
+      "Overgrown Yard/Trash (Vacant Lot)",
+      "Vacant/Overgrown Property",
       "Structure Maintenance Multi-Tenant (Interior)",
-      "Overgrown Yard/Trash (Vacant Lot)"
+      "Structure Maintenance Multi-Tenant (Exterior)"
     ],
-    "ce_count": 4,
+    "ce_count": 6,
     "loan_amount": "",
     "loan_date": "",
     "lender": "",
@@ -48586,6 +50125,13 @@
     "ce_violations": [
       {
         "case_id": "",
+        "typename": "Property Structure Concerns(Structure Interior)",
+        "status": "OPEN",
+        "opened": "09/09/2026",
+        "address": "6618 SPRING ROSE DR, SAN ANTONIO, TX 78249"
+      },
+      {
+        "case_id": "",
         "typename": "Property Structure Concerns(Structure Exterior)",
         "status": "OPEN",
         "opened": "06/20/2026",
@@ -48593,17 +50139,25 @@
       },
       {
         "case_id": "",
-        "typename": "Overgrown Yard/Trash (Vacant Lot)",
+        "typename": "Property Structure Concerns(Structure Interior)",
         "status": "OPEN",
-        "opened": "05/18/2026",
-        "address": "618 S ZARZAMORA ST, SAN ANTONIO, TX 78207"
+        "opened": "04/28/2026",
+        "address": "618 SW 38TH ST, SAN ANTONIO, TX 78237"
+      },
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "07/09/2026",
+        "address": "4618 STONELEIGH DR, SAN ANTONIO, TX 78220"
       }
     ],
     "ce_viol_types": [
-      "Property Structure Concerns(Structure Exterior)",
-      "Overgrown Yard/Trash (Vacant Lot)"
+      "Vacant/Overgrown Property",
+      "Property Structure Concerns(Structure Interior)",
+      "Property Structure Concerns(Structure Exterior)"
     ],
-    "ce_count": 2,
+    "ce_count": 4,
     "loan_amount": "",
     "loan_date": "",
     "lender": "",
@@ -48614,9 +50168,9 @@
     "days_until_sale": null,
     "stacked": true,
     "land_value": "89340.0",
-    "ce_cat_label": "Property Structure Concerns(Structure Exterior)",
+    "ce_cat_label": "Property Structure Concerns(Structure Interior)",
     "ce_status": "OPEN",
-    "opened_date": "06/20/2026",
+    "opened_date": "09/09/2026",
     "ce_case_id": "",
     "arv_estimate": 176893,
     "arv_status": "SOLD",
@@ -48650,20 +50204,6 @@
     "ce_violations": [
       {
         "case_id": "",
-        "typename": "Vacant/Overgrown Property",
-        "status": "OPEN",
-        "opened": "08/12/2026",
-        "address": "3623 SOUTHPORT DR, SAN ANTONIO, TX 78223"
-      },
-      {
-        "case_id": "",
-        "typename": "Vacant/Overgrown Property",
-        "status": "OPEN",
-        "opened": "05/28/2026",
-        "address": "623 SW 38TH ST, SAN ANTONIO, TX 78237"
-      },
-      {
-        "case_id": "",
         "typename": "Structure Maintenance Multi-Tenant (Interior)",
         "status": "OPEN",
         "opened": "12/18/2025",
@@ -48673,13 +50213,28 @@
         "case_id": "",
         "typename": "Structure Maintenance Multi-Tenant (Interior)",
         "status": "OPEN",
-        "opened": "07/07/2026",
-        "address": "8623 STARCREST DR, SAN ANTONIO, TX 78217"
+        "opened": "09/09/2026",
+        "address": "623 S SAN MARCOS, SAN ANTONIO, TX 78207"
+      },
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "09/24/2026",
+        "address": "3623 SOUTHPORT DR, SAN ANTONIO, TX 78223"
+      },
+      {
+        "case_id": "",
+        "typename": "Overgrown Yard/Trash (Vacant Lot)",
+        "status": "OPEN",
+        "opened": "09/25/2026",
+        "address": "1623 SAN PATRICIO, SAN ANTONIO, TX 78207"
       }
     ],
     "ce_viol_types": [
+      "Structure Maintenance Multi-Tenant (Interior)",
       "Vacant/Overgrown Property",
-      "Structure Maintenance Multi-Tenant (Interior)"
+      "Overgrown Yard/Trash (Vacant Lot)"
     ],
     "ce_count": 4,
     "loan_amount": "",
@@ -48696,9 +50251,9 @@
     "ghl_pushed_at": "2026-02-18T20:06:35.967Z",
     "ghl_id": "MqSTB49yoDWtiyCYbJvd",
     "dash_searched_at": "2026-02-18T20:06:35.967Z",
-    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_cat_label": "Structure Maintenance Multi-Tenant (Interior)",
     "ce_status": "OPEN",
-    "opened_date": "08/12/2026",
+    "opened_date": "12/18/2025",
     "ce_case_id": "",
     "arv_estimate": 385000,
     "arv_status": "OFF_MARKET",
@@ -48732,14 +50287,14 @@
     "ce_violations": [
       {
         "case_id": "",
-        "typename": "Dangerous Premise BSB Processed",
-        "status": "Open",
-        "opened": "1710720000000",
-        "address": " 834 DAKOTA ST, SAN ANTONIO, 78203"
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "09/03/2026",
+        "address": "834 DAKOTA ST, SAN ANTONIO, TX 78203"
       }
     ],
     "ce_viol_types": [
-      "Dangerous Premise BSB Processed"
+      "Vacant/Overgrown Property"
     ],
     "ce_count": 1,
     "loan_amount": "",
@@ -48763,7 +50318,11 @@
     "on_market": false,
     "on_market_status": "SOLD",
     "on_market_checked_at": "2026-09-12T22:23:24Z",
-    "arv_sqft": 965
+    "arv_sqft": 965,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "09/03/2026",
+    "ce_case_id": ""
   },
   {
     "doc_number": "VBP-1404-N-OLIVE-ST-78208",
@@ -48851,13 +50410,6 @@
         "case_id": "",
         "typename": "Vacant/Overgrown Property",
         "status": "OPEN",
-        "opened": "08/20/2026",
-        "address": "1526 N NEW BRAUNFELS AVE, SAN ANTONIO, TX 78208"
-      },
-      {
-        "case_id": "",
-        "typename": "Vacant/Overgrown Property",
-        "status": "OPEN",
         "opened": "03/09/2026",
         "address": "1526 N NEW BRAUNFELS AVE, SAN ANTONIO, TX 78208"
       }
@@ -48865,7 +50417,7 @@
     "ce_viol_types": [
       "Vacant/Overgrown Property"
     ],
-    "ce_count": 2,
+    "ce_count": 1,
     "loan_amount": "",
     "loan_date": "",
     "lender": "",
@@ -48878,7 +50430,7 @@
     "land_value": "784370.0",
     "ce_cat_label": "Vacant/Overgrown Property",
     "ce_status": "OPEN",
-    "opened_date": "08/20/2026",
+    "opened_date": "03/09/2026",
     "ce_case_id": "",
     "on_market": true,
     "on_market_status": "FOR_RENT",
@@ -49709,35 +51261,21 @@
         "case_id": "",
         "typename": "Structure Maintenance Multi-Tenant (Interior)",
         "status": "OPEN",
-        "opened": "05/07/2026",
+        "opened": "09/08/2026",
         "address": "8800 STARCREST DR, SAN ANTONIO, TX 78217"
       },
       {
         "case_id": "",
         "typename": "Structure Maintenance Multi-Tenant (Interior)",
         "status": "OPEN",
-        "opened": "08/03/2026",
+        "opened": "08/26/2026",
         "address": "8800 STARCREST DR, SAN ANTONIO, TX 78217"
       },
       {
         "case_id": "",
         "typename": "Structure Maintenance Multi-Tenant (Interior)",
         "status": "OPEN",
-        "opened": "08/03/2026",
-        "address": "8800 STARCREST DR, SAN ANTONIO, TX 78217"
-      },
-      {
-        "case_id": "",
-        "typename": "Structure Maintenance Multi-Tenant (Exterior)",
-        "status": "OPEN",
-        "opened": "08/03/2026",
-        "address": "8800 STARCREST DR, SAN ANTONIO, TX 78217"
-      },
-      {
-        "case_id": "",
-        "typename": "Structure Maintenance Multi-Tenant (Exterior)",
-        "status": "OPEN",
-        "opened": "05/07/2026",
+        "opened": "09/10/2026",
         "address": "8800 STARCREST DR, SAN ANTONIO, TX 78217"
       },
       {
@@ -49751,29 +51289,37 @@
         "case_id": "",
         "typename": "Structure Maintenance Multi-Tenant (Interior)",
         "status": "OPEN",
-        "opened": "05/07/2026",
+        "opened": "10/08/2026",
         "address": "8800 STARCREST DR, SAN ANTONIO, TX 78217"
       },
       {
         "case_id": "",
         "typename": "Structure Maintenance Multi-Tenant (Interior)",
         "status": "OPEN",
-        "opened": "08/21/2026",
+        "opened": "08/24/2026",
         "address": "8800 STARCREST DR, SAN ANTONIO, TX 78217"
       },
       {
         "case_id": "",
         "typename": "Structure Maintenance Multi-Tenant (Interior)",
         "status": "OPEN",
-        "opened": "08/03/2026",
+        "opened": "09/10/2026",
         "address": "8800 STARCREST DR, SAN ANTONIO, TX 78217"
+      },
+      {
+        "case_id": "",
+        "typename": "Overgrown Yard/Trash (Vacant Lot)",
+        "status": "OPEN",
+        "opened": "09/29/2026",
+        "address": "800 S WALTERS, SAN ANTONIO, TX 78203"
       }
     ],
     "ce_viol_types": [
-      "Structure Maintenance Multi-Tenant (Exterior)",
-      "Structure Maintenance Multi-Tenant (Interior)"
+      "Structure Maintenance Multi-Tenant (Interior)",
+      "Overgrown Yard/Trash (Vacant Lot)",
+      "Structure Maintenance Multi-Tenant (Exterior)"
     ],
-    "ce_count": 9,
+    "ce_count": 8,
     "loan_amount": "",
     "loan_date": "",
     "lender": "",
@@ -49791,7 +51337,7 @@
     "dash_searched_at": "2026-02-18T20:06:49.194Z",
     "ce_cat_label": "Structure Maintenance Multi-Tenant (Interior)",
     "ce_status": "OPEN",
-    "opened_date": "05/07/2026",
+    "opened_date": "09/08/2026",
     "ce_case_id": "",
     "on_market": false,
     "on_market_status": "OFF_MARKET",
@@ -50533,9 +52079,9 @@
       {
         "case_id": "",
         "typename": "Vacant/Overgrown Property",
-        "status": "Open",
-        "opened": "1760140800000",
-        "address": " 134 HANDLEY, SAN ANTONIO, 78214"
+        "status": "OPEN",
+        "opened": "09/29/2026",
+        "address": "134 HANDLEY, SAN ANTONIO, TX 78214"
       }
     ],
     "ce_viol_types": [
@@ -50562,7 +52108,11 @@
     "arv_estimate": 68000,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 946,
-    "arv_fetched_at": "2026-09-14T20:00:45Z"
+    "arv_fetched_at": "2026-09-14T20:00:45Z",
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "09/29/2026",
+    "ce_case_id": ""
   },
   {
     "doc_number": "VBP-1434-E-CHAVANEAUX-RD-78214",
@@ -50697,61 +52247,16 @@
     "ce_violations": [
       {
         "case_id": "",
-        "typename": "Property Structure Concerns(Structure Interior)",
-        "status": "OPEN",
-        "opened": "04/15/2026",
-        "address": "6300 WILLOW HILL, SAN ANTONIO, TX 78247"
-      },
-      {
-        "case_id": "",
         "typename": "Vacant/Overgrown Property",
         "status": "OPEN",
-        "opened": "08/20/2026",
-        "address": "6300 WILLOW HILL, SAN ANTONIO, TX 78247"
-      },
-      {
-        "case_id": "",
-        "typename": "Property Structure Concerns(Structure Interior)",
-        "status": "OPEN",
-        "opened": "04/14/2026",
-        "address": "6300 WILLOW HILL, SAN ANTONIO, TX 78247"
-      },
-      {
-        "case_id": "",
-        "typename": "Property Structure Concerns(Structure Interior)",
-        "status": "OPEN",
-        "opened": "04/15/2026",
-        "address": "6300 WILLOW HILL, SAN ANTONIO, TX 78247"
-      },
-      {
-        "case_id": "",
-        "typename": "Property Structure Concerns(Structure Exterior)",
-        "status": "OPEN",
-        "opened": "04/15/2026",
-        "address": "6300 WILLOW HILL, SAN ANTONIO, TX 78247"
-      },
-      {
-        "case_id": "",
-        "typename": "Overgrown Yard/Trash (Vacant Lot)",
-        "status": "OPEN",
-        "opened": "08/19/2026",
-        "address": "300 W ANSLEY BLVD, SAN ANTONIO, TX 78221"
-      },
-      {
-        "case_id": "",
-        "typename": "Property Structure Concerns(Structure Exterior)",
-        "status": "OPEN",
-        "opened": "04/15/2026",
-        "address": "6300 WILLOW HILL, SAN ANTONIO, TX 78247"
+        "opened": "06/17/2026",
+        "address": "300 W PYRON AVE, SAN ANTONIO, TX 78214"
       }
     ],
     "ce_viol_types": [
-      "Vacant/Overgrown Property",
-      "Property Structure Concerns(Structure Interior)",
-      "Overgrown Yard/Trash (Vacant Lot)",
-      "Property Structure Concerns(Structure Exterior)"
+      "Vacant/Overgrown Property"
     ],
-    "ce_count": 7,
+    "ce_count": 1,
     "loan_amount": "",
     "loan_date": "",
     "lender": "",
@@ -50762,9 +52267,9 @@
     "days_until_sale": null,
     "stacked": true,
     "land_value": "50470.0",
-    "ce_cat_label": "Property Structure Concerns(Structure Interior)",
+    "ce_cat_label": "Vacant/Overgrown Property",
     "ce_status": "OPEN",
-    "opened_date": "04/15/2026",
+    "opened_date": "06/17/2026",
     "ce_case_id": "",
     "on_market": false,
     "on_market_status": "OFF_MARKET",
@@ -50854,14 +52359,14 @@
     "ce_violations": [
       {
         "case_id": "",
-        "typename": "Property Structure Concerns(Structure Interior)",
-        "status": "Open",
-        "opened": "1752105600000",
-        "address": " 320 BARRETT PLACE, SAN ANTONIO, 78225"
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "09/02/2026",
+        "address": "320 BARRETT PLACE, SAN ANTONIO, TX 78225"
       }
     ],
     "ce_viol_types": [
-      "Property Structure Concerns(Structure Interior)"
+      "Vacant/Overgrown Property"
     ],
     "ce_count": 1,
     "loan_amount": "",
@@ -50880,7 +52385,11 @@
     "arv_estimate": 214000,
     "arv_status": "SOLD",
     "arv_sqft": 1729,
-    "arv_fetched_at": "2026-09-14T23:14:01Z"
+    "arv_fetched_at": "2026-09-14T23:14:01Z",
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "09/02/2026",
+    "ce_case_id": ""
   },
   {
     "doc_number": "VBP-9207-ESPADA-78214",
@@ -50971,13 +52480,6 @@
         "case_id": "",
         "typename": "Vacant/Overgrown Property",
         "status": "OPEN",
-        "opened": "01/15/2026",
-        "address": "2222 W HOUSTON ST, SAN ANTONIO, TX 78207"
-      },
-      {
-        "case_id": "",
-        "typename": "Vacant/Overgrown Property",
-        "status": "OPEN",
         "opened": "05/11/2026",
         "address": "1222 W POPLAR ST, SAN ANTONIO, TX 78207"
       },
@@ -50985,21 +52487,21 @@
         "case_id": "",
         "typename": "Vacant/Overgrown Property",
         "status": "OPEN",
-        "opened": "08/12/2026",
+        "opened": "01/15/2026",
         "address": "2222 W HOUSTON ST, SAN ANTONIO, TX 78207"
       },
       {
         "case_id": "",
         "typename": "Vacant/Overgrown Property",
         "status": "OPEN",
-        "opened": "07/12/2026",
-        "address": "222 W AGARITA AVE, SAN ANTONIO, TX 78212"
+        "opened": "08/12/2026",
+        "address": "2222 W HOUSTON ST, SAN ANTONIO, TX 78207"
       }
     ],
     "ce_viol_types": [
       "Vacant/Overgrown Property"
     ],
-    "ce_count": 4,
+    "ce_count": 3,
     "loan_amount": "",
     "loan_date": "",
     "lender": "",
@@ -51012,7 +52514,7 @@
     "land_value": "50370.0",
     "ce_cat_label": "Vacant/Overgrown Property",
     "ce_status": "OPEN",
-    "opened_date": "01/15/2026",
+    "opened_date": "05/11/2026",
     "ce_case_id": "",
     "on_market": false,
     "on_market_status": "OFF_MARKET",
@@ -51046,14 +52548,14 @@
     "ce_violations": [
       {
         "case_id": "",
-        "typename": "Dangerous Premise BSB Processed",
-        "status": "Open",
-        "opened": "1742342400000",
-        "address": " 335 W HARDING BLVD, SAN ANTONIO, 78221"
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "09/29/2026",
+        "address": "335 WILKENS, SAN ANTONIO, TX 78210"
       }
     ],
     "ce_viol_types": [
-      "Dangerous Premise BSB Processed"
+      "Vacant/Overgrown Property"
     ],
     "ce_count": 1,
     "loan_amount": "",
@@ -51072,7 +52574,11 @@
     "arv_estimate": 170000,
     "arv_status": "SOLD",
     "arv_sqft": 1208,
-    "arv_fetched_at": "2026-09-14T23:14:14Z"
+    "arv_fetched_at": "2026-09-14T23:14:14Z",
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "09/29/2026",
+    "ce_case_id": ""
   },
   {
     "doc_number": "VBP-443-SHRINE-AVE-78221",
@@ -51259,24 +52765,16 @@
     "ce_violations": [
       {
         "case_id": "",
-        "typename": "Dangerous Premise BSB Processed",
-        "status": "Open",
-        "opened": "1754870400000",
-        "address": " 447 HERMITAGE COURT, SAN ANTONIO, 78223"
-      },
-      {
-        "case_id": "",
         "typename": "Vacant/Overgrown Property",
-        "status": "Open",
-        "opened": "1763510400000",
-        "address": " 447 HERMITAGE COURT, SAN ANTONIO, 78223"
+        "status": "OPEN",
+        "opened": "09/10/2026",
+        "address": "447 HERMITAGE COURT, SAN ANTONIO, TX 78223"
       }
     ],
     "ce_viol_types": [
-      "Dangerous Premise BSB Processed",
       "Vacant/Overgrown Property"
     ],
-    "ce_count": 2,
+    "ce_count": 1,
     "loan_amount": "",
     "loan_date": "",
     "lender": "",
@@ -51298,7 +52796,11 @@
     "arv_estimate": 370400,
     "arv_status": "SOLD",
     "arv_sqft": 1648,
-    "arv_fetched_at": "2026-09-15T15:45:05Z"
+    "arv_fetched_at": "2026-09-15T15:45:05Z",
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "09/10/2026",
+    "ce_case_id": ""
   },
   {
     "doc_number": "VBP-202-YUMA-ST-78211",
@@ -51381,24 +52883,16 @@
     "ce_violations": [
       {
         "case_id": "",
-        "typename": "Dangerous Premise BSB Processed",
-        "status": "Open",
-        "opened": "1729209600000",
-        "address": " 270 PROSPECT, SAN ANTONIO, 78211"
-      },
-      {
-        "case_id": "",
         "typename": "Vacant/Overgrown Property",
-        "status": "Open",
-        "opened": "1755820800000",
-        "address": " 270 PROSPECT, SAN ANTONIO, 78211"
+        "status": "OPEN",
+        "opened": "08/26/2026",
+        "address": "270 PROSPECT, SAN ANTONIO, TX 78211"
       }
     ],
     "ce_viol_types": [
-      "Dangerous Premise BSB Processed",
       "Vacant/Overgrown Property"
     ],
-    "ce_count": 2,
+    "ce_count": 1,
     "loan_amount": "",
     "loan_date": "",
     "lender": "",
@@ -51420,7 +52914,11 @@
     "arv_estimate": 114300,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 720,
-    "arv_fetched_at": "2026-09-15T15:45:08Z"
+    "arv_fetched_at": "2026-09-15T15:45:08Z",
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "08/26/2026",
+    "ce_case_id": ""
   },
   {
     "doc_number": "VBP-2710-POLLOTE-ST-78224",
@@ -51559,23 +53057,15 @@
       {
         "case_id": "",
         "typename": "Vacant/Overgrown Property",
-        "status": "Open",
-        "opened": "1750896000000",
-        "address": " 123 DUMONT DR, SAN ANTONIO, 78227"
-      },
-      {
-        "case_id": "",
-        "typename": "Dangerous Premise BSB Processed",
-        "status": "Open",
-        "opened": "1763510400000",
-        "address": " 123 DUMONT DR, SAN ANTONIO, 78227"
+        "status": "OPEN",
+        "opened": "09/30/2026",
+        "address": "123 DUMONT DR, SAN ANTONIO, TX 78227"
       }
     ],
     "ce_viol_types": [
-      "Dangerous Premise BSB Processed",
       "Vacant/Overgrown Property"
     ],
-    "ce_count": 2,
+    "ce_count": 1,
     "loan_amount": "",
     "loan_date": "",
     "lender": "",
@@ -51592,7 +53082,11 @@
     "arv_estimate": 150505,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 1280,
-    "arv_fetched_at": "2026-09-15T15:45:13Z"
+    "arv_fetched_at": "2026-09-15T15:45:13Z",
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "09/30/2026",
+    "ce_case_id": ""
   },
   {
     "doc_number": "VBP-108-DICKEY-AVE-78204",
@@ -51675,24 +53169,16 @@
     "ce_violations": [
       {
         "case_id": "",
-        "typename": "Structure Maintenance Multi-Tenant (Interior)",
-        "status": "Open",
-        "opened": "1754438400000",
-        "address": " 110 E EUCLID AVE, SAN ANTONIO, 78212"
-      },
-      {
-        "case_id": "",
-        "typename": "Structure Maintenance Multi-Tenant (Exterior)",
-        "status": "Open",
-        "opened": "1756166400000",
-        "address": " 110 E EUCLID AVE, SAN ANTONIO, 78212"
+        "typename": "Property Structure Concerns(Structure Exterior)",
+        "status": "OPEN",
+        "opened": "09/11/2026",
+        "address": "110 E MAYFIELD, SAN ANTONIO, TX 78214"
       }
     ],
     "ce_viol_types": [
-      "Structure Maintenance Multi-Tenant (Interior)",
-      "Structure Maintenance Multi-Tenant (Exterior)"
+      "Property Structure Concerns(Structure Exterior)"
     ],
-    "ce_count": 2,
+    "ce_count": 1,
     "loan_amount": "",
     "loan_date": "",
     "lender": "",
@@ -51709,7 +53195,11 @@
     "dash_searched_at": "2026-02-18T20:07:19.819Z",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-15T15:45:22Z"
+    "on_market_checked_at": "2026-09-15T15:45:22Z",
+    "ce_cat_label": "Property Structure Concerns(Structure Exterior)",
+    "ce_status": "OPEN",
+    "opened_date": "09/11/2026",
+    "ce_case_id": ""
   },
   {
     "doc_number": "VBP-141-CUMBERLAND-RD-78204",
@@ -52016,6 +53506,13 @@
         "case_id": "",
         "typename": "Vacant/Overgrown Property",
         "status": "OPEN",
+        "opened": "10/05/2026",
+        "address": "215 REHMANN ST, SAN ANTONIO, TX 78204"
+      },
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
         "opened": "05/15/2026",
         "address": "215 REHMANN ST, SAN ANTONIO, TX 78204"
       }
@@ -52023,7 +53520,7 @@
     "ce_viol_types": [
       "Vacant/Overgrown Property"
     ],
-    "ce_count": 1,
+    "ce_count": 2,
     "loan_amount": "",
     "loan_date": "",
     "lender": "",
@@ -52036,7 +53533,7 @@
     "land_value": "28100.0",
     "ce_cat_label": "Vacant/Overgrown Property",
     "ce_status": "OPEN",
-    "opened_date": "05/15/2026",
+    "opened_date": "10/05/2026",
     "ce_case_id": "",
     "on_market": true,
     "on_market_status": "FOR_SALE",
@@ -52249,14 +53746,14 @@
     "ce_violations": [
       {
         "case_id": "",
-        "typename": "Vacant/Overgrown Property",
-        "status": "Open",
-        "opened": "1763942400000",
-        "address": " 302 E FEST ST, SAN ANTONIO, 78204"
+        "typename": "Structure Maintenance Multi-Tenant (Interior)",
+        "status": "OPEN",
+        "opened": "09/17/2026",
+        "address": "21302 ENCINO COMMONS, SAN ANTONIO, TX 78259"
       }
     ],
     "ce_viol_types": [
-      "Vacant/Overgrown Property"
+      "Structure Maintenance Multi-Tenant (Interior)"
     ],
     "ce_count": 1,
     "loan_amount": "",
@@ -52271,7 +53768,11 @@
     "land_value": "212900.0",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-15T18:54:31Z"
+    "on_market_checked_at": "2026-09-15T18:54:31Z",
+    "ce_cat_label": "Structure Maintenance Multi-Tenant (Interior)",
+    "ce_status": "OPEN",
+    "opened_date": "09/17/2026",
+    "ce_case_id": ""
   },
   {
     "doc_number": "VBP-342-SIMON-78204",
@@ -53145,9 +54646,9 @@
       {
         "case_id": "",
         "typename": "Vacant/Overgrown Property",
-        "status": "Open",
-        "opened": "1756857600000",
-        "address": " 1716 MONTEREY ST, SAN ANTONIO, 78207"
+        "status": "OPEN",
+        "opened": "08/26/2026",
+        "address": "1716 MONTEREY ST, SAN ANTONIO, TX 78207"
       }
     ],
     "ce_viol_types": [
@@ -53166,7 +54667,11 @@
     "land_value": "96700.0",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-16T18:55:44Z"
+    "on_market_checked_at": "2026-09-16T18:55:44Z",
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "08/26/2026",
+    "ce_case_id": ""
   },
   {
     "doc_number": "VBP-1808-GUADALUPE-ST-78207",
@@ -53301,9 +54806,9 @@
       {
         "case_id": "",
         "typename": "Vacant/Overgrown Property",
-        "status": "Open",
-        "opened": "1759190400000",
-        "address": " 1912 SAN CARLOS ST, SAN ANTONIO, 78207"
+        "status": "OPEN",
+        "opened": "08/26/2026",
+        "address": "1912 SAN LUIS ST, SAN ANTONIO, TX 78207"
       }
     ],
     "ce_viol_types": [
@@ -53326,7 +54831,11 @@
     "arv_estimate": 431400,
     "arv_status": "FOR_SALE",
     "arv_sqft": 1515,
-    "arv_fetched_at": "2026-09-16T18:55:49Z"
+    "arv_fetched_at": "2026-09-16T18:55:49Z",
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "08/26/2026",
+    "ce_case_id": ""
   },
   {
     "doc_number": "VBP-1913-MONTEZUMA-ST-78207",
@@ -53585,23 +55094,15 @@
       {
         "case_id": "",
         "typename": "Vacant/Overgrown Property",
-        "status": "Open",
-        "opened": "1763510400000",
-        "address": " 2220 GUADALUPE ST, SAN ANTONIO, 78207"
-      },
-      {
-        "case_id": "",
-        "typename": "Dangerous Premise BSB Processed",
-        "status": "Open",
-        "opened": "1764028800000",
-        "address": " 2220 GUADALUPE ST, SAN ANTONIO, 78207"
+        "status": "OPEN",
+        "opened": "09/07/2026",
+        "address": "2220 GUADALUPE ST, SAN ANTONIO, TX 78207"
       }
     ],
     "ce_viol_types": [
-      "Dangerous Premise BSB Processed",
       "Vacant/Overgrown Property"
     ],
-    "ce_count": 2,
+    "ce_count": 1,
     "loan_amount": "",
     "loan_date": "",
     "lender": "",
@@ -53614,7 +55115,11 @@
     "land_value": "28290.0",
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-09-16T22:33:43Z"
+    "on_market_checked_at": "2026-09-16T22:33:43Z",
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "09/07/2026",
+    "ce_case_id": ""
   },
   {
     "doc_number": "VBP-2331-W-MARTIN-ST-78207",
@@ -53755,9 +55260,9 @@
       {
         "case_id": "",
         "typename": "Vacant/Overgrown Property",
-        "status": "Open",
-        "opened": "1736899200000",
-        "address": " 3014 EL PASO ST, SAN ANTONIO, 78207"
+        "status": "OPEN",
+        "opened": "10/06/2026",
+        "address": "3014 EL PASO ST, SAN ANTONIO, TX 78207"
       }
     ],
     "ce_viol_types": [
@@ -53780,7 +55285,11 @@
     "arv_estimate": 104400,
     "arv_status": "FOR_SALE",
     "arv_sqft": 948,
-    "arv_fetched_at": "2026-09-16T22:33:47Z"
+    "arv_fetched_at": "2026-09-16T22:33:47Z",
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "10/06/2026",
+    "ce_case_id": ""
   },
   {
     "doc_number": "VBP-3039-W-SALINAS-ST-78207",
@@ -54210,10 +55719,10 @@
     "ce_violations": [
       {
         "case_id": "",
-        "typename": "Structure Maintenance Multi-Tenant (Interior)",
+        "typename": "Overgrown Yard/Trash (Vacant Lot)",
         "status": "OPEN",
-        "opened": "06/16/2026",
-        "address": "1714 S ST MARYS ST, SAN ANTONIO, TX 78210"
+        "opened": "06/24/2026",
+        "address": "714 STUTTS DR, SAN ANTONIO, TX 78219"
       },
       {
         "case_id": "",
@@ -54224,6 +55733,7 @@
       }
     ],
     "ce_viol_types": [
+      "Overgrown Yard/Trash (Vacant Lot)",
       "Structure Maintenance Multi-Tenant (Interior)"
     ],
     "ce_count": 2,
@@ -54237,9 +55747,9 @@
     "days_until_sale": null,
     "stacked": true,
     "land_value": "35280.0",
-    "ce_cat_label": "Structure Maintenance Multi-Tenant (Interior)",
+    "ce_cat_label": "Overgrown Yard/Trash (Vacant Lot)",
     "ce_status": "OPEN",
-    "opened_date": "06/16/2026",
+    "opened_date": "06/24/2026",
     "ce_case_id": "",
     "on_market": true,
     "on_market_status": "FOR_RENT",
@@ -54278,6 +55788,20 @@
         "case_id": "",
         "typename": "Vacant/Overgrown Property",
         "status": "OPEN",
+        "opened": "09/10/2026",
+        "address": "806 S CALAVERAS, SAN ANTONIO, TX 78207"
+      },
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "08/26/2026",
+        "address": "806 S SAN DARIO, SAN ANTONIO, TX 78237"
+      },
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
         "opened": "08/19/2026",
         "address": "1806 SAN FERNANDO ST, SAN ANTONIO, TX 78207"
       }
@@ -54286,7 +55810,7 @@
       "Vacant/Overgrown Property",
       "Property Structure Concerns(Structure Interior)"
     ],
-    "ce_count": 2,
+    "ce_count": 4,
     "loan_amount": "",
     "loan_date": "",
     "lender": "",
@@ -54338,6 +55862,20 @@
         "case_id": "",
         "typename": "Vacant/Overgrown Property",
         "status": "OPEN",
+        "opened": "09/10/2026",
+        "address": "806 S CALAVERAS, SAN ANTONIO, TX 78207"
+      },
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "08/26/2026",
+        "address": "806 S SAN DARIO, SAN ANTONIO, TX 78237"
+      },
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
         "opened": "08/19/2026",
         "address": "1806 SAN FERNANDO ST, SAN ANTONIO, TX 78207"
       }
@@ -54346,7 +55884,7 @@
       "Vacant/Overgrown Property",
       "Property Structure Concerns(Structure Interior)"
     ],
-    "ce_count": 2,
+    "ce_count": 4,
     "loan_amount": "",
     "loan_date": "",
     "lender": "",
@@ -54449,6 +55987,13 @@
     "ce_violations": [
       {
         "case_id": "",
+        "typename": "Overgrown Yard/Trash (Vacant Lot)",
+        "status": "OPEN",
+        "opened": "05/19/2026",
+        "address": "1402 W OLMOS DR, SAN ANTONIO, TX 78201"
+      },
+      {
+        "case_id": "",
         "typename": "Vacant/Overgrown Property",
         "status": "OPEN",
         "opened": "02/26/2026",
@@ -54458,15 +56003,15 @@
         "case_id": "",
         "typename": "Overgrown Yard/Trash (Vacant Lot)",
         "status": "OPEN",
-        "opened": "05/19/2026",
-        "address": "1402 W OLMOS DR, SAN ANTONIO, TX 78201"
+        "opened": "09/16/2026",
+        "address": "1402 WALKERS WAY, SAN ANTONIO, TX 78216"
       }
     ],
     "ce_viol_types": [
-      "Vacant/Overgrown Property",
-      "Overgrown Yard/Trash (Vacant Lot)"
+      "Overgrown Yard/Trash (Vacant Lot)",
+      "Vacant/Overgrown Property"
     ],
-    "ce_count": 2,
+    "ce_count": 3,
     "loan_amount": "",
     "loan_date": "",
     "lender": "",
@@ -54477,9 +56022,9 @@
     "days_until_sale": null,
     "stacked": true,
     "land_value": "44060.0",
-    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_cat_label": "Overgrown Yard/Trash (Vacant Lot)",
     "ce_status": "OPEN",
-    "opened_date": "02/26/2026",
+    "opened_date": "05/19/2026",
     "ce_case_id": "",
     "on_market": false,
     "on_market_status": "SOLD",
@@ -55239,14 +56784,14 @@
     "ce_violations": [
       {
         "case_id": "",
-        "typename": "Dangerous Premise BSB Processed",
-        "status": "Open",
-        "opened": "1745971200000",
-        "address": " 1342 MENEFEE BLVD, SAN ANTONIO, 78237"
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "09/22/2026",
+        "address": "1342 MENEFEE BLVD, SAN ANTONIO, TX 78237"
       }
     ],
     "ce_viol_types": [
-      "Dangerous Premise BSB Processed"
+      "Vacant/Overgrown Property"
     ],
     "ce_count": 1,
     "loan_amount": "",
@@ -55265,7 +56810,11 @@
     "arv_estimate": 127091,
     "arv_status": "SOLD",
     "arv_sqft": 1088,
-    "arv_fetched_at": "2026-09-17T19:00:42Z"
+    "arv_fetched_at": "2026-09-17T19:00:42Z",
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "09/22/2026",
+    "ce_case_id": ""
   },
   {
     "doc_number": "VBP-1611-S-GENERAL-MCMULLEN-DR-78237",
@@ -55832,9 +57381,9 @@
       {
         "case_id": "",
         "typename": "Overgrown Yard/Trash (Vacant Lot)",
-        "status": "Open",
-        "opened": "1749427200000",
-        "address": " 1808 W THOMPSON PLACE, SAN ANTONIO, 78226"
+        "status": "OPEN",
+        "opened": "09/09/2026",
+        "address": "1808 W THOMPSON PLACE, SAN ANTONIO, TX 78226"
       }
     ],
     "ce_viol_types": [
@@ -55857,7 +57406,11 @@
     "arv_estimate": 266000,
     "arv_status": "SOLD",
     "arv_sqft": 1470,
-    "arv_fetched_at": "2026-09-17T22:54:10Z"
+    "arv_fetched_at": "2026-09-17T22:54:10Z",
+    "ce_cat_label": "Overgrown Yard/Trash (Vacant Lot)",
+    "ce_status": "OPEN",
+    "opened_date": "09/09/2026",
+    "ce_case_id": ""
   },
   {
     "doc_number": "VBP-2054-W-MULBERRY-AVE-78201",
@@ -56446,14 +57999,14 @@
     "ce_violations": [
       {
         "case_id": "",
-        "typename": "Vacant/Overgrown Property",
-        "status": "Open",
-        "opened": "1761782400000",
-        "address": " 135 WINDSOR DR, SAN ANTONIO, 78228"
+        "typename": "Dangerous Premise BSB Processed",
+        "status": "OPEN",
+        "opened": "08/31/2026",
+        "address": "135 WINDSOR DR, SAN ANTONIO, TX 78228"
       }
     ],
     "ce_viol_types": [
-      "Vacant/Overgrown Property"
+      "Dangerous Premise BSB Processed"
     ],
     "ce_count": 1,
     "loan_amount": "",
@@ -56472,7 +58025,11 @@
     "arv_estimate": 236000,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 1482,
-    "arv_fetched_at": "2026-09-18T18:17:57Z"
+    "arv_fetched_at": "2026-09-18T18:17:57Z",
+    "ce_cat_label": "Dangerous Premise BSB Processed",
+    "ce_status": "OPEN",
+    "opened_date": "08/31/2026",
+    "ce_case_id": ""
   },
   {
     "doc_number": "VBP-210-MARQUETTE-DR-78228",
@@ -56498,6 +58055,13 @@
     "ce_violations": [
       {
         "case_id": "",
+        "typename": "Dangerous Premise BSB Processed",
+        "status": "OPEN",
+        "opened": "09/08/2026",
+        "address": "210 MARQUETTE, SAN ANTONIO, TX 78228"
+      },
+      {
+        "case_id": "",
         "typename": "Vacant/Overgrown Property",
         "status": "OPEN",
         "opened": "08/20/2026",
@@ -56505,9 +58069,10 @@
       }
     ],
     "ce_viol_types": [
+      "Dangerous Premise BSB Processed",
       "Vacant/Overgrown Property"
     ],
-    "ce_count": 1,
+    "ce_count": 2,
     "loan_amount": "",
     "loan_date": "",
     "lender": "",
@@ -56518,9 +58083,9 @@
     "days_until_sale": null,
     "stacked": true,
     "land_value": "36880.0",
-    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_cat_label": "Dangerous Premise BSB Processed",
     "ce_status": "OPEN",
-    "opened_date": "08/20/2026",
+    "opened_date": "09/08/2026",
     "ce_case_id": "",
     "on_market": false,
     "on_market_status": "OFF_MARKET",
@@ -57011,13 +58576,6 @@
         "case_id": "",
         "typename": "Vacant/Overgrown Property",
         "status": "OPEN",
-        "opened": "07/28/2026",
-        "address": "1115 WAGNER AVE, SAN ANTONIO, TX 78211"
-      },
-      {
-        "case_id": "",
-        "typename": "Vacant/Overgrown Property",
-        "status": "OPEN",
         "opened": "02/03/2026",
         "address": "1115 W FRENCH PLACE, SAN ANTONIO, TX 78201"
       },
@@ -57032,10 +58590,10 @@
     "ce_viol_types": [
       "Vacant/Overgrown Property"
     ],
-    "ce_count": 3,
+    "ce_count": 2,
     "ce_cat_label": "Vacant/Overgrown Property",
     "ce_status": "OPEN",
-    "opened_date": "07/28/2026",
+    "opened_date": "02/03/2026",
     "ce_case_id": "",
     "appraised_value": "287290.0",
     "land_value": "127080.0",
@@ -57081,7 +58639,7 @@
         "case_id": "",
         "typename": "Vacant/Overgrown Property",
         "status": "OPEN",
-        "opened": "05/19/2026",
+        "opened": "09/03/2026",
         "address": "1510 W LULLWOOD AVE, SAN ANTONIO, TX 78201"
       }
     ],
@@ -57091,7 +58649,7 @@
     "ce_count": 1,
     "ce_cat_label": "Vacant/Overgrown Property",
     "ce_status": "OPEN",
-    "opened_date": "05/19/2026",
+    "opened_date": "09/03/2026",
     "ce_case_id": "",
     "appraised_value": "151490.0",
     "land_value": "46380.0",
@@ -57194,24 +58752,17 @@
         "case_id": "",
         "typename": "Vacant/Overgrown Property",
         "status": "OPEN",
-        "opened": "05/28/2026",
-        "address": "221 GREENLAWN, SAN ANTONIO, TX 78201"
-      },
-      {
-        "case_id": "",
-        "typename": "Vacant/Overgrown Property",
-        "status": "OPEN",
-        "opened": "07/10/2026",
+        "opened": "09/18/2026",
         "address": "221 GREENLAWN, SAN ANTONIO, TX 78201"
       }
     ],
     "ce_viol_types": [
       "Vacant/Overgrown Property"
     ],
-    "ce_count": 2,
+    "ce_count": 1,
     "ce_cat_label": "Vacant/Overgrown Property",
     "ce_status": "OPEN",
-    "opened_date": "05/28/2026",
+    "opened_date": "09/18/2026",
     "ce_case_id": "",
     "appraised_value": "148000.0",
     "land_value": "45530.0",
@@ -57260,20 +58811,12 @@
         "status": "OPEN",
         "opened": "12/18/2025",
         "address": "2238 FRESNO, SAN ANTONIO, TX 78201"
-      },
-      {
-        "case_id": "",
-        "typename": "Vacant/Overgrown Property",
-        "status": "OPEN",
-        "opened": "05/06/2026",
-        "address": "2238 FRESNO, SAN ANTONIO, TX 78201"
       }
     ],
     "ce_viol_types": [
-      "Vacant/Overgrown Property",
       "Property Structure Concerns(Structure Exterior)"
     ],
-    "ce_count": 2,
+    "ce_count": 1,
     "ce_cat_label": "Property Structure Concerns(Structure Exterior)",
     "ce_status": "OPEN",
     "opened_date": "12/18/2025",
@@ -57435,19 +58978,12 @@
         "status": "OPEN",
         "opened": "08/08/2026",
         "address": "1922 SAN PATRICIO, SAN ANTONIO, TX 78207"
-      },
-      {
-        "case_id": "",
-        "typename": "Overgrown Yard/Trash (Vacant Lot)",
-        "status": "OPEN",
-        "opened": "08/11/2026",
-        "address": "3922 SE MILITARY DR, SAN ANTONIO, TX 78223"
       }
     ],
     "ce_viol_types": [
       "Overgrown Yard/Trash (Vacant Lot)"
     ],
-    "ce_count": 2,
+    "ce_count": 1,
     "ce_cat_label": "Overgrown Yard/Trash (Vacant Lot)",
     "ce_status": "OPEN",
     "opened_date": "08/08/2026",
@@ -57563,20 +59099,20 @@
         "case_id": "",
         "typename": "Property Structure Concerns(Structure Interior)",
         "status": "OPEN",
-        "opened": "07/31/2026",
+        "opened": "08/27/2026",
         "address": "1510 LOMBRANO ST, SAN ANTONIO, TX 78207"
       },
       {
         "case_id": "",
         "typename": "Property Structure Concerns(Structure Interior)",
         "status": "OPEN",
-        "opened": "07/31/2026",
+        "opened": "08/27/2026",
         "address": "1510 LOMBRANO ST, SAN ANTONIO, TX 78207"
       }
     ],
     "ce_viol_types": [
-      "Property Structure Concerns(Structure Interior)",
-      "Dangerous Premise BSB Processed"
+      "Dangerous Premise BSB Processed",
+      "Property Structure Concerns(Structure Interior)"
     ],
     "ce_count": 3,
     "ce_cat_label": "Dangerous Premise BSB Processed",
@@ -57698,20 +59234,12 @@
         "status": "OPEN",
         "opened": "07/15/2026",
         "address": "2009 MORALES, SAN ANTONIO, TX 78207"
-      },
-      {
-        "case_id": "",
-        "typename": "Property Structure Concerns(Structure Exterior)",
-        "status": "OPEN",
-        "opened": "05/26/2026",
-        "address": "2009 MORALES, SAN ANTONIO, TX 78207"
       }
     ],
     "ce_viol_types": [
-      "Vacant/Overgrown Property",
-      "Property Structure Concerns(Structure Exterior)"
+      "Vacant/Overgrown Property"
     ],
-    "ce_count": 2,
+    "ce_count": 1,
     "ce_cat_label": "Vacant/Overgrown Property",
     "ce_status": "OPEN",
     "opened_date": "07/15/2026",
@@ -58298,13 +59826,6 @@
       },
       {
         "case_id": "",
-        "typename": "Vacant/Overgrown Property",
-        "status": "OPEN",
-        "opened": "08/05/2026",
-        "address": "203 WOODLIEF, SAN ANTONIO, TX 78212"
-      },
-      {
-        "case_id": "",
         "typename": "Property Structure Concerns(Structure Interior)",
         "status": "OPEN",
         "opened": "04/28/2026",
@@ -58312,12 +59833,11 @@
       }
     ],
     "ce_viol_types": [
-      "Property Structure Concerns(Structure Exterior)",
+      "Dangerous Premise BSB Processed",
       "Property Structure Concerns(Structure Interior)",
-      "Vacant/Overgrown Property",
-      "Dangerous Premise BSB Processed"
+      "Property Structure Concerns(Structure Exterior)"
     ],
-    "ce_count": 5,
+    "ce_count": 4,
     "ce_cat_label": "Property Structure Concerns(Structure Interior)",
     "ce_status": "OPEN",
     "opened_date": "04/28/2026",
@@ -58492,12 +60012,19 @@
         "status": "OPEN",
         "opened": "05/04/2026",
         "address": "325 E COURTLAND PLACE, SAN ANTONIO, TX 78212"
+      },
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "09/08/2026",
+        "address": "325 E LOCUST, SAN ANTONIO, TX 78212"
       }
     ],
     "ce_viol_types": [
       "Vacant/Overgrown Property"
     ],
-    "ce_count": 1,
+    "ce_count": 2,
     "ce_cat_label": "Vacant/Overgrown Property",
     "ce_status": "OPEN",
     "opened_date": "05/04/2026",
@@ -58546,6 +60073,13 @@
         "case_id": "",
         "typename": "Property Structure Concerns(Structure Exterior)",
         "status": "OPEN",
+        "opened": "07/16/2026",
+        "address": "1342 W HARLAN AVE, SAN ANTONIO, TX 78211"
+      },
+      {
+        "case_id": "",
+        "typename": "Property Structure Concerns(Structure Exterior)",
+        "status": "OPEN",
         "opened": "07/22/2026",
         "address": "1342 W HARLAN AVE, SAN ANTONIO, TX 78211"
       },
@@ -58558,13 +60092,6 @@
       },
       {
         "case_id": "",
-        "typename": "Property Structure Concerns(Structure Exterior)",
-        "status": "OPEN",
-        "opened": "07/16/2026",
-        "address": "1342 W HARLAN AVE, SAN ANTONIO, TX 78211"
-      },
-      {
-        "case_id": "",
         "typename": "Property Structure Concerns(Structure Interior)",
         "status": "OPEN",
         "opened": "08/11/2026",
@@ -58572,13 +60099,13 @@
       }
     ],
     "ce_viol_types": [
-      "Property Structure Concerns(Structure Exterior)",
-      "Property Structure Concerns(Structure Interior)"
+      "Property Structure Concerns(Structure Interior)",
+      "Property Structure Concerns(Structure Exterior)"
     ],
     "ce_count": 4,
     "ce_cat_label": "Property Structure Concerns(Structure Exterior)",
     "ce_status": "OPEN",
-    "opened_date": "07/22/2026",
+    "opened_date": "07/16/2026",
     "ce_case_id": "",
     "appraised_value": "480660.0",
     "land_value": "227190.0",
@@ -58624,24 +60151,17 @@
         "case_id": "",
         "typename": "Vacant/Overgrown Property",
         "status": "OPEN",
-        "opened": "06/29/2026",
-        "address": "1351 WESTFALL AVE, SAN ANTONIO, TX 78210"
-      },
-      {
-        "case_id": "",
-        "typename": "Vacant/Overgrown Property",
-        "status": "OPEN",
-        "opened": "06/24/2026",
-        "address": "351 W HILDEBRAND AVE, SAN ANTONIO, TX 78212"
+        "opened": "10/08/2026",
+        "address": "2351 W KINGS HWY, SAN ANTONIO, TX 78201"
       }
     ],
     "ce_viol_types": [
       "Vacant/Overgrown Property"
     ],
-    "ce_count": 2,
+    "ce_count": 1,
     "ce_cat_label": "Vacant/Overgrown Property",
     "ce_status": "OPEN",
-    "opened_date": "06/29/2026",
+    "opened_date": "10/08/2026",
     "ce_case_id": "",
     "appraised_value": "1283300.0",
     "land_value": "1183300.0",
@@ -58884,8 +60404,8 @@
       }
     ],
     "ce_viol_types": [
-      "Vacant/Overgrown Property",
-      "Dangerous Premise BSB Processed"
+      "Dangerous Premise BSB Processed",
+      "Vacant/Overgrown Property"
     ],
     "ce_count": 2,
     "ce_cat_label": "Vacant/Overgrown Property",
@@ -59232,6 +60752,13 @@
     "ce_violations": [
       {
         "case_id": "",
+        "typename": "Property Structure Concerns(Structure Interior)",
+        "status": "OPEN",
+        "opened": "09/18/2026",
+        "address": "307 E HAFER, SAN ANTONIO, TX 78214"
+      },
+      {
+        "case_id": "",
         "typename": "Overgrown Yard/Trash (Vacant Lot)",
         "status": "OPEN",
         "opened": "08/04/2026",
@@ -59246,13 +60773,14 @@
       }
     ],
     "ce_viol_types": [
+      "Overgrown Yard/Trash (Vacant Lot)",
       "Vacant/Overgrown Property",
-      "Overgrown Yard/Trash (Vacant Lot)"
+      "Property Structure Concerns(Structure Interior)"
     ],
-    "ce_count": 2,
-    "ce_cat_label": "Overgrown Yard/Trash (Vacant Lot)",
+    "ce_count": 3,
+    "ce_cat_label": "Property Structure Concerns(Structure Interior)",
     "ce_status": "OPEN",
-    "opened_date": "08/04/2026",
+    "opened_date": "09/18/2026",
     "ce_case_id": "",
     "appraised_value": "255570.0",
     "land_value": "58420.0",
@@ -60047,7 +61575,7 @@
         "case_id": "",
         "typename": "Vacant/Overgrown Property",
         "status": "OPEN",
-        "opened": "06/10/2026",
+        "opened": "10/03/2026",
         "address": "806 BURLESON ST, SAN ANTONIO, TX 78202"
       }
     ],
@@ -60057,7 +61585,7 @@
     "ce_count": 1,
     "ce_cat_label": "Vacant/Overgrown Property",
     "ce_status": "OPEN",
-    "opened_date": "06/10/2026",
+    "opened_date": "10/03/2026",
     "ce_case_id": "",
     "appraised_value": "200340.0",
     "land_value": "43210.0",
@@ -60103,7 +61631,7 @@
         "case_id": "",
         "typename": "Vacant/Overgrown Property",
         "status": "OPEN",
-        "opened": "05/26/2026",
+        "opened": "10/02/2026",
         "address": "1034 MONTANA, SAN ANTONIO, TX 78203"
       }
     ],
@@ -60113,7 +61641,7 @@
     "ce_count": 1,
     "ce_cat_label": "Vacant/Overgrown Property",
     "ce_status": "OPEN",
-    "opened_date": "05/26/2026",
+    "opened_date": "10/02/2026",
     "ce_case_id": "",
     "appraised_value": "233380.0",
     "land_value": "45880.0",
@@ -60159,7 +61687,7 @@
         "case_id": "",
         "typename": "Vacant/Overgrown Property",
         "status": "OPEN",
-        "opened": "06/16/2026",
+        "opened": "09/30/2026",
         "address": "108 SPRUCE ST, SAN ANTONIO, TX 78203"
       }
     ],
@@ -60169,7 +61697,7 @@
     "ce_count": 1,
     "ce_cat_label": "Vacant/Overgrown Property",
     "ce_status": "OPEN",
-    "opened_date": "06/16/2026",
+    "opened_date": "09/30/2026",
     "ce_case_id": "",
     "appraised_value": "85670.0",
     "land_value": "42040.0",
@@ -60215,7 +61743,7 @@
         "case_id": "",
         "typename": "Vacant/Overgrown Property",
         "status": "OPEN",
-        "opened": "05/04/2026",
+        "opened": "09/02/2026",
         "address": "1124 IOWA ST, SAN ANTONIO, TX 78203"
       }
     ],
@@ -60225,7 +61753,7 @@
     "ce_count": 1,
     "ce_cat_label": "Vacant/Overgrown Property",
     "ce_status": "OPEN",
-    "opened_date": "05/04/2026",
+    "opened_date": "09/02/2026",
     "ce_case_id": "",
     "appraised_value": "177890.0",
     "land_value": "53390.0",
@@ -60673,10 +62201,10 @@
     "ce_violations": [
       {
         "case_id": "",
-        "typename": "Overgrown Yard/Trash (Vacant Lot)",
+        "typename": "Vacant/Overgrown Property",
         "status": "OPEN",
-        "opened": "08/05/2026",
-        "address": "719 EMMETT AVE, SAN ANTONIO, TX 78221"
+        "opened": "10/08/2026",
+        "address": "719 E SUNSHINE DR, SAN ANTONIO, TX 78228"
       },
       {
         "case_id": "",
@@ -60684,24 +62212,16 @@
         "status": "OPEN",
         "opened": "05/21/2026",
         "address": "719 E SUNSHINE DR, SAN ANTONIO, TX 78228"
-      },
-      {
-        "case_id": "",
-        "typename": "Vacant/Overgrown Property",
-        "status": "OPEN",
-        "opened": "08/14/2026",
-        "address": "719 E SUNSHINE DR, SAN ANTONIO, TX 78228"
       }
     ],
     "ce_viol_types": [
-      "Vacant/Overgrown Property",
-      "Overgrown Yard/Trash (Vacant Lot)",
-      "Dangerous Premise BSB Processed"
+      "Dangerous Premise BSB Processed",
+      "Vacant/Overgrown Property"
     ],
-    "ce_count": 3,
-    "ce_cat_label": "Overgrown Yard/Trash (Vacant Lot)",
+    "ce_count": 2,
+    "ce_cat_label": "Vacant/Overgrown Property",
     "ce_status": "OPEN",
-    "opened_date": "08/05/2026",
+    "opened_date": "10/08/2026",
     "ce_case_id": "",
     "appraised_value": "517600.0",
     "land_value": "302250.0",
@@ -60931,8 +62451,8 @@
       }
     ],
     "ce_viol_types": [
-      "Vacant/Overgrown Property",
-      "Dangerous Premise BSB Processed"
+      "Dangerous Premise BSB Processed",
+      "Vacant/Overgrown Property"
     ],
     "ce_count": 2,
     "ce_cat_label": "Dangerous Premise BSB Processed",
@@ -61459,8 +62979,8 @@
       }
     ],
     "ce_viol_types": [
-      "Vacant/Overgrown Property",
-      "Dangerous Premise BSB Processed"
+      "Dangerous Premise BSB Processed",
+      "Vacant/Overgrown Property"
     ],
     "ce_count": 2,
     "ce_cat_label": "Dangerous Premise BSB Processed",
@@ -61509,6 +63029,13 @@
     "ce_violations": [
       {
         "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "09/23/2026",
+        "address": "316 E YOUNG AVE, SAN ANTONIO, TX 78214"
+      },
+      {
+        "case_id": "",
         "typename": "Dangerous Premise BSB Processed",
         "status": "OPEN",
         "opened": "04/30/2026",
@@ -61516,12 +63043,13 @@
       }
     ],
     "ce_viol_types": [
-      "Dangerous Premise BSB Processed"
+      "Dangerous Premise BSB Processed",
+      "Vacant/Overgrown Property"
     ],
-    "ce_count": 1,
-    "ce_cat_label": "Dangerous Premise BSB Processed",
+    "ce_count": 2,
+    "ce_cat_label": "Vacant/Overgrown Property",
     "ce_status": "OPEN",
-    "opened_date": "04/30/2026",
+    "opened_date": "09/23/2026",
     "ce_case_id": "",
     "appraised_value": "97400.0",
     "land_value": "46620.0",
@@ -61569,12 +63097,19 @@
         "status": "OPEN",
         "opened": "05/04/2026",
         "address": "325 E COURTLAND PLACE, SAN ANTONIO, TX 78212"
+      },
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "09/08/2026",
+        "address": "325 E LOCUST, SAN ANTONIO, TX 78212"
       }
     ],
     "ce_viol_types": [
       "Vacant/Overgrown Property"
     ],
-    "ce_count": 1,
+    "ce_count": 2,
     "ce_cat_label": "Vacant/Overgrown Property",
     "ce_status": "OPEN",
     "opened_date": "05/04/2026",
@@ -61623,13 +63158,6 @@
         "case_id": "",
         "typename": "Vacant/Overgrown Property",
         "status": "OPEN",
-        "opened": "07/02/2026",
-        "address": "430 E HUFF, SAN ANTONIO, TX 78214"
-      },
-      {
-        "case_id": "",
-        "typename": "Vacant/Overgrown Property",
-        "status": "OPEN",
         "opened": "07/26/2026",
         "address": "430 ELKS DR, SAN ANTONIO, TX 78211"
       }
@@ -61637,10 +63165,10 @@
     "ce_viol_types": [
       "Vacant/Overgrown Property"
     ],
-    "ce_count": 2,
+    "ce_count": 1,
     "ce_cat_label": "Vacant/Overgrown Property",
     "ce_status": "OPEN",
-    "opened_date": "07/02/2026",
+    "opened_date": "07/26/2026",
     "ce_case_id": "",
     "appraised_value": "220.0",
     "land_value": "220.0",
@@ -61684,13 +63212,6 @@
     "ce_violations": [
       {
         "case_id": "",
-        "typename": "Vacant/Overgrown Property",
-        "status": "OPEN",
-        "opened": "08/07/2026",
-        "address": "1315 E PYRON AVE, SAN ANTONIO, TX 78214"
-      },
-      {
-        "case_id": "",
         "typename": "Overgrown Yard/Trash (Vacant Lot)",
         "status": "OPEN",
         "opened": "06/03/2026",
@@ -61698,13 +63219,12 @@
       }
     ],
     "ce_viol_types": [
-      "Vacant/Overgrown Property",
       "Overgrown Yard/Trash (Vacant Lot)"
     ],
-    "ce_count": 2,
-    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_count": 1,
+    "ce_cat_label": "Overgrown Yard/Trash (Vacant Lot)",
     "ce_status": "OPEN",
-    "opened_date": "08/07/2026",
+    "opened_date": "06/03/2026",
     "ce_case_id": "",
     "appraised_value": "121220.0",
     "land_value": "48590.0",
@@ -61986,12 +63506,20 @@
         "status": "OPEN",
         "opened": "04/27/2026",
         "address": "3167 E SOUTHCROSS BLVD, SAN ANTONIO, TX 78223"
+      },
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "09/29/2026",
+        "address": "3167 E SOUTHCROSS BLVD, SAN ANTONIO, TX 78223"
       }
     ],
     "ce_viol_types": [
-      "Dangerous Premise BSB Processed"
+      "Dangerous Premise BSB Processed",
+      "Vacant/Overgrown Property"
     ],
-    "ce_count": 1,
+    "ce_count": 2,
     "ce_cat_label": "Dangerous Premise BSB Processed",
     "ce_status": "OPEN",
     "opened_date": "04/27/2026",
@@ -62385,6 +63913,13 @@
     "ce_violations": [
       {
         "case_id": "",
+        "typename": "Property Structure Concerns(Structure Interior)",
+        "status": "OPEN",
+        "opened": "09/18/2026",
+        "address": "307 E HAFER, SAN ANTONIO, TX 78214"
+      },
+      {
+        "case_id": "",
         "typename": "Overgrown Yard/Trash (Vacant Lot)",
         "status": "OPEN",
         "opened": "08/04/2026",
@@ -62399,13 +63934,14 @@
       }
     ],
     "ce_viol_types": [
+      "Overgrown Yard/Trash (Vacant Lot)",
       "Vacant/Overgrown Property",
-      "Overgrown Yard/Trash (Vacant Lot)"
+      "Property Structure Concerns(Structure Interior)"
     ],
-    "ce_count": 2,
-    "ce_cat_label": "Overgrown Yard/Trash (Vacant Lot)",
+    "ce_count": 3,
+    "ce_cat_label": "Property Structure Concerns(Structure Interior)",
     "ce_status": "OPEN",
-    "opened_date": "08/04/2026",
+    "opened_date": "09/18/2026",
     "ce_case_id": "",
     "appraised_value": "156330.0",
     "land_value": "87820.0",
@@ -62577,8 +64113,8 @@
       }
     ],
     "ce_viol_types": [
-      "Vacant/Overgrown Property",
-      "Dangerous Premise BSB Processed"
+      "Dangerous Premise BSB Processed",
+      "Vacant/Overgrown Property"
     ],
     "ce_count": 2,
     "ce_cat_label": "Dangerous Premise BSB Processed",
@@ -62794,10 +64330,10 @@
     "ce_violations": [
       {
         "case_id": "",
-        "typename": "Vacant/Overgrown Property",
+        "typename": "Structure Maintenance Multi-Tenant (Exterior)",
         "status": "OPEN",
-        "opened": "07/07/2026",
-        "address": "14215 SUSANCREST DR, SAN ANTONIO, TX 78232"
+        "opened": "09/09/2026",
+        "address": "215 SAINT ANTHONY AVE, SAN ANTONIO, TX 78210"
       },
       {
         "case_id": "",
@@ -62805,24 +64341,16 @@
         "status": "OPEN",
         "opened": "02/02/2026",
         "address": "215 SANDMEYER ST, SAN ANTONIO, TX 78208"
-      },
-      {
-        "case_id": "",
-        "typename": "Overgrown Yard/Trash (Vacant Lot)",
-        "status": "OPEN",
-        "opened": "07/16/2026",
-        "address": "1215 STEVES AVE, SAN ANTONIO, TX 78210"
       }
     ],
     "ce_viol_types": [
-      "Vacant/Overgrown Property",
       "Structure Maintenance Multi-Tenant (Interior)",
-      "Overgrown Yard/Trash (Vacant Lot)"
+      "Structure Maintenance Multi-Tenant (Exterior)"
     ],
-    "ce_count": 3,
-    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_count": 2,
+    "ce_cat_label": "Structure Maintenance Multi-Tenant (Exterior)",
     "ce_status": "OPEN",
-    "opened_date": "07/07/2026",
+    "opened_date": "09/09/2026",
     "ce_case_id": "",
     "appraised_value": "137330.0",
     "land_value": "62960.0",
@@ -62921,19 +64449,27 @@
     "ce_violations": [
       {
         "case_id": "",
+        "typename": "Dangerous Premise BSB Processed",
+        "status": "OPEN",
+        "opened": "10/01/2026",
+        "address": "259 CASTROVILLE RD, SAN ANTONIO, TX 78207"
+      },
+      {
+        "case_id": "",
         "typename": "Vacant/Overgrown Property",
         "status": "OPEN",
-        "opened": "04/20/2026",
+        "opened": "10/06/2026",
         "address": "259 CASTROVILLE RD, SAN ANTONIO, TX 78207"
       }
     ],
     "ce_viol_types": [
+      "Dangerous Premise BSB Processed",
       "Vacant/Overgrown Property"
     ],
-    "ce_count": 1,
-    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_count": 2,
+    "ce_cat_label": "Dangerous Premise BSB Processed",
     "ce_status": "OPEN",
-    "opened_date": "04/20/2026",
+    "opened_date": "10/01/2026",
     "ce_case_id": "",
     "appraised_value": "157010.0",
     "land_value": "35940.0",
@@ -63139,14 +64675,14 @@
         "case_id": "",
         "typename": "Vacant/Overgrown Property",
         "status": "OPEN",
-        "opened": "07/16/2026",
+        "opened": "02/04/2026",
         "address": "858 ANGELA ST, SAN ANTONIO, TX 78207"
       },
       {
         "case_id": "",
         "typename": "Vacant/Overgrown Property",
         "status": "OPEN",
-        "opened": "02/04/2026",
+        "opened": "07/16/2026",
         "address": "858 ANGELA ST, SAN ANTONIO, TX 78207"
       }
     ],
@@ -63156,7 +64692,7 @@
     "ce_count": 2,
     "ce_cat_label": "Vacant/Overgrown Property",
     "ce_status": "OPEN",
-    "opened_date": "07/16/2026",
+    "opened_date": "02/04/2026",
     "ce_case_id": "",
     "appraised_value": "145160.0",
     "land_value": "44390.0",
@@ -63305,12 +64841,13 @@
     "owner": "SANCHEZ CARMEN",
     "mail_addr": "",
     "absentee": false,
-    "duplicate": false,
+    "duplicate": true,
     "is_new": false,
     "stacked": true,
     "run_ts": "2026-07-06T22:20:36",
     "flags": [
-      "STACKED"
+      "STACKED",
+      "DUPLICATE"
     ],
     "score": 9,
     "sq_ft": 1406,
@@ -63374,20 +64911,12 @@
         "status": "OPEN",
         "opened": "05/04/2026",
         "address": "338 CORDELIA, SAN ANTONIO, TX 78237"
-      },
-      {
-        "case_id": "",
-        "typename": "Vacant/Overgrown Property",
-        "status": "OPEN",
-        "opened": "08/05/2026",
-        "address": "338 CORDELIA, SAN ANTONIO, TX 78237"
       }
     ],
     "ce_viol_types": [
-      "Vacant/Overgrown Property",
       "Dangerous Premise BSB Processed"
     ],
-    "ce_count": 2,
+    "ce_count": 1,
     "ce_cat_label": "Dangerous Premise BSB Processed",
     "ce_status": "OPEN",
     "opened_date": "05/04/2026",
@@ -63436,7 +64965,7 @@
         "case_id": "",
         "typename": "Vacant/Overgrown Property",
         "status": "OPEN",
-        "opened": "06/13/2026",
+        "opened": "08/31/2026",
         "address": "482 CRESTFIELD DR, SAN ANTONIO, TX 78227"
       }
     ],
@@ -63446,7 +64975,7 @@
     "ce_count": 1,
     "ce_cat_label": "Vacant/Overgrown Property",
     "ce_status": "OPEN",
-    "opened_date": "06/13/2026",
+    "opened_date": "08/31/2026",
     "ce_case_id": "",
     "appraised_value": "194630.0",
     "land_value": "35940.0",
@@ -63542,6 +65071,13 @@
     "ce_violations": [
       {
         "case_id": "",
+        "typename": "Property Structure Concerns(Structure Exterior)",
+        "status": "OPEN",
+        "opened": "09/21/2026",
+        "address": "1903 W WOODLAWN AVE, SAN ANTONIO, TX 78201"
+      },
+      {
+        "case_id": "",
         "typename": "Vacant/Overgrown Property",
         "status": "OPEN",
         "opened": "06/30/2026",
@@ -63549,12 +65085,13 @@
       }
     ],
     "ce_viol_types": [
-      "Vacant/Overgrown Property"
+      "Vacant/Overgrown Property",
+      "Property Structure Concerns(Structure Exterior)"
     ],
-    "ce_count": 1,
-    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_count": 2,
+    "ce_cat_label": "Property Structure Concerns(Structure Exterior)",
     "ce_status": "OPEN",
-    "opened_date": "06/30/2026",
+    "opened_date": "09/21/2026",
     "ce_case_id": "",
     "appraised_value": "188000.0",
     "land_value": "92670.0",
@@ -63715,10 +65252,10 @@
     "ce_violations": [
       {
         "case_id": "",
-        "typename": "Overgrown Yard/Trash (Vacant Lot)",
+        "typename": "Vacant/Overgrown Property",
         "status": "OPEN",
-        "opened": "08/05/2026",
-        "address": "719 EMMETT AVE, SAN ANTONIO, TX 78221"
+        "opened": "10/08/2026",
+        "address": "719 E SUNSHINE DR, SAN ANTONIO, TX 78228"
       },
       {
         "case_id": "",
@@ -63726,24 +65263,16 @@
         "status": "OPEN",
         "opened": "05/21/2026",
         "address": "719 E SUNSHINE DR, SAN ANTONIO, TX 78228"
-      },
-      {
-        "case_id": "",
-        "typename": "Vacant/Overgrown Property",
-        "status": "OPEN",
-        "opened": "08/14/2026",
-        "address": "719 E SUNSHINE DR, SAN ANTONIO, TX 78228"
       }
     ],
     "ce_viol_types": [
-      "Vacant/Overgrown Property",
-      "Overgrown Yard/Trash (Vacant Lot)",
-      "Dangerous Premise BSB Processed"
+      "Dangerous Premise BSB Processed",
+      "Vacant/Overgrown Property"
     ],
-    "ce_count": 3,
-    "ce_cat_label": "Overgrown Yard/Trash (Vacant Lot)",
+    "ce_count": 2,
+    "ce_cat_label": "Vacant/Overgrown Property",
     "ce_status": "OPEN",
-    "opened_date": "08/05/2026",
+    "opened_date": "10/08/2026",
     "ce_case_id": "",
     "appraised_value": "199510.0",
     "land_value": "125790.0",
@@ -65957,7 +67486,12 @@
     "arv_estimate": 330300,
     "arv_status": "SOLD",
     "arv_sqft": 2618,
-    "arv_fetched_at": "2026-10-14T23:15:22Z"
+    "arv_fetched_at": "2026-10-14T23:15:22Z",
+    "dash_phone": "2102321802",
+    "dash_searched_at": "2026-10-15T17:21:48.060Z",
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-10-15T17:21:48.060Z",
+    "ghl_id": "u3okDlke3vcpTA5feHa1"
   },
   {
     "type": "NOF",
@@ -68844,6 +70378,106 @@
     "arv_status": "",
     "arv_sqft": "",
     "arv_fetched_at": ""
+  },
+  {
+    "type": "NOF",
+    "address": "9511 SANDY ELMS",
+    "owner": "BRIONES ALMA",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20261200003",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "10",
+    "city": "SAN ANTONIO",
+    "zip": "78251",
+    "school_dist": "",
+    "date_filed": "10/2026",
+    "date_recorded": "10/15/2026",
+    "sale_date": "01/05/2027",
+    "run_ts": "2026-10-15T17:54:06Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "prop_id": "665841",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "appr_history": [],
+    "appr_trend": "",
+    "appraised_value": "263030",
+    "annual_taxes": "",
+    "land_value": "",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-10-15T18:24:50Z",
+    "arv_estimate": 270544,
+    "arv_status": "SOLD",
+    "arv_sqft": 1698,
+    "arv_fetched_at": "2026-10-15T18:24:50Z",
+    "stacked": false,
+    "score": 7,
+    "days_until_sale": 81
+  },
+  {
+    "type": "NOF",
+    "address": "9719 HIDDEN ROCK",
+    "owner": "VASQUEZ DAVID",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20261200002",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "10",
+    "city": "SAN ANTONIO",
+    "zip": "78250",
+    "school_dist": "",
+    "date_filed": "10/2026",
+    "date_recorded": "10/15/2026",
+    "sale_date": "01/05/2027",
+    "run_ts": "2026-10-15T17:54:06Z",
+    "flags": [
+      "NEW",
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "prop_id": "719287",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "appr_history": [],
+    "appr_trend": "",
+    "appraised_value": "197190",
+    "annual_taxes": "",
+    "land_value": "",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-10-15T18:24:53Z",
+    "arv_estimate": 187000,
+    "arv_status": "SOLD",
+    "arv_sqft": 1182,
+    "arv_fetched_at": "2026-10-15T18:24:53Z",
+    "stacked": false,
+    "score": 7,
+    "days_until_sale": 81
   },
   {
     "type": "NOF",
@@ -73744,6 +75378,54 @@
     "arv_status": "FOR_SALE",
     "arv_sqft": 2400,
     "arv_fetched_at": "2026-09-18T22:29:44Z"
+  },
+  {
+    "type": "NOF",
+    "address": "6526 BENWOOD CREST",
+    "owner": "",
+    "mail_addr": "",
+    "absentee": false,
+    "duplicate": false,
+    "is_new": true,
+    "doc_number": "20261200001",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "10",
+    "city": "SAN ANTONIO",
+    "zip": "78238",
+    "school_dist": "",
+    "date_filed": "10/2026",
+    "date_recorded": "10/15/2026",
+    "sale_date": "01/05/2027",
+    "run_ts": "2026-10-15T17:54:06Z",
+    "flags": [
+      "NEW",
+      "NO OWNER",
+      "HAS SALE DATE"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "prop_id": "",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "appr_history": [],
+    "appr_trend": "",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-10-15T18:24:51Z",
+    "arv_estimate": 238600,
+    "arv_status": "SOLD",
+    "arv_sqft": 1721,
+    "arv_fetched_at": "2026-10-15T18:24:51Z",
+    "stacked": false,
+    "score": 4,
+    "days_until_sale": 81
   },
   {
     "type": "NOF",
