@@ -10433,7 +10433,7 @@
     "days_until_sale": 17,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-10-16T00:06:22Z",
+    "on_market_checked_at": "2026-10-08T00:21:51Z",
     "arv_estimate": 198099,
     "arv_status": "SOLD",
     "arv_sqft": 1178,
@@ -10493,8 +10493,8 @@
     "score": 10,
     "days_until_sale": 17,
     "on_market": true,
-    "on_market_status": "PENDING",
-    "on_market_checked_at": "2026-10-16T00:06:24Z",
+    "on_market_status": "FOR_SALE",
+    "on_market_checked_at": "2026-10-08T00:21:52Z",
     "arv_estimate": 170800,
     "arv_status": "FOR_SALE",
     "arv_sqft": 1612,
@@ -13738,8 +13738,17 @@
     "prop_id": "532174",
     "deed_date": "",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 2929850
+      },
+      {
+        "year": "2025",
+        "appraised": 2929850
+      }
+    ],
+    "appr_trend": "flat",
     "appraised_value": "2929850",
     "annual_taxes": "",
     "land_value": "",
@@ -13964,8 +13973,17 @@
     "prop_id": "446551",
     "deed_date": "",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 172760
+      },
+      {
+        "year": "2025",
+        "appraised": 197440
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "172760",
     "annual_taxes": "",
     "land_value": "",
@@ -14549,7 +14567,12 @@
     "prop_id": "1459254",
     "deed_date": "",
     "last_sale_amt": "",
-    "appr_history": [],
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 106881
+      }
+    ],
     "appr_trend": "",
     "appraised_value": "106881",
     "annual_taxes": "",
@@ -14594,8 +14617,17 @@
     "prop_id": "1404749",
     "deed_date": "",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 44425
+      },
+      {
+        "year": "2025",
+        "appraised": 52990
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "44425",
     "annual_taxes": "",
     "land_value": "",
@@ -15352,7 +15384,7 @@
     "land_value": "",
     "on_market": true,
     "on_market_status": "PENDING",
-    "on_market_checked_at": "2026-10-16T00:06:26Z",
+    "on_market_checked_at": "2026-10-08T00:21:12Z",
     "arv_estimate": 144603,
     "arv_status": "PENDING",
     "arv_sqft": 1032,
@@ -17737,8 +17769,17 @@
     "prop_id": "533910",
     "deed_date": "",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 276010
+      },
+      {
+        "year": "2025",
+        "appraised": 276310
+      }
+    ],
+    "appr_trend": "flat",
     "on_market": false,
     "on_market_status": "OFF_MARKET",
     "on_market_checked_at": "2026-10-09T14:15:16Z",
@@ -19507,8 +19548,17 @@
     "prop_id": "547488",
     "deed_date": "",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 98280
+      },
+      {
+        "year": "2025",
+        "appraised": 116360
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "98280",
     "annual_taxes": "",
     "land_value": "",
@@ -20079,8 +20129,17 @@
     "prop_id": "670372",
     "deed_date": "",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 911660
+      },
+      {
+        "year": "2025",
+        "appraised": 906710
+      }
+    ],
+    "appr_trend": "flat",
     "appraised_value": "911660",
     "annual_taxes": "",
     "land_value": "",
@@ -20139,7 +20198,7 @@
     "land_value": "",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-10-16T00:06:27Z",
+    "on_market_checked_at": "2026-10-08T00:21:24Z",
     "arv_estimate": 221400,
     "arv_status": "SOLD",
     "arv_sqft": 1920,
@@ -20906,8 +20965,17 @@
     "prop_id": "116246",
     "deed_date": "",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 193660
+      },
+      {
+        "year": "2025",
+        "appraised": 200260
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "193660",
     "annual_taxes": "",
     "land_value": "",
@@ -23213,8 +23281,17 @@
     "prop_id": "572111",
     "deed_date": "",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 170300
+      },
+      {
+        "year": "2025",
+        "appraised": 173020
+      }
+    ],
+    "appr_trend": "flat",
     "appraised_value": "170300",
     "annual_taxes": "",
     "land_value": "",
@@ -23794,8 +23871,17 @@
     "prop_id": "579921",
     "deed_date": "",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 180450
+      },
+      {
+        "year": "2025",
+        "appraised": 181130
+      }
+    ],
+    "appr_trend": "flat",
     "appraised_value": "180450",
     "annual_taxes": "",
     "land_value": "",
@@ -26156,8 +26242,17 @@
     "prop_id": "152360.0",
     "deed_date": "",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 171300
+      },
+      {
+        "year": "2025",
+        "appraised": 179850
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "171300",
     "annual_taxes": "",
     "land_value": "85500.0",
@@ -28764,7 +28859,7 @@
     "land_value": "",
     "on_market": false,
     "on_market_status": "CONTINGENT",
-    "on_market_checked_at": "2026-10-16T00:06:29Z",
+    "on_market_checked_at": "2026-10-08T00:21:13Z",
     "arv_estimate": 961500,
     "arv_status": "CONTINGENT",
     "arv_sqft": 3690,
@@ -32995,6 +33090,122 @@
     "days_until_sale": 136
   },
   {
+    "doc_number": "20260200493",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Beuhler Paul E",
+    "address": "103  PRIMERA DR",
+    "city": "SAN ANTONIO",
+    "zip": "78212",
+    "date_filed": "10/2026",
+    "month": "10",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-10-15T23:43:06Z",
+    "score": 10,
+    "flags": [
+      "ABSENTEE",
+      "DUPLICATE",
+      "LONG HELD"
+    ],
+    "absentee": true,
+    "duplicate": true,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "477000",
+    "annual_taxes": "",
+    "mail_addr": "238 PARKLANE DR SAN ANTONIO, TX 78212-1750",
+    "prop_id": "349217.0",
+    "land_value": "",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false,
+    "deed_date": "3/28/2007",
+    "last_sale_amt": "",
+    "tenure_years": 19,
+    "tenure_score_bonus": 25,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 477000
+      },
+      {
+        "year": "2025",
+        "appraised": 544000
+      }
+    ],
+    "appr_trend": "down",
+    "arv_estimate": 477000,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-16T14:14:16Z",
+    "appt_converted": false,
+    "appt_stale": false
+  },
+  {
+    "doc_number": "20260200224",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Idaho Housing And Finance Association",
+    "address": "4803 TUSLER PARK",
+    "city": "SAN ANTONIO",
+    "zip": "78112",
+    "date_filed": "10/2026",
+    "month": "10",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-10-15T23:43:06Z",
+    "score": 10,
+    "flags": [
+      "ABSENTEE",
+      "DUPLICATE",
+      "LONG HELD"
+    ],
+    "absentee": true,
+    "duplicate": true,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "195430",
+    "annual_taxes": "",
+    "mail_addr": "4803 LOST HILLS DR ELMENDORF, TX 78112-6284",
+    "prop_id": "177623.0",
+    "land_value": "",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false,
+    "deed_date": "7/9/2008",
+    "last_sale_amt": "",
+    "tenure_years": 18,
+    "tenure_score_bonus": 25,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 195430
+      },
+      {
+        "year": "2025",
+        "appraised": 196980
+      }
+    ],
+    "appr_trend": "flat",
+    "arv_estimate": 195430,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-16T14:14:20Z",
+    "appt_converted": false,
+    "appt_stale": false
+  },
+  {
     "doc_number": "20260199086",
     "ps_doc_id": "",
     "type": "APPT",
@@ -34664,7 +34875,7 @@
     "appr_trend": "flat",
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-10-16T00:06:31Z",
+    "on_market_checked_at": "2026-10-01T15:20:53Z",
     "arv_estimate": 515285,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 2786,
@@ -34725,7 +34936,7 @@
     "appr_trend": "flat",
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-10-16T00:06:32Z",
+    "on_market_checked_at": "2026-10-01T15:20:55Z",
     "arv_estimate": 515285,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 2786,
@@ -34786,7 +34997,7 @@
     "appr_trend": "flat",
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-10-16T00:06:34Z",
+    "on_market_checked_at": "2026-10-01T15:20:56Z",
     "arv_estimate": 515285,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 2786,
@@ -34912,7 +35123,7 @@
     "appt_stale": true,
     "on_market": true,
     "on_market_status": "FOR_SALE",
-    "on_market_checked_at": "2026-10-16T00:06:35Z",
+    "on_market_checked_at": "2026-10-01T15:20:58Z",
     "arv_estimate": 268400,
     "arv_status": "FOR_SALE",
     "arv_sqft": 1136
@@ -34976,7 +35187,7 @@
     "appt_stale": true,
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-10-16T00:06:37Z",
+    "on_market_checked_at": "2026-10-01T15:20:59Z",
     "arv_estimate": 164819,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 1566,
@@ -35046,7 +35257,7 @@
     "appt_stale": true,
     "on_market": false,
     "on_market_status": "CONTINGENT",
-    "on_market_checked_at": "2026-10-16T00:06:50Z",
+    "on_market_checked_at": "2026-10-01T15:21:14Z",
     "arv_estimate": 287000,
     "arv_status": "CONTINGENT",
     "arv_sqft": 1282,
@@ -35114,7 +35325,7 @@
     "converted_doc_number": "20260900319",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-10-16T00:06:52Z",
+    "on_market_checked_at": "2026-10-01T15:21:16Z",
     "arv_estimate": 176323,
     "arv_status": "SOLD",
     "arv_sqft": 1279,
@@ -35242,7 +35453,7 @@
     "appt_stale": true,
     "on_market": true,
     "on_market_status": "FOR_RENT",
-    "on_market_checked_at": "2026-10-16T00:06:54Z",
+    "on_market_checked_at": "2026-10-01T15:21:17Z",
     "arv_estimate": 331090,
     "arv_status": "APPRAISED_FALLBACK",
     "arv_fetched_at": "2026-08-31T23:51:54Z"
@@ -35302,7 +35513,7 @@
     "dash_phone": "2109908958",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-10-16T00:06:56Z",
+    "on_market_checked_at": "2026-10-01T15:21:19Z",
     "arv_estimate": 247200,
     "arv_status": "SOLD",
     "arv_sqft": 1793,
@@ -35358,7 +35569,7 @@
     "days_until_sale": null,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-10-16T00:06:57Z",
+    "on_market_checked_at": "2026-10-01T18:27:25Z",
     "arv_estimate": 342000,
     "arv_status": "SOLD",
     "arv_sqft": 1651,
@@ -37681,8 +37892,17 @@
     "last_sale_amt": "",
     "tenure_years": null,
     "tenure_score_bonus": 0,
-    "appr_history": [],
-    "appr_trend": ""
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 75000
+      },
+      {
+        "year": "2025",
+        "appraised": 75000
+      }
+    ],
+    "appr_trend": "flat"
   },
   {
     "doc_number": "VBP-3023-ROOSEVELT-AVE-78214",
@@ -37888,8 +38108,17 @@
     "last_sale_amt": "",
     "tenure_years": null,
     "tenure_score_bonus": 0,
-    "appr_history": [],
-    "appr_trend": ""
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 75000
+      },
+      {
+        "year": "2025",
+        "appraised": 79840
+      }
+    ],
+    "appr_trend": "down"
   },
   {
     "doc_number": "20260180079",
@@ -39413,6 +39642,795 @@
     "appt_stale": false
   },
   {
+    "doc_number": "VBP-1005-N-FLORES-ST-78212",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "1005 N FLORES ST",
+    "city": "SAN ANTONIO",
+    "zip": "78212",
+    "date_filed": "2026-10",
+    "sale_date": "",
+    "owner": "MICHAEL MARTINEZ",
+    "mail_addr": "1001 N FLORES SAN ANTONIO, TX 78212",
+    "absentee": true,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-10-15T16:11:34",
+    "flags": [
+      "STACKED",
+      "ABSENTEE"
+    ],
+    "score": 10,
+    "sq_ft": 1420,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "09/30/2026",
+        "address": "1005 N COLORADO ST, SAN ANTONIO, TX 78207"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "09/30/2026",
+    "ce_case_id": "",
+    "appraised_value": "260000",
+    "land_value": "",
+    "prop_id": "104607",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "deed_date": "11/8/2023",
+    "last_sale_amt": "",
+    "tenure_years": 2,
+    "tenure_score_bonus": 0,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 260000
+      },
+      {
+        "year": "2025",
+        "appraised": 292390
+      }
+    ],
+    "appr_trend": "down",
+    "on_market_checked_at": "2026-10-15T18:24:38Z",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-203-UPSON-ST-78212",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "203 UPSON ST",
+    "city": "SAN ANTONIO",
+    "zip": "78212",
+    "date_filed": "2026-10",
+    "sale_date": "",
+    "owner": "CENTER FOR INTERCULTURAL COMMUNICATIONS INC",
+    "mail_addr": "COMMUNICATIONS INC 1251 LIMERICK LN CANYON LAKE, TX 78133-3008",
+    "absentee": true,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-10-15T16:11:34",
+    "flags": [
+      "STACKED",
+      "ABSENTEE"
+    ],
+    "score": 10,
+    "sq_ft": 1686,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "10/05/2026",
+        "address": "203 UPSON, SAN ANTONIO, TX 78212"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "10/05/2026",
+    "ce_case_id": "",
+    "appraised_value": "200490",
+    "land_value": "",
+    "prop_id": "109311",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 200490
+      },
+      {
+        "year": "2025",
+        "appraised": 200490
+      }
+    ],
+    "appr_trend": "flat",
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-10-15T18:24:39Z",
+    "arv_estimate": 247513,
+    "arv_status": "OFF_MARKET",
+    "arv_sqft": 1686,
+    "arv_fetched_at": "2026-10-15T18:24:39Z",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-234-ODELL-ST-78212",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "234 ODELL ST",
+    "city": "SAN ANTONIO",
+    "zip": "78212",
+    "date_filed": "2026-10",
+    "sale_date": "",
+    "owner": "BROWN MARY EUNEST JEAN",
+    "mail_addr": "7610 GOLDENGROVE DR SPRING, TX 77379-7038",
+    "absentee": true,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-10-15T16:11:34",
+    "flags": [
+      "STACKED",
+      "ABSENTEE",
+      "LONG HELD"
+    ],
+    "score": 10,
+    "sq_ft": 784,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "09/28/2026",
+        "address": "234 ODELL ST, SAN ANTONIO, TX 78212"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "09/28/2026",
+    "ce_case_id": "",
+    "appraised_value": "128750",
+    "land_value": "",
+    "prop_id": "392042",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "deed_date": "5/15/1998",
+    "last_sale_amt": "",
+    "tenure_years": 28,
+    "tenure_score_bonus": 25,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 128750
+      },
+      {
+        "year": "2025",
+        "appraised": 128750
+      }
+    ],
+    "appr_trend": "flat",
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-10-15T18:24:41Z",
+    "arv_estimate": 166685,
+    "arv_status": "OFF_MARKET",
+    "arv_sqft": 784,
+    "arv_fetched_at": "2026-10-15T18:24:41Z",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-403-CLOWER-78212",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "403 CLOWER",
+    "city": "SAN ANTONIO",
+    "zip": "78212",
+    "date_filed": "2026-10",
+    "sale_date": "",
+    "owner": "DANIEL D RAMIREZ",
+    "mail_addr": "914 SOMERSET RD SAN ANTONIO, TX 78211-1952",
+    "absentee": true,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-10-15T16:11:34",
+    "flags": [
+      "STACKED",
+      "ABSENTEE"
+    ],
+    "score": 10,
+    "sq_ft": 828,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "10/07/2026",
+        "address": "403 CLOWER, SAN ANTONIO, TX 78212"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "10/07/2026",
+    "ce_case_id": "",
+    "appraised_value": "173290",
+    "land_value": "",
+    "prop_id": "442919",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "deed_date": "3/5/2021",
+    "last_sale_amt": "",
+    "tenure_years": 5,
+    "tenure_score_bonus": 5,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 173290
+      },
+      {
+        "year": "2025",
+        "appraised": 173290
+      }
+    ],
+    "appr_trend": "flat",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-10-15T18:24:44Z",
+    "arv_estimate": 163600,
+    "arv_status": "SOLD",
+    "arv_sqft": 828,
+    "arv_fetched_at": "2026-10-15T18:24:44Z",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-1005-N-CHERRY-78202",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "1005 N CHERRY",
+    "city": "SAN ANTONIO",
+    "zip": "78202",
+    "date_filed": "2026-10",
+    "sale_date": "",
+    "owner": "MALDENADO JACQUELINE",
+    "mail_addr": "402 BURLESON SAN ANTONIO, TX 78202",
+    "absentee": true,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-10-15T16:11:34",
+    "flags": [
+      "STACKED",
+      "ABSENTEE"
+    ],
+    "score": 10,
+    "sq_ft": 621,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "09/30/2026",
+        "address": "1005 N COLORADO ST, SAN ANTONIO, TX 78207"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "09/30/2026",
+    "ce_case_id": "",
+    "appraised_value": "88840",
+    "land_value": "",
+    "prop_id": "105033",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "deed_date": "",
+    "last_sale_amt": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 88840
+      },
+      {
+        "year": "2025",
+        "appraised": 98230
+      }
+    ],
+    "appr_trend": "down",
+    "on_market_checked_at": "2026-10-15T18:24:47Z",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-1222-BURLESON-78202",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "1222 BURLESON",
+    "city": "SAN ANTONIO",
+    "zip": "78202",
+    "date_filed": "2026-10",
+    "sale_date": "",
+    "owner": "LITOFSKY ANA & LITOFSKY MARTIN",
+    "mail_addr": "203 ATWATER DR SAN ANTONIO, TX 78213-3321",
+    "absentee": true,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-10-15T16:11:34",
+    "flags": [
+      "STACKED",
+      "ABSENTEE",
+      "LONG HELD"
+    ],
+    "score": 10,
+    "sq_ft": 742,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "09/21/2026",
+        "address": "1222 BURLESON ST, SAN ANTONIO, TX 78202"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "09/21/2026",
+    "ce_case_id": "",
+    "appraised_value": "76870",
+    "land_value": "",
+    "prop_id": "111345",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "deed_date": "3/28/2007",
+    "last_sale_amt": "",
+    "tenure_years": 19,
+    "tenure_score_bonus": 25,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 76870
+      },
+      {
+        "year": "2025",
+        "appraised": 77000
+      }
+    ],
+    "appr_trend": "flat",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-10-15T18:24:48Z",
+    "arv_estimate": 119000,
+    "arv_status": "SOLD",
+    "arv_sqft": 742,
+    "arv_fetched_at": "2026-10-15T18:24:48Z",
+    "days_until_sale": null
+  },
+  {
+    "doc_number": "VBP-717-BURLESON-78202",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "717 BURLESON",
+    "city": "SAN ANTONIO",
+    "zip": "78202",
+    "date_filed": "2026-10",
+    "sale_date": "",
+    "owner": "FWC 23 01 LLC",
+    "mail_addr": "3805 AVENUE H AUSTIN, TX 78751",
+    "absentee": true,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-10-15T16:11:34",
+    "flags": [
+      "STACKED",
+      "ABSENTEE"
+    ],
+    "score": 10,
+    "sq_ft": 946,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "10/03/2026",
+        "address": "717 BURLESON ST, SAN ANTONIO, TX 78202"
+      },
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "10/03/2026",
+        "address": "717 BURLESON ST, SAN ANTONIO, TX 78202"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 2,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "10/03/2026",
+    "ce_case_id": "",
+    "appraised_value": "171580",
+    "land_value": "",
+    "prop_id": "113555",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "deed_date": "7/14/2023",
+    "last_sale_amt": "",
+    "tenure_years": 3,
+    "tenure_score_bonus": 0,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 171580
+      },
+      {
+        "year": "2025",
+        "appraised": 189870
+      }
+    ],
+    "appr_trend": "down",
+    "days_until_sale": null,
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-10-15T19:16:16Z",
+    "arv_estimate": 178800,
+    "arv_status": "SOLD",
+    "arv_sqft": 946,
+    "arv_fetched_at": "2026-10-15T19:16:16Z"
+  },
+  {
+    "doc_number": "VBP-907-BURLESON-78202",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "907 BURLESON",
+    "city": "SAN ANTONIO",
+    "zip": "78202",
+    "date_filed": "2026-10",
+    "sale_date": "",
+    "owner": "QUINN JOHN J & KATHLEEN F REV TRUST",
+    "mail_addr": "951 S ALAMO ST SAN ANTONIO, TX 78205-3438",
+    "absentee": true,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-10-15T16:11:34",
+    "flags": [
+      "STACKED",
+      "ABSENTEE",
+      "LONG HELD"
+    ],
+    "score": 10,
+    "sq_ft": 1370,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "09/25/2026",
+        "address": "907 BURLESON ST, SAN ANTONIO, TX 78202"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "09/25/2026",
+    "ce_case_id": "",
+    "appraised_value": "185315",
+    "land_value": "",
+    "prop_id": "113594",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "deed_date": "2/8/2012",
+    "last_sale_amt": "",
+    "tenure_years": 14,
+    "tenure_score_bonus": 15,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 185315
+      },
+      {
+        "year": "2025",
+        "appraised": 185315
+      }
+    ],
+    "appr_trend": "flat",
+    "days_until_sale": null,
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-10-15T19:16:18Z",
+    "arv_estimate": 220000,
+    "arv_status": "OFF_MARKET",
+    "arv_sqft": 1370,
+    "arv_fetched_at": "2026-10-15T19:16:18Z"
+  },
+  {
+    "doc_number": "VBP-627-NEVADA-ST-78203",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "627 NEVADA ST",
+    "city": "SAN ANTONIO",
+    "zip": "78203",
+    "date_filed": "2026-10",
+    "sale_date": "",
+    "owner": "CARSON WENDELL",
+    "mail_addr": "4307 EULALEE DR SAN ANTONIO, TX 78220",
+    "absentee": true,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-10-15T16:11:34",
+    "flags": [
+      "STACKED",
+      "ABSENTEE"
+    ],
+    "score": 10,
+    "sq_ft": 858,
+    "is_sf": false,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "09/10/2026",
+        "address": "627 NEVADA, SAN ANTONIO, TX 78203"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "09/10/2026",
+    "ce_case_id": "",
+    "appraised_value": "70000",
+    "land_value": "",
+    "prop_id": "106784",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "deed_date": "8/11/2017",
+    "last_sale_amt": "",
+    "tenure_years": 9,
+    "tenure_score_bonus": 5,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 70000
+      },
+      {
+        "year": "2025",
+        "appraised": 85000
+      }
+    ],
+    "appr_trend": "down",
+    "days_until_sale": null,
+    "on_market": false,
+    "on_market_status": "OFF_MARKET",
+    "on_market_checked_at": "2026-10-15T19:16:21Z",
+    "arv_estimate": 112319,
+    "arv_status": "OFF_MARKET",
+    "arv_sqft": 858,
+    "arv_fetched_at": "2026-10-15T19:16:21Z"
+  },
+  {
+    "doc_number": "VBP-421-PIERCE-AVE-78208",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "421 PIERCE AVE",
+    "city": "SAN ANTONIO",
+    "zip": "78208",
+    "date_filed": "2026-10",
+    "sale_date": "",
+    "owner": "MOAT MANAGEMENT LLC",
+    "mail_addr": "421 PIERCE SAN ANTONIO, TX 78208",
+    "absentee": true,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-10-15T16:11:34",
+    "flags": [
+      "STACKED",
+      "ABSENTEE"
+    ],
+    "score": 10,
+    "sq_ft": 1656,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "10/05/2026",
+        "address": "421 PIERCE, SAN ANTONIO, TX 78208"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "10/05/2026",
+    "ce_case_id": "",
+    "appraised_value": "210330",
+    "land_value": "",
+    "prop_id": "1310838",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "deed_date": "9/10/2024",
+    "last_sale_amt": "",
+    "tenure_years": 2,
+    "tenure_score_bonus": 0,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 210330
+      },
+      {
+        "year": "2025",
+        "appraised": 235750
+      }
+    ],
+    "appr_trend": "down",
+    "days_until_sale": null,
+    "on_market_checked_at": "2026-10-15T19:16:23Z"
+  },
+  {
+    "doc_number": "VBP-202-CHICAGO-BLVD-78210",
+    "type": "VBP",
+    "source": "vbp_ce",
+    "address": "202 CHICAGO BLVD",
+    "city": "SAN ANTONIO",
+    "zip": "78210",
+    "date_filed": "2026-10",
+    "sale_date": "",
+    "owner": "MICHAEL CHARLES ANZULAVICH",
+    "mail_addr": "217 REGENT ST APT 1 HAMPTON, VA 23669",
+    "absentee": true,
+    "duplicate": false,
+    "is_new": false,
+    "stacked": true,
+    "run_ts": "2026-10-15T16:11:34",
+    "flags": [
+      "STACKED",
+      "ABSENTEE"
+    ],
+    "score": 10,
+    "sq_ft": 2458,
+    "is_sf": true,
+    "ce_violations": [
+      {
+        "case_id": "",
+        "typename": "Vacant/Overgrown Property",
+        "status": "OPEN",
+        "opened": "10/02/2026",
+        "address": "202 CHICAGO BLVD, SAN ANTONIO, TX 78210"
+      }
+    ],
+    "ce_viol_types": [
+      "Vacant/Overgrown Property"
+    ],
+    "ce_count": 1,
+    "ce_cat_label": "Vacant/Overgrown Property",
+    "ce_status": "OPEN",
+    "opened_date": "10/02/2026",
+    "ce_case_id": "",
+    "appraised_value": "223970",
+    "land_value": "",
+    "prop_id": "140025",
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "annual_taxes": "",
+    "ps_doc_id": "",
+    "deed_date": "3/5/2025",
+    "last_sale_amt": "",
+    "tenure_years": 1,
+    "tenure_score_bonus": 0,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 223970
+      },
+      {
+        "year": "2025",
+        "appraised": 233210
+      }
+    ],
+    "appr_trend": "down",
+    "days_until_sale": null,
+    "on_market_checked_at": "2026-10-15T19:16:25Z"
+  },
+  {
     "type": "NOF",
     "address": "3359 BOB BILLA ST",
     "owner": "MORENO SEBASTIAN",
@@ -39903,8 +40921,17 @@
     "prop_id": "383508",
     "deed_date": "",
     "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 164060
+      },
+      {
+        "year": "2025",
+        "appraised": 189550
+      }
+    ],
+    "appr_trend": "down",
     "appraised_value": "164060",
     "annual_taxes": "",
     "land_value": "",
@@ -40935,189 +41962,6 @@
     "days_until_sale": null
   },
   {
-    "doc_number": "VBP-1005-N-FLORES-ST-78212",
-    "type": "VBP",
-    "source": "vbp_ce",
-    "address": "1005 N FLORES ST",
-    "city": "SAN ANTONIO",
-    "zip": "78212",
-    "date_filed": "2026-10",
-    "sale_date": "",
-    "owner": "MICHAEL MARTINEZ",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "stacked": true,
-    "run_ts": "2026-10-15T16:11:34",
-    "flags": [
-      "STACKED"
-    ],
-    "score": 9,
-    "sq_ft": 1420,
-    "is_sf": true,
-    "ce_violations": [
-      {
-        "case_id": "",
-        "typename": "Vacant/Overgrown Property",
-        "status": "OPEN",
-        "opened": "09/30/2026",
-        "address": "1005 N COLORADO ST, SAN ANTONIO, TX 78207"
-      }
-    ],
-    "ce_viol_types": [
-      "Vacant/Overgrown Property"
-    ],
-    "ce_count": 1,
-    "ce_cat_label": "Vacant/Overgrown Property",
-    "ce_status": "OPEN",
-    "opened_date": "09/30/2026",
-    "ce_case_id": "",
-    "appraised_value": "260000",
-    "land_value": "",
-    "prop_id": "104607",
-    "loan_amount": "",
-    "loan_date": "",
-    "lender": "",
-    "trustee": "",
-    "annual_taxes": "",
-    "ps_doc_id": "",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "appr_history": [],
-    "appr_trend": "",
-    "on_market_checked_at": "2026-10-15T18:24:38Z",
-    "days_until_sale": null
-  },
-  {
-    "doc_number": "VBP-203-UPSON-ST-78212",
-    "type": "VBP",
-    "source": "vbp_ce",
-    "address": "203 UPSON ST",
-    "city": "SAN ANTONIO",
-    "zip": "78212",
-    "date_filed": "2026-10",
-    "sale_date": "",
-    "owner": "CENTER FOR INTERCULTURAL COMMUNICATIONS INC",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "stacked": true,
-    "run_ts": "2026-10-15T16:11:34",
-    "flags": [
-      "STACKED"
-    ],
-    "score": 9,
-    "sq_ft": 1686,
-    "is_sf": true,
-    "ce_violations": [
-      {
-        "case_id": "",
-        "typename": "Vacant/Overgrown Property",
-        "status": "OPEN",
-        "opened": "10/05/2026",
-        "address": "203 UPSON, SAN ANTONIO, TX 78212"
-      }
-    ],
-    "ce_viol_types": [
-      "Vacant/Overgrown Property"
-    ],
-    "ce_count": 1,
-    "ce_cat_label": "Vacant/Overgrown Property",
-    "ce_status": "OPEN",
-    "opened_date": "10/05/2026",
-    "ce_case_id": "",
-    "appraised_value": "200490",
-    "land_value": "",
-    "prop_id": "109311",
-    "loan_amount": "",
-    "loan_date": "",
-    "lender": "",
-    "trustee": "",
-    "annual_taxes": "",
-    "ps_doc_id": "",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "appr_history": [],
-    "appr_trend": "",
-    "on_market": false,
-    "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-10-15T18:24:39Z",
-    "arv_estimate": 247513,
-    "arv_status": "OFF_MARKET",
-    "arv_sqft": 1686,
-    "arv_fetched_at": "2026-10-15T18:24:39Z",
-    "days_until_sale": null
-  },
-  {
-    "doc_number": "VBP-234-ODELL-ST-78212",
-    "type": "VBP",
-    "source": "vbp_ce",
-    "address": "234 ODELL ST",
-    "city": "SAN ANTONIO",
-    "zip": "78212",
-    "date_filed": "2026-10",
-    "sale_date": "",
-    "owner": "BROWN MARY EUNEST JEAN",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "stacked": true,
-    "run_ts": "2026-10-15T16:11:34",
-    "flags": [
-      "STACKED"
-    ],
-    "score": 9,
-    "sq_ft": 784,
-    "is_sf": true,
-    "ce_violations": [
-      {
-        "case_id": "",
-        "typename": "Vacant/Overgrown Property",
-        "status": "OPEN",
-        "opened": "09/28/2026",
-        "address": "234 ODELL ST, SAN ANTONIO, TX 78212"
-      }
-    ],
-    "ce_viol_types": [
-      "Vacant/Overgrown Property"
-    ],
-    "ce_count": 1,
-    "ce_cat_label": "Vacant/Overgrown Property",
-    "ce_status": "OPEN",
-    "opened_date": "09/28/2026",
-    "ce_case_id": "",
-    "appraised_value": "128750",
-    "land_value": "",
-    "prop_id": "392042",
-    "loan_amount": "",
-    "loan_date": "",
-    "lender": "",
-    "trustee": "",
-    "annual_taxes": "",
-    "ps_doc_id": "",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "appr_history": [],
-    "appr_trend": "",
-    "on_market": false,
-    "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-10-15T18:24:41Z",
-    "arv_estimate": 166685,
-    "arv_status": "OFF_MARKET",
-    "arv_sqft": 784,
-    "arv_fetched_at": "2026-10-15T18:24:41Z",
-    "days_until_sale": null
-  },
-  {
     "doc_number": "VBP-2611-N-SAINT-MARYS-ST-78212",
     "type": "VBP",
     "source": "vbp_ce",
@@ -41183,69 +42027,6 @@
     "days_until_sale": null
   },
   {
-    "doc_number": "VBP-403-CLOWER-78212",
-    "type": "VBP",
-    "source": "vbp_ce",
-    "address": "403 CLOWER",
-    "city": "SAN ANTONIO",
-    "zip": "78212",
-    "date_filed": "2026-10",
-    "sale_date": "",
-    "owner": "DANIEL D RAMIREZ",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "stacked": true,
-    "run_ts": "2026-10-15T16:11:34",
-    "flags": [
-      "STACKED"
-    ],
-    "score": 9,
-    "sq_ft": 828,
-    "is_sf": true,
-    "ce_violations": [
-      {
-        "case_id": "",
-        "typename": "Vacant/Overgrown Property",
-        "status": "OPEN",
-        "opened": "10/07/2026",
-        "address": "403 CLOWER, SAN ANTONIO, TX 78212"
-      }
-    ],
-    "ce_viol_types": [
-      "Vacant/Overgrown Property"
-    ],
-    "ce_count": 1,
-    "ce_cat_label": "Vacant/Overgrown Property",
-    "ce_status": "OPEN",
-    "opened_date": "10/07/2026",
-    "ce_case_id": "",
-    "appraised_value": "173290",
-    "land_value": "",
-    "prop_id": "442919",
-    "loan_amount": "",
-    "loan_date": "",
-    "lender": "",
-    "trustee": "",
-    "annual_taxes": "",
-    "ps_doc_id": "",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "appr_history": [],
-    "appr_trend": "",
-    "on_market": false,
-    "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-10-15T18:24:44Z",
-    "arv_estimate": 163600,
-    "arv_status": "SOLD",
-    "arv_sqft": 828,
-    "arv_fetched_at": "2026-10-15T18:24:44Z",
-    "days_until_sale": null
-  },
-  {
     "doc_number": "VBP-620-W-AGARITA-AVE-78212",
     "type": "VBP",
     "source": "vbp_ce",
@@ -41300,126 +42081,6 @@
     "arv_status": "OFF_MARKET",
     "arv_sqft": 958,
     "arv_fetched_at": "2026-10-15T18:24:45Z",
-    "days_until_sale": null
-  },
-  {
-    "doc_number": "VBP-1005-N-CHERRY-78202",
-    "type": "VBP",
-    "source": "vbp_ce",
-    "address": "1005 N CHERRY",
-    "city": "SAN ANTONIO",
-    "zip": "78202",
-    "date_filed": "2026-10",
-    "sale_date": "",
-    "owner": "MALDENADO JACQUELINE",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "stacked": true,
-    "run_ts": "2026-10-15T16:11:34",
-    "flags": [
-      "STACKED"
-    ],
-    "score": 9,
-    "sq_ft": 621,
-    "is_sf": true,
-    "ce_violations": [
-      {
-        "case_id": "",
-        "typename": "Vacant/Overgrown Property",
-        "status": "OPEN",
-        "opened": "09/30/2026",
-        "address": "1005 N COLORADO ST, SAN ANTONIO, TX 78207"
-      }
-    ],
-    "ce_viol_types": [
-      "Vacant/Overgrown Property"
-    ],
-    "ce_count": 1,
-    "ce_cat_label": "Vacant/Overgrown Property",
-    "ce_status": "OPEN",
-    "opened_date": "09/30/2026",
-    "ce_case_id": "",
-    "appraised_value": "88840",
-    "land_value": "",
-    "prop_id": "105033",
-    "loan_amount": "",
-    "loan_date": "",
-    "lender": "",
-    "trustee": "",
-    "annual_taxes": "",
-    "ps_doc_id": "",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "appr_history": [],
-    "appr_trend": "",
-    "on_market_checked_at": "2026-10-15T18:24:47Z",
-    "days_until_sale": null
-  },
-  {
-    "doc_number": "VBP-1222-BURLESON-78202",
-    "type": "VBP",
-    "source": "vbp_ce",
-    "address": "1222 BURLESON",
-    "city": "SAN ANTONIO",
-    "zip": "78202",
-    "date_filed": "2026-10",
-    "sale_date": "",
-    "owner": "LITOFSKY ANA & LITOFSKY MARTIN",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "stacked": true,
-    "run_ts": "2026-10-15T16:11:34",
-    "flags": [
-      "STACKED"
-    ],
-    "score": 9,
-    "sq_ft": 742,
-    "is_sf": true,
-    "ce_violations": [
-      {
-        "case_id": "",
-        "typename": "Vacant/Overgrown Property",
-        "status": "OPEN",
-        "opened": "09/21/2026",
-        "address": "1222 BURLESON ST, SAN ANTONIO, TX 78202"
-      }
-    ],
-    "ce_viol_types": [
-      "Vacant/Overgrown Property"
-    ],
-    "ce_count": 1,
-    "ce_cat_label": "Vacant/Overgrown Property",
-    "ce_status": "OPEN",
-    "opened_date": "09/21/2026",
-    "ce_case_id": "",
-    "appraised_value": "76870",
-    "land_value": "",
-    "prop_id": "111345",
-    "loan_amount": "",
-    "loan_date": "",
-    "lender": "",
-    "trustee": "",
-    "annual_taxes": "",
-    "ps_doc_id": "",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "appr_history": [],
-    "appr_trend": "",
-    "on_market": false,
-    "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-10-15T18:24:48Z",
-    "arv_estimate": 119000,
-    "arv_status": "SOLD",
-    "arv_sqft": 742,
-    "arv_fetched_at": "2026-10-15T18:24:48Z",
     "days_until_sale": null
   },
   {
@@ -41480,139 +42141,6 @@
     "arv_fetched_at": "2026-10-15T19:16:15Z"
   },
   {
-    "doc_number": "VBP-717-BURLESON-78202",
-    "type": "VBP",
-    "source": "vbp_ce",
-    "address": "717 BURLESON",
-    "city": "SAN ANTONIO",
-    "zip": "78202",
-    "date_filed": "2026-10",
-    "sale_date": "",
-    "owner": "FWC 23 01 LLC",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "stacked": true,
-    "run_ts": "2026-10-15T16:11:34",
-    "flags": [
-      "STACKED"
-    ],
-    "score": 9,
-    "sq_ft": 946,
-    "is_sf": true,
-    "ce_violations": [
-      {
-        "case_id": "",
-        "typename": "Vacant/Overgrown Property",
-        "status": "OPEN",
-        "opened": "10/03/2026",
-        "address": "717 BURLESON ST, SAN ANTONIO, TX 78202"
-      },
-      {
-        "case_id": "",
-        "typename": "Vacant/Overgrown Property",
-        "status": "OPEN",
-        "opened": "10/03/2026",
-        "address": "717 BURLESON ST, SAN ANTONIO, TX 78202"
-      }
-    ],
-    "ce_viol_types": [
-      "Vacant/Overgrown Property"
-    ],
-    "ce_count": 2,
-    "ce_cat_label": "Vacant/Overgrown Property",
-    "ce_status": "OPEN",
-    "opened_date": "10/03/2026",
-    "ce_case_id": "",
-    "appraised_value": "171580",
-    "land_value": "",
-    "prop_id": "113555",
-    "loan_amount": "",
-    "loan_date": "",
-    "lender": "",
-    "trustee": "",
-    "annual_taxes": "",
-    "ps_doc_id": "",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "appr_history": [],
-    "appr_trend": "",
-    "days_until_sale": null,
-    "on_market": false,
-    "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-10-15T19:16:16Z",
-    "arv_estimate": 178800,
-    "arv_status": "SOLD",
-    "arv_sqft": 946,
-    "arv_fetched_at": "2026-10-15T19:16:16Z"
-  },
-  {
-    "doc_number": "VBP-907-BURLESON-78202",
-    "type": "VBP",
-    "source": "vbp_ce",
-    "address": "907 BURLESON",
-    "city": "SAN ANTONIO",
-    "zip": "78202",
-    "date_filed": "2026-10",
-    "sale_date": "",
-    "owner": "QUINN JOHN J & KATHLEEN F REV TRUST",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "stacked": true,
-    "run_ts": "2026-10-15T16:11:34",
-    "flags": [
-      "STACKED"
-    ],
-    "score": 9,
-    "sq_ft": 1370,
-    "is_sf": true,
-    "ce_violations": [
-      {
-        "case_id": "",
-        "typename": "Vacant/Overgrown Property",
-        "status": "OPEN",
-        "opened": "09/25/2026",
-        "address": "907 BURLESON ST, SAN ANTONIO, TX 78202"
-      }
-    ],
-    "ce_viol_types": [
-      "Vacant/Overgrown Property"
-    ],
-    "ce_count": 1,
-    "ce_cat_label": "Vacant/Overgrown Property",
-    "ce_status": "OPEN",
-    "opened_date": "09/25/2026",
-    "ce_case_id": "",
-    "appraised_value": "185315",
-    "land_value": "",
-    "prop_id": "113594",
-    "loan_amount": "",
-    "loan_date": "",
-    "lender": "",
-    "trustee": "",
-    "annual_taxes": "",
-    "ps_doc_id": "",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "appr_history": [],
-    "appr_trend": "",
-    "days_until_sale": null,
-    "on_market": false,
-    "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-10-15T19:16:18Z",
-    "arv_estimate": 220000,
-    "arv_status": "OFF_MARKET",
-    "arv_sqft": 1370,
-    "arv_fetched_at": "2026-10-15T19:16:18Z"
-  },
-  {
     "doc_number": "VBP-202-DASHIELL-ST-78203",
     "type": "VBP",
     "source": "vbp_ce",
@@ -41668,183 +42196,6 @@
     "arv_status": "OFF_MARKET",
     "arv_sqft": 924,
     "arv_fetched_at": "2026-10-15T19:16:20Z"
-  },
-  {
-    "doc_number": "VBP-627-NEVADA-ST-78203",
-    "type": "VBP",
-    "source": "vbp_ce",
-    "address": "627 NEVADA ST",
-    "city": "SAN ANTONIO",
-    "zip": "78203",
-    "date_filed": "2026-10",
-    "sale_date": "",
-    "owner": "CARSON WENDELL",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "stacked": true,
-    "run_ts": "2026-10-15T16:11:34",
-    "flags": [
-      "STACKED"
-    ],
-    "score": 9,
-    "sq_ft": 858,
-    "is_sf": false,
-    "ce_violations": [
-      {
-        "case_id": "",
-        "typename": "Vacant/Overgrown Property",
-        "status": "OPEN",
-        "opened": "09/10/2026",
-        "address": "627 NEVADA, SAN ANTONIO, TX 78203"
-      }
-    ],
-    "ce_viol_types": [
-      "Vacant/Overgrown Property"
-    ],
-    "ce_count": 1,
-    "ce_cat_label": "Vacant/Overgrown Property",
-    "ce_status": "OPEN",
-    "opened_date": "09/10/2026",
-    "ce_case_id": "",
-    "appraised_value": "70000",
-    "land_value": "",
-    "prop_id": "106784",
-    "loan_amount": "",
-    "loan_date": "",
-    "lender": "",
-    "trustee": "",
-    "annual_taxes": "",
-    "ps_doc_id": "",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "appr_history": [],
-    "appr_trend": "",
-    "days_until_sale": null,
-    "on_market": false,
-    "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-10-15T19:16:21Z",
-    "arv_estimate": 112319,
-    "arv_status": "OFF_MARKET",
-    "arv_sqft": 858,
-    "arv_fetched_at": "2026-10-15T19:16:21Z"
-  },
-  {
-    "doc_number": "VBP-421-PIERCE-AVE-78208",
-    "type": "VBP",
-    "source": "vbp_ce",
-    "address": "421 PIERCE AVE",
-    "city": "SAN ANTONIO",
-    "zip": "78208",
-    "date_filed": "2026-10",
-    "sale_date": "",
-    "owner": "MOAT MANAGEMENT LLC",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "stacked": true,
-    "run_ts": "2026-10-15T16:11:34",
-    "flags": [
-      "STACKED"
-    ],
-    "score": 9,
-    "sq_ft": 1656,
-    "is_sf": true,
-    "ce_violations": [
-      {
-        "case_id": "",
-        "typename": "Vacant/Overgrown Property",
-        "status": "OPEN",
-        "opened": "10/05/2026",
-        "address": "421 PIERCE, SAN ANTONIO, TX 78208"
-      }
-    ],
-    "ce_viol_types": [
-      "Vacant/Overgrown Property"
-    ],
-    "ce_count": 1,
-    "ce_cat_label": "Vacant/Overgrown Property",
-    "ce_status": "OPEN",
-    "opened_date": "10/05/2026",
-    "ce_case_id": "",
-    "appraised_value": "210330",
-    "land_value": "",
-    "prop_id": "1310838",
-    "loan_amount": "",
-    "loan_date": "",
-    "lender": "",
-    "trustee": "",
-    "annual_taxes": "",
-    "ps_doc_id": "",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "appr_history": [],
-    "appr_trend": "",
-    "days_until_sale": null,
-    "on_market_checked_at": "2026-10-15T19:16:23Z"
-  },
-  {
-    "doc_number": "VBP-202-CHICAGO-BLVD-78210",
-    "type": "VBP",
-    "source": "vbp_ce",
-    "address": "202 CHICAGO BLVD",
-    "city": "SAN ANTONIO",
-    "zip": "78210",
-    "date_filed": "2026-10",
-    "sale_date": "",
-    "owner": "MICHAEL CHARLES ANZULAVICH",
-    "mail_addr": "",
-    "absentee": false,
-    "duplicate": false,
-    "is_new": false,
-    "stacked": true,
-    "run_ts": "2026-10-15T16:11:34",
-    "flags": [
-      "STACKED"
-    ],
-    "score": 9,
-    "sq_ft": 2458,
-    "is_sf": true,
-    "ce_violations": [
-      {
-        "case_id": "",
-        "typename": "Vacant/Overgrown Property",
-        "status": "OPEN",
-        "opened": "10/02/2026",
-        "address": "202 CHICAGO BLVD, SAN ANTONIO, TX 78210"
-      }
-    ],
-    "ce_viol_types": [
-      "Vacant/Overgrown Property"
-    ],
-    "ce_count": 1,
-    "ce_cat_label": "Vacant/Overgrown Property",
-    "ce_status": "OPEN",
-    "opened_date": "10/02/2026",
-    "ce_case_id": "",
-    "appraised_value": "223970",
-    "land_value": "",
-    "prop_id": "140025",
-    "loan_amount": "",
-    "loan_date": "",
-    "lender": "",
-    "trustee": "",
-    "annual_taxes": "",
-    "ps_doc_id": "",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "appr_history": [],
-    "appr_trend": "",
-    "days_until_sale": null,
-    "on_market_checked_at": "2026-10-15T19:16:25Z"
   },
   {
     "doc_number": "VBP-238-CHICAGO-BLVD-78210",
@@ -65555,6 +65906,120 @@
     "arv_fetched_at": "2026-08-30T22:38:29Z"
   },
   {
+    "doc_number": "20260200222",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Idaho Housing And Finance Association",
+    "address": "5123 TERLINGUA PASS",
+    "city": "SAN ANTONIO",
+    "zip": "78223",
+    "date_filed": "10/2026",
+    "month": "10",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-10-15T23:43:06Z",
+    "score": 8,
+    "flags": [
+      "ABSENTEE",
+      "DUPLICATE"
+    ],
+    "absentee": true,
+    "duplicate": true,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "172860",
+    "annual_taxes": "",
+    "mail_addr": "14111 PHEASANT SAN ANTONIO, TX 78223",
+    "prop_id": "1072332.0",
+    "land_value": "",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false,
+    "deed_date": "9/12/2022",
+    "last_sale_amt": "",
+    "tenure_years": 4,
+    "tenure_score_bonus": 0,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 172860
+      },
+      {
+        "year": "2025",
+        "appraised": 178930
+      }
+    ],
+    "appr_trend": "down",
+    "arv_estimate": 172860,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-16T14:14:24Z",
+    "appt_converted": false,
+    "appt_stale": false
+  },
+  {
+    "doc_number": "20260200217",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Idaho Housing And Finance Association",
+    "address": "9523 SEKULA DR",
+    "city": "SAN ANTONIO",
+    "zip": "78224",
+    "date_filed": "10/2026",
+    "month": "10",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-10-15T23:43:06Z",
+    "score": 8,
+    "flags": [
+      "ABSENTEE",
+      "DUPLICATE"
+    ],
+    "absentee": true,
+    "duplicate": true,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "129460",
+    "annual_taxes": "",
+    "mail_addr": "9523 VERONICA ST SAN ANTONIO, TX 78224-2551",
+    "prop_id": "563197.0",
+    "land_value": "",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false,
+    "deed_date": "",
+    "last_sale_amt": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 129460
+      },
+      {
+        "year": "2025",
+        "appraised": 157740
+      }
+    ],
+    "appr_trend": "down",
+    "arv_estimate": 129460,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-16T14:14:28Z",
+    "appt_converted": false,
+    "appt_stale": false
+  },
+  {
     "doc_number": "20260199608",
     "ps_doc_id": "",
     "type": "APPT",
@@ -67756,7 +68221,9 @@
     "stacked": false,
     "score": 7,
     "days_until_sale": 45,
-    "on_market_checked_at": "2026-10-16T00:05:57Z"
+    "arv_estimate": 178210,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-16T14:14:33Z"
   },
   {
     "type": "NOF",
@@ -67799,13 +68266,9 @@
     "stacked": false,
     "score": 7,
     "days_until_sale": 45,
-    "on_market": false,
-    "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-10-16T00:05:59Z",
-    "arv_estimate": 174400,
-    "arv_status": "OFF_MARKET",
-    "arv_sqft": 1452,
-    "arv_fetched_at": "2026-10-16T00:05:59Z"
+    "arv_estimate": 143490,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-16T14:14:37Z"
   },
   {
     "type": "NOF",
@@ -67848,13 +68311,9 @@
     "stacked": false,
     "score": 7,
     "days_until_sale": 45,
-    "on_market": false,
-    "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-10-16T00:06:01Z",
-    "arv_estimate": 202876,
-    "arv_status": "SOLD",
-    "arv_sqft": 1247,
-    "arv_fetched_at": "2026-10-16T00:06:01Z"
+    "arv_estimate": 215110,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-16T14:14:41Z"
   },
   {
     "type": "NOF",
@@ -67897,13 +68356,9 @@
     "stacked": false,
     "score": 7,
     "days_until_sale": 45,
-    "on_market": false,
-    "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-10-16T00:06:02Z",
-    "arv_estimate": 347466,
-    "arv_status": "SOLD",
-    "arv_sqft": 2961,
-    "arv_fetched_at": "2026-10-16T00:06:02Z"
+    "arv_estimate": 353370,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-16T14:14:45Z"
   },
   {
     "type": "NOF",
@@ -67946,13 +68401,9 @@
     "stacked": false,
     "score": 7,
     "days_until_sale": 45,
-    "on_market": false,
-    "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-10-16T00:06:04Z",
-    "arv_estimate": 1624945,
-    "arv_status": "OFF_MARKET",
-    "arv_sqft": 4629,
-    "arv_fetched_at": "2026-10-16T00:06:04Z"
+    "arv_estimate": 1561060,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-16T14:14:49Z"
   },
   {
     "type": "NOF",
@@ -67995,7 +68446,9 @@
     "stacked": false,
     "score": 7,
     "days_until_sale": 45,
-    "on_market_checked_at": "2026-10-16T00:06:06Z"
+    "arv_estimate": 882930,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-16T14:14:53Z"
   },
   {
     "type": "NOF",
@@ -68038,13 +68491,9 @@
     "stacked": false,
     "score": 7,
     "days_until_sale": 45,
-    "on_market": true,
-    "on_market_status": "FOR_SALE",
-    "on_market_checked_at": "2026-10-16T00:06:08Z",
-    "arv_estimate": 233467,
-    "arv_status": "FOR_SALE",
-    "arv_sqft": 2170,
-    "arv_fetched_at": "2026-10-16T00:06:08Z"
+    "arv_estimate": 294670,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-16T14:14:57Z"
   },
   {
     "type": "NOF",
@@ -68088,13 +68537,9 @@
     "stacked": false,
     "score": 7,
     "days_until_sale": 45,
-    "on_market": false,
-    "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-10-16T00:06:09Z",
-    "arv_estimate": 295081,
-    "arv_status": "SOLD",
-    "arv_sqft": 2314,
-    "arv_fetched_at": "2026-10-16T00:06:09Z"
+    "arv_estimate": 291190,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-16T14:15:01Z"
   },
   {
     "type": "NOF",
@@ -68138,13 +68583,9 @@
     "stacked": false,
     "score": 7,
     "days_until_sale": 45,
-    "on_market": false,
-    "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-10-16T00:06:11Z",
-    "arv_estimate": 210100,
-    "arv_status": "SOLD",
-    "arv_sqft": 2192,
-    "arv_fetched_at": "2026-10-16T00:06:11Z"
+    "arv_estimate": 227820,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-16T14:15:05Z"
   },
   {
     "type": "NOF",
@@ -68187,13 +68628,9 @@
     "stacked": false,
     "score": 7,
     "days_until_sale": 45,
-    "on_market": false,
-    "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-10-16T00:06:13Z",
-    "arv_estimate": 276900,
-    "arv_status": "SOLD",
-    "arv_sqft": 2581,
-    "arv_fetched_at": "2026-10-16T00:06:13Z"
+    "arv_estimate": 304290,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-16T14:15:10Z"
   },
   {
     "type": "NOF",
@@ -68236,13 +68673,9 @@
     "stacked": false,
     "score": 7,
     "days_until_sale": 45,
-    "on_market": true,
-    "on_market_status": "FOR_SALE",
-    "on_market_checked_at": "2026-10-16T00:06:14Z",
-    "arv_estimate": 371000,
-    "arv_status": "FOR_SALE",
-    "arv_sqft": 2758,
-    "arv_fetched_at": "2026-10-16T00:06:14Z"
+    "arv_estimate": 400000,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-16T14:15:14Z"
   },
   {
     "type": "NOF",
@@ -71989,13 +72422,9 @@
     "stacked": false,
     "score": 7,
     "days_until_sale": 80,
-    "on_market": false,
-    "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-10-16T00:06:16Z",
-    "arv_estimate": 194000,
-    "arv_status": "SOLD",
-    "arv_sqft": 1772,
-    "arv_fetched_at": "2026-10-16T00:06:16Z"
+    "arv_estimate": 206990,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-16T14:15:18Z"
   },
   {
     "type": "NOF",
@@ -72038,13 +72467,9 @@
     "stacked": false,
     "score": 7,
     "days_until_sale": 80,
-    "on_market": false,
-    "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-10-16T00:06:17Z",
-    "arv_estimate": 249600,
-    "arv_status": "SOLD",
-    "arv_sqft": 2243,
-    "arv_fetched_at": "2026-10-16T00:06:17Z"
+    "arv_estimate": 265930,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-16T14:15:22Z"
   },
   {
     "type": "NOF",
@@ -73133,6 +73558,60 @@
     "arv_estimate": 288000,
     "arv_status": "SOLD",
     "arv_sqft": 2328
+  },
+  {
+    "doc_number": "20260200847",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Huerta Edmundo",
+    "address": "22603  RED SAND DR",
+    "city": "SAN ANTONIO",
+    "zip": "78264",
+    "date_filed": "10/2026",
+    "month": "10",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-10-15T23:43:06Z",
+    "score": 6,
+    "flags": [],
+    "absentee": false,
+    "duplicate": false,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "274090",
+    "annual_taxes": "",
+    "mail_addr": "22603 RED SAND DR SAN ANTONIO, TX 78264-4664",
+    "prop_id": "160679.0",
+    "land_value": "",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false,
+    "deed_date": "",
+    "last_sale_amt": "",
+    "tenure_years": null,
+    "tenure_score_bonus": 0,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 274090
+      },
+      {
+        "year": "2025",
+        "appraised": 289110
+      }
+    ],
+    "appr_trend": "down",
+    "arv_estimate": 274090,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-16T14:14:12Z",
+    "appt_converted": false,
+    "appt_stale": false
   },
   {
     "doc_number": "20260200004",
@@ -76407,8 +76886,7 @@
     "appr_trend": "",
     "stacked": false,
     "score": 4,
-    "days_until_sale": 45,
-    "on_market_checked_at": "2026-10-16T00:06:20Z"
+    "days_until_sale": 45
   },
   {
     "type": "NOF",
@@ -77674,6 +78152,82 @@
       }
     ],
     "appr_trend": "down"
+  },
+  {
+    "doc_number": "20260200821",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Idaho Housing And Finance Association",
+    "address": "",
+    "city": "SAN ANTONIO",
+    "zip": "",
+    "date_filed": "10/2026",
+    "month": "10",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-10-15T23:43:06Z",
+    "score": 3,
+    "flags": [
+      "DUPLICATE"
+    ],
+    "absentee": false,
+    "duplicate": true,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "",
+    "annual_taxes": "",
+    "mail_addr": "",
+    "prop_id": "",
+    "land_value": "",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false,
+    "appt_converted": false,
+    "appt_stale": false
+  },
+  {
+    "doc_number": "20260200293",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Lakeview Loan Servicing Llc",
+    "address": "",
+    "city": "SAN ANTONIO",
+    "zip": "",
+    "date_filed": "10/2026",
+    "month": "10",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-10-15T23:43:06Z",
+    "score": 3,
+    "flags": [
+      "DUPLICATE"
+    ],
+    "absentee": false,
+    "duplicate": true,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "",
+    "annual_taxes": "",
+    "mail_addr": "",
+    "prop_id": "",
+    "land_value": "",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false,
+    "appt_converted": false,
+    "appt_stale": false
   },
   {
     "doc_number": "20260198244",
