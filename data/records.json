@@ -28265,7 +28265,7 @@
     "mail_addr": "6892 FARIGROUNDS PARKWAY SAN ANTONIO, TX 78238",
     "absentee": true,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261200152",
     "ps_doc_id": "",
     "year": "2026",
@@ -28279,7 +28279,6 @@
     "run_ts": "2026-10-23T18:48:30Z",
     "flags": [
       "ABSENTEE",
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -28318,7 +28317,7 @@
     "mail_addr": "8006 RUIDOSO CHASE SELMA, TX 78154-3878",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261200068",
     "ps_doc_id": "",
     "year": "2026",
@@ -28331,7 +28330,6 @@
     "sale_date": "12/01/2026",
     "run_ts": "2026-10-23T18:48:30Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "LONG HELD"
     ],
@@ -43659,7 +43657,7 @@
     "mail_addr": "3528 SNIDOW DR PLANO, TX 75025",
     "absentee": true,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261200153",
     "ps_doc_id": "",
     "year": "2026",
@@ -43673,7 +43671,6 @@
     "run_ts": "2026-10-23T18:48:30Z",
     "flags": [
       "ABSENTEE",
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -43712,7 +43709,7 @@
     "mail_addr": "8110 BENDING TREE SAN ANTONIO, TX 78254",
     "absentee": true,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261200151",
     "ps_doc_id": "",
     "year": "2026",
@@ -43726,7 +43723,6 @@
     "run_ts": "2026-10-23T18:48:30Z",
     "flags": [
       "ABSENTEE",
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -72582,7 +72578,10 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 38
+    "days_until_sale": 38,
+    "arv_estimate": 459000,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-23T23:07:08Z"
   },
   {
     "type": "NOF",
@@ -72625,7 +72624,10 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 38
+    "days_until_sale": 38,
+    "arv_estimate": 175080,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-23T23:07:12Z"
   },
   {
     "type": "NOF",
@@ -72668,7 +72670,10 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 38
+    "days_until_sale": 38,
+    "arv_estimate": 234840,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-23T23:07:17Z"
   },
   {
     "type": "NOF",
@@ -72711,7 +72716,10 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 38
+    "days_until_sale": 38,
+    "arv_estimate": 140000,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-23T23:07:21Z"
   },
   {
     "type": "NOF",
@@ -72753,7 +72761,10 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 38
+    "days_until_sale": 38,
+    "arv_estimate": 439260,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-23T23:07:25Z"
   },
   {
     "type": "NOF",
@@ -72795,7 +72806,10 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 38
+    "days_until_sale": 38,
+    "arv_estimate": 551140,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-23T23:07:30Z"
   },
   {
     "type": "NOF",
@@ -72837,7 +72851,10 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 38
+    "days_until_sale": 38,
+    "arv_estimate": 197410,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-23T23:07:34Z"
   },
   {
     "type": "NOF",
@@ -72879,7 +72896,10 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 38
+    "days_until_sale": 38,
+    "arv_estimate": 215000,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-23T23:07:38Z"
   },
   {
     "type": "NOF",
@@ -72921,7 +72941,10 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 38
+    "days_until_sale": 38,
+    "arv_estimate": 615690,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-23T23:07:43Z"
   },
   {
     "type": "NOF",
@@ -72963,7 +72986,10 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 38
+    "days_until_sale": 38,
+    "arv_estimate": 189000,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-23T23:07:47Z"
   },
   {
     "type": "NOF",
@@ -73005,7 +73031,10 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 38
+    "days_until_sale": 38,
+    "arv_estimate": 190240,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-23T23:07:51Z"
   },
   {
     "type": "NOF",
@@ -77894,7 +77923,10 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 73
+    "days_until_sale": 73,
+    "arv_estimate": 305950,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-23T23:07:56Z"
   },
   {
     "type": "NOF",
@@ -77936,7 +77968,10 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 73
+    "days_until_sale": 73,
+    "arv_estimate": 257480,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-23T23:08:00Z"
   },
   {
     "type": "NOF",
@@ -77978,7 +78013,10 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 73
+    "days_until_sale": 73,
+    "arv_estimate": 235390,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-23T23:08:05Z"
   },
   {
     "type": "NOF",
@@ -78020,7 +78058,10 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 73
+    "days_until_sale": 73,
+    "arv_estimate": 251880,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-23T23:08:09Z"
   },
   {
     "type": "NOF",
@@ -78062,7 +78103,10 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 73
+    "days_until_sale": 73,
+    "arv_estimate": 134650,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-23T23:08:13Z"
   },
   {
     "type": "NOF",
@@ -78104,7 +78148,10 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 73
+    "days_until_sale": 73,
+    "arv_estimate": 425930,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-23T23:08:17Z"
   },
   {
     "type": "NOF",
@@ -78146,7 +78193,10 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 73
+    "days_until_sale": 73,
+    "arv_estimate": 356460,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-23T23:08:22Z"
   },
   {
     "type": "NOF",
@@ -78188,7 +78238,10 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 73
+    "days_until_sale": 73,
+    "arv_estimate": 323100,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-23T23:08:26Z"
   },
   {
     "type": "NOF",
@@ -78230,7 +78283,10 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 73
+    "days_until_sale": 73,
+    "arv_estimate": 307230,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-23T23:08:30Z"
   },
   {
     "type": "NOF",
@@ -78272,7 +78328,10 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 73
+    "days_until_sale": 73,
+    "arv_estimate": 249420,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-23T23:08:35Z"
   },
   {
     "type": "NOF",
@@ -78314,7 +78373,10 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 73
+    "days_until_sale": 73,
+    "arv_estimate": 145720,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-23T23:08:39Z"
   },
   {
     "type": "NOF",
@@ -78356,7 +78418,10 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 73
+    "days_until_sale": 73,
+    "arv_estimate": 271000,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-23T23:08:43Z"
   },
   {
     "type": "NOF",
@@ -78398,7 +78463,10 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 73
+    "days_until_sale": 73,
+    "arv_estimate": 200000,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-23T23:08:48Z"
   },
   {
     "type": "NOF",
@@ -78440,7 +78508,10 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 73
+    "days_until_sale": 73,
+    "arv_estimate": 183150,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-23T23:08:52Z"
   },
   {
     "type": "NOF",
@@ -78482,7 +78553,10 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 73
+    "days_until_sale": 73,
+    "arv_estimate": 349420,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-23T23:08:57Z"
   },
   {
     "type": "NOF",
@@ -78525,7 +78599,10 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 73
+    "days_until_sale": 73,
+    "arv_estimate": 559770,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-23T23:09:01Z"
   },
   {
     "type": "NOF",
@@ -78567,7 +78644,10 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 73
+    "days_until_sale": 73,
+    "arv_estimate": 175860,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-23T23:09:05Z"
   },
   {
     "type": "NOF",
@@ -78609,7 +78689,10 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 73
+    "days_until_sale": 73,
+    "arv_estimate": 273670,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-23T23:09:09Z"
   },
   {
     "type": "NOF",
@@ -78651,7 +78734,10 @@
     "land_value": "",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 73
+    "days_until_sale": 73,
+    "arv_estimate": 205000,
+    "arv_status": "APPRAISED_FALLBACK",
+    "arv_fetched_at": "2026-10-23T23:09:14Z"
   },
   {
     "type": "NOF",
