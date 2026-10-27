@@ -1046,6 +1046,10 @@ async function fetchLeads(){
     const res=await fetch((S.recordsUrl||REC_URL_DEFAULT)+'?t='+Date.now());
     if(!res.ok)throw new Error('HTTP '+res.status);
     allLeads=await res.json();
+    /* 2026-10-27 (Xavi): hide single-family houses over $700K. Corporate-owned/multi-family are kept (no limit). Not deleted from records.json. */
+    {const _CORP=/\b(LLC|L\.?L\.?C|INC|CORP|CORPORATION|LP|L\.P|LTD|TRUST|BANK|HOLDINGS|PROPERTIES|ENTERPRISES|INVESTMENTS|PARTNERS|COMPANY|ASSOCIATION|HOA|FUND|CAPITAL|REALTY|VENTURES|GROUP|APARTMENTS|TOWNHOMES|VILLAS|SPE)\b/i;
+     const _hv=l=>{const v=parseFloat(String(l.appraised_value||'').replace(/[$,]/g,''))||0;return v>700000&&!_CORP.test(l.owner||'');};
+     const _n=allLeads.filter(_hv).length;allLeads=allLeads.filter(l=>!_hv(l));window.HIDDEN_HIGH_VALUE_SF=_n;if(_n)console.log('Hidden high-value single-family leads (>$700K):',_n);}
     for(const rec of allLeads){const doc=rec.doc_number;if(!doc)continue;const has=rec.dash_phone||rec.dash_dispo||rec.ghl_pushed;if(has){if(!S.leads[doc])S.leads[doc]={};if(rec.dash_phone&&!S.leads[doc].phone)S.leads[doc].phone=rec.dash_phone;if(rec.dash_dispo&&!S.leads[doc].dispo)S.leads[doc].dispo=rec.dash_dispo;if(rec.dash_notes&&!S.leads[doc].notes)S.leads[doc].notes=rec.dash_notes;if(rec.ghl_pushed)S.leads[doc].ghl_pushed=true;if(rec.ghl_id&&!S.leads[doc].ghlId)S.leads[doc].ghlId=rec.ghl_id;if(rec.dash_searched_at&&!S.leads[doc].searchedAt)S.leads[doc].searchedAt=new Date(rec.dash_searched_at).getTime();}}
     saveState();
     const ts=allLeads.find(l=>l.run_ts)?.run_ts;
