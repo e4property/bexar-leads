@@ -108,6 +108,13 @@ jobs:
             gh api -X DELETE "repos/${{ github.repository }}/actions/artifacts/$id" || true
           done
 
+      # 2026-11-03: counts-only stats for the public website page
+      # (trustedhomebuyersa.com/bexar-county-foreclosure-auctions). Written
+      # into dashboard/ so it ships with the Pages artifact; never committed.
+      # Must never break a scrape: "|| true".
+      - name: Build public site stats (counts only)
+        run: python scraper/site_stats.py || true
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dashboard/
