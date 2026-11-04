@@ -91,7 +91,7 @@ jobs:
             python scraper/merge_dashboard_status.py origin/main || true
             git add dashboard/records.json 2>/dev/null || true
             git diff --cached --quiet || git commit --amend --no-edit
-            git rebase -X ours origin/main || git rebase --abort
+            git rebase -X theirs origin/main || git rebase --abort
             git push origin main && echo "Push succeeded" && break
             echo "Attempt $i failed, retrying..."
           done
