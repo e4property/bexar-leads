@@ -39,7 +39,7 @@ jobs:
           git commit -m "chore: post-auction check $(date -u +'%Y-%m-%d')"
           for i in 1 2 3 4 5; do
             git fetch origin main
-            git rebase -X ours origin/main || git rebase --abort
+            git rebase -X theirs origin/main || git rebase --abort
             git push origin main && echo "Push succeeded" && break
             sleep $((RANDOM % 10 + 3))
           done
