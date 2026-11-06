@@ -67,7 +67,7 @@
     "mail_addr": "12203 SIRAGUSA SAN ANTONIO, TX 78252",
     "absentee": true,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261200336",
     "ps_doc_id": "",
     "year": "2026",
@@ -81,7 +81,6 @@
     "run_ts": "2026-11-06T15:39:17Z",
     "flags": [
       "ABSENTEE",
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -128,7 +127,7 @@
     "mail_addr": "25535 TRANQUIL RIM SAN ANTONIO, TX 78260",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261200337",
     "ps_doc_id": "",
     "year": "2026",
@@ -141,7 +140,6 @@
     "sale_date": "12/01/2026",
     "run_ts": "2026-11-06T15:39:17Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -188,7 +186,7 @@
     "mail_addr": "423 RUSTIC STABLE SAN ANTONIO, TX 78227-4382",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261200335",
     "ps_doc_id": "",
     "year": "2026",
@@ -201,7 +199,6 @@
     "sale_date": "12/01/2026",
     "run_ts": "2026-11-06T15:39:17Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -248,7 +245,7 @@
     "mail_addr": "4433 BARBERRY CRK SAN ANTONIO, TX 78245-4662",
     "absentee": true,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261200339",
     "ps_doc_id": "",
     "year": "2026",
@@ -262,7 +259,6 @@
     "run_ts": "2026-11-06T15:39:17Z",
     "flags": [
       "ABSENTEE",
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON",
       "LONG HELD"
@@ -310,7 +306,7 @@
     "mail_addr": "8419 BRANCH HOLLOW DR UNIVERSAL CITY, TX 78148-3248",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261200328",
     "ps_doc_id": "",
     "year": "2026",
@@ -323,7 +319,6 @@
     "sale_date": "12/01/2026",
     "run_ts": "2026-11-06T15:39:17Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -370,7 +365,7 @@
     "mail_addr": "238 SPRUCE BREEZE SAN ANTONIO, TX 78245-2981",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261200327",
     "ps_doc_id": "",
     "year": "2026",
@@ -383,7 +378,6 @@
     "sale_date": "12/01/2026",
     "run_ts": "2026-11-06T15:39:17Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON",
       "LONG HELD"
@@ -431,7 +425,7 @@
     "mail_addr": "1097 CHAMPLAIN DR BROWNSVILLE, TX 78526",
     "absentee": true,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261200326",
     "ps_doc_id": "",
     "year": "2026",
@@ -445,7 +439,6 @@
     "run_ts": "2026-11-06T15:39:17Z",
     "flags": [
       "ABSENTEE",
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -492,7 +485,7 @@
     "mail_addr": "7338 GALILEO LINE SAN ANTONIO, TX 78252-2318",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261200333",
     "ps_doc_id": "",
     "year": "2026",
@@ -505,7 +498,6 @@
     "sale_date": "12/01/2026",
     "run_ts": "2026-11-06T15:39:17Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE",
       "AUCTION SOON"
     ],
@@ -543,7 +535,12 @@
     "arv_fetched_at": "2026-11-06T15:59:01Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 24
+    "days_until_sale": 24,
+    "dash_phone": "(732) 995-7434",
+    "dash_searched_at": "2026-11-06T16:26:29.691Z",
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-11-06T16:26:29.691Z",
+    "ghl_id": "lit76KU9Abtyfjg3iDiU"
   },
   {
     "type": "NOF",
@@ -722,7 +719,12 @@
     "arv_fetched_at": "2026-11-05T21:36:55Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 24
+    "days_until_sale": 24,
+    "dash_phone": "2108381592",
+    "dash_searched_at": "2026-11-06T16:40:05.903Z",
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-11-06T16:40:05.903Z",
+    "ghl_id": "XiBGFKBIC3U4wACBAYrc"
   },
   {
     "type": "NOF",
@@ -3092,7 +3094,12 @@
     "arv_estimate": 152300,
     "arv_status": "SOLD",
     "arv_sqft": 1280,
-    "arv_fetched_at": "2026-10-09T20:12:42Z"
+    "arv_fetched_at": "2026-10-09T20:12:42Z",
+    "dash_phone": "210-524-9866",
+    "dash_searched_at": "2026-11-06T17:34:31.848Z",
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-11-06T17:34:31.848Z",
+    "ghl_id": "EMnkkAfVir4LhYNMDb7E"
   },
   {
     "type": "NOF",
@@ -9949,6 +9956,51 @@
   },
   {
     "type": "NOF",
+    "address": "5718 UNIVERSITY HEIGHTS BOULEVARD",
+    "owner": "UNIVERSITY HEIGHTS PROFESSIONAL CENTER OWNERS ASSOC",
+    "mail_addr": "5718 UNIVERSITY HTS SAN ANTONIO, TX 78249-1120",
+    "absentee": true,
+    "duplicate": false,
+    "is_new": false,
+    "doc_number": "20261200341",
+    "ps_doc_id": "",
+    "year": "2026",
+    "month": "11",
+    "city": "BUILDING 1",
+    "zip": "SAN ANTONIO",
+    "school_dist": "",
+    "date_filed": "11/2026",
+    "date_recorded": "11/6/2026",
+    "sale_date": "12/01/2026",
+    "run_ts": "2026-11-06T15:39:17Z",
+    "flags": [
+      "ABSENTEE",
+      "HAS SALE DATE",
+      "AUCTION SOON"
+    ],
+    "source": "publicsearch",
+    "lender": "",
+    "loan_amount": "",
+    "loan_date": "",
+    "trustee": "",
+    "sale_date_arcgis": "",
+    "tenure_years": 8,
+    "tenure_score_bonus": 5,
+    "prop_id": "1285359",
+    "deed_date": "5/18/2018",
+    "last_sale_amt": "",
+    "appr_history": [],
+    "appr_trend": "",
+    "appraised_value": "0",
+    "annual_taxes": "",
+    "land_value": "",
+    "on_market_checked_at": "2026-11-06T15:58:36Z",
+    "stacked": false,
+    "score": 10,
+    "days_until_sale": 24
+  },
+  {
+    "type": "NOF",
     "address": "142 PALAZZO TORRE",
     "owner": "JIMENEZ VINCENT J",
     "mail_addr": "111 PROBANDT UNIT 534 SAN ANTONIO, TX 78204-2083",
@@ -10010,52 +10062,6 @@
   },
   {
     "type": "NOF",
-    "address": "5718 UNIVERSITY HEIGHTS BOULEVARD",
-    "owner": "UNIVERSITY HEIGHTS PROFESSIONAL CENTER OWNERS ASSOC",
-    "mail_addr": "5718 UNIVERSITY HTS SAN ANTONIO, TX 78249-1120",
-    "absentee": true,
-    "duplicate": false,
-    "is_new": true,
-    "doc_number": "20261200341",
-    "ps_doc_id": "",
-    "year": "2026",
-    "month": "11",
-    "city": "BUILDING 1",
-    "zip": "SAN ANTONIO",
-    "school_dist": "",
-    "date_filed": "11/2026",
-    "date_recorded": "11/6/2026",
-    "sale_date": "12/01/2026",
-    "run_ts": "2026-11-06T15:39:17Z",
-    "flags": [
-      "ABSENTEE",
-      "NEW",
-      "HAS SALE DATE",
-      "AUCTION SOON"
-    ],
-    "source": "publicsearch",
-    "lender": "",
-    "loan_amount": "",
-    "loan_date": "",
-    "trustee": "",
-    "sale_date_arcgis": "",
-    "tenure_years": null,
-    "tenure_score_bonus": 0,
-    "prop_id": "1285359",
-    "deed_date": "",
-    "last_sale_amt": "",
-    "appr_history": [],
-    "appr_trend": "",
-    "appraised_value": "0",
-    "annual_taxes": "",
-    "land_value": "",
-    "on_market_checked_at": "2026-11-06T15:58:36Z",
-    "stacked": false,
-    "score": 9,
-    "days_until_sale": 24
-  },
-  {
-    "type": "NOF",
     "address": "3203 NOGALITOS STREET",
     "owner": "BARRIENTES ANTONIO M",
     "mail_addr": "3203 NOGALITOS SAN ANTONIO, TX 78225-2331",
@@ -10106,7 +10112,12 @@
     "on_market_checked_at": "2026-11-05T21:36:37Z",
     "stacked": false,
     "score": 9,
-    "days_until_sale": 24
+    "days_until_sale": 24,
+    "dash_phone": "(210) 922-4565",
+    "dash_searched_at": "2026-11-06T16:44:13.185Z",
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-11-06T16:44:13.185Z",
+    "ghl_id": "NR59vT8sA1famZifTAHL"
   },
   {
     "type": "NOF",
@@ -10856,7 +10867,7 @@
     "land_value": "",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-10-30T00:02:04Z",
+    "on_market_checked_at": "2026-11-06T18:40:47Z",
     "arv_estimate": 214400,
     "arv_status": "SOLD",
     "arv_sqft": 1120,
@@ -10916,7 +10927,7 @@
     "land_value": "",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-10-30T00:02:23Z",
+    "on_market_checked_at": "2026-11-06T18:40:48Z",
     "arv_estimate": 194200,
     "arv_status": "SOLD",
     "arv_sqft": 1266,
@@ -10976,7 +10987,7 @@
     "land_value": "",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-10-30T00:02:29Z",
+    "on_market_checked_at": "2026-11-06T18:40:50Z",
     "arv_estimate": 276000,
     "arv_status": "SOLD",
     "arv_sqft": 1986,
@@ -11036,7 +11047,7 @@
     "land_value": "",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-10-30T00:03:07Z",
+    "on_market_checked_at": "2026-11-06T18:40:51Z",
     "arv_estimate": 2700000,
     "arv_status": "SOLD",
     "arv_sqft": 6480,
@@ -11153,7 +11164,7 @@
     "days_until_sale": 24,
     "on_market": true,
     "on_market_status": "FOR_SALE",
-    "on_market_checked_at": "2026-10-24T22:29:04Z",
+    "on_market_checked_at": "2026-11-06T18:40:53Z",
     "arv_estimate": 83082,
     "arv_status": "FOR_SALE",
     "arv_sqft": 810,
@@ -11210,7 +11221,7 @@
     "land_value": "",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-10-22T23:11:43Z",
+    "on_market_checked_at": "2026-11-06T18:40:54Z",
     "arv_estimate": 172000,
     "arv_status": "SOLD",
     "arv_sqft": 1097,
@@ -11270,7 +11281,7 @@
     "land_value": "",
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-10-22T23:12:10Z",
+    "on_market_checked_at": "2026-11-06T18:40:56Z",
     "arv_estimate": 177111,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 1344,
@@ -11335,7 +11346,7 @@
     "land_value": "",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-10-22T23:12:13Z",
+    "on_market_checked_at": "2026-11-06T18:40:57Z",
     "arv_estimate": 164102,
     "arv_status": "SOLD",
     "arv_sqft": 1548,
@@ -11449,7 +11460,7 @@
     "land_value": "",
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-10-13T20:47:09Z",
+    "on_market_checked_at": "2026-11-06T18:40:59Z",
     "arv_estimate": 181700,
     "arv_status": "SOLD",
     "arv_sqft": 924,
@@ -11566,7 +11577,7 @@
     "days_until_sale": 24,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-10-09T20:12:47Z",
+    "on_market_checked_at": "2026-11-06T18:41:00Z",
     "arv_estimate": 341700,
     "arv_status": "SOLD",
     "arv_sqft": 3427,
@@ -11623,7 +11634,7 @@
     "land_value": "",
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-10-09T14:15:01Z",
+    "on_market_checked_at": "2026-11-06T18:41:02Z",
     "arv_estimate": 491300,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 4556,
@@ -11686,7 +11697,7 @@
     "days_until_sale": 24,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-10-09T18:08:57Z",
+    "on_market_checked_at": "2026-11-06T18:41:03Z",
     "arv_estimate": 301000,
     "arv_status": "SOLD",
     "arv_sqft": 2591,
@@ -11801,7 +11812,7 @@
     "days_until_sale": 24,
     "on_market": false,
     "on_market_status": "OFF_MARKET",
-    "on_market_checked_at": "2026-10-01T18:27:12Z",
+    "on_market_checked_at": "2026-11-06T18:41:05Z",
     "arv_estimate": 237000,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 1487,
@@ -11857,7 +11868,7 @@
     "days_until_sale": 24,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-10-01T18:27:15Z",
+    "on_market_checked_at": "2026-11-06T18:41:06Z",
     "arv_estimate": 198600,
     "arv_status": "SOLD",
     "arv_sqft": 1002,
@@ -12083,7 +12094,7 @@
     "ghl_pushed_at": null,
     "on_market": false,
     "on_market_status": "SOLD",
-    "on_market_checked_at": "2026-09-25T19:23:35Z",
+    "on_market_checked_at": "2026-11-06T18:41:08Z",
     "arv_estimate": 246701,
     "arv_status": "SOLD",
     "arv_sqft": 1974,
@@ -14948,7 +14959,12 @@
     "arv_fetched_at": "2026-11-05T21:37:25Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 24
+    "days_until_sale": 24,
+    "dash_phone": "2108407993",
+    "dash_searched_at": "2026-11-06T16:53:50.194Z",
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-11-06T16:53:50.194Z",
+    "ghl_id": "MqvmrUg4Raiw33NdXsxM"
   },
   {
     "type": "NOF",
@@ -20607,7 +20623,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261200338",
     "ps_doc_id": "",
     "year": "2026",
@@ -20620,7 +20636,6 @@
     "sale_date": "12/01/2026",
     "run_ts": "2026-11-06T15:39:17Z",
     "flags": [
-      "NEW",
       "NO OWNER",
       "HAS SALE DATE",
       "AUCTION SOON"
@@ -20656,7 +20671,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261200340",
     "ps_doc_id": "",
     "year": "2026",
@@ -20669,7 +20684,6 @@
     "sale_date": "12/01/2026",
     "run_ts": "2026-11-06T15:39:17Z",
     "flags": [
-      "NEW",
       "NO OWNER",
       "HAS SALE DATE",
       "AUCTION SOON"
@@ -20699,7 +20713,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261200332",
     "ps_doc_id": "",
     "year": "2026",
@@ -20712,7 +20726,6 @@
     "sale_date": "12/01/2026",
     "run_ts": "2026-11-06T15:39:17Z",
     "flags": [
-      "NEW",
       "NO OWNER",
       "HAS SALE DATE",
       "AUCTION SOON"
@@ -20742,7 +20755,7 @@
     "mail_addr": "",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261200325",
     "ps_doc_id": "",
     "year": "2026",
@@ -20755,7 +20768,6 @@
     "sale_date": "12/01/2026",
     "run_ts": "2026-11-06T15:39:17Z",
     "flags": [
-      "NEW",
       "NO OWNER",
       "HAS SALE DATE",
       "AUCTION SOON"
@@ -22048,7 +22060,7 @@
     "mail_addr": "FIGUEROA MIRNA 8955 TWINCREEK FARM CONVERSE, TX 78109-3469",
     "absentee": true,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261200331",
     "ps_doc_id": "",
     "year": "2026",
@@ -22062,7 +22074,6 @@
     "run_ts": "2026-11-06T15:39:17Z",
     "flags": [
       "ABSENTEE",
-      "NEW",
       "HAS SALE DATE",
       "LONG HELD"
     ],
@@ -22100,7 +22111,11 @@
     "arv_fetched_at": "2026-11-06T15:58:51Z",
     "stacked": false,
     "score": 10,
-    "days_until_sale": 59
+    "days_until_sale": 59,
+    "dash_phone": "2107735600",
+    "dash_searched_at": "2026-11-06T16:35:24.005Z",
+    "ghl_pushed": false,
+    "ghl_pushed_at": null
   },
   {
     "type": "NOF",
@@ -22109,7 +22124,7 @@
     "mail_addr": "11827 LUCKEY FLOWER SAN ANTONIO, TX 78249",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261200334",
     "ps_doc_id": "",
     "year": "2026",
@@ -22122,7 +22137,6 @@
     "sale_date": "01/05/2027",
     "run_ts": "2026-11-06T15:39:17Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -22496,7 +22510,12 @@
     "arv_estimate": 267601,
     "arv_status": "SOLD",
     "arv_sqft": 1703,
-    "arv_fetched_at": "2026-11-06T00:57:43Z"
+    "arv_fetched_at": "2026-11-06T00:57:43Z",
+    "dash_phone": "2103785928",
+    "dash_searched_at": "2026-11-06T17:13:54.948Z",
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-11-06T17:13:54.948Z",
+    "ghl_id": "GfzQAUDnsYfl9MblNRog"
   },
   {
     "type": "NOF",
@@ -22666,7 +22685,12 @@
     "arv_estimate": 292427,
     "arv_status": "SOLD",
     "arv_sqft": 2821,
-    "arv_fetched_at": "2026-11-06T00:57:55Z"
+    "arv_fetched_at": "2026-11-06T00:57:55Z",
+    "dash_phone": "2106932223",
+    "dash_searched_at": "2026-11-06T17:15:31.017Z",
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-11-06T17:15:31.017Z",
+    "ghl_id": "9ABfEuKOBAYyuYdUglOY"
   },
   {
     "type": "NOF",
@@ -59286,7 +59310,7 @@
     "mail_addr": "4314 THYME GARDEN VON ORMY, TX 78073",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261200330",
     "ps_doc_id": "",
     "year": "2026",
@@ -59299,7 +59323,6 @@
     "sale_date": "01/05/2027",
     "run_ts": "2026-11-06T15:39:17Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -59345,7 +59368,7 @@
     "mail_addr": "1044 WORSHAN TERRACE SAN ANTONIO, TX 78221",
     "absentee": false,
     "duplicate": false,
-    "is_new": true,
+    "is_new": false,
     "doc_number": "20261200329",
     "ps_doc_id": "",
     "year": "2026",
@@ -59358,7 +59381,6 @@
     "sale_date": "01/05/2027",
     "run_ts": "2026-11-06T15:39:17Z",
     "flags": [
-      "NEW",
       "HAS SALE DATE"
     ],
     "source": "publicsearch",
@@ -59511,7 +59533,12 @@
     "arv_fetched_at": "2026-11-05T21:37:10Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 59
+    "days_until_sale": 59,
+    "dash_phone": "2108540755",
+    "dash_searched_at": "2026-11-06T17:20:40.570Z",
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-11-06T17:20:40.570Z",
+    "ghl_id": "VTPrhZeXBjrUYg7OkQVh"
   },
   {
     "type": "NOF",
@@ -59743,7 +59770,12 @@
     "arv_estimate": 156286,
     "arv_status": "OFF_MARKET",
     "arv_sqft": 1230,
-    "arv_fetched_at": "2026-11-06T00:57:51Z"
+    "arv_fetched_at": "2026-11-06T00:57:51Z",
+    "dash_phone": "2102742174",
+    "dash_searched_at": "2026-11-06T16:59:40.088Z",
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-11-06T16:59:40.088Z",
+    "ghl_id": "ZH0rXktaND4KUK0rcbp4"
   },
   {
     "type": "NOF",
@@ -59859,7 +59891,12 @@
     "arv_fetched_at": "2026-11-05T18:31:01Z",
     "stacked": false,
     "score": 7,
-    "days_until_sale": 59
+    "days_until_sale": 59,
+    "dash_phone": "2102692376",
+    "dash_searched_at": "2026-11-06T17:02:47.494Z",
+    "ghl_pushed": true,
+    "ghl_pushed_at": "2026-11-06T17:02:47.494Z",
+    "ghl_id": "kLwQn4qu7JSYtS61Up65"
   },
   {
     "type": "NOF",
@@ -65326,6 +65363,64 @@
     "arv_estimate": 288000,
     "arv_status": "SOLD",
     "arv_sqft": 2328
+  },
+  {
+    "doc_number": "20260215454",
+    "ps_doc_id": "",
+    "type": "APPT",
+    "source": "publicsearch",
+    "county": "bexar",
+    "owner": "Foxworth Brandon Len",
+    "address": "14486 LADD ROAD",
+    "city": "ATASCOSA",
+    "zip": "78002",
+    "date_filed": "11/2026",
+    "month": "11",
+    "year": "2026",
+    "sale_date": "",
+    "is_new": false,
+    "run_ts": "2026-11-06T16:13:12Z",
+    "score": 6,
+    "flags": [],
+    "absentee": false,
+    "duplicate": false,
+    "days_until_sale": null,
+    "loan_amount": "",
+    "loan_date": "",
+    "lender": "",
+    "trustee": "",
+    "appraised_value": "322680",
+    "annual_taxes": "",
+    "mail_addr": "14486 LADD ROAD ATASCOSA, TX 78002",
+    "prop_id": "1180748.0",
+    "land_value": "",
+    "improvement_value": "",
+    "stacked": false,
+    "ce_violations": false,
+    "deed_date": "5/7/2024",
+    "last_sale_amt": "",
+    "tenure_years": 2,
+    "tenure_score_bonus": 0,
+    "appr_history": [
+      {
+        "year": "2026",
+        "appraised": 322680
+      },
+      {
+        "year": "2025",
+        "appraised": 341060
+      }
+    ],
+    "appr_trend": "down",
+    "on_market": false,
+    "on_market_status": "SOLD",
+    "on_market_checked_at": "2026-11-06T18:40:41Z",
+    "arv_estimate": 309315,
+    "arv_status": "SOLD",
+    "arv_sqft": 2280,
+    "arv_fetched_at": "2026-11-06T18:40:41Z",
+    "appt_converted": false,
+    "appt_stale": false
   },
   {
     "doc_number": "20260214871",
