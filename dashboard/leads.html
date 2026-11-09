@@ -646,6 +646,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
       <div class="sb-hdr">Lead Types</div>
       <div class="sb-item" id="sf-all" onclick="setView('all',this)"><div class="sb-icon" style="background:var(--bg3)">📋</div><div class="sb-info"><div class="sb-name">All Leads</div><div class="sb-cnt" id="fc-all">—</div></div></div>
       <div class="sb-item" id="sf-fore" onclick="setView('fore',this)"><div class="sb-icon" style="background:var(--blue-bg)">🏠</div><div class="sb-info"><div class="sb-name">Foreclosure</div><div class="sb-cnt" id="fc-fore">—</div></div></div>
+      <div class="sb-item" id="sf-tax" onclick="setView('tax',this)"><div class="sb-icon" style="background:var(--amber-bg)">🧾</div><div class="sb-info"><div class="sb-name">Tax Sales</div><div class="sb-cnt" id="fc-tax">—</div></div></div>
       <div class="sb-item" id="sf-vbp" onclick="setView('vbp',this)"><div class="sb-icon" style="background:var(--purple-bg)">🏚️</div><div class="sb-info"><div class="sb-name">VBP+CE</div><div class="sb-cnt" id="fc-vbp">—</div></div></div>
       <div class="sb-item" id="sf-lp" onclick="setView('lp',this)"><div class="sb-icon" style="background:var(--red-bg)">📜</div><div class="sb-info"><div class="sb-name">Lis Pendens</div><div class="sb-cnt" id="fc-lp">—</div></div></div>
       <div class="sb-item" id="sf-appt" onclick="setView('appt',this)"><div class="sb-icon" style="background:var(--red-bg)">⚡</div><div class="sb-info"><div class="sb-name">Pre-Fore</div><div class="sb-cnt" id="fc-appt">—</div></div></div>
@@ -660,6 +661,7 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-
         <div class="ttab urg-tab" id="tt-urg-tab" onclick="setView('urgent',null,'tab')">🚨 Urg <span class="tc" id="tt-urg">—</span></div>
         <div class="ttab on" id="tt-all-tab" onclick="setView('all',null,'tab')">All <span class="tc" id="tt-all">—</span></div>
         <div class="ttab" id="tt-fore-tab" onclick="setView('fore',null,'tab')">Fore <span class="tc" id="tt-fore">—</span></div>
+        <div class="ttab" id="tt-tax-tab" onclick="setView('tax',null,'tab')">Tax <span class="tc" id="tt-tax">—</span></div>
         <div class="ttab" id="tt-aged-tab" onclick="setView('aged',null,'tab')">Aged <span class="tc" id="tt-aged">—</span></div>
         <div class="ttab vbp" id="tt-vbp-tab" onclick="setView('vbp',null,'tab')">VBP <span class="tc" id="tt-vbp">—</span></div>
         <div class="ttab" id="tt-lp-tab" onclick="setView('lp',null,'tab')">LP <span class="tc" id="tt-lp">—</span></div>
@@ -1136,12 +1138,12 @@ function renderNewLeadsBar(){const newLeads=allLeads.filter(l=>l.is_new&&!auctio
 function renderHotStrip(){const hot=allLeads.filter(l=>l.days_until_sale!=null&&l.days_until_sale<=30&&!auctionPassed(l)&&!LS(l.doc_number).phone).slice(0,10);const strip=document.getElementById('hot-strip');if(!hot.length){if(strip)strip.style.display='none';return;}if(strip)strip.style.display='flex';const hc=document.getElementById('hot-cards');if(hc)hc.innerHTML=hot.map(l=>`<div class="hcard ${l.days_until_sale<=14?'urg':'soon'}" onclick="selectLead('${l.doc_number}')"><div class="hc-tag">AUCTION ${l.days_until_sale}d</div><div class="hc-name">${l.owner||'—'}</div></div>`).join('');}
 
 function updateAllCounts(){const newCt=allLeads.filter(l=>l.is_new).length;const urgCt=allLeads.filter(l=>isUrgent(l)&&!auctionPassed(l)).length;const jarvisCt=getJarvisCount();const pushedTodayCt=getPushedTodayCount();const pushedWeekCt=getPushedWeekCount();const vbpCt=allLeads.filter(l=>isVBP(l)||isStacked(l)).length;const unsearch=allLeads.filter(l=>!LS(l.doc_number).phone&&!LS(l.doc_number).skipped).length;const onMarketCt=allLeads.filter(l=>l.on_market).length;
-set('tt-new',newCt);set('tt-urg',urgCt);set('tt-all',allLeads.length);set('tt-fore',allLeads.filter(l=>isForeclosure(l)&&!isAged(l)).length);set('tt-aged',allLeads.filter(isAged).length);set('tt-vbp',vbpCt);set('tt-lp',allLeads.filter(isLP).length);set('tt-appt',allLeads.filter(isAppt).length);set('tt-jarvis',jarvisCt);
+set('tt-new',newCt);set('tt-urg',urgCt);set('tt-all',allLeads.length);set('tt-fore',allLeads.filter(l=>isForeclosure(l)&&l.type!=='TAX'&&!isAged(l)).length);set('tt-tax',allLeads.filter(l=>l.type==='TAX'&&!auctionPassed(l)).length);set('tt-aged',allLeads.filter(isAged).length);set('tt-vbp',vbpCt);set('tt-lp',allLeads.filter(isLP).length);set('tt-appt',allLeads.filter(isAppt).length);set('tt-jarvis',jarvisCt);
 set('fc-pushed-today',pushedTodayCt+' leads');set('fc-pushed-week',pushedWeekCt+' leads');
 const sbn=document.getElementById('sb-new-badge');if(sbn){sbn.textContent=newCt;sbn.style.display=newCt>0?'block':'none';}
 const sbu=document.getElementById('sb-urg-badge');if(sbu){sbu.textContent=urgCt;sbu.style.display=urgCt>0?'block':'none';}
 const sbom=document.getElementById('sb-onmarket-badge');if(sbom){sbom.textContent=onMarketCt;sbom.style.display=onMarketCt>0?'block':'none';}
-set('fc-new',newCt+' leads');set('fc-urgent',urgCt+' leads');set('fc-today',getTodayList().length+' leads');set('fc-unsearched',unsearch+' leads');set('fc-jarvis',jarvisCt+' leads');set('fc-all',allLeads.length+' leads');set('fc-fore',allLeads.filter(l=>isForeclosure(l)&&!isAged(l)).length+' leads');set('fc-vbp',vbpCt+' leads');set('fc-lp',allLeads.filter(isLP).length+' leads');set('fc-appt',allLeads.filter(isAppt).length+' leads');set('fc-aged',allLeads.filter(isAged).length+' leads');set('fc-onmarket',onMarketCt+' leads');}
+set('fc-new',newCt+' leads');set('fc-urgent',urgCt+' leads');set('fc-today',getTodayList().length+' leads');set('fc-unsearched',unsearch+' leads');set('fc-jarvis',jarvisCt+' leads');set('fc-all',allLeads.length+' leads');set('fc-fore',allLeads.filter(l=>isForeclosure(l)&&l.type!=='TAX'&&!isAged(l)).length+' leads');set('fc-tax',allLeads.filter(l=>l.type==='TAX'&&!auctionPassed(l)).length+' leads');set('fc-vbp',vbpCt+' leads');set('fc-lp',allLeads.filter(isLP).length+' leads');set('fc-appt',allLeads.filter(isAppt).length+' leads');set('fc-aged',allLeads.filter(isAged).length+' leads');set('fc-onmarket',onMarketCt+' leads');}
 
 function updateEmptyStats(){set('es-new',allLeads.filter(l=>l.is_new).length);set('es-urg',allLeads.filter(l=>isUrgent(l)&&!auctionPassed(l)).length);set('es-unsearch',allLeads.filter(l=>!LS(l.doc_number).phone&&!LS(l.doc_number).skipped).length);}
 
@@ -1176,7 +1178,8 @@ function filterLeads(){
     case'urgent': list=list.filter(l=>isUrgent(l)&&!auctionPassed(l));break;
     case'today': list=getTodayList();break;
     case'unsearched': list=list.filter(l=>!LS(l.doc_number).phone&&!LS(l.doc_number).skipped);break;
-    case'fore': list=list.filter(l=>isForeclosure(l)&&!isAged(l));break;
+    case'fore': list=list.filter(l=>isForeclosure(l)&&l.type!=='TAX'&&!isAged(l));break;
+    case'tax': list=list.filter(l=>l.type==='TAX'&&!auctionPassed(l));break;
     case'aged': list=list.filter(isAged);break;
     case'vbp': list=list.filter(l=>isVBP(l)||isStacked(l));break;
     case'lp': list=list.filter(isLP);break;

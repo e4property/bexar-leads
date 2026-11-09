@@ -280,7 +280,12 @@ def should_keep(rec):
     # to work -- the county already owns it. 10 of the 42 had already been
     # pushed to Jarvis with a phone on file before this was caught. Reject
     # unconditionally regardless of what else looks populated on the record.
-    if STRUCK_OFF_DOC_RE.match(rec.get("doc_number", "") or ""):
+    # 2026-11-08: records from the county's live tax-sale GIS layer
+    # (source == "arcgis_tax") carry the same ####TA###### cause numbers but are
+    # UPCOMING sales of properties still held by a private owner (HGO owner check
+    # on all 19 Dec-2026 listings returned private parties). They are exempt from
+    # this rule; government-owned ones are dropped after owner enrichment instead.
+    if rec.get("source") != "arcgis_tax" and STRUCK_OFF_DOC_RE.match(rec.get("doc_number", "") or ""):
         return False
     addr = rec.get("address", "").strip().upper()
     if not addr and not rec.get("owner") and not rec.get("sale_date"):
@@ -1286,6 +1291,67 @@ def fetch_arcgis_backfill(known_docs):
 
     log.info(f"ArcGIS backfill: {len(raw)} new records")
     return raw
+
+
+# ── TAX SALE LAYER (every run) ────────────────────────────────────────────────
+# 2026-11-08: the county's ForeclosuresProd layer 1 ("Tax") lists the properties
+# going to the first-Tuesday tax sale. The weekly backfill pulled them but
+# should_keep() rejected every ####TA###### cause number (the 8/26 struck-off
+# rule). They are real, owner-held leads, so they get their own every-run step.
+GOV_OWNER_RE = re.compile(
+    r"(COUNTY OF|BEXAR COUNTY|CITY OF|STATE OF TEXAS|UNITED STATES|\bISD\b|"
+    r"INDEPENDENT SCHOOL|SCHOOL DIST|HOUSING AUTH|RIVER AUTHORITY|UNIVERSITY HEALTH|"
+    r"ALAMO COMMUNITY|ALAMO COLLEGE|SAN ANTONIO WATER|\bCPS ENERGY\b)")
+
+def _first_tuesday(year, month):
+    d = datetime(int(year), int(month), 1)
+    while d.weekday() != 1:
+        d += timedelta(days=1)
+    return d.strftime("%m/%d/%Y")
+
+def fetch_tax_sales(known_docs):
+    log.info("Tax-sale layer fetch starting...")
+    layer_url = f"{FORECLOSURE_BASE}/1"
+    params = urllib.parse.urlencode({
+        "where": "1=1", "outFields": "*", "returnGeometry": "false",
+        "resultRecordCount": 2000, "f": "json",
+    })
+    data = fetch_json(f"{layer_url}/query?{params}")
+    out, seen_local = [], set()
+    for feat in data.get("features", []):
+        a     = feat["attributes"]
+        month = pick(a, "MONTH", "MO", default="")
+        year  = pick(a, "YEAR", "YR", default="")
+        cause = pick(a, "DOC_NUMBER", "DOCNUM", "DOC_NUM")
+        if not cause:
+            continue
+        doc, k = cause, 2
+        # two properties can share one cause number (e.g. 2017TA101463): keep both
+        while doc in seen_local:
+            doc = f"{cause}-{k}"; k += 1
+        seen_local.add(doc)
+        if doc in known_docs:
+            continue
+        try:
+            sale = _first_tuesday(year, month)
+        except Exception:
+            sale = ""
+        out.append({
+            "type": "TAX", "address": pick(a, "ADDRESS", "SITUS_ADD", "ADDR"),
+            "owner": "", "mail_addr": "", "absentee": False, "duplicate": False,
+            "is_new": True, "doc_number": doc, "tax_cause_no": cause,
+            "year": year, "month": month,
+            "city": pick(a, "CITY", "MAIL_CITY", default=""),
+            "zip": pick(a, "ZIP", "ZIPCODE", "ZIP_CODE", default=""),
+            "school_dist": pick(a, "SCHOOL_DIST", default=""),
+            "date_filed": f"{month}/{year}".strip("/"), "sale_date": sale,
+            "run_ts": RUN_TIMESTAMP, "flags": [], "source": "arcgis_tax",
+            "sale_date_arcgis": "", "tenure_years": None, "tenure_score_bonus": 0,
+            "prop_id": "", "deed_date": "", "last_sale_amt": "",
+        })
+        known_docs.add(doc)
+    log.info(f"Tax-sale layer: {len(out)} new records")
+    return out
 
 
 def login_publicsearch(driver):
@@ -3037,6 +3103,13 @@ if __name__ == "__main__":
         arcgis_records = fetch_arcgis_backfill(known_docs)
         log.info(f"ArcGIS backfill added {len(arcgis_records)} records")
 
+    # ── Step 2b: county tax-sale layer (every run; ~20 records) ──────────────
+    tax_records = []
+    try:
+        tax_records = fetch_tax_sales(known_docs)
+    except Exception as e:
+        log.warning(f"Tax-sale layer error (non-fatal): {e}")
+
     # ── Step 3: Code Enforcement — disabled (bulk CE API blocked from GH Actions)
     ce_records = []
 
@@ -3056,7 +3129,7 @@ if __name__ == "__main__":
                      "appr_history", "appr_trend"]  # v28.35
 
     seen = {}
-    for r in new_records + arcgis_records + lp_records + ce_records + prev_records:
+    for r in new_records + arcgis_records + tax_records + lp_records + ce_records + prev_records:
         doc = r.get("doc_number", "")
         if not doc:
             continue
@@ -3093,6 +3166,14 @@ if __name__ == "__main__":
 
     # ── Step 6: Owner enrichment ──────────────────────────────────────────────
     records = enrich_owners(records)
+
+    # 2026-11-08: tax-sale records whose owner of record is a government/taxing
+    # entity (property already struck off) are not seller leads -- drop them.
+    _before_tax = len(records)
+    records = [r for r in records if not (r.get("source") == "arcgis_tax"
+               and GOV_OWNER_RE.search((r.get("owner") or "").upper()))]
+    if _before_tax != len(records):
+        log.info(f"Dropped {_before_tax - len(records)} government-owned tax-sale records")
 
     # ── Step 6a: APPT owner-name reverse lookup (no address on the filing at all)
     records = enrich_appt_by_owner_name(records)
