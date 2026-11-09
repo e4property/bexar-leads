@@ -1309,6 +1309,26 @@ def _first_tuesday(year, month):
         d += timedelta(days=1)
     return d.strftime("%m/%d/%Y")
 
+LGBS_URL = "https://taxsales.lgbs.com/api/property_sales/?county=BEXAR+COUNTY&limit=200"
+TAX_CANCELLED_KEYS = set()   # (cause_no, street number) of sales Linebarger shows as cancelled
+
+def _tax_key(cause, address):
+    num = ((address or "").strip().split() or [""])[0]
+    return (str(cause or "").strip().upper(), num)
+
+def fetch_lgbs_tax_rows():
+    """Linebarger Goggan Blair & Sampson runs the county's tax sales. Their public
+    API lists the upcoming sale (SALE rows = owner-held judgment sales; RESALE /
+    STRUCK OFF rows are county-held and are ignored), with appraised value, the
+    opening bid once published, and cancellations."""
+    rows, url = [], LGBS_URL
+    while url:
+        d = fetch_json(url.replace("http://", "https://"))
+        rows += d.get("results", [])
+        url = d.get("next")
+    return [r for r in rows if r.get("sale_type") == "SALE"]
+
+
 def fetch_tax_sales(known_docs):
     log.info("Tax-sale layer fetch starting...")
     layer_url = f"{FORECLOSURE_BASE}/1"
@@ -1350,6 +1370,51 @@ def fetch_tax_sales(known_docs):
             "prop_id": "", "deed_date": "", "last_sale_amt": "",
         })
         known_docs.add(doc)
+    # ── Linebarger enrichment / extra parcels / cancellations (non-fatal) ──
+    try:
+        lg = fetch_lgbs_tax_rows()
+        by_key = {_tax_key(r.get("tax_cause_no"), r.get("address")): r for r in out}
+        added = 0
+        for row in lg:
+            key = _tax_key(row.get("cause_nbr"), row.get("prop_address_one"))
+            status = (row.get("status") or "").lower()
+            if "cancel" in status:
+                TAX_CANCELLED_KEYS.add(key)
+                continue
+            if "scheduled" not in status:
+                continue
+            rec = by_key.get(key)
+            if rec is None:
+                cause = row.get("cause_nbr") or ""
+                doc = cause
+                k = 2
+                while doc in seen_local or doc in known_docs:
+                    doc = f"{cause}-{k}"; k += 1
+                sale = (row.get("sale_date_only") or "")
+                try:
+                    sale = datetime.strptime(sale, "%Y-%m-%d").strftime("%m/%d/%Y")
+                except Exception:
+                    sale = ""
+                rec = {
+                    "type": "TAX", "address": (row.get("prop_address_one") or "").strip(),
+                    "owner": "", "mail_addr": "", "absentee": False, "duplicate": False,
+                    "is_new": True, "doc_number": doc, "tax_cause_no": cause,
+                    "year": sale[-4:], "month": sale[:2],
+                    "city": row.get("prop_city") or "", "zip": (row.get("prop_zipcode") or "")[:5],
+                    "school_dist": "", "date_filed": f"{sale[:2]}/{sale[-4:]}" if sale else "",
+                    "sale_date": sale, "run_ts": RUN_TIMESTAMP, "flags": [],
+                    "source": "arcgis_tax", "sale_date_arcgis": "", "tenure_years": None,
+                    "tenure_score_bonus": 0, "prop_id": "", "deed_date": "", "last_sale_amt": "",
+                }
+                seen_local.add(doc); known_docs.add(doc); out.append(rec); by_key[key] = rec; added += 1
+            if row.get("value") and not rec.get("appraised_value"):
+                rec["appraised_value"] = str(row["value"]).split(".")[0]
+            if row.get("minimum_bid"):
+                rec["tax_opening_bid"] = str(row["minimum_bid"])
+        log.info(f"Linebarger: {len(lg)} SALE rows, {added} extra parcels added, "
+                 f"{len(TAX_CANCELLED_KEYS)} cancelled")
+    except Exception as e:
+        log.warning(f"Linebarger tax-sale fetch failed (non-fatal): {e}")
     log.info(f"Tax-sale layer: {len(out)} new records")
     return out
 
@@ -3171,7 +3236,8 @@ if __name__ == "__main__":
     # entity (property already struck off) are not seller leads -- drop them.
     _before_tax = len(records)
     records = [r for r in records if not (r.get("source") == "arcgis_tax"
-               and GOV_OWNER_RE.search((r.get("owner") or "").upper()))]
+               and (GOV_OWNER_RE.search((r.get("owner") or "").upper())
+                    or _tax_key(r.get("tax_cause_no") or r.get("doc_number"), r.get("address")) in TAX_CANCELLED_KEYS))]
     if _before_tax != len(records):
         log.info(f"Dropped {_before_tax - len(records)} government-owned tax-sale records")
 
