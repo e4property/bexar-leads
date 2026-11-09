@@ -1322,11 +1322,25 @@ def fetch_lgbs_tax_rows():
     STRUCK OFF rows are county-held and are ignored), with appraised value, the
     opening bid once published, and cancellations."""
     rows, url = [], LGBS_URL
-    while url:
-        d = fetch_json(url.replace("http://", "https://"))
-        rows += d.get("results", [])
-        url = d.get("next")
-    return [r for r in rows if r.get("sale_type") == "SALE"]
+    try:
+        while url:
+            d = fetch_json(url.replace("http://", "https://"))
+            rows += d.get("results", [])
+            url = d.get("next")
+    except Exception as e:
+        log.warning(f"Linebarger live fetch failed: {e}")
+    sale = [r for r in rows if r.get("sale_type") == "SALE"]
+    if not sale:
+        # 2026-11-09: LGBS answers GitHub-hosted runners with an empty list. A
+        # copy refreshed daily from Xavi's PC (_lgbs_refresh.py) is committed at
+        # data/lgbs_tax_rows.json and used when the live call comes back empty.
+        try:
+            fp = Path(__file__).resolve().parent.parent / "data" / "lgbs_tax_rows.json"
+            sale = [r for r in json.loads(fp.read_text(encoding="utf-8")) if r.get("sale_type") == "SALE"]
+            log.info(f"Linebarger: live empty, using {fp.name} ({len(sale)} SALE rows)")
+        except Exception as e:
+            log.warning(f"Linebarger fallback file unavailable: {e}")
+    return sale
 
 
 def fetch_tax_sales(known_docs):
@@ -3234,6 +3248,22 @@ if __name__ == "__main__":
 
     # 2026-11-08: tax-sale records whose owner of record is a government/taxing
     # entity (property already struck off) are not seller leads -- drop them.
+    _seen_tax, _dedup = {}, []
+    for r in records:
+        if r.get("source") == "arcgis_tax":
+            k = (str(r.get("tax_cause_no") or r.get("doc_number")).upper(),
+                 (r.get("address") or "").strip().upper())
+            if k in _seen_tax:
+                prev = _seen_tax[k]
+                if prev.get("is_new") and not r.get("is_new"):
+                    _dedup[_dedup.index(prev)] = r
+                    _seen_tax[k] = r
+                continue
+            _seen_tax[k] = r
+        _dedup.append(r)
+    if len(_dedup) != len(records):
+        log.info(f"Removed {len(records) - len(_dedup)} duplicate tax-sale parcels")
+    records = _dedup
     _before_tax = len(records)
     records = [r for r in records if not (r.get("source") == "arcgis_tax"
                and (GOV_OWNER_RE.search((r.get("owner") or "").upper())
