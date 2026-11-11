@@ -38,7 +38,7 @@ jobs:
     # constant's comment) so no chunk should ever need page 2 at all.
     # Self-hosted added a real downside (this machine has to stay on) for
     # no benefit once the actual cause was found -- not worth keeping.
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     environment:
       name: github-pages
     timeout-minutes: 150
