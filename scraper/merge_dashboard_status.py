@@ -28,8 +28,11 @@ import sys
 
 LIVE_FIELDS = [
     "ghl_pushed", "ghl_pushed_at", "ghl_id",
-    "dash_phone", "dash_searched_at", "dash_dispo", "dash_notes",
+    "dash_dispo",
 ]
+# 2026-11-12 privacy: phones/notes/lookup dates live ONLY in the private repo
+# (e4property/e4-leads-private); public records get a dash_has_phone marker only.
+PRIVATE_FIELDS = ("dash_phone", "dash_notes", "dash_searched_at")
 
 
 def main():
@@ -55,11 +58,19 @@ def main():
         o = origin_by_doc.get(r.get("doc_number"))
         if not o:
             continue
+        if o.get("dash_phone") or o.get("dash_has_phone"):
+            r["dash_has_phone"] = True
         for field in LIVE_FIELDS:
             ov = o.get(field)
             if ov not in (None, "") and r.get(field) != ov:
                 r[field] = ov
                 merged += 1
+
+    for r in local_records:
+        if r.get("dash_phone"):
+            r["dash_has_phone"] = True
+        for k in PRIVATE_FIELDS:
+            r.pop(k, None)
 
     with open("dashboard/records.json", "w", encoding="utf-8") as f:
         f.write(json.dumps(local_records, separators=(",", ":"), ensure_ascii=True))

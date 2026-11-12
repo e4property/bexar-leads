@@ -89,7 +89,7 @@ def main():
         r for r in records
         if r.get("type") == "APPT"
         and within_cutoff(r.get("date_filed") or r.get("opened_date"))
-        and (r.get("dash_phone") or r.get("ghl_id"))
+        and (r.get("dash_phone") or r.get("dash_has_phone") or r.get("ghl_id"))
     ]
 
     log.info(f"Found {len(candidates)} APPT leads (last {CUTOFF_DAYS}d) with GHL data")
@@ -104,7 +104,7 @@ def main():
 
         log.info(f"  {owner} | {addr} | phone={phone}")
 
-        cid = ghl_id or find_contact(phone=phone) or find_contact(name=owner)
+        cid = ghl_id or (phone and find_contact(phone=phone)) or find_contact(name=owner)
 
         if not cid:
             log.info(f"    No GHL contact — skipping")

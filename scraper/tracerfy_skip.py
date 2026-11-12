@@ -155,7 +155,7 @@ def main():
     def eligible(r):
         if r.get("type") not in ("NOF", "TAX") or not r.get("address"):
             return False
-        if r.get("tracerfy_phone") or r.get("tracerfy_ts") or r.get("dash_phone"):
+        if r.get("tracerfy_phone") or r.get("tracerfy_ts") or r.get("dash_phone") or r.get("dash_has_phone"):
             return False
         if r.get("on_market"):
             return False
