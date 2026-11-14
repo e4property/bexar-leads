@@ -33,6 +33,10 @@ self.addEventListener('activate', e => {
 self.addEventListener('fetch', e => {
   const url = e.request.url;
 
+  // Never intercept GitHub API calls: the cache-first rule below returned a cached RAW file body for a
+  // metadata request (same URL, different Accept header), which broke the private-store saves (HTTP 422).
+  if (url.startsWith('https://api.github.com/')) return;
+
   if (url.includes('records.json') || url.includes('leads.html')) {
     // Network first
     e.respondWith(

@@ -1434,10 +1434,10 @@ async function _writePrivateImpl(doc_number,priv,attempt=1){
   try{
     const url=`https://api.github.com/repos/${PRIV_REPO}/contents/${privPath()}`;
     const hdr={'Authorization':'Bearer '+S.ghToken,'Accept':'application/vnd.github+json'};
-    const g=await fetch(url,{headers:hdr});
+    const g=await fetch(url+'?ref=main&cb='+Date.now(),{headers:hdr,cache:'reload'});
     let obj={},sha=null;
     if(g.status===404){obj={};}
-    else if(g.ok){const fd=await g.json();sha=fd.sha;obj=JSON.parse(decodeURIComponent(escape(atob((fd.content||'e30=').replace(/\n/g,'')))))||{};}
+    else if(g.ok){const fd=await g.json();if(!fd.sha||fd.content==null)throw new Error('private file read incomplete (stale cache?), not writing');sha=fd.sha;obj=JSON.parse(decodeURIComponent(escape(atob((fd.content||'e30=').replace(/\n/g,'')))))||{};}
     else throw new Error('HTTP '+g.status);
     obj[doc_number]=Object.assign(obj[doc_number]||{},priv);
     const body={message:`private: update lead ${doc_number}`,content:btoa(unescape(encodeURIComponent(JSON.stringify(obj)))) };
@@ -1479,7 +1479,7 @@ async function _writeBackToRepoImpl(doc_number,updates,attempt=1){
   try{
     const repoPath='dashboard/records.json';
     const apiBase=`https://api.github.com/repos/${repoForActiveCounty()}/contents/${repoPath}`;
-    const getRes=await fetch(apiBase,{headers:{'Authorization':'Bearer '+S.ghToken,'Accept':'application/vnd.github+json'}});
+    const getRes=await fetch(apiBase+'?ref=main&cb='+Date.now(),{cache:'reload',headers:{'Authorization':'Bearer '+S.ghToken,'Accept':'application/vnd.github+json'}});
     if(!getRes.ok){
       // fix 2026-09-02: this used to silently give up here with no retry and
       // no toast at all -- the most likely source of writeBackToRepo's "silent"
@@ -2163,7 +2163,7 @@ async function deleteLeadFromRepo(doc_number,attempt=1){
   try{
     const repoPath='dashboard/records.json';
     const apiBase=`https://api.github.com/repos/${repoForActiveCounty()}/contents/${repoPath}`;
-    const getRes=await fetch(apiBase,{headers:{'Authorization':'Bearer '+S.ghToken,'Accept':'application/vnd.github+json'}});
+    const getRes=await fetch(apiBase+'?ref=main&cb='+Date.now(),{cache:'reload',headers:{'Authorization':'Bearer '+S.ghToken,'Accept':'application/vnd.github+json'}});
     if(!getRes.ok){
       if(attempt<5){await new Promise(r=>setTimeout(r,Math.min(300*attempt,2500)));return deleteLeadFromRepo(doc_number,attempt+1);}
       return false;
